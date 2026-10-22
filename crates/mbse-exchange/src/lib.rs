@@ -331,11 +331,11 @@ fn project_xml(doc: &mut ExternalDocument, name: &str, bytes: &[u8]) -> Result<(
             })
             .map(|a| a.value().to_owned());
         if let Some(id) = id {
-            node_ids.insert(n.id(), id);
+            node_ids.insert(n.id().get(), id);
         }
     }
     for n in xml.descendants().filter(|n| n.is_element()) {
-        let Some(id) = node_ids.get(&n.id()).cloned() else {
+        let Some(id) = node_ids.get(&n.id().get()).cloned() else {
             continue;
         };
         if doc.nodes.len() >= MAX_NODES {
@@ -403,7 +403,11 @@ fn project_xml(doc: &mut ExternalDocument, name: &str, bytes: &[u8]) -> Result<(
             properties,
             location: location.clone(),
         });
-        if let Some(parent) = n.ancestors().skip(1).find_map(|p| node_ids.get(&p.id())) {
+        if let Some(parent) = n
+            .ancestors()
+            .skip(1)
+            .find_map(|p| node_ids.get(&p.id().get()))
+        {
             doc.references.push(ExternalReference {
                 source: id.clone(),
                 target: parent.clone(),
