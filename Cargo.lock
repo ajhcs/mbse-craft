@@ -1657,6 +1657,7 @@ dependencies = [
  "mbse-model",
  "roxmltree",
  "serde",
+ "serde_json",
  "sha2",
  "sysmlv2-syntax",
  "tempfile",
