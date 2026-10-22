@@ -495,6 +495,40 @@ mod tests {
         );
     }
     #[test]
+    fn delayed_evidence_cannot_apply_to_changed_bytes_with_unchanged_revisions() {
+        let mut workspace = AssuranceWorkspace::default();
+        let mut editor = editor();
+        let frozen = workspace.board.as_value().unwrap();
+        let stamp = editor.calculation_stamp();
+        let config = workspace.config().unwrap();
+        let mut returned = workspace.board.clone();
+        returned
+            .add_requirement("Should never replace current work".into())
+            .unwrap();
+        let (tx, rx) = mpsc::channel();
+        workspace.pending = Some(rx);
+        tx.send(Completion::Updated(
+            Ok((returned, None, "late".into())),
+            frozen,
+            stamp.clone(),
+            config,
+        ))
+        .unwrap();
+        editor
+            .snapshot
+            .records
+            .get_mut(&mbse_model::stage1::RecordId(1))
+            .unwrap()
+            .name = "Changed exact bytes".into();
+        assert_eq!(
+            editor.calculation_stamp().model_revision,
+            stamp.model_revision
+        );
+        workspace.show(&egui::Context::default(), &editor);
+        assert!(workspace.board.register.requirements.is_empty());
+        assert!(workspace.feedback.contains("stale"));
+    }
+    #[test]
     fn disconnected_worker_clears_pending_without_acknowledging_save() {
         let mut workspace = AssuranceWorkspace::default();
         workspace
