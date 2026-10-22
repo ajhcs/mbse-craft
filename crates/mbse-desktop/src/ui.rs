@@ -43,7 +43,7 @@ pub struct Workspace {
     model_fields: HashMap<egui::Id, RawKey>,
     context: egui::Context,
     catalog: crate::catalog_ui::CatalogBrowser,
-    exchange: crate::exchange_ui::ExchangeBrowser,
+    exchange: crate::semantic_ui::SemanticBrowser,
     assurance: crate::assurance_ui::AssuranceWorkspace,
     frame_choice: craft_window::Choice,
     close_intent: bool,
@@ -109,7 +109,7 @@ impl Workspace {
             .unwrap_or_default();
         let (writes, completed_writes) = mpsc::channel();
         let preferences = Preferences::open(config, ctx.clone());
-        let mut app=Self { session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::exchange_ui::ExchangeBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,last_edit:Instant::now(),last_periodic:Instant::now(), feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
+        let mut app=Self { session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,last_edit:Instant::now(),last_periodic:Instant::now(), feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
             creation: None, relation: None, popout: None, pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new() };
         app.refresh_recoveries();
         app

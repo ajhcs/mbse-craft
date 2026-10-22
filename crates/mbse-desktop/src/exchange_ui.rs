@@ -48,6 +48,24 @@ pub struct ExchangeBrowser {
     bounds: BTreeMap<String, [f32; 4]>,
 }
 impl ExchangeBrowser {
+    pub fn hide(&mut self) {
+        self.visible = false;
+    }
+    pub fn accept_frozen(&mut self, doc: ExternalDocument) {
+        self.selected = doc.nodes.first().map(NodeKey::of);
+        self.filtered = (0..doc.nodes.len()).collect();
+        self.query.clear();
+        self.last_query.clear();
+        self.kind = None;
+        self.last_kind = None;
+        self.reference = None;
+        self.document = Some(Arc::new(doc));
+        self.visible = true;
+        self.error = false;
+        self.feedback =
+            "Frozen textual SysML projection (V1). Native admission: false. Execution: false."
+                .into();
+    }
     pub fn is_visible(&self) -> bool {
         self.visible
     }
