@@ -1,0 +1,39 @@
+{"ready": true, "app_pid": 643158, "server_pid": 643155, "window": 4194307, "binary_sha256": "8e6e268edc2ba381059290fbc4ad569a1c6c668a7a3a911782d0324cd9664b81"}
+{"op": "click", "widget": "action:Add Measure", "x": 50, "y": 627, "app_returncode": null}
+{"op": "click", "widget": "creation:name", "x": 186, "y": 112, "app_returncode": null}
+{"op": "text", "text": "Synthetic failing peer", "app_returncode": null}
+{"op": "click", "widget": "creation:commit", "x": 72, "y": 177, "app_returncode": null}
+{"op": "scroll", "x": 250, "y": 800, "steps": 5, "app_returncode": null}
+{"op": "click", "widget": "calc:Add calculation", "x": 56, "y": 755, "app_returncode": null}
+{"op": "click", "widget": "field:1004:calc.expression", "x": 168, "y": 766, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "x/0", "app_returncode": null}
+{"op": "click", "widget": "tree:1003", "x": 118, "y": 312, "app_returncode": null}
+{"op": "click", "widget": "save-path", "x": 784, "y": 103, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/m1/state/assurance-global-data/peer.kernspan", "app_returncode": null}
+{"op": "click", "widget": "action:Save", "pause": 2, "x": 503, "y": 12, "app_returncode": null}
+{"op": "click", "widget": "action:Requirements and evidence", "x": 1047, "y": 12, "app_returncode": null}
+{"op": "click", "widget": "assurance:path", "x": 249, "y": 115, "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/m1/state/assurance-strict-data/register.json", "app_returncode": null}
+{"op": "click", "widget": "assurance:Open", "pause": 2, "x": 442, "y": 115, "app_returncode": null}
+{"op": "click", "widget": "assurance:Link source", "x": 104, "y": 261, "app_returncode": null}
+{"op": "click", "widget": "assurance:calculation", "x": 204, "y": 511, "app_returncode": null}
+{"op": "text", "text": "1003", "app_returncode": null}
+{"op": "click", "widget": "assurance:Evaluate", "pause": 2, "x": 336, "y": 511, "app_returncode": null}
+{"op": "capture", "name": "actual-global-failure-before-review", "ui_sha256": "9e1313607b79a71cfbf2cfda0f9777b1a04084769241a765604e5d0630030d5a", "sha256": "eacd3d8697e8ceda6b2fc1c2c6bec419c8c492f43bb01d8a9be0ea24542e71cf", "app_returncode": null}
+{"op": "scroll", "x": 1090, "y": 780, "steps": 5, "app_returncode": null}
+{"op": "capture", "name": "global-failure-controls-visible", "ui_sha256": "e622e114b731d84f63a94f70c3345e24d30fcff517a75bb77f59e5f7e641b575", "sha256": "68be6ce77894d97bac5a8671b5c74b2629d883c284d2882eeda05f399eb99aa3", "app_returncode": null}
+{"op": "click", "widget": "assurance:reviewer", "x": 225, "y": 741, "app_returncode": null}
+{"op": "text", "text": "Synthetic QA", "app_returncode": null}
+{"op": "click", "widget": "assurance:decision-rationale", "x": 627, "y": 741, "app_returncode": null}
+{"op": "text", "text": "Selected conversion only with known failing peer", "app_returncode": null}
+{"op": "click", "widget": "assurance:Review adequate", "pause": 1, "x": 76, "y": 768, "app_returncode": null}
+{"op": "click", "widget": "assurance:Record CompletedPassed", "pause": 1, "x": 709, "y": 794, "app_returncode": null}
+{"op": "capture", "name": "selected-valid-global-failure-pass-refused", "ui_sha256": "26f64245170ea08d86d4765e4e9937aab83635a9450611e6f6e13790ce4eebad", "sha256": "7d456a5ffe23757b0af0fe64d68b365da04f79582fd739fd402d0194eb45f78e", "app_returncode": null}
+{"op": "scroll", "x": 1090, "y": 300, "steps": -9, "app_returncode": null}
+{"op": "click", "widget": "assurance:path", "x": 249, "y": 115, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/m1/state/assurance-global-data/global-register.json", "app_returncode": null}
+{"op": "click", "widget": "assurance:Save fresh", "pause": 2, "x": 636, "y": 115, "app_returncode": null}
+{"op": "close", "pause": 2, "app_returncode": 0}

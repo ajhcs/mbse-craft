@@ -68,7 +68,10 @@ def main():
             assert app.poll() is None and pid(win)==app.pid
             if op=='click':
                 if 'widget' in cmd:
-                    audit=json.loads((a.state_dir/'ui-geometry.json').read_text());rect=audit['widgets'][cmd['widget']];scale=audit['pixels_per_point'];assert rect[2]>rect[0] and rect[3]>rect[1], 'widget clipped';cmd['x']=int((rect[0]+rect[2])*scale/2);cmd['y']=int((rect[1]+rect[3])*scale/2)
+                    audit=json.loads((a.state_dir/'ui-geometry.json').read_text());rect=audit['widgets'].get(cmd['widget']);scale=audit['pixels_per_point']
+                    if rect is None or rect[2]<=rect[0] or rect[3]<=rect[1]:
+                        event({**cmd,'input_rejected':'missing or clipped widget; no event sent'});continue
+                    cmd['x']=int((rect[0]+rect[2])*scale/2);cmd['y']=int((rect[1]+rect[3])*scale/2)
                 xt.XTestFakeMotionEvent(d,0,cmd['x'],cmd['y'],0);xt.XTestFakeButtonEvent(d,1,1,0);xt.XTestFakeButtonEvent(d,1,0,0)
             elif op=='hide':
                 x.XUnmapWindow(d,win)

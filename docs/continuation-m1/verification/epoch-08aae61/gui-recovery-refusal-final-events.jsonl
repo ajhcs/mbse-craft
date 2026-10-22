@@ -1,0 +1,15 @@
+{"ready": true, "app_pid": 646869, "server_pid": 646866, "window": 4194307, "binary_sha256": "8e6e268edc2ba381059290fbc4ad569a1c6c668a7a3a911782d0324cd9664b81"}
+{"op": "click", "widget": "action:Recovery copy", "pause": 2, "x": 575, "y": 12, "app_returncode": null}
+{"op": "capture", "name": "initial-recovery-durable", "ui_sha256": "cff4165b5fbaaa7cf2c7811fff8cd1cfb09c86307b057a7151f6c5cb2c5bccca", "sha256": "b0a3004503702e0e736031efc7552ff2298ab27140e3618099aa7a22b7528b0f", "app_returncode": null}
+{"op": "click", "widget": "field:1003:criterion", "x": 168, "y": 546, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "9e", "app_returncode": null}
+{"op": "click", "widget": "action:Recovery copy", "pause": 2, "x": 575, "y": 12, "app_returncode": null}
+{"op": "capture", "name": "recovery-write-refusal-retains-draft", "ui_sha256": "9c1678ae0a4d1ca8ccec1bf8c074c2a556e5f18a4995c20850041db2ea5cdb83", "sha256": "ce15a17be9085ec17264e87f0d7a9f27f8efe037ae893be17ad94b7f70548332", "app_returncode": null}
+{"op": "close", "pause": 1, "app_returncode": null}
+{"op": "click", "widget": "preserve:Keep recovery and continue", "pause": 2, "x": 107, "y": 168, "app_returncode": null}
+{"op": "capture", "name": "failed-recovery-does-not-close", "ui_sha256": "878288230c5b809b2978d558a872cd607e3c1bcc8eb3ea28f7eb98e9f5921fcd", "sha256": "b6fc5a2799f99e1be8a1feec5827649e79b0d0dd87768ea1e3ff26181cd0163f", "app_returncode": null}
+{"op": "click", "widget": "preserve:Cancel", "pause": 1, "x": 46, "y": 194, "app_returncode": null}
+{"op": "capture", "name": "cancel-after-failed-recovery", "ui_sha256": "1eba49e9b6a9f870c40e5296954508c1b2704f036f98a2c3add5322f99f0fc40", "sha256": "12b31330f06f227314b63c3d0e1578d1edd4d45aff8609c84cc8fb9ffedd40a3", "app_returncode": null}
+{"op": "close", "pause": 1, "app_returncode": null}
+{"op": "click", "widget": "preserve:Keep recovery and continue", "pause": 3, "x": 107, "y": 168, "app_returncode": 0}

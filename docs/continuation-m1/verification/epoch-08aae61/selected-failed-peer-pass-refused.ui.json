@@ -1,0 +1,580 @@
+{
+  "error": false,
+  "external_copy_pending": false,
+  "feedback": "Select a model card to edit its fields. Model values and unfinished text remain separate.",
+  "frame_override": null,
+  "frame_policy": "Desktop",
+  "model_revision": 16,
+  "periodic_recovery": false,
+  "pixels_per_point": 1.0,
+  "preferences_status": "Session preferences.",
+  "profile": "mbse-craft.ui-geometry/1",
+  "raw_version": 13,
+  "recovery_current": false,
+  "recovery_interval_seconds": 60,
+  "recovery_path": null,
+  "save_status": "Saved",
+  "selected": 1004,
+  "snapshot_hash": "6e935d412c418ceae7159b12b109e99936522e4df605893958adb63ece9e0e5e",
+  "widgets": {
+    "action:Add Actor": [
+      101.375,
+      1104.0,
+      167.59375,
+      978.0
+    ],
+    "action:Add Capability": [
+      94.9375,
+      1078.0,
+      186.375,
+      978.0
+    ],
+    "action:Add Environment": [
+      8.0,
+      1130.0,
+      116.96875,
+      978.0
+    ],
+    "action:Add Expectation": [
+      8.0,
+      1156.0,
+      111.6875,
+      978.0
+    ],
+    "action:Add Measure": [
+      8.0,
+      1104.0,
+      92.375,
+      978.0
+    ],
+    "action:Add Mission": [
+      8.0,
+      1078.0,
+      85.9375,
+      978.0
+    ],
+    "action:Add Objective": [
+      195.375,
+      1078.0,
+      285.125,
+      978.0
+    ],
+    "action:Add Organization": [
+      125.96875,
+      1130.0,
+      235.5,
+      978.0
+    ],
+    "action:Add Stakeholder": [
+      176.59375,
+      1104.0,
+      280.625,
+      978.0
+    ],
+    "action:Browse library folder": [
+      1140.875,
+      3.5,
+      1270.28125,
+      21.5
+    ],
+    "action:Import SysML": [
+      390.96875,
+      3.5,
+      477.46875,
+      21.5
+    ],
+    "action:New": [
+      234.46875,
+      3.5,
+      268.875,
+      21.5
+    ],
+    "action:Open": [
+      277.875,
+      3.5,
+      318.03125,
+      21.5
+    ],
+    "action:Open external projection": [
+      800.84375,
+      3.5,
+      954.15625,
+      21.5
+    ],
+    "action:Recover": [
+      327.03125,
+      3.5,
+      381.96875,
+      21.5
+    ],
+    "action:Recovery copy": [
+      530.15625,
+      3.5,
+      621.78125,
+      21.5
+    ],
+    "action:Redo": [
+      201.125,
+      31.0,
+      245.125,
+      59.0
+    ],
+    "action:Requirements and evidence": [
+      963.15625,
+      3.5,
+      1131.875,
+      21.5
+    ],
+    "action:Save": [
+      486.46875,
+      3.5,
+      521.15625,
+      21.5
+    ],
+    "action:Undo": [
+      148.125,
+      31.0,
+      192.125,
+      59.0
+    ],
+    "assurance:Add": [
+      423.1875,
+      170.5,
+      530.4375,
+      188.5
+    ],
+    "assurance:Attach external": [
+      425.65625,
+      529.5,
+      568.03125,
+      547.5
+    ],
+    "assurance:Clear source": [
+      194.625,
+      252.0,
+      316.6875,
+      270.0
+    ],
+    "assurance:Evaluate": [
+      253.40625,
+      502.5,
+      418.71875,
+      520.5
+    ],
+    "assurance:Link source": [
+      23.0,
+      252.0,
+      185.625,
+      270.0
+    ],
+    "assurance:Open": [
+      398.84375,
+      106.5,
+      487.0625,
+      124.5
+    ],
+    "assurance:Record Completed": [
+      145.40625,
+      879.0,
+      261.96875,
+      835.0
+    ],
+    "assurance:Record CompletedFailed": [
+      471.53125,
+      879.0,
+      622.0625,
+      835.0
+    ],
+    "assurance:Record CompletedPassed": [
+      631.0625,
+      879.0,
+      787.65625,
+      835.0
+    ],
+    "assurance:Record CompletedUnsuccessful": [
+      270.96875,
+      879.0,
+      462.53125,
+      835.0
+    ],
+    "assurance:Record InProgress": [
+      23.0,
+      879.0,
+      136.40625,
+      835.0
+    ],
+    "assurance:Redo": [
+      302.125,
+      80.0,
+      414.28125,
+      98.0
+    ],
+    "assurance:Review adequate": [
+      23.0,
+      853.0,
+      130.71875,
+      835.0
+    ],
+    "assurance:Review inadequate": [
+      139.71875,
+      853.0,
+      257.90625,
+      835.0
+    ],
+    "assurance:Save": [
+      496.0625,
+      106.5,
+      578.8125,
+      124.5
+    ],
+    "assurance:Save fresh": [
+      587.8125,
+      106.5,
+      685.5625,
+      124.5
+    ],
+    "assurance:Undo": [
+      179.90625,
+      80.0,
+      293.125,
+      98.0
+    ],
+    "assurance:Use recorded metadata": [
+      23.0,
+      728.0,
+      269.15625,
+      746.0
+    ],
+    "assurance:artifact-path": [
+      136.65625,
+      529.0,
+      416.65625,
+      548.0
+    ],
+    "assurance:calculation": [
+      164.40625,
+      502.0,
+      244.40625,
+      521.0
+    ],
+    "assurance:decision-rationale": [
+      487.15625,
+      826.0,
+      767.15625,
+      835.0
+    ],
+    "assurance:evidence:11": [
+      23.0,
+      634.0,
+      375.65625,
+      651.0
+    ],
+    "assurance:evidence:2": [
+      23.0,
+      556.0,
+      398.84375,
+      574.0
+    ],
+    "assurance:evidence:5": [
+      23.0,
+      582.0,
+      398.84375,
+      600.0
+    ],
+    "assurance:evidence:8": [
+      23.0,
+      608.0,
+      398.84375,
+      626.0
+    ],
+    "assurance:field:owner": [
+      71.53125,
+      385.0,
+      791.53125,
+      404.0
+    ],
+    "assurance:field:rationale": [
+      86.78125,
+      331.0,
+      806.78125,
+      350.0
+    ],
+    "assurance:field:source": [
+      71.65625,
+      358.0,
+      791.65625,
+      377.0
+    ],
+    "assurance:field:statement": [
+      93.28125,
+      304.0,
+      813.28125,
+      323.0
+    ],
+    "assurance:field:user_version": [
+      75.25,
+      412.0,
+      795.25,
+      431.0
+    ],
+    "assurance:implementation": [
+      144.125,
+      439.0,
+      346.6875,
+      457.0
+    ],
+    "assurance:maturity": [
+      23.0,
+      439.0,
+      135.125,
+      457.0
+    ],
+    "assurance:new-statement": [
+      134.1875,
+      170.0,
+      414.1875,
+      189.0
+    ],
+    "assurance:path": [
+      109.84375,
+      106.0,
+      389.84375,
+      125.0
+    ],
+    "assurance:reviewer": [
+      85.65625,
+      826.0,
+      365.65625,
+      835.0
+    ],
+    "calc:Add count input": [
+      134.4375,
+      935.0,
+      235.71875,
+      953.0
+    ],
+    "calc:Add duration input": [
+      8.0,
+      935.0,
+      125.4375,
+      953.0
+    ],
+    "calc:Add length input": [
+      117.84375,
+      909.0,
+      223.46875,
+      927.0
+    ],
+    "calc:Add scalar input": [
+      8.0,
+      909.0,
+      108.84375,
+      927.0
+    ],
+    "canvas:ownership": [
+      346.0,
+      179.0,
+      549.40625,
+      197.0
+    ],
+    "card:1": [
+      371.0,
+      247.0,
+      695.0,
+      331.0
+    ],
+    "card:1000": [
+      719.0,
+      247.0,
+      1043.0,
+      331.0
+    ],
+    "card:1001": [
+      1067.0,
+      247.0,
+      1391.0,
+      331.0
+    ],
+    "card:1002": [
+      371.0,
+      402.0,
+      695.0,
+      486.0
+    ],
+    "card:1003": [
+      719.0,
+      402.0,
+      1043.0,
+      486.0
+    ],
+    "card:1004": [
+      1067.0,
+      402.0,
+      1391.0,
+      486.0
+    ],
+    "field:1004:calc.expression": [
+      8.0,
+      757.0,
+      329.0,
+      776.0
+    ],
+    "field:1004:calc.input.x": [
+      8.0,
+      830.0,
+      329.0,
+      849.0
+    ],
+    "field:1004:criterion": [
+      8.0,
+      554.0,
+      329.0,
+      573.0
+    ],
+    "field:1004:name": [
+      8.0,
+      429.0,
+      329.0,
+      448.0
+    ],
+    "input-unit:1004:x": [
+      8.0,
+      857.0,
+      108.0,
+      875.0
+    ],
+    "measure-unit:1004": [
+      8.0,
+      505.0,
+      108.0,
+      523.0
+    ],
+    "output-unit:1004": [
+      8.0,
+      883.0,
+      148.71875,
+      901.0
+    ],
+    "path": [
+      202.6875,
+      67.0,
+      1432.0,
+      86.0
+    ],
+    "recovery:Review copies": [
+      630.78125,
+      3.5,
+      791.84375,
+      21.5
+    ],
+    "relation:ContributesTo:1001:1000": [
+      346.0,
+      847.0,
+      1022.84375,
+      865.0
+    ],
+    "relation:ForObjective:1003:1002": [
+      346.0,
+      899.0,
+      943.0,
+      917.0
+    ],
+    "relation:ForObjective:1004:1002": [
+      346.0,
+      925.0,
+      1065.21875,
+      943.0
+    ],
+    "relation:Scope:1:1000": [
+      346.0,
+      717.40625,
+      957.65625,
+      735.0
+    ],
+    "relation:Scope:1:1001": [
+      346.0,
+      743.0,
+      975.25,
+      761.0
+    ],
+    "relation:Scope:1:1002": [
+      346.0,
+      769.0,
+      950.6875,
+      787.0
+    ],
+    "relation:Scope:1:1003": [
+      346.0,
+      795.0,
+      911.46875,
+      813.0
+    ],
+    "relation:Scope:1:1004": [
+      346.0,
+      821.0,
+      1033.65625,
+      839.0
+    ],
+    "relation:Subject:1002:1001": [
+      346.0,
+      873.0,
+      975.4375,
+      891.0
+    ],
+    "save-path": [
+      137.46875,
+      94.0,
+      1432.0,
+      113.0
+    ],
+    "scope:1004": [
+      8.0,
+      456.0,
+      113.21875,
+      474.0
+    ],
+    "settings:Open": [
+      1279.28125,
+      3.5,
+      1389.84375,
+      21.5
+    ],
+    "tree:1": [
+      26.0,
+      199.0,
+      279.65625,
+      217.0
+    ],
+    "tree:1000": [
+      26.0,
+      225.0,
+      256.90625,
+      243.0
+    ],
+    "tree:1001": [
+      26.0,
+      251.0,
+      274.5,
+      269.0
+    ],
+    "tree:1002": [
+      26.0,
+      277.0,
+      249.90625,
+      295.0
+    ],
+    "tree:1003": [
+      26.0,
+      303.0,
+      210.71875,
+      321.0
+    ],
+    "tree:1004": [
+      26.0,
+      329.0,
+      305.96875,
+      361.0
+    ]
+  },
+  "write_pending": false
+}

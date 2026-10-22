@@ -1,0 +1,55 @@
+{"ready": true, "app_pid": 641295, "server_pid": 641292, "window": 4194307, "binary_sha256": "8e6e268edc2ba381059290fbc4ad569a1c6c668a7a3a911782d0324cd9664b81"}
+{"op": "click", "widget": "action:Requirements and evidence", "x": 1047, "y": 12, "app_returncode": null}
+{"op": "click", "widget": "assurance:path", "x": 249, "y": 115, "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/m1/state/assurance-final-data/synthetic-register.json", "app_returncode": null}
+{"op": "click", "widget": "assurance:Open", "pause": 2, "x": 442, "y": 115, "app_returncode": null}
+{"op": "click", "widget": "assurance:calculation", "x": 204, "y": 511, "app_returncode": null}
+{"op": "text", "text": "1003", "app_returncode": null}
+{"op": "click", "widget": "assurance:Evaluate", "pause": 2, "x": 336, "y": 511, "app_returncode": null}
+{"op": "click", "widget": "assurance:reviewer", "x": 225, "y": 784, "app_returncode": null}
+{"op": "text", "text": "Synthetic QA", "app_returncode": null}
+{"op": "click", "widget": "assurance:decision-rationale", "x": 627, "y": 784, "app_returncode": null}
+{"op": "text", "text": "Bounded calculator oracle only", "app_returncode": null}
+{"op": "click", "widget": "assurance:Review adequate", "pause": 1, "x": 76, "y": 811, "app_returncode": null}
+{"op": "click", "widget": "assurance:Record CompletedPassed", "pause": 1, "x": 709, "y": 831, "app_returncode": null}
+{"op": "capture", "name": "final-synthetic-passed", "ui_sha256": "a00df3bb40554843d36e44874e4da1998b1249ab1456bbb497e3950052a81396", "sha256": "2a8b319dbd2db62cede425e778401d4e37789bf7a7988ef7d097d0b8ec505111", "app_returncode": null}
+{"op": "click", "widget": "assurance:path", "x": 249, "y": 115, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/m1/state/assurance-strict-data/register.json", "app_returncode": null}
+{"op": "click", "widget": "assurance:Save fresh", "pause": 2, "x": 636, "y": 115, "app_returncode": null}
+{"op": "click", "x": 1100, "y": 33, "app_returncode": null}
+{"op": "click", "widget": "field:1003:criterion", "x": 168, "y": 523, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "9e", "app_returncode": null}
+{"op": "click", "widget": "action:Requirements and evidence", "x": 1047, "y": 12, "app_returncode": null}
+{"op": "click", "widget": "assurance:field:owner", "x": 431, "y": 394, "app_returncode": null}
+{"op": "text", "text": "Synthetic QA", "app_returncode": null}
+{"op": "close", "pause": 1, "app_returncode": null}
+{"op": "click", "widget": "assurance:Discard close", "pause": 1, "x": 960, "y": 145, "app_returncode": null}
+{"op": "close", "pause": 1, "app_returncode": null}
+{"op": "capture", "name": "native-preserve-after-register-permit", "ui_sha256": "568cceb4aa3d369ffc248e4ddbb986dd19bc45f3f243980838bf702f59ae1930", "sha256": "222a0c8560adc299edc14733437a5167003bbfb61dc221a8b718499e0b7711c9", "app_returncode": null}
+{"op": "click", "widget": "preserve:Cancel", "pause": 1, "x": 870, "y": 194, "app_returncode": null}
+{"op": "close", "pause": 1, "app_returncode": null}
+{"op": "capture", "name": "register-reprompt-after-native-cancel", "ui_sha256": "4266e74c47fd11a1a81dcb4a8c0c9f9ef8d3af8304e47f48a0b449fd7f3d8b13", "sha256": "e65febcac2be607a3e4131e6331fee794ba3ef8a406508d8149a96d8d7d25cd9", "app_returncode": null}
+{"op": "click", "widget": "assurance:Return", "x": 894, "y": 119, "app_returncode": null}
+{"op": "click", "x": 1100, "y": 33, "app_returncode": null}
+{"op": "click", "widget": "field:1003:criterion", "x": 168, "y": 523, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "2000", "app_returncode": null}
+{"op": "click", "widget": "tree:1002", "x": 137, "y": 286, "app_returncode": null}
+{"op": "capture", "name": "objective-for-failing-peer", "ui_sha256": "a7875bfde5c072fda680b8c07e034a2cc3b1d4ca5911000a809ead3102ea3aba", "sha256": "fdeb08362635d8f51ed9d91d2e6c86067c4723bef68edf3ca76a313c39bcfaa0", "app_returncode": null}
+{"op": "click", "widget": "action:Add Measure", "x": 50, "y": 627, "app_returncode": null}
+{"op": "click", "widget": "creation:name", "x": 186, "y": 112, "app_returncode": null}
+{"op": "text", "text": "Synthetic failing peer", "app_returncode": null}
+{"op": "click", "widget": "creation:commit", "x": 72, "y": 177, "app_returncode": null}
+{"op": "capture", "name": "gui-added-peer", "ui_sha256": "56370e72345ca585e79fe65d4818b6aee0565bbef5c77da349fcb2f807c0d7df", "sha256": "96269712363d3831e8e6ec4eb0acc50ac5419ed449224baa015fe074a7a2d67f", "app_returncode": null}
+{"op": "scroll", "x": 250, "y": 800, "steps": 5, "app_returncode": null}
+{"op": "click", "widget": "calc:Add calculation", "x": 56, "y": 755, "app_returncode": null}
+{"op": "capture", "name": "peer-calculation-created", "ui_sha256": "2dfe7086abdac51b5075d4805b99206ce5765d611696cf15c4e0d72f98d5b381", "sha256": "cd70578824b104eb46b6711c828edbec76df42794fe054dfb1b708952261b25e", "app_returncode": null}
+{"op": "click", "widget": "field:1004:calc.expression", "x": 168, "y": 766, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "x/0", "app_returncode": null}
+{"op": "click", "widget": "tree:1003", "x": 118, "y": 312, "app_returncode": null}
+{"op": "click", "widget": "action:Requirements and evidence", "x": 1047, "y": 12, "app_returncode": null}
+{"op": "click", "widget": "assurance:Link source", "x": 104, "y": 261, "app_returncode": null}
+{"op": "click", "widget": "assurance:Evaluate", "pause": 2, "x": 336, "y": 511, "app_returncode": null}
