@@ -13,6 +13,7 @@ use std::{
 pub const PROFILE: &str = "mbse-craft.requirements-evidence/1";
 pub const MAX_BYTES: usize = 32 * 1024 * 1024;
 pub const MAX_AUDIT_ENTRIES: usize = 20_000;
+pub const MAX_ARTIFACT_BYTES: usize = 8 * 1024 * 1024;
 #[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 pub struct RequirementId(pub u64);
 #[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
@@ -278,6 +279,7 @@ impl Board {
         &mut self,
         f: impl FnOnce(&mut Register) -> Result<T, String>,
     ) -> Result<T, String> {
+        envelope_size(&self.register)?;
         let before = self.register.clone();
         let next_revision = before
             .revision
@@ -287,6 +289,10 @@ impl Board {
             Ok(v) => {
                 if self.register != before {
                     self.register.revision = next_revision;
+                    if let Err(error) = envelope_size(&self.register) {
+                        self.register = before;
+                        return Err(error);
+                    }
                     self.past.push(before);
                     self.future.clear();
                 }
@@ -576,45 +582,60 @@ impl Board {
         global_calculation_success: Option<bool>,
         context_metadata: Option<Value>,
     ) -> Result<EvidenceId, String> {
-        self.transaction(|s| {
-            if s.evidence.len() >= 10_000 {
-                return Err("ASSURANCE_RECORD_LIMIT".into());
-            }
-            let req = s
-                .requirements
-                .get(&requirement)
-                .ok_or("ASSURANCE_REQUIREMENT_MISSING")?;
-            let requirement_hash = requirement_hash(req)?;
-            let requirement_revision = req.revision;
-            let id = EvidenceId(s.next_id);
+        if self.register.evidence.len() >= 10_000 {
+            return Err("ASSURANCE_RECORD_LIMIT".into());
+        }
+        let aggregate = self
+            .register
+            .evidence
+            .values()
+            .try_fold(artifact_bytes.len(), |n, e| {
+                n.checked_add(e.artifact_bytes.len())
+            })
+            .ok_or("ASSURANCE_ARTIFACT_BUDGET")?;
+        if aggregate > MAX_ARTIFACT_BYTES {
+            return Err("ASSURANCE_ARTIFACT_BUDGET".into());
+        }
+        let req = self
+            .register
+            .requirements
+            .get(&requirement)
+            .ok_or("ASSURANCE_REQUIREMENT_MISSING")?;
+        let id = EvidenceId(self.register.next_id);
+        let evidence = Evidence {
+            id,
+            requirement,
+            requirement_revision: req.revision,
+            requirement_hash: requirement_hash(req)?,
+            context,
+            context_metadata,
+            evaluator_limits: selected_calculation.map(|_| calc::Limits::default()),
+            artifact_sha256: bytes_hash(&artifact_bytes),
+            artifact_bytes,
+            artifact_path,
+            selected_calculation,
+            selected_quantity,
+            outcome,
+            global_calculation_success,
+            adequacy: Adequacy::NotReviewed,
+            reviewer: String::new(),
+            rationale: String::new(),
+            reviewed_digest: None,
+            unknown: BTreeMap::new(),
+        };
+        // Stream-count the exact prospective envelope, including Vec<u8> JSON expansion,
+        // before cloning the existing register into transaction/Undo history.
+        envelope_size(&RegisterWithEvidence {
+            register: &self.register,
+            evidence: &evidence,
+        })?;
+        self.transaction(move |s| {
             s.next_id = s.next_id.checked_add(1).ok_or("ASSURANCE_ID_LIMIT")?;
-            s.evidence.insert(
-                id,
-                Evidence {
-                    id,
-                    requirement,
-                    requirement_revision,
-                    requirement_hash,
-                    context,
-                    context_metadata,
-                    evaluator_limits: selected_calculation.map(|_| calc::Limits::default()),
-                    artifact_sha256: bytes_hash(&artifact_bytes),
-                    artifact_bytes,
-                    artifact_path,
-                    selected_calculation,
-                    selected_quantity,
-                    outcome,
-                    global_calculation_success,
-                    adequacy: Adequacy::NotReviewed,
-                    reviewer: String::new(),
-                    rationale: String::new(),
-                    reviewed_digest: None,
-                    unknown: BTreeMap::new(),
-                },
-            );
+            s.evidence.insert(id, evidence);
             Ok(id)
         })
     }
+
     pub fn evidence_staleness(
         &self,
         id: EvidenceId,
@@ -869,6 +890,80 @@ impl Board {
         serde_json::to_value(&self.register).map_err(|e| e.to_string())
     }
 }
+// Counting serialization is bounded and allocates no encoded artifact copy.
+struct SizeWriter(usize);
+impl std::io::Write for SizeWriter {
+    fn write(&mut self, bytes: &[u8]) -> std::io::Result<usize> {
+        let next = self
+            .0
+            .checked_add(bytes.len())
+            .filter(|n| *n <= MAX_BYTES)
+            .ok_or_else(|| std::io::Error::other("ASSURANCE_DOCUMENT_LIMIT"))?;
+        self.0 = next;
+        Ok(bytes.len())
+    }
+    fn flush(&mut self) -> std::io::Result<()> {
+        Ok(())
+    }
+}
+fn envelope_size(register: &impl Serialize) -> Result<usize, String> {
+    #[derive(Serialize)]
+    struct View<'a, T: Serialize> {
+        profile: &'static str,
+        register: &'a T,
+    }
+    let mut writer = SizeWriter(0);
+    serde_json::to_writer(
+        &mut writer,
+        &View {
+            profile: PROFILE,
+            register,
+        },
+    )
+    .map_err(|e| format!("ASSURANCE_DOCUMENT_LIMIT: {e}"))?;
+    Ok(writer.0)
+}
+struct RegisterWithEvidence<'a> {
+    register: &'a Register,
+    evidence: &'a Evidence,
+}
+impl Serialize for RegisterWithEvidence<'_> {
+    fn serialize<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+        use serde::ser::SerializeStruct;
+        struct Entries<'a>(&'a BTreeMap<EvidenceId, Evidence>, &'a Evidence);
+        impl Serialize for Entries<'_> {
+            fn serialize<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+                use serde::ser::SerializeMap;
+                let mut map = serializer.serialize_map(Some(self.0.len() + 1))?;
+                for (id, e) in self.0 {
+                    map.serialize_entry(id, e)?;
+                }
+                map.serialize_entry(&self.1.id, self.1)?;
+                map.end()
+            }
+        }
+        let r = self.register;
+        let next_id = r
+            .next_id
+            .checked_add(1)
+            .ok_or_else(|| serde::ser::Error::custom("ASSURANCE_ID_LIMIT"))?;
+        let revision = r
+            .revision
+            .checked_add(1)
+            .ok_or_else(|| serde::ser::Error::custom("ASSURANCE_REVISION_LIMIT"))?;
+        let mut state = serializer.serialize_struct("Register", 9)?;
+        state.serialize_field("requirements", &r.requirements)?;
+        state.serialize_field("evidence", &Entries(&r.evidence, self.evidence))?;
+        state.serialize_field("decisions", &r.decisions)?;
+        state.serialize_field("review_history", &r.review_history)?;
+        state.serialize_field("decision_history", &r.decision_history)?;
+        state.serialize_field("drafts", &r.drafts)?;
+        state.serialize_field("next_id", &next_id)?;
+        state.serialize_field("revision", &revision)?;
+        state.serialize_field("unknown", &r.unknown)?;
+        state.end()
+    }
+}
 #[derive(Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 struct Envelope {
@@ -959,6 +1054,13 @@ impl Board {
             || s.decision_history.len() > MAX_AUDIT_ENTRIES
         {
             return Err("ASSURANCE_RECORD_LIMIT".into());
+        }
+        if s.evidence
+            .values()
+            .try_fold(0usize, |n, e| n.checked_add(e.artifact_bytes.len()))
+            .is_none_or(|n| n > MAX_ARTIFACT_BYTES)
+        {
+            return Err("ASSURANCE_ARTIFACT_BUDGET".into());
         }
         let mut max = 0u64;
         let mut used = BTreeSet::new();

@@ -704,3 +704,64 @@ fn unrecognized_typed_sibling_fields_refuse_instead_of_disappearing_on_reopen() 
     opened.save_new(&copy).unwrap();
     assert_eq!(Board::open(&copy).unwrap().0.register, board.register);
 }
+
+#[test]
+fn aggregate_and_encoded_evidence_budgets_refuse_atomically_and_leave_register_usable() {
+    let editor = model();
+    let metadata = json!({});
+    let context = EvidenceContext::from_editor(&editor, &metadata).unwrap();
+    let area = area();
+    let artifact = area.path().join("two-megabytes.bin");
+    std::fs::write(&artifact, vec![0u8; 2 * 1024 * 1024]).unwrap();
+    let mut board = Board::new();
+    let req = board
+        .add_requirement("Bound accumulated evidence".into())
+        .unwrap();
+    for _ in 0..4 {
+        board
+            .attach_local_evidence_with_metadata(
+                req,
+                context.clone(),
+                &metadata,
+                &artifact,
+                EvidenceOutcome::NotRun,
+            )
+            .unwrap();
+    }
+    let before = board.register.clone();
+    assert!(board
+        .attach_local_evidence_with_metadata(
+            req,
+            context.clone(),
+            &metadata,
+            &artifact,
+            EvidenceOutcome::NotRun
+        )
+        .unwrap_err()
+        .contains("ARTIFACT_BUDGET"));
+    assert_eq!(board.register, before);
+    board
+        .edit_field(req, "owner", "Still usable".into())
+        .unwrap();
+    board.save_new(&area.path().join("bounded.json")).unwrap();
+    let mut separate = Board::new();
+    let req = separate
+        .add_requirement("Count encoded Vec expansion".into())
+        .unwrap();
+    std::fs::write(&artifact, vec![255u8; MAX_ARTIFACT_BYTES]).unwrap();
+    let before = separate.register.clone();
+    assert!(separate
+        .attach_local_evidence_with_metadata(
+            req,
+            context,
+            &metadata,
+            &artifact,
+            EvidenceOutcome::NotRun
+        )
+        .unwrap_err()
+        .contains("DOCUMENT_LIMIT"));
+    assert_eq!(separate.register, before);
+    separate
+        .save_new(&area.path().join("encoded-refusal-retained.json"))
+        .unwrap();
+}
