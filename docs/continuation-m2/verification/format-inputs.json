@@ -1,0 +1,6 @@
+[
+  "crates/mbse-exchange/src/lib.rs",
+  "crates/mbse-exchange/src/v2.rs",
+  "crates/mbse-exchange/src/v2/xml.rs",
+  "crates/mbse-exchange/tests/semantic_v2.rs"
+]

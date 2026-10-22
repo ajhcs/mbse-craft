@@ -1,0 +1,139 @@
+{
+  "source_commit": "ca03cd956fb6c5aad983cb9bd4e22ed9bc9b82c3",
+  "integrated_source_commit": "9fde6b49ccec846c17bba2af4df3557fd3343480",
+  "source_sha256": "ade7e58488d600e49dd0d323067d2382c3aee6fce159b9a8231b71a4af194579",
+  "cargo_lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+  "library_artifact_sha256": "a9914521008a722a858dd0b0a9500b8d55a25da6c42468ef50557247ffed90ca",
+  "helper_source_sha256": "c0fbebe71b077487d391c51eabaa5cae14ce15d1cb5de613325d3d1fda6adfa0",
+  "helper_binary_sha256": "e297c546fc0cf8f283e5cbdd042a776ca66d2d23b5df0aa28da01fa74ae88929",
+  "preserved_helper": "/workspace/build/builderbob/mbse-craft/semantic-v2/epochs/9fde6b4/inspect-v2",
+  "build_cwd": "/workspace/worktrees/builderbob/mbse-craft/verification",
+  "environment": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/semantic-v2/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/semantic-v2/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": 1
+  },
+  "commands": [
+    "bash scripts/dev.sh test -p mbse-exchange --locked --offline",
+    "bash scripts/dev.sh metadata --offline --filter-platform x86_64-unknown-linux-gnu --format-version 1",
+    "Exact helper rustc arguments retained in helper-build-command.json"
+  ],
+  "results": [
+    {
+      "id": "initial_locked_refusal",
+      "status": "expected_refusal",
+      "observation": "Initial locked test stopped before compilation because new existing-package membership had no lock edge. Offline resolution changed one line only; exact lock committed."
+    },
+    {
+      "id": "focused_legacy_projection",
+      "status": "pass",
+      "tests": 8,
+      "observation": "Includes legacy textual AST, XML/ZIP refusal and original-copy tests."
+    },
+    {
+      "id": "focused_semantic_v2",
+      "status": "pass",
+      "tests": 12,
+      "observation": "Includes exact namespace/type roles, profile layers, content dispatch, scoped IDs, fresh original copy, native admission refusal, aggregate JSON/auxiliary bounds and child namespace regressions."
+    },
+    {
+      "id": "changed_source_format",
+      "status": "pass",
+      "files": 4
+    },
+    {
+      "id": "actual_mdzip_capella_aird_count_inspection",
+      "status": "pass_bounded",
+      "observation": "Actual tested V2 library opened all three read-only originals. Before/after and library primary hashes match. Counts and normative role/resolution keys only; no model names, IDs, expressions, attribute values or source bytes retained."
+    },
+    {
+      "id": "native_v2_ui",
+      "status": "not_run",
+      "observation": "This epoch qualifies the additive core adapter only. Native integration is a later candidate."
+    },
+    {
+      "id": "editable_native_admission",
+      "status": "expected_refusal",
+      "observation": "Preview for first eight scoped nodes of each input remained admitted=false with losses/actions. No native Editor mutation or original source edit API exists."
+    },
+    {
+      "id": "whole_format_semantic_validity",
+      "status": "not_qualified",
+      "observation": "Known exact namespace/type projections and scoped references do not establish normative UML, SysML, UAF, EMF or Capella validity. AIRD has zero recognized root/header contracts, many unknowns and unsupported/unsupplied endpoints."
+    }
+  ],
+  "review_finding": {
+    "finding": "Child xmlns declarations bypassed root-only namespace preflight because roxmltree attributes omit declarations",
+    "resolution": "Model owner corrected c211f7c before compilation; every effective scope and new/shadowed namespace binding is bounded. Actual >64KiB child URI and >128 binding tests pass."
+  },
+  "coverage_interpretation": "Actual MDZIP has 32 assets including primary plus31members,169nodes,382references. Capella210nodes/264references and132unknown classifiers. AIRD1266nodes include anonymous and embedded exact-namespace objects;1149unknown,18unsupported endpoints,351unsupplied resources,512-entry losses truncated explicitly. Counts have different denominators from V1; no percent improvement or whole-file compatibility claim.",
+  "artifacts": [
+    {
+      "path": "DEPENDENCY_NOTE.json",
+      "bytes": 308,
+      "sha256": "41701be5ba8bb2ca743af00ef8352f1e11b6ffcca6ce671a457b1cae9d86cba0"
+    },
+    {
+      "path": "actual-input-hash-receipt.json",
+      "bytes": 1392,
+      "sha256": "52174f9b966ea4e7e4102a427f58300dcef83ec077eff1707a7685febcae2bfe"
+    },
+    {
+      "path": "aird-counts.json",
+      "bytes": 12157,
+      "sha256": "a01d5357d40c8c5dc78ab6991e78afb3cc50c27642ae766aa8df183c819cb629"
+    },
+    {
+      "path": "capella-counts.json",
+      "bytes": 11208,
+      "sha256": "02b6c2b4867c75b41a342c9964509068de962810424147fece6a32619633fac7"
+    },
+    {
+      "path": "format-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "format-inputs.json",
+      "bytes": 163,
+      "sha256": "2303692025b0cd231e58efb523940c5845a91df1bd5948883921ddb34d05062a"
+    },
+    {
+      "path": "helper-build-command.json",
+      "bytes": 626,
+      "sha256": "d0fdd72a9556d4d662c359376135a65d9c14d930b18e01ae2a41598c915554bd"
+    },
+    {
+      "path": "helper-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "inspect-v2.rs",
+      "bytes": 2425,
+      "sha256": "c0fbebe71b077487d391c51eabaa5cae14ce15d1cb5de613325d3d1fda6adfa0"
+    },
+    {
+      "path": "mdzip-counts.json",
+      "bytes": 8783,
+      "sha256": "ebdb8eb3c645a23c32e95f82a1d06bead789460f66e89b43e60024eca3f3e669"
+    },
+    {
+      "path": "source-focused.json",
+      "bytes": 120538,
+      "sha256": "f6f9fbbed35843ae06106f273e0ae246848754446790caeab278667137cdf14f"
+    },
+    {
+      "path": "test-initial.log",
+      "bytes": 1088,
+      "sha256": "8125a3943e6bb3b6bbec4af82391eacdc74611cae8f42120b41caed1ded11837"
+    },
+    {
+      "path": "test-r02.log",
+      "bytes": 4944,
+      "sha256": "5e686b554e941d148fd22dd8ad64d267f0d03e7973951d06acbb9e0f427ee267"
+    }
+  ]
+}

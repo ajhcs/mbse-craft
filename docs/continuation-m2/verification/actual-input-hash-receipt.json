@@ -1,0 +1,29 @@
+[
+  {
+    "input": "mdzip",
+    "bytes": 230071,
+    "before_sha256": "7beaf024aee883c5a1117b6e55bd4e2898c26d4ddbfc308dcd08fd3839c07f8a",
+    "after_sha256": "7beaf024aee883c5a1117b6e55bd4e2898c26d4ddbfc308dcd08fd3839c07f8a",
+    "library_primary_sha256": "7beaf024aee883c5a1117b6e55bd4e2898c26d4ddbfc308dcd08fd3839c07f8a",
+    "source_set_digest": "b5ce96551b0cbcfa8df4c2142f858e2eccaeb4f6d548ac8fc53a5bccda9de7d2",
+    "status": "read_only_source_unchanged"
+  },
+  {
+    "input": "capella",
+    "bytes": 54602,
+    "before_sha256": "2d83896463118c73e815937b2f5fa10906d8d46a4e8b96f2b8656a2f3f0cc7cd",
+    "after_sha256": "2d83896463118c73e815937b2f5fa10906d8d46a4e8b96f2b8656a2f3f0cc7cd",
+    "library_primary_sha256": "2d83896463118c73e815937b2f5fa10906d8d46a4e8b96f2b8656a2f3f0cc7cd",
+    "source_set_digest": "84a9d9d7f8327aa2ff357d9602ef053f37fe5ce930cbf7521ca563b983014d58",
+    "status": "read_only_source_unchanged"
+  },
+  {
+    "input": "aird",
+    "bytes": 210833,
+    "before_sha256": "5f20882b4ed3af279921d3838a4930bf5a2c975357c2b9131a5fd80f7fcf7632",
+    "after_sha256": "5f20882b4ed3af279921d3838a4930bf5a2c975357c2b9131a5fd80f7fcf7632",
+    "library_primary_sha256": "5f20882b4ed3af279921d3838a4930bf5a2c975357c2b9131a5fd80f7fcf7632",
+    "source_set_digest": "78d1ee1ed97c9b5ca46f1340aafb019da0d0c840184092d4a4a3a8fc808671ee",
+    "status": "read_only_source_unchanged"
+  }
+]
