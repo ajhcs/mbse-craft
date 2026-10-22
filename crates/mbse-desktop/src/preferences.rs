@@ -314,3 +314,75 @@ mod tests {
         std::fs::remove_dir_all(root).unwrap();
     }
 }
+
+#[cfg(test)]
+mod worker_adapter_tests {
+    use super::*;
+    fn area() -> tempfile::TempDir {
+        assert!(std::env::temp_dir().starts_with("/workspace"));
+        tempfile::tempdir().unwrap()
+    }
+    fn until(p: &mut Preferences, check: impl Fn(&Preferences) -> bool) -> bool {
+        let deadline = std::time::Instant::now() + std::time::Duration::from_secs(8);
+        while std::time::Instant::now() < deadline {
+            p.poll();
+            if check(p) {
+                return true;
+            }
+            std::thread::sleep(std::time::Duration::from_millis(20));
+        }
+        false
+    }
+    #[test]
+    fn actual_worker_retries_same_generation_after_local_write_failure() {
+        let area = area();
+        let config = area.path().join("config");
+        std::fs::create_dir(&config).unwrap();
+        let mut prefs = Preferences::open(Some(config.clone()), eframe::egui::Context::default());
+        prefs.value.periodic_recovery = true;
+        prefs.changed();
+        assert!(until(&mut prefs, |p| !p.pending()));
+        let held = area.path().join("config-held");
+        std::fs::rename(&config, &held).unwrap();
+        std::fs::write(&config, b"owned test blocker").unwrap();
+        prefs.value.recovery_interval_seconds = 30;
+        prefs.changed();
+        let generation = prefs.generation;
+        let failure_seen = until(&mut prefs, |p| p.status.contains("save failed"));
+        let remained_pending = prefs.pending();
+        std::fs::remove_file(&config).unwrap();
+        std::fs::rename(&held, &config).unwrap();
+        // No changed() call after repair: retry must belong to the same generation.
+        let retried = until(&mut prefs, |p| !p.pending());
+        assert!(failure_seen && remained_pending && retried);
+        assert_eq!(prefs.generation, generation);
+        assert_eq!(prefs.acknowledged, generation);
+        assert!(std::fs::read_to_string(config.join("config.toml"))
+            .unwrap()
+            .contains("recovery_interval_seconds = 30"));
+    }
+    #[test]
+    fn older_saved_generation_cannot_clear_latest_pending_worker_change() {
+        let area = area();
+        let config = area.path().join("config");
+        std::fs::create_dir(&config).unwrap();
+        let mut prefs = Preferences::open(Some(config.clone()), eframe::egui::Context::default());
+        prefs.value.periodic_recovery = true;
+        prefs.changed();
+        let deadline = std::time::Instant::now() + std::time::Duration::from_secs(8);
+        while !config.join("config.toml").is_file() && std::time::Instant::now() < deadline {
+            std::thread::sleep(std::time::Duration::from_millis(20));
+        }
+        assert!(config.join("config.toml").is_file());
+        prefs.value.recovery_interval_seconds = 42;
+        prefs.changed();
+        assert!(until(&mut prefs, |p| p.acknowledged >= 1));
+        assert!(prefs.pending());
+        assert!(prefs.acknowledged < prefs.generation);
+        assert!(!prefs.status.starts_with("Preferences saved"));
+        assert!(until(&mut prefs, |p| !p.pending()));
+        assert!(std::fs::read_to_string(config.join("config.toml"))
+            .unwrap()
+            .contains("recovery_interval_seconds = 42"));
+    }
+}
