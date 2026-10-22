@@ -84,7 +84,7 @@ impl AssuranceWorkspace {
         let config=self.config();
         let current=config.as_ref().map_err(Clone::clone).and_then(|c|EvidenceContext::from_editor(editor,c));
         let mut visible=true;
-        egui::Window::new("Requirements and evidence").id(egui::Id::new("requirements-evidence")).open(&mut visible).default_size([1100.,820.]).show(ctx,|ui|{
+        egui::Window::new("Requirements and evidence").id(egui::Id::new("requirements-evidence")).open(&mut visible).default_size([1100.,820.]).vscroll(true).show(ctx,|ui|{
             ui.label("Independent application register · native model unchanged · approval, implementation and verification are separate decisions.");
             ui.horizontal(|ui|{ui.label(if self.dirty(){"Unsaved register changes"}else{"Register saved / empty"});if self.pending.is_some(){ui.spinner();}if ui.button("Undo register edit").clicked(){self.board.undo();}if ui.button("Redo register edit").clicked(){self.board.redo();}});
             ui.horizontal(|ui|{ui.label("Register path");ui.text_edit_singleline(&mut self.path);if ui.add_enabled(self.pending.is_none(),egui::Button::new("Open register")).clicked(){self.load();}if ui.add_enabled(self.pending.is_none(),egui::Button::new("Save register")).clicked(){self.save(false);}if ui.add_enabled(self.pending.is_none(),egui::Button::new("Save fresh copy")).clicked(){self.save(true);}});
@@ -127,7 +127,7 @@ impl AssuranceWorkspace {
             }}
         });
         self.visible=visible;
-        if self.close_prompt{egui::Window::new("Preserve requirements register").collapsible(false).show(ctx,|ui|{ui.label("The independent register has unsaved changes or pending IO. Save it in Requirements and evidence, or explicitly discard these exact changes for this close.");if ui.button("Return to work").clicked(){self.close_prompt=false;}if ui.add_enabled(self.pending.is_none(),egui::Button::new("Discard register changes for this close")).clicked(){self.discard=self.board.as_value().ok();self.close_prompt=false;self.feedback="Exact register changes permitted to be discarded on next application close.".into();}});}
+        if self.close_prompt{egui::Window::new("Preserve requirements register").collapsible(false).show(ctx,|ui|{ui.label("The independent register has unsaved changes or pending IO. Save it in Requirements and evidence, or explicitly discard these exact changes for this close.");if ui.button("Return to work").clicked(){self.close_prompt=false;self.discard=None;}if ui.add_enabled(self.pending.is_none(),egui::Button::new("Discard register changes for this close")).clicked(){self.discard=self.board.as_value().ok();self.close_prompt=false;self.feedback="Exact register changes permitted to be discarded on next application close.".into();}});}
         if self.replace_prompt{egui::Window::new("Open another register?").collapsible(false).show(ctx,|ui|{ui.label("Opening replaces unsaved register edits only after successful admission. Native model is retained.");if ui.button("Keep current register").clicked(){self.replace_prompt=false;}if ui.button("Discard and open register").clicked(){self.load();}});}
     }
 }
