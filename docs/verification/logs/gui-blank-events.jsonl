@@ -1,0 +1,43 @@
+{"ready": true, "app_pid": 451951, "server_pid": 451948, "window": 4194307, "binary_sha256": "ddefaaaa73675b5e1aacd8aee6288cfdf513049c0e8cad88b15be894a7e4b587"}
+{"op": "click", "widget": "field:1:name", "x": 168, "y": 265, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "Independent coordination system", "app_returncode": null}
+{"op": "click", "widget": "field:1:purpose", "x": 168, "y": 322, "app_returncode": null}
+{"op": "text", "text": "Keep coordination decisions reviewable", "app_returncode": null}
+{"op": "click", "widget": "action:Add Mission", "x": 46, "y": 393, "app_returncode": null}
+{"op": "click", "widget": "creation:name", "x": 186, "y": 112, "app_returncode": null}
+{"op": "text", "text": "Coordinate incident decisions", "app_returncode": null}
+{"op": "click", "widget": "creation:commit", "x": 69, "y": 177, "app_returncode": null}
+{"op": "click", "widget": "action:Add Capability", "x": 140, "y": 393, "app_returncode": null}
+{"op": "click", "widget": "creation:name", "x": 186, "y": 112, "app_returncode": null}
+{"op": "text", "text": "Retain coordination outcomes", "app_returncode": null}
+{"op": "click", "widget": "creation:commit", "x": 76, "y": 177, "app_returncode": null}
+{"op": "click", "widget": "mission-link:1001:1000", "x": 122, "y": 367, "app_returncode": null}
+{"op": "click", "widget": "action:Add Objective", "x": 240, "y": 430, "app_returncode": null}
+{"op": "click", "widget": "creation:name", "x": 186, "y": 112, "app_returncode": null}
+{"op": "text", "text": "Keep decisions reviewable", "app_returncode": null}
+{"op": "click", "widget": "creation:commit", "x": 75, "y": 177, "app_returncode": null}
+{"op": "click", "widget": "subject:1002", "x": 89, "y": 457, "app_returncode": null}
+{"op": "click", "widget": "subject-option:1002:1001", "x": 159, "y": 561, "app_returncode": null}
+{"op": "click", "widget": "action:Add Measure", "x": 50, "y": 546, "app_returncode": null}
+{"op": "click", "widget": "creation:name", "x": 186, "y": 112, "app_returncode": null}
+{"op": "text", "text": "Reviewable distance", "app_returncode": null}
+{"op": "click", "widget": "creation:commit", "x": 72, "y": 177, "app_returncode": null}
+{"op": "click", "widget": "measure-unit:1003", "x": 58, "y": 419, "app_returncode": null}
+{"op": "click", "widget": "measure-unit-option:1003:metre", "x": 58, "y": 496, "app_returncode": null}
+{"op": "click", "widget": "field:1003:criterion", "x": 168, "y": 468, "app_returncode": null}
+{"op": "text", "text": "2000", "app_returncode": null}
+{"op": "click", "widget": "calc:Add calculation", "x": 56, "y": 660, "app_returncode": null}
+{"op": "scroll", "x": 250, "y": 850, "steps": 5, "app_returncode": null}
+{"op": "click", "widget": "field:1003:calc.input.x", "x": 168, "y": 625, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "2500", "app_returncode": null}
+{"op": "click", "widget": "output-unit:1003", "x": 58, "y": 678, "app_returncode": null}
+{"op": "click", "widget": "output-unit-option:1003:Kilometre", "x": 58, "y": 833, "app_returncode": null}
+{"op": "capture", "name": "blank-authored-calculation", "sha256": "f965f3d3e3975837b7651888598afae01c2b13ded63f25203373df0e45f7299f", "app_returncode": null}
+{"op": "click", "widget": "save-path", "x": 784, "y": 74, "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/evidence/gui-blank/authored.kernspan", "app_returncode": null}
+{"op": "click", "widget": "action:Save", "x": 503, "y": 12, "app_returncode": null}
+{"op": "click", "widget": "action:Recovery copy", "x": 575, "y": 12, "app_returncode": null}
+{"op": "capture", "name": "blank-authored-saved", "sha256": "85b1b76bdc5641db802a74f5db1c0eeb1d049c5f343b9555f18ce4b3affeac7e", "app_returncode": null}
+{"op": "close", "pause": 2, "app_returncode": 0}

@@ -1,0 +1,16 @@
+{"ready": true, "app_pid": 453197, "server_pid": 453194, "window": 4194307, "binary_sha256": "ddefaaaa73675b5e1aacd8aee6288cfdf513049c0e8cad88b15be894a7e4b587"}
+{"op": "click", "widget": "save-path", "x": 784, "y": 74, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/evidence/gui-navigation/current.kernspan", "app_returncode": null}
+{"op": "click", "widget": "action:Save", "x": 503, "y": 12, "app_returncode": null}
+{"op": "scroll", "x": 250, "y": 850, "steps": 5, "app_returncode": null}
+{"op": "click", "widget": "field:1003:calc.input.x", "x": 168, "y": 625, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "2600", "app_returncode": null}
+{"op": "click", "widget": "path", "x": 817, "y": 47, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/evidence/gui-final/corrupt.kernspan", "app_returncode": null}
+{"op": "click", "widget": "action:Open", "x": 297, "y": 12, "app_returncode": null}
+{"op": "click", "widget": "preserve:Save and continue", "x": 79, "y": 142, "app_returncode": null}
+{"op": "capture", "name": "saved-current-failed-open-retained", "sha256": "95c4ada6c1fa92b137a9f3cd315c8e42bd6d4cbf725562c60af60c66875b26cb", "app_returncode": null}
+{"op": "close", "pause": 2, "app_returncode": 0}

@@ -1,0 +1,303 @@
+{
+  "error": false,
+  "feedback": "Recovery copy: /workspace/build/builderbob/mbse-craft/evidence/gui-blank/state/stage1-session-mGYt96/recovery.kernspan",
+  "model_revision": 13,
+  "pixels_per_point": 1.0,
+  "profile": "mbse-craft.ui-geometry/1",
+  "raw_version": 10,
+  "recovery_current": true,
+  "recovery_path": "/workspace/build/builderbob/mbse-craft/evidence/gui-blank/state/stage1-session-mGYt96/recovery.kernspan",
+  "save_status": "Saved",
+  "selected": 1003,
+  "snapshot_hash": "0f731187f6779bcd591b7da80b25bf550fb09355e16534f24e79dc16967d2040",
+  "widgets": {
+    "action:Add Actor": [
+      101.375,
+      890.0,
+      167.59375,
+      908.0
+    ],
+    "action:Add Capability": [
+      94.9375,
+      864.0,
+      186.375,
+      882.0
+    ],
+    "action:Add Environment": [
+      8.0,
+      916.0,
+      116.96875,
+      934.0
+    ],
+    "action:Add Expectation": [
+      8.0,
+      942.0,
+      111.6875,
+      960.0
+    ],
+    "action:Add Measure": [
+      8.0,
+      890.0,
+      92.375,
+      908.0
+    ],
+    "action:Add Mission": [
+      8.0,
+      864.0,
+      85.9375,
+      882.0
+    ],
+    "action:Add Objective": [
+      195.375,
+      864.0,
+      285.125,
+      882.0
+    ],
+    "action:Add Organization": [
+      125.96875,
+      916.0,
+      235.5,
+      934.0
+    ],
+    "action:Add Stakeholder": [
+      176.59375,
+      890.0,
+      280.625,
+      908.0
+    ],
+    "action:Import SysML": [
+      390.96875,
+      3.5,
+      477.46875,
+      21.5
+    ],
+    "action:New": [
+      234.46875,
+      3.5,
+      268.875,
+      21.5
+    ],
+    "action:Open": [
+      277.875,
+      3.5,
+      318.03125,
+      21.5
+    ],
+    "action:Recover": [
+      327.03125,
+      3.5,
+      381.96875,
+      21.5
+    ],
+    "action:Recovery copy": [
+      530.15625,
+      3.5,
+      621.78125,
+      21.5
+    ],
+    "action:Redo": [
+      823.90625,
+      2.0,
+      867.90625,
+      30.0
+    ],
+    "action:Save": [
+      486.46875,
+      3.5,
+      521.15625,
+      21.5
+    ],
+    "action:Undo": [
+      770.90625,
+      2.0,
+      814.90625,
+      30.0
+    ],
+    "calc:Add count input": [
+      134.4375,
+      721.0,
+      235.71875,
+      739.0
+    ],
+    "calc:Add duration input": [
+      8.0,
+      721.0,
+      125.4375,
+      739.0
+    ],
+    "calc:Add length input": [
+      117.84375,
+      695.0,
+      223.46875,
+      713.0
+    ],
+    "calc:Add scalar input": [
+      8.0,
+      695.0,
+      108.84375,
+      713.0
+    ],
+    "canvas:ownership": [
+      346.0,
+      150.0,
+      549.40625,
+      168.0
+    ],
+    "card:1": [
+      371.0,
+      218.0,
+      695.0,
+      302.0
+    ],
+    "card:1000": [
+      719.0,
+      218.0,
+      1043.0,
+      302.0
+    ],
+    "card:1001": [
+      1067.0,
+      218.0,
+      1391.0,
+      302.0
+    ],
+    "card:1002": [
+      371.0,
+      373.0,
+      695.0,
+      457.0
+    ],
+    "card:1003": [
+      719.0,
+      373.0,
+      1043.0,
+      457.0
+    ],
+    "field:1003:calc.expression": [
+      8.0,
+      543.0,
+      329.0,
+      562.0
+    ],
+    "field:1003:calc.input.x": [
+      8.0,
+      616.0,
+      329.0,
+      635.0
+    ],
+    "field:1003:criterion": [
+      8.0,
+      340.0,
+      329.0,
+      359.0
+    ],
+    "field:1003:name": [
+      8.0,
+      241.0,
+      329.0,
+      260.0
+    ],
+    "input-unit:1003:x": [
+      8.0,
+      643.0,
+      108.0,
+      661.0
+    ],
+    "measure-unit:1003": [
+      8.0,
+      291.0,
+      116.1875,
+      309.0
+    ],
+    "output-unit:1003": [
+      8.0,
+      669.0,
+      108.0,
+      687.0
+    ],
+    "path": [
+      202.6875,
+      38.0,
+      1432.0,
+      57.0
+    ],
+    "relation:ContributesTo:1001:1000": [
+      346.0,
+      810.0,
+      1022.84375,
+      828.0
+    ],
+    "relation:ForObjective:1003:1002": [
+      346.0,
+      862.0,
+      943.0,
+      880.0
+    ],
+    "relation:Scope:1:1000": [
+      346.0,
+      706.0,
+      957.65625,
+      724.0
+    ],
+    "relation:Scope:1:1001": [
+      346.0,
+      732.0,
+      975.25,
+      750.0
+    ],
+    "relation:Scope:1:1002": [
+      346.0,
+      758.0,
+      950.6875,
+      776.0
+    ],
+    "relation:Scope:1:1003": [
+      346.0,
+      784.0,
+      911.46875,
+      802.0
+    ],
+    "relation:Subject:1002:1001": [
+      346.0,
+      836.0,
+      975.4375,
+      854.0
+    ],
+    "save-path": [
+      137.46875,
+      65.0,
+      1432.0,
+      84.0
+    ],
+    "tree:1": [
+      26.0,
+      115.0,
+      279.65625,
+      69.0
+    ],
+    "tree:1000": [
+      26.0,
+      115.0,
+      256.90625,
+      95.0
+    ],
+    "tree:1001": [
+      26.0,
+      115.0,
+      274.5,
+      121.0
+    ],
+    "tree:1002": [
+      26.0,
+      129.0,
+      249.90625,
+      147.0
+    ],
+    "tree:1003": [
+      26.0,
+      155.0,
+      210.71875,
+      173.0
+    ]
+  }
+}

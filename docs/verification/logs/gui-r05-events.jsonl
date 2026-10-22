@@ -1,0 +1,33 @@
+{"ready": true, "app_pid": 445974, "server_pid": 445971, "window": 4194307, "binary_sha256": "ee9c8f8cdec4431655ceea37679628716c490b6d748c66430a809c45590f36fe"}
+{"op": "capture", "name": "initial", "sha256": "8e328e70af2bdd9571a77f438452d8f958637b72104851dd375dd94dcca72421"}
+{"op": "click", "widget": "field:1:purpose", "x": 168, "y": 558}
+{"op": "key", "key": "a", "mods": ["Control_L"]}
+{"op": "text", "text": "Independent workflow purpose"}
+{"op": "click", "widget": "save-path", "x": 784, "y": 76}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/evidence/gui-r05/workflow.kernspan"}
+{"op": "click", "widget": "action:Save", "x": 503, "y": 12}
+{"op": "click", "widget": "tree:200", "x": 143, "y": 233}
+{"op": "click", "widget": "mission-link:200:100", "x": 154, "y": 551}
+{"op": "capture", "name": "typed-relation-unlinked", "sha256": "45dae323bbcf4606a99474658e328237ca96525e940f9386c7cfb915a0ab3be8"}
+{"op": "click", "widget": "action:Save", "x": 503, "y": 12}
+{"op": "click", "widget": "action:Undo", "x": 785, "y": 17}
+{"op": "click", "widget": "action:Save", "x": 503, "y": 12}
+{"op": "click", "widget": "action:Redo", "x": 824, "y": 17}
+{"op": "click", "widget": "action:Save", "x": 503, "y": 12}
+{"op": "click", "widget": "tree:301", "x": 168, "y": 285}
+{"op": "click", "widget": "field:301:criterion", "x": 168, "y": 600}
+{"op": "key", "key": "a", "mods": ["Control_L"]}
+{"op": "text", "text": "invalid"}
+{"op": "click", "widget": "action:Save", "x": 503, "y": 12}
+{"op": "capture", "name": "invalid-retained", "sha256": "a738c318db6b4b46e5cbda6bc4368242fb5bbff589a8061dfd91c72834685f3f"}
+{"op": "click", "widget": "calc:Add calculation", "x": 56, "y": 833}
+{"op": "click", "widget": "action:Save", "x": 503, "y": 12}
+{"op": "click", "widget": "action:Recovery copy", "x": 575, "y": 12}
+{"op": "click", "widget": "field:301:calc.input.x", "x": 168, "y": 876}
+{"op": "key", "key": "a", "mods": ["Control_L"]}
+{"op": "text", "text": "40"}
+{"op": "click", "widget": "field:301:calc.expression", "x": 168, "y": 803}
+{"op": "key", "key": "a", "mods": ["Control_L"]}
+{"op": "text", "text": "x*2"}
+{"op": "click", "widget": "action:Save", "x": 503, "y": 12}
+{"op": "capture", "name": "calculation", "sha256": "175c047d0c2f9b9fbaad60071f7af172824e8ab117c129165870764fef18d984"}

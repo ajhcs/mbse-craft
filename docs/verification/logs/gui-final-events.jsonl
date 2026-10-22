@@ -1,0 +1,32 @@
+{"ready": true, "app_pid": 447136, "server_pid": 447133, "window": 4194307, "binary_sha256": "1aba8b9b57757f3e765083cfa37ac79a99dd54bad80cdc6a82c50820eb9c2bf2"}
+{"op": "capture", "name": "reopen", "sha256": "39d74955f9e718289b3a1a98ce0db2e84d9dbce3b86465bf799c88ad5d529b53"}
+{"op": "scroll", "x": 250, "y": 870, "steps": 7}
+{"op": "capture", "name": "calculation-result", "sha256": "1e2ba480183e365139a051e93c3f8cfc9b5149ee96636adfaf9b3480f188bedc"}
+{"op": "click", "widget": "calc:Add length input", "x": 170, "y": 663}
+{"op": "scroll", "x": 250, "y": 850, "steps": 5}
+{"op": "click", "widget": "field:301:calc.input.x1", "x": 168, "y": 584}
+{"op": "key", "key": "a", "mods": ["Control_L"]}
+{"op": "text", "text": "2500"}
+{"op": "click", "widget": "field:301:calc.expression", "x": 168, "y": 435}
+{"op": "key", "key": "a", "mods": ["Control_L"]}
+{"op": "text", "text": "x1"}
+{"op": "click", "widget": "output-unit:301", "x": 67, "y": 637}
+{"op": "click", "widget": "output-unit-option:301:Kilometre", "x": 68, "y": 792}
+{"op": "capture", "name": "unit-conversion-2500m-2point5km", "sha256": "e5bd671356d8bc4f2e921fecd9ee700e629a78d4977591ea7ebdab8e8da2ecd4"}
+{"op": "click", "widget": "action:Save", "x": 503, "y": 12}
+{"op": "click", "widget": "action:Recovery copy", "x": 575, "y": 12}
+{"op": "click", "widget": "path", "x": 817, "y": 47}
+{"op": "key", "key": "a", "mods": ["Control_L"]}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/evidence/gui-final/corrupt.kernspan"}
+{"op": "click", "widget": "action:Open", "x": 297, "y": 12}
+{"op": "capture", "name": "failed-open-retains-model", "sha256": "6a345fe1635d4626d31948d5230241cea5d8d03ba33c197d4db5d00bda25a462"}
+{"op": "click", "widget": "field:301:calc.input.x1", "x": 168, "y": 584}
+{"op": "key", "key": "a", "mods": ["Control_L"]}
+{"op": "text", "text": "3000"}
+{"op": "click", "widget": "action:Open", "x": 297, "y": 12}
+{"op": "click", "widget": "preserve:Cancel", "x": 46, "y": 194}
+{"op": "capture", "name": "cancel-preserves-dirty", "sha256": "b40d05b32602537fb3327dea99d77ed259f5ecdf78b700580b44b4f3530c7619"}
+{"op": "click", "widget": "action:Open", "x": 297, "y": 12}
+{"op": "click", "widget": "preserve:Save and continue", "x": 79, "y": 142}
+{"op": "capture", "name": "dirty-open-failed-source-safe", "sha256": "cf3f0ddeab77d0e9a244677770803f140ca9510dae5ec2d16179b3233f3ff5a9"}
+{"op": "click", "widget": "action:Recovery copy", "x": 575, "y": 12}
