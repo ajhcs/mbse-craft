@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Original MIT synthetic selected semantic fragment; not a complete Capella project. -->
+<m:Project xmlns:m="http://www.polarsys.org/capella/core/modeller/7.0.0"
+ xmlns:xmi="http://www.omg.org/XMI" xmi:version="2.0"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:ctx="http://www.polarsys.org/capella/core/ctx/7.0.0"
+ xmlns:fa="http://www.polarsys.org/capella/core/fa/7.0.0"
+ xmlns:core="http://www.polarsys.org/capella/core/core/7.0.0"
+ xmlns:dv="http://www.polarsys.org/capella/core/information/datavalue/7.0.0" id="SYN-P">
+ <syntheticFragment>
+  <ownedMissions xsi:type="ctx:Mission" id="SYN-M" name="Provide a reviewable synthetic response">
+   <ownedMissionInvolvements xsi:type="ctx:MissionInvolvement" id="SYN-MI" involved="SYN-A"/>
+   <ownedCapabilityExploitations xsi:type="ctx:CapabilityExploitation" id="SYN-CE" capability="SYN-C"/>
+  </ownedMissions>
+  <ownedCapabilities xsi:type="ctx:Capability" id="SYN-C" name="Retain a synthetic response"/>
+  <ownedSystemComponents xsi:type="ctx:SystemComponent" id="SYN-S" name="Synthetic service">
+   <ownedFeatures xsi:type="fa:ComponentPort" id="SYN-OUT" orientation="OUT"/>
+   <ownedComponentFunctionalAllocations xsi:type="fa:ComponentFunctionalAllocation" id="SYN-ALLOC" sourceElement="SYN-S" targetElement="SYN-F"/>
+  </ownedSystemComponents>
+  <ownedSystemComponents xsi:type="ctx:SystemComponent" id="SYN-A" name="Synthetic requester" actor="true" human="true">
+   <ownedFeatures xsi:type="fa:ComponentPort" id="SYN-IN" orientation="IN"/>
+  </ownedSystemComponents>
+  <ownedFunctions xsi:type="ctx:SystemFunction" id="SYN-F" name="Record synthetic response"/>
+  <ownedComponentExchanges xsi:type="fa:ComponentExchange" id="SYN-X" source="SYN-OUT" target="SYN-IN" oriented="true"/>
+  <ownedConstraints xsi:type="core:Constraint" id="SYN-K0" constrainedElements="SYN-S">
+   <ownedSpecification xsi:type="dv:OpaqueExpression" id="SYN-O0"><bodies/><languages>capella:linkedText</languages></ownedSpecification>
+  </ownedConstraints>
+  <ownedConstraints xsi:type="core:Constraint" id="SYN-K1" constrainedElements="SYN-X">
+   <ownedSpecification xsi:type="dv:OpaqueExpression" id="SYN-O1"><bodies>Unassessed synthetic text; no executable predicate.</bodies><languages>capella:linkedText</languages></ownedSpecification>
+  </ownedConstraints>
+  <ownedPropertyValueGroups xsi:type="core:PropertyValueGroup" id="SYN-G" name="Synthetic source metadata">
+   <ownedPropertyValues xsi:type="core:IntegerPropertyValue" id="SYN-V" name="Synthetic retry count" value="3"/>
+  </ownedPropertyValueGroups>
+  <ownedEnumerationPropertyTypes xsi:type="core:EnumerationPropertyType" id="SYN-ET" name="Synthetic review state">
+   <ownedLiterals xsi:type="core:EnumerationPropertyLiteral" id="SYN-EL" name="Unreviewed"/>
+  </ownedEnumerationPropertyTypes>
+  <ownedPropertyValues xsi:type="core:EnumerationPropertyValue" id="SYN-EV" type="SYN-ET" value="SYN-EL"/>
+ </syntheticFragment>
+</m:Project>

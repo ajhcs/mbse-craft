@@ -1,0 +1,175 @@
+{
+  "profile": "mbse-craft.semantic-adapter-oracles/1",
+  "status": "proposed; not executed",
+  "fixture_license": "MIT; original synthetic only",
+  "cases": [
+    {
+      "id": "S01",
+      "name": "exact-fa-ports",
+      "fixture_or_input": "capella-semantic-fragment.xml",
+      "expected": "SYN-OUT/SYN-IN map only under fa/7.0.0, retaining orientation and source type",
+      "executed": false
+    },
+    {
+      "id": "S02",
+      "name": "uml-capella-false-friend",
+      "fixture_or_input": "mutation of profile-layering.xmi",
+      "expected": "UML20131001:ComponentPort/SystemComponent/LogicalComponent/ComponentExchange remain Unknown; no cross-metamodel classifier reuse",
+      "executed": false
+    },
+    {
+      "id": "S03",
+      "name": "namespace-version-false-friend",
+      "fixture_or_input": "mutation of capella-semantic-fragment.xml",
+      "expected": "wrong-version/URI substring/prefix-only match remains Unknown with qualified-type/namespace diagnostics",
+      "executed": false
+    },
+    {
+      "id": "S04",
+      "name": "capability-exploitation-direction",
+      "fixture_or_input": "capella-semantic-fragment.xml",
+      "expected": "SYN-CE stores capability=SYN-C; owning Mission=SYN-M is containment-derived; inverse view never reverses source meaning",
+      "executed": false
+    },
+    {
+      "id": "S05",
+      "name": "mission-involvement-stored-vs-derived",
+      "fixture_or_input": "capella-semantic-fragment.xml",
+      "expected": "SYN-MI involved=SYN-A stored; mission=SYN-M derived; omitted derived XML fields are not engineering unknowns",
+      "executed": false
+    },
+    {
+      "id": "S06",
+      "name": "invalid-involvement-target",
+      "fixture_or_input": "mutation of capella-semantic-fragment.xml",
+      "expected": "missing/wrong-kind/cross-resource endpoint refuses selected native admission atomically; source bytes remain retained",
+      "executed": false
+    },
+    {
+      "id": "S07",
+      "name": "actor-human-default-provenance",
+      "fixture_or_input": "capella-semantic-fragment.xml",
+      "expected": "SYN-A actor=true/human=true explicit; SYN-S absent flags show metamodel-default false separately from explicit source attributes; no stakeholder conversion",
+      "executed": false
+    },
+    {
+      "id": "S08",
+      "name": "linkedtext-empty",
+      "fixture_or_input": "capella-semantic-fragment.xml",
+      "expected": "SYN-O0 retains empty body and LinkedText marker; no criterion, truth or Passed fabricated",
+      "executed": false
+    },
+    {
+      "id": "S09",
+      "name": "linkedtext-pairing",
+      "fixture_or_input": "mutation of capella-semantic-fragment.xml",
+      "expected": "ordered bodies/languages and empty slots retained; mismatched sequences produce explicit incompleteness, never language-based execution",
+      "executed": false
+    },
+    {
+      "id": "S10",
+      "name": "component-exchange-endpoints",
+      "fixture_or_input": "capella-semantic-fragment.xml",
+      "expected": "SYN-X stores source=SYN-OUT/target=SYN-IN through inherited role contract; convenience derived port getters are not required XML attributes",
+      "executed": false
+    },
+    {
+      "id": "S11",
+      "name": "allocation-real-reference-roles",
+      "fixture_or_input": "capella-semantic-fragment.xml",
+      "expected": "SYN-ALLOC sourceElement=SYN-S,targetElement=SYN-F resolve typed closure; derived block/function views retain provenance",
+      "executed": false
+    },
+    {
+      "id": "S12",
+      "name": "typed-value-and-group-distinction",
+      "fixture_or_input": "capella-semantic-fragment.xml",
+      "expected": "owned group/value and applied group links remain distinct; integer source text is not implicitly Measure/quantity",
+      "executed": false
+    },
+    {
+      "id": "S13",
+      "name": "enumeration-identity",
+      "fixture_or_input": "capella-semantic-fragment.xml",
+      "expected": "SYN-EV type=SYN-ET,value=SYN-EL are references; literal label cannot replace enum identity",
+      "executed": false
+    },
+    {
+      "id": "S14",
+      "name": "profile-base-layering",
+      "fixture_or_input": "profile-layering.xmi",
+      "expected": "UML base SYN-BASE plus separate SYN-BLOCK/SYN-UAF layers retained; unknown profile overlay source remains unclassified, never flattened",
+      "executed": false
+    },
+    {
+      "id": "S15",
+      "name": "no-loss-stage1-admission",
+      "fixture_or_input": "both original fixtures",
+      "expected": "unsupported actor involvement/port/allocation/profile meaning in selected closure refuses entire Stage1 candidate; no dirty native mutation",
+      "executed": false
+    },
+    {
+      "id": "S16",
+      "name": "member-scoped-id-collision",
+      "fixture_or_input": "two original synthetic members with same raw ID",
+      "expected": "separate scoped keys; each #id binds locally; same-member duplicate ID refuses",
+      "executed": false
+    },
+    {
+      "id": "S17",
+      "name": "source-set-digest-closure",
+      "fixture_or_input": "original synthetic primary+companion+dependency set",
+      "expected": "changing, omitting or replacing any explicitly supplied asset changes source-set digest; host path alone does not define portable identity",
+      "executed": false
+    },
+    {
+      "id": "S18",
+      "name": "no-companion-auto-fetch",
+      "fixture_or_input": "mutation with unsupplied href",
+      "expected": "href never opens files/URLs; unresolved context visible; standalone AIRD is not falsely bound",
+      "executed": false
+    },
+    {
+      "id": "S19",
+      "name": "attribute-output-budgets",
+      "fixture_or_input": "synthetic generated bounded variants",
+      "expected": "individual/aggregate attribute caps refuse/incomplete projection before unbounded DTO construction; raw source retained; native admission refused",
+      "executed": false
+    },
+    {
+      "id": "S20",
+      "name": "text-diagnostic-output-budgets",
+      "fixture_or_input": "synthetic generated bounded variants",
+      "expected": "derived text/DTO/diagnostic totals bounded; one explicit omitted-count diagnostic; no successful complete-graph claim after truncation",
+      "executed": false
+    },
+    {
+      "id": "S21",
+      "name": "zip-index-and-name-encoding",
+      "fixture_or_input": "original synthetic ZIP central-record variants",
+      "expected": "actual duplicate indexed members, bad encoding/path/symlink/ratio/size cases refuse under pinned reader, independent of another implementation",
+      "executed": false
+    },
+    {
+      "id": "S22",
+      "name": "reversible-source-slice-authoring",
+      "fixture_or_input": "future source-specific native document implementation",
+      "expected": "name/flag/reference/property drafts retain original source identity and unknowns; atomic wrong-type refusal; Undo/Redo/save/recovery/reopen preserve raw and accepted split",
+      "executed": false
+    },
+    {
+      "id": "S23",
+      "name": "source-revision-stale-candidate",
+      "fixture_or_input": "future source-specific candidate implementation",
+      "expected": "source-set/member hashes or selected closure change invalidates preview/commit ticket; delayed result cannot replace newer work",
+      "executed": false
+    },
+    {
+      "id": "S24",
+      "name": "original-copy-only",
+      "fixture_or_input": "both original fixtures",
+      "expected": "fresh-copy source bytes/hash exact and no overwrite; application-sidecar editing never mutates original Capella/MDZIP/AIRD",
+      "executed": false
+    }
+  ]
+}

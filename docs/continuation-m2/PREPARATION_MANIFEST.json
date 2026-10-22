@@ -1,0 +1,46 @@
+{
+  "profile": "mbse-craft.semantic-adapter-preparation/1",
+  "stage": "read-only source research and original fixture proposals; no application implementation or execution",
+  "files": [
+    {
+      "path": "PRIMARY_METAMODEL_AUDIT.json",
+      "sha256": "02a7c08ffc5347458208715f0873e110364765a95c66b1d17463b12726dff2b5",
+      "bytes": 65741
+    },
+    {
+      "path": "PRIVATE_FIXTURE_COVERAGE.json",
+      "sha256": "e4b483b86a75b078a2aebcdef9930ce41a67bd6532ce312b269a5ffbbd8ca23b",
+      "bytes": 19402
+    },
+    {
+      "path": "SEMANTIC_ADAPTER_PLAN.md",
+      "sha256": "113f8df4cbf9f05a164cb3baa429638d451c9eb7c8aacc473a514d2fa3a1e8fa",
+      "bytes": 14609
+    },
+    {
+      "path": "TEST_ORACLES.json",
+      "sha256": "a73dcb2f0b9c0baafd7717bd8a26a1d2d753a8df35812cf046bba5f38022154e",
+      "bytes": 7552
+    },
+    {
+      "path": "fixtures/LICENSE",
+      "sha256": "6c835358364a1215f87b683050862c81e8c19995797cd5ac1fa0b18050ee2b16",
+      "bytes": 1080
+    },
+    {
+      "path": "fixtures/README.md",
+      "sha256": "6e8be40051cb23bae3bc88a36bae2d4acd5f6fc879fcbbd987baa3ad7e02fdf6",
+      "bytes": 597
+    },
+    {
+      "path": "fixtures/capella-semantic-fragment.xml",
+      "sha256": "c2281dfd54b28b5d3cd38fa451aaa55715100626bf23b0adfc2910c52e29b890",
+      "bytes": 2990
+    },
+    {
+      "path": "fixtures/profile-layering.xmi",
+      "sha256": "5bb6b8ee1e153dc5f4c7dc1eb99b5d4df8a9c788b8c48c19cf835c0476c2d73d",
+      "bytes": 780
+    }
+  ]
+}
