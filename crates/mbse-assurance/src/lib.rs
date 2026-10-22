@@ -451,6 +451,11 @@ impl Board {
             return Err("ASSURANCE_SELECTED_CALCULATION_MISSING".into());
         }
         if let Some(anchor) = &requirement_record.anchor {
+            if anchor.format_contract == mbse_model::stage1_io::PROFILE
+                && anchor.artifact_sha256 != editor.snapshot.digest()
+            {
+                return Err("ASSURANCE_NATIVE_ANCHOR_SOURCE_STALE".into());
+            }
             if anchor
                 .native_document
                 .as_ref()
@@ -596,6 +601,17 @@ impl Board {
             reasons.push("evidence has neither native runtime proof nor explicit external artifact provenance".into());
         }
 
+        if let Some(anchor) = &req.anchor {
+            if anchor.format_contract == mbse_model::stage1_io::PROFILE
+                && (anchor.artifact_sha256 != current.model.snapshot_hash
+                    || anchor.native_document.as_ref() != Some(&current.model.document_id))
+            {
+                reasons.push(
+                    "native source anchor no longer matches the current exact document/snapshot"
+                        .into(),
+                );
+            }
+        }
         if req.revision != e.requirement_revision || requirement_hash(req)? != e.requirement_hash {
             reasons.push("requirement changed".into());
         }

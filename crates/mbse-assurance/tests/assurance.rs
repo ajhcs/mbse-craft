@@ -586,3 +586,57 @@ fn saved_history_identity_admission_and_high_water_survive_undone_objects() {
     std::fs::write(&malformed, serde_json::to_vec(&value).unwrap()).unwrap();
     assert!(Board::open(&malformed).unwrap_err().contains("REVIEW_ID"));
 }
+
+#[test]
+fn exact_native_source_anchor_requires_relink_after_native_raw_or_model_changes() {
+    let mut editor = model();
+    let mut board = Board::new();
+    let req = board
+        .add_requirement("Review exact linked native revision".into())
+        .unwrap();
+    let anchor = SourceAnchor {
+        format_contract: mbse_model::stage1_io::PROFILE.into(),
+        artifact_sha256: editor.snapshot.digest(),
+        metamodel: "app-owned records".into(),
+        source_element_id: "record:11".into(),
+        native_document: Some(editor.snapshot.document_id.0.clone()),
+        native_record: Some(11),
+        units: BTreeMap::new(),
+        references: vec![],
+        package_integrity: ProjectionStatus::Supported,
+        parsing: ProjectionStatus::Supported,
+        reference_resolution: ProjectionStatus::Partial,
+        semantic_projection: ProjectionStatus::Partial,
+        editable_admission: ProjectionStatus::Supported,
+        execution: ProjectionStatus::Unknown,
+        unknown: BTreeMap::new(),
+    };
+    board.set_anchor(req, Some(anchor)).unwrap();
+    board
+        .attach_calculation(req, &editor, &json!({}), CalculationId(11))
+        .unwrap();
+    let key = mbse_model::stage1::RawKey {
+        record: RecordId(1),
+        field: "purpose".into(),
+        item: None,
+    };
+    editor
+        .command(
+            &editor.freshness(),
+            Command::EditText {
+                key,
+                text: "Changed source revision".into(),
+            },
+        )
+        .unwrap();
+    assert!(board
+        .attach_calculation(req, &editor, &json!({}), CalculationId(11))
+        .unwrap_err()
+        .contains("ANCHOR_SOURCE_STALE"));
+    let mut anchor = board.register.requirements[&req].anchor.clone().unwrap();
+    anchor.artifact_sha256 = editor.snapshot.digest();
+    board.set_anchor(req, Some(anchor)).unwrap();
+    assert!(board
+        .attach_calculation(req, &editor, &json!({}), CalculationId(11))
+        .is_ok());
+}
