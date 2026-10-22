@@ -1,0 +1,50 @@
+{
+  "schema": "mbse-craft.reference-access/1",
+  "reference": "Capella recorded workflow",
+  "read_context": {
+    "uid": 1000,
+    "identity": "builderbob",
+    "mode": "Normal sandbox read-only exec_command; no source-read escalation required"
+  },
+  "scope": "Read listed documents and HTML text; independently hash listed files. Transfer-owner435-payload verification is attributed, not repeated here. No payload recopy, proprietary asset inclusion, model execution, GUI or tests.",
+  "files": [
+    {
+      "path": "/workspace/repos/builderbob/kernspan/work/references/capella-workflow-20261022/README.md",
+      "bytes": 1583,
+      "sha256": "aaa3df700f49e5da1dc2f35616002cff1f44a43d2beb137d2afb967a2e81d071"
+    },
+    {
+      "path": "/workspace/repos/builderbob/kernspan/work/references/capella-workflow-20261022/analysis/comparison.md",
+      "bytes": 16365,
+      "sha256": "ddd6a8f17117577c039ac8c9d6f792a81fb9e00b17650bccf8733820ee601272"
+    },
+    {
+      "path": "/workspace/repos/builderbob/kernspan/work/references/capella-workflow-20261022/analysis/report.html",
+      "bytes": 23822,
+      "sha256": "05a5fc6448645e7ec8e9ce68949f7c8e72ace510dc5817a59955df15ec89e249"
+    },
+    {
+      "path": "/workspace/repos/builderbob/kernspan/work/references/capella-workflow-20261022/TRANSFER-VERIFICATION.json",
+      "bytes": 1396,
+      "sha256": "06e2369a7f8359230e43427eb90d3a192702bfc3f283fb88f073fb391f8f6c1c"
+    },
+    {
+      "path": "/workspace/repos/builderbob/kernspan/work/references/capella-workflow-20261022/destination-manifest.json",
+      "bytes": 188285,
+      "sha256": "9d70d83e8ca7a2ada3eaa0304a0b08eda16cf1904ed35cd131a4a6846eca0442"
+    },
+    {
+      "path": "/workspace/repos/builderbob/kernspan/work/references/capella-workflow-20261022/_transfer/source-manifest.json",
+      "bytes": 175469,
+      "sha256": "9813c7878acf7019150952c5fbf608cdd1f07fc119cb995bbbdc582997209e57"
+    }
+  ],
+  "transfer_owner_report": {
+    "payload_files": 435,
+    "payload_bytes": 217006184,
+    "states": 168,
+    "findings": 23
+  },
+  "qualified_source_sha256": "323fe697051fe40a508dcab6d8d3979898a0da8c34a4a2007aa1ec30ee3ac6d7",
+  "qualified_binary_sha256": "ddefaaaa73675b5e1aacd8aee6288cfdf513049c0e8cad88b15be894a7e4b587"
+}
