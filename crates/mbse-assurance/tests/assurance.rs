@@ -541,3 +541,30 @@ fn unrelated_global_failure_is_retained_while_selected_quantity_remains_successf
         .diagnostic()
         .is_some());
 }
+
+#[test]
+fn saved_history_identity_admission_and_high_water_survive_undone_objects() {
+    let editor = model();
+    let mut board = Board::new();
+    let req = board.add_requirement("Retain audit identity".into()).unwrap();
+    let evidence = board.attach_calculation(req, &editor, &json!({}), CalculationId(11)).unwrap();
+    board.review_evidence(evidence, Adequacy::Adequate, "Reviewer".into(), "Explicit review".into()).unwrap();
+    let review_id = board.register.review_history[0].review_id;
+    assert!(board.undo());
+    assert!(board.undo());
+    assert!(!board.register.evidence.contains_key(&evidence));
+    assert_eq!(board.register.review_history[0].review_id, review_id);
+    let area = area();
+    let path = area.path().join("history.json");
+    board.save_new(&path).unwrap();
+    let (mut reopened, _) = Board::open(&path).unwrap();
+    assert!(reopened.register.next_id > review_id);
+    reopened.register.next_id = review_id;
+    assert!(reopened.save_new(&area.path().join("bad-highwater.json")).unwrap_err().contains("HIGH_WATER"));
+    let mut value: serde_json::Value = serde_json::from_slice(&std::fs::read(&path).unwrap()).unwrap();
+    let duplicate = value["register"]["review_history"][0].clone();
+    value["register"]["review_history"].as_array_mut().unwrap().push(duplicate);
+    let malformed = area.path().join("duplicate-audit.json");
+    std::fs::write(&malformed, serde_json::to_vec(&value).unwrap()).unwrap();
+    assert!(Board::open(&malformed).unwrap_err().contains("REVIEW_ID"));
+}

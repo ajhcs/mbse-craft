@@ -7,11 +7,12 @@ use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use sha2::{Digest, Sha256};
 use std::{
-    collections::BTreeMap,
+    collections::{BTreeMap, BTreeSet},
     path::{Path, PathBuf},
 };
 pub const PROFILE: &str = "mbse-craft.requirements-evidence/1";
 pub const MAX_BYTES: usize = 32 * 1024 * 1024;
+pub const MAX_AUDIT_ENTRIES: usize = 20_000;
 #[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 pub struct RequirementId(pub u64);
 #[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
@@ -645,6 +646,7 @@ impl Board {
             } else {
                 Some(evidence_hash(e)?)
             };
+            if s.review_history.len() >= MAX_AUDIT_ENTRIES { return Err("ASSURANCE_AUDIT_LIMIT".into()); }
             let review_id = s.next_id;
             s.next_id = s.next_id.checked_add(1).ok_or("ASSURANCE_ID_LIMIT")?;
             s.review_history.push(EvidenceReview {
@@ -723,6 +725,7 @@ impl Board {
                 .ok_or("ASSURANCE_REQUIREMENT_MISSING")?;
             let rhash = requirement_hash(req)?;
             req.verification = status;
+            if s.decision_history.len() >= MAX_AUDIT_ENTRIES { return Err("ASSURANCE_AUDIT_LIMIT".into()); }
             let decision_id = s.next_id;
             s.next_id = s.next_id.checked_add(1).ok_or("ASSURANCE_ID_LIMIT")?;
             let decision = VerificationDecision {
@@ -872,12 +875,13 @@ impl Board {
     }
     fn validate(&self) -> Result<(), String> {
         let s = &self.register;
-        if s.requirements.len() > 10000 || s.evidence.len() > 10000 || s.next_id == 0 {
+        if s.requirements.len() > 10000 || s.evidence.len() > 10000 || s.next_id == 0 || s.review_history.len() > MAX_AUDIT_ENTRIES || s.decision_history.len() > MAX_AUDIT_ENTRIES {
             return Err("ASSURANCE_RECORD_LIMIT".into());
         }
         let mut max = 0u64;
+        let mut used = BTreeSet::new();
         for (id, r) in &s.requirements {
-            if *id != r.id || id.0 == 0 {
+            if *id != r.id || id.0 == 0 || !used.insert(id.0) || r.statement.trim().is_empty() {
                 return Err("ASSURANCE_REQUIREMENT_ID".into());
             }
             max = max.max(id.0);
@@ -885,12 +889,33 @@ impl Board {
         for (id, e) in &s.evidence {
             if *id != e.id
                 || id.0 == 0
+                || !used.insert(id.0)
                 || !s.requirements.contains_key(&e.requirement)
                 || bytes_hash(&e.artifact_bytes) != e.artifact_sha256
             {
                 return Err("ASSURANCE_EVIDENCE_INTEGRITY".into());
             }
             max = max.max(id.0);
+        }
+        // Audit entries may reference undone objects, but their identities never recycle.
+        for review in &s.review_history {
+            if review.review_id == 0 || !used.insert(review.review_id) {
+                return Err("ASSURANCE_REVIEW_ID".into());
+            }
+            max = max.max(review.review_id);
+        }
+        for decision in &s.decision_history {
+            if decision.decision_id == 0 || !used.insert(decision.decision_id) {
+                return Err("ASSURANCE_DECISION_ID".into());
+            }
+            max = max.max(decision.decision_id);
+        }
+        for (id, decision) in &s.decisions {
+            if *id != decision.requirement || !s.requirements.contains_key(id)
+                || !s.evidence.contains_key(&decision.evidence)
+                || !s.decision_history.iter().any(|v| v == decision) {
+                return Err("ASSURANCE_DECISION_CACHE_INTEGRITY".into());
+            }
         }
         if s.next_id <= max {
             return Err("ASSURANCE_ID_HIGH_WATER".into());
