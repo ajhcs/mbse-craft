@@ -3,7 +3,7 @@ mod xml;
 use serde::Serialize;
 use sha2::{Digest, Sha256};
 use std::{
-    collections::BTreeSet,
+    collections::{BTreeMap, BTreeSet},
     io::{Cursor, Read, Write},
     path::Path,
 };
@@ -472,6 +472,7 @@ impl ProjectionSet {
         let mut loss_bytes = 0usize;
         let mut omitted = 0usize;
         let chosen: BTreeSet<_> = selected.iter().collect();
+        let node_index: BTreeMap<_, _> = self.nodes.iter().map(|n| (&n.key, n)).collect();
         let mut push = |code: &str, key: Option<&ElementKey>, detail: &str, action: &str| {
             #[derive(Serialize)]
             struct View<'a> {
@@ -517,7 +518,7 @@ impl ProjectionSet {
             );
         }
         for key in selected {
-            match self.nodes.iter().find(|n| &n.key == key) {
+            match node_index.get(key) {
                 None => push(
                     "STALE_OR_UNKNOWN_SCOPED_KEY",
                     Some(key),
