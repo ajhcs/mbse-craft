@@ -384,33 +384,30 @@ impl Workspace {
             RecordKind::Objective => {
                 self.field(ui, record, "outcome", "Desired outcome", true);
                 ui.label(RichText::new("Subject").strong());
-                egui::ComboBox::from_id_salt(("objective-subject", record.id.0))
-                    .selected_text(
-                        record
-                            .subject()
-                            .map(|s| format!("{s:?}"))
-                            .unwrap_or_else(|| "Choose typed subject…".into()),
-                    )
-                    .show_ui(ui, |ui| {
-                        if ui
-                            .selectable_label(record.subject().is_none(), "No subject")
-                            .clicked()
-                        {
-                            self.command(Command::SetSubject {
-                                objective: record.id,
-                                subject: None,
-                            });
-                        }
-                        for target in records.iter().filter(|r| r.scope == record.scope) {
-                            let subject = match target.kind {
-                                RecordKind::System => Some(SubjectRef::System(target.id)),
-                                RecordKind::Mission => Some(SubjectRef::Mission(target.id)),
-                                RecordKind::Capability => Some(SubjectRef::Capability(target.id)),
-                                _ => None,
-                            };
-                            if let Some(subject) = subject {
-                                if ui
-                                    .selectable_label(
+                let subject_combo =
+                    egui::ComboBox::from_id_salt(("objective-subject", record.id.0))
+                        .selected_text(subject_caption(record.subject(), records))
+                        .show_ui(ui, |ui| {
+                            if ui
+                                .selectable_label(record.subject().is_none(), "No subject")
+                                .clicked()
+                            {
+                                self.command(Command::SetSubject {
+                                    objective: record.id,
+                                    subject: None,
+                                });
+                            }
+                            for target in records.iter().filter(|r| r.scope == record.scope) {
+                                let subject = match target.kind {
+                                    RecordKind::System => Some(SubjectRef::System(target.id)),
+                                    RecordKind::Mission => Some(SubjectRef::Mission(target.id)),
+                                    RecordKind::Capability => {
+                                        Some(SubjectRef::Capability(target.id))
+                                    }
+                                    _ => None,
+                                };
+                                if let Some(subject) = subject {
+                                    let response = ui.selectable_label(
                                         record.subject() == Some(subject),
                                         format!(
                                             "{} · {} #{}",
@@ -418,17 +415,21 @@ impl Workspace {
                                             target.name,
                                             target.id.0
                                         ),
-                                    )
-                                    .clicked()
-                                {
-                                    self.command(Command::SetSubject {
-                                        objective: record.id,
-                                        subject: Some(subject),
-                                    });
+                                    );
+                                    self.bound(
+                                        format!("subject-option:{}:{}", record.id.0, target.id.0),
+                                        &response,
+                                    );
+                                    if response.clicked() {
+                                        self.command(Command::SetSubject {
+                                            objective: record.id,
+                                            subject: Some(subject),
+                                        });
+                                    }
                                 }
                             }
-                        }
-                    });
+                        });
+                self.bound(format!("subject:{}", record.id.0), &subject_combo.response);
             }
             RecordKind::Capability => {
                 ui.label(RichText::new("Contributes to missions").strong());
@@ -737,7 +738,7 @@ impl Workspace {
     }
     fn canvas(&mut self, root: &mut egui::Ui) {
         egui::CentralPanel::default().show(root, |ui| {
-            ui.horizontal(|ui| {
+            ui.horizontal_wrapped(|ui| {
                 ui.heading("System canvas");
                 ui.label("Select to edit · Details opens a popout");
                 ui.add(egui::Slider::new(&mut self.zoom, 0.65..=1.4).text("Scale"));
@@ -1009,6 +1010,17 @@ impl Workspace {
         }
         ctx.request_repaint();
     }
+}
+fn subject_caption(subject: Option<SubjectRef>, records: &[Record]) -> String {
+    let id = match subject {
+        Some(SubjectRef::System(id) | SubjectRef::Mission(id) | SubjectRef::Capability(id)) => id,
+        None => return "Choose typed subject…".into(),
+    };
+    records
+        .iter()
+        .find(|r| r.id == id)
+        .map(|r| format!("{} · {} #{}", r.kind.label(), r.name, id.0))
+        .unwrap_or_else(|| format!("Unavailable subject #{}", id.0))
 }
 fn all_units() -> [UnitId; 10] {
     [
