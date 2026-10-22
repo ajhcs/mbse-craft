@@ -1,0 +1,7 @@
+[workspace]
+members = ["crates/mbse-model", "crates/mbse-desktop"]
+exclude = ["vendor/craft-libs", "crates/mbse-model/vendor/sysmlv2-syntax"]
+resolver = "2"
+
+[profile.release]
+opt-level = 2
