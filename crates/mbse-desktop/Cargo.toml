@@ -18,6 +18,7 @@ serde = { version = "1", features = ["derive"] }
 craft-window = { path = "../../vendor/craft-libs/crates/window", features = ["egui"] }
 mbse-catalog = { path = "../mbse-catalog" }
 mbse-exchange = { path = "../mbse-exchange" }
+mbse-assurance = { path = "../mbse-assurance" }
 
 [dev-dependencies]
 tempfile = "3"
