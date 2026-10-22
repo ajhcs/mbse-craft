@@ -125,6 +125,16 @@ fn context_and_affiliation_are_typed_undoable_preserve_opaque_and_roundtrip() {
         json!([{"opaque":true}])
     );
     assert!(mbse_model::stage1_sysml::from_records(&e.snapshot.records).is_err());
+    let area = area();
+    let state = area.path().join("state");
+    let native = area.path().join("contexts.kernspan");
+    let mut session = Session::new(&state).unwrap();
+    session.editor = e.clone();
+    let job = session.begin_save(&native).unwrap();
+    assert!(session.complete(execute_write(job)));
+    let reopened = Session::open(&state, &native).unwrap();
+    assert_eq!(reopened.editor.snapshot.records, e.snapshot.records);
+    assert_eq!(reopened.editor.snapshot.drafts, e.snapshot.drafts);
     e.snapshot
         .records
         .get_mut(&RecordId(10))
