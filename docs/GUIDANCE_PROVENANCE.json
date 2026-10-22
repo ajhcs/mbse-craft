@@ -1,0 +1,18 @@
+{
+  "scope": "Read guidance only; no CSE checker executed; no concept conformance verdict",
+  "loaded_sources": [
+    {
+      "path": "/home/builderbob/.codex/plugins/cache/ingenium-local-review/ingenium/0.1.0/skills/ingenium/SKILL.md",
+      "sha256": "a28619c00db0c508dbaeb3d5b3091ba6d12ba227b75ba308748897c228efa43f"
+    },
+    {
+      "path": "/home/builderbob/.codex/plugins/cache/ingenium-local-review/ingenium/0.1.0/skills/ingenium/references/interaction-sketches.md",
+      "sha256": "2d9595216bc4968e98810eb81d94d5c213a347d2f2f54162dae705891af41b36"
+    },
+    {
+      "path": "/workspace/repos/builderbob/computable-systems-engineering/skills/develop-system-concept/SKILL.md",
+      "sha256": "7b4e7e31f03af7315e08f57cc89a7ecac028603d703004e7a3acf2670413c9b1"
+    }
+  ],
+  "reference_model_commit": "c80037d2259cd67a8e813cf3bc6c01bb1226a460"
+}
