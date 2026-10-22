@@ -1,0 +1,140 @@
+{
+  "source_commit": "c6e0d67e01adb1b76e08fa70b998330cf9677712",
+  "source_sha256": "38145bb6edb2464609c622d1e6edaee8140b2373ee3f3e4c76e8772055338b11",
+  "binary_sha256": "744b6e93ae01b55d24527e8788e7f7c814ba0bac47faa66098bc2256460dd5c2",
+  "cargo_lock_sha256": "d70130c611edc38e9da1b2237f1add6af9af8321785c67b0e5561d37ae7a7632",
+  "build_cwd": "/workspace/worktrees/builderbob/mbse-craft/verification",
+  "environment": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/m1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/m1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1"
+  },
+  "commands": [
+    "bash scripts/dev.sh test -p mbse-assurance --locked --offline",
+    "bash scripts/dev.sh test --workspace --locked --offline",
+    "bash scripts/dev.sh build -p mbse-desktop --locked --offline",
+    "rustfmt --edition 2021 --check --config skip_children=true <exact18files in format-inputs.json>",
+    "bash scripts/dev.sh tree --locked --offline -i egui"
+  ],
+  "synthetic_input": {
+    "recipe": "8388608 bytes each0xff",
+    "bytes": 8388608,
+    "sha256": "9f9b02f5ee6cbef5e018c1ee424095fc21a842ea6968c0d36114b5930dab2ba1"
+  },
+  "scenarios": [
+    {
+      "id": "aggregate_artifact_and_encoded_limits",
+      "status": "pass",
+      "evidence": "focused-tests.log",
+      "observation": "12assurance tests pass; actual four2MiB zero artifacts accepted then next refused atomically;8MiB0xff encoded-envelope refusal; continued edit+save"
+    },
+    {
+      "id": "combined_workspace",
+      "status": "pass",
+      "count": 169
+    },
+    {
+      "id": "desktop_build",
+      "status": "pass"
+    },
+    {
+      "id": "changed_application_format",
+      "status": "pass",
+      "count": 18,
+      "evidence": "format-inputs.json"
+    },
+    {
+      "id": "native_encoded_refusal_edit_save_close",
+      "status": "pass",
+      "observation": "Actual XTest attachment returns ASSURANCE_DOCUMENT_LIMIT; evidence remains0; owneredit persisted in actualJSON; WM_DELETE_WINDOW exit0"
+    },
+    {
+      "id": "whole_workspace_format",
+      "status": "fail",
+      "observation": "Earlier08 check finds unchanged inherited model test formatting; targeted changed app/core files pass"
+    },
+    {
+      "id": "pending_copy_close_race",
+      "status": "not_run"
+    },
+    {
+      "id": "total_process_memory_limit",
+      "status": "not_qualified",
+      "observation": "Current/prospective envelope and aggregate artifact sizes bounded; retained Undo/Redo clones are not a process-memory bound"
+    },
+    {
+      "id": "paired_fork",
+      "status": "not_run",
+      "observation": "Separate subsequent qualification; current tree stockegui0.36.2"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "build.log",
+      "bytes": 183,
+      "sha256": "ca48a6e5cbbc4c20800884c0b5f204a91cbaf4f2e74559d53b60949cd1e7f602"
+    },
+    {
+      "path": "egui-tree.log",
+      "bytes": 967,
+      "sha256": "f9db8b37e269da79bb334f7f4195a023558a62fda9a5941e4edbb173920130b1"
+    },
+    {
+      "path": "encoded-budget-refused-live-register.png",
+      "bytes": 162490,
+      "sha256": "8790997a520361fb97320e864921fce9a9d5ad191b320cf0b6ff596a7df0786d"
+    },
+    {
+      "path": "encoded-budget-refused-live-register.ui.json",
+      "bytes": 7392,
+      "sha256": "d4a040d37c709f7696cd3cddb031e51297307e34a5bc784e16b99dac3fa76a9e"
+    },
+    {
+      "path": "focused-tests.log",
+      "bytes": 1839,
+      "sha256": "1504f0e3ad64dac17e49e8c91d22117cb20d2b8add5866966eddfed967a0af5a"
+    },
+    {
+      "path": "format-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "format-inputs.json",
+      "bytes": 743,
+      "sha256": "3e4c21d6b5b8ff27d9efae4b2937bebb310f8b16bf77740f0b57d5eff294500e"
+    },
+    {
+      "path": "native-events.jsonl",
+      "bytes": 1948,
+      "sha256": "c6853d7b48d1c32ff051af5caa608eb90fa12fa0ca820a97b3f68cb920452dec"
+    },
+    {
+      "path": "post-refusal-edit-saved.png",
+      "bytes": 166647,
+      "sha256": "8647f7df8fd85f4b3204a2306ee3fba10778f0aa4e0a3737a01f276507b392ed"
+    },
+    {
+      "path": "post-refusal-edit-saved.ui.json",
+      "bytes": 7394,
+      "sha256": "c42b15dcf9fb7c2cbf7434d8750c53afcea55ee62a3760df3f17ebec30bbfd67"
+    },
+    {
+      "path": "refused-retained-register.json",
+      "bytes": 543,
+      "sha256": "20aefad709588673a413b4af5df3231506b9cbcd0add9cfbb757b84a3ae61881"
+    },
+    {
+      "path": "source-manifest.json",
+      "bytes": 24067,
+      "sha256": "64d45f0645bef7dad438a19bf3e00e7aa809f2c124ac354fbcb72761e21382b2"
+    },
+    {
+      "path": "workspace-tests.log",
+      "bytes": 18869,
+      "sha256": "e4d2a9e528acb0b9428bd83229174cafe2fb82622e12d67e9ea79c8aa87f0b84"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{"ready": true, "app_pid": 652278, "server_pid": 652275, "window": 4194307, "binary_sha256": "744b6e93ae01b55d24527e8788e7f7c814ba0bac47faa66098bc2256460dd5c2"}
+{"op": "click", "widget": "action:Requirements and evidence", "x": 1047, "y": 12, "app_returncode": null}
+{"op": "click", "widget": "assurance:new-statement", "x": 274, "y": 179, "app_returncode": null}
+{"op": "text", "text": "Synthetic resource refusal must retain editable register", "app_returncode": null}
+{"op": "click", "widget": "assurance:Add", "x": 476, "y": 179, "app_returncode": null}
+{"op": "click", "widget": "assurance:artifact-path", "x": 276, "y": 538, "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/m1/state/resource-native/eight-megabytes-ff.bin", "app_returncode": null}
+{"op": "click", "widget": "assurance:Attach external", "pause": 5, "x": 496, "y": 538, "app_returncode": null}
+{"op": "capture", "name": "encoded-budget-refused-live-register", "ui_sha256": "d4a040d37c709f7696cd3cddb031e51297307e34a5bc784e16b99dac3fa76a9e", "sha256": "8790997a520361fb97320e864921fce9a9d5ad191b320cf0b6ff596a7df0786d", "app_returncode": null}
+{"op": "click", "widget": "assurance:field:owner", "x": 431, "y": 394, "app_returncode": null}
+{"op": "text", "text": "Still usable after refusal", "app_returncode": null}
+{"op": "click", "widget": "assurance:path", "x": 249, "y": 115, "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/m1/state/resource-native/refused-retained-register.json", "app_returncode": null}
+{"op": "click", "widget": "assurance:Save fresh", "pause": 2, "x": 636, "y": 115, "app_returncode": null}
+{"op": "capture", "name": "post-refusal-edit-saved", "ui_sha256": "c42b15dcf9fb7c2cbf7434d8750c53afcea55ee62a3760df3f17ebec30bbfd67", "sha256": "8647f7df8fd85f4b3204a2306ee3fba10778f0aa4e0a3737a01f276507b392ed", "app_returncode": null}
+{"op": "close", "pause": 2, "app_returncode": 0}
