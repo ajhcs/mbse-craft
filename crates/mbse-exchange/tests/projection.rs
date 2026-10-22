@@ -83,7 +83,7 @@ fn mdzip_projects_actual_named_core_and_retains_unknown_members_without_extracti
 fn capella_explicit_components_ports_exchange_and_no_sidecar_fetch() {
     let area = area();
     let path = area.path().join("model.capella");
-    std::fs::write(&path,r#"<m:Project xmlns:m="http://www.polarsys.org/capella/core/modeller/7.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:la="http://www.polarsys.org/capella/core/la/7.0.0" id="root"><owned xsi:type="la:LogicalComponent" id="c" name="Coordinator"/><owned xsi:type="la:ComponentPort" id="p"/><owned xsi:type="la:ComponentExchange" id="e" source="p" target="other.capella#remote"/></m:Project>"#).unwrap();
+    std::fs::write(&path,r#"<m:Project xmlns:m="http://www.polarsys.org/capella/core/modeller/7.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:la="http://www.polarsys.org/capella/core/la/7.0.0" xmlns:cs="http://www.polarsys.org/capella/core/cs/7.0.0" id="root"><owned xsi:type="la:LogicalComponent" id="c" name="Coordinator"/><owned xsi:type="cs:ComponentPort" id="p"/><owned xsi:type="cs:ComponentExchange" id="e" source="p" target="other.capella#remote"/></m:Project>"#).unwrap();
     let doc = open_external(&path).unwrap();
     assert_eq!(
         doc.nodes.iter().find(|n| n.source_id == "c").unwrap().kind,
@@ -162,10 +162,10 @@ fn textual_ast_has_declared_spans_and_explicit_unresolved_typing() {
         .nodes
         .iter()
         .any(|n| n.name == "Vehicle" && n.original_type == "PartDefinition"));
-    assert!(doc
-        .references
-        .iter()
-        .any(|r| r.role == "typedBy" && r.target == "Vehicle" && !r.resolved));
+    assert!(doc.references.iter().any(|r| r.role == "typedBy"
+        && r.original_target.as_deref() == Some("Vehicle")
+        && r.resolved
+        && r.resolution == mbse_exchange::ReferenceResolution::LocalLexicalName));
     for n in &doc.nodes {
         assert_eq!(
             &source[n.location.start..n.location.end],
@@ -176,4 +176,43 @@ fn textual_ast_has_declared_spans_and_explicit_unresolved_typing() {
         .diagnostics
         .iter()
         .any(|d| d.code == "TEXT_PARTIAL_RESOLUTION"));
+}
+
+#[test]
+fn namespace_false_friends_and_wrong_versions_remain_unknown() {
+    let area = area();
+    let path = area.path().join("wrong.capella");
+    std::fs::write(&path,r#"<m:Project xmlns:m="http://www.polarsys.org/capella/core/modeller/8.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fake="https://evil.example/capella/core/la/7.0.0" id="root"><fake:LogicalComponent id="fake"/><fake:Block id="overlay" base_Class="fake"/></m:Project>"#).unwrap();
+    let doc = open_external(&path).unwrap();
+    assert!(doc.nodes.iter().all(|n| n.kind == NodeKind::Unknown));
+    assert!(!doc.source_evidence[0].recognized_contract);
+    assert!(doc
+        .diagnostics
+        .iter()
+        .any(|d| d.code == "UNSUPPORTED_NAMESPACE_OR_VERSION"));
+}
+#[test]
+fn lexical_reference_resolution_is_scoped_and_ambiguity_stays_explicit() {
+    let area = area();
+    let path = area.path().join("scopes.sysml");
+    std::fs::write(&path,"package P { part def T; package Nested { part def T; part selected : T; } part selected : T; package Ambiguous { part def T; part def T; part selected : T; } }").unwrap();
+    let doc = open_external(&path).unwrap();
+    let typed: Vec<_> = doc
+        .references
+        .iter()
+        .filter(|r| r.role == "typedBy")
+        .collect();
+    assert_eq!(typed.len(), 3);
+    assert_eq!(typed.iter().filter(|r| r.resolved).count(), 2);
+    assert_eq!(
+        typed
+            .iter()
+            .filter(|r| r.resolution == mbse_exchange::ReferenceResolution::Ambiguous)
+            .count(),
+        1
+    );
+    for r in typed {
+        assert_eq!(r.original_target.as_deref(), Some("T"));
+        assert!(r.lexical_scope.is_some());
+    }
 }

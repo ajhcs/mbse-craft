@@ -34,7 +34,7 @@ pub enum NodeKind {
     Stereotype,
     Unknown,
 }
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Serialize, Deserialize)]
 pub struct SourceLocation {
     pub file: String,
     pub start: usize,
@@ -56,8 +56,19 @@ pub struct ExternalNode {
     pub properties: BTreeMap<String, String>,
     pub location: SourceLocation,
 }
-#[derive(Clone, Debug, Serialize, Deserialize)]
+#[derive(Clone, Debug, Default, Serialize, Deserialize, PartialEq, Eq)]
+pub enum ReferenceResolution {
+    ExactId,
+    LocalLexicalName,
+    Ambiguous,
+    #[default]
+    Unresolved,
+}
+#[derive(Clone, Debug, Default, Serialize, Deserialize)]
 pub struct ExternalReference {
+    pub original_target: Option<String>,
+    pub lexical_scope: Option<String>,
+    pub resolution: ReferenceResolution,
     pub source: String,
     pub target: String,
     pub role: String,
@@ -71,8 +82,17 @@ pub struct Diagnostic {
     pub file: Option<String>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct SourceEvidence {
+    pub file: String,
+    pub root_namespace: String,
+    pub namespaces: BTreeMap<String, String>,
+    pub version_attributes: BTreeMap<String, String>,
+    pub recognized_contract: bool,
+}
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct ExternalDocument {
     pub contract: String,
+    pub source_evidence: Vec<SourceEvidence>,
     pub format: ExternalFormat,
     pub source_path: PathBuf,
     pub sha256: String,
@@ -117,6 +137,7 @@ pub fn open_external(path: &Path) -> Result<ExternalDocument, String> {
     let mut doc = ExternalDocument {
         contract: format!("mbse-craft.external.{contract}/1"),
         format,
+        source_evidence: vec![],
         source_path: path.to_owned(),
         sha256: hash(&bytes),
         original_bytes: bytes.clone(),
@@ -147,8 +168,49 @@ pub fn open_external(path: &Path) -> Result<ExternalDocument, String> {
     if ids.len() != doc.nodes.len() {
         return Err("EXTERNAL_DUPLICATE_ID_AMBIGUITY".into());
     }
+    let mut names: BTreeMap<String, Vec<String>> = BTreeMap::new();
+    for node in &doc.nodes {
+        if let Some(name) = node.properties.get("qualifiedName") {
+            names
+                .entry(name.clone())
+                .or_default()
+                .push(node.source_id.clone());
+        }
+    }
     for reference in &mut doc.references {
-        reference.resolved = ids.contains(&reference.target);
+        reference.original_target = Some(reference.target.clone());
+        if ids.contains(&reference.target) {
+            reference.resolved = true;
+            reference.resolution = ReferenceResolution::ExactId;
+            continue;
+        }
+        if let Some(scope) = &reference.lexical_scope {
+            let mut scope = scope.clone();
+            loop {
+                let candidate = if scope.is_empty() {
+                    reference.target.clone()
+                } else {
+                    format!("{scope}::{}", reference.target)
+                };
+                if let Some(matches) = names.get(&candidate) {
+                    if matches.len() == 1 {
+                        reference.target = matches[0].clone();
+                        reference.resolved = true;
+                        reference.resolution = ReferenceResolution::LocalLexicalName;
+                    } else {
+                        reference.resolution = ReferenceResolution::Ambiguous;
+                    }
+                    break;
+                }
+                if scope.is_empty() {
+                    break;
+                }
+                scope = scope
+                    .rsplit_once("::")
+                    .map(|v| v.0.to_owned())
+                    .unwrap_or_default();
+            }
+        }
     }
     let unresolved = doc.references.iter().filter(|r| !r.resolved).count();
     if unresolved > 0 {
@@ -268,6 +330,42 @@ fn classify(ty: &str, overlay: bool) -> NodeKind {
         _ => NodeKind::Unknown,
     }
 }
+fn qualified_kind(namespace: &str, ty: &str, overlay: bool) -> NodeKind {
+    if overlay {
+        return NodeKind::Stereotype;
+    }
+    let local = ty.rsplit(':').next().unwrap_or(ty);
+    if namespace == "http://www.omg.org/spec/UML/20131001" {
+        return classify(local, false);
+    }
+    let valid = matches!(
+        (namespace, local),
+        (
+            "http://www.polarsys.org/capella/core/modeller/7.0.0",
+            "Project" | "SystemEngineering"
+        ) | (
+            "http://www.polarsys.org/capella/core/la/7.0.0",
+            "LogicalComponent" | "LogicalFunction"
+        ) | (
+            "http://www.polarsys.org/capella/core/pa/7.0.0",
+            "PhysicalComponent" | "PhysicalFunction"
+        ) | (
+            "http://www.polarsys.org/capella/core/ctx/7.0.0",
+            "SystemComponent" | "SystemFunction"
+        ) | (
+            "http://www.polarsys.org/capella/core/cs/7.0.0",
+            "ComponentPort" | "ComponentExchange"
+        ) | (
+            "http://www.polarsys.org/capella/core/fa/7.0.0",
+            "FunctionInputPort" | "FunctionOutputPort" | "FunctionalExchange"
+        )
+    );
+    if valid {
+        classify(local, false)
+    } else {
+        NodeKind::Unknown
+    }
+}
 fn project_xml(doc: &mut ExternalDocument, name: &str, bytes: &[u8]) -> Result<(), String> {
     let text = std::str::from_utf8(bytes).map_err(|_| "EXTERNAL_UTF8_ONLY")?;
     if text.contains("<!DOCTYPE") || text.contains("<!ENTITY") {
@@ -318,6 +416,37 @@ fn project_xml(doc: &mut ExternalDocument, name: &str, bytes: &[u8]) -> Result<(
         ),
         Some(name),
     );
+    let root_namespace = root.tag_name().namespace().unwrap_or("");
+    let namespaces: BTreeMap<_, _> = root
+        .namespaces()
+        .map(|ns| (ns.name().unwrap_or("").to_owned(), ns.uri().to_owned()))
+        .collect();
+    let recognized = if doc.format == ExternalFormat::Capella {
+        root_namespace == "http://www.polarsys.org/capella/core/modeller/7.0.0"
+            && root.tag_name().name() == "Project"
+    } else {
+        namespaces
+            .values()
+            .any(|ns| ns == "http://www.omg.org/spec/UML/20131001")
+    };
+    doc.source_evidence.push(SourceEvidence {
+        file: name.into(),
+        root_namespace: root_namespace.into(),
+        namespaces,
+        version_attributes: root
+            .attributes()
+            .map(|a| {
+                (
+                    format!("{{{}}}{}", a.namespace().unwrap_or(""), a.name()),
+                    a.value().into(),
+                )
+            })
+            .collect(),
+        recognized_contract: recognized,
+    });
+    if !recognized {
+        doc.diagnostic("UNSUPPORTED_NAMESPACE_OR_VERSION","Source does not match the exact supported namespace/version contract; unknown bytes/types remain source-visible",Some(name));
+    }
     let mut node_ids = BTreeMap::new();
     for n in xml.descendants().filter(|n| n.is_element()) {
         if n.ancestors().count() > MAX_DEPTH {
@@ -327,7 +456,13 @@ fn project_xml(doc: &mut ExternalDocument, name: &str, bytes: &[u8]) -> Result<(
             .attributes()
             .find(|a| {
                 a.name() == "id"
-                    && (a.namespace().is_none() || a.namespace().is_some_and(|v| v.contains("XMI")))
+                    && (a.namespace().is_none()
+                        || a.namespace().is_some_and(|v| {
+                            matches!(
+                                v,
+                                "http://www.omg.org/XMI" | "http://www.omg.org/spec/XMI/20131001"
+                            )
+                        }))
             })
             .map(|a| a.value().to_owned());
         if let Some(id) = id {
@@ -343,7 +478,17 @@ fn project_xml(doc: &mut ExternalDocument, name: &str, bytes: &[u8]) -> Result<(
         }
         let ty = n
             .attributes()
-            .find(|a| a.name() == "type" && a.namespace().is_some())
+            .find(|a| {
+                a.name() == "type"
+                    && a.namespace().is_some_and(|ns| {
+                        matches!(
+                            ns,
+                            "http://www.omg.org/XMI"
+                                | "http://www.omg.org/spec/XMI/20131001"
+                                | "http://www.w3.org/2001/XMLSchema-instance"
+                        )
+                    })
+            })
             .map(|a| a.value())
             .unwrap_or(n.tag_name().name());
         let namespace = ty
@@ -351,7 +496,25 @@ fn project_xml(doc: &mut ExternalDocument, name: &str, bytes: &[u8]) -> Result<(
             .and_then(|(p, _)| n.lookup_namespace_uri(Some(p)))
             .or(n.tag_name().namespace())
             .unwrap_or("");
-        let overlay = n.attributes().any(|a| a.name().starts_with("base_"));
+        let overlay = matches!(
+            namespace,
+            "http://www.omg.org/spec/SysML/20181001/SysML"
+                | "https://www.omg.org/spec/UAF/20211201/UAF"
+                | "http://www.omg.org/spec/UAF/20211201/MeasurementsLibrary"
+        ) && n.attributes().any(|a| {
+            matches!(
+                a.name(),
+                "base_Class"
+                    | "base_Property"
+                    | "base_Port"
+                    | "base_Activity"
+                    | "base_Constraint"
+                    | "base_Actor"
+                    | "base_InformationFlow"
+                    | "base_Connector"
+                    | "base_Package"
+            )
+        });
         let mut properties: BTreeMap<String, String> = n
             .attributes()
             .map(|a| {
@@ -389,14 +552,7 @@ fn project_xml(doc: &mut ExternalDocument, name: &str, bytes: &[u8]) -> Result<(
         };
         doc.nodes.push(ExternalNode {
             source_id: id.clone(),
-            kind: if overlay
-                || namespace.contains("/UML/20131001")
-                || namespace.contains("/capella/")
-            {
-                classify(ty, overlay)
-            } else {
-                NodeKind::Unknown
-            },
+            kind: qualified_kind(namespace, ty, overlay),
             original_type: ty.into(),
             namespace: namespace.into(),
             name: n.attribute("name").unwrap_or("").into(),
@@ -414,6 +570,7 @@ fn project_xml(doc: &mut ExternalDocument, name: &str, bytes: &[u8]) -> Result<(
                 role: "containment.owner".into(),
                 resolved: false,
                 location: location.clone(),
+                ..Default::default()
             });
         }
         for a in n.attributes() {
@@ -447,6 +604,7 @@ fn project_xml(doc: &mut ExternalDocument, name: &str, bytes: &[u8]) -> Result<(
                         role: role.into(),
                         resolved: false,
                         location: location.clone(),
+                        ..Default::default()
                     });
                 }
             }
@@ -466,6 +624,7 @@ fn project_xml(doc: &mut ExternalDocument, name: &str, bytes: &[u8]) -> Result<(
                         start: child.range().start,
                         end: child.range().end,
                     },
+                    ..Default::default()
                 });
             }
         }
@@ -475,6 +634,18 @@ fn project_xml(doc: &mut ExternalDocument, name: &str, bytes: &[u8]) -> Result<(
     }
     if doc.format == ExternalFormat::Capella {
         doc.diagnostic("CAPELLA_AIRD_EXTERNAL","No sidecar is loaded automatically; AIRD diagrams/styles and cross-resource hrefs are retained but unresolved",Some(name));
+    }
+    let unknown = doc
+        .nodes
+        .iter()
+        .filter(|n| n.location.file == name && n.kind == NodeKind::Unknown)
+        .count();
+    if unknown > 0 {
+        doc.diagnostic(
+            "UNKNOWN_SOURCE_TYPES",
+            format!("{unknown} source types have no exact supported namespace/type mapping"),
+            Some(name),
+        );
     }
     if doc.nodes.is_empty() {
         doc.diagnostic(
@@ -646,6 +817,8 @@ fn walk_members(
                     role: role.clone(),
                     resolved: false,
                     location: location.clone(),
+                    lexical_scope: Some(scope.to_owned()),
+                    ..Default::default()
                 });
             }
         }
