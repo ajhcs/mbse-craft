@@ -14,6 +14,16 @@
       "receipt_sha256": "d72cbed41b25ce486d2fa4496a56f11daf0dbbb837069b57b3ab5bafbdacf63b",
       "source_manifest": "docs/continuation-m1/verification/resource-epoch/source-manifest.json",
       "source_manifest_file_sha256": "64d45f0645bef7dad438a19bf3e00e7aa809f2c124ac354fbcb72761e21382b2"
+    },
+    {
+      "epoch": "audit-merge-followup",
+      "receipt": "docs/continuation-m1/verification/audit-merge-followup/RECEIPT.json",
+      "receipt_sha256": "a8891b516950140ffaf5ec1213537d5670a0e0ed823383caa1a8095bc237e888"
+    },
+    {
+      "epoch": "paired-fork",
+      "receipt": "docs/paired-fork/verification/F1_F4_RECEIPT.json",
+      "receipt_sha256": "372745308a5e6fa5dd8c1f3fa12f4017db7ac6706a1bab11ed99e2b65f4f9cc6"
     }
   ],
   "scopes": "Each receipt binds its own source, binary, commands, actual fixture and native steps. Earlier catalog/external viewer receipts remain separate intermediate epochs.",
@@ -21,8 +31,8 @@
     "Pending-copy close race timing not captured",
     "Whole-workspace inherited formatting differences remain; changed-file checks passed",
     "Encoded per-register budgets do not bound total history/process RSS",
-    "Undo audit-merge and direct-draft corrections 4bf5798 are later unqualified source",
-    "Paired fork and M2 semantic adapter qualification pending"
+    "Compositor minimize/maximize, real IME/Wayland/tablet/WGPU targets remain unqualified",
+    "M2 source-specific semantic adapter and faithful source-write qualification pending"
   ],
-  "next_source_commit": "4bf5798"
+  "latest_native_epoch": "paired-fork: final0c2665b source38b42f44020d249d2862450812614f190ae2b5843cbe7e1719b686c9df3c1c05 binarycb598cc054ae0f05b9a2366dd6d8f9197485ec8841e23fb4b77274858badbb71"
 }
