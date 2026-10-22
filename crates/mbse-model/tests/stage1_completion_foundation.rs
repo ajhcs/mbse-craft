@@ -1310,10 +1310,10 @@ fn schema1_configuration_journal_prefix_collisions_refuse_migration_unchanged() 
     }
 }
 
-// Exercise the build's actual input collector on owned fixture trees. Keeping
-// this in the existing target also checks source identity on native Windows.
+// Exercise the retained source identity helper on owned fixture trees.
+// This test-only helper does not register the original project build script.
 #[allow(dead_code)]
-#[path = "../build.rs"]
+#[path = "support/source_identity.rs"]
 mod source_build;
 
 #[test]

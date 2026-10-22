@@ -1,0 +1,7 @@
+{
+  "original": "/workspace/worktrees/builderbob/kernspan/stage1-completion-20261022/build.rs",
+  "original_sha256": "f2b4d308b2b5511304ed736f1f47bd3eeca50da6d44e34c1df11bd2447b88194",
+  "adaptation": "Retained helper functions only; omitted original build-script main and foreign project input paths. Imported only as test support.",
+  "target": "crates/mbse-model/tests/support/source_identity.rs",
+  "sha256": "dc1d6e3930f068f7e8d0060932a774652eac15859067993963358754960e7bf1"
+}
