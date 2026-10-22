@@ -279,3 +279,79 @@ fn native_preview_refuses_with_actionable_exact_selection_and_new_copy_is_exact(
     assert_eq!(std::fs::read(&p).unwrap(), CAPELLA.as_bytes());
     assert!(doc.copy_original_new(&p).is_err());
 }
+#[test]
+fn ordered_slots_unknown_namespace_features_and_global_aggregation_are_bounded() {
+    let raw = CAPELLA.replace(
+        "<bodies/><languages>capella:linkedText</languages>",
+        "<bodies/><bodies>second</bodies><languages>capella:linkedText</languages>",
+    );
+    let doc = load(&raw);
+    let e = node(&doc, "SYN-O0").opaque_expression.as_ref().unwrap();
+    assert_eq!(e.bodies, vec!["", "second"]);
+    assert_eq!(e.languages, vec!["capella:linkedText"]);
+    assert!(!e.evaluated);
+    assert!(doc
+        .diagnostics
+        .iter()
+        .any(|d| d.code == "OPAQUE_BODY_LANGUAGE_CARDINALITY"));
+    let raw=CAPELLA.replace("<bodies/>","<other:bodies xmlns:other=\"urn:synthetic:unqualified-feature-falsefriend\">opaque</other:bodies>");
+    let doc = load(&raw);
+    assert!(node(&doc, "SYN-O0")
+        .opaque_expression
+        .as_ref()
+        .unwrap()
+        .bodies
+        .is_empty());
+    assert_eq!(doc.primary_bytes(), raw.as_bytes());
+    let value = "v".repeat(32 * 1024);
+    let raw = format!(
+        "<root>{}</root>",
+        (0..513)
+            .map(|i| format!("<n id=\"{i}\" value=\"{value}\"/>"))
+            .collect::<String>()
+    );
+    let doc = load(&raw);
+    assert_eq!(doc.stage, ProjectionStage::OutputBudgetRefused);
+    assert!(doc.nodes.is_empty());
+    assert_eq!(doc.primary_bytes(), raw.as_bytes());
+    let text = "t".repeat(MAX_TEXT_PER_NODE - 1);
+    let raw = format!(
+        "<root>{}</root>",
+        (0..17)
+            .map(|i| format!("<n id=\"{i}\">{text}</n>"))
+            .collect::<String>()
+    );
+    let doc = load(&raw);
+    assert_eq!(doc.stage, ProjectionStage::OutputBudgetRefused);
+    assert!(doc.nodes.is_empty());
+    assert_eq!(doc.primary_bytes(), raw.as_bytes());
+}
+#[test]
+fn exact_json_expansion_limit_and_diagnostic_truncation_preserve_raw_source() {
+    // Backslashes are legal XML and expand during JSON serialization. Aggregate
+    // XML text remains below 16 MiB while the prospective report exceeds 32 MiB.
+    let text = "\\".repeat(MAX_TEXT_PER_NODE - 1);
+    let raw = format!(
+        "<root>{}</root>",
+        (0..16)
+            .map(|i| format!("<n id=\"{i}\">{text}</n>"))
+            .collect::<String>()
+    );
+    let doc = load(&raw);
+    assert_eq!(doc.stage, ProjectionStage::OutputBudgetRefused);
+    assert!(doc.nodes.is_empty());
+    assert_eq!(doc.primary_bytes(), raw.as_bytes());
+    assert!(serde_json::to_vec(&doc).unwrap().len() <= MAX_REPORT_BYTES);
+    let raw=format!("<root xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:dv=\"http://www.polarsys.org/capella/core/information/datavalue/7.0.0\">{}</root>",(0..600).map(|i|format!("<e id=\"{i}\" xsi:type=\"dv:OpaqueExpression\"><bodies>body</bodies></e>")).collect::<String>());
+    let doc = load(&raw);
+    assert!(doc.diagnostics.len() <= MAX_DIAGNOSTICS);
+    assert!(doc.counters.omitted_diagnostics > 0);
+    assert!(doc
+        .diagnostics
+        .iter()
+        .any(|d| d.code == "DIAGNOSTICS_TRUNCATED"));
+    assert_eq!(
+        doc.counters.serialized_report_bytes,
+        serde_json::to_vec(&doc).unwrap().len()
+    );
+}
