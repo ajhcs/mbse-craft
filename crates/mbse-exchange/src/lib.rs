@@ -295,7 +295,6 @@ fn project_xml(doc: &mut ExternalDocument, name: &str, bytes: &[u8]) -> Result<(
     let options = roxmltree::ParsingOptions {
         allow_dtd: false,
         nodes_limit: (MAX_NODES * 4) as u32,
-        ..Default::default()
     };
     let xml = roxmltree::Document::parse_with_options(text, options)
         .map_err(|e| format!("EXTERNAL_XML: {e}"))?;
@@ -373,7 +372,14 @@ fn project_xml(doc: &mut ExternalDocument, name: &str, bytes: &[u8]) -> Result<(
             .filter(|c| c.is_element() && c.children().all(|v| !v.is_element()))
         {
             if let Some(value) = child.text() {
-                properties.insert(format!("child:{}", child.tag_name().name()), value.into());
+                let stem = format!("child:{}", child.tag_name().name());
+                let mut key = stem.clone();
+                let mut index = 1usize;
+                while properties.contains_key(&key) {
+                    key = format!("{stem}[{index}]");
+                    index += 1;
+                }
+                properties.insert(key, value.into());
             }
         }
         let location = SourceLocation {
@@ -560,6 +566,11 @@ fn walk_members(
                 continue;
             }
         };
+        let ty = if matches!(&member.kind, MemberKind::Actor(_)) {
+            "ActorMembership".to_owned()
+        } else {
+            ty
+        };
         let name = ident
             .name
             .as_ref()
@@ -582,6 +593,8 @@ fn walk_members(
         };
         let kind = if ty == "Package" {
             NodeKind::Package
+        } else if ty.starts_with("Actor") {
+            NodeKind::Actor
         } else if ty.starts_with("Port") {
             NodeKind::Port
         } else if ty.starts_with("Attribute") {
