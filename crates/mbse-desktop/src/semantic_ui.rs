@@ -20,6 +20,7 @@ enum ResultValue {
 #[derive(Default)]
 pub struct SemanticBrowser {
     legacy: crate::exchange_ui::ExchangeBrowser,
+    name_editor: crate::source_edit_ui::NameEditor,
     visible: bool,
     source: Option<(PathBuf, Arc<ProjectionSet>)>,
     pending: Option<Receiver<Result<ResultValue, String>>>,
@@ -47,9 +48,25 @@ impl SemanticBrowser {
         self.visible || self.legacy.is_visible()
     }
     pub fn copy_pending(&self) -> bool {
-        (self.copying && self.pending.is_some()) || self.legacy.copy_pending()
+        self.name_editor.write_pending()
+            || (self.copying && self.pending.is_some())
+            || self.legacy.copy_pending()
+    }
+    pub fn close_blocked(&self) -> bool {
+        self.name_editor.guards_close() || self.copy_pending()
+    }
+    pub fn source_edit_dirty(&self) -> bool {
+        self.name_editor.dirty()
+    }
+    pub fn source_edit_pending(&self) -> bool {
+        self.name_editor.pending()
     }
     pub fn keep_open_for_copy(&mut self) {
+        if !self.name_editor.request_close() {
+            self.visible = true;
+            self.error = false;
+            self.feedback = self.name_editor.close_message().into();
+        }
         if self.legacy.copy_pending() {
             self.legacy.keep_open_for_copy();
         }
@@ -68,6 +85,10 @@ impl SemanticBrowser {
             .insert(key.into(), [r.min.x, r.min.y, r.max.x, r.max.y]);
     }
     fn start_open(&mut self, path: PathBuf, expected: Option<String>) {
+        if self.name_editor.blocks_source_change() {
+            self.feedback="A name proposal is retained for its exact frozen source. Create its new copy or explicitly discard it before opening, replacing or reverifying a source.".into();
+            return;
+        }
         if self.pending.is_some() || self.legacy.copy_pending() {
             self.feedback = "An external operation is pending; frozen source retained.".into();
             return;
@@ -218,6 +239,46 @@ impl SemanticBrowser {
         } else {
             ui.label("Owned source element in this bounded projection");
         }
+        let eligible = set.assets.len() == 1
+            && set.stage == ProjectionStage::PartialSemanticProjection
+            && node.source_type.namespace == "http://www.polarsys.org/capella/core/ctx/7.0.0"
+            && matches!(
+                node.source_type.local.as_str(),
+                "Mission" | "Capability" | "SystemComponent"
+            )
+            && matches!(
+                node.kind,
+                SemanticKind::CapellaMission
+                    | SemanticKind::CapellaCapability
+                    | SemanticKind::CapellaComponent
+            )
+            && matches!(node.key.identity, ElementIdentity::Original(_))
+            && node
+                .attributes
+                .iter()
+                .any(|a| a.namespace.is_empty() && a.name == "name")
+            && !node
+                .attributes
+                .iter()
+                .any(|a| matches!(a.name.as_str(), "href" | "idref"));
+        if eligible {
+            let response = ui.add_enabled(
+                !self.name_editor.blocks_source_change() && self.pending.is_none(),
+                egui::Button::new("Propose name change in a new source copy"),
+            );
+            self.bound("semantic:propose-name", &response);
+            if response.clicked() {
+                let (path, source) = self.source.as_ref().unwrap();
+                self.name_editor.begin(
+                    path.clone(),
+                    source.clone(),
+                    node.key.clone(),
+                    node.name.clone(),
+                );
+            }
+        } else {
+            ui.label("Source name editing is unsupported for this element/profile. Exact original-byte copy remains available.");
+        }
         if let Some(flags) = &node.component_flags {
             wrapped(
                 ui,
@@ -324,6 +385,7 @@ impl SemanticBrowser {
     }
     pub fn show(&mut self, ctx: &egui::Context) -> BTreeMap<String, [f32; 4]> {
         self.poll();
+        self.name_editor.poll(ctx);
         let mut bounds = self.legacy.show(ctx);
         if self.pending.is_some() {
             ctx.request_repaint_after(Duration::from_millis(100));
@@ -399,12 +461,19 @@ impl SemanticBrowser {
                 wrapped(ui,format!("Resource counters: {:?}",set.counters));
             });
             self.bound("semantic:diagnostics-losses",&response.header_response);
+            ui.separator();
+            if let Some((path,digest))=self.name_editor.show(ui){reopen=Some((path,Some(digest)));}
+            self.bounds.extend(self.name_editor.take_bounds());
             ui.separator();ui.strong("Exact original-byte copy to a NEW destination");
             let r=ui.add(egui::TextEdit::singleline(&mut self.copy_path).desired_width(ui.available_width()).hint_text("/workspace/…/NEW source file (existing destinations refused)"));self.bound("semantic:copy-path",&r);
-            let r=ui.add_enabled(self.pending.is_none()&&!self.copy_path.trim().is_empty(),egui::Button::new("Create new exact source copy"));self.bound("semantic:fresh-copy",&r);if r.clicked(){copy=Some((set.clone(),PathBuf::from(self.copy_path.trim())));}
+            let r=ui.add_enabled(self.pending.is_none()&&!self.name_editor.pending()&&!self.copy_path.trim().is_empty(),egui::Button::new("Create new exact source copy"));self.bound("semantic:fresh-copy",&r);if r.clicked(){copy=Some((set.clone(),PathBuf::from(self.copy_path.trim())));}
             ui.label("Copy retains the original container bytes, including opaque archive members. Inspection reports are not reloadable native models or transformed roundtrip exports.");
         });
-        self.visible = visible;
+        if !visible && (self.name_editor.guards_close() || self.copying) {
+            self.keep_open_for_copy();
+        } else {
+            self.visible = visible;
+        }
         if let Some((path, expected)) = reopen {
             self.start_open(path, expected);
         }
@@ -415,7 +484,7 @@ impl SemanticBrowser {
         bounds
     }
     fn start_copy(&mut self, set: Arc<ProjectionSet>, path: PathBuf) {
-        if self.pending.is_some() {
+        if self.pending.is_some() || self.name_editor.pending() {
             return;
         }
         if !path.is_absolute()
@@ -542,5 +611,55 @@ fn source_span(ui: &mut egui::Ui, set: &ProjectionSet, location: &Locator) {
         }
     } else {
         ui.label("Source member unavailable; no ambient file read.");
+    }
+}
+
+#[cfg(test)]
+mod source_name_tests {
+    use super::*;
+    #[test]
+    fn selecting_another_scoped_node_retains_name_proposal_and_blocks_source_open() {
+        let xml=br#"<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ctx="http://www.polarsys.org/capella/core/ctx/7.0.0"><ownedMissions xsi:type="ctx:Mission" id="first" name="First"/><ownedMissions xsi:type="ctx:Mission" id="second" name="Second"/></root>"#;
+        let set = Arc::new(
+            mbse_exchange::v2::inspect_primary_bytes("synthetic.capella", xml.to_vec()).unwrap(),
+        );
+        let keys: Vec<_> = set
+            .nodes
+            .iter()
+            .filter(|n| n.kind == SemanticKind::CapellaMission)
+            .map(|n| n.key.clone())
+            .collect();
+        assert_eq!(keys.len(), 2);
+        let mut browser = SemanticBrowser::default();
+        let path = PathBuf::from("/workspace/synthetic.capella");
+        browser.source = Some((path.clone(), set.clone()));
+        browser.name_editor.begin(
+            path,
+            set,
+            keys[0].clone(),
+            "Retained unfinished & name".into(),
+        );
+        browser.select(keys[1].clone());
+        assert_eq!(browser.selected, Some(keys[1].clone()));
+        assert_eq!(
+            browser.name_editor.retained_binding(),
+            Some((keys[0].clone(), "Retained unfinished & name".into()))
+        );
+        browser.start_open(PathBuf::from("/workspace/never-opened.capella"), None);
+        assert!(browser.pending.is_none());
+        assert_eq!(
+            browser.source.as_ref().unwrap().0,
+            PathBuf::from("/workspace/synthetic.capella")
+        );
+        assert!(browser.close_blocked());
+        assert!(!browser.copy_pending());
+        browser.visible = false;
+        browser.keep_open_for_copy();
+        assert!(browser.visible);
+        assert!(browser.source_edit_dirty());
+        assert_eq!(
+            browser.name_editor.retained_binding(),
+            Some((keys[0].clone(), "Retained unfinished & name".into()))
+        );
     }
 }

@@ -1683,7 +1683,7 @@ impl eframe::App for Workspace {
         let requested = self.close_intent || ctx.input(|i| i.viewport().close_requested());
         let app_close = self.close_intent;
         self.close_intent = false;
-        if requested && self.exchange.copy_pending() {
+        if requested && self.exchange.close_blocked() {
             ctx.send_viewport_cmd(egui::ViewportCommand::CancelClose);
             ctx.send_viewport_cmd(egui::ViewportCommand::Visible(true));
             ctx.send_viewport_cmd(egui::ViewportCommand::Minimized(false));
@@ -1806,7 +1806,7 @@ impl eframe::App for Workspace {
         let audit = serde_json::json!({"profile":"mbse-craft.ui-geometry/1","frame_policy":format!("{:?}",self.frame_choice.frame()),"frame_override":self.frame_choice.overridden(), "pixels_per_point":ctx.pixels_per_point(),
             "model_revision":self.session.editor.snapshot.model_revision,"raw_version":self.session.editor.snapshot.raw_version,
             "snapshot_hash":self.session.editor.snapshot.digest(),"selected":self.session.editor.selected.map(|id|id.0),
-            "save_status":format!("{:?}",self.session.status()),"periodic_recovery":self.preferences.value.periodic_recovery,"recovery_interval_seconds":self.preferences.value.recovery_interval_seconds,"preferences_status":self.preferences.status,"write_pending":self.session.pending(),"external_copy_pending":self.exchange.copy_pending(),"recovery_path":self.session.last_recovery().map(|p|p.display().to_string()),"recovery_current":self.session.recovery_current(),"feedback":self.feedback,"error":self.error,"widgets":self.audit});
+            "save_status":format!("{:?}",self.session.status()),"periodic_recovery":self.preferences.value.periodic_recovery,"recovery_interval_seconds":self.preferences.value.recovery_interval_seconds,"preferences_status":self.preferences.status,"write_pending":self.session.pending(),"external_copy_pending":self.exchange.copy_pending(),"source_edit_dirty":self.exchange.source_edit_dirty(),"source_edit_pending":self.exchange.source_edit_pending(),"recovery_path":self.session.last_recovery().map(|p|p.display().to_string()),"recovery_current":self.session.recovery_current(),"feedback":self.feedback,"error":self.error,"widgets":self.audit});
         if let Ok(bytes) = serde_json::to_vec_pretty(&audit) {
             if bytes != self.audit_previous {
                 let temp = self.session.state_root.join("ui-geometry.pending");
