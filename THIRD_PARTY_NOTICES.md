@@ -6,3 +6,6 @@
 - Registry Rust dependencies are pinned by Cargo.lock. Their exact resolved source/license/build-script inventory is part of independent verification. A binary distribution must include applicable dependency license texts; no binary release is authorized here.
 
 No ArtCraft logos, mascots, proprietary CATIA code/assets, AI services or provider integrations are included.
+
+- RequirementsManagement2.0.1 source-backed enum vocabulary, MIT Copyright2026 ODE4HERA; exact package provenance and original license retained under licenses/requirements/. Application implementation is original Rust.
+- Continuation registry dependency notices and option-ext0.2.0 MPL-2.0 source form: licenses/dependencies/CONTINUATION_SOURCES.json and option-ext-0.2.0/source/. Preserve the covered-source availability notice with any future executable distribution.
