@@ -520,13 +520,8 @@ impl Workspace {
         if result.as_ref().is_ok_and(|changed| *changed) {
             self.last_edit = Instant::now();
         }
-        self.result(result.map(|changed| {
-            if changed {
-                "Model history applied. Raw drafts remain separately retained.".into()
-            } else {
-                "No model history available.".into()
-            }
-        }));
+        let text_history = field.is_some();
+        self.result(result.map(|changed| {if text_history {if changed {"Field text history applied; accepted values and raw drafts retain their separate state.".into()}else{"No field text history available.".into()}}else if changed {"Model history applied. Raw drafts remain separately retained.".into()}else{"No model history available.".into()}}));
     }
     fn sidebar(&mut self, root: &mut egui::Ui) {
         egui::Panel::left("model_navigation").default_size(338.).size_range(290. ..=420.).resizable(true).show(root, |ui| {
@@ -1737,7 +1732,13 @@ impl eframe::App for Workspace {
         });
         let target = shortcut_policy(
             self.focused_raw(),
-            ctx.egui_wants_keyboard_input(),
+            ctx.text_edit_focused()
+                || egui::Popup::is_any_open(&ctx)
+                || self.creation.is_some()
+                || self.context_creation.is_some()
+                || self.settings_window
+                || self.recovery_window
+                || self.pending.is_some(),
             transition,
         );
         if !matches!(target, ShortcutTarget::Widget) {
