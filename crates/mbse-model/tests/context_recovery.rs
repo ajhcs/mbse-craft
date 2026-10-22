@@ -198,3 +198,149 @@ fn inventory_is_explicitly_bounded() {
     assert!(inventory.truncated);
     assert!(inventory.entries.is_empty());
 }
+
+#[test]
+fn recovery_inventory_refuses_file_symlink_and_native_save_envelope() {
+    let area = area();
+    let state = area.path().join("state");
+    let mut session = Session::new(&state).unwrap();
+    let native = area.path().join("native.kernspan");
+    let job = session.begin_save(&native).unwrap();
+    assert!(session.complete(execute_write(job)));
+    let copied = state.join("stage1-session-save");
+    std::fs::create_dir(&copied).unwrap();
+    let copied_path = copied.join("recovery.kernspan");
+    std::fs::copy(&native, &copied_path).unwrap();
+    #[cfg(unix)]
+    let link_path = {
+        let dir = state.join("stage1-session-file-link");
+        std::fs::create_dir(&dir).unwrap();
+        let path = dir.join("recovery.kernspan");
+        std::os::unix::fs::symlink(&native, &path).unwrap();
+        path
+    };
+    let inventory = discover_recoveries(&state).unwrap();
+    assert!(inventory.entries.is_empty());
+    assert!(inventory
+        .rejected
+        .iter()
+        .any(|r| r.path == copied_path && r.reason == "STAGE1_NOT_RECOVERY"));
+    #[cfg(unix)]
+    assert!(inventory
+        .rejected
+        .iter()
+        .any(|r| r.path == link_path && r.reason == "RECOVERY_UNSAFE_FILE"));
+}
+
+#[test]
+fn recovery_inventory_file_count_and_aggregate_byte_caps_are_independent() {
+    let area = area();
+    let count_root = area.path().join("count");
+    std::fs::create_dir(&count_root).unwrap();
+    for i in 0..=mbse_model::recovery::MAX_RECOVERY_FILES {
+        let dir = count_root.join(format!("stage1-session-{i}"));
+        std::fs::create_dir(&dir).unwrap();
+        std::fs::write(dir.join("recovery.kernspan"), b"{").unwrap();
+    }
+    let count = discover_recoveries(&count_root).unwrap();
+    assert!(count.truncated);
+    assert_eq!(
+        count.rejected.len(),
+        mbse_model::recovery::MAX_RECOVERY_FILES
+    );
+    assert!(count.entries.is_empty());
+    let bytes_root = area.path().join("bytes");
+    std::fs::create_dir(&bytes_root).unwrap();
+    let per_file = mbse_model::stage1_io::MAX_BYTES as u64;
+    let admitted_count = mbse_model::recovery::MAX_TOTAL_BYTES / per_file;
+    for i in 0..=admitted_count {
+        let dir = bytes_root.join(format!("stage1-session-{i}"));
+        std::fs::create_dir(&dir).unwrap();
+        // Sparse invalid files exercise actual acquisition/decode without large fixture blobs.
+        let file = std::fs::File::create(dir.join("recovery.kernspan")).unwrap();
+        file.set_len(per_file).unwrap();
+    }
+    let bytes = discover_recoveries(&bytes_root).unwrap();
+    assert!(bytes.truncated);
+    assert_eq!(bytes.rejected.len(), admitted_count as usize);
+    assert!(bytes.entries.is_empty());
+}
+
+#[test]
+fn native_context_name_retains_unsupported_exchange_text_through_undo_and_reopen() {
+    let mut e = editor();
+    // Remove unrelated unsupported actors so the exchange refusal has one cause.
+    e.snapshot
+        .records
+        .get_mut(&RecordId(10))
+        .unwrap()
+        .fields
+        .insert("actors".into(), json!([]));
+    let id = e
+        .command(
+            &e.freshness(),
+            Command::AddContext {
+                environment: RecordId(20),
+                name: "Original context".into(),
+                kind: ContextKind::Description,
+            },
+        )
+        .unwrap()
+        .created
+        .unwrap();
+    let key = RawKey {
+        record: RecordId(20),
+        field: "contextName".into(),
+        item: Some(id),
+    };
+    let text = "Retained\u{0001}name";
+    e.command(
+        &e.freshness(),
+        Command::EditText {
+            key: key.clone(),
+            text: text.into(),
+        },
+    )
+    .unwrap();
+    assert_eq!(e.display_text(&key), text);
+    assert_eq!(e.raw(&key).unwrap().text, text);
+    assert!(e.undo_text(&e.freshness(), &key).unwrap());
+    assert_eq!(e.display_text(&key), "Original context");
+    assert!(e.redo_text(&e.freshness(), &key).unwrap());
+    assert_eq!(e.display_text(&key), text);
+    let before = e.snapshot.clone();
+    let wrong = RawKey {
+        record: RecordId(11),
+        ..key.clone()
+    };
+    assert!(e
+        .command(
+            &e.freshness(),
+            Command::EditText {
+                key: wrong,
+                text: "wrong owner".into()
+            }
+        )
+        .is_err());
+    assert_eq!(e.snapshot, before);
+    let refusal = mbse_model::stage1_sysml::from_records(&e.snapshot.records).unwrap_err();
+    assert_eq!(
+        refusal.code,
+        mbse_model::stage1_sysml::ExchangeCode::UnsupportedField
+    );
+    assert!(refusal.message.contains("control character"));
+    let area = area();
+    let state = area.path().join("state");
+    let native = area.path().join("name.kernspan");
+    let mut session = Session::new(&state).unwrap();
+    session.editor = e;
+    let job = session.begin_save(&native).unwrap();
+    assert!(session.complete(execute_write(job)));
+    let reopened = Session::open(&state, &native).unwrap();
+    assert_eq!(reopened.editor.display_text(&key), text);
+    assert_eq!(
+        reopened.editor.snapshot.records[&RecordId(20)].fields["context"][0]["name"],
+        text
+    );
+    assert_eq!(reopened.editor.raw(&key).unwrap().text, text);
+}
