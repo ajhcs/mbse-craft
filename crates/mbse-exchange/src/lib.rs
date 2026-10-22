@@ -210,6 +210,9 @@ fn project_archive(doc: &mut ExternalDocument, bytes: &[u8]) -> Result<(), Strin
         if content.len() > MAX_BYTES {
             return Err("EXTERNAL_MEMBER_LIMIT".into());
         }
+        if content.len() as u64 != file.size() {
+            return Err("EXTERNAL_ZIP_DECLARED_SIZE_MISMATCH".into());
+        }
         if name == "com.nomagic.magicdraw.uml_model.model"
             || name.ends_with(".uml")
             || name.ends_with(".xmi")
