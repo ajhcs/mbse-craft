@@ -64,7 +64,7 @@ impl Workspace {
         .apply_to(
             &mut style.visuals.widgets,
             egui::CornerRadius::same(5),
-            Stroke::new(1., LINE),
+            Stroke::new(1., INK),
         );
         style.spacing.item_spacing = Vec2::new(9., 8.);
         ctx.set_style_of(egui::Theme::Light, style);
@@ -292,8 +292,8 @@ impl Workspace {
                     corner_radius: egui::CornerRadius::same(4), focus_stroke: Stroke::new(2., ACCENT) };
                 for (label, undo, enabled) in [("Undo", true, self.session.editor.can_undo() || self.active_field.is_some()), ("Redo", false, self.session.editor.can_redo() || self.active_field.is_some())] {
                     ui.add_enabled_ui(enabled, |ui| {
-                        let response = IconButton::new(label, Vec2::splat(30.), &style).show(ui, |ui, rect, tint| {
-                            ui.painter().text(rect.center(), egui::Align2::CENTER_CENTER, if undo { "↶" } else { "↷" }, FontId::proportional(20.), tint);
+                        let response = IconButton::new(label, Vec2::new(44.,28.), &style).show(ui, |ui, rect, tint| {
+                            ui.painter().text(rect.center(), egui::Align2::CENTER_CENTER, if undo { "Undo" } else { "Redo" }, FontId::proportional(12.), tint);
                         });
                         self.bound(format!("action:{label}"),&response);
                         if response.clicked() { self.history(undo); }
@@ -940,7 +940,7 @@ impl Workspace {
             let mut open = true;
             egui::Window::new("Typed relation").open(&mut open).show(ctx, |ui| {
                 ui.label(format!("{:?}", edge.role));
-                ui.label(format!("Source #{} → Target #{}", edge.source.0, edge.target.0));
+                ui.label(format!("Source #{} -> Target #{}", edge.source.0, edge.target.0));
                 for (label,id) in [("Select source",edge.source),("Select target",edge.target)] { if ui.button(label).clicked() { self.select(id); } }
                 ui.label("This view displays authored references. Canvas proximity creates no semantic relation.");
             });
@@ -1069,7 +1069,7 @@ fn relation_label(edge: &GraphEdge, records: &[Record]) -> String {
             .unwrap_or_else(|| format!("Unavailable #{}", id.0))
     };
     format!(
-        "{}  — {} →  {}{}",
+        "{}  — {} ->  {}{}",
         name(edge.id.source),
         edge.label,
         name(edge.id.target),
