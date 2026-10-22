@@ -268,7 +268,10 @@ fn recovery_inventory_file_count_and_aggregate_byte_caps_are_independent() {
     }
     let bytes = discover_recoveries(&bytes_root).unwrap();
     assert!(bytes.truncated);
-    assert_eq!(bytes.rejected.len(), admitted_count as usize);
+    // Failed decoding reserves the detection byte as well as the payload.
+    let attempted_count = (mbse_model::recovery::MAX_TOTAL_BYTES - 1) / per_file;
+    assert_eq!(bytes.rejected.len(), attempted_count as usize);
+    assert!(bytes.accounted_read_bytes <= mbse_model::recovery::MAX_TOTAL_BYTES);
     assert!(bytes.entries.is_empty());
 }
 
