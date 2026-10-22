@@ -1735,7 +1735,11 @@ impl eframe::App for Workspace {
                 )
             })
         });
-        let target = shortcut_policy(self.focused_raw(), ctx.wants_keyboard_input(), transition);
+        let target = shortcut_policy(
+            self.focused_raw(),
+            ctx.egui_wants_keyboard_input(),
+            transition,
+        );
         if !matches!(target, ShortcutTarget::Widget) {
             let redo = ctx.input_mut(|i| {
                 i.consume_key(

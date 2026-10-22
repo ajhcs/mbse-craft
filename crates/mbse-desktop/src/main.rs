@@ -82,6 +82,7 @@ fn run() -> Result<(), String> {
                 session,
                 capture,
                 config,
+                frame_choice,
                 &cc.egui_ctx,
             )))
         }),
