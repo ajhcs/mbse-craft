@@ -1,0 +1,28 @@
+{
+  "profile": "mbse-craft.qualification-freezes/1",
+  "entries": [
+    {
+      "epoch": "epoch-08aae61",
+      "receipt": "docs/continuation-m1/verification/epoch-08aae61/RECEIPT.json",
+      "receipt_sha256": "04b65e54cd346c65f1a4a1d098d9b6dc8bea56a87993b229a7424a23043b4e9f",
+      "source_manifest": "docs/continuation-m1/verification/epoch-08aae61/source-manifest.json",
+      "source_manifest_file_sha256": "5faa99923a0b96f2e7dba60b50fef7b4638e5499949fb93a021115318c31f40d"
+    },
+    {
+      "epoch": "resource-epoch",
+      "receipt": "docs/continuation-m1/verification/resource-epoch/RECEIPT.json",
+      "receipt_sha256": "d72cbed41b25ce486d2fa4496a56f11daf0dbbb837069b57b3ab5bafbdacf63b",
+      "source_manifest": "docs/continuation-m1/verification/resource-epoch/source-manifest.json",
+      "source_manifest_file_sha256": "64d45f0645bef7dad438a19bf3e00e7aa809f2c124ac354fbcb72761e21382b2"
+    }
+  ],
+  "scopes": "Each receipt binds its own source, binary, commands, actual fixture and native steps. Earlier catalog/external viewer receipts remain separate intermediate epochs.",
+  "not_passed": [
+    "Pending-copy close race timing not captured",
+    "Whole-workspace inherited formatting differences remain; changed-file checks passed",
+    "Encoded per-register budgets do not bound total history/process RSS",
+    "Undo audit-merge and direct-draft corrections 4bf5798 are later unqualified source",
+    "Paired fork and M2 semantic adapter qualification pending"
+  ],
+  "next_source_commit": "4bf5798"
+}
