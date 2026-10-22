@@ -5,6 +5,7 @@ use std::{
     path::PathBuf,
     sync::mpsc::{self, Receiver, Sender},
     thread::JoinHandle,
+    time::{Duration, Instant},
 };
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
@@ -26,6 +27,10 @@ impl Settings for RecoveryPreferences {
     const SCHEMA_VERSION: u32 = 1;
 }
 
+enum PreferenceWrite {
+    Saved(String),
+    Failed(String),
+}
 pub struct Preferences {
     pub value: RecoveryPreferences,
     pub report: String,
@@ -33,7 +38,7 @@ pub struct Preferences {
     pub persistent: bool,
     pub read_only: bool,
     sender: Option<Sender<(u64, RecoveryPreferences)>>,
-    receiver: Receiver<(u64, Result<String, String>)>,
+    receiver: Receiver<(u64, PreferenceWrite)>,
     worker: Option<JoinHandle<()>>,
     generation: u64,
     acknowledged: u64,
@@ -76,29 +81,66 @@ impl Preferences {
         let (sender, updates) = mpsc::channel::<(u64, RecoveryPreferences)>();
         let (results, receiver) = mpsc::channel();
         let worker = std::thread::spawn(move || {
-            while let Ok((mut generation, mut value)) = updates.recv() {
-                for next in updates.try_iter() {
-                    generation = next.0;
-                    value = next.1;
+            let mut deadline: Option<Instant> = None;
+            let mut generation = 0;
+            loop {
+                let message = match deadline {
+                    Some(due) => updates.recv_timeout(
+                        due.saturating_duration_since(Instant::now())
+                            .min(Duration::from_secs(60)),
+                    ),
+                    None => updates
+                        .recv()
+                        .map_err(|_| mpsc::RecvTimeoutError::Disconnected),
+                };
+                match message {
+                    Ok((next_generation, mut value)) => {
+                        generation = next_generation;
+                        for next in updates.try_iter() {
+                            generation = next.0;
+                            value = next.1;
+                        }
+                        store.update(|prefs| *prefs = value);
+                    }
+                    Err(mpsc::RecvTimeoutError::Timeout) => {}
+                    Err(mpsc::RecvTimeoutError::Disconnected) => {
+                        // Shutdown gets one final flush, never an unbounded retry loop.
+                        if store.is_dirty() {
+                            if let Err(error) = store.flush() {
+                                eprintln!("MBSE-Craft preferences exit flush failed: {error}");
+                            }
+                        }
+                        break;
+                    }
                 }
-                store.update(|prefs| *prefs = value);
-                let result = store
-                    .flush()
-                    .map(|_| {
+                let tick = store.tick(Instant::now());
+                deadline = tick.next_deadline;
+                let event = match tick.status {
+                    craft_settings::SaveStatus::Saved => Some(PreferenceWrite::Saved({
                         let moved = store.take_moved_aside();
                         if moved.is_empty() {
                             "Preferences saved.".into()
                         } else {
                             format!("Preferences saved; damaged file retained at {moved:?}")
                         }
-                    })
-                    .map_err(|e| e.to_string());
-                if results.send((generation, result)).is_err() {
-                    break;
+                    })),
+                    craft_settings::SaveStatus::Failed(error) => Some(PreferenceWrite::Failed(
+                        format!("{error}; the shared settings policy will retry after backoff."),
+                    )),
+                    craft_settings::SaveStatus::Idle if !store.is_dirty() => Some(
+                        PreferenceWrite::Saved("Session preferences applied.".into()),
+                    ),
+                    _ => None,
+                };
+                if let Some(event) = event {
+                    if results.send((generation, event)).is_err() {
+                        break;
+                    }
+                    ctx.request_repaint();
                 }
-                ctx.request_repaint();
             }
         });
+
         Self {
             value,
             report,
@@ -137,23 +179,26 @@ impl Preferences {
             .is_none_or(|tx| tx.send((self.generation, self.value.clone())).is_err())
         {
             self.status = "Preferences worker unavailable; persistence is unconfirmed.".into();
-            self.acknowledged = self.generation;
         }
     }
     pub fn poll(&mut self) {
         while let Ok((generation, result)) = self.receiver.try_recv() {
-            self.acknowledged = self.acknowledged.max(generation);
-            if generation == self.generation {
-                self.status = match result {
-                    Ok(message) => {
-                        if self.persistent {
+            match result {
+                PreferenceWrite::Saved(message) => {
+                    self.acknowledged = self.acknowledged.max(generation);
+                    if generation == self.generation {
+                        self.status = if self.persistent {
                             message
                         } else {
                             "Session preferences applied.".into()
-                        }
+                        };
                     }
-                    Err(error) => format!("Preferences save failed: {error}"),
-                };
+                }
+                PreferenceWrite::Failed(error) => {
+                    if generation == self.generation {
+                        self.status = format!("Preferences save failed: {error}");
+                    }
+                }
             }
         }
     }
@@ -169,5 +214,100 @@ impl Drop for Preferences {
                 eprintln!("MBSE-Craft preferences worker ended unexpectedly");
             }
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    fn area() -> PathBuf {
+        let root = std::env::temp_dir();
+        assert!(
+            root.starts_with("/workspace"),
+            "M1 settings tests require TMPDIR on verified /workspace"
+        );
+        let path = root.join(format!(
+            "mbse-settings-{}-{}",
+            std::process::id(),
+            std::time::SystemTime::now()
+                .duration_since(std::time::UNIX_EPOCH)
+                .unwrap()
+                .as_nanos()
+        ));
+        std::fs::create_dir(&path).unwrap();
+        path
+    }
+    #[test]
+    fn defaults_off_and_actual_store_debounces_while_preserving_unknowns() {
+        assert!(!RecoveryPreferences::default().periodic_recovery);
+        let root = area();
+        let file = root.join("config.toml");
+        std::fs::write(&file,"schema_version = 1\n# retained note\nperiodic_recovery = false\nrecovery_interval_seconds = 60\nfuture_key = 'preserved'\n").unwrap();
+        let (mut store, report) =
+            SettingsStore::<RecoveryPreferences>::open(Location::Dir(root.clone()));
+        assert!(!report.has_problems());
+        let now = Instant::now();
+        store.update_at(now, |p| p.periodic_recovery = true);
+        assert!(matches!(
+            store.tick(now + Duration::from_millis(499)).status,
+            craft_settings::SaveStatus::Pending
+        ));
+        assert!(std::fs::read_to_string(&file)
+            .unwrap()
+            .contains("periodic_recovery = false"));
+        assert!(matches!(
+            store.tick(now + Duration::from_millis(500)).status,
+            craft_settings::SaveStatus::Saved
+        ));
+        let text = std::fs::read_to_string(&file).unwrap();
+        assert!(
+            text.contains("# retained note")
+                && text.contains("future_key = 'preserved'")
+                && text.contains("periodic_recovery = true")
+        );
+        std::fs::remove_dir_all(root).unwrap();
+    }
+    #[test]
+    fn newer_schema_stays_byte_exact_and_read_only() {
+        let root = area();
+        let file = root.join("config.toml");
+        let bytes =
+            "schema_version = 99\nperiodic_recovery = true\nrecovery_interval_seconds = 15\n";
+        std::fs::write(&file, bytes).unwrap();
+        let (mut store, report) =
+            SettingsStore::<RecoveryPreferences>::open(Location::Dir(root.clone()));
+        assert!(report.read_only.is_some());
+        store.update(|p| p.periodic_recovery = false);
+        assert!(store.flush().is_err());
+        assert_eq!(std::fs::read_to_string(file).unwrap(), bytes);
+        std::fs::remove_dir_all(root).unwrap();
+    }
+    #[test]
+    fn actual_store_failure_reports_backoff_and_retries() {
+        let root = area();
+        let (mut store, _) =
+            SettingsStore::<RecoveryPreferences>::open(Location::Dir(root.clone()));
+        let now = Instant::now();
+        store.update_at(now, |p| p.periodic_recovery = true);
+        std::fs::remove_dir(&root).unwrap();
+        std::fs::write(&root, b"owned failure fixture").unwrap();
+        let failed = store.tick(now + Duration::from_secs(1));
+        assert!(matches!(
+            failed.status,
+            craft_settings::SaveStatus::Failed(_)
+        ));
+        let retry = failed.next_deadline.unwrap();
+        assert!(retry > now + Duration::from_secs(1));
+        assert!(matches!(
+            store.tick(retry - Duration::from_millis(1)).status,
+            craft_settings::SaveStatus::Pending
+        ));
+        std::fs::remove_file(&root).unwrap();
+        std::fs::create_dir(&root).unwrap();
+        assert!(matches!(
+            store.tick(retry).status,
+            craft_settings::SaveStatus::Saved
+        ));
+        std::fs::remove_dir_all(root).unwrap();
     }
 }
