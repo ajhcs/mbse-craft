@@ -332,3 +332,212 @@ fn failed_unsupported_and_changed_local_artifacts_cannot_pass() {
         .set_verification(req, VerificationStatus::CompletedPassed)
         .is_err());
 }
+
+#[test]
+fn serialized_stamps_and_coordinated_output_tampering_never_mint_native_authenticity() {
+    use sha2::{Digest, Sha256};
+    let editor = model();
+    let config = json!({});
+    let context = EvidenceContext::from_editor(&editor, &config).unwrap();
+    let mut b = Board::new();
+    let req = b
+        .add_requirement("Review selected speed result".into())
+        .unwrap();
+    let id = b
+        .attach_calculation(req, &editor, &config, CalculationId(11))
+        .unwrap();
+    b.review_evidence(
+        id,
+        Adequacy::Adequate,
+        "Reviewer".into(),
+        "Original result reviewed".into(),
+    )
+    .unwrap();
+    b.record_verification(
+        req,
+        id,
+        VerificationStatus::CompletedPassed,
+        &context,
+        "Reviewer".into(),
+        "Original decision".into(),
+    )
+    .unwrap();
+    assert!(b.verification_current(req, &context));
+    let area = area();
+    let path = area.path().join("native-receipt.json");
+    b.save_new(&path).unwrap();
+    let (mut reopened, _) = Board::open(&path).unwrap();
+    assert!(!reopened.verification_current(req, &context));
+    assert!(reopened
+        .evidence_staleness(id, &context)
+        .unwrap()
+        .iter()
+        .any(|v| v.contains("runtime proof")));
+    reopened
+        .review_evidence(
+            id,
+            Adequacy::Adequate,
+            "Reviewer".into(),
+            "Re-review does not authenticate imported native bytes".into(),
+        )
+        .unwrap();
+    assert!(reopened
+        .record_verification(
+            req,
+            id,
+            VerificationStatus::CompletedPassed,
+            &context,
+            "Reviewer".into(),
+            "Refuse historical stamp only".into()
+        )
+        .is_err());
+    let e = b.register.evidence.get_mut(&id).unwrap();
+    let mut receipt: serde_json::Value = serde_json::from_slice(&e.artifact_bytes).unwrap();
+    receipt["outcomes"]["11"]["Value"]["value"] = json!(999.0);
+    e.artifact_bytes = serde_json::to_vec(&receipt).unwrap();
+    e.artifact_sha256 = format!("{:x}", Sha256::digest(&e.artifact_bytes));
+    e.selected_quantity.as_mut().unwrap().value = 999.0;
+    b.review_evidence(
+        id,
+        Adequacy::Adequate,
+        "Reviewer".into(),
+        "Tampered values cannot mint a native receipt".into(),
+    )
+    .unwrap();
+    assert!(b
+        .record_verification(
+            req,
+            id,
+            VerificationStatus::CompletedPassed,
+            &context,
+            "Reviewer".into(),
+            "Reject forged result".into()
+        )
+        .is_err());
+    assert!(!b.verification_current(req, &context));
+}
+#[test]
+fn raw_9e_invalidates_delayed_evidence_and_audit_records_survive_later_reviews_and_undo() {
+    let mut editor = model();
+    let config = json!({});
+    let context = EvidenceContext::from_editor(&editor, &config).unwrap();
+    let mut b = Board::new();
+    let req = b.add_requirement("Retain speed evidence".into()).unwrap();
+    let id = b
+        .attach_calculation(req, &editor, &config, CalculationId(11))
+        .unwrap();
+    b.review_evidence(
+        id,
+        Adequacy::Adequate,
+        "Reviewer one".into(),
+        "Initial adequacy".into(),
+    )
+    .unwrap();
+    b.record_verification(
+        req,
+        id,
+        VerificationStatus::CompletedPassed,
+        &context,
+        "Reviewer one".into(),
+        "Initial verdict".into(),
+    )
+    .unwrap();
+    let first_review = b.register.review_history[0].clone();
+    let first_decision = b.register.decision_history[0].clone();
+    b.review_evidence(
+        id,
+        Adequacy::Inadequate,
+        "Reviewer two".into(),
+        "Later contrary review".into(),
+    )
+    .unwrap();
+    assert_eq!(b.register.review_history[0], first_review);
+    assert_eq!(b.register.decision_history[0], first_decision);
+    assert_eq!(b.register.review_history.len(), 2);
+    assert!(b.undo());
+    assert_eq!(b.register.review_history.len(), 2);
+    assert_eq!(b.register.decision_history[0], first_decision);
+    let key = mbse_model::stage1::RawKey {
+        record: RecordId(11),
+        field: "calc.input.elapsed".into(),
+        item: None,
+    };
+    editor
+        .command(
+            &editor.freshness(),
+            Command::EditText {
+                key,
+                text: "9e".into(),
+            },
+        )
+        .unwrap();
+    let current = EvidenceContext::from_editor(&editor, &config).unwrap();
+    assert_ne!(context, current);
+    b.review_evidence(
+        id,
+        Adequacy::Adequate,
+        "Reviewer".into(),
+        "Old result cannot acknowledge later raw input".into(),
+    )
+    .unwrap();
+    assert!(b
+        .record_verification(
+            req,
+            id,
+            VerificationStatus::CompletedPassed,
+            &current,
+            "Reviewer".into(),
+            "Delayed completion refused".into()
+        )
+        .is_err());
+}
+#[test]
+fn unrelated_global_failure_is_retained_while_selected_quantity_remains_successful() {
+    let mut editor = model();
+    editor
+        .command(
+            &editor.freshness(),
+            Command::Add {
+                kind: mbse_model::stage1::RecordKind::Measure,
+                owner: RecordId(10),
+                name: "Unrelated failed calculation".into(),
+            },
+        )
+        .unwrap();
+    let other = *editor.snapshot.records.keys().max().unwrap();
+    editor
+        .command(
+            &editor.freshness(),
+            Command::PutCalculation {
+                measure: other,
+                definition: Some(Definition {
+                    id: CalculationId(other.0),
+                    owner: other,
+                    bindings: BTreeMap::new(),
+                    expression: calc::parse("1 / 0", &calc::Limits::default()).unwrap(),
+                    output: QuantityType {
+                        kind: QuantityKind::Scalar,
+                        unit: UnitId::ScalarOne,
+                    },
+                }),
+            },
+        )
+        .unwrap();
+    let mut b = Board::new();
+    let req = b
+        .add_requirement("Review selected evidence only".into())
+        .unwrap();
+    let id = b
+        .attach_calculation(req, &editor, &json!({}), CalculationId(11))
+        .unwrap();
+    let evidence = &b.register.evidence[&id];
+    assert_eq!(evidence.outcome, EvidenceOutcome::Completed);
+    assert_eq!(evidence.global_calculation_success, Some(false));
+    assert_eq!(evidence.selected_quantity.as_ref().unwrap().value, 15.0);
+    let receipt: calc::EvaluationReceipt =
+        serde_json::from_slice(&evidence.artifact_bytes).unwrap();
+    assert!(!receipt.successful);
+    assert!(receipt.outcomes[&CalculationId(other.0)]
+        .diagnostic()
+        .is_some());
+}

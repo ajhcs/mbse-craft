@@ -135,6 +135,8 @@ pub struct Evidence {
     pub selected_calculation: Option<CalculationId>,
     pub selected_quantity: Option<QuantityValue>,
     pub outcome: EvidenceOutcome,
+    #[serde(default)]
+    pub global_calculation_success: Option<bool>,
     pub adequacy: Adequacy,
     pub reviewer: String,
     pub rationale: String,
@@ -143,6 +145,7 @@ pub struct Evidence {
 }
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct VerificationDecision {
+    pub decision_id: u64,
     pub requirement: RequirementId,
     pub evidence: EvidenceId,
     pub status: VerificationStatus,
@@ -151,6 +154,15 @@ pub struct VerificationDecision {
     pub evidence_digest: String,
     pub requirement_hash: String,
     pub context: EvidenceContext,
+}
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub struct EvidenceReview {
+    pub review_id: u64,
+    pub evidence: EvidenceId,
+    pub adequacy: Adequacy,
+    pub reviewer: String,
+    pub rationale: String,
+    pub evidence_digest: String,
 }
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct RawDraft {
@@ -162,6 +174,10 @@ pub struct Register {
     pub requirements: BTreeMap<RequirementId, Requirement>,
     pub evidence: BTreeMap<EvidenceId, Evidence>,
     pub decisions: BTreeMap<RequirementId, VerificationDecision>,
+    #[serde(default)]
+    pub review_history: Vec<EvidenceReview>,
+    #[serde(default)]
+    pub decision_history: Vec<VerificationDecision>,
     pub drafts: BTreeMap<String, RawDraft>,
     pub next_id: u64,
     pub revision: u64,
@@ -172,6 +188,10 @@ pub struct Board {
     pub register: Register,
     past: Vec<Register>,
     future: Vec<Register>,
+    // Runtime-only ownership proof. Deserialization never restores this map.
+    trusted_calculations: BTreeMap<EvidenceId, String>,
+    trusted_reviews: BTreeMap<EvidenceId, String>,
+    trusted_decisions: BTreeMap<RequirementId, VerificationDecision>,
 }
 impl Default for Board {
     fn default() -> Self {
@@ -199,6 +219,27 @@ fn evidence_hash(e: &Evidence) -> Result<String, String> {
     e.reviewed_digest = None;
     digest(&e)
 }
+fn retain_audit(target: &mut Register, current: &Register) {
+    for review in &current.review_history {
+        if !target
+            .review_history
+            .iter()
+            .any(|v| v.review_id == review.review_id)
+        {
+            target.review_history.push(review.clone());
+        }
+    }
+    for decision in &current.decision_history {
+        if !target
+            .decision_history
+            .iter()
+            .any(|v| v.decision_id == decision.decision_id)
+        {
+            target.decision_history.push(decision.clone());
+        }
+    }
+    target.next_id = target.next_id.max(current.next_id);
+}
 impl Board {
     pub fn new() -> Self {
         Self {
@@ -206,6 +247,8 @@ impl Board {
                 requirements: BTreeMap::new(),
                 evidence: BTreeMap::new(),
                 decisions: BTreeMap::new(),
+                review_history: vec![],
+                decision_history: vec![],
                 drafts: BTreeMap::new(),
                 next_id: 1,
                 revision: 0,
@@ -213,6 +256,9 @@ impl Board {
             },
             past: vec![],
             future: vec![],
+            trusted_calculations: BTreeMap::new(),
+            trusted_reviews: BTreeMap::new(),
+            trusted_decisions: BTreeMap::new(),
         }
     }
     fn transaction<T>(
@@ -240,7 +286,8 @@ impl Board {
         }
     }
     pub fn undo(&mut self) -> bool {
-        if let Some(state) = self.past.pop() {
+        if let Some(mut state) = self.past.pop() {
+            retain_audit(&mut state, &self.register);
             self.future
                 .push(std::mem::replace(&mut self.register, state));
             true
@@ -249,7 +296,8 @@ impl Board {
         }
     }
     pub fn redo(&mut self) -> bool {
-        if let Some(state) = self.future.pop() {
+        if let Some(mut state) = self.future.pop() {
+            retain_audit(&mut state, &self.register);
             self.past.push(std::mem::replace(&mut self.register, state));
             true
         } else {
@@ -427,13 +475,13 @@ impl Board {
             .get(&selected)
             .and_then(|o| o.value())
             .cloned();
-        let outcome = if receipt.successful && selected_quantity.is_some() {
+        let outcome = if selected_quantity.is_some() {
             EvidenceOutcome::Completed
         } else {
             EvidenceOutcome::Failed
         };
         let bytes = serde_json::to_vec(&receipt).map_err(|e| e.to_string())?;
-        self.attach(
+        let id = self.attach(
             requirement,
             context,
             bytes,
@@ -441,7 +489,16 @@ impl Board {
             Some(selected),
             selected_quantity,
             outcome,
-        )
+            Some(receipt.successful),
+        )?;
+        let proof = evidence_hash(
+            self.register
+                .evidence
+                .get(&id)
+                .ok_or("ASSURANCE_EVIDENCE_MISSING")?,
+        )?;
+        self.trusted_calculations.insert(id, proof);
+        Ok(id)
     }
     pub fn attach_local_evidence(
         &mut self,
@@ -459,6 +516,7 @@ impl Board {
             None,
             None,
             outcome,
+            None,
         )
     }
     #[allow(clippy::too_many_arguments)]
@@ -471,6 +529,7 @@ impl Board {
         selected_calculation: Option<CalculationId>,
         selected_quantity: Option<QuantityValue>,
         outcome: EvidenceOutcome,
+        global_calculation_success: Option<bool>,
     ) -> Result<EvidenceId, String> {
         self.transaction(|s| {
             if s.evidence.len() >= 10_000 {
@@ -498,6 +557,7 @@ impl Board {
                     selected_calculation,
                     selected_quantity,
                     outcome,
+                    global_calculation_success,
                     adequacy: Adequacy::NotReviewed,
                     reviewer: String::new(),
                     rationale: String::new(),
@@ -524,6 +584,17 @@ impl Board {
             .get(&e.requirement)
             .ok_or("ASSURANCE_REQUIREMENT_MISSING")?;
         let mut reasons = vec![];
+        if e.selected_calculation.is_some()
+            || e.selected_quantity.is_some()
+            || e.global_calculation_success.is_some()
+        {
+            if self.trusted_calculations.get(&id) != Some(&evidence_hash(e)?) {
+                reasons.push("native evaluation has no matching evaluator-owned runtime proof; serialized stamps prove freshness only".into());
+            }
+        } else if e.artifact_path.is_none() {
+            reasons.push("evidence has neither native runtime proof nor explicit external artifact provenance".into());
+        }
+
         if req.revision != e.requirement_revision || requirement_hash(req)? != e.requirement_hash {
             reasons.push("requirement changed".into());
         }
@@ -574,8 +645,25 @@ impl Board {
             } else {
                 Some(evidence_hash(e)?)
             };
+            let review_id = s.next_id;
+            s.next_id = s.next_id.checked_add(1).ok_or("ASSURANCE_ID_LIMIT")?;
+            s.review_history.push(EvidenceReview {
+                review_id,
+                evidence: id,
+                adequacy,
+                reviewer: e.reviewer.clone(),
+                rationale: e.rationale.clone(),
+                evidence_digest: evidence_hash(e)?,
+            });
             Ok(())
-        })
+        })?;
+        let review = self
+            .register
+            .review_history
+            .last()
+            .ok_or("ASSURANCE_REVIEW_MISSING")?;
+        self.trusted_reviews.insert(id, digest(review)?);
+        Ok(())
     }
     pub fn record_verification(
         &mut self,
@@ -602,7 +690,28 @@ impl Board {
             && (!stale.is_empty()
                 || e.outcome != EvidenceOutcome::Completed
                 || e.adequacy != Adequacy::Adequate
-                || e.reviewed_digest.as_ref() != Some(&evidence_hash(e)?))
+                || e.reviewed_digest.as_ref() != Some(&evidence_hash(e)?)
+                || self
+                    .register
+                    .review_history
+                    .iter()
+                    .rev()
+                    .find(|r| r.evidence == evidence)
+                    .and_then(|r| digest(r).ok())
+                    .as_ref()
+                    != self.trusted_reviews.get(&evidence)
+                || !self
+                    .register
+                    .review_history
+                    .iter()
+                    .rev()
+                    .find(|r| r.evidence == evidence)
+                    .is_some_and(|r| {
+                        r.adequacy == Adequacy::Adequate
+                            && r.evidence_digest == evidence_hash(e).unwrap_or_default()
+                            && r.reviewer == e.reviewer
+                            && r.rationale == e.rationale
+                    }))
         {
             return Err(format!("ASSURANCE_PASSED_REFUSED: current completed explicitly adequate evidence required; {stale:?}"));
         }
@@ -614,21 +723,31 @@ impl Board {
                 .ok_or("ASSURANCE_REQUIREMENT_MISSING")?;
             let rhash = requirement_hash(req)?;
             req.verification = status;
-            s.decisions.insert(
+            let decision_id = s.next_id;
+            s.next_id = s.next_id.checked_add(1).ok_or("ASSURANCE_ID_LIMIT")?;
+            let decision = VerificationDecision {
+                decision_id,
                 requirement,
-                VerificationDecision {
-                    requirement,
-                    evidence,
-                    status,
-                    reviewer,
-                    rationale,
-                    evidence_digest: ehash,
-                    requirement_hash: rhash,
-                    context: current.clone(),
-                },
-            );
+                evidence,
+                status,
+                reviewer,
+                rationale,
+                evidence_digest: ehash,
+                requirement_hash: rhash,
+                context: current.clone(),
+            };
+            s.decision_history.push(decision.clone());
+            s.decisions.insert(requirement, decision);
             Ok(())
-        })
+        })?;
+        let decision = self
+            .register
+            .decisions
+            .get(&requirement)
+            .ok_or("ASSURANCE_DECISION_MISSING")?
+            .clone();
+        self.trusted_decisions.insert(requirement, decision);
+        Ok(())
     }
     pub fn verification_current(
         &self,
@@ -644,14 +763,27 @@ impl Board {
         let Some(r) = self.register.requirements.get(&requirement) else {
             return false;
         };
-        self.evidence_staleness(d.evidence, current)
-            .is_ok_and(|v| v.is_empty())
+        self.trusted_decisions.get(&requirement) == Some(d)
+            && self
+                .evidence_staleness(d.evidence, current)
+                .is_ok_and(|v| v.is_empty())
             && requirement_hash(r).ok().as_ref() == Some(&d.requirement_hash)
             && evidence_hash(e).ok().as_ref() == Some(&d.evidence_digest)
             && d.context == *current
             && (d.status != VerificationStatus::CompletedPassed
                 || (e.adequacy == Adequacy::Adequate
-                    && e.reviewed_digest.as_ref() == Some(&d.evidence_digest)))
+                    && e.reviewed_digest.as_ref() == Some(&d.evidence_digest)
+                    && self
+                        .register
+                        .review_history
+                        .iter()
+                        .rev()
+                        .find(|r| r.evidence == d.evidence)
+                        .is_some_and(|r| {
+                            digest(r).ok().as_ref() == self.trusted_reviews.get(&d.evidence)
+                                && r.reviewer == e.reviewer
+                                && r.rationale == e.rationale
+                        })))
     }
     pub fn as_value(&self) -> Result<Value, String> {
         serde_json::to_value(&self.register).map_err(|e| e.to_string())
@@ -731,6 +863,9 @@ impl Board {
             register: env.register,
             past: vec![],
             future: vec![],
+            trusted_calculations: BTreeMap::new(),
+            trusted_reviews: BTreeMap::new(),
+            trusted_decisions: BTreeMap::new(),
         };
         board.validate()?;
         Ok((board, bytes_hash(&bytes)))
