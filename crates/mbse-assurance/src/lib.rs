@@ -946,11 +946,11 @@ impl Serialize for RegisterWithEvidence<'_> {
         let next_id = r
             .next_id
             .checked_add(1)
-            .ok_or_else(|| serde::ser::Error::custom("ASSURANCE_ID_LIMIT"))?;
+            .ok_or_else(|| <S::Error as serde::ser::Error>::custom("ASSURANCE_ID_LIMIT"))?;
         let revision = r
             .revision
             .checked_add(1)
-            .ok_or_else(|| serde::ser::Error::custom("ASSURANCE_REVISION_LIMIT"))?;
+            .ok_or_else(|| <S::Error as serde::ser::Error>::custom("ASSURANCE_REVISION_LIMIT"))?;
         let mut state = serializer.serialize_struct("Register", 9)?;
         state.serialize_field("requirements", &r.requirements)?;
         state.serialize_field("evidence", &Entries(&r.evidence, self.evidence))?;
