@@ -1,0 +1,188 @@
+{
+  "repository": "https://github.com/storytold/craft-libs",
+  "revision": "b1401e33b105ca2861575ede90f67f4d54449001",
+  "selection": [
+    "crates/atomic",
+    "crates/ui"
+  ],
+  "modifications": [
+    "Root Cargo.toml replaced by minimal two-crate extraction workspace; egui pinned =0.36.2. Crate source, manifests, tests, READMEs, licenses and notices unchanged."
+  ],
+  "files": [
+    {
+      "path": "ATTRIBUTION.md",
+      "sha256": "683f9f3df33476bc51fe80bf83608f490b745582708bb8da00f29ed85defeadb",
+      "upstream_identical": true
+    },
+    {
+      "path": "Cargo.toml",
+      "sha256": "e6c6a5f6c26dcdf30fe5569a208c0cd396bee7f511cc0943bee91d333fda6727",
+      "upstream_identical": false
+    },
+    {
+      "path": "LICENSE-APACHE",
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+      "upstream_identical": true
+    },
+    {
+      "path": "LICENSE-MIT",
+      "sha256": "2f42c0cafc8ad394d91373fe1f342aee5453850b151a51405c68cae9ada86d26",
+      "upstream_identical": true
+    },
+    {
+      "path": "NOTICE",
+      "sha256": "8b1fbe6211dada33e1e3536c3218d97767905101b9ce863a255e21937664fbcf",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/atomic/Cargo.toml",
+      "sha256": "132c06636b8592118aa304f07c3dec0aaf65dd604c68f6d8f76b9561dbc7e1fe",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/atomic/README.md",
+      "sha256": "d64e0b37e3c57166669ea0293009a3bf6f97d148bd5230bd329102e3f20cbca5",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/atomic/src/lib.rs",
+      "sha256": "a2dce3d4125cc26dfbe26a387f2d033264ccc3ea25e64b39b63a7cd1805f431a",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/atomic/tests/atomic_tests.rs",
+      "sha256": "883a61d02af5d5f358f40158d0563babf0b95d1b9c5d471f85167316c9938ed6",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/atomic/tests/permissions.rs",
+      "sha256": "71cfcf79669b3acba2bdac6292ad0aa86437fc2be89fcc85cfdf333f134743fc",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/Cargo.toml",
+      "sha256": "88159b4eaacfa21ca796d419fe1acad81c2780db8ac033303de6ff46083be90d",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/README.md",
+      "sha256": "6d0895339dda68982cf5ba371b5f82a414bf3e21a21a03f2f9126f1a1a2ceae5",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/src/buttons/mod.rs",
+      "sha256": "31c5b78e75fc9aacbf1c9b01e728dbf301ff5eceab02215bcf997d2de66c6c3a",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/src/buttons/tests.rs",
+      "sha256": "4407d99340493d3b216e3a8b0c72a303e88ddd8e17c9934ac1bf18fc2a7dd201",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/src/docking/mod.rs",
+      "sha256": "a375ec1fc9363deaaca9154930cdba4948a70d5fe61a7e408b410d24fc372187",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/src/docking/model.rs",
+      "sha256": "1184fe72595ea4d7d820fb900e6105cdf25bc8f4921116a84250ebe68f90d344",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/src/docking/surface.rs",
+      "sha256": "6d94cebcbd053f527c9da8c98f8d522b0343a58a88e322482cbd926a1f750f38",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/src/docking/targets.rs",
+      "sha256": "223eeb50894d42a13a2b3fd8dfae5f21dd74a0688344623b317c04c740171cd6",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/src/docking/tests.rs",
+      "sha256": "217d4fe02d0e8298eb0e64049ce723247fd80f1c838b93f4d56c477f2c3e318c",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/src/icons/mod.rs",
+      "sha256": "389872630f1668d48c29a09d15e3100a663d04fabf98b5d8ca02c00712d7f0f0",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/src/icons/tests.rs",
+      "sha256": "c2c35b8aa6448826fc140493001d25b4f6e3d586e52c917f89d179621726f609",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/src/layout/geometry.rs",
+      "sha256": "e5b35a34d89ca1d9e54364a7e2c1b2d0cd0ffabf7314339da3f9e912be72e4e4",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/src/layout/mod.rs",
+      "sha256": "31f0f2afde706a85b1b2f863bcd5d63a190715017421c94dc28feefaa0c43d97",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/src/layout/resize.rs",
+      "sha256": "278d221cd08aa1f860747dd66df7e49504da5d8b711b9a787a527e461ecd2fd3",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/src/layout/tests.rs",
+      "sha256": "42f4b5b1d14e42980b91883e1b8e4a294b37d3c2d1d09d70aa448c33ade1655d",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/src/layout/toolbar.rs",
+      "sha256": "5b3f3f81d135f9d2b09c595c2ffe517ae90cd763e8574964b5c11c1e5a180d83",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/src/lib.rs",
+      "sha256": "1fc10e08f50038f178860c4ce9960115ec736fda9090e3f56383b02ae93d05e6",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/src/printing/tests.rs",
+      "sha256": "01fad8055b7624133d95dccc197ea98ae10353ec86a43e44747ff1ce3ad4e1fc",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/src/printing.rs",
+      "sha256": "adc75056dd67c9e502f6c42896a16248023eb20632e1de218f246e6ea292dbb1",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/src/tabs/mod.rs",
+      "sha256": "8cdf333b38f6b6f2a7f48f5517328dd070500443f8a69cf08a5ce0e654b71e44",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/src/tabs/tests.rs",
+      "sha256": "43bd4e6b131850361b7d4db78ca361e733180bb20d31cf1da8e46076448b9aad",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/src/theme/mod.rs",
+      "sha256": "48ba3e6f55415f0d4392208d51bb8f9223c8fb90ea56a6c04d0cad606a5e797a",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/tests/docking_workflows.rs",
+      "sha256": "60347371e463a7156e7a05be4e4c3221c777e41222edc219646970ede0562a43",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/tests/visual/fixtures.rs",
+      "sha256": "c3bda942e405b9513d7318e4902aa9f6538568532d524562cc72582946b5e077",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/ui/tests/visual_regression.rs",
+      "sha256": "ec80a3cb5a64b3baf6dae59230b77742059ad2ee3f8b5a96ea7f79929ce47008",
+      "upstream_identical": true
+    }
+  ]
+}
