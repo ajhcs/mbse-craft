@@ -584,11 +584,20 @@ pub fn open(primary: &Path) -> Result<ProjectionSet, String> {
     if !logical_path(name) {
         return Err("V2_PRIMARY_NAME".into());
     }
-    let extension = primary
-        .extension()
-        .and_then(|s| s.to_str())
-        .unwrap_or("")
-        .to_ascii_lowercase();
+    // Content determines the parser. A suffix is only a UI hint and cannot
+    // turn text into XML or prevent recognizable XML/archive inspection.
+    let zip_content = [
+        b"PK\x03\x04".as_slice(),
+        b"PK\x05\x06".as_slice(),
+        b"PK\x07\x08".as_slice(),
+    ]
+    .iter()
+    .any(|signature| bytes.starts_with(signature));
+    let xml_content = std::str::from_utf8(&bytes).ok().is_some_and(|text| {
+        text.trim_start_matches('\u{feff}')
+            .trim_start_matches([' ', '\t', '\r', '\n'])
+            .starts_with('<')
+    });
     let primary = SourceAsset {
         logical_path: format!("primary/{name}"),
         role: AssetRole::Primary,
@@ -598,7 +607,7 @@ pub fn open(primary: &Path) -> Result<ProjectionSet, String> {
     };
     let mut report = ProjectionSet::new(primary);
     let mut semantic = vec![0usize];
-    if extension == "mdzip" {
+    if zip_content {
         match archive_assets(&report.assets[0].bytes) {
             Ok((assets, core)) => {
                 semantic = vec![core + 1];
@@ -610,10 +619,7 @@ pub fn open(primary: &Path) -> Result<ProjectionSet, String> {
                 semantic.clear();
             }
         }
-    } else if !matches!(
-        extension.as_str(),
-        "capella" | "aird" | "afm" | "xml" | "xmi" | "uml"
-    ) {
+    } else if !xml_content {
         report.stage = ProjectionStage::InterpretationRefused;
         report.loss("FORMAT_ADAPTER_UNAVAILABLE",None,"V2 currently interprets source-specific XML/MDZIP only; exact original bytes are retained","Use original-byte inspection/copy; no native admission");
         semantic.clear();

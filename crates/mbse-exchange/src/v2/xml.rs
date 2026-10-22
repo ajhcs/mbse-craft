@@ -224,6 +224,32 @@ fn input_preflight(
         if n.ancestors().count() > MAX_DEPTH {
             return Err("V2_DEPTH_LIMIT".into());
         }
+        if n.tag_name().name().len() > MAX_VALUE_BYTES {
+            return Err("V2_XML_NAME_VALUE_LIMIT".into());
+        }
+        // roxmltree excludes xmlns declarations from attributes(). Bound every
+        // effective scope, counting new/shadowed bindings once rather than
+        // repeatedly charging inherited bindings against aggregate bytes.
+        if n.namespaces().len() > MAX_ATTRIBUTES_PER_NODE {
+            return Err("V2_NAMESPACE_COUNT_LIMIT".into());
+        }
+        for ns in n.namespaces() {
+            if ns.uri().len() > MAX_VALUE_BYTES
+                || ns.name().is_some_and(|v| v.len() > MAX_VALUE_BYTES)
+            {
+                return Err("V2_NAMESPACE_VALUE_LIMIT".into());
+            }
+            let inherited = n
+                .parent_element()
+                .and_then(|p| p.lookup_namespace_uri(ns.name()));
+            if inherited != Some(ns.uri()) {
+                c.attribute_bytes = c
+                    .attribute_bytes
+                    .checked_add(ns.uri().len() + ns.name().map_or(0, str::len))
+                    .filter(|v| *v <= MAX_ATTRIBUTE_BYTES)
+                    .ok_or("V2_ATTRIBUTE_BUDGET")?;
+            }
+        }
         if n.attributes().len() > MAX_ATTRIBUTES_PER_NODE {
             return Err("V2_ATTRIBUTES_PER_NODE_LIMIT".into());
         }
@@ -254,21 +280,6 @@ fn input_preflight(
             .checked_add(bytes)
             .filter(|v| *v <= MAX_TEXT_BYTES)
             .ok_or("V2_TEXT_BUDGET")?;
-    }
-    let root = doc.root_element();
-    if root.namespaces().len() > MAX_ATTRIBUTES_PER_NODE {
-        return Err("V2_NAMESPACE_COUNT_LIMIT".into());
-    }
-    for ns in root.namespaces() {
-        if ns.uri().len() > MAX_VALUE_BYTES || ns.name().is_some_and(|v| v.len() > MAX_VALUE_BYTES)
-        {
-            return Err("V2_NAMESPACE_VALUE_LIMIT".into());
-        }
-        c.attribute_bytes = c
-            .attribute_bytes
-            .checked_add(ns.uri().len() + ns.name().map_or(0, str::len))
-            .filter(|v| *v <= MAX_ATTRIBUTE_BYTES)
-            .ok_or("V2_ATTRIBUTE_BUDGET")?;
     }
     Ok(())
 }

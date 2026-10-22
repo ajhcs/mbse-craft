@@ -355,3 +355,48 @@ fn exact_json_expansion_limit_and_diagnostic_truncation_preserve_raw_source() {
         serde_json::to_vec(&doc).unwrap().len()
     );
 }
+#[test]
+fn content_dispatch_ignores_misleading_suffix_and_keeps_v2_text_refusal() {
+    let a = area();
+    let path = a.path().join("renamed.sysml");
+    let raw =
+        format!("\u{feff} \n{PROFILES}").replace("<?xml version=\"1.0\" encoding=\"UTF-8\"?>", "");
+    std::fs::write(&path, &raw).unwrap();
+    let doc = open(&path).unwrap();
+    assert_eq!(doc.stage, ProjectionStage::PartialSemanticProjection);
+    assert_eq!(
+        node(&doc, "SYN-BLOCK").kind,
+        SemanticKind::SysmlProfileApplication
+    );
+    assert_eq!(doc.primary_bytes(), raw.as_bytes());
+    let path = a.path().join("renamed.mdzip");
+    std::fs::write(&path, CAPELLA).unwrap();
+    assert_eq!(
+        open(&path).unwrap().stage,
+        ProjectionStage::PartialSemanticProjection
+    );
+    let path = a.path().join("archive.xml");
+    let raw = archive(&[("com.nomagic.magicdraw.uml_model.model", PROFILES.as_bytes())]);
+    std::fs::write(&path, &raw).unwrap();
+    assert_eq!(open(&path).unwrap().assets.len(), 2);
+    for name in ["misleading.xml", "misleading.mdzip", "native.sysml"] {
+        let path = a.path().join(name);
+        let raw = b"package Native { part def Example; }";
+        std::fs::write(&path, raw).unwrap();
+        let doc = open(&path).unwrap();
+        assert_eq!(doc.stage, ProjectionStage::InterpretationRefused);
+        assert!(doc.nodes.is_empty());
+        assert_eq!(doc.primary_bytes(), raw);
+        assert!(doc
+            .losses
+            .iter()
+            .any(|l| l.code == "FORMAT_ADAPTER_UNAVAILABLE"));
+    }
+}
+#[test]
+fn child_namespace_declarations_obey_per_value_and_scope_limits() {
+    let long_uri = format!("urn:{}", "n".repeat(MAX_VALUE_BYTES));
+    for raw in [format!("<root><child xmlns:long=\"{long_uri}\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:type=\"long:Class\" id=\"c\"/></root>"),format!("<root><child {} /></root>",(0..129).map(|i|format!("xmlns:n{i}=\"urn:synthetic:{i}\"")).collect::<Vec<_>>().join(" "))] {
+        let doc=load(&raw);assert_eq!(doc.stage,ProjectionStage::OutputBudgetRefused);assert!(doc.nodes.is_empty());assert_eq!(doc.primary_bytes(),raw.as_bytes());assert!(doc.diagnostics.iter().any(|d|d.detail.contains("NAMESPACE")));
+    }
+}
