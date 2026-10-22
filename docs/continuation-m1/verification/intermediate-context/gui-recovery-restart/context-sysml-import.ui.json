@@ -1,0 +1,255 @@
+{
+  "error": false,
+  "feedback": "Model opened. Imported and recovered documents are independent drafts.",
+  "frame_override": null,
+  "frame_policy": "Desktop",
+  "model_revision": 0,
+  "periodic_recovery": true,
+  "pixels_per_point": 1.0,
+  "preferences_status": "Preferences loaded.",
+  "profile": "mbse-craft.ui-geometry/1",
+  "raw_version": 0,
+  "recovery_current": false,
+  "recovery_interval_seconds": 15,
+  "recovery_path": null,
+  "save_status": "Unsaved",
+  "selected": 1002,
+  "snapshot_hash": "840987e426943c0f193a94c2fb91a35ff572de6d5654e3156dfc6b872a0b9670",
+  "widgets": {
+    "action:Add Actor": [
+      101.375,
+      717.0,
+      167.59375,
+      735.0
+    ],
+    "action:Add Capability": [
+      94.9375,
+      691.0,
+      186.375,
+      709.0
+    ],
+    "action:Add Environment": [
+      8.0,
+      743.0,
+      116.96875,
+      761.0
+    ],
+    "action:Add Expectation": [
+      8.0,
+      769.0,
+      111.6875,
+      787.0
+    ],
+    "action:Add Measure": [
+      8.0,
+      717.0,
+      92.375,
+      735.0
+    ],
+    "action:Add Mission": [
+      8.0,
+      691.0,
+      85.9375,
+      709.0
+    ],
+    "action:Add Objective": [
+      195.375,
+      691.0,
+      285.125,
+      709.0
+    ],
+    "action:Add Organization": [
+      125.96875,
+      743.0,
+      235.5,
+      761.0
+    ],
+    "action:Add Stakeholder": [
+      176.59375,
+      717.0,
+      280.625,
+      735.0
+    ],
+    "action:Import SysML": [
+      390.96875,
+      3.5,
+      477.46875,
+      21.5
+    ],
+    "action:New": [
+      234.46875,
+      3.5,
+      268.875,
+      21.5
+    ],
+    "action:Open": [
+      277.875,
+      3.5,
+      318.03125,
+      21.5
+    ],
+    "action:Recover": [
+      327.03125,
+      3.5,
+      381.96875,
+      21.5
+    ],
+    "action:Recovery copy": [
+      530.15625,
+      3.5,
+      621.78125,
+      21.5
+    ],
+    "action:Redo": [
+      1113.53125,
+      2.0,
+      1157.53125,
+      30.0
+    ],
+    "action:Save": [
+      486.46875,
+      3.5,
+      521.15625,
+      21.5
+    ],
+    "action:Undo": [
+      1060.53125,
+      2.0,
+      1104.53125,
+      30.0
+    ],
+    "canvas:ownership": [
+      346.0,
+      173.0,
+      549.40625,
+      191.0
+    ],
+    "card:1": [
+      371.0,
+      241.0,
+      695.0,
+      325.0
+    ],
+    "card:1000": [
+      719.0,
+      241.0,
+      1043.0,
+      325.0
+    ],
+    "card:1001": [
+      1067.0,
+      241.0,
+      1391.0,
+      325.0
+    ],
+    "card:1002": [
+      371.0,
+      396.0,
+      695.0,
+      480.0
+    ],
+    "context-kind:1002:1003": [
+      26.0,
+      509.0,
+      167.1875,
+      527.0
+    ],
+    "context:add:1002": [
+      8.0,
+      600.0,
+      87.0625,
+      618.0
+    ],
+    "field:1002:contextName:1003": [
+      26.0,
+      482.0,
+      329.0,
+      501.0
+    ],
+    "field:1002:contextText:1003": [
+      26.0,
+      558.0,
+      329.0,
+      592.0
+    ],
+    "field:1002:name": [
+      8.0,
+      357.0,
+      329.0,
+      376.0
+    ],
+    "path": [
+      202.6875,
+      38.0,
+      1432.0,
+      57.0
+    ],
+    "recovery:Review copies": [
+      630.78125,
+      3.5,
+      791.84375,
+      21.5
+    ],
+    "relation:Scope:1:1000": [
+      346.0,
+      715.0,
+      897.46875,
+      733.0
+    ],
+    "relation:Scope:1:1001": [
+      346.0,
+      741.0,
+      888.375,
+      759.0
+    ],
+    "relation:Scope:1:1002": [
+      346.0,
+      767.0,
+      907.625,
+      785.0
+    ],
+    "save-path": [
+      137.46875,
+      65.0,
+      1432.0,
+      84.0
+    ],
+    "scope:1002": [
+      8.0,
+      384.0,
+      113.21875,
+      402.0
+    ],
+    "settings:Open": [
+      800.84375,
+      3.5,
+      911.40625,
+      21.5
+    ],
+    "tree:1": [
+      26.0,
+      193.0,
+      249.5625,
+      211.0
+    ],
+    "tree:1000": [
+      26.0,
+      219.0,
+      226.8125,
+      237.0
+    ],
+    "tree:1001": [
+      26.0,
+      245.0,
+      217.71875,
+      263.0
+    ],
+    "tree:1002": [
+      26.0,
+      271.0,
+      236.96875,
+      289.0
+    ]
+  },
+  "write_pending": false
+}

@@ -1,0 +1,30 @@
+{"ready": true, "app_pid": 589156, "server_pid": 589153, "window": 4194307, "binary_sha256": "2f3503350b23f18d891f3b004d88de289272261206542035603c59f9d1acf847"}
+{"op": "capture", "name": "restart-discovery-banner", "ui_sha256": "01a93e4c2bafc590648e87e6c66f376f647a0e8b5097208fdf67f17d0a874ee8", "sha256": "b664c168a936b1165dde347893226fc8de8936d459f3be93875fca222d6474fb", "app_returncode": null}
+{"op": "click", "widget": "recovery:Review copies", "x": 711, "y": 12, "app_returncode": null}
+{"op": "capture", "name": "restart-recovery-chooser", "ui_sha256": "146095c604a4aa4858ccf4e62a3686d86fb9e98f9eb7399cf352c9d0ad5b36f2", "sha256": "95785ea1e6c6d36523b10d64832bf87982b99a62f78738a105ff0dc5bf150a19", "app_returncode": null}
+{"op": "click", "widget": "recovery:entry:0", "x": 335, "y": 122, "app_returncode": null}
+{"op": "capture", "name": "recovery-selected", "ui_sha256": "d1a0109d6e420f0b2a832c896b8d3688882b6125bbdac3f3b7c4f7ae6c78c2aa", "sha256": "23e7e35555dcbc4b9ec3604c60ce5ff5b2b052296de738d31a953dcbcb0b33f5", "app_returncode": null}
+{"op": "click", "widget": "recovery:entry:1", "x": 339, "y": 162, "app_returncode": null}
+{"op": "click", "widget": "recovery:Restore independent copy", "x": 103, "y": 233, "app_returncode": null}
+{"op": "click", "widget": "preserve:Keep recovery and continue", "pause": 1, "x": 107, "y": 466, "app_returncode": null}
+{"op": "click", "widget": "tree:1002", "x": 131, "y": 280, "app_returncode": null}
+{"op": "capture", "name": "chooser-restored-context", "ui_sha256": "15c2c8605f8f300fb7578acacfa1a20dc16cbda6515079bfb909a77560db3dd7", "sha256": "c9cf58107dd9308ad7f1ee7974d7266a41b5d5ac4f7aadfe10b944e48bba6be5", "app_returncode": null}
+{"op": "click", "widget": "save-path", "x": 784, "y": 74, "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/m1/state/context-data/restored-context.kernspan", "app_returncode": null}
+{"op": "click", "widget": "action:Save", "pause": 1, "x": 503, "y": 12, "app_returncode": null}
+{"op": "click", "widget": "recovery:Review copies", "x": 711, "y": 12, "app_returncode": null}
+{"op": "click", "widget": "recovery:Refresh", "x": 105, "y": 89, "app_returncode": null}
+{"op": "capture", "name": "recovery-rejected-candidates", "ui_sha256": "468ac25ded926d24c0a6db2603de1a375a768826f353ee2ae4e1d48d3ff7de03", "sha256": "5019be382528ec1676e900b8bdaa85d4e16b9cae705866d0279e57b1fa4ce55a", "app_returncode": null}
+{"op": "click", "x": 648, "y": 33, "app_returncode": null}
+{"op": "click", "widget": "field:1002:contextName:1003", "x": 177, "y": 491, "app_returncode": null}
+{"op": "text", "text": "Reviewer coverage", "app_returncode": null}
+{"op": "click", "widget": "action:Save", "pause": 1, "x": 503, "y": 12, "app_returncode": null}
+{"op": "click", "widget": "path", "x": 817, "y": 47, "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/m1/state/context-data/context.sysml", "app_returncode": null}
+{"op": "click", "x": 975, "y": 12, "app_returncode": null}
+{"op": "capture", "name": "context-sysml-export", "ui_sha256": "09d83e0639e80f861e002a4930f88372bd2065908171acbd1bc733786b3cbd6b", "sha256": "fc00d71db82841a8472d87420fe996816ff574cdfff51cca185df44fe4aa587c", "app_returncode": null}
+{"op": "click", "widget": "action:Import SysML", "x": 434, "y": 12, "app_returncode": null}
+{"op": "click", "widget": "tree:1002", "x": 131, "y": 280, "app_returncode": null}
+{"op": "capture", "name": "context-sysml-import", "ui_sha256": "14ebbc70ef3060bbe7dde8ea0dd3b87694fd9e3594d01caabb465914e3611878", "sha256": "6c3c8c9aec40b2d09606c466ac18f2de4ef384b2a74a19ed6b5af05daf7dc735", "app_returncode": null}
+{"op": "close", "app_returncode": null}
+{"op": "click", "widget": "preserve:Keep recovery and continue", "pause": 2, "x": 107, "y": 466, "app_returncode": 0}

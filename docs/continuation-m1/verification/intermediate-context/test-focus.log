@@ -1,0 +1,199 @@
+   Compiling mbse-desktop v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-desktop)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.35s
+     Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/m1/target/debug/deps/mbse_desktop-15796686ea5f56ea)
+
+running 2 tests
+test ui::policies::close_requires_current_preservation_even_while_hidden ... ok
+test ui::policies::ordinary_text_and_focus_transitions_do_not_undo_model ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/m1/target/debug/deps/mbse_model-6547fb3e0c866ec2)
+
+running 39 tests
+test local_input::tests::windows_lexical_namespace_and_stream_classification_never_accesses_filesystem ... ok
+test local_input::tests::exact_bytes_limits_directories_and_missing_paths ... ok
+test local_input::tests::replacement_between_metadata_and_open_cannot_block_or_follow_link ... ok
+test local_input::tests::writerless_fifo_socket_device_and_symlink_rejected_before_read ... ok
+test stage1::tests::detached_selected_raw_and_creation_journals_survive_undo_and_reopen ... ok
+test stage1::tests::new_document_is_blank_and_reopen_resets_only_interactive_history ... ok
+test stage1::tests::every_freshness_component_refuses_atomically ... ok
+test stage1::tests::model_undo_groups_a_field_session_and_navigation_closes_the_group ... ok
+test stage1::tests::create_and_link_is_one_undoable_transaction_and_allocators_never_rewind ... ok
+test stage1::tests::initial_measure_metadata_selection_retains_reopened_incomplete_criterion ... ok
+test stage1::tests::accepted_numeric_and_exact_text_history_are_independent ... ok
+test stage1::tests::revision_exhaustion_refuses_without_mutating_records_or_journals ... ok
+test stage1::tests::unsupported_expression_is_retained_and_never_evaluated_or_accepted ... ok
+test stage1::tests::purpose_and_nested_context_edits_do_not_alias_other_fields ... ok
+test stage1_graph::tests::authored_edges_are_exact_and_do_not_invent_invocation_ownership ... ok
+test stage1::tests::model_unit_undo_converts_only_current_valid_raw ... ok
+test stage1::tests::numeric_range_and_incomplete_inputs_never_replace_accepted_value ... ok
+test stage1::tests::malformed_fixture_or_native_snapshot_is_refused_without_repair ... ok
+test stage1::tests::invalid_criterion_refuses_units_and_valid_units_convert_raw_with_history ... ok
+test stage1::tests::fixture_preserves_all_record_properties_and_nested_bytes_as_json_values ... ok
+test stage1::tests::native_raw_validity_cannot_contradict_a_known_field_classifier ... ok
+test stage1::tests::wrong_kind_wrong_system_and_missing_reference_mutations_are_atomic ... ok
+test stage1_graph::tests::calculation_dependencies_coalesce_named_uses_without_criterion_edges ... ok
+test stage1_graph::tests::chooser_filters_are_views_and_cross_scope_or_wrong_typed_edges_refuse ... ok
+test stage1::tests::text_unit_conversion_overflow_refuses_with_all_history_unchanged ... ok
+test stage1_io::tests::cooperative_lock_failure_is_not_saved_and_retry_preserves_input ... ok
+test stage1_io::tests::recovery_current_rechecks_acknowledged_bytes_before_lifecycle_permission ... ok
+test stage1_io::tests::reader_refuses_nonzero_numeric_underflow_without_changing_source ... ok
+test stage1_io::tests::full_snapshot_roundtrip_keeps_opaque_fields_invalid_raw_and_creation_draft ... ok
+test stage1_io::tests::reader_rejects_duplicates_unknown_profiles_and_oversize_before_open ... ok
+test stage1_io::tests::failed_or_truncated_recovery_never_acknowledges_live_input ... ok
+test stage1_io::tests::external_conflict_and_unknown_target_preserve_live_input_and_source ... ok
+test stage1_io::tests::retained_lock_injection_preserves_existing_file_and_allows_fresh_copy ... ok
+test stage1_io::tests::autosave_known_destination_uses_actual_save_protocol_and_toggle_has_no_io ... ok
+test stage1_io::tests::older_recovery_does_not_acknowledge_later_input ... ok
+test stage1_io::tests::frozen_older_save_acknowledges_actual_bytes_but_live_remains_dirty ... ok
+test stage1_io::tests::recovery_is_actual_independent_dirty_copy_with_protected_original ... ok
+test stage1_io::tests::foreign_and_duplicate_ack_never_clear_active_request ... ok
+test stage1_io::tests::original_source_path_hash_pairs_survive_recovery_copy_reopen_generations ... ok
+
+test result: ok. 39 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.17s
+
+     Running tests/context_recovery.rs (/workspace/build/builderbob/mbse-craft/m1/target/debug/deps/context_recovery-92da181d7d4c75c5)
+
+running 6 tests
+test inventory_is_explicitly_bounded ... ok
+test recovery_inventory_refuses_file_symlink_and_native_save_envelope ... ok
+test native_context_name_retains_unsupported_exchange_text_through_undo_and_reopen ... ok
+test restart_inventory_refuses_corrupt_main_unknown_and_symlink_and_restores_copy ... ok
+test context_and_affiliation_are_typed_undoable_preserve_opaque_and_roundtrip ... ok
+test recovery_inventory_file_count_and_aggregate_byte_caps_are_independent ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.09s
+
+     Running tests/craft_faults.rs (/workspace/build/builderbob/mbse-craft/m1/target/debug/deps/craft_faults-43d0fd4b437c1363)
+
+running 2 tests
+test actual_craft_stream_failure_keeps_previous_bytes ... ok
+test actual_craft_rename_refusal_keeps_previous_bytes ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/craft_recovery.rs (/workspace/build/builderbob/mbse-craft/m1/target/debug/deps/craft_recovery-1622d6e65ee7ec18)
+
+running 1 test
+test actual_craft_save_and_recovery_survive_corrupt_main ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s
+
+     Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/m1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)
+
+running 28 tests
+test active_generation_filter_preserves_removed_and_reused_binding_drafts ... ok
+test c02_output_reference_converts_ratio_scale_once ... ok
+test c01_count_ratio_is_real_output_not_a_criterion ... ok
+test c05_length_duration_dependency_yields_speed ... ok
+test c03_explicit_times_100_is_not_heuristically_removed ... ok
+test c04_mixed_length_scales_have_known_reference ... ok
+test c08_nominal_kind_distinguishes_equal_dimensions ... ok
+test c09_wrong_physical_dimensions_are_unit_errors ... ok
+test c06_speed_duration_dependency_yields_distance ... ok
+test c07_speed_output_scale_and_astra_reference ... ok
+test c11_domain_and_count_exactness_are_enforced_before_rounding ... ok
+test c13_missing_output_and_unbound_name_are_not_zero ... ok
+test c14_cycle_members_sorted_downstream_blocked_independent_value_survives ... ok
+test c12_overflow_underflow_and_authored_zero_are_distinct ... ok
+test c16_invalid_or_incomplete_literal_never_falls_back_to_accepted_input ... ok
+test c15_incomplete_formula_blocks_old_accepted_program ... ok
+test exact_raw_validity_claims_and_detached_fields_are_not_trusted ... ok
+test c10_both_signs_of_zero_refuse_division ... ok
+test historic_unit_context_classifies_itself_but_blocks_execution_after_undo ... ok
+test definitions_reject_unknown_structural_keys_and_bad_attachment_identity ... ok
+test c17_closed_functions_and_algebra_refuse_unsupported_forms ... ok
+test c20_late_receipt_and_changed_definitions_or_raw_cannot_be_current ... ok
+test c19_native_definition_raw_serialization_preserves_text_and_does_not_persist_current_receipt ... ok
+test c18_unrelated_snapshot_edit_invalidates_receipt_but_not_formula_number ... ok
+test parser_precedence_functions_spans_and_formatter_roundtrip ... ok
+test c21_resources_refuse_without_success_and_report_truncation ... ok
+test thousand_output_chain_is_deterministic_and_bounded ... ok
+test resource_refusal_is_current_for_exact_document_but_never_a_current_computation ... ok
+
+test result: ok. 28 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.13s
+
+     Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/m1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)
+
+running 25 tests
+test measure_relink_is_one_undoable_edit_and_preserves_partial_criterion ... ok
+test source_identity_is_portable_across_workspace_roots_and_creation_order ... ok
+test desktop_import_refusal_retains_exact_bounded_invalid_bytes_independent_of_later_disk_change ... ok
+test binding_generation_query_covers_output_targets_and_imported_zero_without_literal_raw_fields ... ok
+test configuration_collisions_and_noncurrent_field_bindings_refuse_without_mutation ... ok
+test wrong_kind_missing_and_cross_system_relinks_preserve_exact_document_and_history ... ok
+test configuration_text_fallback_and_key_scoped_undo_redo_do_not_change_accepted_model ... ok
+test source_identity_binds_vendor_contents_membership_and_directory_watches ... ok
+test noncanonical_literal_spelling_returns_exactly_after_unit_model_undo_and_redo ... ok
+test removed_and_recreated_binding_does_not_adopt_old_raw_and_model_undo_restores_exact_generation ... ok
+test configuration_generation_removal_recreate_and_model_history_never_adopt_old_scratch ... ok
+test unit_model_undo_never_overwrites_a_later_raw_value_with_restored_accepted_spelling ... ok
+test compatible_literal_unit_conversion_and_model_history_preserve_physical_value_and_raw_context ... ok
+test rename_and_same_name_output_rebind_keep_old_drafts_inactive_and_undo_restores_their_owner ... ok
+test text_undo_is_scoped_to_binding_generation_and_keeps_previous_journal ... ok
+test actual_export_has_separate_receipt_never_acknowledges_save_or_live_edits_and_refuses_existing_copy ... ok
+test unsupported_import_and_export_refuse_atomically_with_original_bytes_and_native_status_preserved ... ok
+test omitted_literal_context_on_open_is_captured_before_history_and_never_reinterpreted_after_conversion ... ok
+test exported_copy_completion_does_not_consume_pending_native_save_and_disk_conflicts_never_approve_export ... ok
+test genuine_import_is_independent_dirty_and_exact_source_survives_native_recovery_generations ... ok
+test calculation_definition_and_incomplete_raw_survive_actual_save_reopen_and_independent_recovery ... ok
+test schema1_configuration_journal_prefix_collisions_refuse_migration_unchanged ... ok
+test actual_v1_open_preserves_unknown_properties_raw_and_native_saved_until_explicit_v2_write ... ok
+test v1_reserved_typed_key_collisions_are_not_promoted_and_original_files_are_unchanged ... ok
+test unfinished_add_replace_rename_configuration_survives_actual_save_open_and_keep_draft_recovery ... ok
+
+test result: ok. 25 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.43s
+
+     Running tests/stage1_interchange.rs (/workspace/build/builderbob/mbse-craft/m1/target/debug/deps/stage1_interchange-74484b3aede576d6)
+
+running 18 tests
+test opaque_values_nonempty_unqualified_observations_and_physical_ast_literals_refuse ... ok
+test calculation_attachment_map_cycle_and_missing_dependency_cannot_disagree ... ok
+test original_positive_fixture_and_standard_construct_refusals_are_distinct ... ok
+test signed_scalar_literals_and_optional_absence_have_declared_semantic_normalization ... ok
+test complete_baseline_accepted_meaning_roundtrips_without_native_raw_promotion ... ok
+test exact_source_unicode_duplicate_labels_and_qualified_references_keep_identities_and_spans ... ok
+test parser_body_superset_does_not_admit_unsupported_native_record_behaviors ... ok
+test wrong_kind_missing_and_cross_scope_references_refuse_without_label_guessing ... ok
+test duplicate_ids_symbols_and_numeric_tag_mismatch_are_atomic_refusals ... ok
+test imported_members_namespace_roots_and_path_segments_cannot_be_shadowed ... ok
+test native_valid_result_binding_refuses_exchange_return_feature_collision_atomically ... ok
+test native_generation_metadata_and_original_archive_are_excluded_without_mutation ... ok
+test every_modified_prefix_default_ontology_and_import_is_explicitly_refused ... ok
+test genuine_calc_quantities_dependencies_and_scalar_function_preserve_numeric_oracles ... ok
+test invalid_utf8_and_resource_failures_retain_or_explicitly_leave_caller_originals ... ok
+test unknown_units_types_and_unreviewed_functions_are_not_strings_of_success ... ok
+test scientific_scalar_extremes_preserve_unary_minus_and_bounded_semantic_roundtrip ... ok
+test aggregate_calculation_ast_limit_is_an_exchange_admission_boundary ... ok
+
+test result: ok. 18 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.17s
+
+     Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/m1/target/debug/deps/sysmlv2_syntax-528ca1377b05820e)
+
+running 9 tests
+test name::tests::basic_names_print_bare ... ok
+test name::tests::canonical_names_split_and_respell ... ok
+test name::tests::canonical_spelling_round_trips_through_the_lexer ... ok
+test ast::spelling_tests::buffered_spelling_matches_the_allocating_one ... ok
+test name::tests::empty_is_illegal ... ok
+test name::tests::non_basic_names_are_quoted_with_escapes ... ok
+test name::tests::reserved_words_are_quoted_per_dialect ... ok
+test name::tests::either_dialect_spelling_quotes_the_union ... ok
+test name::tests::paths_spell_per_segment ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests mbse_model
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests sysmlv2_syntax
+
+running 1 test
+test crates/mbse-model/vendor/sysmlv2-syntax/src/visit.rs - visit (line 14) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+

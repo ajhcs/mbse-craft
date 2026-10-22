@@ -37,7 +37,7 @@ def main():
         server=subprocess.Popen([str(runtime/'usr/bin/Xvfb'),'-displayfd',str(w),'-screen','0','1600x1200x24','-nolisten','tcp','-auth',str(auth),'-xkbdir','/usr/share/X11/xkb'],pass_fds=(w,),env=env,stdout=(a.run_dir/'xvfb.log').open('x'),stderr=subprocess.STDOUT);os.close(w)
         assert select.select([r],[],[],15)[0],'Xvfb timeout';number=os.read(r,64).decode().strip();os.close(r);assert number.isdigit();env['DISPLAY']=':'+number;os.environ['XAUTHORITY']=str(auth)
         x=C.CDLL('libX11.so.6');xt=C.CDLL('libXtst.so.6')
-        signatures={'XSendEvent':(C.c_int,[P,U,C.c_int,C.c_long,C.POINTER(Event)]),'XOpenDisplay':(P,[C.c_char_p]),'XDefaultRootWindow':(U,[P]),'XQueryTree':(C.c_int,[P,U,C.POINTER(U),C.POINTER(U),C.POINTER(C.POINTER(U)),C.POINTER(C.c_uint)]),'XInternAtom':(U,[P,C.c_char_p,C.c_int]),'XGetWindowProperty':(C.c_int,[P,U,U,C.c_long,C.c_long,C.c_int,U,C.POINTER(U),C.POINTER(C.c_int),C.POINTER(U),C.POINTER(U),C.POINTER(P)]),'XFree':(C.c_int,[P]),'XSetInputFocus':(C.c_int,[P,U,C.c_int,U]),'XSync':(C.c_int,[P,C.c_int]),'XStringToKeysym':(U,[C.c_char_p]),'XKeysymToKeycode':(C.c_ubyte,[P,U]),'XGetImage':(C.POINTER(Image),[P,U,C.c_int,C.c_int,C.c_uint,C.c_uint,U,C.c_int]),'XDestroyImage':(C.c_int,[C.POINTER(Image)])}
+        signatures={'XUnmapWindow':(C.c_int,[P,U]),'XMapWindow':(C.c_int,[P,U]),'XSendEvent':(C.c_int,[P,U,C.c_int,C.c_long,C.POINTER(Event)]),'XOpenDisplay':(P,[C.c_char_p]),'XDefaultRootWindow':(U,[P]),'XQueryTree':(C.c_int,[P,U,C.POINTER(U),C.POINTER(U),C.POINTER(C.POINTER(U)),C.POINTER(C.c_uint)]),'XInternAtom':(U,[P,C.c_char_p,C.c_int]),'XGetWindowProperty':(C.c_int,[P,U,U,C.c_long,C.c_long,C.c_int,U,C.POINTER(U),C.POINTER(C.c_int),C.POINTER(U),C.POINTER(U),C.POINTER(P)]),'XFree':(C.c_int,[P]),'XSetInputFocus':(C.c_int,[P,U,C.c_int,U]),'XSync':(C.c_int,[P,C.c_int]),'XStringToKeysym':(U,[C.c_char_p]),'XKeysymToKeycode':(C.c_ubyte,[P,U]),'XGetImage':(C.POINTER(Image),[P,U,C.c_int,C.c_int,C.c_uint,C.c_uint,U,C.c_int]),'XDestroyImage':(C.c_int,[C.POINTER(Image)])}
         for name,(rest,args) in signatures.items():f=getattr(x,name);f.restype=rest;f.argtypes=args
         for name,args in {'XTestFakeMotionEvent':[P,C.c_int,C.c_int,C.c_int,U],'XTestFakeButtonEvent':[P,C.c_uint,C.c_int,U],'XTestFakeKeyEvent':[P,C.c_uint,C.c_int,U]}.items():f=getattr(xt,name);f.restype=C.c_int;f.argtypes=args
         d=x.XOpenDisplay(env['DISPLAY'].encode());assert d;root=x.XDefaultRootWindow(d)
@@ -70,6 +70,10 @@ def main():
                 if 'widget' in cmd:
                     audit=json.loads((a.state_dir/'ui-geometry.json').read_text());rect=audit['widgets'][cmd['widget']];scale=audit['pixels_per_point'];assert rect[2]>rect[0] and rect[3]>rect[1], 'widget clipped';cmd['x']=int((rect[0]+rect[2])*scale/2);cmd['y']=int((rect[1]+rect[3])*scale/2)
                 xt.XTestFakeMotionEvent(d,0,cmd['x'],cmd['y'],0);xt.XTestFakeButtonEvent(d,1,1,0);xt.XTestFakeButtonEvent(d,1,0,0)
+            elif op=='hide':
+                x.XUnmapWindow(d,win)
+            elif op=='show':
+                x.XMapWindow(d,win);x.XSync(d,0);time.sleep(.5);x.XSetInputFocus(d,win,1,0)
             elif op=='close':
                 e=Event();e.client.type=33;e.client.send_event=1;e.client.display=d;e.client.window=win;e.client.message_type=x.XInternAtom(d,b'WM_PROTOCOLS',0);e.client.format=32;e.client.data[0]=x.XInternAtom(d,b'WM_DELETE_WINDOW',0);e.client.data[1]=0;assert x.XSendEvent(d,win,0,0,C.byref(e))
             elif op=='scroll':
@@ -88,6 +92,7 @@ def main():
                     key(name,1);key(name,0)
                     if shift:key('Shift_L',0)
             elif op=='capture':
+                audit=(a.state_dir/'ui-geometry.json').read_bytes();(a.run_dir/(cmd['name']+'.ui.json')).write_bytes(audit);cmd['ui_sha256']=hashlib.sha256(audit).hexdigest()
                 width=cmd.get('width',1440);height=cmd.get('height',1000);im=x.XGetImage(d,win,0,0,width,height,U(-1).value,2);assert im
                 try:
                     v=im.contents;assert (v.bits_per_pixel,v.byte_order,v.red_mask,v.green_mask,v.blue_mask)==(32,0,0xff0000,0xff00,0xff)
