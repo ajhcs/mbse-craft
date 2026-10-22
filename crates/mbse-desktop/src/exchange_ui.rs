@@ -182,10 +182,16 @@ impl ExchangeBrowser {
             "Projection kind: {:?} · original type: {}",
             node.kind, node.original_type
         ));
-        ui.monospace(format!(
-            "Source identity: ({}, {})",
-            node.location.file, node.source_id
-        ));
+        ui.add(
+            egui::Label::new(
+                RichText::new(format!(
+                    "Source identity: ({}, {})",
+                    node.location.file, node.source_id
+                ))
+                .monospace(),
+            )
+            .wrap(),
+        );
         ui.label(format!(
             "Resolved type namespace: {}",
             if node.namespace.is_empty() {
@@ -201,9 +207,12 @@ impl ExchangeBrowser {
             );
         }
         ui.label("Source attributes and scalar text (including authored unit/quantity/classification values):");
-        egui::ScrollArea::vertical().id_salt("external-properties").max_height(145.).show(ui,|ui|{egui::Grid::new("external-attribute-grid").striped(true).show(ui,|ui|{
-            for (key,value) in node.properties.iter().take(128){ui.monospace(key);let text=bounded_text(value.as_bytes(),8192);ui.label(text);ui.end_row();}
-        });if node.properties.len()>128{ui.label("Property table limited to128 entries; all original properties and bytes remain retained.");}});
+        egui::ScrollArea::vertical().id_salt("external-properties").max_height(145.).auto_shrink([false,false]).show(ui,|ui|{
+            ui.with_layout(egui::Layout::top_down(egui::Align::Min),|ui|{
+                for (key,value) in node.properties.iter().take(128){ui.add(egui::Label::new(RichText::new(bounded_text(key.as_bytes(),1024)).monospace()).wrap());ui.add(egui::Label::new(bounded_text(value.as_bytes(),8192)).wrap());ui.separator();}
+                if node.properties.len()>128{ui.label("Property preview limited to128 entries; all original properties and bytes remain retained.");}
+            });
+        });
         self.source_preview(ui, doc, &node.location);
     }
     fn source_preview(
@@ -212,11 +221,12 @@ impl ExchangeBrowser {
         doc: &ExternalDocument,
         location: &SourceLocation,
     ) {
-        ui.collapsing(format!("Frozen source span · {} bytes {}..{}",location.file,location.start,location.end),|ui|{
+        ui.collapsing(format!("Frozen source span · bytes {}..{}",location.start,location.end),|ui|{
+            ui.add(egui::Label::new(format!("Member: {}",location.file)).wrap());
             let files:Vec<_>=doc.files.iter().filter(|file|file.name==location.file).collect();
             if files.len()!=1{ui.colored_label(Color32::DARK_RED,"Source member identity is absent or ambiguous; no first-member fallback is used.");return;}
             let file=files[0];ui.monospace(format!("Member SHA-256: {}",file.sha256));
-            if let Some(bytes)=file.bytes.get(location.start..location.end){let mut text=bounded_text(bytes,32*1024);egui::ScrollArea::both().id_salt(("external-span",&location.file,location.start)).max_height(180.).show(ui,|ui|{ui.add(egui::TextEdit::multiline(&mut text).code_editor().interactive(false).desired_width(650.));});}
+            if let Some(bytes)=file.bytes.get(location.start..location.end){let mut text=bounded_text(bytes,32*1024);egui::ScrollArea::both().id_salt(("external-span",&location.file,location.start)).max_height(180.).show(ui,|ui|{ui.add(egui::TextEdit::multiline(&mut text).code_editor().interactive(false).desired_width(ui.available_width().min(650.)));});}
             else{ui.colored_label(Color32::DARK_RED,"Recorded source span is outside retained bytes; preview refused.");}
         });
     }
@@ -245,7 +255,10 @@ impl ExchangeBrowser {
         }
         for key in candidates {
             let label = format!("Inspect [{}] {}", key.file, key.id);
-            let response = ui.button(label);
+            let response = ui.add_sized(
+                [ui.available_width(), 26.],
+                egui::Button::new(label).truncate(),
+            );
             self.bound(
                 format!(
                     "exchange:endpoint:{}:{}:{}",
@@ -294,15 +307,24 @@ impl ExchangeBrowser {
             });self.filter(&doc);
             ui.label(format!("{} matching nodes. Selection uses (member, source ID), never an unqualified first-ID lookup.",self.filtered.len()));
             ui.horizontal_top(|ui|{
-                egui::ScrollArea::vertical().id_salt("external-node-list").max_width(360.).max_height(280.).show_rows(ui,34.,self.filtered.len(),|ui,rows|{ui.set_width(350.);for row in rows{let node=&doc.nodes[self.filtered[row]];let key=NodeKey::of(node);let response=ui.add_sized([345.,30.],egui::Button::selectable(self.selected.as_ref()==Some(&key),format!("{:?} · {} · {}",node.kind,if node.name.is_empty(){"(unnamed)"}else{&node.name},node.source_id)).truncate());self.bound(format!("exchange:node:{}:{}",key.file,key.id),&response);if response.on_hover_text(format!("Member: {}\nID: {}\nOriginal type: {}",key.file,key.id,node.original_type)).clicked(){self.selected=Some(key);}}});
-                ui.vertical(|ui|{let selected:Vec<_>=self.selected.as_ref().map(|key|doc.nodes.iter().filter(|node|node.location.file==key.file&&node.source_id==key.id).collect()).unwrap_or_default();if selected.len()==1{self.node_details(ui,&doc,selected[0]);}else{ui.label("Choose a unique (member, source ID) to inspect; ambiguous identities are not collapsed.");}});
+                ui.allocate_ui_with_layout(egui::vec2(355.,280.),egui::Layout::top_down(egui::Align::Min),|ui|{
+                    ui.set_min_width(350.);ui.set_max_width(350.);
+                    egui::ScrollArea::vertical().id_salt("external-node-list").auto_shrink([false,false]).max_height(280.).show_rows(ui,34.,self.filtered.len(),|ui,rows|{
+                        ui.with_layout(egui::Layout::top_down(egui::Align::Min),|ui|{ui.set_min_width(340.);ui.set_max_width(340.);for row in rows{let node=&doc.nodes[self.filtered[row]];let key=NodeKey::of(node);let response=ui.add_sized([335.,30.],egui::Button::selectable(self.selected.as_ref()==Some(&key),format!("{:?} · {} · {}",node.kind,if node.name.is_empty(){"(unnamed)"}else{&node.name},node.source_id)).truncate());self.bound(format!("exchange:node:{}:{}",key.file,key.id),&response);if response.on_hover_text(format!("Member: {}\nID: {}\nOriginal type: {}",key.file,key.id,node.original_type)).clicked(){self.selected=Some(key);}}});
+                    });
+                });
+                let details_width=ui.available_width().max(180.);
+                ui.allocate_ui_with_layout(egui::vec2(details_width,280.),egui::Layout::top_down(egui::Align::Min),|ui|{
+                    ui.set_min_width(details_width);ui.set_max_width(details_width);
+                    let selected:Vec<_>=self.selected.as_ref().map(|key|doc.nodes.iter().filter(|node|node.location.file==key.file&&node.source_id==key.id).collect()).unwrap_or_default();if selected.len()==1{self.node_details(ui,&doc,selected[0]);}else{ui.label("Choose a unique (member, source ID) to inspect; ambiguous identities are not collapsed.");}
+                });
             });
             ui.separator();ui.horizontal(|ui|{ui.label("Source references");let response=ui.checkbox(&mut self.reference_filter,"Only references mentioning selected ID");self.bound("exchange:reference-filter",&response);});
             let references:Vec<_>=doc.references.iter().enumerate().filter(|(_,r)|!self.reference_filter||self.selected.as_ref().is_some_and(|key|r.source==key.id||r.target==key.id)).map(|(index,_)|index).collect();
             egui::ScrollArea::vertical().id_salt("external-reference-list").max_height(135.).show_rows(ui,24.,references.len(),|ui,rows|{for row in rows{let index=references[row];let r=&doc.references[index];let response=ui.selectable_label(self.reference==Some(index),format!("[{}] {} -- {} -> {} · {:?}",r.location.file,r.source,r.role,r.target,r.resolution));self.bound(format!("exchange:reference:{index}"),&response);if response.clicked(){self.reference=Some(index);}}});
             if let Some(reference)=self.reference.and_then(|index|doc.references.get(index)){
                 ui.label(format!("Role: {} · Core resolution: {:?} · resolved flag: {}",reference.role,reference.resolution,reference.resolved));if let Some(original)=&reference.original_target{ui.label(format!("Original target spelling: {original}"));}if let Some(scope)=&reference.lexical_scope{ui.label(format!("Lexical scope: {scope}"));}
-                ui.horizontal_top(|ui|{ui.vertical(|ui|self.endpoint(ui,&doc,reference,false));ui.separator();ui.vertical(|ui|self.endpoint(ui,&doc,reference,true));});self.source_preview(ui,&doc,&reference.location);
+                ui.columns(2,|columns|{self.endpoint(&mut columns[0],&doc,reference,false);self.endpoint(&mut columns[1],&doc,reference,true);});self.source_preview(ui,&doc,&reference.location);
             }
             ui.separator();ui.label("Exact original-byte fresh copy (not a transformed semantic export)");let response=ui.add(egui::TextEdit::singleline(&mut self.copy_path).hint_text("/workspace/…/NEW-file with the source format extension").desired_width(ui.available_width()));self.bound("exchange:copy-path",&response);
             let response=ui.add_enabled(self.pending.is_none()&&!self.copy_path.trim().is_empty(),egui::Button::new("Create new exact source copy"));self.bound("exchange:Fresh copy",&response);if response.clicked(){copy=Some((doc.clone(),PathBuf::from(self.copy_path.trim())));}
