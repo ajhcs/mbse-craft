@@ -212,6 +212,12 @@ impl SemanticBrowser {
                 key_label(&node.key)
             ),
         );
+        if node.kind == SemanticKind::ReferenceProxy {
+            ui.strong("Reference mention; not an owned semantic element");
+            wrapped(ui,"The source type names a mentioned classifier. This key identifies the stored proxy/mention, not its referent. No actor/human defaults, property interpretation, expression evaluation or unsupplied resource admission is inferred.");
+        } else {
+            ui.label("Owned source element in this bounded projection");
+        }
         if let Some(flags) = &node.component_flags {
             wrapped(
                 ui,
@@ -357,7 +363,7 @@ impl SemanticBrowser {
                 let kinds:std::collections::BTreeSet<_>=set.nodes.iter().map(|n|format!("{:?}",n.kind)).collect();
                 let r=egui::ComboBox::from_id_salt("semantic-kind").selected_text(if self.kind.is_empty(){"All source kinds".into()}else{human(&self.kind)}).show_ui(ui,|ui|{ui.selectable_value(&mut self.kind,String::new(),"All source kinds");for k in kinds{ui.selectable_value(&mut self.kind,k.clone(),human(&k));}}).response;self.bound("semantic:kind-filter",&r);
             });
-            self.filters(set);ui.label(format!("{} of {} source elements",self.nodes.len(),set.nodes.len()));
+            self.filters(set);ui.label(format!("{} of {} projected nodes · {} owned elements · {} reference mentions",self.nodes.len(),set.nodes.len(),set.counters.owned_elements,set.counters.reference_proxies));
             // Explicit vertical child layouts prevent inherited horizontal rows from overlapping.
             ui.horizontal_top(|ui|{
                 let width=(ui.available_width()*0.36).clamp(180.,360.);
@@ -373,7 +379,7 @@ impl SemanticBrowser {
             ui.separator();ui.strong("Source references");
             ui.horizontal_wrapped(|ui|{
                 ui.label("Feature / role");let r=ui.text_edit_singleline(&mut self.role);self.bound("semantic:role-filter",&r);
-                combo(ui,"semantic-provenance","All provenance",&mut self.provenance,&["StoredAttribute","StoredChildReference","ContainmentDerived","SourceContainment"],&mut self.bounds);
+                combo(ui,"semantic-provenance","All provenance",&mut self.provenance,&["StoredAttribute","StoredChildReference","ContainmentDerived","SourceContainment","ReferenceMention"],&mut self.bounds);
                 combo(ui,"semantic-resolution","All resolutions",&mut self.resolution,&["Resolved","Unresolved","WrongKind","UnsupportedEndpointType","UnsuppliedResource","InvalidContainer","UnsupportedSyntax"],&mut self.bounds);
                 let r=ui.checkbox(&mut self.related,"Only selected element endpoints");self.bound("semantic:related-filter",&r);
             });
