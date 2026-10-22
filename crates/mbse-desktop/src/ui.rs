@@ -42,6 +42,7 @@ pub struct Workspace {
     save_path: String,
     model_fields: HashMap<egui::Id, RawKey>,
     context: egui::Context,
+    catalog: crate::catalog_ui::CatalogBrowser,
     frame_choice: craft_window::Choice,
     close_intent: bool,
     writes: Sender<WriteResult>,
@@ -106,7 +107,7 @@ impl Workspace {
             .unwrap_or_default();
         let (writes, completed_writes) = mpsc::channel();
         let preferences = Preferences::open(config, ctx.clone());
-        let mut app=Self { session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,last_edit:Instant::now(),last_periodic:Instant::now(), feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
+        let mut app=Self { session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,last_edit:Instant::now(),last_periodic:Instant::now(), feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
             creation: None, relation: None, popout: None, pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new() };
         app.refresh_recoveries();
         app
@@ -467,6 +468,7 @@ impl Workspace {
                 let recovery = ui.button("Recovery copy"); self.bound("action:Recovery copy",&recovery); if recovery.clicked() { self.recovery(); }
                 let recovery_count=self.recovery_inventory.as_ref().map_or(0,|i|i.entries.len());
                 let response=ui.button(format!("Review recovery copies ({recovery_count})"));self.bound("recovery:Review copies",&response);if response.clicked(){self.refresh_recoveries();self.recovery_window=true;}
+                let response=ui.button("Browse library folder");self.bound("action:Browse library folder",&response);if response.clicked(){self.catalog.open(&self.path);}
                 let response=ui.button("Recovery settings");self.bound("settings:Open",&response);if response.clicked(){self.settings_window=true;}
                 if ui.button("Export SysML copy").clicked() {
                     let result = self.session.begin_export_sysml(&PathBuf::from(self.path.trim())).and_then(|job| self.session.complete_export(stage1_io::execute_export(job))).and_then(|accepted| if accepted { Ok("Exported restricted SysML copy.".into()) } else { Err("Export receipt was not accepted.".into()) });
@@ -1767,6 +1769,7 @@ impl eframe::App for Workspace {
         self.canvas(root);
         self.dialogs(&ctx);
         self.capture(&ctx);
+        self.catalog.show(&ctx);
         let audit = serde_json::json!({"profile":"mbse-craft.ui-geometry/1","frame_policy":format!("{:?}",self.frame_choice.frame()),"frame_override":self.frame_choice.overridden(), "pixels_per_point":ctx.pixels_per_point(),
             "model_revision":self.session.editor.snapshot.model_revision,"raw_version":self.session.editor.snapshot.raw_version,
             "snapshot_hash":self.session.editor.snapshot.digest(),"selected":self.session.editor.selected.map(|id|id.0),
