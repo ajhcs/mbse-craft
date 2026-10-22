@@ -3,10 +3,15 @@
   "revision": "b1401e33b105ca2861575ede90f67f4d54449001",
   "selection": [
     "crates/atomic",
-    "crates/ui"
+    "crates/ui",
+    "crates/settings",
+    "crates/quit",
+    "crates/docpath",
+    "crates/window",
+    "crates/platform"
   ],
   "modifications": [
-    "Root Cargo.toml replaced by minimal two-crate extraction workspace; egui pinned =0.36.2. Crate source, manifests, tests, READMEs, licenses and notices unchanged."
+    "Containing Cargo.toml is an MBSE-Craft extraction workspace selecting seven shared crates and pinning egui =0.36.2; crate sources, tests, manifests, licenses and notices unchanged."
   ],
   "files": [
     {
@@ -16,7 +21,7 @@
     },
     {
       "path": "Cargo.toml",
-      "sha256": "e6c6a5f6c26dcdf30fe5569a208c0cd396bee7f511cc0943bee91d333fda6727",
+      "sha256": "6d02630d527569626b862d9e33dc908286b7490e3412949b731d5aa48dc67cba",
       "upstream_identical": false
     },
     {
@@ -57,6 +62,196 @@
     {
       "path": "crates/atomic/tests/permissions.rs",
       "sha256": "71cfcf79669b3acba2bdac6292ad0aa86437fc2be89fcc85cfdf333f134743fc",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/docpath/Cargo.toml",
+      "sha256": "6928b72b2f95d51c52869d1834b844321f0a6ab8b7e4db1d7eecbe60a867e598",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/docpath/src/lib.rs",
+      "sha256": "88c58c4e1e8447805913d190315cb152c6c7853ca64e3b7c573df157c7a773a1",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/docpath/tests/docpath.rs",
+      "sha256": "bc4bd7324b2bfb4d500ee1362991ebdba81b337a736f53d5071927b434f24d0b",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/platform/Cargo.toml",
+      "sha256": "cb7d148dc3d382196b020b5728abab69cea33aa636c87df779c3313a3dc3deeb",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/platform/LICENSE-APACHE",
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/platform/LICENSE-MIT",
+      "sha256": "2f42c0cafc8ad394d91373fe1f342aee5453850b151a51405c68cae9ada86d26",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/platform/NOTICE",
+      "sha256": "b4628bbe7b9d307ba985d59d73b715df38d5d2319159034c996f38045075343a",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/platform/README.md",
+      "sha256": "5885a09b89f106cda13a5249150ba2d33b746e2788e70213c4850419c1c78675",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/platform/src/appearance/portal/appearance_bus_tests.rs",
+      "sha256": "2502c7e3b9b9d7e2295634e0c76ffc5e68dae3e0ea25acd6dcac5ea3b40fbe89",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/platform/src/appearance.rs",
+      "sha256": "34795f485d28d1495cbbe7975d8f8841e7d24a80563a0fadda9b4d78f11e7c68",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/platform/src/browser.rs",
+      "sha256": "bef1329378d5ac05100bc3b8d1ec1e8ff0ed5796c9a469c6ea891a0acb743349",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/platform/src/dialog_outcome.rs",
+      "sha256": "48acc3e0b427f269ea3a2770e55edb7ee83ec29f490aa087d1c103c77900faca",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/platform/src/dialogs.rs",
+      "sha256": "2ead6e6bbe97e9181c47d220ec67a7ee6738ef48254b4799f74b7348bb1c58f7",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/platform/src/lib.rs",
+      "sha256": "7f5c36b7342cf7e5b16c6234e36e17183c1ac4bbfe8f841cf6b4713adb8c8a74",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/platform/src/process.rs",
+      "sha256": "d527a2c10d0ae332ccb69ceebb676b65fb678f94c16946c017978aa81ced3ace",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/platform/tests/browser_downloads.rs",
+      "sha256": "a3c9897633c467b3f73da0bd7875820f01e71e903f7d59f43ea43a42140175ef",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/platform/tests/browser_harness.js",
+      "sha256": "34fda5aca406dd4aca9152de999456f05e65e163aa94fae32439e54d7d73890f",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/platform/tests/dialog_lifecycle.rs",
+      "sha256": "ac8fac7b860006c4ffd92dd848ee58279878bf959c7427d0531f40391ffa5684",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/quit/Cargo.toml",
+      "sha256": "2b9c029e50de4bc207f386a565d2b3b03bb5638d6638f9ea1f0595f325ca9ebc",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/quit/src/close.rs",
+      "sha256": "f45dbce1e4f90778ef9e642ee75a412088a0d160527e4f522b373b2fb0b3eba5",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/quit/src/lib.rs",
+      "sha256": "62d291344e1200ab6717cb94c5d665ef3a00b144ef57148c310792511ab0ddd9",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/quit/src/macos.rs",
+      "sha256": "2ec2092cf2a91db04d2a5b5a8d5207eea5e569bb050a9e240bcb7019d9a6b898",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/quit/src/menu.rs",
+      "sha256": "27ca52c8d16431d1409b517fdb3fdea3653ca87b481a42a29ec497dfa3b1e33f",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/settings/Cargo.toml",
+      "sha256": "5a7f36cc4df7cb90f4940e616481792db0c00d58dba6fc8183e54414431bec5d",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/settings/README.md",
+      "sha256": "81bcff31dc5a79cffaa3611bcd7d1a9f90af8eebdd5ef79993fecfb39299b8a8",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/settings/src/document.rs",
+      "sha256": "a436b5617cdc78cc6ba17820e28488506c57db101345982c92df8a2c81baf06b",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/settings/src/error.rs",
+      "sha256": "761e2d9ef4b3e7f2d70ac89d7295421db664023849e1949f912e23fdceda237b",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/settings/src/lib.rs",
+      "sha256": "91859aa5dd89e8b1199dda6bb70ca49baaa9a8bddf084dce74f5409b4047374c",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/settings/src/migrate.rs",
+      "sha256": "953e10443235b86bcef1bf9fc8c372803a2be20c3da69cd4dad3b67302729e5e",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/settings/src/paths.rs",
+      "sha256": "51f6344d55456667a38a25ff2357f338e1922ac0729963c583e32cb137f97e5b",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/settings/src/recovery.rs",
+      "sha256": "d0c0d7a73623cc283b981bc56826941672e60c31e88de8c02ed286875de41789",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/settings/src/store.rs",
+      "sha256": "cc81307cab697590a60a520e5e15bbb84cda4a15eccce042e9ef1366c8882c70",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/settings/tests/common/mod.rs",
+      "sha256": "4d0e4c4a8b42121f6e3885b791592e1e045513868baf3bf84b492f1e827f7171",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/settings/tests/memory.rs",
+      "sha256": "1b1f9e0db6b6506876ab09eda776e512f6c28c6202e0c2f2de95f9b5eb1c8111",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/settings/tests/migrate.rs",
+      "sha256": "31d475f3f5f57e68ffc31be636fe2a5fb6938dfb7318f3f3e8c49a5ee7f48fcb",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/settings/tests/paths.rs",
+      "sha256": "dc05b7452834ebe7dd1f006a56d5f08dcfd2fb5f409f7ec6f7bb503b1021bbf1",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/settings/tests/recovery.rs",
+      "sha256": "3426b1c0f7ad7431094253ae37bf9ba83baafd456634994e95438ba9909b24f0",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/settings/tests/store.rs",
+      "sha256": "ce69b5c19b6867b3f4d7edce028221c1c7bdd94b3401329cf0c2437a2af28a63",
       "upstream_identical": true
     },
     {
@@ -182,6 +377,21 @@
     {
       "path": "crates/ui/tests/visual_regression.rs",
       "sha256": "ec80a3cb5a64b3baf6dae59230b77742059ad2ee3f8b5a96ea7f79929ce47008",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/window/Cargo.toml",
+      "sha256": "a563245aa835e13cf608613124f418353c59700bf78028dd273be4ed8e485595",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/window/README.md",
+      "sha256": "2a95730934a301e3ca3606ef4daf7bc362665dd85059f464ef734ae9dd94a52f",
+      "upstream_identical": true
+    },
+    {
+      "path": "crates/window/src/lib.rs",
+      "sha256": "40fedba0ae22fd97b4694323425e0fdef1ddceaec7795fa0e96b9f9ad8741e8e",
       "upstream_identical": true
     }
   ]
