@@ -1,0 +1,15 @@
+# Apply at MBSE-Craft workspace root only AFTER the M1 native epoch.
+[patch.crates-io]
+ecolor = { path = "vendor/egui-fork/crates/ecolor" }
+emath = { path = "vendor/egui-fork/crates/emath" }
+epaint = { path = "vendor/egui-fork/crates/epaint" }
+epaint_default_fonts = { path = "vendor/egui-fork/crates/epaint_default_fonts" }
+egui = { path = "vendor/egui-fork/crates/egui" }
+egui-winit = { path = "vendor/egui-fork/crates/egui-winit" }
+egui-wgpu = { path = "vendor/egui-fork/crates/egui-wgpu" }
+egui_glow = { path = "vendor/egui-fork/crates/egui_glow" }
+egui_inspection = { path = "vendor/egui-fork/crates/egui_inspection" }
+egui_extras = { path = "vendor/egui-fork/crates/egui_extras" }
+egui_kittest = { path = "vendor/egui-fork/crates/egui_kittest" }
+eframe = { path = "vendor/egui-fork/crates/eframe" }
+winit = { path = "vendor/winit-fork" }
