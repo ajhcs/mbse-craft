@@ -1,0 +1,291 @@
+{
+  "error": false,
+  "feedback": "Select a model card to edit its fields. Model values and unfinished text remain separate.",
+  "frame_override": true,
+  "frame_policy": "App(Layout { left: [], right: [Minimize, Maximize, Close] })",
+  "model_revision": 18,
+  "periodic_recovery": true,
+  "pixels_per_point": 1.0,
+  "preferences_status": "Preferences save failed: settings could not be saved: Is a directory (os error 21); the shared settings policy will retry after backoff.",
+  "profile": "mbse-craft.ui-geometry/1",
+  "raw_version": 14,
+  "recovery_current": false,
+  "recovery_interval_seconds": 60,
+  "recovery_path": null,
+  "save_status": "Saved",
+  "selected": 1002,
+  "snapshot_hash": "f2d726c6746a4d012be82265f8fafbfdc4100ca76e6ac959969f896de3b9b6a9",
+  "widgets": {
+    "action:Add Actor": [
+      101.375,
+      727.0,
+      167.59375,
+      745.0
+    ],
+    "action:Add Capability": [
+      94.9375,
+      701.0,
+      186.375,
+      719.0
+    ],
+    "action:Add Environment": [
+      8.0,
+      753.0,
+      116.96875,
+      771.0
+    ],
+    "action:Add Expectation": [
+      8.0,
+      779.0,
+      111.6875,
+      797.0
+    ],
+    "action:Add Measure": [
+      8.0,
+      727.0,
+      92.375,
+      745.0
+    ],
+    "action:Add Mission": [
+      8.0,
+      701.0,
+      85.9375,
+      719.0
+    ],
+    "action:Add Objective": [
+      195.375,
+      701.0,
+      285.125,
+      719.0
+    ],
+    "action:Add Organization": [
+      125.96875,
+      753.0,
+      235.5,
+      771.0
+    ],
+    "action:Add Stakeholder": [
+      176.59375,
+      727.0,
+      280.625,
+      745.0
+    ],
+    "action:Browse library folder": [
+      800.84375,
+      36.5,
+      930.25,
+      54.5
+    ],
+    "action:Import SysML": [
+      390.96875,
+      36.5,
+      477.46875,
+      54.5
+    ],
+    "action:New": [
+      234.46875,
+      36.5,
+      268.875,
+      54.5
+    ],
+    "action:Open": [
+      277.875,
+      36.5,
+      318.03125,
+      54.5
+    ],
+    "action:Recover": [
+      327.03125,
+      36.5,
+      381.96875,
+      54.5
+    ],
+    "action:Recovery copy": [
+      530.15625,
+      36.5,
+      621.78125,
+      54.5
+    ],
+    "action:Redo": [
+      1251.9375,
+      35.0,
+      1295.9375,
+      63.0
+    ],
+    "action:Save": [
+      486.46875,
+      36.5,
+      521.15625,
+      54.5
+    ],
+    "action:Undo": [
+      1198.9375,
+      35.0,
+      1242.9375,
+      63.0
+    ],
+    "canvas:ownership": [
+      346.0,
+      183.0,
+      549.40625,
+      201.0
+    ],
+    "card:1": [
+      371.0,
+      251.0,
+      695.0,
+      335.0
+    ],
+    "card:1000": [
+      719.0,
+      251.0,
+      1043.0,
+      335.0
+    ],
+    "card:1001": [
+      1067.0,
+      251.0,
+      1391.0,
+      335.0
+    ],
+    "card:1002": [
+      371.0,
+      406.0,
+      695.0,
+      490.0
+    ],
+    "context-kind:1002:1003": [
+      26.0,
+      519.0,
+      167.1875,
+      537.0
+    ],
+    "context:add:1002": [
+      8.0,
+      610.0,
+      87.0625,
+      628.0
+    ],
+    "field:1002:contextName:1003": [
+      26.0,
+      492.0,
+      329.0,
+      511.0
+    ],
+    "field:1002:contextText:1003": [
+      26.0,
+      568.0,
+      329.0,
+      602.0
+    ],
+    "field:1002:name": [
+      8.0,
+      367.0,
+      329.0,
+      386.0
+    ],
+    "frame:Close window": [
+      1390.0,
+      3.0,
+      1424.0,
+      29.0
+    ],
+    "frame:Maximize or restore window": [
+      1347.0,
+      3.0,
+      1381.0,
+      29.0
+    ],
+    "frame:Minimize window": [
+      1304.0,
+      3.0,
+      1338.0,
+      29.0
+    ],
+    "path": [
+      202.6875,
+      71.0,
+      1432.0,
+      90.0
+    ],
+    "recovery:Review copies": [
+      630.78125,
+      36.5,
+      791.84375,
+      54.5
+    ],
+    "relation:Scope:1:1000": [
+      346.0,
+      719.0,
+      897.46875,
+      737.0
+    ],
+    "relation:Scope:1:1001": [
+      346.0,
+      745.0,
+      888.375,
+      763.0
+    ],
+    "relation:Scope:1:1002": [
+      346.0,
+      771.0,
+      907.625,
+      789.0
+    ],
+    "save-path": [
+      137.46875,
+      98.0,
+      1432.0,
+      117.0
+    ],
+    "scope:1002": [
+      8.0,
+      394.0,
+      113.21875,
+      412.0
+    ],
+    "settings:Open": [
+      939.25,
+      36.5,
+      1049.8125,
+      54.5
+    ],
+    "settings:interval": [
+      23.0,
+      106.0,
+      148.0625,
+      124.0
+    ],
+    "settings:periodic": [
+      23.0,
+      80.0,
+      183.21875,
+      98.0
+    ],
+    "tree:1": [
+      26.0,
+      203.0,
+      249.5625,
+      221.0
+    ],
+    "tree:1000": [
+      26.0,
+      229.0,
+      226.8125,
+      247.0
+    ],
+    "tree:1001": [
+      26.0,
+      255.0,
+      217.71875,
+      273.0
+    ],
+    "tree:1002": [
+      26.0,
+      281.0,
+      236.96875,
+      299.0
+    ]
+  },
+  "write_pending": false
+}

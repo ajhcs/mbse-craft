@@ -1,0 +1,11 @@
+{"ready": true, "app_pid": 614304, "server_pid": 614301, "window": 4194307, "binary_sha256": "10661ca605880be1f1071e1d6fca0a91a1ce386dddc393fd743dd83f95ff9bbd"}
+{"op": "click", "widget": "path", "x": 817, "y": 47, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "/workspace/repos/builderbob/sysand-projects-research-20261022/sources/ode4hera/architecture-design/package", "app_returncode": null}
+{"op": "click", "widget": "action:Browse library folder", "pause": 1, "x": 865, "y": 12, "app_returncode": null}
+{"op": "capture", "name": "actual-catalog-readable-source", "ui_sha256": "af07a5dcb85f586e8bcac7e47875d6e6b402f86d8f9472e2a35168e934c1ac7a", "sha256": "e6ceb9414f7031d4f82484b9d3fac2d2e6f7fc9828b1aedb80816b2934e1f682", "app_returncode": null}
+{"op": "capture", "name": "catalog-ready", "ui_sha256": "af07a5dcb85f586e8bcac7e47875d6e6b402f86d8f9472e2a35168e934c1ac7a", "sha256": "e6ceb9414f7031d4f82484b9d3fac2d2e6f7fc9828b1aedb80816b2934e1f682", "app_returncode": null}
+{"op": "scroll", "x": 700, "y": 440, "steps": 4, "app_returncode": null}
+{"op": "capture", "name": "catalog-source-scroll", "ui_sha256": "af07a5dcb85f586e8bcac7e47875d6e6b402f86d8f9472e2a35168e934c1ac7a", "sha256": "19be48a89dba84c6d8f4e9c23c20c51318d7f0f0f3e79c4e64a53601e299b5ce", "app_returncode": null}
+{"op": "click", "x": 998, "y": 33, "app_returncode": null}
+{"op": "close", "pause": 2, "app_returncode": 0}

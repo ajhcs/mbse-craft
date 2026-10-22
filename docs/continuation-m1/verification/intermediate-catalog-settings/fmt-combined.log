@@ -1,0 +1,7 @@
+Diff in /workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-desktop/src/main.rs:1:
+-mod preferences;
+ mod catalog_ui;
++mod preferences;
+ mod ui;
+ use mbse_model::{stage1::RecordId, stage1_io::Session};
+ use std::path::PathBuf;

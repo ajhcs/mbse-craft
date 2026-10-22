@@ -1,0 +1,99 @@
+{
+  "scope": "Intermediate combined M1/native catalog+settings, before later external-viewer/assurance integration",
+  "catalog_binary_sha256": "10661ca605880be1f1071e1d6fca0a91a1ce386dddc393fd743dd83f95ff9bbd",
+  "catalog_source_sha256": "cdbbc15271e63be8bdc44750333e71307d502d063577be4732f1acbedaa537d6",
+  "settings_failure_binary_sha256": "f838d5ac230c0854c752c843171c862a5a4bcc688fbf5e325a3ab531d5977d7f",
+  "settings_failure_source_sha256": "7db6404a0ca586e63b8a05ec5919368e174567eea114a2683dab137171ac717c",
+  "tests_passed": 152,
+  "tests_failed": 0,
+  "repaired_failing_case": "recovery_inventory_file_count_and_aggregate_byte_caps_are_independent passed separately before full workspace",
+  "observed": [
+    "Actual MIT ArchitectureDesign2.0.0 package admitted read-only,10files5entries, frozen e2fdca4d24852e105a6cabf3c2c84ee09fb917af2b1d5cdb7d64daec4c025f32",
+    "Native source/action path browsing left native snapshot hash unchanged",
+    "Initial actual render symbol/sourcepane defect routed and repaired; final vertical symbols and600pxsource read, wheel scrolling reaches later source lines",
+    "App-local process override MBSE_CRAFT_TITLEBAR=app selected actual Craft app frame; Close window click returned0 through app policy",
+    "Actual Preferences worker failed after one toggle because owned config.toml path was deliberately directory; pending/failure shown",
+    "Removing only injected empty blocker allowed same generation to retry to Preferences saved and config.toml periodic_recovery=true,interval60 WITHOUT another changed/toggle",
+    "Preference interval popup ControlZ did not change native snapshot",
+    "Two real Preferences worker adapter tests pass in152-test total: retry same generation and older ack cannot clear newer pending"
+  ],
+  "not_qualified": [
+    "actual compositor minimize/maximize behavior; Xvfb has no desktop WM",
+    "general catalog usability; current source preview about4lines high but scrollable",
+    "newer source still requires final exact rebuild/qualification"
+  ],
+  "artifacts": [
+    {
+      "path": "build-combined-r05.log",
+      "sha256": "69233cfd6b70ed7969a5f2ef6093c8de5b925033268a8779a713a991c6167d7e"
+    },
+    {
+      "path": "config-after-same-generation-retry.toml",
+      "sha256": "4b3862f85ddd2a774c5760cf4803553d721e5848bfdd9b6961704cf08d821f41"
+    },
+    {
+      "path": "fmt-combined.log",
+      "sha256": "056c2f11a85fac942b74a56ca93e8f45a082b6a02f5d004cc78ce6e7a20e5617"
+    },
+    {
+      "path": "gui-catalog-fixed/actual-catalog-readable-source.png",
+      "sha256": "e6ceb9414f7031d4f82484b9d3fac2d2e6f7fc9828b1aedb80816b2934e1f682"
+    },
+    {
+      "path": "gui-catalog-fixed/actual-catalog-readable-source.ui.json",
+      "sha256": "af07a5dcb85f586e8bcac7e47875d6e6b402f86d8f9472e2a35168e934c1ac7a"
+    },
+    {
+      "path": "gui-catalog-fixed/catalog-source-scroll.png",
+      "sha256": "19be48a89dba84c6d8f4e9c23c20c51318d7f0f0f3e79c4e64a53601e299b5ce"
+    },
+    {
+      "path": "gui-catalog-fixed/events.jsonl",
+      "sha256": "d920bb754e16506aee145019553407f13eaf0f5f560dd3ba15c4981151a0b2d2"
+    },
+    {
+      "path": "gui-catalog-settings/app-frame-context.png",
+      "sha256": "6912a99ba42eaeb85d9d0b3e411ce4f655f36b295fc7acfd1aa04e9622fe0ba5"
+    },
+    {
+      "path": "gui-catalog-settings/events.jsonl",
+      "sha256": "d4741ce22f76983bd00faa954223c07543a4d33355ecbe8b570c89b4c78db2f8"
+    },
+    {
+      "path": "gui-catalog-settings/prefs-popup-control-z-model-unchanged.ui.json",
+      "sha256": "24b96aa07cc8d6330e76e4d29359e9305c544ead1d3e4f843115cbf28dae1bf7"
+    },
+    {
+      "path": "gui-catalog-settings/settings-retry-confirmed-durable.png",
+      "sha256": "2e8edb8e6c244ef547bcfb39989c93fea76038fd4c947b10bd1c000e068c45c3"
+    },
+    {
+      "path": "gui-catalog-settings/settings-retry-confirmed-durable.ui.json",
+      "sha256": "e76ad20b1aab529e217f2296e03f4c3a98b4d8dd45561877224ce552c95c81f9"
+    },
+    {
+      "path": "gui-catalog-settings/settings-transient-failure.png",
+      "sha256": "2e4f38437ac82762bb692d39e3534d47cb99f0da5c2c55be9551d5f95d11759e"
+    },
+    {
+      "path": "gui-catalog-settings/settings-transient-failure.ui.json",
+      "sha256": "6c26585c18acd392051dd028f4b402687329572b8a1467a76c5eef57f634274e"
+    },
+    {
+      "path": "source-catalog-fixed.json",
+      "sha256": "b3b87f3a6ecbc9074a1742f98d4017e8d46a2280a267d637362b30919480cabf"
+    },
+    {
+      "path": "source-combined.json",
+      "sha256": "1d744ab240c1aa84576c2c15555825686b5b05de1a706b62745306b65c0349e0"
+    },
+    {
+      "path": "test-budget-correction.log",
+      "sha256": "5e8259dd713ccb9580fc61399066001d14ca803246edaf014a08f8c9aedadf7e"
+    },
+    {
+      "path": "test-combined-r05.log",
+      "sha256": "f66c63b8d65d43567124bc5108f06730e4d322a32810f7642b6277016d496c5c"
+    }
+  ]
+}
