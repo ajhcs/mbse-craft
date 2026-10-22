@@ -59,12 +59,22 @@ fn run() -> Result<(), String> {
     if let Some(id) = selected {
         session.editor.select(id)?;
     }
+    let frame_choice = craft_window::Choice::probe(craft_window::Prefix::new("MBSE_CRAFT"));
+    eprintln!(
+        "MBSE-Craft frame policy: {:?}; override {:?}",
+        frame_choice.frame(),
+        frame_choice.overridden()
+    );
+    let viewport = craft_window::decorate(
+        eframe::egui::ViewportBuilder::default()
+            .with_inner_size([1440., 1000.])
+            .with_min_inner_size([1000., 700.]),
+        frame_choice.frame(),
+    );
     eframe::run_native(
         "MBSE-Craft · Model workspace",
         eframe::NativeOptions {
-            viewport: eframe::egui::ViewportBuilder::default()
-                .with_inner_size([1440., 1000.])
-                .with_min_inner_size([1000., 700.]),
+            viewport,
             ..Default::default()
         },
         Box::new(move |cc| {

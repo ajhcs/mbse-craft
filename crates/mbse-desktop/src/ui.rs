@@ -42,6 +42,8 @@ pub struct Workspace {
     save_path: String,
     model_fields: HashMap<egui::Id, RawKey>,
     context: egui::Context,
+    frame_choice: craft_window::Choice,
+    close_intent: bool,
     writes: Sender<WriteResult>,
     completed_writes: Receiver<WriteResult>,
     pending_continue: Option<(Load, WriteKind)>,
@@ -73,6 +75,7 @@ impl Workspace {
         session: Session,
         capture: Option<PathBuf>,
         config: Option<PathBuf>,
+        frame_choice: craft_window::Choice,
         ctx: &egui::Context,
     ) -> Self {
         let mut style = (*ctx.style_of(egui::Theme::Light)).clone();
@@ -103,7 +106,7 @@ impl Workspace {
             .unwrap_or_default();
         let (writes, completed_writes) = mpsc::channel();
         let preferences = Preferences::open(config, ctx.clone());
-        let mut app=Self { session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),writes,completed_writes,pending_continue:None,preferences,settings_window:false,last_edit:Instant::now(),last_periodic:Instant::now(), feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
+        let mut app=Self { session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,last_edit:Instant::now(),last_periodic:Instant::now(), feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
             creation: None, relation: None, popout: None, pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new() };
         app.refresh_recoveries();
         app
@@ -395,6 +398,61 @@ impl Workspace {
             }
             Err(error) => self.result(Err(error)),
         }
+    }
+    fn frame_button(&mut self, ui: &mut egui::Ui, button: craft_window::Button) {
+        let (glyph, label) = match button {
+            craft_window::Button::Minimize => ("_", "Minimize window"),
+            craft_window::Button::Maximize => ("[]", "Maximize or restore window"),
+            craft_window::Button::Close => ("X", "Close window"),
+        };
+        let response = ui.add_sized([34., 26.], egui::Button::new(glyph));
+        self.bound(format!("frame:{label}"), &response);
+        response.widget_info(|| egui::WidgetInfo::labeled(egui::WidgetType::Button, true, label));
+        if response.on_hover_text(label).clicked() {
+            match button {
+                craft_window::Button::Minimize => ui
+                    .ctx()
+                    .send_viewport_cmd(egui::ViewportCommand::Minimized(true)),
+                craft_window::Button::Maximize => {
+                    ui.ctx().send_viewport_cmd(egui::ViewportCommand::Maximized(
+                        !ui.input(|i| i.viewport().maximized.unwrap_or(false)),
+                    ))
+                }
+                craft_window::Button::Close => {
+                    self.close_intent = true;
+                    ui.ctx().request_repaint();
+                }
+            }
+        }
+    }
+    fn frame_header(&mut self, root: &mut egui::Ui) {
+        let Some(layout) = self.frame_choice.frame().layout().cloned() else {
+            return;
+        };
+        egui::Panel::top("native-app-frame").show(root, |ui| {
+            ui.horizontal(|ui| {
+                for button in &layout.left {
+                    self.frame_button(ui, *button);
+                }
+                let width = (ui.available_width() - layout.right.len() as f32 * 43. - 8.).max(60.);
+                let response = ui.add_sized(
+                    [width, 28.],
+                    egui::Label::new("MBSE-Craft · Model workspace")
+                        .sense(egui::Sense::click_and_drag()),
+                );
+                if response.drag_started() {
+                    ui.ctx().send_viewport_cmd(egui::ViewportCommand::StartDrag);
+                }
+                if response.double_clicked() {
+                    ui.ctx().send_viewport_cmd(egui::ViewportCommand::Maximized(
+                        !ui.input(|i| i.viewport().maximized.unwrap_or(false)),
+                    ));
+                }
+                for button in &layout.right {
+                    self.frame_button(ui, *button);
+                }
+            });
+        });
     }
     fn toolbar(&mut self, root: &mut egui::Ui) {
         let history_field = self.focused_raw();
@@ -1618,8 +1676,11 @@ impl eframe::App for Workspace {
         self.preferences.poll();
         self.finish_writes(ctx);
         let hash = self.session.editor.snapshot.digest();
+        let requested = self.close_intent || ctx.input(|i| i.viewport().close_requested());
+        let app_close = self.close_intent;
+        self.close_intent = false;
         if block_close(
-            ctx.input(|i| i.viewport().close_requested()),
+            requested,
             self.session.is_dirty(),
             self.session.pending(),
             &hash,
@@ -1633,6 +1694,8 @@ impl eframe::App for Workspace {
             }
             self.pending = Some(Load::Quit);
             ctx.request_repaint();
+        } else if app_close {
+            ctx.send_viewport_cmd(egui::ViewportCommand::Close);
         }
         let now = Instant::now();
         let interval = Duration::from_secs(self.preferences.value.recovery_interval_seconds);
@@ -1693,12 +1756,13 @@ impl eframe::App for Workspace {
         egui::Panel::bottom("feedback").show(root, |ui| {
             ui.colored_label(if self.error { ERROR } else { INK }, &self.feedback);
         });
+        self.frame_header(root);
         self.toolbar(root);
         self.sidebar(root);
         self.canvas(root);
         self.dialogs(&ctx);
         self.capture(&ctx);
-        let audit = serde_json::json!({"profile":"mbse-craft.ui-geometry/1", "pixels_per_point":ctx.pixels_per_point(),
+        let audit = serde_json::json!({"profile":"mbse-craft.ui-geometry/1","frame_policy":format!("{:?}",self.frame_choice.frame()),"frame_override":self.frame_choice.overridden(), "pixels_per_point":ctx.pixels_per_point(),
             "model_revision":self.session.editor.snapshot.model_revision,"raw_version":self.session.editor.snapshot.raw_version,
             "snapshot_hash":self.session.editor.snapshot.digest(),"selected":self.session.editor.selected.map(|id|id.0),
             "save_status":format!("{:?}",self.session.status()),"periodic_recovery":self.preferences.value.periodic_recovery,"recovery_interval_seconds":self.preferences.value.recovery_interval_seconds,"preferences_status":self.preferences.status,"write_pending":self.session.pending(),"recovery_path":self.session.last_recovery().map(|p|p.display().to_string()),"recovery_current":self.session.recovery_current(),"feedback":self.feedback,"error":self.error,"widgets":self.audit});
