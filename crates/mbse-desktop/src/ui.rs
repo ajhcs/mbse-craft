@@ -439,10 +439,13 @@ impl Workspace {
                     .filter(|r| r.kind == RecordKind::Mission && r.scope == record.scope)
                 {
                     let mut linked = record.links().contains(&mission.id);
-                    if ui
-                        .checkbox(&mut linked, format!("{} #{}", mission.name, mission.id.0))
-                        .changed()
-                    {
+                    let response =
+                        ui.checkbox(&mut linked, format!("{} #{}", mission.name, mission.id.0));
+                    self.bound(
+                        format!("mission-link:{}:{}", record.id.0, mission.id.0),
+                        &response,
+                    );
+                    if response.changed() {
                         self.command(Command::ToggleMission {
                             capability: record.id,
                             mission: mission.id,
@@ -452,7 +455,7 @@ impl Workspace {
             }
             RecordKind::Measure => {
                 ui.label(RichText::new("Quantity and unit").strong());
-                egui::ComboBox::from_id_salt(("measure-unit", record.id.0))
+                let measure_unit = egui::ComboBox::from_id_salt(("measure-unit", record.id.0))
                     .selected_text(format!(
                         "{} · {}",
                         record.text("quantity"),
@@ -464,10 +467,12 @@ impl Workspace {
                             ("dimensionless", "one", "Scalar · 1"),
                             ("length", "metre", "Length · m"),
                         ] {
-                            if ui
-                                .selectable_label(record.text("unit") == unit, label)
-                                .clicked()
-                            {
+                            let response = ui.selectable_label(record.text("unit") == unit, label);
+                            self.bound(
+                                format!("measure-unit-option:{}:{}", record.id.0, unit),
+                                &response,
+                            );
+                            if response.clicked() {
                                 self.command(Command::SetQuantity {
                                     measure: record.id,
                                     quantity: quantity.into(),
@@ -476,6 +481,10 @@ impl Workspace {
                             }
                         }
                     });
+                self.bound(
+                    format!("measure-unit:{}", record.id.0),
+                    &measure_unit.response,
+                );
                 self.field(ui, record, "criterion", "Target criterion", false);
                 ui.label(format!(
                     "Accepted criterion: {} {}",
@@ -598,13 +607,19 @@ impl Workspace {
                 ))
                 .show_ui(ui, |ui| {
                     for unit in all_units() {
-                        if ui
-                            .selectable_label(
-                                unit == definition.output.unit,
-                                calc::unit_label(unit),
-                            )
-                            .clicked()
-                        {
+                        let response = ui.selectable_label(
+                            unit == definition.output.unit,
+                            calc::unit_label(unit),
+                        );
+                        self.bound(
+                            format!(
+                                "output-unit-option:{}:{}",
+                                record.id.0,
+                                calc::unit_key(unit)
+                            ),
+                            &response,
+                        );
+                        if response.clicked() {
                             let mut updated = definition.clone();
                             updated.output = QuantityType {
                                 kind: calc::unit_kind(unit),
@@ -961,15 +976,17 @@ impl Workspace {
             egui::Window::new("Preserve current work").collapsible(false).resizable(false).show(ctx, |ui| {
                 ui.label("The current model has unsaved accepted values or retained drafts.");
                 ui.label("Save to the file path, or create a durable recovery copy before continuing.");
-                if ui.button("Save and continue").clicked() {
+                let response=ui.button("Save and continue"); self.bound("preserve:Save and continue",&response);
+                if response.clicked() {
                     self.save();
                     if !self.session.is_dirty() { self.pending = None; if matches!(action,Load::Quit) { self.allow_close = Some(self.session.editor.snapshot.digest()); ctx.send_viewport_cmd(egui::ViewportCommand::Close); } else { self.load(action.clone()); } }
                 }
-                if ui.button("Keep recovery and continue").clicked() {
+                let response=ui.button("Keep recovery and continue"); self.bound("preserve:Keep recovery and continue",&response);
+                if response.clicked() {
                     let result = self.recovery(); let ok = result.is_ok(); self.result(result);
                     if ok { self.pending = None; if matches!(action,Load::Quit) { self.allow_close = Some(self.session.editor.snapshot.digest()); ctx.send_viewport_cmd(egui::ViewportCommand::Close); } else { self.load(action.clone()); } }
                 }
-                if ui.button("Cancel").clicked() { self.pending = None; }
+                let response=ui.button("Cancel"); self.bound("preserve:Cancel",&response); if response.clicked() { self.pending = None; }
             });
         }
     }
