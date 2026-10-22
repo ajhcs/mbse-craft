@@ -54,3 +54,9 @@ All paths are relative to `REF`; source timestamps above are recording-relative,
 | curated-study/screenshots/0268_V2_00-51-10-000_required-restored-after-reopen.png |48b270d7fc04f15451e6766581ccacc64e89343d1ed36358b62a3daabada2728 |
 
 References remain private and read-only. Watermarked screenshots, exported diagrams and archived model bytes stay outside the MBSE-Craft repository; this independently authored textual comparison grants no redistribution rights to proprietary software or artwork.
+
+## Reconciliation with independent Kernspan comparison r02
+
+Read-only comparison package `/workspace/repos/builderbob/kernspan/work/stage1-completion-20261022/intake/CATIA-WORKFLOW-COMPARISON-r02.zip` was inspected;45260 bytes, SHA-256`4254d326052a6b9f50cdf301baf99a97954af181370e81636a10d541cf564a58`. Its `COMPARISON.md` agrees on distinct current/backup CATIA model versions, sampled recording limitations, richer CATIA views and narrower typed native workflow. It reports independent screenshot checking by its analyst; MBSE-Craft does not relabel that as its own287-frame audit.
+
+Count rejection for negative/fractional/greater-than-2^53-1 input already exists in the shared Kernspan evaluator. Corresponding MBSE-Craft checks are inherited regression evidence, not new differentiation. Similar87.5 arithmetic under different targets/fixtures does not establish parity or superiority. CATIA Boolean target assessment and native activity/diagram family remain explicit gaps; local numeric results and preserved drafts are not substitutes for those semantics.
