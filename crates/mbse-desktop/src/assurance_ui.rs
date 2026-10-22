@@ -579,25 +579,46 @@ mod tests {
     fn delayed_attachment_keeps_new_requirement_selection_and_evidence() {
         let mut workspace = AssuranceWorkspace::default();
         let editor = editor();
-        let first = workspace.board.add_requirement("First requirement".into()).unwrap();
-        let second = workspace.board.add_requirement("Second requirement".into()).unwrap();
+        let first = workspace
+            .board
+            .add_requirement("First requirement".into())
+            .unwrap();
+        let second = workspace
+            .board
+            .add_requirement("Second requirement".into())
+            .unwrap();
         let config = workspace.config().unwrap();
         let context = EvidenceContext::from_editor(&editor, &config).unwrap();
         let path = std::env::temp_dir().join(format!("mbse-selection-{}.txt", std::process::id()));
-        let mut file = std::fs::OpenOptions::new().write(true).create_new(true).open(&path).unwrap();
+        let mut file = std::fs::OpenOptions::new()
+            .write(true)
+            .create_new(true)
+            .open(&path)
+            .unwrap();
         std::io::Write::write_all(&mut file, b"Synthetic selection regression").unwrap();
         drop(file);
-        let current = workspace.board.attach_local_evidence(second, context.clone(), &path, EvidenceOutcome::NotRun).unwrap();
+        let current = workspace
+            .board
+            .attach_local_evidence(second, context.clone(), &path, EvidenceOutcome::NotRun)
+            .unwrap();
         workspace.selected = Some(first);
         let frozen = workspace.close_state().unwrap();
         let mut returned = workspace.board.clone();
-        let late = returned.attach_local_evidence(first, context, &path, EvidenceOutcome::NotRun).unwrap();
+        let late = returned
+            .attach_local_evidence(first, context, &path, EvidenceOutcome::NotRun)
+            .unwrap();
         std::fs::remove_file(&path).unwrap();
         let (tx, rx) = mpsc::channel();
         workspace.pending = Some(rx);
         workspace.selected = Some(second);
         workspace.evidence = Some(current);
-        tx.send(Completion::Updated(Ok((returned, Some(late), "Attached".into())), frozen, editor.calculation_stamp(), config)).unwrap();
+        tx.send(Completion::Updated(
+            Ok((returned, Some(late), "Attached".into())),
+            frozen,
+            editor.calculation_stamp(),
+            config,
+        ))
+        .unwrap();
         workspace.show(&egui::Context::default(), &editor);
         assert_eq!(workspace.selected, Some(second));
         assert_eq!(workspace.evidence, Some(current));
