@@ -640,3 +640,32 @@ fn exact_native_source_anchor_requires_relink_after_native_raw_or_model_changes(
         .attach_calculation(req, &editor, &json!({}), CalculationId(11))
         .is_ok());
 }
+
+#[test]
+fn canonical_context_metadata_and_fixed_engine_limits_survive_save_reopen() {
+    let editor = model();
+    let metadata = json!({"purpose":"Review speed", "external_engine":false});
+    let mut board = Board::new();
+    let req = board
+        .add_requirement("Retain evidence context".into())
+        .unwrap();
+    let id = board
+        .attach_calculation(req, &editor, &metadata, CalculationId(11))
+        .unwrap();
+    let area = area();
+    let path = area.path().join("context.json");
+    board.save_new(&path).unwrap();
+    let (reopened, _) = Board::open(&path).unwrap();
+    let evidence = &reopened.register.evidence[&id];
+    assert_eq!(evidence.context_metadata, Some(metadata.clone()));
+    assert_eq!(evidence.evaluator_limits, Some(calc::Limits::default()));
+    let mut malformed: serde_json::Value =
+        serde_json::from_slice(&std::fs::read(&path).unwrap()).unwrap();
+    malformed["register"]["evidence"][id.0.to_string()]["context_metadata"]["purpose"] =
+        json!("Tampered context");
+    let tampered = area.path().join("tampered-context.json");
+    std::fs::write(&tampered, serde_json::to_vec(&malformed).unwrap()).unwrap();
+    assert!(Board::open(&tampered)
+        .unwrap_err()
+        .contains("EVIDENCE_INTEGRITY"));
+}

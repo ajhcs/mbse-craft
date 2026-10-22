@@ -130,6 +130,10 @@ pub struct Evidence {
     pub requirement_revision: u64,
     pub requirement_hash: String,
     pub context: EvidenceContext,
+    #[serde(default)]
+    pub context_metadata: Option<Value>,
+    #[serde(default)]
+    pub evaluator_limits: Option<calc::Limits>,
     pub artifact_sha256: String,
     pub artifact_bytes: Vec<u8>,
     pub artifact_path: Option<PathBuf>,
@@ -496,6 +500,7 @@ impl Board {
             selected_quantity,
             outcome,
             Some(receipt.successful),
+            Some(config.clone()),
         )?;
         let proof = evidence_hash(
             self.register
@@ -523,6 +528,31 @@ impl Board {
             None,
             outcome,
             None,
+            None,
+        )
+    }
+    pub fn attach_local_evidence_with_metadata(
+        &mut self,
+        requirement: RequirementId,
+        context: EvidenceContext,
+        metadata: &Value,
+        path: &Path,
+        outcome: EvidenceOutcome,
+    ) -> Result<EvidenceId, String> {
+        if digest(metadata)? != context.config_hash {
+            return Err("ASSURANCE_CONTEXT_METADATA_HASH_MISMATCH".into());
+        }
+        let bytes = mbse_model::local_input::read(path, 8 * 1024 * 1024, "ASSURANCE_EVIDENCE")?;
+        self.attach(
+            requirement,
+            context,
+            bytes,
+            Some(path.to_owned()),
+            None,
+            None,
+            outcome,
+            None,
+            Some(metadata.clone()),
         )
     }
     #[allow(clippy::too_many_arguments)]
@@ -536,6 +566,7 @@ impl Board {
         selected_quantity: Option<QuantityValue>,
         outcome: EvidenceOutcome,
         global_calculation_success: Option<bool>,
+        context_metadata: Option<Value>,
     ) -> Result<EvidenceId, String> {
         self.transaction(|s| {
             if s.evidence.len() >= 10_000 {
@@ -557,6 +588,8 @@ impl Board {
                     requirement_revision,
                     requirement_hash,
                     context,
+                    context_metadata,
+                    evaluator_limits: selected_calculation.map(|_| calc::Limits::default()),
                     artifact_sha256: bytes_hash(&artifact_bytes),
                     artifact_bytes,
                     artifact_path,
@@ -590,6 +623,22 @@ impl Board {
             .get(&e.requirement)
             .ok_or("ASSURANCE_REQUIREMENT_MISSING")?;
         let mut reasons = vec![];
+        if e.context_metadata
+            .as_ref()
+            .and_then(|v| digest(v).ok())
+            .as_ref()
+            != Some(&e.context.config_hash)
+        {
+            reasons.push("retained evidence-context metadata missing or hash mismatch".into());
+        }
+        if e.selected_calculation.is_some()
+            && e.evaluator_limits.as_ref() != Some(&calc::Limits::default())
+        {
+            reasons.push(
+                "recorded evaluator limits differ from the fixed native evaluator configuration"
+                    .into(),
+            );
+        }
         if e.selected_calculation.is_some()
             || e.selected_quantity.is_some()
             || e.global_calculation_success.is_some()
@@ -917,6 +966,9 @@ impl Board {
                 || !used.insert(id.0)
                 || !s.requirements.contains_key(&e.requirement)
                 || bytes_hash(&e.artifact_bytes) != e.artifact_sha256
+                || e.context_metadata
+                    .as_ref()
+                    .is_some_and(|v| digest(v).ok().as_ref() != Some(&e.context.config_hash))
             {
                 return Err("ASSURANCE_EVIDENCE_INTEGRITY".into());
             }
