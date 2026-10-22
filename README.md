@@ -46,7 +46,11 @@ Storytold egui HEAD0.37 is not used; registry egui0.36.2 supplies the native typ
 
 ## Acceptance status
 
-Implementation and independent Linux verification are in progress. The draft PR is not a release. Test/build receipts and actual native screenshots will identify their precise source and executable hashes. Windows native behavior, AT-SPI accessibility, physical FPS/input latency, engineering acceptance and full ecosystem compatibility remain unqualified.
+Independent Linux verification passed123 tests, including actual Craft streaming/rename fault preservation and corrupted-main recovery. Native workflows passed blank-model creation with typed links and2500m-to-2.5km calculation, save/normal-close/relaunch; fixture-based invalid-draft preservation, typed relation edits, save failure/cancel safety, independent recovery and graceful close after keeping recovery. These are distinct fixture and blank-authoring checks, not general usability acceptance.
+
+Exact build-input SHA-256: `323fe697051fe40a508dcab6d8d3979898a0da8c34a4a2007aa1ec30ee3ac6d7`. Linux debug executable SHA-256: `ddefaaaa73675b5e1aacd8aee6288cfdf513049c0e8cad88b15be894a7e4b587`. Build used Rust1.99.1, one Cargo job, offline locked registry inputs, private Xvfb and software OpenGL. Recompute inputs with `python3 scripts/source-manifest.py`.
+
+The draft PR is not a release. Windows native behavior, AT-SPI accessibility, physical FPS/input latency, engineering acceptance and full ecosystem compatibility remain unqualified. The canvas uses a responsive grid with basic crossing routes, explicit scope-link visibility and a complete relation ledger; this does not establish collision-free dense layouts. Rich actor/environment/organization editors, generic CAD, service/AI integrations and timed automatic recovery remain gaps. See `docs/UI_WORKFLOW.md` and the independent acceptance artifacts under `docs/verification/`.
 
 ## Licenses
 
