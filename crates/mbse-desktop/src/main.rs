@@ -1,5 +1,7 @@
 mod preferences;
 mod catalog_ui;
+mod exchange_ui;
+mod assurance_ui;
 mod ui;
 use mbse_model::{stage1::RecordId, stage1_io::Session};
 use std::path::PathBuf;

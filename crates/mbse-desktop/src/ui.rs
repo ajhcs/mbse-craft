@@ -43,6 +43,8 @@ pub struct Workspace {
     model_fields: HashMap<egui::Id, RawKey>,
     context: egui::Context,
     catalog: crate::catalog_ui::CatalogBrowser,
+    exchange: crate::exchange_ui::ExchangeBrowser,
+    assurance: crate::assurance_ui::AssuranceWorkspace,
     frame_choice: craft_window::Choice,
     close_intent: bool,
     writes: Sender<WriteResult>,
@@ -107,7 +109,7 @@ impl Workspace {
             .unwrap_or_default();
         let (writes, completed_writes) = mpsc::channel();
         let preferences = Preferences::open(config, ctx.clone());
-        let mut app=Self { session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,last_edit:Instant::now(),last_periodic:Instant::now(), feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
+        let mut app=Self { session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::exchange_ui::ExchangeBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,last_edit:Instant::now(),last_periodic:Instant::now(), feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
             creation: None, relation: None, popout: None, pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new() };
         app.refresh_recoveries();
         app
@@ -338,7 +340,8 @@ impl Workspace {
                         match action {
                             Load::Quit => {
                                 self.allow_close = Some(self.session.editor.snapshot.digest());
-                                ctx.send_viewport_cmd(egui::ViewportCommand::Close);
+                                self.close_intent = true;
+                                ctx.request_repaint();
                             }
                             action => self.load(action),
                         }
@@ -468,6 +471,8 @@ impl Workspace {
                 let recovery = ui.button("Recovery copy"); self.bound("action:Recovery copy",&recovery); if recovery.clicked() { self.recovery(); }
                 let recovery_count=self.recovery_inventory.as_ref().map_or(0,|i|i.entries.len());
                 let response=ui.button(format!("Review recovery copies ({recovery_count})"));self.bound("recovery:Review copies",&response);if response.clicked(){self.refresh_recoveries();self.recovery_window=true;}
+                let response=ui.button("Open external projection");self.bound("action:Open external projection",&response);if response.clicked(){self.exchange.open(&self.path);}
+                let response=ui.button("Requirements and evidence");self.bound("action:Requirements and evidence",&response);if response.clicked(){self.assurance.open_window();}
                 let response=ui.button("Browse library folder");self.bound("action:Browse library folder",&response);if response.clicked(){self.catalog.open(&self.path);}
                 let response=ui.button("Recovery settings");self.bound("settings:Open",&response);if response.clicked(){self.settings_window=true;}
                 if ui.button("Export SysML copy").clicked() {
@@ -1678,6 +1683,13 @@ impl eframe::App for Workspace {
         let requested = self.close_intent || ctx.input(|i| i.viewport().close_requested());
         let app_close = self.close_intent;
         self.close_intent = false;
+        if requested && !self.assurance.request_close() {
+            ctx.send_viewport_cmd(egui::ViewportCommand::CancelClose);
+            ctx.send_viewport_cmd(egui::ViewportCommand::Visible(true));
+            ctx.send_viewport_cmd(egui::ViewportCommand::Minimized(false));
+            ctx.request_repaint();
+            return;
+        }
         if block_close(
             requested,
             self.session.is_dirty(),
@@ -1719,7 +1731,11 @@ impl eframe::App for Workspace {
         self.frames = self.frames.saturating_add(1);
         self.audit.clear();
         if ctx.input_mut(|i| i.consume_key(egui::Modifiers::COMMAND, egui::Key::S)) {
-            self.save();
+            if self.assurance.is_visible() {
+                self.assurance.request_save();
+            } else if !self.exchange.is_visible() {
+                self.save();
+            }
         }
         let transition = ctx.input(|i| {
             i.events.iter().any(|e| {
@@ -1734,17 +1750,21 @@ impl eframe::App for Workspace {
                 )
             })
         });
-        let target = shortcut_policy(
-            self.focused_raw(),
-            ctx.text_edit_focused()
-                || egui::Popup::is_any_open(&ctx)
-                || self.creation.is_some()
-                || self.context_creation.is_some()
-                || self.settings_window
-                || self.recovery_window
-                || self.pending.is_some(),
-            transition,
-        );
+        let target = if self.assurance.is_visible() || self.exchange.is_visible() {
+            ShortcutTarget::Widget
+        } else {
+            shortcut_policy(
+                self.focused_raw(),
+                ctx.text_edit_focused()
+                    || egui::Popup::is_any_open(&ctx)
+                    || self.creation.is_some()
+                    || self.context_creation.is_some()
+                    || self.settings_window
+                    || self.recovery_window
+                    || self.pending.is_some(),
+                transition,
+            )
+        };
         if !matches!(target, ShortcutTarget::Widget) {
             let redo = ctx.input_mut(|i| {
                 i.consume_key(
@@ -1772,6 +1792,8 @@ impl eframe::App for Workspace {
         self.dialogs(&ctx);
         self.capture(&ctx);
         self.catalog.show(&ctx);
+        self.assurance.show(&ctx, &self.session.editor);
+        self.audit.extend(self.exchange.show(&ctx));
         let audit = serde_json::json!({"profile":"mbse-craft.ui-geometry/1","frame_policy":format!("{:?}",self.frame_choice.frame()),"frame_override":self.frame_choice.overridden(), "pixels_per_point":ctx.pixels_per_point(),
             "model_revision":self.session.editor.snapshot.model_revision,"raw_version":self.session.editor.snapshot.raw_version,
             "snapshot_hash":self.session.editor.snapshot.digest(),"selected":self.session.editor.selected.map(|id|id.0),
