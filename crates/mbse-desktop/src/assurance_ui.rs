@@ -347,7 +347,7 @@ impl AssuranceWorkspace {
             Completion::Loaded(Ok((board,hash)),path,frozen) if self.close_state().as_ref()==Some(&frozen)&&PathBuf::from(self.path.trim())==path=>{self.epoch=self.epoch.saturating_add(1);self.saved=board.as_value().ok();self.board=board;self.selected=self.board.register.requirements.keys().next().copied();self.evidence=None;self.owned=Some((path,hash));self.discard=None;self.statement=self.board.register.drafts.get("new:statement").map(|d|d.text.clone()).unwrap_or_default();self.feedback="Register reopened. Historical evidence is retained; reopening does not authenticate a native evaluator run.".into();},
             Completion::Loaded(Ok(_),_,_)=>self.feedback="Open result is stale because register edits changed after dispatch; live changes retained. Open again after preserving them.".into(),
             Completion::Loaded(Err(e),_,_)=>self.feedback=e,
-            Completion::Updated(Ok((board,evidence,message)),frozen,stamp,config) if self.close_state().as_ref()==Some(&frozen)&&editor.calculation_stamp()==stamp&&self.config().ok().as_ref()==Some(&config)=>{self.board=board;self.epoch=self.epoch.saturating_add(1);if evidence.is_some(){self.evidence=evidence;}self.feedback=message;},
+            Completion::Updated(Ok((board,evidence,message)),frozen,stamp,config) if self.close_state().as_ref()==Some(&frozen)&&editor.calculation_stamp()==stamp&&self.config().ok().as_ref()==Some(&config)=>{self.board=board;self.epoch=self.epoch.saturating_add(1);if let Some(eid)=evidence{if self.board.register.evidence.get(&eid).is_some_and(|e|Some(e.requirement)==self.selected){self.evidence=Some(eid);}}self.feedback=message;},
             Completion::Updated(Ok(_),_,_,_)=>self.feedback="Evidence result is stale because the register, native model/raw input or configuration changed; live changes retained.".into(),
             Completion::Updated(Err(e),_,_,_)=>self.feedback=e,
             Completion::Saved(Ok(hash),path,frozen)=>{self.saved=Some(frozen);self.owned=Some((path,hash));self.feedback=if self.dirty(){"Frozen register saved; newer edits remain unsaved."}else{"Requirements register saved."}.into();},
@@ -429,7 +429,7 @@ impl AssuranceWorkspace {
             ui.horizontal(|ui|{ui.label("Calculation measure ID");mark(&mut audit,"assurance:calculation",ui.add(egui::TextEdit::singleline(&mut self.calculation).desired_width(80.)));if mark(&mut audit,"assurance:Evaluate",ui.add_enabled(self.pending.is_none(),egui::Button::new("Evaluate and attach receipt"))).clicked(){match self.calculation.trim().parse::<u64>(){Ok(value)=>self.update_worker(editor,move|board,editor,config|{let id=board.attach_calculation(id,editor,config,CalculationId(value))?;Ok((Some(id),"Selected calculation receipt attached from the actual native engine; review and verification remain separate.".into()))}),Err(_)=>self.feedback="Enter a calculation Measure ID.".into()}}});
             ui.horizontal(|ui|{ui.label("Local artifact path");mark(&mut audit,"assurance:artifact-path",ui.text_edit_singleline(&mut self.local_evidence));if mark(&mut audit,"assurance:Attach external",ui.add_enabled(self.pending.is_none(),egui::Button::new("Attach external artifact"))).clicked(){let path=PathBuf::from(self.local_evidence.trim());if !path.is_absolute(){self.feedback="Choose an absolute local artifact path; no URLs or commands are executed.".into();}else{self.update_worker(editor,move|board,editor,config|{let context=EvidenceContext::from_editor(editor,config)?;let id=board.attach_local_evidence_with_metadata(id,context,config,&path,mbse_assurance::EvidenceOutcome::NotRun)?;Ok((Some(id),"External artifact attached with outcome not run; no native-run authenticity inferred.".into()))});}}});
             egui::ScrollArea::vertical().id_salt("evidence-list").max_height(95.).show(ui,|ui|{for(eid,e)in &self.board.register.evidence{if e.requirement==id && mark(&mut audit,format!("assurance:evidence:{}",eid.0),ui.selectable_label(self.evidence==Some(*eid),format!("E{} · {} · {} · {}",eid.0,outcome_label(e.outcome),adequacy_label(e.adequacy),selected_calculation_label(e.selected_calculation))).on_hover_text(format!("{} {}",outcome_hint(e.outcome),adequacy_hint(e.adequacy)))).clicked(){self.evidence=Some(*eid);}}});
-            if let Some(eid)=self.evidence {if let Some(e)=self.board.register.evidence.get(&eid).cloned(){
+            if let Some(eid)=self.evidence {if let Some(e)=self.board.register.evidence.get(&eid).filter(|e|e.requirement==id).cloned(){
                 ui.label(selected_calculation_label(e.selected_calculation));
                 ui.monospace(format!("Artifact SHA-256: {}",e.artifact_sha256));
                 if let Some(q)=&e.selected_quantity{ui.label(format!("Selected output: {} {} · quantity {:?}",q.value,mbse_model::stage1_calc::unit_label(q.quantity.unit),q.quantity.kind));}
@@ -574,6 +574,35 @@ mod tests {
             "instance".into(),
         )
         .unwrap()
+    }
+    #[test]
+    fn delayed_attachment_keeps_new_requirement_selection_and_evidence() {
+        let mut workspace = AssuranceWorkspace::default();
+        let editor = editor();
+        let first = workspace.board.add_requirement("First requirement".into()).unwrap();
+        let second = workspace.board.add_requirement("Second requirement".into()).unwrap();
+        let config = workspace.config().unwrap();
+        let context = EvidenceContext::from_editor(&editor, &config).unwrap();
+        let path = std::env::temp_dir().join(format!("mbse-selection-{}.txt", std::process::id()));
+        let mut file = std::fs::OpenOptions::new().write(true).create_new(true).open(&path).unwrap();
+        std::io::Write::write_all(&mut file, b"Synthetic selection regression").unwrap();
+        drop(file);
+        let current = workspace.board.attach_local_evidence(second, context.clone(), &path, EvidenceOutcome::NotRun).unwrap();
+        workspace.selected = Some(first);
+        let frozen = workspace.close_state().unwrap();
+        let mut returned = workspace.board.clone();
+        let late = returned.attach_local_evidence(first, context, &path, EvidenceOutcome::NotRun).unwrap();
+        std::fs::remove_file(&path).unwrap();
+        let (tx, rx) = mpsc::channel();
+        workspace.pending = Some(rx);
+        workspace.selected = Some(second);
+        workspace.evidence = Some(current);
+        tx.send(Completion::Updated(Ok((returned, Some(late), "Attached".into())), frozen, editor.calculation_stamp(), config)).unwrap();
+        workspace.show(&egui::Context::default(), &editor);
+        assert_eq!(workspace.selected, Some(second));
+        assert_eq!(workspace.evidence, Some(current));
+        assert_eq!(workspace.board.register.evidence[&late].requirement, first);
+        assert!(workspace.pending.is_none());
     }
     #[test]
     fn delayed_load_does_not_replace_newer_register_edits() {
