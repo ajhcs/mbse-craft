@@ -14,10 +14,13 @@ mkdir -p /workspace/build/builderbob/mbse-craft/{target,tmp,state} /workspace/ca
 export CARGO_HOME=/workspace/cache/builderbob/mbse-craft
 export CARGO_TARGET_DIR=/workspace/build/builderbob/mbse-craft/target
 export TMPDIR=/workspace/build/builderbob/mbse-craft/tmp
+export MBSE_RUST_BIN=/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin
 bash scripts/dev.sh build --locked -p mbse-desktop
 bash scripts/dev.sh test --locked --workspace
 /workspace/build/builderbob/mbse-craft/target/debug/mbse-desktop --state-dir /workspace/build/builderbob/mbse-craft/state
 ```
+
+BuilderBob’s generic Cargo/Rust wrappers override CARGO_HOME; this script uses the exact installed toolchain binaries to preserve isolation. Set `MBSE_RUST_BIN` to your installed toolchain directory on another machine.
 
 The first dependency resolution requires existing registry access or an available isolated cache. Review dependency/build scripts before execution in restricted environments. `scripts/dev.sh` fixes one Cargo build job and refuses absent explicit output/cache/temp paths. No upstream release, signing or provider workflow is run.
 
