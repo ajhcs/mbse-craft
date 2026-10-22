@@ -10,3 +10,8 @@ eframe = { version = "=0.36.2", default-features = false, features = ["default_f
 craft-ui = { path = "../../vendor/craft-libs/crates/ui" }
 serde_json = "1"
 image = { version = "0.25", default-features = false, features = ["png"] }
+
+craft-settings = { path = "../../vendor/craft-libs/crates/settings" }
+craft-quit = { path = "../../vendor/craft-libs/crates/quit", features = ["egui"] }
+craft-docpath = { path = "../../vendor/craft-libs/crates/docpath" }
+serde = { version = "1", features = ["derive"] }
