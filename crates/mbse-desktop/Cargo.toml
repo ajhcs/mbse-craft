@@ -15,3 +15,4 @@ craft-settings = { path = "../../vendor/craft-libs/crates/settings" }
 craft-quit = { path = "../../vendor/craft-libs/crates/quit", features = ["egui"] }
 craft-docpath = { path = "../../vendor/craft-libs/crates/docpath" }
 serde = { version = "1", features = ["derive"] }
+craft-window = { path = "../../vendor/craft-libs/crates/window", features = ["egui"] }
