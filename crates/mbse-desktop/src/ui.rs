@@ -48,7 +48,7 @@ pub struct Workspace {
 }
 impl Workspace {
     pub fn new(session: Session, capture: Option<PathBuf>, ctx: &egui::Context) -> Self {
-        let mut style = (*ctx.style()).clone();
+        let mut style = (*ctx.style_of(egui::Theme::Light)).clone();
         style.visuals = egui::Visuals::light();
         style.visuals.panel_fill = PAPER;
         style.visuals.window_fill = PAPER;
@@ -67,7 +67,7 @@ impl Workspace {
             Stroke::new(1., LINE),
         );
         style.spacing.item_spacing = Vec2::new(9., 8.);
-        ctx.set_style(style);
+        ctx.set_style_of(egui::Theme::Light, style);
         let path = session
             .path
             .as_ref()
