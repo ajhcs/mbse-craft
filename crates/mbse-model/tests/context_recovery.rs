@@ -124,7 +124,13 @@ fn context_and_affiliation_are_typed_undoable_preserve_opaque_and_roundtrip() {
         e.snapshot.records[&RecordId(10)].fields["actors"],
         json!([{"opaque":true}])
     );
-    assert!(mbse_model::stage1_sysml::from_records(&e.snapshot.records).is_err());
+    let opaque_model = mbse_model::stage1_sysml::from_records(&e.snapshot.records).unwrap();
+    let before_export = e.snapshot.clone();
+    let opaque_errors = mbse_model::stage1_sysml::export(&opaque_model).unwrap_err();
+    assert!(opaque_errors.iter().any(|d| d.code
+        == mbse_model::stage1_sysml::ExchangeCode::UnsupportedField
+        && d.message.contains("Nonempty actors")));
+    assert_eq!(e.snapshot, before_export);
     let area = area();
     let state = area.path().join("state");
     let native = area.path().join("contexts.kernspan");
@@ -323,12 +329,11 @@ fn native_context_name_retains_unsupported_exchange_text_through_undo_and_reopen
         )
         .is_err());
     assert_eq!(e.snapshot, before);
-    let refusal = mbse_model::stage1_sysml::from_records(&e.snapshot.records).unwrap_err();
-    assert_eq!(
-        refusal.code,
-        mbse_model::stage1_sysml::ExchangeCode::UnsupportedField
-    );
-    assert!(refusal.message.contains("control character"));
+    let exchange_model = mbse_model::stage1_sysml::from_records(&e.snapshot.records).unwrap();
+    let refusals = mbse_model::stage1_sysml::export(&exchange_model).unwrap_err();
+    assert!(refusals.iter().any(|d| d.code
+        == mbse_model::stage1_sysml::ExchangeCode::UnsupportedField
+        && d.message.contains("control character")));
     let area = area();
     let state = area.path().join("state");
     let native = area.path().join("name.kernspan");
