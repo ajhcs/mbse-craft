@@ -1521,7 +1521,7 @@ impl Workspace {
                 if self.session.pending(){ui.label("A frozen snapshot write is pending. New edits stay separate from its acknowledgment.");}
                 let response=ui.add_enabled(!self.session.pending(),egui::Button::new("Save and continue"));self.bound("preserve:Save and continue",&response);if response.clicked()&&self.save(){self.pending_continue=Some((action.clone(),WriteKind::Save));}
                 let response=ui.add_enabled(!self.session.pending(),egui::Button::new("Keep recovery and continue"));self.bound("preserve:Keep recovery and continue",&response);if response.clicked()&&self.recovery(){self.pending_continue=Some((action.clone(),WriteKind::Recovery));}
-                let response=ui.button("Cancel");self.bound("preserve:Cancel",&response);if response.clicked(){self.pending=None;self.pending_continue=None;self.allow_close=None;self.result(Ok("Navigation canceled; current work retained. A snapshot write already in progress may still finish.".into()));}
+                let response=ui.button("Cancel");self.bound("preserve:Cancel",&response);if response.clicked(){self.pending=None;self.pending_continue=None;self.allow_close=None;self.assurance.cancel_close();self.result(Ok("Navigation canceled; current work retained. A snapshot write already in progress may still finish.".into()));}
             });
         }
     }

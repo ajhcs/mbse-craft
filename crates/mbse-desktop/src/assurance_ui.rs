@@ -88,6 +88,10 @@ impl AssuranceWorkspace {
         self.close_prompt = true;
         false
     }
+    pub fn cancel_close(&mut self) {
+        self.discard = None;
+        self.close_prompt = false;
+    }
     pub fn request_save(&mut self) {
         self.save(false);
     }

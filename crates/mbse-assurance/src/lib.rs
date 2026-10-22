@@ -646,7 +646,9 @@ impl Board {
             } else {
                 Some(evidence_hash(e)?)
             };
-            if s.review_history.len() >= MAX_AUDIT_ENTRIES { return Err("ASSURANCE_AUDIT_LIMIT".into()); }
+            if s.review_history.len() >= MAX_AUDIT_ENTRIES {
+                return Err("ASSURANCE_AUDIT_LIMIT".into());
+            }
             let review_id = s.next_id;
             s.next_id = s.next_id.checked_add(1).ok_or("ASSURANCE_ID_LIMIT")?;
             s.review_history.push(EvidenceReview {
@@ -725,7 +727,9 @@ impl Board {
                 .ok_or("ASSURANCE_REQUIREMENT_MISSING")?;
             let rhash = requirement_hash(req)?;
             req.verification = status;
-            if s.decision_history.len() >= MAX_AUDIT_ENTRIES { return Err("ASSURANCE_AUDIT_LIMIT".into()); }
+            if s.decision_history.len() >= MAX_AUDIT_ENTRIES {
+                return Err("ASSURANCE_AUDIT_LIMIT".into());
+            }
             let decision_id = s.next_id;
             s.next_id = s.next_id.checked_add(1).ok_or("ASSURANCE_ID_LIMIT")?;
             let decision = VerificationDecision {
@@ -875,7 +879,12 @@ impl Board {
     }
     fn validate(&self) -> Result<(), String> {
         let s = &self.register;
-        if s.requirements.len() > 10000 || s.evidence.len() > 10000 || s.next_id == 0 || s.review_history.len() > MAX_AUDIT_ENTRIES || s.decision_history.len() > MAX_AUDIT_ENTRIES {
+        if s.requirements.len() > 10000
+            || s.evidence.len() > 10000
+            || s.next_id == 0
+            || s.review_history.len() > MAX_AUDIT_ENTRIES
+            || s.decision_history.len() > MAX_AUDIT_ENTRIES
+        {
             return Err("ASSURANCE_RECORD_LIMIT".into());
         }
         let mut max = 0u64;
@@ -911,9 +920,11 @@ impl Board {
             max = max.max(decision.decision_id);
         }
         for (id, decision) in &s.decisions {
-            if *id != decision.requirement || !s.requirements.contains_key(id)
+            if *id != decision.requirement
+                || !s.requirements.contains_key(id)
                 || !s.evidence.contains_key(&decision.evidence)
-                || !s.decision_history.iter().any(|v| v == decision) {
+                || !s.decision_history.iter().any(|v| v == decision)
+            {
                 return Err("ASSURANCE_DECISION_CACHE_INTEGRITY".into());
             }
         }
