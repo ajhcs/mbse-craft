@@ -1,0 +1,27 @@
+{
+  "source": "https://github.com/ajhcs/kernspan",
+  "commit": "c80037d2259cd67a8e813cf3bc6c01bb1226a460",
+  "files_sha256": {
+    "src/stage1.rs": "8320558891fa7c9c80cea819026eb40885ad6a7933911bd4075c210339bc4e5d",
+    "src/stage1_calc.rs": "42c9f5c8f17afc7e2412041c621b1c90734d7f9800c63737f2ad2cd31e7abd9f",
+    "src/stage1_io.rs": "629bfd337deed5bd2f55701247fea6d5f7cbaacb7e1fec8eb3df5eb74cf2bec5",
+    "src/stage1_sysml.rs": "a4eaf1ea0f6305b0d7a824fb55881b4ce43a1e1a79bd7336fa85d1c128f821f3",
+    "src/boundary.rs": "2b91941a2b8cbd620381aa2333b6bd426a78c9a911e63ed9d5db076d22c7496a",
+    "src/local_input.rs": "e13a8482bfa851d7240a884c00d9b25ca07627a1dcdf3c7172e5163bc41dc617",
+    "src/stage1_graph.rs": "91c37ec014ffa8b811b74242a52348334f064cfcacf47c6f849234f3261abc5c",
+    "tests/stage1_calculation.rs": "d9b5c3078888dfe575ab674251831d06025e8e68c25f541d8b564b91ccde0d43",
+    "tests/stage1_interchange.rs": "928af8dd29b60e79d18f065bd65327af7825ea662f4629250ae36fdd47b1f395",
+    "tests/stage1_completion_foundation.rs": "fed41c1f4371bd611ea84e9f5c69ac7eabd9d087aa5562914dd0bc04976485ce"
+  },
+  "parser": {
+    "repository": "https://github.com/Open-MBEE/sysml-toolkit",
+    "commit": "821221767c3c56cb1ebe7da22666197a47c9c645",
+    "license": "Apache-2.0",
+    "adaptation": "Cargo.toml workspace inheritance replaced with explicit metadata; src unchanged"
+  },
+  "adaptations": [
+    "stage1_io native writes use actual craft-atomic WriteOptions private atomic_write/write_new inside retained app protocol",
+    "test crate imports renamed from waypoint_mbse to mbse_model",
+    "new craft_recovery integration oracle"
+  ]
+}

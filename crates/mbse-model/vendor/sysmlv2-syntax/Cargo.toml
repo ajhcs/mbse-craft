@@ -1,0 +1,13 @@
+# Standalone packaging adaptation; source pinned at 821221767c3c56cb1ebe7da22666197a47c9c645.
+[package]
+name = "sysmlv2-syntax"
+version = "0.10.2"
+edition = "2021"
+rust-version = "1.97"
+license = "Apache-2.0"
+repository = "https://github.com/Open-MBEE/sysml-toolkit"
+[features]
+serde = ["dep:serde"]
+[dependencies]
+serde = { version = "1", features = ["derive"], optional = true }
+[workspace]
