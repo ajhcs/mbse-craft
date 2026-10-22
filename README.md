@@ -4,20 +4,21 @@ An independent native Rust systems-modeling workbench. It reuses the attributed 
 
 ## Build on Linux
 
-Rust 1.97 or newer is required (the recorded BuilderBob toolchain is 1.99.1). The native GUI uses eframe/egui 0.36.2 with X11/OpenGL. Linux needs X11, keyboard and OpenGL runtime libraries; private test display uses an already installed Xvfb. No MySQL, Redis, Node, provider credentials or ArtCraft service is needed for this offline integration.
+The package metadata declares Rust 1.97; the recorded build and test toolchain is Rust 1.99.1. The declared minimum has not been independently tested. The native GUI uses eframe/egui 0.36.2 with X11/OpenGL. Linux needs X11, keyboard and OpenGL runtime libraries; private test display uses an already installed Xvfb. No MySQL, Redis, Node, provider credentials or ArtCraft service is needed for this offline integration.
 
-Keep source, cache, temporary state and build output under Samsung-backed `/workspace` on BuilderBob. With this repository checked out under `/workspace/repos/builderbob/mbse-craft`:
+Keep source, cache, temporary state and build output under Samsung-backed `/workspace` on BuilderBob. The implementation is on the `implementation/native-alpha` branch in [draft PR #1](https://github.com/ajhcs/mbse-craft/pull/1); the default `main` branch is a skeleton. Use a separate checkout of that branch. The following example uses a fresh development checkout and output directory; choose unused paths and verify Samsung storage before creating them. Existing frozen alpha, M1 and paired epoch directories must be preserved:
 
 ```bash
-cd /workspace/repos/builderbob/mbse-craft
-mkdir -p /workspace/build/builderbob/mbse-craft/{target,tmp,state} /workspace/cache/builderbob/mbse-craft
-export CARGO_HOME=/workspace/cache/builderbob/mbse-craft
-export CARGO_TARGET_DIR=/workspace/build/builderbob/mbse-craft/target
-export TMPDIR=/workspace/build/builderbob/mbse-craft/tmp
+git clone --branch implementation/native-alpha --single-branch https://github.com/ajhcs/mbse-craft.git /workspace/repos/builderbob/mbse-craft-dev
+cd /workspace/repos/builderbob/mbse-craft-dev
+mkdir -p /workspace/build/builderbob/mbse-craft-dev/{target,tmp,state,config} /workspace/cache/builderbob/mbse-craft-dev
+export CARGO_HOME=/workspace/cache/builderbob/mbse-craft-dev
+export CARGO_TARGET_DIR=/workspace/build/builderbob/mbse-craft-dev/target
+export TMPDIR=/workspace/build/builderbob/mbse-craft-dev/tmp
 export MBSE_RUST_BIN=/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin
 bash scripts/dev.sh build --locked -p mbse-desktop
 bash scripts/dev.sh test --locked --workspace
-/workspace/build/builderbob/mbse-craft/target/debug/mbse-desktop --state-dir /workspace/build/builderbob/mbse-craft/state
+/workspace/build/builderbob/mbse-craft-dev/target/debug/mbse-desktop --state-dir /workspace/build/builderbob/mbse-craft-dev/state --config-dir /workspace/build/builderbob/mbse-craft-dev/config
 ```
 
 BuilderBob’s generic Cargo/Rust wrappers override CARGO_HOME; this script uses the exact installed toolchain binaries to preserve isolation. Set `MBSE_RUST_BIN` to your installed toolchain directory on another machine.
@@ -42,7 +43,7 @@ Calculations use the inherited bounded scalar/ratio/count/length/duration/speed 
 - [Kernspan source provenance](licenses/kernspan/PROVENANCE.json)
 - [ArtCraft extraction hashes](vendor/craft-libs/SOURCE.json)
 
-This candidate patches the complete egui0.36.2 family to Storytold craft/0.36.2 pin767b1cad and winit0.30.13 pinffae5198. The resolved lock has one identity per family crate; actual paired build/native qualification is a separate pending epoch. The frozen M1 binaries use the prior registry graph. Storytold main0.37 is not used. AI/service/plugin/launcher/CAD/font/catalog protocol compatibility is unqualified. The restricted `artcraft-services` workspace, unlicensed shared workflows and trademark assets are not bundled. `kernspan.stage1.sysml/1` exchanges only the closed custom domain profile, with atomic refusal of unsupported semantics; syntax success is not SysML conformance.
+This candidate patches the complete egui 0.36.2 family to Storytold craft/0.36.2 pin `767b1cad` and winit 0.30.13 pin `ffae5198`. The resolved lock has one identity per family crate. The [sealed paired epoch](docs/paired-fork/verification/F1_F4_RECEIPT.json) passed 171 workspace tests on its initial paired source, then rebuilt the final label-only source `0c2665b` and passed bounded Linux X11 native checks. Those checks cover focus, editing, model/canvas Undo/Redo, save/reopen, separate 96/144 DPI displays, hidden dirty-close guards and recovery. The frozen M1 binaries use the prior registry graph. Storytold main 0.37 is not used. AI/service/plugin/launcher/CAD/font/catalog protocol compatibility is unqualified. The restricted `artcraft-services` workspace, unlicensed shared workflows and trademark assets are not bundled. `kernspan.stage1.sysml/1` exchanges only the closed custom domain profile, with atomic refusal of unsupported semantics; syntax success is not SysML conformance.
 
 ## Frozen alpha acceptance
 
@@ -58,11 +59,15 @@ The draft PR is not a release. Windows native behavior, AT-SPI accessibility, ph
 
 ## Continuation implementation and qualification
 
-The continuation adds typed context and affiliations, bounded recovery discovery, actual persistent preference policy and hidden-window close guards. The frozen external library browser indexes retained source without changing the active native model. Bounded MDZIP/UML, Capella and SysML text projections expose typed IDs, properties, reference endpoints, source spans, unknown semantics and original bytes. A partial projection is not native editable admission or execution; AIRD layout fidelity remains unsupported.
+The continuation adds Actor, Stakeholder, Environment and Organization context records with affiliations. Recovery discovery is bounded; periodic recovery is explicitly enabled in preferences and defaults off. Pass `--config-dir` for persistent preferences and `--state-dir` for recovery state. Hidden dirty-close guards preserve model and raw drafts through cancellation. The frozen external library browser indexes retained source without changing the active native model. Bounded MDZIP/UML, Capella and SysML text projections expose typed IDs, properties, reference endpoints, source spans, unknown semantics and original bytes. A partial projection is not native editable admission or execution; AIRD layout fidelity remains unsupported.
 
 The independent requirements/evidence window authors a separate JSON sidecar with retained raw drafts, Undo/Redo and distinct maturity, implementation and verification states. Native evaluator receipts retain selected output kind/unit and the complete global result. Adequacy and verification require explicit review. Reopening retains historical decisions and clears live evaluator authority; current stamps alone cannot authenticate execution. Local external artifacts remain explicitly attributed inert evidence.
 
-Frozen continuation qualification includes168-test native assurance/recovery and169-test resource epochs, plus earlier actual context/recovery, preferences failure/retry, future-schema read-only settings, hidden dirty close and readable library-preview workflows. Source and binary identities differ from the frozen alpha. Receipts live under [continuation verification](docs/continuation-m1/verification/). The projection and requirements workflows have scoped native receipts indexed in docs/continuation-m1/FREEZE_INDEX.json. Later audit-merge/draft corrections passed26focused tests. The activated paired Storytold egui/winit candidate still requires its own build and native regression checks. These open gates prevent a full interoperability or finished-product claim.
+Frozen continuation qualification includes 168-test native assurance/recovery and 169-test resource epochs, plus earlier actual context/recovery, preferences failure/retry, future-schema read-only settings, hidden dirty close and readable library-preview workflows. Source and binary identities differ from the frozen alpha. Receipts live under [continuation verification](docs/continuation-m1/verification/). The projection and requirements workflows have scoped native receipts indexed in [the freeze index](docs/continuation-m1/FREEZE_INDEX.json). Later audit-merge/draft corrections passed 26 focused tests. The [paired verification report](docs/paired-fork/verification/README.md) records the separate sealed 171-test source and final `0c2665b` native epoch; its evidence does not apply automatically to later semantic-adapter changes. Compositor minimize/restore and maximize, real IME composition, Wayland clipboard/drop/seat behavior, WGPU/tablet paths, other platforms, mixed physical monitors, assistive technology, physical performance and engineering acceptance remain unqualified. Hidden-window checks used explicit external unmapping/remapping on private Xvfb displays. These boundaries prevent a full interoperability or finished-product claim.
+
+The additive semantic-set V2 core has [independent focused checks and actual reference coverage receipts](docs/continuation-m2/verification/README.md). It retains source-specific Capella/UML/profile types, scoped keys, role and resolution provenance, unknown semantics and original bytes. Its native viewer and faithful source-edit workflow are still in progress; the core receipts establish neither native V2 usability nor editable source compatibility.
+
+![Actual paired epoch 0c2665b: historical requirements evidence with explicit proof status](docs/paired-fork/verification/human-labels-historical-proof-explicit.png)
 
 ## Licenses
 
