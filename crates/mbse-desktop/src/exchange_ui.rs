@@ -3,7 +3,7 @@ use eframe::egui::{self, Color32, RichText};
 use mbse_exchange::{ExternalDocument, ExternalNode, ExternalReference, NodeKind, SourceLocation};
 use std::{
     collections::BTreeMap,
-    path::{Path, PathBuf},
+    path::PathBuf,
     sync::{
         mpsc::{self, Receiver},
         Arc,
@@ -33,6 +33,7 @@ pub struct ExchangeBrowser {
     visible: bool,
     document: Option<Arc<ExternalDocument>>,
     pending: Option<Receiver<Result<WorkerValue, String>>>,
+    copying: bool,
     feedback: String,
     error: bool,
     query: String,
@@ -50,6 +51,14 @@ impl ExchangeBrowser {
     pub fn is_visible(&self) -> bool {
         self.visible
     }
+    pub fn copy_pending(&self) -> bool {
+        self.copying && self.pending.is_some()
+    }
+    pub fn keep_open_for_copy(&mut self) {
+        self.visible = true;
+        self.error = false;
+        self.feedback="Application close canceled while an exact source copy is being written. Wait for its acknowledgment, then close again. The frozen source is unchanged.".into();
+    }
     pub fn open(&mut self, path: &str) {
         self.visible = true;
         self.start_open(PathBuf::from(path.trim()), None);
@@ -66,6 +75,7 @@ impl ExchangeBrowser {
         }
         let (tx, rx) = mpsc::channel();
         self.pending = Some(rx);
+        self.copying = false;
         self.error = false;
         self.feedback="Reading a bounded external projection. Native model and prior frozen preview remain unchanged.".into();
         std::thread::spawn(move || {
@@ -94,6 +104,7 @@ impl ExchangeBrowser {
         }
         let (tx, rx) = mpsc::channel();
         self.pending = Some(rx);
+        self.copying = true;
         self.feedback="Writing an exact original-byte copy to a new destination; no transformed roundtrip is claimed.".into();
         self.error = false;
         std::thread::spawn(move || {
@@ -111,6 +122,7 @@ impl ExchangeBrowser {
         });
         if let Some(result) = result {
             self.pending = None;
+            self.copying = false;
             match result {
                 Ok(WorkerValue::Document(doc)) => {
                     self.selected = doc.nodes.first().map(NodeKey::of);
