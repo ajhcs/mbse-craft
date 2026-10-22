@@ -7,3 +7,5 @@ pub mod stage1_calc;
 pub mod stage1_graph;
 pub mod stage1_io;
 pub mod stage1_sysml;
+
+pub mod recovery;

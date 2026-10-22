@@ -787,6 +787,15 @@ pub fn read_snapshot(path: &Path) -> Result<Snapshot, String> {
     let path = native_path(path)?;
     Ok(decode(&read_bounded(&path)?)?.snapshot)
 }
+/// Private shared admission path; recovery inventory never trusts plain JSON metadata.
+pub(crate) fn decode_recovery(bytes: &[u8]) -> Result<Snapshot, String> {
+    let envelope = decode(bytes)?;
+    if envelope.kind != WriteKind::Recovery {
+        return Err("STAGE1_NOT_RECOVERY".into());
+    }
+    Ok(envelope.snapshot)
+}
+
 fn decode(bytes: &[u8]) -> Result<Envelope, String> {
     if bytes.len() > MAX_BYTES {
         return Err("STAGE1_DOCUMENT_LIMIT".into());

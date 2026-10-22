@@ -50,6 +50,38 @@ impl RecordKind {
     }
 }
 
+/// Existing closed-profile affiliation meaning; never inferred from proximity.
+#[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq)]
+pub enum AffiliationKind {
+    Unknown,
+    Internal,
+    External,
+}
+impl AffiliationKind {
+    pub fn label(self) -> &'static str {
+        match self {
+            Self::Unknown => "Unknown",
+            Self::Internal => "Internal",
+            Self::External => "External",
+        }
+    }
+}
+#[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq)]
+pub enum ContextKind {
+    Description,
+    Assumption,
+    AcceptedConstraint,
+}
+impl ContextKind {
+    pub fn label(self) -> &'static str {
+        match self {
+            Self::Description => "Description",
+            Self::Assumption => "Assumption",
+            Self::AcceptedConstraint => "AcceptedConstraint",
+        }
+    }
+}
+
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct Record {
     pub id: RecordId,
@@ -721,6 +753,21 @@ pub struct Freshness {
 
 #[derive(Clone, Debug)]
 pub enum Command {
+    SetAffiliation {
+        stakeholder: RecordId,
+        organization: RecordId,
+        relationship: Option<AffiliationKind>,
+    },
+    AddContext {
+        environment: RecordId,
+        name: String,
+        kind: ContextKind,
+    },
+    SetContextKind {
+        environment: RecordId,
+        item: RecordId,
+        kind: ContextKind,
+    },
     EditText {
         key: RawKey,
         text: String,
@@ -946,7 +993,7 @@ impl Editor {
         if key.field == "name" {
             return record.name.clone();
         }
-        if key.field == "contextText" {
+        if matches!(key.field.as_str(), "contextText" | "contextName") {
             return record
                 .fields
                 .get("context")
@@ -956,7 +1003,13 @@ impl Editor {
                         item.get("id").and_then(Value::as_u64) == key.item.map(|id| id.0)
                     })
                 })
-                .and_then(|item| item.get("text"))
+                .and_then(|item| {
+                    item.get(if key.field == "contextName" {
+                        "name"
+                    } else {
+                        "text"
+                    })
+                })
                 .and_then(Value::as_str)
                 .unwrap_or("")
                 .to_owned();
@@ -1015,6 +1068,90 @@ impl Editor {
             command => {
                 let before = self.snapshot.records.clone();
                 match command {
+                    Command::SetAffiliation {
+                        stakeholder,
+                        organization,
+                        relationship,
+                    } => {
+                        let owner = self.snapshot.record(stakeholder, RecordKind::Stakeholder)?;
+                        same_scope(
+                            owner,
+                            self.snapshot
+                                .record(organization, RecordKind::Organization)?,
+                        )?;
+                        if owner
+                            .fields
+                            .get("affiliations")
+                            .is_some_and(|v| !v.is_object())
+                        {
+                            return Err(
+                                "Opaque affiliations are preserved; editing requires an object"
+                                    .into(),
+                            );
+                        }
+                        let entries = self
+                            .snapshot
+                            .records
+                            .get_mut(&stakeholder)
+                            .expect("checked owner")
+                            .fields
+                            .entry("affiliations".into())
+                            .or_insert_with(|| json!({}))
+                            .as_object_mut()
+                            .expect("checked affiliations");
+                        if let Some(kind) = relationship {
+                            entries.insert(organization.0.to_string(), json!(kind.label()));
+                        } else {
+                            entries.remove(&organization.0.to_string());
+                        }
+                    }
+                    Command::AddContext {
+                        environment,
+                        name,
+                        kind,
+                    } => {
+                        let owner = self.snapshot.record(environment, RecordKind::Environment)?;
+                        let scope = owner.scope;
+                        let name = name.trim().to_owned();
+                        if name.is_empty() {
+                            return Err("Name the context; creation draft retained".into());
+                        }
+                        if owner.fields.get("context").is_some_and(|v| !v.is_array()) {
+                            return Err(
+                                "Opaque context is preserved; editing requires an array".into()
+                            );
+                        }
+                        let id = RecordId(self.snapshot.next_id);
+                        self.snapshot.next_id =
+                            increment(self.snapshot.next_id, "context identity")?;
+                        self.snapshot.records.get_mut(&environment).expect("checked Environment")
+                            .fields.entry("context".into()).or_insert_with(|| json!([]))
+                            .as_array_mut().expect("checked context").push(json!({"id":id.0,"type":"Context","name":name,"scope":scope.0,"kind":kind.label(),"text":""}));
+                        created = Some(id);
+                    }
+                    Command::SetContextKind {
+                        environment,
+                        item,
+                        kind,
+                    } => {
+                        self.validate_context(environment, item)?;
+                        let context = self
+                            .snapshot
+                            .records
+                            .get_mut(&environment)
+                            .expect("checked Environment")
+                            .fields
+                            .get_mut("context")
+                            .and_then(Value::as_array_mut)
+                            .expect("checked context")
+                            .iter_mut()
+                            .find(|v| v["id"].as_u64() == Some(item.0))
+                            .expect("checked item");
+                        context
+                            .as_object_mut()
+                            .expect("checked object")
+                            .insert("kind".into(), json!(kind.label()));
+                    }
                     Command::Add { kind, owner, name } => {
                         created = Some(self.add(kind, owner, name)?);
                     }
@@ -1099,30 +1236,39 @@ impl Editor {
         self.snapshot.calculation_generation(key)
     }
 
+    fn validate_context(&self, environment: RecordId, item: RecordId) -> Result<(), String> {
+        let owner = self.snapshot.record(environment, RecordKind::Environment)?;
+        let context = owner
+            .fields
+            .get("context")
+            .and_then(Value::as_array)
+            .and_then(|items| items.iter().find(|v| v["id"].as_u64() == Some(item.0)))
+            .ok_or("Context item is missing")?;
+        if context["type"] != "Context"
+            || context["scope"].as_u64() != Some(owner.scope.0)
+            || !context["name"].is_string()
+            || !context["text"].is_string()
+            || !matches!(
+                context["kind"].as_str(),
+                Some("Description" | "Assumption" | "AcceptedConstraint")
+            )
+        {
+            return Err("Opaque context is preserved; editing requires a supported Context".into());
+        }
+        Ok(())
+    }
+
     fn validate_key(&self, key: &RawKey) -> Result<(), String> {
         let record = self
             .snapshot
             .records
             .get(&key.record)
             .ok_or("Record is unavailable; detached raw draft retained")?;
-        if key.field == "contextText" {
-            if record.kind != RecordKind::Environment || key.item.is_none() {
-                return Err("Context text needs an Environment and item identity".into());
-            }
-            let found = record
-                .fields
-                .get("context")
-                .and_then(Value::as_array)
-                .is_some_and(|items| {
-                    items.iter().any(|item| {
-                        item.get("id").and_then(Value::as_u64) == key.item.map(|id| id.0)
-                    })
-                });
-            return if found {
-                Ok(())
-            } else {
-                Err("Context item is missing".into())
-            };
+        if matches!(key.field.as_str(), "contextText" | "contextName") {
+            return self.validate_context(
+                key.record,
+                key.item.ok_or("Context field needs an item identity")?,
+            );
         }
         if key.item.is_some() {
             return Err("This field has no nested item binding".into());
@@ -1295,7 +1441,7 @@ impl Editor {
             .expect("validated record");
         if key.field == "name" {
             record.name = text.to_owned();
-        } else if key.field == "contextText" {
+        } else if matches!(key.field.as_str(), "contextText" | "contextName") {
             let item = record
                 .fields
                 .get_mut("context")
@@ -1306,9 +1452,15 @@ impl Editor {
                     })
                 })
                 .expect("validated context item");
-            item.as_object_mut()
-                .expect("context object")
-                .insert("text".into(), value);
+            item.as_object_mut().expect("context object").insert(
+                if key.field == "contextName" {
+                    "name"
+                } else {
+                    "text"
+                }
+                .into(),
+                value,
+            );
         } else {
             record.fields.insert(key.field.clone(), value);
         }
