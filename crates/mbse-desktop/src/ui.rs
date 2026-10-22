@@ -777,7 +777,8 @@ impl Workspace {
             };
             let ownership_count=graph.edges.iter().filter(|e|e.id.role==stage1_graph::RelationRole::Scope).count();
             ui.horizontal_wrapped(|ui| {
-                let response=ui.checkbox(&mut self.show_ownership,format!("Show ownership links ({ownership_count}{})",if self.show_ownership {" shown"} else {" hidden"})); self.bound("canvas:ownership",&response);
+                let ownership_label=format!("Show ownership links ({ownership_count}{})",if self.show_ownership {" shown"} else {" hidden"});
+                let response=ui.checkbox(&mut self.show_ownership,ownership_label); self.bound("canvas:ownership",&response);
                 ui.label("Ownership means System scope. Other arrows show authored semantic links.");
             });
             ui.label(RichText::new("Select a relation in the complete ledger to highlight its arrow and inspect both endpoints.").small());
