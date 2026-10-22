@@ -1,0 +1,281 @@
+//! Original MIT synthetic semantic cases; no private engineering source copied.
+use mbse_exchange::v2::*;
+use std::io::{Cursor, Write};
+const CAPELLA: &str = include_str!("fixtures/v2/capella-semantic-fragment.xml");
+const PROFILES: &str = include_str!("fixtures/v2/profile-layering.xmi");
+fn area() -> tempfile::TempDir {
+    let root = std::env::var_os("TMPDIR").expect("workspace TMPDIR");
+    assert!(std::path::Path::new(&root).starts_with("/workspace"));
+    tempfile::tempdir_in(root).unwrap()
+}
+fn load(text: &str) -> ProjectionSet {
+    let a = area();
+    let path = a.path().join("source.capella");
+    std::fs::write(&path, text).unwrap();
+    open(&path).unwrap()
+}
+fn node<'a>(doc: &'a ProjectionSet, id: &str) -> &'a SemanticNode {
+    doc.nodes
+        .iter()
+        .find(|n| n.key.identity == ElementIdentity::Original(id.into()))
+        .unwrap()
+}
+fn refs<'a>(
+    doc: &'a ProjectionSet,
+    id: &str,
+    feature: &'a str,
+) -> impl Iterator<Item = &'a SemanticReference> {
+    let key = &node(doc, id).key;
+    doc.references
+        .iter()
+        .filter(move |r| &r.source == key && r.feature == feature)
+}
+fn archive(members: &[(&str, &[u8])]) -> Vec<u8> {
+    let mut zip = zip::ZipWriter::new(Cursor::new(vec![]));
+    for (name, bytes) in members {
+        zip.start_file(
+            *name,
+            zip::write::FileOptions::default().compression_method(zip::CompressionMethod::Stored),
+        )
+        .unwrap();
+        zip.write_all(bytes).unwrap();
+    }
+    zip.finish().unwrap().into_inner()
+}
+#[test]
+fn capella_stored_roles_containment_defaults_and_unevaluated_bodies() {
+    let doc = load(CAPELLA);
+    assert_eq!(doc.stage, ProjectionStage::PartialSemanticProjection);
+    assert_eq!(node(&doc, "SYN-M").kind, SemanticKind::CapellaMission);
+    assert!(refs(&doc, "SYN-CE", "capability")
+        .any(|r| r.resolution == ReferenceResolution::Resolved
+            && r.target.as_ref() == Some(&node(&doc, "SYN-C").key)));
+    assert!(refs(&doc, "SYN-MI", "container-derived.involver")
+        .any(|r| r.provenance == ReferenceProvenance::ContainmentDerived
+            && r.target.as_ref() == Some(&node(&doc, "SYN-M").key)));
+    assert_eq!(
+        node(&doc, "SYN-S").component_flags.as_ref().unwrap().actor,
+        FlagValue::MetamodelDefault(false)
+    );
+    let actor = node(&doc, "SYN-A").component_flags.as_ref().unwrap();
+    assert_eq!(actor.actor, FlagValue::Explicit(true));
+    assert_eq!(actor.human, FlagValue::Explicit(true));
+    assert_eq!(
+        node(&doc, "SYN-OUT").source_type.namespace,
+        "http://www.polarsys.org/capella/core/fa/7.0.0"
+    );
+    assert!(refs(&doc, "SYN-X", "source").any(|r| r.resolution == ReferenceResolution::Resolved));
+    assert!(refs(&doc, "SYN-ALLOC", "targetElement")
+        .any(|r| r.resolution == ReferenceResolution::Resolved));
+    let empty = node(&doc, "SYN-O0").opaque_expression.as_ref().unwrap();
+    assert_eq!(empty.bodies, vec![""]);
+    assert_eq!(empty.languages, vec!["capella:linkedText"]);
+    assert!(!empty.evaluated);
+    let body = node(&doc, "SYN-O1").opaque_expression.as_ref().unwrap();
+    assert!(!body.bodies[0].is_empty());
+    assert!(!body.evaluated);
+    assert_eq!(node(&doc, "SYN-V").value_kind, Some(ValueKind::Integer));
+    assert!(refs(&doc, "SYN-EV", "type").any(|r| r.resolution == ReferenceResolution::Resolved));
+    assert_eq!(doc.primary_bytes(), CAPELLA.as_bytes());
+    let n = node(&doc, "SYN-M");
+    assert!(
+        std::str::from_utf8(&doc.primary_bytes()[n.location.start..n.location.end])
+            .unwrap()
+            .contains("SYN-M")
+    );
+    assert_eq!(
+        serde_json::to_vec(&doc).unwrap().len(),
+        doc.counters.serialized_report_bytes
+    );
+}
+#[test]
+fn exact_namespaces_wrong_version_and_uml_falsefriends_remain_unsupported() {
+    let doc = load(&CAPELLA.replace(
+        "http://www.polarsys.org/capella/core/ctx/7.0.0",
+        "http://www.omg.org/spec/UML/20131001",
+    ));
+    assert_eq!(node(&doc, "SYN-M").kind, SemanticKind::UnknownClassifier);
+    assert_eq!(node(&doc, "SYN-C").kind, SemanticKind::UnknownClassifier);
+    let doc = load(&CAPELLA.replace("/7.0.0", "/99.0.0"));
+    assert!(doc
+        .nodes
+        .iter()
+        .all(|n| n.kind == SemanticKind::UnknownClassifier));
+    assert!(!doc.source_versions[0].recognized_contract);
+    assert!(doc
+        .losses
+        .iter()
+        .any(|l| l.code == "UNSUPPORTED_METAMODEL_CASE"));
+}
+#[test]
+fn profile_layers_keep_exact_base_metaclass_and_coverage_gaps() {
+    let doc = load(PROFILES);
+    assert_eq!(
+        node(&doc, "SYN-BLOCK").kind,
+        SemanticKind::SysmlProfileApplication
+    );
+    assert_eq!(
+        node(&doc, "SYN-UAF").kind,
+        SemanticKind::UafProfileApplication
+    );
+    assert_eq!(
+        node(&doc, "SYN-UNKNOWN").kind,
+        SemanticKind::UnknownProfileApplication
+    );
+    assert!(refs(&doc, "SYN-BLOCK", "base_Class")
+        .any(|r| r.resolution == ReferenceResolution::Resolved));
+    // UML Component is a valid Class subtype, but this slice deliberately lacks its subtype proof table.
+    let derived = load(&PROFILES.replace("uml:Class", "uml:Component"));
+    assert!(refs(&derived, "SYN-BLOCK", "base_Class")
+        .any(|r| r.resolution == ReferenceResolution::UnsupportedEndpointType));
+    let wrong = load(&PROFILES.replace("uml:Class", "uml:Property"));
+    assert!(refs(&wrong, "SYN-BLOCK", "base_Class")
+        .any(|r| r.resolution == ReferenceResolution::WrongKind));
+    assert_eq!(
+        node(&derived, "SYN-BLOCK")
+            .attributes
+            .iter()
+            .find(|a| a.name == "base_Class")
+            .unwrap()
+            .value,
+        "SYN-BASE"
+    );
+}
+#[test]
+fn inherited_involved_role_accepts_audited_function_and_rejects_known_wrong_kind() {
+    let derived = load(&CAPELLA.replace("involved=\"SYN-A\"", "involved=\"SYN-F\""));
+    assert!(
+        refs(&derived, "SYN-MI", "involved").any(|r| r.resolution == ReferenceResolution::Resolved)
+    );
+    let wrong = load(&CAPELLA.replace("involved=\"SYN-A\"", "involved=\"SYN-M\""));
+    assert!(refs(&wrong, "SYN-MI", "involved")
+        .any(|r| r.resolution == ReferenceResolution::WrongKind && r.target.is_none()));
+    let unknown = load(
+        &CAPELLA
+            .replace("ctx:SystemFunction", "ctx:UnknownDerivedFunction")
+            .replace("involved=\"SYN-A\"", "involved=\"SYN-F\""),
+    );
+    assert!(refs(&unknown, "SYN-MI", "involved")
+        .any(|r| r.resolution == ReferenceResolution::UnsupportedEndpointType));
+}
+#[test]
+fn source_digest_excludes_physical_directory_and_includes_opaque_archive_member() {
+    let a = area();
+    let b = area();
+    let p = a.path().join("same.capella");
+    let q = b.path().join("same.capella");
+    std::fs::write(&p, CAPELLA).unwrap();
+    std::fs::write(&q, CAPELLA).unwrap();
+    let x = open(&p).unwrap();
+    let y = open(&q).unwrap();
+    assert_eq!(x.source_set_digest, y.source_set_digest);
+    assert_eq!(x.nodes[1].key, y.nodes[1].key);
+    let p = a.path().join("same.mdzip");
+    let one = archive(&[
+        ("com.nomagic.magicdraw.uml_model.model", PROFILES.as_bytes()),
+        ("opaque/layout", b"one"),
+    ]);
+    std::fs::write(&p, &one).unwrap();
+    let x = open(&p).unwrap();
+    let two = archive(&[
+        ("com.nomagic.magicdraw.uml_model.model", PROFILES.as_bytes()),
+        ("opaque/layout", b"two"),
+    ]);
+    std::fs::write(&p, &two).unwrap();
+    let y = open(&p).unwrap();
+    assert_ne!(x.source_set_digest, y.source_set_digest);
+    assert_eq!(x.assets.len(), 3);
+    assert_eq!(x.assets[2].bytes, b"one");
+    assert_eq!(x.nodes[1].key, y.nodes[1].key); // scoped member identity unaffected by opaque sibling changes
+    assert!(x
+        .nodes
+        .iter()
+        .all(|n| n.key.member_path == "members/com.nomagic.magicdraw.uml_model.model"));
+}
+#[test]
+fn duplicate_ids_archive_paths_and_missing_members_refuse_without_losing_primary() {
+    let raw = CAPELLA.replace("id=\"SYN-C\"", "id=\"SYN-M\"");
+    let doc = load(&raw);
+    assert_eq!(doc.stage, ProjectionStage::InterpretationRefused);
+    assert!(doc.nodes.is_empty());
+    assert_eq!(doc.primary_bytes(), raw.as_bytes());
+    let a = area();
+    let p = a.path().join("bad.mdzip");
+    for members in [
+        vec![
+            ("com.nomagic.magicdraw.uml_model.model", PROFILES.as_bytes()),
+            ("../escape", b"x".as_slice()),
+        ],
+        vec![("model.xmi", PROFILES.as_bytes())],
+        vec![
+            ("com.nomagic.magicdraw.uml_model.model", PROFILES.as_bytes()),
+            ("opaque", b"x".as_slice()),
+            ("opaque/", b"".as_slice()),
+        ],
+    ] {
+        let raw = archive(&members);
+        std::fs::write(&p, &raw).unwrap();
+        let doc = open(&p).unwrap();
+        assert_eq!(doc.stage, ProjectionStage::SourceAdmissionRefused);
+        assert_eq!(doc.primary_bytes(), raw);
+        assert!(doc.nodes.is_empty());
+    }
+}
+#[test]
+fn aggregate_per_node_and_text_limits_refuse_typed_output_but_keep_bytes() {
+    for raw in [
+        format!(
+            "<x {} />",
+            (0..129)
+                .map(|i| format!("a{i}=\"v\""))
+                .collect::<Vec<_>>()
+                .join(" ")
+        ),
+        format!("<x a=\"{}\"/>", "v".repeat(MAX_VALUE_BYTES + 1)),
+        format!("<x>{}</x>", "t".repeat(MAX_TEXT_PER_NODE + 1)),
+        "<x>".repeat(100) + &"</x>".repeat(100),
+    ] {
+        let doc = load(&raw);
+        assert_eq!(doc.stage, ProjectionStage::OutputBudgetRefused);
+        assert!(doc.nodes.is_empty());
+        assert_eq!(doc.primary_bytes(), raw.as_bytes());
+    }
+    let raw = format!(
+        "<root>{}</root>",
+        (0..600)
+            .map(|i| format!("<unknown id=\"{i}\"/>"))
+            .collect::<String>()
+    );
+    let doc = load(&raw);
+    assert!(doc.losses.len() <= MAX_LOSSES);
+    assert!(doc.counters.omitted_losses > 0);
+    assert!(doc.losses.iter().any(|l| l.code == "LOSSES_TRUNCATED"));
+    assert_eq!(
+        serde_json::to_vec(&doc).unwrap().len(),
+        doc.counters.serialized_report_bytes
+    );
+}
+#[test]
+fn native_preview_refuses_with_actionable_exact_selection_and_new_copy_is_exact() {
+    let doc = load(CAPELLA);
+    let selected = node(&doc, "SYN-V").key.clone();
+    let preview = doc.admission_preview(&[selected.clone()]);
+    assert!(!preview.admitted);
+    assert_eq!(preview.selected, vec![selected]);
+    assert_eq!(preview.source_set_digest, doc.source_set_digest);
+    assert!(preview
+        .losses
+        .iter()
+        .any(|l| l.code == "TYPED_PROPERTY_NOT_MEASURE"));
+    let empty = doc.admission_preview(&[]);
+    assert!(!empty.admitted);
+    assert!(empty
+        .losses
+        .iter()
+        .any(|l| l.code == "NO_EXPLICIT_SELECTION"));
+    let a = area();
+    let p = a.path().join("new.capella");
+    doc.copy_original_new(&p).unwrap();
+    assert_eq!(std::fs::read(&p).unwrap(), CAPELLA.as_bytes());
+    assert!(doc.copy_original_new(&p).is_err());
+}

@@ -831,3 +831,6 @@ fn walk_members(
     }
     Ok(())
 }
+
+/// Additive source-specific v2 projection; V1 APIs and native formats stay separate.
+pub mod v2;

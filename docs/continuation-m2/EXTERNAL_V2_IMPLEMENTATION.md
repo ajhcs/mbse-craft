@@ -1,0 +1,30 @@
+# External semantic-set/2: first source slice
+
+Source implementation follows EXTERNAL_V2_API.md (608a83e). Additive API:
+
+```rust
+mbse_exchange::v2::open(primary: &Path) -> Result<ProjectionSet, String>
+ProjectionSet::primary_bytes(&self) -> &[u8]
+ProjectionSet::copy_original_new(&self, path: &Path) -> Result<(), String>
+ProjectionSet::admission_preview(&self, selected: &[ElementKey]) -> AdmissionPreview
+```
+
+`ProjectionSet` exposes `profile`, `primary_sha256`, `source_set_digest`, `manifest`, `assets`, `stage`, `source_versions`, `nodes`, `references`, `diagnostics`, `losses`, and `counters`. An `ElementKey` combines exact member hash, canonical logical member path and `Original(source ID)`; anonymous typed elements use disclosed `XmlSpan`, never a fabricated source ID. `SemanticNode.location` preserves original XML byte offsets for future source-edit planning. There is no source write/patch API.
+
+Every admitted raw asset stays in `assets[].bytes`. These bytes are deliberately excluded from JSON report serialization; reports are inspection metadata, not reloadable native/source envelopes. `primary_bytes` is exact, including an archive container. A fresh original copy rechecks its primary hash and calls genuine Craft `WriteOptions::write_new`, refusing overwrite. No interpretation is required to retain/copy an admitted primary. No file extraction or execution occurs.
+
+The digest is SHA256 of compact serde_json serialization of the tuple `("mbse-craft.source-set-digest/2", primary_sha256, entries)`; each entry is `(logical_path, sha256, byte_count, AssetRole)` and entries are sorted by logical path. Enum spellings are the Rust/serde strings shown by the report. Logical paths include primary filename but exclude physical directories. MDZIP includes the exact primary container and every decoded admitted member, including opaque assets. Canonical duplicates and unsafe names refuse source admission. The exact `com.nomagic.magicdraw.uml_model.model` entry is the sole interpreted MDZIP member in this slice. Missing core, oversized archives or ambiguous members retain primary bytes with `SourceAdmissionRefused`.
+
+Direct XML supports exact Capella 7.0.0 metamodel namespaces and the UML 20131001 namespace, with separate SysML/UAF profile namespace layers and unknown overlays. Version evidence includes root namespace, namespace bindings, XMI version, and a bounded declared Capella version comment. `recognized_contract` identifies this bounded namespace/header contract only; it does not certify source validity. Unknown namespace/classifier pairs remain unknown, including UML-qualified Capella names and wrong-version Capella classes. No extension-only Capella classification occurs. A known profile namespace labels the layer; it does not validate every stereotype definition or impose unknown constraints.
+
+Stored Capella roles follow the pinned audit, separately retaining source containment and container-derived involvement/exploitation owners. The stored `Involvement.involved` endpoint is `InvolvedElement`, not the narrower helper `systemComponent`: audited SystemComponent, SystemFunction and FunctionalExchange endpoints are recognized. This is a bounded subtype table, not general EMF validation. Unknown or unimplemented endpoint subtypes produce `UnsupportedEndpointType`; a small explicit disjoint table produces `WrongKind`. UML `base_Class` resolves exact Class only; Component and other unimplemented Class subtypes are coverage gaps. Property/Port base targets likewise use exact metaclasses. Every unresolved target retains its original spelling; only existing scoped keys may be returned as resolved targets. No ambient dependencies are fetched.
+
+Component flags distinguish explicit persisted true/false from `MetamodelDefault(false)` and unsupported lexical forms. Ecore defaults do not establish initializer policy, creation-service behavior, semantic validity or engineering acceptance. OpaqueExpression preserves ordered bodies and languages (including empty/mismatched slots) and always reports `evaluated: false`. Namespaced lookalike body features are not interpreted as unqualified Ecore features. Typed property values retain lexical attributes and type/literal references; they never become native Measures or calculation results. Generic child reference names preserve namespace qualification.
+
+Resource counters enforce primary/member/set bytes, archive count/ratio, XML node-builder/depth, node/ref counts, per-node attribute count/value bytes, direct text limits and aggregate attributes/text. A borrowed JSON view is streamed into a bounded counting writer before cloning node/reference output. Auxiliary diagnostics/losses share a 1 MiB subbudget and 512-entry caps with explicit terminal truncation records/counts. Report construction reserves that subbudget; an exact serialized-report count is checked after interpretation. A refused interpretation clears its typed graph and preserves raw assets. Preview selection is counted before indexing/cloning and has independent bounded loss output.
+
+Admission preview always refuses editable/native admission with selected scoped keys, digest, losses and actions. It has no dependency on native Editor mutation. The next separate route should define faithful source-specific edits with exact frozen member/ID/span preconditions; it must not force Arcadia semantics into Stage1 or claim generic roundtrip fidelity.
+
+V1 APIs, legacy SysML text opening, .kernspan and closed SysML native formats remain unchanged. V2 SysML text and explicit companions are deferred, returning an honest format refusal for text. Consumers must retain V1 text routing. `open_set` is deliberately absent until explicit companion admission, cross-member resolution and budget tests exist.
+
+Original MIT synthetic fixtures are under `crates/mbse-exchange/tests/fixtures/v2`; source assertions are in `tests/semantic_v2.rs`. No private model bytes are committed. Rustfmt/source inspection completed; Cargo/build/tests have **not run in the model lane**. Independent verifier execution remains required before any qualification claim.

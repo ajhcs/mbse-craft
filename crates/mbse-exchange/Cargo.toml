@@ -9,6 +9,7 @@ mbse-model = { path = "../mbse-model" }
 sysmlv2-syntax = { path = "../mbse-model/vendor/sysmlv2-syntax" }
 roxmltree = "=0.19.0"
 zip = { version = "=0.6.6", default-features = false, features = ["deflate"] }
+serde_json = "1"
 serde = { version = "1", features = ["derive"] }
 sha2 = "0.10"
 [dev-dependencies]
