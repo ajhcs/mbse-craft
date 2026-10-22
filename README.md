@@ -42,15 +42,19 @@ Calculations use the inherited bounded scalar/ratio/count/length/duration/speed 
 - [Kernspan source provenance](licenses/kernspan/PROVENANCE.json)
 - [ArtCraft extraction hashes](vendor/craft-libs/SOURCE.json)
 
-Storytold egui HEAD0.37 is not used; registry egui0.36.2 supplies the native type family. AI/service/plugin/launcher/CAD/font/catalog protocol compatibility is unqualified. The restricted `artcraft-services` workspace, unlicensed shared workflows and trademark assets are not bundled. `kernspan.stage1.sysml/1` exchanges only the closed custom domain profile, with atomic refusal of unsupported semantics; syntax success is not SysML conformance.
+Storytold egui HEAD 0.37 is not used; registry egui 0.36.2 supplies the native type family. AI/service/plugin/launcher/CAD/font/catalog protocol compatibility is unqualified. The restricted `artcraft-services` workspace, unlicensed shared workflows and trademark assets are not bundled. `kernspan.stage1.sysml/1` exchanges only the closed custom domain profile, with atomic refusal of unsupported semantics; syntax success is not SysML conformance.
 
 ## Acceptance status
 
-Independent Linux verification passed123 tests, including actual Craft streaming/rename fault preservation and corrupted-main recovery. Native workflows passed blank-model creation with typed links and2500m-to-2.5km calculation, save/normal-close/relaunch; fixture-based invalid-draft preservation, typed relation edits, save failure/cancel safety, independent recovery and graceful close after keeping recovery. These are distinct fixture and blank-authoring checks, not general usability acceptance.
+Independent Linux verification passed 123 tests, including actual Craft streaming/rename fault preservation and corrupted-main recovery. Native workflows passed blank-model creation with typed links and a 2500 m to 2.5 km calculation, save/normal-close/relaunch; fixture-based invalid-draft preservation, typed relation edits, save failure/cancel safety, independent recovery and graceful close after keeping recovery. These are distinct fixture and blank-authoring checks, not general usability acceptance.
 
-Exact build-input SHA-256: `323fe697051fe40a508dcab6d8d3979898a0da8c34a4a2007aa1ec30ee3ac6d7`. Linux debug executable SHA-256: `ddefaaaa73675b5e1aacd8aee6288cfdf513049c0e8cad88b15be894a7e4b587`. Build used Rust1.99.1, one Cargo job, offline locked registry inputs, private Xvfb and software OpenGL. Recompute inputs with `python3 scripts/source-manifest.py`.
+Exact build-input SHA-256: `323fe697051fe40a508dcab6d8d3979898a0da8c34a4a2007aa1ec30ee3ac6d7`. Linux debug executable SHA-256: `ddefaaaa73675b5e1aacd8aee6288cfdf513049c0e8cad88b15be894a7e4b587`. Build used Rust 1.99.1, one Cargo job, offline locked registry inputs, private Xvfb and software OpenGL. Recompute inputs with `python3 scripts/source-manifest.py`.
 
 The draft PR is not a release. Windows native behavior, AT-SPI accessibility, physical FPS/input latency, engineering acceptance and full ecosystem compatibility remain unqualified. The canvas uses a responsive grid with basic crossing routes, explicit scope-link visibility and a complete relation ledger; this does not establish collision-free dense layouts. Rich actor/environment/organization editors, generic CAD, service/AI integrations and timed automatic recovery remain gaps. See `docs/UI_WORKFLOW.md` and the independent acceptance artifacts under `docs/verification/`.
+
+[Independent acceptance report](docs/verification/FINAL_ACCEPTANCE.md) · [machine-readable receipt](docs/verification/FINAL_ACCEPTANCE.json) · [exact source manifest](docs/verification/SOURCE_MANIFEST.json) · [blank-authored native model](docs/verification/models/blank-authored.kernspan)
+
+![Actual blank-authored model reopened in the verified Linux binary](docs/verification/screenshots/blank-authored-reopened.png)
 
 ## Licenses
 
