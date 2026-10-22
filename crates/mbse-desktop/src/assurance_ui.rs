@@ -75,17 +75,60 @@ impl AssuranceWorkspace {
     pub fn is_visible(&self) -> bool {
         self.visible
     }
+    fn unadmitted_form(&self) -> bool {
+        self.statement
+            != self
+                .board
+                .register
+                .drafts
+                .get("new:statement")
+                .map(|d| d.text.as_str())
+                .unwrap_or("")
+    }
+    fn close_state(&self) -> Option<serde_json::Value> {
+        Some(
+            serde_json::json!({"register":self.board.as_value().ok()?,"newStatementForm":self.statement}),
+        )
+    }
+    fn history(&mut self, undo: bool) {
+        if self.unadmitted_form() {
+            self.feedback="New requirement text is retained only in the form. Reduce or clear it before register history navigation; text-field Undo remains available.".into();
+            return;
+        }
+        if if undo {
+            self.board.undo()
+        } else {
+            self.board.redo()
+        } {
+            self.epoch = self.epoch.saturating_add(1);
+            self.statement = self
+                .board
+                .register
+                .drafts
+                .get("new:statement")
+                .map(|d| d.text.clone())
+                .unwrap_or_default();
+        } else {
+            self.feedback="Register history cannot move within the current integrity and document budget; work retained.".into();
+        }
+    }
     pub fn dirty(&self) -> bool {
         let value = self.board.as_value().ok();
-        match &self.saved {
-            Some(saved) => value.as_ref() != Some(saved),
-            None => value != Board::new().as_value().ok(),
-        }
+        self.unadmitted_form()
+            || match &self.saved {
+                Some(saved) => value.as_ref() != Some(saved),
+                None => value != Board::new().as_value().ok(),
+            }
     }
     /// A discard permit applies only to these exact register bytes, once no IO is pending.
     pub fn request_close(&mut self) -> bool {
         if self.pending.is_none()
-            && (!self.dirty() || self.discard.as_ref() == self.board.as_value().ok().as_ref())
+            && (!self.dirty()
+                || self
+                    .discard
+                    .as_ref()
+                    .zip(self.close_state().as_ref())
+                    .is_some_and(|(a, b)| a == b))
         {
             return true;
         }
@@ -156,7 +199,7 @@ impl AssuranceWorkspace {
             self.feedback = "Choose an absolute register sidecar path.".into();
             return;
         }
-        let Ok(frozen) = self.board.as_value() else {
+        let Some(frozen) = self.close_state() else {
             self.feedback = "Register serialization failed; current work retained.".into();
             return;
         };
@@ -197,10 +240,10 @@ impl AssuranceWorkspace {
                 return;
             }
         };
-        let frozen = match self.board.as_value() {
-            Ok(v) => v,
-            Err(e) => {
-                self.feedback = e;
+        let frozen = match self.close_state() {
+            Some(v) => v,
+            None => {
+                self.feedback = "Register serialization failed; live work retained.".into();
                 return;
             }
         };
@@ -301,10 +344,10 @@ impl AssuranceWorkspace {
         if let Some(completion) = completion {
             self.pending = None;
             match completion {
-            Completion::Loaded(Ok((board,hash)),path,frozen) if self.board.as_value().ok().as_ref()==Some(&frozen)&&PathBuf::from(self.path.trim())==path=>{self.epoch=self.epoch.saturating_add(1);self.saved=board.as_value().ok();self.board=board;self.selected=self.board.register.requirements.keys().next().copied();self.evidence=None;self.owned=Some((path,hash));self.discard=None;self.statement=self.board.register.drafts.get("new:statement").map(|d|d.text.clone()).unwrap_or_default();self.feedback="Register reopened. Historical evidence is retained; reopening does not authenticate a native evaluator run.".into();},
+            Completion::Loaded(Ok((board,hash)),path,frozen) if self.close_state().as_ref()==Some(&frozen)&&PathBuf::from(self.path.trim())==path=>{self.epoch=self.epoch.saturating_add(1);self.saved=board.as_value().ok();self.board=board;self.selected=self.board.register.requirements.keys().next().copied();self.evidence=None;self.owned=Some((path,hash));self.discard=None;self.statement=self.board.register.drafts.get("new:statement").map(|d|d.text.clone()).unwrap_or_default();self.feedback="Register reopened. Historical evidence is retained; reopening does not authenticate a native evaluator run.".into();},
             Completion::Loaded(Ok(_),_,_)=>self.feedback="Open result is stale because register edits changed after dispatch; live changes retained. Open again after preserving them.".into(),
             Completion::Loaded(Err(e),_,_)=>self.feedback=e,
-            Completion::Updated(Ok((board,evidence,message)),frozen,stamp,config) if self.board.as_value().ok().as_ref()==Some(&frozen)&&editor.calculation_stamp()==stamp&&self.config().ok().as_ref()==Some(&config)=>{self.board=board;self.epoch=self.epoch.saturating_add(1);if evidence.is_some(){self.evidence=evidence;}self.feedback=message;},
+            Completion::Updated(Ok((board,evidence,message)),frozen,stamp,config) if self.close_state().as_ref()==Some(&frozen)&&editor.calculation_stamp()==stamp&&self.config().ok().as_ref()==Some(&config)=>{self.board=board;self.epoch=self.epoch.saturating_add(1);if evidence.is_some(){self.evidence=evidence;}self.feedback=message;},
             Completion::Updated(Ok(_),_,_,_)=>self.feedback="Evidence result is stale because the register, native model/raw input or configuration changed; live changes retained.".into(),
             Completion::Updated(Err(e),_,_,_)=>self.feedback=e,
             Completion::Saved(Ok(hash),path,frozen)=>{self.saved=Some(frozen);self.owned=Some((path,hash));self.feedback=if self.dirty(){"Frozen register saved; newer edits remain unsaved."}else{"Requirements register saved."}.into();},
@@ -338,11 +381,11 @@ impl AssuranceWorkspace {
         let mut visible = true;
         egui::Window::new("Requirements and evidence").id(egui::Id::new("requirements-evidence")).open(&mut visible).default_size([1100.,820.]).vscroll(true).show(ctx,|ui|{
             ui.label("Independent application register · native model unchanged · approval, implementation and verification are separate decisions.");
-            ui.horizontal(|ui|{ui.label(if self.dirty(){"Unsaved register changes"}else{"Register saved / empty"});if self.pending.is_some(){ui.spinner();}if mark(&mut audit,"assurance:Undo",ui.button("Undo register edit")).clicked(){if self.board.undo(){self.epoch=self.epoch.saturating_add(1);}}if mark(&mut audit,"assurance:Redo",ui.button("Redo register edit")).clicked(){if self.board.redo(){self.epoch=self.epoch.saturating_add(1);}}});
+            ui.horizontal(|ui|{ui.label(if self.dirty(){"Unsaved register changes"}else{"Register saved / empty"});if self.pending.is_some(){ui.spinner();}if mark(&mut audit,"assurance:Undo",ui.button("Undo register edit")).clicked(){self.history(true);}if mark(&mut audit,"assurance:Redo",ui.button("Redo register edit")).clicked(){self.history(false);}});
             ui.horizontal(|ui|{ui.label("Register path");mark(&mut audit,"assurance:path",ui.text_edit_singleline(&mut self.path));if mark(&mut audit,"assurance:Open",ui.add_enabled(self.pending.is_none(),egui::Button::new("Open register"))).clicked(){self.load();}if mark(&mut audit,"assurance:Save",ui.add_enabled(self.pending.is_none(),egui::Button::new("Save register"))).clicked(){self.save(false);}if mark(&mut audit,"assurance:Save fresh",ui.add_enabled(self.pending.is_none(),egui::Button::new("Save fresh copy"))).clicked(){self.save(true);}});
             ui.label(&self.feedback);
             ui.separator();
-            ui.horizontal(|ui|{ui.label("New requirement");if mark(&mut audit,"assurance:new-statement",ui.text_edit_singleline(&mut self.statement)).changed(){self.board.register.drafts.insert("new:statement".into(),mbse_assurance::RawDraft{text:self.statement.clone(),valid:!self.statement.trim().is_empty()});self.epoch=self.epoch.saturating_add(1);}if mark(&mut audit,"assurance:Add",ui.button("Add requirement")).clicked(){match self.board.add_requirement(self.statement.clone()){Ok(id)=>{self.epoch=self.epoch.saturating_add(1);self.selected=Some(id);self.statement.clear();self.board.register.drafts.remove("new:statement");self.feedback="Requirement added in Draft / UnderReview / NotStarted.".into();},Err(e)=>self.feedback=e}}});
+            ui.horizontal(|ui|{ui.label("New requirement");if mark(&mut audit,"assurance:new-statement",ui.text_edit_singleline(&mut self.statement)).changed(){let result=self.board.set_new_statement_draft(self.statement.clone());self.result(result,"New requirement draft retained. If admission fails, its text stays in the form and remains unsaved.");}if mark(&mut audit,"assurance:Add",ui.button("Add requirement")).clicked(){match self.board.add_requirement(self.statement.clone()){Ok(id)=>{self.epoch=self.epoch.saturating_add(1);self.selected=Some(id);self.statement.clear();self.feedback="Requirement added in Draft / UnderReview / NotStarted.".into();},Err(e)=>self.feedback=e}}});
             ui.columns(2,|columns|{
                 egui::ScrollArea::vertical().id_salt("requirement-list").max_height(180.).show(&mut columns[0],|ui|{for(id,r)in &self.board.register.requirements{if ui.selectable_label(self.selected==Some(*id),format!("R{} · {}",id.0,r.statement)).clicked(){self.selected=Some(*id);self.evidence=None;}}});
                 columns[1].collapsing("Evidence-context metadata (JSON)",|ui|{ui.label("Canonical JSON is retained with its hash for evidence context. These values do not configure the evaluator. Native execution uses the fixed algorithm and Limits::default() recorded with each receipt.");ui.text_edit_multiline(&mut self.config);});
@@ -406,7 +449,7 @@ impl AssuranceWorkspace {
         });
         self.visible = visible;
         if self.close_prompt {
-            egui::Window::new("Preserve requirements register").collapsible(false).show(ctx,|ui|{ui.label("The independent register has unsaved changes or pending IO. Save it in Requirements and evidence, or explicitly discard these exact changes for this close.");if mark(&mut audit,"assurance:Return",ui.button("Return to work")).clicked(){self.close_prompt=false;self.discard=None;}if mark(&mut audit,"assurance:Discard close",ui.add_enabled(self.pending.is_none(),egui::Button::new("Discard register changes for this close"))).clicked(){self.discard=self.board.as_value().ok();self.close_prompt=false;self.feedback="Exact register changes permitted to be discarded on next application close.".into();}});
+            egui::Window::new("Preserve requirements register").collapsible(false).show(ctx,|ui|{ui.label("The independent register has unsaved changes or pending IO. Save it in Requirements and evidence, or explicitly discard these exact changes for this close.");if mark(&mut audit,"assurance:Return",ui.button("Return to work")).clicked(){self.close_prompt=false;self.discard=None;}if mark(&mut audit,"assurance:Discard close",ui.add_enabled(self.pending.is_none(),egui::Button::new("Discard register changes for this close"))).clicked(){self.discard=self.close_state();self.close_prompt=false;self.feedback="Exact register changes permitted to be discarded on next application close.".into();}});
         }
         if self.replace_prompt {
             egui::Window::new("Open another register?").collapsible(false).show(ctx,|ui|{ui.label("Opening replaces unsaved register edits only after successful admission. Native model is retained.");if mark(&mut audit,"assurance:Keep current",ui.button("Keep current register")).clicked(){self.replace_prompt=false;}if mark(&mut audit,"assurance:Discard and open",ui.button("Discard and open register")).clicked(){self.load();}});
@@ -440,7 +483,7 @@ mod tests {
     fn delayed_load_does_not_replace_newer_register_edits() {
         let mut workspace = AssuranceWorkspace::default();
         workspace.path = "/workspace/example.json".into();
-        let frozen = workspace.board.as_value().unwrap();
+        let frozen = workspace.close_state().unwrap();
         let (tx, rx) = mpsc::channel();
         workspace.pending = Some(rx);
         let id = workspace
@@ -480,11 +523,11 @@ mod tests {
         .unwrap();
         workspace.show(&egui::Context::default(), &editor());
         assert!(workspace.dirty());
-        workspace.discard = workspace.board.as_value().ok();
+        workspace.discard = workspace.close_state();
         assert!(workspace.request_close());
         workspace.cancel_close();
         assert!(!workspace.request_close());
-        workspace.discard = workspace.board.as_value().ok();
+        workspace.discard = workspace.close_state();
         workspace
             .board
             .edit_field(id, "statement", "".into())
@@ -499,7 +542,7 @@ mod tests {
     fn delayed_evidence_cannot_apply_to_changed_bytes_with_unchanged_revisions() {
         let mut workspace = AssuranceWorkspace::default();
         let mut editor = editor();
-        let frozen = workspace.board.as_value().unwrap();
+        let frozen = workspace.close_state().unwrap();
         let stamp = editor.calculation_stamp();
         let config = workspace.config().unwrap();
         let mut returned = workspace.board.clone();
@@ -528,6 +571,32 @@ mod tests {
         workspace.show(&egui::Context::default(), &editor);
         assert!(workspace.board.register.requirements.is_empty());
         assert!(workspace.feedback.contains("stale"));
+    }
+    #[test]
+    fn unadmitted_form_text_binds_dirty_close_and_delayed_open() {
+        let mut workspace = AssuranceWorkspace::default();
+        workspace.path = "/workspace/source.json".into();
+        workspace.saved = workspace.board.as_value().ok();
+        let frozen = workspace.close_state().unwrap();
+        let (tx, rx) = mpsc::channel();
+        workspace.pending = Some(rx);
+        workspace.statement = "Rejected form text retained outside the accepted register".into();
+        tx.send(Completion::Loaded(
+            Ok((Board::new(), "hash".into())),
+            PathBuf::from("/workspace/source.json"),
+            frozen,
+        ))
+        .unwrap();
+        workspace.show(&egui::Context::default(), &editor());
+        assert!(workspace.feedback.contains("stale"));
+        assert!(workspace.dirty());
+        workspace.discard = workspace.close_state();
+        assert!(workspace.request_close());
+        workspace.statement.push_str(" changed");
+        assert!(!workspace.request_close());
+        let retained = workspace.statement.clone();
+        workspace.history(true);
+        assert_eq!(workspace.statement, retained);
     }
     #[test]
     fn disconnected_worker_clears_pending_without_acknowledging_save() {

@@ -765,3 +765,77 @@ fn aggregate_and_encoded_evidence_budgets_refuse_atomically_and_leave_register_u
         .save_new(&area.path().join("encoded-refusal-retained.json"))
         .unwrap();
 }
+
+#[test]
+fn undo_audit_merge_and_creation_draft_cannot_trap_register_over_budget() {
+    let editor = model();
+    let metadata = json!({});
+    let context = EvidenceContext::from_editor(&editor, &metadata).unwrap();
+    let mut board = Board::new();
+    let req = board
+        .add_requirement("Bound merged history".into())
+        .unwrap();
+    let anchor = SourceAnchor {
+        format_contract: "external.synthetic/1".into(),
+        artifact_sha256: "0".repeat(64),
+        metamodel: "synthetic".into(),
+        source_element_id: "synthetic".into(),
+        native_document: None,
+        native_record: None,
+        units: BTreeMap::new(),
+        references: vec![],
+        package_integrity: ProjectionStatus::Unknown,
+        parsing: ProjectionStatus::Unknown,
+        reference_resolution: ProjectionStatus::Unknown,
+        semantic_projection: ProjectionStatus::Unknown,
+        editable_admission: ProjectionStatus::Unknown,
+        execution: ProjectionStatus::Unknown,
+        unknown: BTreeMap::from([("opaqueBody".into(), json!("x".repeat(20 * 1024 * 1024)))]),
+    };
+    board.set_anchor(req, Some(anchor)).unwrap();
+    let before = board.register.clone();
+    assert!(board
+        .set_new_statement_draft("y".repeat(13 * 1024 * 1024))
+        .unwrap_err()
+        .contains("DOCUMENT_LIMIT"));
+    assert_eq!(board.register, before);
+    board.set_anchor(req, None).unwrap();
+    let area = area();
+    let artifact = area.path().join("small.txt");
+    std::fs::write(&artifact, b"evidence").unwrap();
+    let evidence = board
+        .attach_local_evidence_with_metadata(
+            req,
+            context,
+            &metadata,
+            &artifact,
+            EvidenceOutcome::NotRun,
+        )
+        .unwrap();
+    board
+        .review_evidence(
+            evidence,
+            Adequacy::Adequate,
+            "Reviewer".into(),
+            "r".repeat(13 * 1024 * 1024),
+        )
+        .unwrap();
+    assert!(board.undo());
+    assert!(board.undo());
+    let before = board.register.clone();
+    assert!(
+        !board.undo(),
+        "Merged retained audit would exceed the active envelope budget"
+    );
+    assert_eq!(board.register, before);
+    assert!(
+        board.redo(),
+        "Refused Undo must preserve both history stacks"
+    );
+    board
+        .edit_field(req, "owner", "Still editable after refusal".into())
+        .unwrap();
+    board
+        .save_new(&area.path().join("usable-after-refused-history.json"))
+        .unwrap();
+}

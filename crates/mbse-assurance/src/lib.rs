@@ -305,8 +305,12 @@ impl Board {
         }
     }
     pub fn undo(&mut self) -> bool {
-        if let Some(mut state) = self.past.pop() {
+        if let Some(mut state) = self.past.last().cloned() {
             retain_audit(&mut state, &self.register);
+            if envelope_size(&state).is_err() || validate_register(&state).is_err() {
+                return false;
+            }
+            self.past.pop();
             self.future
                 .push(std::mem::replace(&mut self.register, state));
             true
@@ -315,13 +319,33 @@ impl Board {
         }
     }
     pub fn redo(&mut self) -> bool {
-        if let Some(mut state) = self.future.pop() {
+        if let Some(mut state) = self.future.last().cloned() {
             retain_audit(&mut state, &self.register);
+            if envelope_size(&state).is_err() || validate_register(&state).is_err() {
+                return false;
+            }
+            self.future.pop();
             self.past.push(std::mem::replace(&mut self.register, state));
             true
         } else {
             false
         }
+    }
+    pub fn set_new_statement_draft(&mut self, text: String) -> Result<(), String> {
+        self.transaction(move |state| {
+            if text.is_empty() {
+                state.drafts.remove("new:statement");
+            } else {
+                state.drafts.insert(
+                    "new:statement".into(),
+                    RawDraft {
+                        valid: !text.trim().is_empty(),
+                        text,
+                    },
+                );
+            }
+            Ok(())
+        })
     }
     pub fn add_requirement(&mut self, statement: String) -> Result<RequirementId, String> {
         self.transaction(|state| {
@@ -333,6 +357,7 @@ impl Board {
             }
             let id = RequirementId(state.next_id);
             state.next_id = state.next_id.checked_add(1).ok_or("ASSURANCE_ID_LIMIT")?;
+            state.drafts.remove("new:statement");
             state.requirements.insert(
                 id,
                 Requirement {
@@ -1046,71 +1071,73 @@ impl Board {
         Ok((board, bytes_hash(&bytes)))
     }
     fn validate(&self) -> Result<(), String> {
-        let s = &self.register;
-        if s.requirements.len() > 10000
-            || s.evidence.len() > 10000
-            || s.next_id == 0
-            || s.review_history.len() > MAX_AUDIT_ENTRIES
-            || s.decision_history.len() > MAX_AUDIT_ENTRIES
-        {
-            return Err("ASSURANCE_RECORD_LIMIT".into());
-        }
-        if s.evidence
-            .values()
-            .try_fold(0usize, |n, e| n.checked_add(e.artifact_bytes.len()))
-            .is_none_or(|n| n > MAX_ARTIFACT_BYTES)
-        {
-            return Err("ASSURANCE_ARTIFACT_BUDGET".into());
-        }
-        let mut max = 0u64;
-        let mut used = BTreeSet::new();
-        for (id, r) in &s.requirements {
-            if *id != r.id || id.0 == 0 || !used.insert(id.0) || r.statement.trim().is_empty() {
-                return Err("ASSURANCE_REQUIREMENT_ID".into());
-            }
-            max = max.max(id.0);
-        }
-        for (id, e) in &s.evidence {
-            if *id != e.id
-                || id.0 == 0
-                || !used.insert(id.0)
-                || !s.requirements.contains_key(&e.requirement)
-                || bytes_hash(&e.artifact_bytes) != e.artifact_sha256
-                || e.context_metadata
-                    .as_ref()
-                    .is_some_and(|v| digest(v).ok().as_ref() != Some(&e.context.config_hash))
-            {
-                return Err("ASSURANCE_EVIDENCE_INTEGRITY".into());
-            }
-            max = max.max(id.0);
-        }
-        // Audit entries may reference undone objects, but their identities never recycle.
-        for review in &s.review_history {
-            if review.review_id == 0 || !used.insert(review.review_id) {
-                return Err("ASSURANCE_REVIEW_ID".into());
-            }
-            max = max.max(review.review_id);
-        }
-        for decision in &s.decision_history {
-            if decision.decision_id == 0 || !used.insert(decision.decision_id) {
-                return Err("ASSURANCE_DECISION_ID".into());
-            }
-            max = max.max(decision.decision_id);
-        }
-        for (id, decision) in &s.decisions {
-            if *id != decision.requirement
-                || !s.requirements.contains_key(id)
-                || !s.evidence.contains_key(&decision.evidence)
-                || !s.decision_history.iter().any(|v| v == decision)
-            {
-                return Err("ASSURANCE_DECISION_CACHE_INTEGRITY".into());
-            }
-        }
-        if s.next_id <= max {
-            return Err("ASSURANCE_ID_HIGH_WATER".into());
-        }
-        Ok(())
+        validate_register(&self.register)
     }
+}
+fn validate_register(s: &Register) -> Result<(), String> {
+    if s.requirements.len() > 10000
+        || s.evidence.len() > 10000
+        || s.next_id == 0
+        || s.review_history.len() > MAX_AUDIT_ENTRIES
+        || s.decision_history.len() > MAX_AUDIT_ENTRIES
+    {
+        return Err("ASSURANCE_RECORD_LIMIT".into());
+    }
+    if s.evidence
+        .values()
+        .try_fold(0usize, |n, e| n.checked_add(e.artifact_bytes.len()))
+        .is_none_or(|n| n > MAX_ARTIFACT_BYTES)
+    {
+        return Err("ASSURANCE_ARTIFACT_BUDGET".into());
+    }
+    let mut max = 0u64;
+    let mut used = BTreeSet::new();
+    for (id, r) in &s.requirements {
+        if *id != r.id || id.0 == 0 || !used.insert(id.0) || r.statement.trim().is_empty() {
+            return Err("ASSURANCE_REQUIREMENT_ID".into());
+        }
+        max = max.max(id.0);
+    }
+    for (id, e) in &s.evidence {
+        if *id != e.id
+            || id.0 == 0
+            || !used.insert(id.0)
+            || !s.requirements.contains_key(&e.requirement)
+            || bytes_hash(&e.artifact_bytes) != e.artifact_sha256
+            || e.context_metadata
+                .as_ref()
+                .is_some_and(|v| digest(v).ok().as_ref() != Some(&e.context.config_hash))
+        {
+            return Err("ASSURANCE_EVIDENCE_INTEGRITY".into());
+        }
+        max = max.max(id.0);
+    }
+    // Audit entries may reference undone objects, but their identities never recycle.
+    for review in &s.review_history {
+        if review.review_id == 0 || !used.insert(review.review_id) {
+            return Err("ASSURANCE_REVIEW_ID".into());
+        }
+        max = max.max(review.review_id);
+    }
+    for decision in &s.decision_history {
+        if decision.decision_id == 0 || !used.insert(decision.decision_id) {
+            return Err("ASSURANCE_DECISION_ID".into());
+        }
+        max = max.max(decision.decision_id);
+    }
+    for (id, decision) in &s.decisions {
+        if *id != decision.requirement
+            || !s.requirements.contains_key(id)
+            || !s.evidence.contains_key(&decision.evidence)
+            || !s.decision_history.iter().any(|v| v == decision)
+        {
+            return Err("ASSURANCE_DECISION_CACHE_INTEGRITY".into());
+        }
+    }
+    if s.next_id <= max {
+        return Err("ASSURANCE_ID_HIGH_WATER".into());
+    }
+    Ok(())
 }
 // Reject duplicate JSON keys before typed interpretation, including unknown maps.
 struct UniqueValue(Value);
