@@ -669,3 +669,38 @@ fn canonical_context_metadata_and_fixed_engine_limits_survive_save_reopen() {
         .unwrap_err()
         .contains("EVIDENCE_INTEGRITY"));
 }
+
+#[test]
+fn unrecognized_typed_sibling_fields_refuse_instead_of_disappearing_on_reopen() {
+    let editor = model();
+    let mut board = Board::new();
+    let req = board
+        .add_requirement("Strict typed boundary".into())
+        .unwrap();
+    let evidence = board
+        .attach_calculation(req, &editor, &json!({}), CalculationId(11))
+        .unwrap();
+    let area = area();
+    let original = area.path().join("strict.json");
+    board.save_new(&original).unwrap();
+    let bytes = std::fs::read(&original).unwrap();
+    let value: serde_json::Value = serde_json::from_slice(&bytes).unwrap();
+    for location in [0, 1, 2, 3] {
+        let mut malformed = value.clone();
+        let target = match location {
+            0 => &mut malformed["register"],
+            1 => &mut malformed["register"]["requirements"][req.0.to_string()],
+            2 => &mut malformed["register"]["evidence"][evidence.0.to_string()],
+            _ => &mut malformed["register"]["evidence"][evidence.0.to_string()]["context"],
+        };
+        target["futureSibling"] = json!({"must_not_disappear":true});
+        let path = area.path().join(format!("unknown-{location}.json"));
+        std::fs::write(&path, serde_json::to_vec(&malformed).unwrap()).unwrap();
+        assert!(Board::open(&path).unwrap_err().contains("unknown field"));
+    }
+    assert_eq!(std::fs::read(&original).unwrap(), bytes);
+    let (opened, _) = Board::open(&original).unwrap();
+    let copy = area.path().join("strict-copy.json");
+    opened.save_new(&copy).unwrap();
+    assert_eq!(Board::open(&copy).unwrap().0.register, board.register);
+}

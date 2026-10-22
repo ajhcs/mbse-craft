@@ -55,6 +55,7 @@ pub enum ProjectionStatus {
     Failed,
 }
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[serde(deny_unknown_fields)]
 pub struct SourceAnchor {
     pub format_contract: String,
     pub artifact_sha256: String,
@@ -73,6 +74,7 @@ pub struct SourceAnchor {
     pub unknown: BTreeMap<String, Value>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[serde(deny_unknown_fields)]
 pub struct Requirement {
     pub id: RequirementId,
     pub statement: String,
@@ -102,6 +104,7 @@ pub enum Adequacy {
     Inadequate,
 }
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+#[serde(deny_unknown_fields)]
 pub struct EvidenceContext {
     pub model: DocumentStamp,
     pub config_hash: String,
@@ -124,6 +127,7 @@ impl EvidenceContext {
     }
 }
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[serde(deny_unknown_fields)]
 pub struct Evidence {
     pub id: EvidenceId,
     pub requirement: RequirementId,
@@ -149,6 +153,7 @@ pub struct Evidence {
     pub unknown: BTreeMap<String, Value>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[serde(deny_unknown_fields)]
 pub struct VerificationDecision {
     pub decision_id: u64,
     pub requirement: RequirementId,
@@ -161,6 +166,7 @@ pub struct VerificationDecision {
     pub context: EvidenceContext,
 }
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[serde(deny_unknown_fields)]
 pub struct EvidenceReview {
     pub review_id: u64,
     pub evidence: EvidenceId,
@@ -170,11 +176,13 @@ pub struct EvidenceReview {
     pub evidence_digest: String,
 }
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[serde(deny_unknown_fields)]
 pub struct RawDraft {
     pub text: String,
     pub valid: bool,
 }
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[serde(deny_unknown_fields)]
 pub struct Register {
     pub requirements: BTreeMap<RequirementId, Requirement>,
     pub evidence: BTreeMap<EvidenceId, Evidence>,
