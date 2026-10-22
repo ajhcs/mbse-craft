@@ -1,8 +1,8 @@
 //! Native authoring and explicit review of an independent requirements sidecar.
 use eframe::egui;
 use mbse_assurance::{
-    Adequacy, Board, EvidenceContext, EvidenceId, ImplementationStatus, Maturity, RequirementId,
-    VerificationStatus,
+    Adequacy, Board, EvidenceContext, EvidenceId, EvidenceOutcome, ImplementationStatus, Maturity,
+    RequirementId, VerificationStatus,
 };
 use mbse_model::{
     stage1::Editor,
@@ -385,7 +385,7 @@ impl AssuranceWorkspace {
             ui.horizontal(|ui|{ui.label("Register path");mark(&mut audit,"assurance:path",ui.text_edit_singleline(&mut self.path));if mark(&mut audit,"assurance:Open",ui.add_enabled(self.pending.is_none(),egui::Button::new("Open register"))).clicked(){self.load();}if mark(&mut audit,"assurance:Save",ui.add_enabled(self.pending.is_none(),egui::Button::new("Save register"))).clicked(){self.save(false);}if mark(&mut audit,"assurance:Save fresh",ui.add_enabled(self.pending.is_none(),egui::Button::new("Save fresh copy"))).clicked(){self.save(true);}});
             ui.label(&self.feedback);
             ui.separator();
-            ui.horizontal(|ui|{ui.label("New requirement");if mark(&mut audit,"assurance:new-statement",ui.text_edit_singleline(&mut self.statement)).changed(){let result=self.board.set_new_statement_draft(self.statement.clone());self.result(result,"New requirement draft retained. If admission fails, its text stays in the form and remains unsaved.");}if mark(&mut audit,"assurance:Add",ui.button("Add requirement")).clicked(){match self.board.add_requirement(self.statement.clone()){Ok(id)=>{self.epoch=self.epoch.saturating_add(1);self.selected=Some(id);self.statement.clear();self.feedback="Requirement added in Draft / UnderReview / NotStarted.".into();},Err(e)=>self.feedback=e}}});
+            ui.horizontal(|ui|{ui.label("New requirement");if mark(&mut audit,"assurance:new-statement",ui.text_edit_singleline(&mut self.statement)).changed(){let result=self.board.set_new_statement_draft(self.statement.clone());self.result(result,"New requirement draft retained. If admission fails, its text stays in the form and remains unsaved.");}if mark(&mut audit,"assurance:Add",ui.button("Add requirement")).clicked(){match self.board.add_requirement(self.statement.clone()){Ok(id)=>{self.epoch=self.epoch.saturating_add(1);self.selected=Some(id);self.statement.clear();self.feedback="Requirement added in Draft / Under review / Not started.".into();},Err(e)=>self.feedback=e}}});
             ui.columns(2,|columns|{
                 egui::ScrollArea::vertical().id_salt("requirement-list").max_height(180.).show(&mut columns[0],|ui|{for(id,r)in &self.board.register.requirements{if ui.selectable_label(self.selected==Some(*id),format!("R{} · {}",id.0,r.statement)).clicked(){self.selected=Some(*id);self.evidence=None;}}});
                 columns[1].collapsing("Evidence-context metadata (JSON)",|ui|{ui.label("Canonical JSON is retained with its hash for evidence context. These values do not configure the evaluator. Native execution uses the fixed algorithm and Limits::default() recorded with each receipt.");ui.text_edit_multiline(&mut self.config);});
@@ -406,7 +406,7 @@ impl AssuranceWorkspace {
                 }
                 if mark(&mut audit,"assurance:Clear source",ui.button("Clear source anchor")).clicked(){let result=self.board.set_anchor(id,None);self.result(result,"Source anchor explicitly cleared; previous evidence may now be stale.");}
             });
-            ui.collapsing("Exact source anchor and independent status claims",|ui|{match &self.board.register.requirements.get(&id).and_then(|r|r.anchor.as_ref()){Some(anchor)=>{ui.monospace(serde_json::to_string_pretty(anchor).unwrap_or_else(|error|error.to_string()));},None=>{ui.label("No source anchor recorded; no native or external normative classification inferred.");}}});
+            ui.collapsing("Exact source anchor and independent status claims",|ui|{ui.monospace(format!("Exact maturity: {:?}\nExact implementation: {:?}\nExact verification: {:?}",req.maturity,req.implementation,req.verification));match &self.board.register.requirements.get(&id).and_then(|r|r.anchor.as_ref()){Some(anchor)=>{ui.monospace(serde_json::to_string_pretty(anchor).unwrap_or_else(|error|error.to_string()));},None=>{ui.label("No source anchor recorded; no native or external normative classification inferred.");}}});
 
             for(field,label,value)in[("statement","Statement",req.statement.clone()),("rationale","Rationale",req.rationale.clone()),("source","Source",req.source.clone()),("owner","Owner",req.owner.clone()),("user_version","Version",req.user_version.clone())]{
                 let mut text=self.board.register.drafts.get(&format!("{}:{field}",id.0)).map(|d|d.text.clone()).unwrap_or(value);
@@ -414,36 +414,38 @@ impl AssuranceWorkspace {
             }
             ui.horizontal_wrapped(|ui|{
                 let mut maturity=req.maturity;
-                let combo=egui::ComboBox::from_id_salt("maturity").selected_text(format!("Maturity: {maturity:?}")).show_ui(ui,|ui|{for v in [Maturity::Draft,Maturity::InDevelopment,Maturity::ReadyForReview,Maturity::InReview,Maturity::Approved,Maturity::Disapproved,Maturity::Deleted]{let r=ui.selectable_value(&mut maturity,v,format!("{v:?}"));mark(&mut audit,format!("assurance:maturity:{v:?}"),r);}});
-                mark(&mut audit,"assurance:maturity",combo.response);
+                let combo=egui::ComboBox::from_id_salt("maturity").selected_text(format!("Maturity: {}",maturity_label(maturity))).show_ui(ui,|ui|{for v in [Maturity::Draft,Maturity::InDevelopment,Maturity::ReadyForReview,Maturity::InReview,Maturity::Approved,Maturity::Disapproved,Maturity::Deleted]{let r=ui.selectable_value(&mut maturity,v,maturity_label(v)).on_hover_text(maturity_hint(v));mark(&mut audit,format!("assurance:maturity:{v:?}"),r);}});
+                mark(&mut audit,"assurance:maturity",combo.response.on_hover_text(maturity_hint(maturity)));
                 if maturity!=req.maturity{let result=self.board.set_maturity(id,maturity);self.result(result,"Maturity updated independently.");}
                 let mut implementation=req.implementation;
-                let combo=egui::ComboBox::from_id_salt("implementation").selected_text(format!("Implementation: {implementation:?}")).show_ui(ui,|ui|{for v in [ImplementationStatus::UnderReview,ImplementationStatus::Waived,ImplementationStatus::Pending,ImplementationStatus::InProgress,ImplementationStatus::Implemented,ImplementationStatus::PartiallyImplemented,ImplementationStatus::NotImplemented]{let r=ui.selectable_value(&mut implementation,v,format!("{v:?}"));mark(&mut audit,format!("assurance:implementation:{v:?}"),r);}});
-                mark(&mut audit,"assurance:implementation",combo.response);
+                let combo=egui::ComboBox::from_id_salt("implementation").selected_text(format!("Implementation: {}",implementation_label(implementation))).show_ui(ui,|ui|{for v in [ImplementationStatus::UnderReview,ImplementationStatus::Waived,ImplementationStatus::Pending,ImplementationStatus::InProgress,ImplementationStatus::Implemented,ImplementationStatus::PartiallyImplemented,ImplementationStatus::NotImplemented]{let r=ui.selectable_value(&mut implementation,v,implementation_label(v)).on_hover_text(implementation_hint(v));mark(&mut audit,format!("assurance:implementation:{v:?}"),r);}});
+                mark(&mut audit,"assurance:implementation",combo.response.on_hover_text(implementation_hint(implementation)));
                 if implementation!=req.implementation{let result=self.board.set_implementation(id,implementation);self.result(result,"Implementation updated independently.");}
-                ui.label(format!("Recorded verification: {:?}",req.verification));
+                ui.label(format!("Recorded verification: {}",verification_label(req.verification))).on_hover_text(verification_hint(req.verification));
             });
             if current.is_ok() {ui.label(if verification_current&&assessment_key.as_ref().is_some_and(|key|key.epoch==self.epoch){"Latest verification decision applicable at the latest background source/proof check; rechecked before any new decision"}else{"No currently applicable verification decision; historical decisions remain recorded"});}
             else if let Err(e)=&current{ui.colored_label(egui::Color32::DARK_RED,e);}
             ui.separator();
             ui.horizontal(|ui|{ui.label("Calculation measure ID");mark(&mut audit,"assurance:calculation",ui.add(egui::TextEdit::singleline(&mut self.calculation).desired_width(80.)));if mark(&mut audit,"assurance:Evaluate",ui.add_enabled(self.pending.is_none(),egui::Button::new("Evaluate and attach receipt"))).clicked(){match self.calculation.trim().parse::<u64>(){Ok(value)=>self.update_worker(editor,move|board,editor,config|{let id=board.attach_calculation(id,editor,config,CalculationId(value))?;Ok((Some(id),"Selected calculation receipt attached from the actual native engine; review and verification remain separate.".into()))}),Err(_)=>self.feedback="Enter a calculation Measure ID.".into()}}});
-            ui.horizontal(|ui|{ui.label("Local artifact path");mark(&mut audit,"assurance:artifact-path",ui.text_edit_singleline(&mut self.local_evidence));if mark(&mut audit,"assurance:Attach external",ui.add_enabled(self.pending.is_none(),egui::Button::new("Attach external artifact"))).clicked(){let path=PathBuf::from(self.local_evidence.trim());if !path.is_absolute(){self.feedback="Choose an absolute local artifact path; no URLs or commands are executed.".into();}else{self.update_worker(editor,move|board,editor,config|{let context=EvidenceContext::from_editor(editor,config)?;let id=board.attach_local_evidence_with_metadata(id,context,config,&path,mbse_assurance::EvidenceOutcome::NotRun)?;Ok((Some(id),"Explicit external artifact attached as NotRun; no native-run authenticity inferred.".into()))});}}});
-            egui::ScrollArea::vertical().id_salt("evidence-list").max_height(95.).show(ui,|ui|{for(eid,e)in &self.board.register.evidence{if e.requirement==id && mark(&mut audit,format!("assurance:evidence:{}",eid.0),ui.selectable_label(self.evidence==Some(*eid),format!("E{} · {:?} · {:?} · selected {:?}",eid.0,e.outcome,e.adequacy,e.selected_calculation))).clicked(){self.evidence=Some(*eid);}}});
+            ui.horizontal(|ui|{ui.label("Local artifact path");mark(&mut audit,"assurance:artifact-path",ui.text_edit_singleline(&mut self.local_evidence));if mark(&mut audit,"assurance:Attach external",ui.add_enabled(self.pending.is_none(),egui::Button::new("Attach external artifact"))).clicked(){let path=PathBuf::from(self.local_evidence.trim());if !path.is_absolute(){self.feedback="Choose an absolute local artifact path; no URLs or commands are executed.".into();}else{self.update_worker(editor,move|board,editor,config|{let context=EvidenceContext::from_editor(editor,config)?;let id=board.attach_local_evidence_with_metadata(id,context,config,&path,mbse_assurance::EvidenceOutcome::NotRun)?;Ok((Some(id),"External artifact attached with outcome not run; no native-run authenticity inferred.".into()))});}}});
+            egui::ScrollArea::vertical().id_salt("evidence-list").max_height(95.).show(ui,|ui|{for(eid,e)in &self.board.register.evidence{if e.requirement==id && mark(&mut audit,format!("assurance:evidence:{}",eid.0),ui.selectable_label(self.evidence==Some(*eid),format!("E{} · {} · {} · {}",eid.0,outcome_label(e.outcome),adequacy_label(e.adequacy),selected_calculation_label(e.selected_calculation))).on_hover_text(format!("{} {}",outcome_hint(e.outcome),adequacy_hint(e.adequacy)))).clicked(){self.evidence=Some(*eid);}}});
             if let Some(eid)=self.evidence {if let Some(e)=self.board.register.evidence.get(&eid).cloned(){
+                ui.label(selected_calculation_label(e.selected_calculation));
                 ui.monospace(format!("Artifact SHA-256: {}",e.artifact_sha256));
-                if let Some(q)=&e.selected_quantity{ui.label(format!("Selected output: {} · quantity {:?} · unit {:?}",q.value,q.quantity.kind,q.quantity.unit));}
-                ui.label(format!("Global native receipt successful: {:?}. Selected evidence outcome: {:?}. The full artifact retains every result and diagnostic.",e.global_calculation_success,e.outcome));if e.global_calculation_success==Some(false){ui.colored_label(egui::Color32::DARK_RED,"Global calculation failed. This evidence describes only the selected output; no overall success is inferred.");}
+                if let Some(q)=&e.selected_quantity{ui.label(format!("Selected output: {} {} · quantity {:?}",q.value,mbse_model::stage1_calc::unit_label(q.quantity.unit),q.quantity.kind));}
+                ui.label(format!("Global receipt: {}. Selected evidence outcome: {}. The full artifact retains every result and diagnostic.",global_receipt_label(e.global_calculation_success),outcome_label(e.outcome))).on_hover_text(outcome_hint(e.outcome));if e.global_calculation_success==Some(false){ui.colored_label(egui::Color32::DARK_RED,"Global calculation failed. This evidence describes only the selected output; no overall success is inferred.");}
                 if let Some(metadata)=&e.context_metadata{if mark(&mut audit,"assurance:Use recorded metadata",ui.button("Use recorded evidence context metadata")).clicked(){self.config=serde_json::to_string_pretty(metadata).unwrap_or_default();self.feedback="Recorded canonical metadata selected explicitly; historical native proof remains historical until actual evaluation.".into();}}
                 ui.label(if e.selected_calculation.is_some(){"Native evaluator provenance requires evaluator-owned live proof. Reopened serialized receipts are historical until a fresh actual evaluation."}else{"External local artifact provenance; no native execution inferred."});
                 match &staleness {Some(Ok(reasons))if reasons.is_empty()=>{ui.label("Current freshness/provenance checks match; explicit adequacy and verification remain separate.");},Some(Ok(reasons))=>{ui.colored_label(egui::Color32::DARK_RED,format!("Stale or untrusted: {}",reasons.join("; ")));},Some(Err(error))=>{ui.label(error);},None=>{ui.label("Evidence assessment pending; no current verdict asserted.");}}
-                ui.collapsing("Intact evidence artifact and provenance",|ui|{ui.monospace(format!("{:?}",e.context));ui.label("Recorded canonical evidence-context metadata:");ui.monospace(serde_json::to_string_pretty(&e.context_metadata).unwrap_or_default());ui.label("Actual fixed native evaluator limits (not controlled by metadata):");ui.monospace(serde_json::to_string_pretty(&e.evaluator_limits).unwrap_or_default());egui::ScrollArea::both().max_height(120.).show(ui,|ui|{let n=e.artifact_bytes.len().min(64*1024);ui.monospace(String::from_utf8_lossy(&e.artifact_bytes[..n]));if n<e.artifact_bytes.len(){ui.label("Preview truncated; complete original bytes retained.");}});});
+                ui.collapsing("Intact evidence artifact and provenance",|ui|{ui.monospace(format!("Exact selected calculation: {:?}\nExact global receipt flag: {:?}\nExact outcome: {:?}\nExact adequacy: {:?}\nExact selected quantity: {:?}",e.selected_calculation,e.global_calculation_success,e.outcome,e.adequacy,e.selected_quantity));ui.monospace(format!("{:?}",e.context));ui.label("Recorded canonical evidence-context metadata:");ui.monospace(serde_json::to_string_pretty(&e.context_metadata).unwrap_or_default());ui.label("Actual fixed native evaluator limits (not controlled by metadata):");ui.monospace(serde_json::to_string_pretty(&e.evaluator_limits).unwrap_or_default());egui::ScrollArea::both().max_height(120.).show(ui,|ui|{let n=e.artifact_bytes.len().min(64*1024);ui.monospace(String::from_utf8_lossy(&e.artifact_bytes[..n]));if n<e.artifact_bytes.len(){ui.label("Preview truncated; complete original bytes retained.");}});});
                 ui.horizontal(|ui|{ui.label("Reviewer");mark(&mut audit,"assurance:reviewer",ui.text_edit_singleline(&mut self.reviewer));ui.label("Decision rationale");mark(&mut audit,"assurance:decision-rationale",ui.text_edit_singleline(&mut self.rationale));});
-                ui.horizontal_wrapped(|ui|{for (label,adequacy) in [("Review adequate",Adequacy::Adequate),("Review inadequate",Adequacy::Inadequate)]{if mark(&mut audit,format!("assurance:{label}"),ui.add_enabled(self.pending.is_none(),egui::Button::new(label))).clicked(){let reviewer=self.reviewer.clone();let rationale=self.rationale.clone();self.update_worker(editor,move|board,_,_|{board.review_evidence(eid,adequacy,reviewer,rationale)?;Ok((Some(eid),"Explicit evidence review appended; native provenance and current applicability remain separate.".into()))});}}});
-                ui.horizontal_wrapped(|ui|{for status in [VerificationStatus::InProgress,VerificationStatus::Completed,VerificationStatus::CompletedUnsuccessful,VerificationStatus::CompletedFailed,VerificationStatus::CompletedPassed]{if mark(&mut audit,format!("assurance:Record {status:?}"),ui.add_enabled(self.pending.is_none(),egui::Button::new(format!("Record {status:?}")))).clicked(){let reviewer=self.reviewer.clone();let rationale=self.rationale.clone();self.update_worker(editor,move|board,editor,config|{let context=EvidenceContext::from_editor(editor,config)?;board.record_verification(id,eid,status,&context,reviewer,rationale)?;Ok((Some(eid),"Verification decision appended; current applicability is derived from exact source/proof checks.".into()))});}}});
+                ui.horizontal_wrapped(|ui|{for (label,adequacy) in [("Review adequate",Adequacy::Adequate),("Review inadequate",Adequacy::Inadequate)]{if mark(&mut audit,format!("assurance:{label}"),ui.add_enabled(self.pending.is_none(),egui::Button::new(label)).on_hover_text(adequacy_hint(adequacy))).clicked(){let reviewer=self.reviewer.clone();let rationale=self.rationale.clone();self.update_worker(editor,move|board,_,_|{board.review_evidence(eid,adequacy,reviewer,rationale)?;Ok((Some(eid),"Explicit evidence review appended; native provenance and current applicability remain separate.".into()))});}}});
+                ui.horizontal_wrapped(|ui|{for status in [VerificationStatus::InProgress,VerificationStatus::Completed,VerificationStatus::CompletedUnsuccessful,VerificationStatus::CompletedFailed,VerificationStatus::CompletedPassed]{if mark(&mut audit,format!("assurance:Record {status:?}"),ui.add_enabled(self.pending.is_none(),egui::Button::new(format!("Record {}",verification_label(status)))).on_hover_text(verification_hint(status))).clicked(){let reviewer=self.reviewer.clone();let rationale=self.rationale.clone();self.update_worker(editor,move|board,editor,config|{let context=EvidenceContext::from_editor(editor,config)?;board.record_verification(id,eid,status,&context,reviewer,rationale)?;Ok((Some(eid),"Verification decision appended; current applicability is derived from exact source/proof checks.".into()))});}}});
             }}
             ui.collapsing("Immutable review and verification record history",|ui|{
-                for review in &self.board.register.review_history {ui.label(format!("Review #{} · E{} · {:?} · {} · {}",review.review_id,review.evidence.0,review.adequacy,review.reviewer,review.rationale));}
-                for decision in self.board.register.decision_history.iter().filter(|d|d.requirement==id) {ui.label(format!("Decision #{} · E{} · {:?} · {} · {}",decision.decision_id,decision.evidence.0,decision.status,decision.reviewer,decision.rationale));}
+                for review in &self.board.register.review_history {ui.label(format!("Review #{} · E{} · {} · {} · {}",review.review_id,review.evidence.0,adequacy_label(review.adequacy),review.reviewer,review.rationale));}
+                for decision in self.board.register.decision_history.iter().filter(|d|d.requirement==id) {ui.label(format!("Decision #{} · E{} · {} · {} · {}",decision.decision_id,decision.evidence.0,verification_label(decision.status),decision.reviewer,decision.rationale));}
+                ui.collapsing("Exact review and decision enum values",|ui|{for review in &self.board.register.review_history{ui.monospace(format!("Review #{} · E{} · {:?}",review.review_id,review.evidence.0,review.adequacy));}for decision in self.board.register.decision_history.iter().filter(|d|d.requirement==id){ui.monospace(format!("Decision #{} · E{} · {:?}",decision.decision_id,decision.evidence.0,decision.status));}});
                 ui.label("History records prior declarations; serialized stamps do not authenticate native runs or assert a currently applicable verdict.");
             });
         });
@@ -456,6 +458,100 @@ impl AssuranceWorkspace {
         }
         self.audit = audit;
     }
+}
+
+// Display copy only. Raw enums and IDs remain unchanged in commands, audit keys and provenance.
+fn selected_calculation_label(value: Option<CalculationId>) -> String {
+    match value {
+        Some(id) => format!("Selected calculation measure #{}", id.0),
+        None => "No selected calculation measure".into(),
+    }
+}
+fn global_receipt_label(value: Option<bool>) -> &'static str {
+    match value {
+        Some(true) => "succeeded",
+        Some(false) => "failed",
+        None => "not applicable",
+    }
+}
+fn maturity_label(value: Maturity) -> &'static str {
+    match value {
+        Maturity::Draft => "Draft",
+        Maturity::InDevelopment => "In development",
+        Maturity::ReadyForReview => "Ready for review",
+        Maturity::InReview => "In review",
+        Maturity::Approved => "Approved",
+        Maturity::Disapproved => "Disapproved",
+        Maturity::Deleted => "Deleted",
+    }
+}
+fn maturity_hint(value: Maturity) -> &'static str {
+    match value{Maturity::Draft=>"Initial requirement wording; implementation and verification remain separate.",Maturity::InDevelopment=>"The requirement wording is being developed.",Maturity::ReadyForReview=>"Prepared for review; no review result is implied.",Maturity::InReview=>"Requirement review is underway.",Maturity::Approved=>"Requirement maturity approval is recorded; this does not mark implementation or verification as passed.",Maturity::Disapproved=>"The requirement maturity decision is disapproved.",Maturity::Deleted=>"The requirement is marked deleted in its recorded lifecycle."}
+}
+fn implementation_label(value: ImplementationStatus) -> &'static str {
+    match value {
+        ImplementationStatus::UnderReview => "Under review",
+        ImplementationStatus::Waived => "Waived",
+        ImplementationStatus::Pending => "Pending",
+        ImplementationStatus::InProgress => "In progress",
+        ImplementationStatus::Implemented => "Implemented",
+        ImplementationStatus::PartiallyImplemented => "Partially implemented",
+        ImplementationStatus::NotImplemented => "Not implemented",
+    }
+}
+fn implementation_hint(value: ImplementationStatus) -> &'static str {
+    match value {
+        ImplementationStatus::UnderReview => {
+            "Implementation status is under review; maturity and verification remain separate."
+        }
+        ImplementationStatus::Waived => {
+            "Implementation is recorded as waived; no verification result is implied."
+        }
+        ImplementationStatus::Pending => "Implementation work is pending.",
+        ImplementationStatus::InProgress => "Implementation work is underway.",
+        ImplementationStatus::Implemented => {
+            "Implementation is recorded as complete; verification remains independent."
+        }
+        ImplementationStatus::PartiallyImplemented => {
+            "Implementation is recorded as only partly complete."
+        }
+        ImplementationStatus::NotImplemented => "Implementation is recorded as not implemented.",
+    }
+}
+fn verification_label(value: VerificationStatus) -> &'static str {
+    match value {
+        VerificationStatus::NotStarted => "Not started",
+        VerificationStatus::InProgress => "In progress",
+        VerificationStatus::Completed => "Completed",
+        VerificationStatus::CompletedUnsuccessful => "Completed unsuccessful",
+        VerificationStatus::CompletedFailed => "Completed failed",
+        VerificationStatus::CompletedPassed => "Completed passed",
+    }
+}
+fn verification_hint(value: VerificationStatus) -> &'static str {
+    match value{VerificationStatus::NotStarted=>"Verification is recorded as not started.",VerificationStatus::InProgress=>"Verification is underway; this label records no completed verdict.",VerificationStatus::Completed=>"Completion is recorded without a specific unsuccessful, failed or passed label.",VerificationStatus::CompletedUnsuccessful=>"An unsuccessful completion is recorded. This remains distinct from completed failed and completed passed.",VerificationStatus::CompletedFailed=>"A failed completion is recorded. This remains distinct from completed unsuccessful and completed passed.",VerificationStatus::CompletedPassed=>"An explicit passed decision, subject to the existing evidence, adequacy and freshness/provenance checks."}
+}
+fn adequacy_label(value: Adequacy) -> &'static str {
+    match value {
+        Adequacy::NotReviewed => "Not reviewed",
+        Adequacy::Adequate => "Adequate",
+        Adequacy::Inadequate => "Inadequate",
+    }
+}
+fn adequacy_hint(value: Adequacy) -> &'static str {
+    match value{Adequacy::NotReviewed=>"Evidence has not been explicitly reviewed for adequacy.",Adequacy::Adequate=>"The reviewer records the evidence as adequate; a verification decision remains separate.",Adequacy::Inadequate=>"The reviewer records the evidence as inadequate; requirement maturity remains separate."}
+}
+fn outcome_label(value: EvidenceOutcome) -> &'static str {
+    match value {
+        EvidenceOutcome::NotRun => "Not run",
+        EvidenceOutcome::Completed => "Completed",
+        EvidenceOutcome::Failed => "Failed",
+        EvidenceOutcome::Cancelled => "Cancelled",
+        EvidenceOutcome::Unsupported => "Unsupported",
+    }
+}
+fn outcome_hint(value: EvidenceOutcome) -> &'static str {
+    match value{EvidenceOutcome::NotRun=>"This evidence is marked not run; attaching a local artifact does not execute it.",EvidenceOutcome::Completed=>"The evidence records a completed outcome; this is not a verification pass or a global receipt verdict.",EvidenceOutcome::Failed=>"The evidence records a failure; no successful result is implied.",EvidenceOutcome::Cancelled=>"The evidence activity is recorded as cancelled.",EvidenceOutcome::Unsupported=>"The evidence outcome is marked unsupported; no successful native result is implied."}
 }
 
 fn mark(
