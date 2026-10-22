@@ -259,7 +259,7 @@ impl SemanticBrowser {
                 );
             }
         }
-        ui.collapsing("Stored attributes and direct text", |ui| {
+        let response = ui.collapsing("Stored attributes and direct text", |ui| {
             for a in &node.attributes {
                 ui.strong(format!("{{{}}}{}", a.namespace, a.name));
                 wrapped(ui, &a.value);
@@ -268,7 +268,8 @@ impl SemanticBrowser {
                 wrapped(ui, format!("Direct text [{i}]: {text}"));
             }
         });
-        ui.collapsing("Exact advanced provenance", |ui| {
+        self.bound("semantic:attributes", &response.header_response);
+        let response = ui.collapsing("Exact advanced provenance", |ui| {
             wrapped(
                 ui,
                 format!(
@@ -277,9 +278,11 @@ impl SemanticBrowser {
                 ),
             );
         });
-        ui.collapsing("Frozen source span", |ui| {
+        self.bound("semantic:advanced-provenance", &response.header_response);
+        let response = ui.collapsing("Frozen source span", |ui| {
             source_span(ui, set, &node.location);
         });
+        self.bound("semantic:source-span", &response.header_response);
         let response = ui.add_enabled(
             self.pending.is_none(),
             egui::Button::new("Preview selected source admission"),
@@ -326,7 +329,12 @@ impl SemanticBrowser {
         let source = self.source.clone();
         let mut reopen = None;
         let mut copy = None;
-        egui::Window::new("Source-specific external inspection").id(egui::Id::new("semantic-v2-window")).open(&mut visible).default_size(egui::vec2(1050.,750.)).vscroll(true).show(ctx,|ui|{
+        let window = egui::Window::new("Source-specific external inspection")
+            .id(egui::Id::new("semantic-v2-window"))
+            .open(&mut visible)
+            .default_size(egui::vec2(1050., 750.))
+            .vscroll(true);
+        window.show(ctx,|ui|{
             ui.set_max_width(ui.available_width());
             ui.colored_label(if self.error{Color32::DARK_RED}else{Color32::from_rgb(25,65,70)},&self.feedback);
             ui.label("Independent frozen source · Native admission: false · Execution: false. No native model mutation or dependency fetching.");
@@ -337,11 +345,13 @@ impl SemanticBrowser {
                 let r=ui.add_enabled(self.pending.is_none(),egui::Button::new("Reverify frozen source set"));self.bound("semantic:reverify",&r);if r.clicked(){reopen=Some((path.clone(),Some(set.source_set_digest.clone())));}
                 let r=ui.add_enabled(self.pending.is_none(),egui::Button::new("Open current source as new snapshot"));self.bound("semantic:reopen",&r);if r.clicked(){reopen=Some((path.clone(),None));}
             });
-            ui.collapsing("Source versions and independent namespace claims",|ui|{
+            let response=ui.collapsing("Source versions and independent namespace claims",|ui|{
                 for v in &set.source_versions {wrapped(ui,format!("Member: {}\nRoot namespace: {}\nXMI version: {}\nDeclared application version: {}\nRecognized bounded contract: {}",v.member_path,v.root_namespace,v.xmi_version.as_deref().unwrap_or("not declared"),v.declared_application_version.as_deref().unwrap_or("not declared"),v.recognized_contract));for ns in &v.metamodel_namespaces{wrapped(ui,format!("Metamodel namespace: {ns}"));}ui.separator();}
                 ui.label("Version claims and recognized namespaces do not establish source validity or engineering acceptance.");
             });
-            ui.collapsing("Frozen source manifest",|ui|{for e in &set.manifest{wrapped(ui,format!("{} · {} · {} bytes\n{}",e.logical_path,human(&format!("{:?}",e.role)),e.byte_count,e.sha256));}});
+            self.bound("semantic:versions",&response.header_response);
+            let response=ui.collapsing("Frozen source manifest",|ui|{for e in &set.manifest{wrapped(ui,format!("{} · {} · {} bytes\n{}",e.logical_path,human(&format!("{:?}",e.role)),e.byte_count,e.sha256));}});
+            self.bound("semantic:manifest",&response.header_response);
             ui.separator();
             ui.horizontal_wrapped(|ui|{ui.label("Find name, ID, type or member");let r=ui.text_edit_singleline(&mut self.query);self.bound("semantic:node-filter",&r);
                 let kinds:std::collections::BTreeSet<_>=set.nodes.iter().map(|n|format!("{:?}",n.kind)).collect();
@@ -354,7 +364,7 @@ impl SemanticBrowser {
                 ui.allocate_ui_with_layout(egui::vec2(width,320.),egui::Layout::top_down(egui::Align::Min),|ui|{
                     ui.set_min_width(width);ui.set_max_width(width);
                     egui::ScrollArea::vertical().id_salt("semantic-nodes").max_height(320.).show_rows(ui,28.,self.nodes.len(),|ui,rows|{
-                        ui.with_layout(egui::Layout::top_down(egui::Align::Min),|ui|{ui.set_max_width(width);for row in rows{let index=self.nodes[row];let n=&set.nodes[index];let r=ui.add(egui::Button::new(format!("{} · {} · {}",human(&format!("{:?}",n.kind)),n.name,key_label(&n.key))).selected(self.selected.as_ref()==Some(&n.key)).truncate());self.bound(format!("semantic:node:{index}"),&r);if r.clicked(){self.select(n.key.clone());}}});
+                        ui.with_layout(egui::Layout::top_down(egui::Align::Min),|ui|{ui.set_max_width(width);for row in rows{let index=self.nodes[row];let n=&set.nodes[index];let r=ui.add(egui::Button::new(format!("{} · {} · {}",human(&format!("{:?}",n.kind)),n.name,key_label(&n.key))).selected(self.selected.as_ref()==Some(&n.key)).min_size(egui::vec2(width,28.)).truncate());self.bound(format!("semantic:node:{index}"),&r);if r.clicked(){self.select(n.key.clone());}}});
                     });
                 });
                 let width=ui.available_width().max(120.);
@@ -368,7 +378,7 @@ impl SemanticBrowser {
                 let r=ui.checkbox(&mut self.related,"Only selected element endpoints");self.bound("semantic:related-filter",&r);
             });
             self.filters(set);ui.label(format!("{} of {} references",self.references.len(),set.references.len()));
-            egui::ScrollArea::vertical().id_salt("semantic-refs").max_height(155.).show_rows(ui,26.,self.references.len(),|ui,rows|{ui.with_layout(egui::Layout::top_down(egui::Align::Min),|ui|{for row in rows{let i=self.references[row];let r=&set.references[i];let response=ui.add(egui::Button::new(format!("{} · {} -> {} · {} · {}",r.feature,key_label(&r.source),r.target.as_ref().map(key_label).unwrap_or_else(||r.raw.clone()),human(&format!("{:?}",r.provenance)),human(&format!("{:?}",r.resolution)))).selected(self.reference==Some(i)).truncate());self.bound(format!("semantic:reference:{i}"),&response);if response.clicked(){self.reference=Some(i);}}});});
+            egui::ScrollArea::vertical().id_salt("semantic-refs").max_height(155.).show_rows(ui,26.,self.references.len(),|ui,rows|{ui.with_layout(egui::Layout::top_down(egui::Align::Min),|ui|{for row in rows{let i=self.references[row];let r=&set.references[i];let response=ui.add(egui::Button::new(format!("{} · {} -> {} · {} · {}",r.feature,key_label(&r.source),r.target.as_ref().map(key_label).unwrap_or_else(||r.raw.clone()),human(&format!("{:?}",r.provenance)),human(&format!("{:?}",r.resolution)))).selected(self.reference==Some(i)).min_size(egui::vec2(0.,26.)).truncate());self.bound(format!("semantic:reference:{i}"),&response);if response.clicked(){self.reference=Some(i);}}});});
             if let Some(r)=self.reference.and_then(|i|set.references.get(i)) {
                 wrapped(ui,format!("Feature: {}\nOriginal target spelling: {}\nResolution: {}\nProvenance: {}",r.feature,r.raw,human(&format!("{:?}",r.resolution)),human(&format!("{:?}",r.provenance))));
                 ui.horizontal_wrapped(|ui|{
@@ -377,11 +387,12 @@ impl SemanticBrowser {
                 });
                 ui.collapsing("Exact reference provenance and source span",|ui|{wrapped(ui,format!("{r:?}"));source_span(ui,set,&r.location);});
             }
-            ui.collapsing(format!("Unknowns, diagnostics and losses ({} / {})",set.diagnostics.len(),set.losses.len()),|ui|{
+            let response=ui.collapsing(format!("Unknowns, diagnostics and losses ({} / {})",set.diagnostics.len(),set.losses.len()),|ui|{
                 for d in &set.diagnostics{wrapped(ui,format!("{}: {}{}",d.code,d.detail,if d.detail_truncated{" [detail truncated]"}else{""}));}
                 for l in &set.losses{wrapped(ui,format!("{}: {}\nAction: {}{}",l.code,l.detail,l.action,if l.detail_truncated{" [detail truncated]"}else{""}));}
                 wrapped(ui,format!("Resource counters: {:?}",set.counters));
             });
+            self.bound("semantic:diagnostics-losses",&response.header_response);
             ui.separator();ui.strong("Exact original-byte copy to a NEW destination");
             let r=ui.add(egui::TextEdit::singleline(&mut self.copy_path).desired_width(ui.available_width()).hint_text("/workspace/…/NEW source file (existing destinations refused)"));self.bound("semantic:copy-path",&r);
             let r=ui.add_enabled(self.pending.is_none()&&!self.copy_path.trim().is_empty(),egui::Button::new("Create new exact source copy"));self.bound("semantic:fresh-copy",&r);if r.clicked(){copy=Some((set.clone(),PathBuf::from(self.copy_path.trim())));}
