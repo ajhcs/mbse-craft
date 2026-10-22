@@ -1,4 +1,5 @@
 //! App-owned UI over the bounded, provenance-preserving Stage1 contract.
+use crate::preferences::Preferences;
 use craft_ui::{
     buttons::{ButtonVisuals, IconButton, IconButtonStyle},
     theme::WidgetPalette,
@@ -11,9 +12,14 @@ use mbse_model::{
     },
     stage1_calc::{self as calc, CalculationId, Definition, Limits, QuantityType, UnitId},
     stage1_graph::{self, EdgeId, GraphEdge},
-    stage1_io::{self, Session},
+    stage1_io::{self, Session, WriteJob, WriteKind, WriteResult},
 };
-use std::{collections::BTreeMap, path::PathBuf};
+use std::{
+    collections::{BTreeMap, HashMap},
+    path::PathBuf,
+    sync::mpsc::{self, Receiver, Sender},
+    time::{Duration, Instant},
+};
 
 const INK: Color32 = Color32::from_rgb(36, 48, 63);
 const ACCENT: Color32 = Color32::from_rgb(18, 100, 119);
@@ -34,7 +40,15 @@ pub struct Workspace {
     session: Session,
     path: String,
     save_path: String,
-    active_field: Option<RawKey>,
+    model_fields: HashMap<egui::Id, RawKey>,
+    context: egui::Context,
+    writes: Sender<WriteResult>,
+    completed_writes: Receiver<WriteResult>,
+    pending_continue: Option<(Load, WriteKind)>,
+    preferences: Preferences,
+    settings_window: bool,
+    last_edit: Instant,
+    last_periodic: Instant,
     feedback: String,
     error: bool,
     creation: Option<(RecordKind, RecordId, String)>,
@@ -55,7 +69,12 @@ pub struct Workspace {
     audit_previous: Vec<u8>,
 }
 impl Workspace {
-    pub fn new(session: Session, capture: Option<PathBuf>, ctx: &egui::Context) -> Self {
+    pub fn new(
+        session: Session,
+        capture: Option<PathBuf>,
+        config: Option<PathBuf>,
+        ctx: &egui::Context,
+    ) -> Self {
         let mut style = (*ctx.style_of(egui::Theme::Light)).clone();
         style.visuals = egui::Visuals::light();
         style.visuals.panel_fill = PAPER;
@@ -82,7 +101,9 @@ impl Workspace {
             .as_ref()
             .map(|p| p.to_string_lossy().into_owned())
             .unwrap_or_default();
-        let mut app=Self { session, save_path: path.clone(), path, active_field: None, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
+        let (writes, completed_writes) = mpsc::channel();
+        let preferences = Preferences::open(config, ctx.clone());
+        let mut app=Self { session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),writes,completed_writes,pending_continue:None,preferences,settings_window:false,last_edit:Instant::now(),last_periodic:Instant::now(), feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
             creation: None, relation: None, popout: None, pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new() };
         app.refresh_recoveries();
         app
@@ -127,10 +148,17 @@ impl Workspace {
                 "Draft retained; last accepted model value is unchanged.".into()
             }
         });
+        if message.is_ok() {
+            self.last_edit = Instant::now();
+        }
         self.result(message);
     }
     fn select(&mut self, id: RecordId) {
-        self.active_field = None;
+        if let Some(focused) = self.context.memory(|m| m.focused()) {
+            if self.model_fields.contains_key(&focused) {
+                self.context.memory_mut(|m| m.surrender_focus(focused));
+            }
+        }
         let result = self.session.editor.select(id);
         if let Err(error) = result {
             self.result(Err(error));
@@ -184,9 +212,7 @@ impl Workspace {
             &response,
         );
         response.widget_info(|| egui::WidgetInfo::labeled(egui::WidgetType::TextEdit, true, label));
-        if response.has_focus() {
-            self.active_field = Some(key.clone());
-        }
+        self.model_fields.insert(response.id, key.clone());
         if response.changed() {
             self.command(Command::EditText {
                 key: key.clone(),
@@ -195,7 +221,6 @@ impl Workspace {
         }
         if response.lost_focus() {
             self.session.editor.finish_field();
-            self.active_field = None;
         }
         if let Some(raw) = self.session.editor.raw(&key) {
             if raw.validity != Validity::Valid {
@@ -217,60 +242,120 @@ impl Workspace {
             }
         }
     }
-    fn save(&mut self) {
-        let path = PathBuf::from(self.save_path.trim());
-        if self.save_path.trim().is_empty() {
-            self.result(Err("Enter a destination path before saving.".into()));
-            return;
-        }
-        let result = self
-            .session
-            .begin_save(&path)
-            .map(|job| {
-                let result = stage1_io::execute_write(job);
-                let error = result.error().map(|e| format!("{e:?}"));
-                let consumed = self.session.complete(result);
-                if let Some(error) = error {
-                    return Err(error);
-                }
-                if !consumed
-                    || self.session.is_dirty()
-                    || !matches!(self.session.status(), stage1_io::SaveStatus::Saved)
-                {
-                    return Err(format!(
-                        "Save receipt did not confirm current bytes: {:?}. Current work retained.",
-                        self.session.status()
-                    ));
-                }
-                Ok("Saved accepted values and raw drafts; current bytes verified.".into())
-            })
-            .and_then(|r| r);
-        self.result(result);
+    fn spawn_write(&mut self, job: WriteJob) {
+        let tx = self.writes.clone();
+        let ctx = self.context.clone();
+        let kind = job.kind.clone();
+        std::thread::spawn(move || {
+            let result = stage1_io::execute_write(job);
+            let _ = tx.send(result);
+            ctx.request_repaint();
+        });
+        self.result(Ok(format!(
+            "{kind:?} write pending; the frozen snapshot is being written."
+        )));
     }
-    fn recovery(&mut self) -> Result<String, String> {
-        let job = self.session.begin_recovery()?;
-        let result = stage1_io::execute_write(job);
-        let error = result.error().map(|e| format!("{e:?}"));
-        let consumed = self.session.complete(result);
-        if let Some(error) = error {
-            return Err(error);
+    fn save(&mut self) -> bool {
+        if self.save_path.trim().is_empty() {
+            self.result(Err("Enter a native save destination before saving.".into()));
+            return false;
         }
-        if !consumed || !self.session.recovery_current() {
-            return Err(
-                "Recovery receipt did not confirm current snapshot; current work retained.".into(),
-            );
+        match self
+            .session
+            .begin_save(&PathBuf::from(self.save_path.trim()))
+        {
+            Ok(job) => {
+                self.spawn_write(job);
+                true
+            }
+            Err(error) => {
+                self.result(Err(error));
+                false
+            }
         }
-        Ok(format!(
-            "Recovery copy: {}",
-            self.session
-                .last_recovery()
-                .map(|p| p.display().to_string())
-                .unwrap_or_default()
-        ))
+    }
+    fn recovery(&mut self) -> bool {
+        match self.session.begin_recovery() {
+            Ok(job) => {
+                self.spawn_write(job);
+                true
+            }
+            Err(error) => {
+                self.result(Err(error));
+                false
+            }
+        }
+    }
+    fn finish_writes(&mut self, ctx: &egui::Context) {
+        while let Ok(result) = self.completed_writes.try_recv() {
+            let kind = result.kind.clone();
+            let error = result.error().map(ToString::to_string);
+            let consumed = self.session.complete(result);
+            let current = consumed
+                && error.is_none()
+                && match kind {
+                    WriteKind::Save => {
+                        !self.session.is_dirty()
+                            && matches!(self.session.status(), stage1_io::SaveStatus::Saved)
+                    }
+                    WriteKind::Recovery => self.session.recovery_current(),
+                };
+            if let Some(error) = error {
+                self.result(Err(format!(
+                    "{kind:?} failed: {error}. Current work retained."
+                )));
+                self.pending_continue = None;
+            } else if !consumed {
+                self.result(Err(
+                    "Write receipt did not match the active document; current work retained."
+                        .into(),
+                ));
+                self.pending_continue = None;
+            } else if !current {
+                self.result(Ok(format!("Earlier {kind:?} snapshot written. Newer accepted values or drafts remain unsaved; repeat preservation to continue.")));
+                self.pending_continue = None;
+            } else {
+                self.result(Ok(match kind {
+                    WriteKind::Save => {
+                        "Saved accepted values and drafts; current bytes verified.".into()
+                    }
+                    WriteKind::Recovery => format!(
+                        "Current recovery copy verified: {}",
+                        self.session
+                            .last_recovery()
+                            .map(|p| p.display().to_string())
+                            .unwrap_or_default()
+                    ),
+                }));
+                self.refresh_recoveries();
+                if let Some((action, expected)) = self.pending_continue.take() {
+                    if expected == kind {
+                        self.pending = None;
+                        match action {
+                            Load::Quit => {
+                                self.allow_close = Some(self.session.editor.snapshot.digest());
+                                ctx.send_viewport_cmd(egui::ViewportCommand::Close);
+                            }
+                            action => self.load(action),
+                        }
+                    }
+                }
+            }
+        }
+    }
+    fn focused_raw(&self) -> Option<RawKey> {
+        self.context
+            .memory(|m| m.focused())
+            .and_then(|id| self.model_fields.get(&id).cloned())
+            .filter(|key| {
+                self.session.editor.selected == Some(key.record)
+                    && self.session.editor.field_available(key)
+            })
     }
     fn request_load(&mut self, action: Load) {
-        if self.session.is_dirty() {
+        if self.session.is_dirty() || self.session.pending() {
             self.pending = Some(action);
+            self.pending_continue = None;
         } else {
             self.load(action);
         }
@@ -300,7 +385,9 @@ impl Workspace {
                     .as_ref()
                     .map(|p| p.display().to_string())
                     .unwrap_or_default();
-                self.active_field = None;
+                self.model_fields.clear();
+                self.allow_close = None;
+                self.last_edit = Instant::now();
                 self.refresh_recoveries();
                 self.result(Ok(
                     "Model opened. Imported and recovered documents are independent drafts.".into(),
@@ -310,6 +397,7 @@ impl Workspace {
         }
     }
     fn toolbar(&mut self, root: &mut egui::Ui) {
+        let history_field = self.focused_raw();
         egui::Panel::top("workspace_toolbar").show(root, |ui| {
             ui.horizontal_wrapped(|ui| {
                 ui.heading("MBSE-Craft"); ui.label("Model workspace"); ui.separator();
@@ -318,9 +406,10 @@ impl Workspace {
                     if response.clicked() { self.request_load(action); }
                 }
                 let save = ui.button("Save"); self.bound("action:Save",&save); if save.clicked() { self.save(); }
-                let recovery = ui.button("Recovery copy"); self.bound("action:Recovery copy",&recovery); if recovery.clicked() { let result = self.recovery(); self.result(result); }
+                let recovery = ui.button("Recovery copy"); self.bound("action:Recovery copy",&recovery); if recovery.clicked() { self.recovery(); }
                 let recovery_count=self.recovery_inventory.as_ref().map_or(0,|i|i.entries.len());
                 let response=ui.button(format!("Review recovery copies ({recovery_count})"));self.bound("recovery:Review copies",&response);if response.clicked(){self.refresh_recoveries();self.recovery_window=true;}
+                let response=ui.button("Recovery settings");self.bound("settings:Open",&response);if response.clicked(){self.settings_window=true;}
                 if ui.button("Export SysML copy").clicked() {
                     let result = self.session.begin_export_sysml(&PathBuf::from(self.path.trim())).and_then(|job| self.session.complete_export(stage1_io::execute_export(job))).and_then(|accepted| if accepted { Ok("Exported restricted SysML copy.".into()) } else { Err("Export receipt was not accepted.".into()) });
                     self.result(result);
@@ -330,13 +419,13 @@ impl Workspace {
                 let visual = ButtonVisuals { fill: Color32::from_rgb(231, 239, 238), stroke: Stroke::new(1., LINE), icon: ACCENT };
                 let style = IconButtonStyle { normal: visual, hovered: visual, pressed: Some(visual), selected: visual,
                     corner_radius: egui::CornerRadius::same(4), focus_stroke: Stroke::new(2., ACCENT) };
-                for (label, undo, enabled) in [("Undo", true, self.session.editor.can_undo() || self.active_field.is_some()), ("Redo", false, self.session.editor.can_redo() || self.active_field.is_some())] {
+                for (label, undo, enabled) in [("Undo", true, self.session.editor.can_undo() || self.focused_raw().is_some()), ("Redo", false, self.session.editor.can_redo() || self.focused_raw().is_some())] {
                     ui.add_enabled_ui(enabled, |ui| {
                         let response = IconButton::new(label, Vec2::new(44.,28.), &style).show(ui, |ui, rect, tint| {
                             ui.painter().text(rect.center(), egui::Align2::CENTER_CENTER, if undo { "Undo" } else { "Redo" }, FontId::proportional(12.), tint);
                         });
                         self.bound(format!("action:{label}"),&response);
-                        if response.clicked() { self.history(undo); }
+                        if response.clicked() { self.history(undo,history_field.clone()); }
                     });
                 }
             });
@@ -352,13 +441,14 @@ impl Workspace {
             ui.horizontal_wrapped(|ui| {
                 ui.label(format!("{:?} · model r{} · raw v{}", self.session.status(), self.session.editor.snapshot.model_revision, self.session.editor.snapshot.raw_version));
                 if self.session.recovery_current() { ui.colored_label(ACCENT, "Current recovery copy"); }
+                ui.label(if self.preferences.value.periodic_recovery {format!("Periodic recovery on · {}s · {}",self.preferences.value.recovery_interval_seconds,if self.session.pending(){"write pending"}else if self.session.recovery_current(){"current"}else{"waiting for quiet interval"})}else{"Periodic recovery off".into()});
                 ui.label(RichText::new("App-owned model · restricted SysML subset").small());
             });
         });
     }
-    fn history(&mut self, undo: bool) {
+    fn history(&mut self, undo: bool, field: Option<RawKey>) {
         let freshness = self.session.editor.freshness();
-        let result = if let Some(key) = self.active_field.as_ref() {
+        let result = if let Some(key) = field.as_ref() {
             if undo {
                 self.session.editor.undo_text(&freshness, key)
             } else {
@@ -369,6 +459,9 @@ impl Workspace {
         } else {
             self.session.editor.redo_model(&freshness)
         };
+        if result.as_ref().is_ok_and(|changed| *changed) {
+            self.last_edit = Instant::now();
+        }
         self.result(result.map(|changed| {
             if changed {
                 "Model history applied. Raw drafts remain separately retained.".into()
@@ -629,9 +722,6 @@ impl Workspace {
                 ui.label("Named actor in this System's scope. No role or interaction is inferred from its name.");
             }
             RecordKind::Expectation => self.field(ui, record, "text", "Expectation", true),
-            _ => {
-                ui.label("Typed record; additional source properties remain preserved in the native file.");
-            }
         }
     }
     fn affiliations(&mut self, ui: &mut egui::Ui, record: &Record, records: &[Record]) {
@@ -1187,6 +1277,25 @@ impl Workspace {
                 });
         });
     }
+    fn settings_dialog(&mut self, ctx: &egui::Context) {
+        if !self.settings_window {
+            return;
+        }
+        let mut open = true;
+        let before = self.preferences.value.clone();
+        egui::Window::new("Recovery settings").id(egui::Id::new("recovery-settings")).open(&mut open).default_width(480.).show(ctx,|ui|{
+            ui.label("Application-local recovery copies; never an automatic save to your source file.");let response=ui.checkbox(&mut self.preferences.value.periodic_recovery,"Enable periodic recovery");self.bound("settings:periodic",&response);
+            let combo=egui::ComboBox::from_id_salt("recovery-interval").selected_text(format!("Every {} seconds",self.preferences.value.recovery_interval_seconds)).show_ui(ui,|ui|{for seconds in [15,30,60,120,300,600,3600]{let response=ui.selectable_value(&mut self.preferences.value.recovery_interval_seconds,seconds,format!("{seconds} seconds"));self.bound(format!("settings:interval:{seconds}"),&response);}});self.bound("settings:interval",&combo.response);
+            ui.label("A changed snapshot is copied only after a quiet period and the interval. New edits stay separate from a pending write; its receipt must verify the current snapshot before current recovery is shown.");
+            ui.label(&self.preferences.report);ui.label(&self.preferences.status);if self.preferences.pending(){ui.label("Preference write pending; the GUI remains responsive.");}
+            ui.label(format!("Recovery data: {}",self.session.state_root.display()));
+        });
+        self.settings_window = open;
+        if self.preferences.value != before {
+            self.last_periodic = Instant::now();
+            self.preferences.changed();
+        }
+    }
     fn recovery_dialog(&mut self, ctx: &egui::Context) {
         if !self.recovery_window {
             return;
@@ -1221,6 +1330,7 @@ impl Workspace {
     }
     fn dialogs(&mut self, ctx: &egui::Context) {
         self.recovery_dialog(ctx);
+        self.settings_dialog(ctx);
         if let Some((environment, mut name, mut kind)) = self.context_creation.clone() {
             let mut open = true;
             let mut create = false;
@@ -1344,23 +1454,16 @@ impl Workspace {
             }
         }
         if let Some(action) = self.pending.clone() {
-            egui::Window::new("Preserve current work").collapsible(false).resizable(false).show(ctx, |ui| {
-                ui.label("The current model has unsaved accepted values or retained drafts.");
-                ui.label("Save to the file path, or create a durable recovery copy before continuing.");
-                let response=ui.button("Save and continue"); self.bound("preserve:Save and continue",&response);
-                if response.clicked() {
-                    self.save();
-                    if !self.session.is_dirty() { self.pending = None; if matches!(action,Load::Quit) { self.allow_close = Some(self.session.editor.snapshot.digest()); ctx.send_viewport_cmd(egui::ViewportCommand::Close); } else { self.load(action.clone()); } }
-                }
-                let response=ui.button("Keep recovery and continue"); self.bound("preserve:Keep recovery and continue",&response);
-                if response.clicked() {
-                    let result = self.recovery(); let ok = result.is_ok(); self.result(result);
-                    if ok { self.pending = None; if matches!(action,Load::Quit) { self.allow_close = Some(self.session.editor.snapshot.digest()); ctx.send_viewport_cmd(egui::ViewportCommand::Close); } else { self.load(action.clone()); } }
-                }
-                let response=ui.button("Cancel"); self.bound("preserve:Cancel",&response); if response.clicked() { self.pending = None; }
+            egui::Window::new("Preserve current work").collapsible(false).resizable(false).show(ctx,|ui|{
+                ui.label("Current accepted values and raw drafts remain in this document.");ui.label("Continue only after a current save or recovery is verified. Cancel keeps this document open.");
+                if self.session.pending(){ui.label("A frozen snapshot write is pending. New edits stay separate from its acknowledgment.");}
+                let response=ui.add_enabled(!self.session.pending(),egui::Button::new("Save and continue"));self.bound("preserve:Save and continue",&response);if response.clicked()&&self.save(){self.pending_continue=Some((action.clone(),WriteKind::Save));}
+                let response=ui.add_enabled(!self.session.pending(),egui::Button::new("Keep recovery and continue"));self.bound("preserve:Keep recovery and continue",&response);if response.clicked()&&self.recovery(){self.pending_continue=Some((action.clone(),WriteKind::Recovery));}
+                let response=ui.button("Cancel");self.bound("preserve:Cancel",&response);if response.clicked(){self.pending=None;self.pending_continue=None;self.allow_close=None;self.result(Ok("Navigation canceled; current work retained. A snapshot write already in progress may still finish.".into()));}
             });
         }
     }
+
     fn capture(&mut self, ctx: &egui::Context) {
         if self.capture.is_none() {
             return;
@@ -1398,6 +1501,65 @@ impl Workspace {
             self.screenshot_requested = true;
         }
         ctx.request_repaint();
+    }
+}
+#[derive(Clone, Debug, PartialEq, Eq)]
+enum ShortcutTarget {
+    Field(RawKey),
+    Model,
+    Widget,
+}
+fn shortcut_policy(
+    field: Option<RawKey>,
+    text_focus: bool,
+    focus_transition: bool,
+) -> ShortcutTarget {
+    if focus_transition {
+        ShortcutTarget::Widget
+    } else if let Some(key) = field {
+        ShortcutTarget::Field(key)
+    } else if text_focus {
+        ShortcutTarget::Widget
+    } else {
+        ShortcutTarget::Model
+    }
+}
+fn block_close(
+    requested: bool,
+    dirty: bool,
+    pending: bool,
+    current: &str,
+    permit: Option<&str>,
+) -> bool {
+    requested && (pending || (dirty && permit != Some(current)))
+}
+#[cfg(test)]
+mod policies {
+    use super::*;
+    #[test]
+    fn close_requires_current_preservation_even_while_hidden() {
+        assert!(block_close(true, true, false, "new", Some("old")));
+        assert!(block_close(true, false, true, "same", Some("same")));
+        assert!(!block_close(true, true, false, "same", Some("same")));
+        assert!(!block_close(false, true, true, "new", None));
+    }
+    #[test]
+    fn ordinary_text_and_focus_transitions_do_not_undo_model() {
+        let key = RawKey {
+            record: RecordId(1),
+            field: "purpose".into(),
+            item: None,
+        };
+        assert_eq!(shortcut_policy(None, true, false), ShortcutTarget::Widget);
+        assert_eq!(
+            shortcut_policy(Some(key.clone()), true, true),
+            ShortcutTarget::Widget
+        );
+        assert_eq!(
+            shortcut_policy(Some(key.clone()), true, false),
+            ShortcutTarget::Field(key)
+        );
+        assert_eq!(shortcut_policy(None, false, false), ShortcutTarget::Model);
     }
 }
 fn subject_caption(subject: Option<SubjectRef>, records: &[Record]) -> String {
@@ -1452,29 +1614,81 @@ fn relation_label(edge: &GraphEdge, records: &[Record]) -> String {
     )
 }
 impl eframe::App for Workspace {
+    fn logic(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+        self.preferences.poll();
+        self.finish_writes(ctx);
+        let hash = self.session.editor.snapshot.digest();
+        if block_close(
+            ctx.input(|i| i.viewport().close_requested()),
+            self.session.is_dirty(),
+            self.session.pending(),
+            &hash,
+            self.allow_close.as_deref(),
+        ) {
+            ctx.send_viewport_cmd(egui::ViewportCommand::CancelClose);
+            ctx.send_viewport_cmd(egui::ViewportCommand::Visible(true));
+            ctx.send_viewport_cmd(egui::ViewportCommand::Minimized(false));
+            if !matches!(self.pending_continue, Some((Load::Quit, _))) {
+                self.pending_continue = None;
+            }
+            self.pending = Some(Load::Quit);
+            ctx.request_repaint();
+        }
+        let now = Instant::now();
+        let interval = Duration::from_secs(self.preferences.value.recovery_interval_seconds);
+        if self.preferences.value.periodic_recovery
+            && self.pending.is_none()
+            && !self.session.pending()
+            && self.session.is_dirty()
+            && !self.session.recovery_current()
+            && now.duration_since(self.last_edit) >= Duration::from_millis(750)
+            && now.duration_since(self.last_periodic) >= interval
+        {
+            self.last_periodic = now;
+            self.recovery();
+        }
+        if self.preferences.value.periodic_recovery || self.session.pending() {
+            ctx.request_repaint_after(Duration::from_millis(250));
+        }
+        craft_quit::on_close_request(ctx);
+    }
     fn ui(&mut self, root: &mut egui::Ui, _frame: &mut eframe::Frame) {
         let ctx = root.ctx().clone();
         self.frames = self.frames.saturating_add(1);
         self.audit.clear();
-        if self.allow_close.as_deref() != Some(self.session.editor.snapshot.digest().as_str())
-            && ctx.input(|i| i.viewport().close_requested())
-            && self.session.is_dirty()
-        {
-            ctx.send_viewport_cmd(egui::ViewportCommand::CancelClose);
-            self.pending = Some(Load::Quit);
-        }
         if ctx.input_mut(|i| i.consume_key(egui::Modifiers::COMMAND, egui::Key::S)) {
             self.save();
         }
-        if ctx.input_mut(|i| {
-            i.consume_key(
-                egui::Modifiers::COMMAND | egui::Modifiers::SHIFT,
-                egui::Key::Z,
-            )
-        }) {
-            self.history(false);
-        } else if ctx.input_mut(|i| i.consume_key(egui::Modifiers::COMMAND, egui::Key::Z)) {
-            self.history(true);
+        let transition = ctx.input(|i| {
+            i.events.iter().any(|e| {
+                matches!(
+                    e,
+                    egui::Event::PointerButton { pressed: true, .. }
+                        | egui::Event::Key {
+                            key: egui::Key::Tab,
+                            pressed: true,
+                            ..
+                        }
+                )
+            })
+        });
+        let target = shortcut_policy(self.focused_raw(), ctx.wants_keyboard_input(), transition);
+        if !matches!(target, ShortcutTarget::Widget) {
+            let redo = ctx.input_mut(|i| {
+                i.consume_key(
+                    egui::Modifiers::COMMAND | egui::Modifiers::SHIFT,
+                    egui::Key::Z,
+                )
+            });
+            let undo =
+                !redo && ctx.input_mut(|i| i.consume_key(egui::Modifiers::COMMAND, egui::Key::Z));
+            if redo || undo {
+                let field = match target {
+                    ShortcutTarget::Field(key) => Some(key),
+                    _ => None,
+                };
+                self.history(undo, field);
+            }
         }
         egui::Panel::bottom("feedback").show(root, |ui| {
             ui.colored_label(if self.error { ERROR } else { INK }, &self.feedback);
@@ -1487,7 +1701,7 @@ impl eframe::App for Workspace {
         let audit = serde_json::json!({"profile":"mbse-craft.ui-geometry/1", "pixels_per_point":ctx.pixels_per_point(),
             "model_revision":self.session.editor.snapshot.model_revision,"raw_version":self.session.editor.snapshot.raw_version,
             "snapshot_hash":self.session.editor.snapshot.digest(),"selected":self.session.editor.selected.map(|id|id.0),
-            "save_status":format!("{:?}",self.session.status()),"recovery_path":self.session.last_recovery().map(|p|p.display().to_string()),"recovery_current":self.session.recovery_current(),"feedback":self.feedback,"error":self.error,"widgets":self.audit});
+            "save_status":format!("{:?}",self.session.status()),"periodic_recovery":self.preferences.value.periodic_recovery,"recovery_interval_seconds":self.preferences.value.recovery_interval_seconds,"preferences_status":self.preferences.status,"write_pending":self.session.pending(),"recovery_path":self.session.last_recovery().map(|p|p.display().to_string()),"recovery_current":self.session.recovery_current(),"feedback":self.feedback,"error":self.error,"widgets":self.audit});
         if let Ok(bytes) = serde_json::to_vec_pretty(&audit) {
             if bytes != self.audit_previous {
                 let temp = self.session.state_root.join("ui-geometry.pending");
