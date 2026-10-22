@@ -42,6 +42,7 @@ pub struct Workspace {
     frames: u32,
     screenshot_requested: bool,
     zoom: f32,
+    show_ownership: bool,
     allow_close: Option<String>,
     audit: BTreeMap<String, [f32; 4]>,
     audit_previous: Vec<u8>,
@@ -75,7 +76,7 @@ impl Workspace {
             .map(|p| p.to_string_lossy().into_owned())
             .unwrap_or_default();
         Self { session, save_path: path.clone(), path, active_field: None, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
-            creation: None, relation: None, popout: None, pending: None, capture, frames: 0, screenshot_requested: false, zoom: 1., allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new() }
+            creation: None, relation: None, popout: None, pending: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new() }
     }
     fn bound(&mut self, key: impl Into<String>, response: &egui::Response) {
         let rect = response.rect.intersect(response.interact_rect);
@@ -774,6 +775,15 @@ impl Workspace {
                     return;
                 }
             };
+            let ownership_count=graph.edges.iter().filter(|e|e.id.role==stage1_graph::RelationRole::Scope).count();
+            ui.horizontal_wrapped(|ui| {
+                let response=ui.checkbox(&mut self.show_ownership,format!("Show ownership links ({ownership_count}{})",if self.show_ownership {" shown"} else {" hidden"})); self.bound("canvas:ownership",&response);
+                ui.label("Ownership means System scope. Other arrows show authored semantic links.");
+            });
+            ui.label(RichText::new("Select a relation in the complete ledger to highlight its arrow and inspect both endpoints.").small());
+            let fit_width=(ui.available_width()-16.).max(300.);
+            let columns=((fit_width/300.).floor() as usize).clamp(1,3);
+            let card_width=(fit_width-50.-24.*(columns-1) as f32)/columns as f32;
             let canvas_height = (ui.available_height() * 0.60).max(260.);
             egui::ScrollArea::both()
                 .id_salt("primary-canvas")
@@ -782,8 +792,8 @@ impl Workspace {
                 .show(ui, |ui| {
                     let scale = self.zoom;
                     let size = Vec2::new(
-                        1170. * scale,
-                        (records.len().div_ceil(3) as f32 * 155. + 50.).max(350.) * scale,
+                        fit_width * scale,
+                        (records.len().div_ceil(columns) as f32 * 155. + 50.).max(350.) * scale,
                     );
                     let (area, _) = ui.allocate_exact_size(size, egui::Sense::hover());
                     let rects: BTreeMap<_, _> = records
@@ -792,16 +802,18 @@ impl Workspace {
                         .map(|(index, r)| {
                             let min = area.min
                                 + Vec2::new(
-                                    25. + (index % 3) as f32 * 385.,
-                                    24. + (index / 3) as f32 * 155.,
+                                    25. + (index % columns) as f32 * (card_width+24.),
+                                    24. + (index / columns) as f32 * 155.,
                                 ) * scale;
                             (
                                 r.id,
-                                Rect::from_min_size(min, Vec2::new(330., 112.) * scale),
+                                Rect::from_min_size(min, Vec2::new(card_width, 112.) * scale),
                             )
                         })
                         .collect();
-                    for (index, edge) in graph.edges.iter().enumerate() {
+                    let mut visible_edges:Vec<_>=graph.edges.iter().enumerate().filter(|(_,edge)|self.show_ownership || edge.id.role!=stage1_graph::RelationRole::Scope).collect();
+                    visible_edges.sort_by_key(|(_,edge)|self.relation==Some(edge.id));
+                    for (index, edge) in visible_edges {
                         let (Some(source), Some(target)) =
                             (rects.get(&edge.id.source), rects.get(&edge.id.target))
                         else {
@@ -810,9 +822,11 @@ impl Workspace {
                         let a = source.center_bottom();
                         let b = target.center_top();
                         let bend = Pos2::new(a.x + (index % 5) as f32 * 8., a.y + 14. * scale);
-                        ui.painter()
-                            .line_segment([a, bend], Stroke::new(1., ACCENT));
-                        ui.painter().arrow(bend, b - bend, Stroke::new(1., ACCENT));
+                        let selected=self.relation==Some(edge.id);
+                        let color=if self.relation.is_some() && !selected {LINE} else {ACCENT};
+                        let stroke=Stroke::new(if selected {3.} else {1.},color);
+                        ui.painter().line_segment([a,bend],stroke);
+                        ui.painter().arrow(bend,b-bend,stroke);
                     }
                     for record in &records {
                         let rect = rects[&record.id];
@@ -902,6 +916,7 @@ impl Workspace {
                         );
                         if response.clicked() {
                             self.relation = Some(edge.id);
+                            if edge.id.role==stage1_graph::RelationRole::Scope { self.show_ownership=true; }
                         }
                     }
                     if graph.edges.is_empty() {
