@@ -204,13 +204,57 @@ fn flag(n: roxmltree::Node<'_, '_>, name: &str) -> FlagValue {
         Some(raw) => FlagValue::UnsupportedLexical(raw.into()),
     }
 }
-fn id<'a, 'i>(n: roxmltree::Node<'a, 'i>) -> Option<&'a str> {
-    n.attributes()
-        .find(|a| {
+fn id<'a, 'i>(
+    n: roxmltree::Node<'a, 'i>,
+    ty: &TypeView<'_>,
+    capella_document: bool,
+    xmi_document: bool,
+) -> Result<Option<&'a str>, String> {
+    let carriers: Vec<_> = n
+        .attributes()
+        .filter(|a| {
             a.name() == "id"
                 && (a.namespace().is_none() || matches!(a.namespace(), Some(XMI) | Some(XMI_UML)))
         })
-        .map(|a| a.value())
+        .collect();
+    if carriers.len() > 1 {
+        return Err("V2_INSTANCE_IDENTITY_CARRIERS_CONFLICT".into());
+    }
+    let Some(carrier) = carriers.first() else {
+        return Ok(None);
+    };
+    if capella_document || capella(ty) {
+        if carrier.namespace().is_some() {
+            return Err("V2_IDENTITY_CARRIER_COVERAGE_UNSUPPORTED_CAPELLA_PLAIN_ID".into());
+        }
+    } else if xmi_document || matches!(ty.namespace, UML | SYSML | UAF | UAF_MEASURE) {
+        if !matches!(carrier.namespace(), Some(XMI) | Some(XMI_UML)) {
+            return Err("V2_IDENTITY_CARRIER_COVERAGE_UNSUPPORTED_XMI_ID".into());
+        }
+    }
+    // Capella id is EString. This adapter imposes no XML NCName/token grammar.
+    Ok(Some(carrier.value()))
+}
+fn unsupported_reference_syntax(raw: &str) -> bool {
+    raw.contains(['%', '\\', '?', '[', ']'])
+        || raw.matches('#').count() > 1
+        || raw
+            .strip_prefix('#')
+            .is_some_and(|s| s.is_empty() || s.contains(['/', ':']))
+}
+fn local_target(asset: &SourceAsset, raw: &str) -> Option<ElementKey> {
+    if unsupported_reference_syntax(raw) {
+        return None;
+    }
+    let id = raw.strip_prefix('#').unwrap_or(raw);
+    if id.is_empty() || id.contains(['#', '/', ':']) {
+        return None;
+    }
+    Some(ElementKey {
+        asset_sha256: asset.sha256.clone(),
+        member_path: asset.logical_path.clone(),
+        identity: ElementIdentity::Original(id.into()),
+    })
 }
 fn input_preflight(
     text: &str,
@@ -380,7 +424,12 @@ fn parse(
     let mut original_ids = BTreeSet::new();
     for n in doc.descendants().filter(|n| n.is_element()) {
         let t = source_type(n);
-        let original = id(n);
+        let original = id(
+            n,
+            &t,
+            root.tag_name().namespace() == Some(MODELLER),
+            matches!(root.tag_name().namespace(), Some(XMI) | Some(XMI_UML)),
+        )?;
         let typed = n.attributes().any(|a| {
             a.name() == "type" && matches!(a.namespace(), Some(XSI) | Some(XMI) | Some(XMI_UML))
         });
@@ -405,8 +454,8 @@ fn parse(
             return Err("V2_NODE_LIMIT".into());
         }
         if let Some(id) = original {
-            if id.is_empty() || !original_ids.insert(id) {
-                return Err("V2_DUPLICATE_OR_EMPTY_MEMBER_ID".into());
+            if !original_ids.insert(id) {
+                return Err("V2_INSTANCE_IDENTITY_DUPLICATE".into());
             }
         }
         let key = ElementKey {
@@ -565,21 +614,7 @@ fn parse(
         for a in n.attributes().filter(|a| a.namespace().is_none()) {
             if let Some((declaring, expected)) = role(ty, semantic, a.name()) {
                 for raw in a.value().split_whitespace() {
-                    let requested = if let Some(id) = raw.strip_prefix('#') {
-                        Some(ElementKey {
-                            asset_sha256: asset.sha256.clone(),
-                            member_path: asset.logical_path.clone(),
-                            identity: ElementIdentity::Original(id.into()),
-                        })
-                    } else if raw.contains(['#', '/', ':']) {
-                        None
-                    } else {
-                        Some(ElementKey {
-                            asset_sha256: asset.sha256.clone(),
-                            member_path: asset.logical_path.clone(),
-                            identity: ElementIdentity::Original(raw.into()),
-                        })
-                    };
+                    let requested = local_target(asset, raw);
                     pending(
                         &mut part.pending,
                         source,
@@ -629,14 +664,7 @@ fn parse(
                 .filter(|a| matches!(a.name(), "href" | "idref"))
             {
                 let raw = a.value();
-                let local_id = raw
-                    .strip_prefix('#')
-                    .or_else(|| (!raw.contains(['#', '/', ':'])).then_some(raw));
-                let requested = local_id.map(|id| ElementKey {
-                    asset_sha256: asset.sha256.clone(),
-                    member_path: asset.logical_path.clone(),
-                    identity: ElementIdentity::Original(id.into()),
-                });
+                let requested = local_target(asset, raw);
                 let feature = if let Some(ns) = child.tag_name().namespace() {
                     format!("{{{ns}}}{}", child.tag_name().name())
                 } else {
@@ -942,6 +970,8 @@ pub(super) fn project(
             } else {
                 ReferenceResolution::Unresolved
             }
+        } else if unsupported_reference_syntax(&item.reference.raw) {
+            ReferenceResolution::UnsupportedSyntax
         } else if item.reference.provenance == ReferenceProvenance::ContainmentDerived {
             ReferenceResolution::InvalidContainer
         } else {
@@ -950,7 +980,7 @@ pub(super) fn project(
         if resolution == ReferenceResolution::Resolved {
             item.reference.target = item.requested;
         } else {
-            report.loss(match resolution{ReferenceResolution::UnsupportedEndpointType=>"ENDPOINT_TYPE_COVERAGE_UNSUPPORTED",ReferenceResolution::InvalidContainer=>"SOURCE_CONTAINER_TYPE_INVALID",ReferenceResolution::WrongKind=>"SOURCE_ENDPOINT_KIND_INVALID",ReferenceResolution::UnsuppliedResource=>"UNSUPPLIED_RESOURCE_REFERENCE",_=>"ENGINEERING_REFERENCE_UNRESOLVED"},Some(&item.reference.source),&format!("Role {} is {:?}; raw spelling remains in reference and source bytes",item.reference.feature,resolution),"Inspect the exact member-scoped endpoint/type; supply resources explicitly or reduce selected scope");
+            report.loss(match resolution{ReferenceResolution::UnsupportedSyntax=>"REFERENCE_SYNTAX_COVERAGE_UNSUPPORTED",ReferenceResolution::UnsupportedEndpointType=>"ENDPOINT_TYPE_COVERAGE_UNSUPPORTED",ReferenceResolution::InvalidContainer=>"SOURCE_CONTAINER_TYPE_INVALID",ReferenceResolution::WrongKind=>"SOURCE_ENDPOINT_KIND_INVALID",ReferenceResolution::UnsuppliedResource=>"UNSUPPLIED_RESOURCE_REFERENCE",_=>"ENGINEERING_REFERENCE_UNRESOLVED"},Some(&item.reference.source),&format!("Role {} is {:?}; raw spelling remains in reference and source bytes",item.reference.feature,resolution),"Inspect the exact member-scoped endpoint/type; supply resources explicitly or reduce selected scope");
         }
         item.reference.resolution = resolution;
         report.references.push(item.reference);

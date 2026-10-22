@@ -162,6 +162,7 @@ pub enum ReferenceResolution {
     WrongKind,
     UnsupportedEndpointType,
     UnsuppliedResource,
+    UnsupportedSyntax,
     InvalidContainer,
 }
 #[derive(Clone, Debug, Serialize)]

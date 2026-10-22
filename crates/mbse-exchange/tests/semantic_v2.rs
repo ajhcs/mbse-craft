@@ -400,3 +400,84 @@ fn child_namespace_declarations_obey_per_value_and_scope_limits() {
         let doc=load(&raw);assert_eq!(doc.stage,ProjectionStage::OutputBudgetRefused);assert!(doc.nodes.is_empty());assert_eq!(doc.primary_bytes(),raw.as_bytes());assert!(doc.diagnostics.iter().any(|d|d.detail.contains("NAMESPACE")));
     }
 }
+#[test]
+fn identity_carrier_policy_is_order_independent_and_does_not_impose_ncname_on_estring() {
+    for replacement in [
+        "id=\"SYN-M\" xmi:id=\"other\"",
+        "xmi:id=\"other\" id=\"SYN-M\"",
+        "id=\"SYN-M\" xmi:id=\"SYN-M\"",
+    ] {
+        let raw = CAPELLA.replace("id=\"SYN-M\"", replacement);
+        let doc = load(&raw);
+        assert_eq!(doc.stage, ProjectionStage::InterpretationRefused);
+        assert!(doc.nodes.is_empty());
+        assert_eq!(doc.primary_bytes(), raw.as_bytes());
+        assert!(doc
+            .diagnostics
+            .iter()
+            .any(|d| d.detail.contains("INSTANCE_IDENTITY_CARRIERS_CONFLICT")));
+    }
+    let raw = CAPELLA.replace("id=\"SYN-M\"", "id=\"1 EString value:with spaces\"");
+    let doc = load(&raw);
+    assert_eq!(doc.stage, ProjectionStage::PartialSemanticProjection);
+    assert_eq!(
+        node(&doc, "1 EString value:with spaces").kind,
+        SemanticKind::CapellaMission
+    );
+    let raw = CAPELLA.replace("id=\"SYN-M\"", "xmi:id=\"SYN-M\"");
+    let doc = load(&raw);
+    assert!(doc
+        .diagnostics
+        .iter()
+        .any(|d| d.detail.contains("IDENTITY_CARRIER_COVERAGE_UNSUPPORTED")));
+    assert!(doc.nodes.is_empty());
+    for replacement in [
+        "xmi:id=\"SYN-BASE\" id=\"other\"",
+        "id=\"other\" xmi:id=\"SYN-BASE\"",
+    ] {
+        let doc = load(&PROFILES.replace("xmi:id=\"SYN-BASE\"", replacement));
+        assert!(doc
+            .diagnostics
+            .iter()
+            .any(|d| d.detail.contains("INSTANCE_IDENTITY_CARRIERS_CONFLICT")));
+        assert!(doc.nodes.is_empty());
+    }
+}
+#[test]
+fn reference_uri_policy_is_literal_local_subset_with_no_percent_decode_or_invalidity_claim() {
+    for spelling in [
+        "#SYN%2DC",
+        "#SYN%252DC",
+        "#SYN-C#second",
+        "#ns:SYN-C",
+        "#path/SYN-C",
+    ] {
+        let raw = CAPELLA.replace(
+            "capability=\"SYN-C\"",
+            &format!("capability=\"{spelling}\""),
+        );
+        let doc = load(&raw);
+        let r = refs(&doc, "SYN-CE", "capability").next().unwrap();
+        assert_eq!(r.resolution, ReferenceResolution::UnsupportedSyntax);
+        assert_eq!(r.raw, spelling);
+        assert!(r.target.is_none());
+        assert!(doc
+            .losses
+            .iter()
+            .any(|l| l.code == "REFERENCE_SYNTAX_COVERAGE_UNSUPPORTED"));
+    }
+    let raw = CAPELLA.replace("capability=\"SYN-C\"", "capability=\"other.capella#SYN-C\"");
+    let doc = load(&raw);
+    assert!(refs(&doc, "SYN-CE", "capability")
+        .any(|r| r.resolution == ReferenceResolution::UnsuppliedResource));
+    let raw = CAPELLA.replace("capability=\"SYN-C\"", "capability=\"#SYN-C\"");
+    let doc = load(&raw);
+    assert!(
+        refs(&doc, "SYN-CE", "capability").any(|r| r.resolution == ReferenceResolution::Resolved)
+    );
+    let raw = CAPELLA.replace("capability=\"SYN-C\"", "capability=\"missing\"");
+    let doc = load(&raw);
+    assert!(
+        refs(&doc, "SYN-CE", "capability").any(|r| r.resolution == ReferenceResolution::Unresolved)
+    );
+}
