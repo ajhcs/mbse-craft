@@ -42,7 +42,7 @@ Calculations use the inherited bounded scalar/ratio/count/length/duration/speed 
 - [Kernspan source provenance](licenses/kernspan/PROVENANCE.json)
 - [ArtCraft extraction hashes](vendor/craft-libs/SOURCE.json)
 
-Storytold egui HEAD 0.37 is not used; registry egui 0.36.2 supplies the native type family. AI/service/plugin/launcher/CAD/font/catalog protocol compatibility is unqualified. The restricted `artcraft-services` workspace, unlicensed shared workflows and trademark assets are not bundled. `kernspan.stage1.sysml/1` exchanges only the closed custom domain profile, with atomic refusal of unsupported semantics; syntax success is not SysML conformance.
+This candidate patches the complete egui0.36.2 family to Storytold craft/0.36.2 pin767b1cad and winit0.30.13 pinffae5198. The resolved lock has one identity per family crate; actual paired build/native qualification is a separate pending epoch. The frozen M1 binaries use the prior registry graph. Storytold main0.37 is not used. AI/service/plugin/launcher/CAD/font/catalog protocol compatibility is unqualified. The restricted `artcraft-services` workspace, unlicensed shared workflows and trademark assets are not bundled. `kernspan.stage1.sysml/1` exchanges only the closed custom domain profile, with atomic refusal of unsupported semantics; syntax success is not SysML conformance.
 
 ## Frozen alpha acceptance
 
@@ -62,7 +62,7 @@ The continuation adds typed context and affiliations, bounded recovery discovery
 
 The independent requirements/evidence window authors a separate JSON sidecar with retained raw drafts, Undo/Redo and distinct maturity, implementation and verification states. Native evaluator receipts retain selected output kind/unit and the complete global result. Adequacy and verification require explicit review. Reopening retains historical decisions and clears live evaluator authority; current stamps alone cannot authenticate execution. Local external artifacts remain explicitly attributed inert evidence.
 
-Intermediate continuation qualification passed152 tests and actual context/recovery, preferences failure/retry, future-schema read-only settings, hidden dirty close and readable library-preview workflows. Source and binary identities differ from the frozen alpha. Receipts live under [continuation verification](docs/continuation-m1/verification/). New projection and requirements windows are undergoing combined native qualification. The prepared paired Storytold egui/winit adoption still requires its own one-identity build and native regression checks. These open gates prevent a full interoperability or finished-product claim.
+Frozen continuation qualification includes168-test native assurance/recovery and169-test resource epochs, plus earlier actual context/recovery, preferences failure/retry, future-schema read-only settings, hidden dirty close and readable library-preview workflows. Source and binary identities differ from the frozen alpha. Receipts live under [continuation verification](docs/continuation-m1/verification/). The projection and requirements workflows have scoped native receipts indexed in docs/continuation-m1/FREEZE_INDEX.json. Later audit-merge/draft corrections passed26focused tests. The activated paired Storytold egui/winit candidate still requires its own build and native regression checks. These open gates prevent a full interoperability or finished-product claim.
 
 ## Licenses
 

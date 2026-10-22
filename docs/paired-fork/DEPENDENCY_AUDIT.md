@@ -1,0 +1,11 @@
+# Paired-fork pre-build audit
+
+Root adoption source2588a7d patches the complete stable egui family and paired winit while retaining application eframe feature selection: default_fonts,glow,x11,accesskit. No TCP inspection, WGPU renderer, service or provider feature is enabled. The original source inventory policy text records preparation time; actual Cargo.toml/Cargo.lock and this adoption record establish the later linkage.
+
+Offline metadata and runtime Cargo tree resolved successfully using only the isolated M1 registry cache. The lock changes ten existing name/version registry identities to local audited forks. No new registry name/version is selected. All515retained source/preparation files are committed;308egui inputs and203winit inputs match their SOURCE.json hashes. Production code, compiled font assets, notices and winit build script are unchanged from the pinned sources.
+
+The only newly selected build-script path is winit-fork/build.rs, SHA256eda62c3ebf765708bf1608b51ccf77501b4aa0253214c419f813c6d08d640b1a. Its complete1004bytes were re-read: cfg_aliases and Cargo cfg/check directives only, no process/network/download or direct filesystem write. Cached cfg_aliases0.2.2 was already audited in FORK_ADOPTION.md. Other registry build inputs retain audited versions.
+
+`metadata.json` is a resolved graph, including optional edges; it must not be mistaken for runtime compilation. `runtime-tree.log` records selected Linux normal/build edges: all used egui/winit identities are the local pair, egui-wgpu is absent from that runtime tree, and eframe inspection is disabled. Unused egui_extras/egui_inspection/egui_kittest patch warnings are expected optional-graph observations. Actual compile logs and native target receipts remain required.
+
+Build outputs use a fresh `/workspace/build/builderbob/mbse-craft/paired-fork` target/tmp/state/evidence directory. Prior M1 targets/binaries/lock/receipts stay preserved. Samsung workspace was reverified rw;119GiB was available before this epoch. No cache cleanup or unrelated storage action is performed. One Cargo owner and one build job only. F1–F4 compile/test/native96/144DPI/focus/lifecycle follow; real IME, Wayland compositor/clipboard, tablet and WGPU paths remain named gates.
