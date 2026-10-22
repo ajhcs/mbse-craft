@@ -5,10 +5,11 @@ use mbse_assurance::{
     VerificationStatus,
 };
 use mbse_model::{
-    stage1::{Editor, Freshness},
-    stage1_calc::CalculationId,
+    stage1::Editor,
+    stage1_calc::{CalculationId, DocumentStamp},
 };
 use std::{
+    collections::BTreeMap,
     path::PathBuf,
     sync::mpsc::{self, Receiver},
     time::{Duration, Instant},
@@ -19,14 +20,14 @@ enum Completion {
     Updated(
         Result<(Board, Option<EvidenceId>, String), String>,
         serde_json::Value,
-        Freshness,
+        DocumentStamp,
         serde_json::Value,
     ),
     Saved(Result<String, String>, PathBuf, serde_json::Value),
 }
 #[derive(Clone, PartialEq, Eq)]
 struct AssessmentKey {
-    model: Freshness,
+    model: DocumentStamp,
     config: serde_json::Value,
     epoch: u64,
     requirement: Option<RequirementId>,
@@ -62,8 +63,12 @@ pub struct AssuranceWorkspace {
     epoch: u64,
     assessment: Option<Assessment>,
     assessment_pending: Option<Receiver<Assessment>>,
+    audit: BTreeMap<String, [f32; 4]>,
 }
 impl AssuranceWorkspace {
+    pub fn audit(&self) -> BTreeMap<String, [f32; 4]> {
+        self.audit.clone()
+    }
     pub fn open_window(&mut self) {
         self.visible = true;
     }
@@ -201,7 +206,7 @@ impl AssuranceWorkspace {
         };
         let mut board = self.board.clone();
         let editor = editor.clone();
-        let stamp = editor.freshness();
+        let stamp = editor.calculation_stamp();
         let (tx, rx) = mpsc::channel();
         self.pending = Some(rx);
         self.feedback =
@@ -214,7 +219,7 @@ impl AssuranceWorkspace {
     }
     fn assessment_key(&self, editor: &Editor, config: serde_json::Value) -> AssessmentKey {
         AssessmentKey {
-            model: editor.freshness(),
+            model: editor.calculation_stamp(),
             config,
             epoch: self.epoch,
             requirement: self.selected,
@@ -299,7 +304,7 @@ impl AssuranceWorkspace {
             Completion::Loaded(Ok((board,hash)),path,frozen) if self.board.as_value().ok().as_ref()==Some(&frozen)&&PathBuf::from(self.path.trim())==path=>{self.epoch=self.epoch.saturating_add(1);self.saved=board.as_value().ok();self.board=board;self.selected=self.board.register.requirements.keys().next().copied();self.evidence=None;self.owned=Some((path,hash));self.discard=None;self.statement=self.board.register.drafts.get("new:statement").map(|d|d.text.clone()).unwrap_or_default();self.feedback="Register reopened. Historical evidence is retained; reopening does not authenticate a native evaluator run.".into();},
             Completion::Loaded(Ok(_),_,_)=>self.feedback="Open result is stale because register edits changed after dispatch; live changes retained. Open again after preserving them.".into(),
             Completion::Loaded(Err(e),_,_)=>self.feedback=e,
-            Completion::Updated(Ok((board,evidence,message)),frozen,stamp,config) if self.board.as_value().ok().as_ref()==Some(&frozen)&&editor.freshness()==stamp&&self.config().ok().as_ref()==Some(&config)=>{self.board=board;self.epoch=self.epoch.saturating_add(1);if evidence.is_some(){self.evidence=evidence;}self.feedback=message;},
+            Completion::Updated(Ok((board,evidence,message)),frozen,stamp,config) if self.board.as_value().ok().as_ref()==Some(&frozen)&&editor.calculation_stamp()==stamp&&self.config().ok().as_ref()==Some(&config)=>{self.board=board;self.epoch=self.epoch.saturating_add(1);if evidence.is_some(){self.evidence=evidence;}self.feedback=message;},
             Completion::Updated(Ok(_),_,_,_)=>self.feedback="Evidence result is stale because the register, native model/raw input or configuration changed; live changes retained.".into(),
             Completion::Updated(Err(e),_,_,_)=>self.feedback=e,
             Completion::Saved(Ok(hash),path,frozen)=>{self.saved=Some(frozen);self.owned=Some((path,hash));self.feedback=if self.dirty(){"Frozen register saved; newer edits remain unsaved."}else{"Requirements register saved."}.into();},
@@ -309,6 +314,7 @@ impl AssuranceWorkspace {
         if self.pending.is_some() || self.assessment_pending.is_some() {
             ctx.request_repaint_after(Duration::from_millis(100));
         }
+        self.audit.clear();
         if !self.visible {
             return;
         }
@@ -328,14 +334,15 @@ impl AssuranceWorkspace {
         });
         let staleness = assessment.map(|a| a.staleness.clone());
         let verification_current = assessment.is_some_and(|a| a.verification_current);
+        let mut audit = BTreeMap::new();
         let mut visible = true;
         egui::Window::new("Requirements and evidence").id(egui::Id::new("requirements-evidence")).open(&mut visible).default_size([1100.,820.]).vscroll(true).show(ctx,|ui|{
             ui.label("Independent application register · native model unchanged · approval, implementation and verification are separate decisions.");
-            ui.horizontal(|ui|{ui.label(if self.dirty(){"Unsaved register changes"}else{"Register saved / empty"});if self.pending.is_some(){ui.spinner();}if ui.button("Undo register edit").clicked(){if self.board.undo(){self.epoch=self.epoch.saturating_add(1);}}if ui.button("Redo register edit").clicked(){if self.board.redo(){self.epoch=self.epoch.saturating_add(1);}}});
-            ui.horizontal(|ui|{ui.label("Register path");ui.text_edit_singleline(&mut self.path);if ui.add_enabled(self.pending.is_none(),egui::Button::new("Open register")).clicked(){self.load();}if ui.add_enabled(self.pending.is_none(),egui::Button::new("Save register")).clicked(){self.save(false);}if ui.add_enabled(self.pending.is_none(),egui::Button::new("Save fresh copy")).clicked(){self.save(true);}});
+            ui.horizontal(|ui|{ui.label(if self.dirty(){"Unsaved register changes"}else{"Register saved / empty"});if self.pending.is_some(){ui.spinner();}if mark(&mut audit,"assurance:Undo",ui.button("Undo register edit")).clicked(){if self.board.undo(){self.epoch=self.epoch.saturating_add(1);}}if mark(&mut audit,"assurance:Redo",ui.button("Redo register edit")).clicked(){if self.board.redo(){self.epoch=self.epoch.saturating_add(1);}}});
+            ui.horizontal(|ui|{ui.label("Register path");mark(&mut audit,"assurance:path",ui.text_edit_singleline(&mut self.path));if mark(&mut audit,"assurance:Open",ui.add_enabled(self.pending.is_none(),egui::Button::new("Open register"))).clicked(){self.load();}if mark(&mut audit,"assurance:Save",ui.add_enabled(self.pending.is_none(),egui::Button::new("Save register"))).clicked(){self.save(false);}if mark(&mut audit,"assurance:Save fresh",ui.add_enabled(self.pending.is_none(),egui::Button::new("Save fresh copy"))).clicked(){self.save(true);}});
             ui.label(&self.feedback);
             ui.separator();
-            ui.horizontal(|ui|{ui.label("New requirement");if ui.text_edit_singleline(&mut self.statement).changed(){self.board.register.drafts.insert("new:statement".into(),mbse_assurance::RawDraft{text:self.statement.clone(),valid:!self.statement.trim().is_empty()});self.epoch=self.epoch.saturating_add(1);}if ui.button("Add requirement").clicked(){match self.board.add_requirement(self.statement.clone()){Ok(id)=>{self.epoch=self.epoch.saturating_add(1);self.selected=Some(id);self.statement.clear();self.board.register.drafts.remove("new:statement");self.feedback="Requirement added in Draft / UnderReview / NotStarted.".into();},Err(e)=>self.feedback=e}}});
+            ui.horizontal(|ui|{ui.label("New requirement");if mark(&mut audit,"assurance:new-statement",ui.text_edit_singleline(&mut self.statement)).changed(){self.board.register.drafts.insert("new:statement".into(),mbse_assurance::RawDraft{text:self.statement.clone(),valid:!self.statement.trim().is_empty()});self.epoch=self.epoch.saturating_add(1);}if mark(&mut audit,"assurance:Add",ui.button("Add requirement")).clicked(){match self.board.add_requirement(self.statement.clone()){Ok(id)=>{self.epoch=self.epoch.saturating_add(1);self.selected=Some(id);self.statement.clear();self.board.register.drafts.remove("new:statement");self.feedback="Requirement added in Draft / UnderReview / NotStarted.".into();},Err(e)=>self.feedback=e}}});
             ui.columns(2,|columns|{
                 egui::ScrollArea::vertical().id_salt("requirement-list").max_height(180.).show(&mut columns[0],|ui|{for(id,r)in &self.board.register.requirements{if ui.selectable_label(self.selected==Some(*id),format!("R{} · {}",id.0,r.statement)).clicked(){self.selected=Some(*id);self.evidence=None;}}});
                 columns[1].collapsing("Exact evaluation configuration",|ui|{ui.label("JSON enters evidence freshness; it does not configure or execute an external engine.");ui.text_edit_multiline(&mut self.config);});
@@ -344,7 +351,7 @@ impl AssuranceWorkspace {
             let Some(req)=self.board.register.requirements.get(&id).cloned() else{return;};
             ui.heading(format!("Requirement R{}",id.0));
             ui.horizontal_wrapped(|ui|{
-                if ui.button("Link selected native record").clicked(){
+                if mark(&mut audit,"assurance:Link source",ui.button("Link selected native record")).clicked(){
                     match editor.selected.and_then(|selected|editor.snapshot.records.get(&selected)) {
                         Some(record)=>{
                             let mut units=std::collections::BTreeMap::new();
@@ -354,28 +361,30 @@ impl AssuranceWorkspace {
                         },None=>self.feedback="Select an actual native record before linking; no source relation invented.".into(),
                     }
                 }
-                if ui.button("Clear source anchor").clicked(){let result=self.board.set_anchor(id,None);self.result(result,"Source anchor explicitly cleared; previous evidence may now be stale.");}
+                if mark(&mut audit,"assurance:Clear source",ui.button("Clear source anchor")).clicked(){let result=self.board.set_anchor(id,None);self.result(result,"Source anchor explicitly cleared; previous evidence may now be stale.");}
             });
             ui.collapsing("Exact source anchor and independent status claims",|ui|{match &self.board.register.requirements.get(&id).and_then(|r|r.anchor.as_ref()){Some(anchor)=>{ui.monospace(serde_json::to_string_pretty(anchor).unwrap_or_else(|error|error.to_string()));},None=>{ui.label("No source anchor recorded; no native or external normative classification inferred.");}}});
 
             for(field,label,value)in[("statement","Statement",req.statement.clone()),("rationale","Rationale",req.rationale.clone()),("source","Source",req.source.clone()),("owner","Owner",req.owner.clone()),("user_version","Version",req.user_version.clone())]{
                 let mut text=self.board.register.drafts.get(&format!("{}:{field}",id.0)).map(|d|d.text.clone()).unwrap_or(value);
-                ui.horizontal(|ui|{ui.label(label);if ui.add(egui::TextEdit::singleline(&mut text).desired_width(720.)).changed(){let result=self.board.edit_field(id,field,text);self.result(result,"Requirement text updated; existing evidence may be stale.");}});
+                ui.horizontal(|ui|{ui.label(label);if mark(&mut audit,format!("assurance:field:{field}"),ui.add(egui::TextEdit::singleline(&mut text).desired_width(720.))).changed(){let result=self.board.edit_field(id,field,text);self.result(result,"Requirement text updated; existing evidence may be stale.");}});
             }
             ui.horizontal_wrapped(|ui|{
                 let mut maturity=req.maturity;
-                egui::ComboBox::from_id_salt("maturity").selected_text(format!("Maturity: {maturity:?}")).show_ui(ui,|ui|{for v in [Maturity::Draft,Maturity::InDevelopment,Maturity::ReadyForReview,Maturity::InReview,Maturity::Approved,Maturity::Disapproved,Maturity::Deleted]{ui.selectable_value(&mut maturity,v,format!("{v:?}"));}});
+                let combo=egui::ComboBox::from_id_salt("maturity").selected_text(format!("Maturity: {maturity:?}")).show_ui(ui,|ui|{for v in [Maturity::Draft,Maturity::InDevelopment,Maturity::ReadyForReview,Maturity::InReview,Maturity::Approved,Maturity::Disapproved,Maturity::Deleted]{let r=ui.selectable_value(&mut maturity,v,format!("{v:?}"));mark(&mut audit,format!("assurance:maturity:{v:?}"),r);}});
+                mark(&mut audit,"assurance:maturity",combo.response);
                 if maturity!=req.maturity{let result=self.board.set_maturity(id,maturity);self.result(result,"Maturity updated independently.");}
                 let mut implementation=req.implementation;
-                egui::ComboBox::from_id_salt("implementation").selected_text(format!("Implementation: {implementation:?}")).show_ui(ui,|ui|{for v in [ImplementationStatus::UnderReview,ImplementationStatus::Waived,ImplementationStatus::Pending,ImplementationStatus::InProgress,ImplementationStatus::Implemented,ImplementationStatus::PartiallyImplemented,ImplementationStatus::NotImplemented]{ui.selectable_value(&mut implementation,v,format!("{v:?}"));}});
+                let combo=egui::ComboBox::from_id_salt("implementation").selected_text(format!("Implementation: {implementation:?}")).show_ui(ui,|ui|{for v in [ImplementationStatus::UnderReview,ImplementationStatus::Waived,ImplementationStatus::Pending,ImplementationStatus::InProgress,ImplementationStatus::Implemented,ImplementationStatus::PartiallyImplemented,ImplementationStatus::NotImplemented]{let r=ui.selectable_value(&mut implementation,v,format!("{v:?}"));mark(&mut audit,format!("assurance:implementation:{v:?}"),r);}});
+                mark(&mut audit,"assurance:implementation",combo.response);
                 if implementation!=req.implementation{let result=self.board.set_implementation(id,implementation);self.result(result,"Implementation updated independently.");}
                 ui.label(format!("Recorded verification: {:?}",req.verification));
             });
             if current.is_ok() {ui.label(if verification_current&&assessment_key.as_ref().is_some_and(|key|key.epoch==self.epoch){"Latest verification decision applicable at the latest background source/proof check; rechecked before any new decision"}else{"No currently applicable verification decision; historical decisions remain recorded"});}
             else if let Err(e)=&current{ui.colored_label(egui::Color32::DARK_RED,e);}
             ui.separator();
-            ui.horizontal(|ui|{ui.label("Calculation measure ID");ui.add(egui::TextEdit::singleline(&mut self.calculation).desired_width(80.));if ui.add_enabled(self.pending.is_none(),egui::Button::new("Evaluate and attach receipt")).clicked(){match self.calculation.trim().parse::<u64>(){Ok(value)=>self.update_worker(editor,move|board,editor,config|{let id=board.attach_calculation(id,editor,config,CalculationId(value))?;Ok((Some(id),"Selected calculation receipt attached from the actual native engine; review and verification remain separate.".into()))}),Err(_)=>self.feedback="Enter a calculation Measure ID.".into()}}});
-            ui.horizontal(|ui|{ui.label("Local artifact path");ui.text_edit_singleline(&mut self.local_evidence);if ui.add_enabled(self.pending.is_none(),egui::Button::new("Attach external artifact")).clicked(){let path=PathBuf::from(self.local_evidence.trim());if !path.is_absolute(){self.feedback="Choose an absolute local artifact path; no URLs or commands are executed.".into();}else{self.update_worker(editor,move|board,editor,config|{let context=EvidenceContext::from_editor(editor,config)?;let id=board.attach_local_evidence(id,context,&path,mbse_assurance::EvidenceOutcome::NotRun)?;Ok((Some(id),"Explicit external artifact attached as NotRun; no native-run authenticity inferred.".into()))});}}});
+            ui.horizontal(|ui|{ui.label("Calculation measure ID");mark(&mut audit,"assurance:calculation",ui.add(egui::TextEdit::singleline(&mut self.calculation).desired_width(80.)));if mark(&mut audit,"assurance:Evaluate",ui.add_enabled(self.pending.is_none(),egui::Button::new("Evaluate and attach receipt"))).clicked(){match self.calculation.trim().parse::<u64>(){Ok(value)=>self.update_worker(editor,move|board,editor,config|{let id=board.attach_calculation(id,editor,config,CalculationId(value))?;Ok((Some(id),"Selected calculation receipt attached from the actual native engine; review and verification remain separate.".into()))}),Err(_)=>self.feedback="Enter a calculation Measure ID.".into()}}});
+            ui.horizontal(|ui|{ui.label("Local artifact path");mark(&mut audit,"assurance:artifact-path",ui.text_edit_singleline(&mut self.local_evidence));if mark(&mut audit,"assurance:Attach external",ui.add_enabled(self.pending.is_none(),egui::Button::new("Attach external artifact"))).clicked(){let path=PathBuf::from(self.local_evidence.trim());if !path.is_absolute(){self.feedback="Choose an absolute local artifact path; no URLs or commands are executed.".into();}else{self.update_worker(editor,move|board,editor,config|{let context=EvidenceContext::from_editor(editor,config)?;let id=board.attach_local_evidence(id,context,&path,mbse_assurance::EvidenceOutcome::NotRun)?;Ok((Some(id),"Explicit external artifact attached as NotRun; no native-run authenticity inferred.".into()))});}}});
             egui::ScrollArea::vertical().id_salt("evidence-list").max_height(95.).show(ui,|ui|{for(eid,e)in &self.board.register.evidence{if e.requirement==id && ui.selectable_label(self.evidence==Some(*eid),format!("E{} · {:?} · {:?} · selected {:?}",eid.0,e.outcome,e.adequacy,e.selected_calculation)).clicked(){self.evidence=Some(*eid);}}});
             if let Some(eid)=self.evidence {if let Some(e)=self.board.register.evidence.get(&eid).cloned(){
                 ui.monospace(format!("Artifact SHA-256: {}",e.artifact_sha256));
@@ -384,9 +393,9 @@ impl AssuranceWorkspace {
                 ui.label(if e.selected_calculation.is_some(){"Native evaluator provenance requires evaluator-owned live proof. Reopened serialized receipts are historical until a fresh actual evaluation."}else{"External local artifact provenance; no native execution inferred."});
                 match &staleness {Some(Ok(reasons))if reasons.is_empty()=>{ui.label("Current freshness/provenance checks match; explicit adequacy and verification remain separate.");},Some(Ok(reasons))=>{ui.colored_label(egui::Color32::DARK_RED,format!("Stale or untrusted: {}",reasons.join("; ")));},Some(Err(error))=>{ui.label(error);},None=>{ui.label("Evidence assessment pending; no current verdict asserted.");}}
                 ui.collapsing("Intact evidence artifact and provenance",|ui|{ui.monospace(format!("{:?}",e.context));egui::ScrollArea::both().max_height(120.).show(ui,|ui|{let n=e.artifact_bytes.len().min(64*1024);ui.monospace(String::from_utf8_lossy(&e.artifact_bytes[..n]));if n<e.artifact_bytes.len(){ui.label("Preview truncated; complete original bytes retained.");}});});
-                ui.horizontal(|ui|{ui.label("Reviewer");ui.text_edit_singleline(&mut self.reviewer);ui.label("Decision rationale");ui.text_edit_singleline(&mut self.rationale);});
-                ui.horizontal_wrapped(|ui|{for (label,adequacy) in [("Review adequate",Adequacy::Adequate),("Review inadequate",Adequacy::Inadequate)]{if ui.add_enabled(self.pending.is_none(),egui::Button::new(label)).clicked(){let reviewer=self.reviewer.clone();let rationale=self.rationale.clone();self.update_worker(editor,move|board,_,_|{board.review_evidence(eid,adequacy,reviewer,rationale)?;Ok((Some(eid),"Explicit evidence review appended; native provenance and current applicability remain separate.".into()))});}}});
-                ui.horizontal_wrapped(|ui|{for status in [VerificationStatus::InProgress,VerificationStatus::Completed,VerificationStatus::CompletedUnsuccessful,VerificationStatus::CompletedFailed,VerificationStatus::CompletedPassed]{if ui.add_enabled(self.pending.is_none(),egui::Button::new(format!("Record {status:?}"))).clicked(){let reviewer=self.reviewer.clone();let rationale=self.rationale.clone();self.update_worker(editor,move|board,editor,config|{let context=EvidenceContext::from_editor(editor,config)?;board.record_verification(id,eid,status,&context,reviewer,rationale)?;Ok((Some(eid),"Verification decision appended; current applicability is derived from exact source/proof checks.".into()))});}}});
+                ui.horizontal(|ui|{ui.label("Reviewer");mark(&mut audit,"assurance:reviewer",ui.text_edit_singleline(&mut self.reviewer));ui.label("Decision rationale");mark(&mut audit,"assurance:decision-rationale",ui.text_edit_singleline(&mut self.rationale));});
+                ui.horizontal_wrapped(|ui|{for (label,adequacy) in [("Review adequate",Adequacy::Adequate),("Review inadequate",Adequacy::Inadequate)]{if mark(&mut audit,format!("assurance:{label}"),ui.add_enabled(self.pending.is_none(),egui::Button::new(label))).clicked(){let reviewer=self.reviewer.clone();let rationale=self.rationale.clone();self.update_worker(editor,move|board,_,_|{board.review_evidence(eid,adequacy,reviewer,rationale)?;Ok((Some(eid),"Explicit evidence review appended; native provenance and current applicability remain separate.".into()))});}}});
+                ui.horizontal_wrapped(|ui|{for status in [VerificationStatus::InProgress,VerificationStatus::Completed,VerificationStatus::CompletedUnsuccessful,VerificationStatus::CompletedFailed,VerificationStatus::CompletedPassed]{if mark(&mut audit,format!("assurance:Record {status:?}"),ui.add_enabled(self.pending.is_none(),egui::Button::new(format!("Record {status:?}")))).clicked(){let reviewer=self.reviewer.clone();let rationale=self.rationale.clone();self.update_worker(editor,move|board,editor,config|{let context=EvidenceContext::from_editor(editor,config)?;board.record_verification(id,eid,status,&context,reviewer,rationale)?;Ok((Some(eid),"Verification decision appended; current applicability is derived from exact source/proof checks.".into()))});}}});
             }}
             ui.collapsing("Immutable review and verification record history",|ui|{
                 for review in &self.board.register.review_history {ui.label(format!("Review #{} · E{} · {:?} · {} · {}",review.review_id,review.evidence.0,review.adequacy,review.reviewer,review.rationale));}
@@ -396,12 +405,23 @@ impl AssuranceWorkspace {
         });
         self.visible = visible;
         if self.close_prompt {
-            egui::Window::new("Preserve requirements register").collapsible(false).show(ctx,|ui|{ui.label("The independent register has unsaved changes or pending IO. Save it in Requirements and evidence, or explicitly discard these exact changes for this close.");if ui.button("Return to work").clicked(){self.close_prompt=false;self.discard=None;}if ui.add_enabled(self.pending.is_none(),egui::Button::new("Discard register changes for this close")).clicked(){self.discard=self.board.as_value().ok();self.close_prompt=false;self.feedback="Exact register changes permitted to be discarded on next application close.".into();}});
+            egui::Window::new("Preserve requirements register").collapsible(false).show(ctx,|ui|{ui.label("The independent register has unsaved changes or pending IO. Save it in Requirements and evidence, or explicitly discard these exact changes for this close.");if mark(&mut audit,"assurance:Return",ui.button("Return to work")).clicked(){self.close_prompt=false;self.discard=None;}if mark(&mut audit,"assurance:Discard close",ui.add_enabled(self.pending.is_none(),egui::Button::new("Discard register changes for this close"))).clicked(){self.discard=self.board.as_value().ok();self.close_prompt=false;self.feedback="Exact register changes permitted to be discarded on next application close.".into();}});
         }
         if self.replace_prompt {
-            egui::Window::new("Open another register?").collapsible(false).show(ctx,|ui|{ui.label("Opening replaces unsaved register edits only after successful admission. Native model is retained.");if ui.button("Keep current register").clicked(){self.replace_prompt=false;}if ui.button("Discard and open register").clicked(){self.load();}});
+            egui::Window::new("Open another register?").collapsible(false).show(ctx,|ui|{ui.label("Opening replaces unsaved register edits only after successful admission. Native model is retained.");if mark(&mut audit,"assurance:Keep current",ui.button("Keep current register")).clicked(){self.replace_prompt=false;}if mark(&mut audit,"assurance:Discard and open",ui.button("Discard and open register")).clicked(){self.load();}});
         }
+        self.audit = audit;
     }
+}
+
+fn mark(
+    audit: &mut BTreeMap<String, [f32; 4]>,
+    key: impl Into<String>,
+    response: egui::Response,
+) -> egui::Response {
+    let r = response.rect.intersect(response.interact_rect);
+    audit.insert(key.into(), [r.min.x, r.min.y, r.max.x, r.max.y]);
+    response
 }
 
 #[cfg(test)]
@@ -461,6 +481,9 @@ mod tests {
         assert!(workspace.dirty());
         workspace.discard = workspace.board.as_value().ok();
         assert!(workspace.request_close());
+        workspace.cancel_close();
+        assert!(!workspace.request_close());
+        workspace.discard = workspace.board.as_value().ok();
         workspace
             .board
             .edit_field(id, "statement", "".into())
