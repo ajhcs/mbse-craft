@@ -693,6 +693,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "craft-window"
+version = "0.1.0"
+dependencies = [
+ "egui",
+ "wayland-client",
+]
+
+[[package]]
 name = "crc32fast"
 version = "1.5.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1617,6 +1625,7 @@ dependencies = [
  "craft-quit",
  "craft-settings",
  "craft-ui",
+ "craft-window",
  "eframe",
  "image",
  "mbse-model",
