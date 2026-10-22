@@ -1,0 +1,5 @@
+# Licensed vocabulary provenance
+
+Requirements Management2.0.1 archive SHA256 bf4fa99b780a02c6498afd6912b18f70bb4321e04a306ecf474570a8cfdc2d68, canonical source https://sysand.com/projects/ode4hera/requirements-management/2.0.1/source/ . Actual RequirementsManagement.sysml lifecycle enums and owner/rationale/source/version attributes inspected read-only. Complete actual MIT notice retained alongside this file. Original Rust application register adapts vocabulary only and does not execute or claim admission of the upstream SysML library. NotImplemented's contradictory success description was not adopted.
+
+SPDM2.0.0 archive SHA256 d8a267d41eaa682bb2f3d6c1d06695b47f131bb15081fefa8fdfce1741a634ba. Read-only audited dossier https://sysand.com/projects/ode4hera/spdm/2.0.0/source/ informed request/result/evidence separation. No SPDM implementation source or restricted Syside source is incorporated. Source project paths remain outside this repository; only this vocabulary provenance and required permissive notice are retained.
