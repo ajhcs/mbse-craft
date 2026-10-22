@@ -10,4 +10,3 @@ repository = "https://github.com/Open-MBEE/sysml-toolkit"
 serde = ["dep:serde"]
 [dependencies]
 serde = { version = "1", features = ["derive"], optional = true }
-[workspace]
