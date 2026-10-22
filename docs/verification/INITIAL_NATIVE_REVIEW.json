@@ -1,0 +1,16 @@
+{
+  "status": "Actual intermediate native review frame; superseded by fixes, not final candidate acceptance",
+  "execution": "Authenticated private Xvfb, actual binary window, XGetImage pixels",
+  "image": "screenshots/initial-review-r05.png",
+  "image_sha256": "8e328e70af2bdd9571a77f438452d8f958637b72104851dd375dd94dcca72421",
+  "binary_sha256": "ee9c8f8cdec4431655ceea37679628716c490b6d748c66430a809c45590f36fe",
+  "source_reference_commit": "48d0c86",
+  "source_build_input_sha256": "049252332e0c566f60ec1fcb97a1544af687891060f2b3d18aa55a8f70cdd071",
+  "source_scope": "Tracked build manifests and crates/vendor inputs before Craft fault-test additions",
+  "observed_defects": [
+    "Missing Undo/Redo/relation arrow glyphs",
+    "Shared WidgetPalette foreground argument gave pale labels"
+  ],
+  "correction_commit": "92ae65b",
+  "final_rebuild_and_recheck": "pending"
+}
