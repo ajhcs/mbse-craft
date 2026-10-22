@@ -258,6 +258,9 @@ impl Board {
     }
     pub fn add_requirement(&mut self, statement: String) -> Result<RequirementId, String> {
         self.transaction(|state| {
+            if state.requirements.len() >= 10_000 {
+                return Err("ASSURANCE_RECORD_LIMIT".into());
+            }
             if statement.trim().is_empty() {
                 return Err("ASSURANCE_STATEMENT_REQUIRED".into());
             }
@@ -383,6 +386,40 @@ impl Board {
         config: &Value,
         selected: CalculationId,
     ) -> Result<EvidenceId, String> {
+        let requirement_record = self
+            .register
+            .requirements
+            .get(&requirement)
+            .ok_or("ASSURANCE_REQUIREMENT_MISSING")?;
+        let selected_record = editor
+            .snapshot
+            .records
+            .get(&mbse_model::stage1::RecordId(selected.0))
+            .ok_or("ASSURANCE_SELECTED_MEASURE_MISSING")?;
+        if selected_record.kind != mbse_model::stage1::RecordKind::Measure
+            || !editor.snapshot.calculations()?.contains_key(&selected)
+        {
+            return Err("ASSURANCE_SELECTED_CALCULATION_MISSING".into());
+        }
+        if let Some(anchor) = &requirement_record.anchor {
+            if anchor
+                .native_document
+                .as_ref()
+                .is_some_and(|id| id != &editor.snapshot.document_id.0)
+            {
+                return Err("ASSURANCE_ANCHOR_DOCUMENT_MISMATCH".into());
+            }
+            if let Some(id) = anchor.native_record {
+                let source = editor
+                    .snapshot
+                    .records
+                    .get(&mbse_model::stage1::RecordId(id))
+                    .ok_or("ASSURANCE_ANCHOR_RECORD_MISSING")?;
+                if source.scope != selected_record.scope {
+                    return Err("ASSURANCE_CROSS_SYSTEM_EVIDENCE".into());
+                }
+            }
+        }
         let receipt = editor.evaluate_calculations()?;
         let context = EvidenceContext::from_editor(editor, config)?;
         let selected_quantity = receipt
@@ -436,6 +473,9 @@ impl Board {
         outcome: EvidenceOutcome,
     ) -> Result<EvidenceId, String> {
         self.transaction(|s| {
+            if s.evidence.len() >= 10_000 {
+                return Err("ASSURANCE_RECORD_LIMIT".into());
+            }
             let req = s
                 .requirements
                 .get(&requirement)
