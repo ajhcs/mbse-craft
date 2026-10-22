@@ -5,7 +5,10 @@ use craft_ui::{
 };
 use eframe::egui::{self, Color32, FontId, Pos2, Rect, RichText, Stroke, Vec2};
 use mbse_model::{
-    stage1::{Command, CreationDraft, RawKey, Record, RecordId, RecordKind, SubjectRef, Validity},
+    stage1::{
+        AffiliationKind, Command, ContextKind, CreationDraft, RawKey, Record, RecordId, RecordKind,
+        SubjectRef, Validity,
+    },
     stage1_calc::{self as calc, CalculationId, Definition, Limits, QuantityType, UnitId},
     stage1_graph::{self, EdgeId, GraphEdge},
     stage1_io::{self, Session},
@@ -38,6 +41,10 @@ pub struct Workspace {
     relation: Option<EdgeId>,
     popout: Option<RecordId>,
     pending: Option<Load>,
+    context_creation: Option<(RecordId, String, ContextKind)>,
+    recovery_window: bool,
+    recovery_inventory: Option<mbse_model::recovery::RecoveryInventory>,
+    recovery_selected: Option<PathBuf>,
     capture: Option<PathBuf>,
     frames: u32,
     screenshot_requested: bool,
@@ -75,8 +82,16 @@ impl Workspace {
             .as_ref()
             .map(|p| p.to_string_lossy().into_owned())
             .unwrap_or_default();
-        Self { session, save_path: path.clone(), path, active_field: None, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
-            creation: None, relation: None, popout: None, pending: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new() }
+        let mut app=Self { session, save_path: path.clone(), path, active_field: None, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
+            creation: None, relation: None, popout: None, pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new() };
+        app.refresh_recoveries();
+        app
+    }
+    fn refresh_recoveries(&mut self) {
+        match mbse_model::recovery::discover_recoveries(&self.session.state_root) {
+            Ok(inventory) => self.recovery_inventory = Some(inventory),
+            Err(error) => self.result(Err(format!("Recovery discovery: {error}"))),
+        }
     }
     fn bound(&mut self, key: impl Into<String>, response: &egui::Response) {
         let rect = response.rect.intersect(response.interact_rect);
@@ -102,7 +117,9 @@ impl Workspace {
             .command(&self.session.editor.freshness(), command);
         let message = result.map(|outcome| {
             if let Some(id) = outcome.created {
-                self.select(id);
+                if self.session.editor.snapshot.records.contains_key(&id) {
+                    self.select(id);
+                }
             }
             if outcome.accepted {
                 "Model updated. Save includes accepted values and retained drafts.".into()
@@ -127,10 +144,21 @@ impl Workspace {
         label: &str,
         multiline: bool,
     ) {
+        self.raw_field(ui, record, None, field, label, multiline);
+    }
+    fn raw_field(
+        &mut self,
+        ui: &mut egui::Ui,
+        record: &Record,
+        item: Option<RecordId>,
+        field: &str,
+        label: &str,
+        multiline: bool,
+    ) {
         let key = RawKey {
             record: record.id,
             field: field.into(),
-            item: None,
+            item,
         };
         if !self.session.editor.field_available(&key) {
             return;
@@ -144,10 +172,17 @@ impl Workspace {
         };
         let response = ui.add(
             input
-                .id_salt((record.id.0, field))
+                .id_salt((record.id.0, item.map(|id| id.0), field))
                 .desired_width(f32::INFINITY),
         );
-        self.bound(format!("field:{}:{}", record.id.0, field), &response);
+        self.bound(
+            if let Some(item) = item {
+                format!("field:{}:{}:{}", record.id.0, field, item.0)
+            } else {
+                format!("field:{}:{}", record.id.0, field)
+            },
+            &response,
+        );
         response.widget_info(|| egui::WidgetInfo::labeled(egui::WidgetType::TextEdit, true, label));
         if response.has_focus() {
             self.active_field = Some(key.clone());
@@ -256,6 +291,7 @@ impl Workspace {
             Ok(session) => {
                 self.session = session;
                 self.creation = None;
+                self.context_creation = None;
                 self.relation = None;
                 self.popout = None;
                 self.save_path = self
@@ -265,6 +301,7 @@ impl Workspace {
                     .map(|p| p.display().to_string())
                     .unwrap_or_default();
                 self.active_field = None;
+                self.refresh_recoveries();
                 self.result(Ok(
                     "Model opened. Imported and recovered documents are independent drafts.".into(),
                 ));
@@ -282,6 +319,8 @@ impl Workspace {
                 }
                 let save = ui.button("Save"); self.bound("action:Save",&save); if save.clicked() { self.save(); }
                 let recovery = ui.button("Recovery copy"); self.bound("action:Recovery copy",&recovery); if recovery.clicked() { let result = self.recovery(); self.result(result); }
+                let recovery_count=self.recovery_inventory.as_ref().map_or(0,|i|i.entries.len());
+                let response=ui.button(format!("Review recovery copies ({recovery_count})"));self.bound("recovery:Review copies",&response);if response.clicked(){self.refresh_recoveries();self.recovery_window=true;}
                 if ui.button("Export SysML copy").clicked() {
                     let result = self.session.begin_export_sysml(&PathBuf::from(self.path.trim())).and_then(|job| self.session.complete_export(stage1_io::execute_export(job))).and_then(|accepted| if accepted { Ok("Exported restricted SysML copy.".into()) } else { Err("Export receipt was not accepted.".into()) });
                     self.result(result);
@@ -309,6 +348,7 @@ impl Workspace {
             ui.horizontal(|ui| {
                 ui.label("Save native model to"); let response=ui.add(egui::TextEdit::singleline(&mut self.save_path).id_salt("save-path").desired_width(ui.available_width()).hint_text("/workspace/…/model.kernspan")); self.bound("save-path",&response);
             });
+            if let Some(inventory)=self.recovery_inventory.as_ref(){if !inventory.entries.is_empty(){let label=format!("{} recognized recovery copies available in this app data directory",inventory.entries.len());ui.label(RichText::new(label).color(ACCENT));}}
             ui.horizontal_wrapped(|ui| {
                 ui.label(format!("{:?} · model r{} · raw v{}", self.session.status(), self.session.editor.snapshot.model_revision, self.session.editor.snapshot.raw_version));
                 if self.session.recovery_current() { ui.colored_label(ACCENT, "Current recovery copy"); }
@@ -378,6 +418,13 @@ impl Workspace {
     }
     fn inspector(&mut self, ui: &mut egui::Ui, record: &Record, records: &[Record]) {
         self.field(ui, record, "name", "Name", false);
+        if record.id != record.scope {
+            let response = ui.button(format!("System scope #{}", record.scope.0));
+            self.bound(format!("scope:{}", record.id.0), &response);
+            if response.clicked() {
+                self.select(record.scope);
+            }
+        }
         match record.kind {
             RecordKind::System => self.field(ui, record, "purpose", "Purpose", true),
             RecordKind::Mission => {
@@ -530,11 +577,225 @@ impl Workspace {
                 self.calculation(ui, record);
                 ui.label(RichText::new("Custom Measure. MOE/MOP metadata does not imply SysML classifier equivalence.").small());
             }
-            RecordKind::Stakeholder => self.field(ui, record, "interest", "Interest", true),
+            RecordKind::Stakeholder => {
+                self.field(ui, record, "interest", "Interest in this System", true);
+                self.affiliations(ui, record, records);
+                if record
+                    .fields
+                    .get("actors")
+                    .and_then(serde_json::Value::as_array)
+                    .is_some_and(|a| !a.is_empty())
+                {
+                    ui.label("Existing actor-role data is preserved. Its editing semantics are outside this profile.");
+                }
+            }
+            RecordKind::Environment => self.contexts(ui, record),
+            RecordKind::Organization => {
+                ui.label("Affiliated stakeholders");
+                let key = record.id.0.to_string();
+                let mut count = 0;
+                for stakeholder in records
+                    .iter()
+                    .filter(|r| r.kind == RecordKind::Stakeholder && r.scope == record.scope)
+                {
+                    if let Some(kind) = stakeholder
+                        .fields
+                        .get("affiliations")
+                        .and_then(|v| v.get(&key))
+                        .and_then(serde_json::Value::as_str)
+                    {
+                        count += 1;
+                        let response = ui.button(format!(
+                            "{} #{} · {}",
+                            stakeholder.name, stakeholder.id.0, kind
+                        ));
+                        self.bound(
+                            format!("affiliation-source:{}:{}", record.id.0, stakeholder.id.0),
+                            &response,
+                        );
+                        if response.clicked() {
+                            self.select(stakeholder.id);
+                        }
+                    }
+                }
+                if count == 0 {
+                    ui.label(
+                        "No authored affiliations. Select a Stakeholder to declare an affiliation.",
+                    );
+                }
+                ui.label("This Organization retains its own identity and System scope. Additional source properties remain preserved.");
+            }
+            RecordKind::Actor => {
+                ui.label("Named actor in this System's scope. No role or interaction is inferred from its name.");
+            }
             RecordKind::Expectation => self.field(ui, record, "text", "Expectation", true),
             _ => {
                 ui.label("Typed record; additional source properties remain preserved in the native file.");
             }
+        }
+    }
+    fn affiliations(&mut self, ui: &mut egui::Ui, record: &Record, records: &[Record]) {
+        let organizations: Vec<_> = records
+            .iter()
+            .filter(|r| r.kind == RecordKind::Organization && r.scope == record.scope)
+            .collect();
+        ui.label(
+            RichText::new(format!(
+                "Affiliations · {} eligible organizations",
+                organizations.len()
+            ))
+            .strong(),
+        );
+        if record
+            .fields
+            .get("affiliations")
+            .is_some_and(|v| !v.is_object())
+        {
+            ui.label("Existing affiliation data is preserved but cannot be edited as this profile's affiliation map.");
+            return;
+        }
+        for org in organizations {
+            let current = record
+                .fields
+                .get("affiliations")
+                .and_then(|v| v.get(org.id.0.to_string()))
+                .and_then(serde_json::Value::as_str);
+            ui.label(format!("{} #{}", org.name, org.id.0));
+            let combo = egui::ComboBox::from_id_salt(("affiliation", record.id.0, org.id.0))
+                .selected_text(current.unwrap_or("No affiliation"))
+                .show_ui(ui, |ui| {
+                    for choice in [
+                        None,
+                        Some(AffiliationKind::Unknown),
+                        Some(AffiliationKind::Internal),
+                        Some(AffiliationKind::External),
+                    ] {
+                        let label = choice.map(|c| c.label()).unwrap_or("No affiliation");
+                        let response =
+                            ui.selectable_label(current == choice.map(|c| c.label()), label);
+                        self.bound(
+                            format!("affiliation-option:{}:{}:{}", record.id.0, org.id.0, label),
+                            &response,
+                        );
+                        if response.clicked() {
+                            self.command(Command::SetAffiliation {
+                                stakeholder: record.id,
+                                organization: org.id,
+                                relationship: choice,
+                            });
+                        }
+                    }
+                });
+            self.bound(
+                format!("affiliation:{}:{}", record.id.0, org.id.0),
+                &combo.response,
+            );
+        }
+        ui.label(
+            RichText::new(
+                "No affiliation is absent; Unknown is an explicitly authored relationship.",
+            )
+            .small(),
+        );
+    }
+    fn contexts(&mut self, ui: &mut egui::Ui, record: &Record) {
+        ui.label(RichText::new("Environment context").strong());
+        let items = record
+            .fields
+            .get("context")
+            .and_then(serde_json::Value::as_array)
+            .cloned()
+            .unwrap_or_default();
+        for item in items {
+            let Some(id) = item
+                .get("id")
+                .and_then(serde_json::Value::as_u64)
+                .map(RecordId)
+            else {
+                ui.label("Unrecognized context item preserved.");
+                continue;
+            };
+            let title = format!(
+                "{} #{}",
+                item.get("name")
+                    .and_then(serde_json::Value::as_str)
+                    .unwrap_or("Context"),
+                id.0
+            );
+            egui::CollapsingHeader::new(title)
+                .id_salt(("context", record.id.0, id.0))
+                .default_open(true)
+                .show(ui, |ui| {
+                    self.raw_field(ui, record, Some(id), "contextName", "Context name", false);
+                    let current = item
+                        .get("kind")
+                        .and_then(serde_json::Value::as_str)
+                        .unwrap_or("Unrecognized kind");
+                    let combo = egui::ComboBox::from_id_salt(("context-kind", record.id.0, id.0))
+                        .selected_text(current)
+                        .show_ui(ui, |ui| {
+                            for kind in [
+                                ContextKind::Description,
+                                ContextKind::Assumption,
+                                ContextKind::AcceptedConstraint,
+                            ] {
+                                let response =
+                                    ui.selectable_label(current == kind.label(), kind.label());
+                                self.bound(
+                                    format!(
+                                        "context-kind-option:{}:{}:{}",
+                                        record.id.0,
+                                        id.0,
+                                        kind.label()
+                                    ),
+                                    &response,
+                                );
+                                if response.clicked() {
+                                    self.command(Command::SetContextKind {
+                                        environment: record.id,
+                                        item: id,
+                                        kind,
+                                    });
+                                }
+                            }
+                        });
+                    self.bound(
+                        format!("context-kind:{}:{}", record.id.0, id.0),
+                        &combo.response,
+                    );
+                    self.raw_field(ui, record, Some(id), "contextText", "Context text", true);
+                });
+        }
+        let response = ui.button("Add context");
+        self.bound(format!("context:add:{}", record.id.0), &response);
+        if response.clicked() {
+            let draft = self
+                .session
+                .editor
+                .snapshot
+                .creation_drafts
+                .get(&format!("mbse-ui-context-{}", record.id.0));
+            let name = draft
+                .and_then(|d| d.fields.get("name"))
+                .cloned()
+                .unwrap_or_default();
+            let kind = match draft.and_then(|d| d.fields.get("kind")).map(String::as_str) {
+                Some("Assumption") => ContextKind::Assumption,
+                Some("AcceptedConstraint") => ContextKind::AcceptedConstraint,
+                _ => ContextKind::Description,
+            };
+            self.context_creation = Some((record.id, name, kind));
+        }
+        ui.label(RichText::new("Context classifications are authored statements. Choosing AcceptedConstraint does not record an independent engineering approval.").small());
+        if record
+            .fields
+            .get("inputs")
+            .and_then(serde_json::Value::as_array)
+            .is_some_and(|a| !a.is_empty())
+        {
+            ui.label(
+                "Existing external inputs remain preserved; no external connection is inferred.",
+            );
         }
     }
     fn calculation(&mut self, ui: &mut egui::Ui, record: &Record) {
@@ -926,7 +1187,101 @@ impl Workspace {
                 });
         });
     }
+    fn recovery_dialog(&mut self, ctx: &egui::Context) {
+        if !self.recovery_window {
+            return;
+        }
+        let mut open = true;
+        let mut restore = None;
+        egui::Window::new("Recovery copies").id(egui::Id::new("recovery-inventory")).open(&mut open).default_width(650.).show(ctx,|ui| {
+            ui.label("Recognized recovery envelopes in this app data directory. Choose explicitly; no copy is restored automatically.");
+            let response=ui.button("Refresh recovery inventory");self.bound("recovery:Refresh",&response);if response.clicked(){self.refresh_recoveries();}
+            let entries:Vec<_>=self.recovery_inventory.as_ref().map(|i|i.entries.iter().map(|e|(e.path.clone(),e.system_names.join(", "),e.model_revision,e.raw_version,e.record_count,e.snapshot_hash.clone())).collect()).unwrap_or_default();
+            egui::ScrollArea::vertical().max_height(300.).show(ui,|ui| {
+                for (index,(path,names,revision,raw,count,_)) in entries.iter().enumerate(){
+                    let response=ui.selectable_label(self.recovery_selected.as_ref()==Some(path),format!("{} · model r{} / raw v{} · {} records\n{}",if names.is_empty(){"Unnamed System"}else{names},revision,raw,count,path.display()));self.bound(format!("recovery:entry:{index}"),&response);if response.clicked(){self.recovery_selected=Some(path.clone());}
+                }
+                if entries.is_empty(){ui.label("No recognized recovery copies found.");}
+            });
+            if let Some((path,_,revision,raw,_,hash))=entries.iter().find(|e|Some(&e.0)==self.recovery_selected.as_ref()){
+                ui.label(format!("Selected snapshot r{revision} / raw v{raw} · hash {hash}"));
+                let response=ui.button("Restore independent copy");self.bound("recovery:Restore independent copy",&response);if response.clicked(){restore=Some(path.clone());}
+            }
+            if let Some(inventory)=self.recovery_inventory.as_ref(){
+                if inventory.truncated{ui.colored_label(ERROR,"Inventory scan reached its bound. Some copies may be omitted; no files were deleted.");}
+                ui.collapsing(format!("Rejected entries ({})",inventory.rejected.len()),|ui|{for rejected in &inventory.rejected{ui.label(format!("{}: {}",rejected.path.display(),rejected.reason));}});
+            }
+            ui.label("Restore preserves the source, opens a dirty independent document and requires a new save destination.");
+        });
+        self.recovery_window = open;
+        if let Some(path) = restore {
+            self.recovery_window = false;
+            self.request_load(Load::Recover(path));
+        }
+    }
     fn dialogs(&mut self, ctx: &egui::Context) {
+        self.recovery_dialog(ctx);
+        if let Some((environment, mut name, mut kind)) = self.context_creation.clone() {
+            let mut open = true;
+            let mut create = false;
+            let before = (name.clone(), kind);
+            egui::Window::new("Add environment context")
+                .id(egui::Id::new("context-creation"))
+                .open(&mut open)
+                .collapsible(false)
+                .show(ctx, |ui| {
+                    ui.label(format!(
+                        "Environment #{} · System scope retained",
+                        environment.0
+                    ));
+                    ui.label("Context name");
+                    let response = ui.text_edit_singleline(&mut name);
+                    self.bound("context-creation:name", &response);
+                    egui::ComboBox::from_id_salt("new-context-kind")
+                        .selected_text(kind.label())
+                        .show_ui(ui, |ui| {
+                            for choice in [
+                                ContextKind::Description,
+                                ContextKind::Assumption,
+                                ContextKind::AcceptedConstraint,
+                            ] {
+                                ui.selectable_value(&mut kind, choice, choice.label());
+                            }
+                        });
+                    ui.label("The draft is retained when this panel is closed.");
+                    let response = ui
+                        .add_enabled(!name.trim().is_empty(), egui::Button::new("Create context"));
+                    self.bound("context-creation:commit", &response);
+                    if response.clicked() {
+                        create = true;
+                    }
+                });
+            if before != (name.clone(), kind) {
+                self.command(Command::PutCreationDraft {
+                    id: format!("mbse-ui-context-{}", environment.0),
+                    draft: CreationDraft {
+                        owner: environment,
+                        kind: RecordKind::Environment,
+                        fields: BTreeMap::from([
+                            ("name".into(), name.clone()),
+                            ("kind".into(), kind.label().into()),
+                        ]),
+                    },
+                });
+            }
+            self.context_creation = if open && !create {
+                Some((environment, name.clone(), kind))
+            } else {
+                None
+            };
+            if create {
+                self.command(Command::AddContext {
+                    environment,
+                    name,
+                    kind,
+                });
+            }
+        }
         if let Some((kind, owner, mut name)) = self.creation.clone() {
             let mut open = true;
             let mut create = false;
