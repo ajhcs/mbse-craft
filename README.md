@@ -1,6 +1,6 @@
 # MBSE-Craft
 
-An independent native Rust systems-modeling workbench. It reuses the attributed MIT Kernspan Stage1 core and integrates pinned ArtCraft `craft-atomic` persistence and `craft-ui` controls. It has its own native shell and preserves the bounded Kernspan storage and exchange profiles; it is not a full ArtCraft application or general SysML implementation.
+An independent native Rust systems-modeling workbench. It reuses the attributed MIT Kernspan Stage1 core and integrates pinned ArtCraft persistence, UI controls, settings, quit, document-path and window-frame contracts. It has its own native shell and preserves the bounded Kernspan storage and exchange profiles; it is not a full ArtCraft application or general SysML implementation.
 
 ## Build on Linux
 
@@ -44,17 +44,25 @@ Calculations use the inherited bounded scalar/ratio/count/length/duration/speed 
 
 Storytold egui HEAD 0.37 is not used; registry egui 0.36.2 supplies the native type family. AI/service/plugin/launcher/CAD/font/catalog protocol compatibility is unqualified. The restricted `artcraft-services` workspace, unlicensed shared workflows and trademark assets are not bundled. `kernspan.stage1.sysml/1` exchanges only the closed custom domain profile, with atomic refusal of unsupported semantics; syntax success is not SysML conformance.
 
-## Acceptance status
+## Frozen alpha acceptance
 
 Independent Linux verification passed 123 tests, including actual Craft streaming/rename fault preservation and corrupted-main recovery. Native workflows passed blank-model creation with typed links and a 2500 m to 2.5 km calculation, save/normal-close/relaunch; fixture-based invalid-draft preservation, typed relation edits, save failure/cancel safety, independent recovery and graceful close after keeping recovery. These are distinct fixture and blank-authoring checks, not general usability acceptance.
 
 Exact build-input SHA-256: `323fe697051fe40a508dcab6d8d3979898a0da8c34a4a2007aa1ec30ee3ac6d7`. Linux debug executable SHA-256: `ddefaaaa73675b5e1aacd8aee6288cfdf513049c0e8cad88b15be894a7e4b587`. Build used Rust 1.99.1, one Cargo job, offline locked registry inputs, private Xvfb and software OpenGL. Recompute inputs with `python3 scripts/source-manifest.py`.
 
-The draft PR is not a release. Windows native behavior, AT-SPI accessibility, physical FPS/input latency, engineering acceptance and full ecosystem compatibility remain unqualified. The canvas uses a responsive grid with basic crossing routes, explicit scope-link visibility and a complete relation ledger; this does not establish collision-free dense layouts. Rich actor/environment/organization editors, generic CAD, service/AI integrations and timed automatic recovery remain gaps. See `docs/UI_WORKFLOW.md` and the independent acceptance artifacts under `docs/verification/`.
+The draft PR is not a release. Windows native behavior, AT-SPI accessibility, physical FPS/input latency, engineering acceptance and full ecosystem compatibility remain unqualified. The canvas uses a responsive grid with basic crossing routes, explicit scope-link visibility and a complete relation ledger; this does not establish collision-free dense layouts. The continuation adds actor/environment/organization context editors and default-off periodic recovery; its evidence is recorded separately below. Generic CAD and service/AI integrations remain outside the implemented scope. See `docs/UI_WORKFLOW.md` and the independent acceptance artifacts under `docs/verification/`.
 
 [Independent acceptance report](docs/verification/FINAL_ACCEPTANCE.md) · [machine-readable receipt](docs/verification/FINAL_ACCEPTANCE.json) · [exact source manifest](docs/verification/SOURCE_MANIFEST.json) · [blank-authored native model](docs/verification/models/blank-authored.kernspan)
 
 ![Actual blank-authored model reopened in the verified Linux binary](docs/verification/screenshots/blank-authored-reopened.png)
+
+## Continuation implementation and qualification
+
+The continuation adds typed context and affiliations, bounded recovery discovery, actual persistent preference policy and hidden-window close guards. The frozen external library browser indexes retained source without changing the active native model. Bounded MDZIP/UML, Capella and SysML text projections expose typed IDs, properties, reference endpoints, source spans, unknown semantics and original bytes. A partial projection is not native editable admission or execution; AIRD layout fidelity remains unsupported.
+
+The independent requirements/evidence window authors a separate JSON sidecar with retained raw drafts, Undo/Redo and distinct maturity, implementation and verification states. Native evaluator receipts retain selected output kind/unit and the complete global result. Adequacy and verification require explicit review. Reopening retains historical decisions and clears live evaluator authority; current stamps alone cannot authenticate execution. Local external artifacts remain explicitly attributed inert evidence.
+
+Intermediate continuation qualification passed152 tests and actual context/recovery, preferences failure/retry, future-schema read-only settings, hidden dirty close and readable library-preview workflows. Source and binary identities differ from the frozen alpha. Receipts live under [continuation verification](docs/continuation-m1/verification/). New projection and requirements windows are undergoing combined native qualification. The prepared paired Storytold egui/winit adoption still requires its own one-identity build and native regression checks. These open gates prevent a full interoperability or finished-product claim.
 
 ## Licenses
 
