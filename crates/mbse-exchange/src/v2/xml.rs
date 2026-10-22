@@ -89,7 +89,8 @@ enum Expected {
     CapellaInvolved,
     UmlProperty,
     UmlPort,
-    InformationEndpoint,
+    InformationExchanger,
+    ActivityNode,
 }
 struct Pending {
     reference: SemanticReference,
@@ -688,7 +689,11 @@ fn role(
                     "AbstractInformationFlow"
                 },
             ),
-            Expected::InformationEndpoint,
+            if ty.local == "FunctionalExchange" {
+                Expected::ActivityNode
+            } else {
+                Expected::InformationExchanger
+            },
         )),
         (CapellaAllocation, "sourceElement" | "targetElement") => Some((
             declaring(
@@ -826,10 +831,16 @@ fn compatible(expected: &Expected, node: &SemanticNode) -> ReferenceResolution {
             node.source_type.namespace == UML && node.source_type.local == "Property"
         }
         Expected::UmlPort => node.source_type.namespace == UML && node.source_type.local == "Port",
-        Expected::InformationEndpoint => matches!(
-            node.kind,
-            SemanticKind::CapellaPort | SemanticKind::CapellaComponent
-        ),
+        Expected::InformationExchanger => {
+            node.source_type.namespace == FA && node.source_type.local == "ComponentPort"
+        }
+        Expected::ActivityNode => {
+            node.source_type.namespace == FA
+                && matches!(
+                    node.source_type.local.as_str(),
+                    "FunctionInputPort" | "FunctionOutputPort"
+                )
+        }
     };
     if valid {
         ReferenceResolution::Resolved
