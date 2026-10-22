@@ -68,6 +68,7 @@ impl Workspace {
         );
         style.spacing.item_spacing = Vec2::new(9., 8.);
         ctx.set_style_of(egui::Theme::Light, style);
+        ctx.set_theme(egui::Theme::Light);
         let path = session
             .path
             .as_ref()
