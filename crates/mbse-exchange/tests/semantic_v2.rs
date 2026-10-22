@@ -481,3 +481,74 @@ fn reference_uri_policy_is_literal_local_subset_with_no_percent_decode_or_invali
         refs(&doc, "SYN-CE", "capability").any(|r| r.resolution == ReferenceResolution::Unresolved)
     );
 }
+#[test]
+fn typed_aird_and_uml_href_mentions_are_proxies_not_owned_domain_elements() {
+    let aird = r#"<diagram xmlns:xmi="http://www.omg.org/XMI" xmlns:ctx="http://www.polarsys.org/capella/core/ctx/7.0.0"><target xmi:type="ctx:SystemComponent" href="synthetic.capella#component"/><target xmi:type="ctx:Mission" href="synthetic.capella#mission"/></diagram>"#;
+    let doc = load(aird);
+    assert_eq!(doc.counters.reference_proxies, 2);
+    assert_eq!(doc.counters.owned_elements, 1);
+    assert_eq!(doc.counters.nodes, 3);
+    assert!(doc
+        .nodes
+        .iter()
+        .filter(|n| n.kind == SemanticKind::ReferenceProxy)
+        .all(|n| n.component_flags.is_none()
+            && n.opaque_expression.is_none()
+            && n.value_kind.is_none()));
+    assert!(!doc.nodes.iter().any(|n| matches!(
+        n.kind,
+        SemanticKind::CapellaComponent | SemanticKind::CapellaMission
+    )));
+    assert!(doc
+        .references
+        .iter()
+        .filter(|r| r.provenance == ReferenceProvenance::ReferenceMention)
+        .all(|r| r.resolution == ReferenceResolution::UnsuppliedResource && r.target.is_none()));
+    let proxy = doc
+        .nodes
+        .iter()
+        .find(|n| n.kind == SemanticKind::ReferenceProxy)
+        .unwrap();
+    assert_eq!(proxy.source_type.local, "SystemComponent");
+    assert!(
+        std::str::from_utf8(&doc.primary_bytes()[proxy.location.start..proxy.location.end])
+            .unwrap()
+            .contains("href=")
+    );
+    let uml = r##"<xmi:XMI xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.omg.org/spec/UML/20131001"><uml:Model xmi:id="model"><packagedElement xmi:type="uml:Class" href="external.uml#class"/><packagedElement xmi:type="uml:Class" xmi:id="owned"/><type xmi:type="uml:Class" xmi:idref="owned"/></uml:Model></xmi:XMI>"##;
+    let doc = load(uml);
+    assert_eq!(doc.counters.reference_proxies, 2);
+    assert_eq!(doc.counters.owned_elements, 3);
+    assert_eq!(node(&doc, "owned").kind, SemanticKind::UmlClassifier);
+    assert_eq!(
+        doc.references
+            .iter()
+            .filter(|r| r.provenance == ReferenceProvenance::ReferenceMention
+                && r.resolution == ReferenceResolution::Resolved)
+            .count(),
+        1
+    );
+    assert_eq!(
+        doc.references
+            .iter()
+            .filter(|r| r.provenance == ReferenceProvenance::ReferenceMention
+                && r.resolution == ReferenceResolution::UnsuppliedResource)
+            .count(),
+        1
+    );
+    assert_eq!(
+        doc.counters.serialized_report_bytes,
+        serde_json::to_vec(&doc).unwrap().len()
+    );
+}
+#[test]
+fn semantic_endpoints_cannot_resolve_to_a_reference_proxy_mention() {
+    let raw=CAPELLA.replace("<ownedCapabilities xsi:type=\"ctx:Capability\" id=\"SYN-C\" name=\"Retain a synthetic response\"/>","<ownedCapabilities xsi:type=\"ctx:Capability\" id=\"SYN-C\" href=\"other.capella#actual\"/>");
+    let doc = load(&raw);
+    assert_eq!(node(&doc, "SYN-C").kind, SemanticKind::ReferenceProxy);
+    assert_eq!(doc.counters.reference_proxies, 1);
+    assert!(refs(&doc, "SYN-CE", "capability").any(|r| r.resolution
+        == ReferenceResolution::UnsupportedEndpointType
+        && r.target.is_none()));
+    assert!(node(&doc, "SYN-C").component_flags.is_none());
+}

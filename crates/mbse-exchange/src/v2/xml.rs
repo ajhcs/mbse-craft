@@ -209,6 +209,7 @@ fn id<'a, 'i>(
     ty: &TypeView<'_>,
     capella_document: bool,
     xmi_document: bool,
+    proxy: bool,
 ) -> Result<Option<&'a str>, String> {
     let carriers: Vec<_> = n
         .attributes()
@@ -223,7 +224,9 @@ fn id<'a, 'i>(
     let Some(carrier) = carriers.first() else {
         return Ok(None);
     };
-    if capella_document || capella(ty) {
+    if proxy {
+        // A proxy is a reference mention, not an instance of its declared target type.
+    } else if capella_document || capella(ty) {
         if carrier.namespace().is_some() {
             return Err("V2_IDENTITY_CARRIER_COVERAGE_UNSUPPORTED_CAPELLA_PLAIN_ID".into());
         }
@@ -255,6 +258,14 @@ fn local_target(asset: &SourceAsset, raw: &str) -> Option<ElementKey> {
         member_path: asset.logical_path.clone(),
         identity: ElementIdentity::Original(id.into()),
     })
+}
+fn reference_mention<'a, 'i>(n: roxmltree::Node<'a, 'i>) -> Option<(&'a str, &'a str)> {
+    n.attributes()
+        .find(|a| {
+            (a.name() == "href" && a.namespace().is_none())
+                || (a.name() == "idref" && matches!(a.namespace(), Some(XMI) | Some(XMI_UML)))
+        })
+        .map(|a| (a.name(), a.value()))
 }
 fn input_preflight(
     text: &str,
@@ -424,11 +435,13 @@ fn parse(
     let mut original_ids = BTreeSet::new();
     for n in doc.descendants().filter(|n| n.is_element()) {
         let t = source_type(n);
+        let proxy = reference_mention(n).is_some();
         let original = id(
             n,
             &t,
             root.tag_name().namespace() == Some(MODELLER),
             matches!(root.tag_name().namespace(), Some(XMI) | Some(XMI_UML)),
+            proxy,
         )?;
         let typed = n.attributes().any(|a| {
             a.name() == "type" && matches!(a.namespace(), Some(XSI) | Some(XMI) | Some(XMI_UML))
@@ -447,7 +460,7 @@ fn parse(
                     | "base_Package"
             )
         });
-        if original.is_none() && !typed && !base && n != root {
+        if original.is_none() && !typed && !base && !proxy && n != root {
             continue;
         }
         if part.nodes.len() + counters.nodes >= MAX_NODES {
@@ -468,7 +481,11 @@ fn parse(
                     end: n.range().end,
                 }),
         };
-        let semantic = kind(&t, base);
+        let semantic = if proxy {
+            SemanticKind::ReferenceProxy
+        } else {
+            kind(&t, base)
+        };
         let flags = (semantic == SemanticKind::CapellaComponent).then(|| ComponentFlags {
             actor: flag(n, "actor"),
             human: flag(n, "human"),
@@ -587,6 +604,22 @@ fn parse(
                 &location,
                 budget,
             )?;
+        }
+        if *semantic == SemanticKind::ReferenceProxy {
+            if let Some((feature, raw)) = reference_mention(n) {
+                pending(
+                    &mut part.pending,
+                    source,
+                    local_target(asset, raw),
+                    raw,
+                    &format!("reference-mention.{feature}"),
+                    ty,
+                    ReferenceProvenance::ReferenceMention,
+                    Expected::Any,
+                    &location,
+                    budget,
+                )?;
+            }
         }
         if n.tag_name().namespace().is_none() && n.tag_name().name() == "ownedSpecification" {
             if let Some((parent_key, _, parent_kind)) =
@@ -850,6 +883,9 @@ fn pending(
     Ok(())
 }
 fn compatible(expected: &Expected, node: &SemanticNode) -> ReferenceResolution {
+    if node.kind == SemanticKind::ReferenceProxy {
+        return ReferenceResolution::UnsupportedEndpointType;
+    }
     let valid = match expected {
         Expected::Any => true,
         Expected::Exact(ns, local) => {

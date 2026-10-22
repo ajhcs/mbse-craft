@@ -97,6 +97,7 @@ pub enum SemanticKind {
     UnknownProfileApplication,
     MetamodelHelper,
     UnknownClassifier,
+    ReferenceProxy,
 }
 #[derive(Clone, Debug, Serialize)]
 pub struct Attribute {
@@ -154,6 +155,7 @@ pub enum ReferenceProvenance {
     StoredChildReference,
     ContainmentDerived,
     SourceContainment,
+    ReferenceMention,
 }
 #[derive(Clone, Debug, Serialize, PartialEq, Eq)]
 pub enum ReferenceResolution {
@@ -195,6 +197,8 @@ pub struct Loss {
 pub struct Counters {
     pub asset_bytes: usize,
     pub nodes: usize,
+    pub owned_elements: usize,
+    pub reference_proxies: usize,
     pub references: usize,
     pub attributes: usize,
     pub attribute_bytes: usize,
@@ -652,6 +656,12 @@ pub fn open(primary: &Path) -> Result<ProjectionSet, String> {
         }
     }
     report.counters.nodes = report.nodes.len();
+    report.counters.reference_proxies = report
+        .nodes
+        .iter()
+        .filter(|n| n.kind == SemanticKind::ReferenceProxy)
+        .count();
+    report.counters.owned_elements = report.nodes.len() - report.counters.reference_proxies;
     report.counters.references = report.references.len();
     match serialized_size(&report, MAX_REPORT_BYTES) {
         Ok(mut size) => {
@@ -672,6 +682,8 @@ pub fn open(primary: &Path) -> Result<ProjectionSet, String> {
             report.diagnostics.clear();
             report.losses.clear();
             report.counters.nodes = 0;
+            report.counters.owned_elements = 0;
+            report.counters.reference_proxies = 0;
             report.counters.references = 0;
             report.diagnostic("REPORT_BUDGET_REFUSED", &error, None);
             report.counters.serialized_report_bytes = serialized_size(&report, MAX_REPORT_BYTES)?;
