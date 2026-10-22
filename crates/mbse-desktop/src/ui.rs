@@ -539,6 +539,36 @@ impl Workspace {
     fn calculation(&mut self, ui: &mut egui::Ui, record: &Record) {
         ui.separator();
         ui.label(RichText::new("Local calculation").strong());
+        match self.session.editor.evaluate_calculations() {
+            Ok(receipt) => {
+                if let Some(outcome) = receipt.outcomes.get(&CalculationId(record.id.0)) {
+                    match outcome {
+                        calc::Outcome::Value(value) => {
+                            ui.colored_label(
+                                ACCENT,
+                                format!(
+                                    "Derived result: {} {}",
+                                    value.value,
+                                    calc::unit_label(value.quantity.unit)
+                                ),
+                            );
+                        }
+                        calc::Outcome::Failure(error) => {
+                            ui.colored_label(ERROR, format!("{:?}: {}", error.code, error.message));
+                        }
+                    }
+                    ui.label(
+                        RichText::new(
+                            "Derived result is separate from criterion and observations.",
+                        )
+                        .small(),
+                    );
+                }
+            }
+            Err(error) => {
+                ui.colored_label(ERROR, error);
+            }
+        }
         let definitions = self
             .session
             .editor
@@ -719,36 +749,6 @@ impl Workspace {
                         },
                     }),
                 });
-            }
-        }
-        match self.session.editor.evaluate_calculations() {
-            Ok(receipt) => {
-                if let Some(outcome) = receipt.outcomes.get(&CalculationId(record.id.0)) {
-                    match outcome {
-                        calc::Outcome::Value(value) => {
-                            ui.colored_label(
-                                ACCENT,
-                                format!(
-                                    "Derived result: {} {}",
-                                    value.value,
-                                    calc::unit_label(value.quantity.unit)
-                                ),
-                            );
-                        }
-                        calc::Outcome::Failure(error) => {
-                            ui.colored_label(ERROR, format!("{:?}: {}", error.code, error.message));
-                        }
-                    }
-                    ui.label(
-                        RichText::new(
-                            "Derived result is separate from criterion and observations.",
-                        )
-                        .small(),
-                    );
-                }
-            }
-            Err(error) => {
-                ui.colored_label(ERROR, error);
             }
         }
     }
