@@ -1,0 +1,18 @@
+warning: patch `egui_extras v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui_extras)` was not used in the crate graph
+warning: patch `egui_inspection v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui_inspection)` was not used in the crate graph
+warning: patch `egui_kittest v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui_kittest)` was not used in the crate graph
+help: Check that the patched package version and available features are compatible
+      with the dependency requirements. If the patch has a different version from
+      what is locked in the Cargo.lock file, run `cargo update` to use the new
+      version. This may also occur with an optional dependency that is not enabled.
+warning: use of deprecated constant `std::f32::EPSILON`: replaced by the `EPSILON` associated constant on `f32`
+  --> vendor/egui-fork/crates/egui/src/containers/scene.rs:79:42
+   |
+79 |             zoom_range: Rangef::new(f32::EPSILON, 1.0),
+   |                                          ^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: `egui` (lib) generated 1 warning
+   Compiling mbse-desktop v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-desktop)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 3.51s

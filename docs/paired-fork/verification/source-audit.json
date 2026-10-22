@@ -1,0 +1,13 @@
+{
+  "egui-fork": {
+    "revision": "767b1cad294120689a514bb4bd68c077e46679b9",
+    "files": 308,
+    "all_match": true
+  },
+  "winit-fork": {
+    "revision": "ffae5198770d7730e718043f035a772b7dbc3b1b",
+    "files": 203,
+    "all_match": true
+  },
+  "new_build_script_sha256": "eda62c3ebf765708bf1608b51ccf77501b4aa0253214c419f813c6d08d640b1a"
+}

@@ -1,0 +1,42 @@
+{"ready": true, "xft_dpi": 96, "screen_pixels": [2400, 1800], "screen_mm": [635, 476], "app_pid": 693625, "server_pid": 693622, "window": 4194307, "binary_sha256": "cb598cc054ae0f05b9a2366dd6d8f9197485ec8841e23fb4b77274858badbb71"}
+{"op": "capture", "name": "launch-96", "ui_sha256": "6a5d0258883ff7baae9d569619e3528a1b42bd15dfaaac2bb01806ce521da358", "capture_pixels": [1440, 1000], "sha256": "24f4e629ad7b0873b72e006270969904016e7b8258561b5cada1503d1142d273", "app_returncode": null, "window_map_state": 2}
+{"op": "click", "widget": "field:1003:criterion", "x": 168, "y": 523, "app_returncode": null, "window_map_state": 2}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null, "window_map_state": 2}
+{"op": "text", "text": "2100", "app_returncode": null, "window_map_state": 2}
+{"op": "key", "key": "Return", "app_returncode": null, "window_map_state": 2}
+{"op": "click", "widget": "tree:1002", "x": 137, "y": 286, "app_returncode": null, "window_map_state": 2}
+{"op": "click", "widget": "tree:1003", "x": 118, "y": 312, "app_returncode": null, "window_map_state": 2}
+{"op": "click", "widget": "field:1003:criterion", "x": 168, "y": 523, "app_returncode": null, "window_map_state": 2}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null, "window_map_state": 2}
+{"op": "text", "text": "2200", "app_returncode": null, "window_map_state": 2}
+{"op": "key", "key": "Return", "app_returncode": null, "window_map_state": 2}
+{"op": "capture", "name": "refocused-edit-2200", "ui_sha256": "21933ad970aee3a6f72b1a0f2e498b68a22dd7a30975d098caa2bb4cad327e13", "capture_pixels": [1440, 1000], "sha256": "df9a3fe6a4344ce4340fd3725b44fb14e68feee439c0069fb680ac83d01f45f4", "app_returncode": null, "window_map_state": 2}
+{"op": "key", "key": "z", "mods": ["Control_L"], "app_returncode": null, "window_map_state": 2}
+{"op": "capture", "name": "focused-model-undo", "ui_sha256": "fae6459e168ff780a49cbdfd45c9ac82753bbe9c9b18d1b836bb10a7893743ce", "capture_pixels": [1440, 1000], "sha256": "a3d15fc730e2d4fd7a85f086290ee7d7ef083da393760692ff787ad7ce564b86", "app_returncode": null, "window_map_state": 2}
+{"op": "key", "key": "z", "mods": ["Control_L", "Shift_L"], "app_returncode": null, "window_map_state": 2}
+{"op": "capture", "name": "focused-model-redo", "ui_sha256": "c9c3a95e6c9b8c3d2a46ad5009a3e1a23ec6df56a9bedb214b2be4ebf46bad9a", "capture_pixels": [1440, 1000], "sha256": "45e3795d0f19d13d51eaf21860522c7dc7fc8660ba81647e9f88a8e3da48eef3", "app_returncode": null, "window_map_state": 2}
+{"op": "click", "widget": "path", "x": 817, "y": 76, "app_returncode": null, "window_map_state": 2}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null, "window_map_state": 2}
+{"op": "text", "text": "ordinary-path-edit", "app_returncode": null, "window_map_state": 2}
+{"op": "key", "key": "z", "mods": ["Control_L"], "app_returncode": null, "window_map_state": 2}
+{"op": "capture", "name": "ordinary-path-undo-retains-model", "ui_sha256": "c9c3a95e6c9b8c3d2a46ad5009a3e1a23ec6df56a9bedb214b2be4ebf46bad9a", "capture_pixels": [1440, 1000], "sha256": "fa398eceef9f35c2ebcb8d0ff9379e504d3284e92892787c8d6162eacc159307", "app_returncode": null, "window_map_state": 2}
+{"op": "click", "widget": "card:1003", "x": 881, "y": 444, "app_returncode": null, "window_map_state": 2}
+{"op": "key", "key": "z", "mods": ["Control_L"], "app_returncode": null, "window_map_state": 2}
+{"op": "capture", "name": "canvas-model-undo", "ui_sha256": "a725633239e9642eb93e73f2bd34d6be77e2af88edb4964f63a89869ee48b23c", "capture_pixels": [1440, 1000], "sha256": "fd0851297c3bb2892b87fc8d8ac55df0c131ba704a7437d74bf822adf1abd559", "app_returncode": null, "window_map_state": 2}
+{"op": "key", "key": "z", "mods": ["Control_L", "Shift_L"], "app_returncode": null, "window_map_state": 2}
+{"op": "capture", "name": "canvas-model-redo", "ui_sha256": "3652d1549f9f61a6b02758ca0829b839f0a499846071f5de1b784b0f20bce2c4", "capture_pixels": [1440, 1000], "sha256": "419b706487c75512d731141b0bc3981510343b16e75db5aa3f1b56302728f05c", "app_returncode": null, "window_map_state": 2}
+{"op": "click", "x": 775, "y": 498, "app_returncode": null, "window_map_state": 2}
+{"op": "capture", "name": "details-popout", "ui_sha256": "3652d1549f9f61a6b02758ca0829b839f0a499846071f5de1b784b0f20bce2c4", "capture_pixels": [1440, 1000], "sha256": "8b5ade7911a32aee6956ab96ce4f17d28f31353262ff887bf101af525ee7dd9f", "app_returncode": null, "window_map_state": 2}
+{"op": "click", "x": 84, "y": 118, "app_returncode": null, "window_map_state": 2}
+{"op": "click", "x": 338, "y": 33, "app_returncode": null, "window_map_state": 2}
+{"op": "click", "widget": "field:1003:criterion", "x": 168, "y": 523, "app_returncode": null, "window_map_state": 2}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null, "window_map_state": 2}
+{"op": "text", "text": "2300", "app_returncode": null, "window_map_state": 2}
+{"op": "key", "key": "Return", "app_returncode": null, "window_map_state": 2}
+{"op": "capture", "name": "popout-refocused-edit-2300", "ui_sha256": "f648c6e0042a92c6753b7a8ea38ea015ce7c3640d2e338ccacf95d2a7625d33f", "capture_pixels": [1440, 1000], "sha256": "be45184f0adf144f641949c783c51414e9ec8ab8e59dda4526af367ea586cf96", "app_returncode": null, "window_map_state": 2}
+{"op": "click", "widget": "save-path", "x": 784, "y": 103, "app_returncode": null, "window_map_state": 2}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null, "window_map_state": 2}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/paired-fork/state/focus96/paired96.kernspan", "app_returncode": null, "window_map_state": 2}
+{"op": "click", "widget": "action:Save", "pause": 2, "x": 503, "y": 12, "app_returncode": null, "window_map_state": 2}
+{"op": "capture", "name": "paired96-saved", "ui_sha256": "82d825b87e8a12d1d6b664c77cdc1fa4794d21986c43645e12f379a6620bad19", "capture_pixels": [1440, 1000], "sha256": "cdfd7bc3d3f383b0aa508dc70b0db9ea50d77d6c0441d724fc51638383e6473b", "app_returncode": null, "window_map_state": 2}
+{"op": "close", "pause": 2, "app_returncode": 0}

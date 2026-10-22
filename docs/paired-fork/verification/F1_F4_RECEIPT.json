@@ -1,0 +1,353 @@
+{
+  "epoch": "Audited stable egui+winit pair, bounded Linux X11 qualification",
+  "initial_test_source_commit": "e9a6e847a3e20f9e8bcc018735dd72ef78d6f0c4",
+  "initial_test_source_sha256": "5c023596167eb7477b794b0b555afc9dea4ee8f8d86727abb739ab96b47e7aa2",
+  "final_integration_source_commit": "0c2665b1cf3e736c059a2fa11b2b81566979c4d5",
+  "verifier_source_commit": "cced8a3d851600d245ddf5570a127b2bdd25c078",
+  "final_source_sha256": "38b42f44020d249d2862450812614f190ae2b5843cbe7e1719b686c9df3c1c05",
+  "binary_sha256": "cb598cc054ae0f05b9a2366dd6d8f9197485ec8841e23fb4b77274858badbb71",
+  "preserved_executable": "/workspace/build/builderbob/mbse-craft/paired-fork/epochs/0c2665b/mbse-desktop",
+  "cargo_lock_sha256": "d1af9b1e5b3b860a222d8eead87c29da7999377f2cb66ca9850b63d41511acf9",
+  "build_cwd": "/workspace/worktrees/builderbob/mbse-craft/verification",
+  "environment": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/paired-fork/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/paired-fork/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": 1
+  },
+  "commands": [
+    "bash scripts/dev.sh metadata --locked --offline --filter-platform x86_64-unknown-linux-gnu --format-version1",
+    "bash scripts/dev.sh tree --locked --offline -p mbse-desktop -e normal,build --prefix none --format {p}[{f}]",
+    "bash scripts/dev.sh test --workspace --locked --offline",
+    "bash scripts/dev.sh build -p mbse-desktop --locked --offline"
+  ],
+  "test_count": 171,
+  "final_change_scope": "Only reviewed assurance label display copy changed after171testedsource; exact audit keys/controller/test behavior unchanged. Final desktop rebuilt; changed label file Rust2021 formatting passes.",
+  "scenarios": [
+    {
+      "id": "F1_identity_build",
+      "status": "pass",
+      "observation": "308egui+203winit files rehashed; one active local egui family+winit; new1004Bbuildscript fully read; default_fonts/glow/x11/accesskit, no runtime inspection/WGPU;171tests initialpair and final desktopbuild; actualbinary startup96/144"
+    },
+    {
+      "id": "F2_basic_latin_focus_edit_history_save_reopen",
+      "status": "pass_bounded",
+      "observation": "ActualXTest reselect/refocus and Details popout; accepted criterion2100->2200, focusedmodelUndo2100/Redo2200, rawdraft separately retained; ordinarypathUndo exactmodelhash unchanged; canvasUndo/Redo acceptedvalues; popoutrefocus2300 saved/reopened exactsnapshot",
+      "saved_reopened_snapshot_sha256": "d1392b9a4ebbb7b2e1f5e5147b820e693e5b0f14868426905fb854a55f1183b7"
+    },
+    {
+      "id": "F3_owned96_and144dpi",
+      "status": "pass_bounded",
+      "servers": [
+        {
+          "configured_xft_dpi": 96,
+          "pixels": [
+            2400,
+            1800
+          ],
+          "millimetres": [
+            635,
+            476
+          ],
+          "observed_pixels_per_point": 1.0,
+          "window_pixels": [
+            1440,
+            1000
+          ]
+        },
+        {
+          "configured_xft_dpi": 144,
+          "pixels": [
+            2400,
+            1800
+          ],
+          "millimetres": [
+            423,
+            318
+          ],
+          "observed_pixels_per_point": 1.5,
+          "window_pixels": [
+            2160,
+            1500
+          ]
+        }
+      ],
+      "observation": "Separate authenticatedXservers; actualselection/edit/close atboth scales;144edit2400 saved viaappframeclose and reopened at96 exactsnapshot",
+      "saved_reopened_snapshot_sha256": "5bddb9352e036ff48435e41e91ab2965668afbfb9af4c17fa9185b932c815ee1"
+    },
+    {
+      "id": "F4_hidden_cancel_save_recovery_close",
+      "status": "pass_bounded",
+      "observation": "ExternalownedXUnmap mapstate0; WM_DELETE_WINDOW whilehidden leavesprocessalive andcreatesguard; explicitownedXMap showsguard; Cancel exactsnapshotunchanged; nextappframeClose asksagain; SaveContinue commits2400 andexits0; separatelaunch9e keepsaccepted2400, KeepRecoveryContinue writesIncomplete9e andexits0. NormalWMclose andcustomappframeclose exercised."
+    },
+    {
+      "id": "F4_compositor_minimize_restore_maximize",
+      "status": "not_qualified",
+      "observation": "No installedWM. ActualMinimizebutton dispatched butmapstate stayed2; externalUnmap/Map is separate controlledvisibility evidence, notcompositor minimizeacceptance. Maximize/restore notrun."
+    },
+    {
+      "id": "historical_human_labels",
+      "status": "pass_inspection_only",
+      "observation": "Preserved syntheticM1 register openedread-only, existingE5 selected; readablelifecycle/selectedmeasure/globalstate plusno-current-decision/no-live-proof warning visible. Noevaluation/review/approval/newdecision; normalexit0."
+    },
+    {
+      "id": "real_IME_composition_replacement_focus",
+      "status": "not_run",
+      "observation": "BasicLatin refocus only; noconfiguredIME, noinstalledIMEs orsettingschanges."
+    },
+    {
+      "id": "Wayland_clipboard_drops_seat",
+      "status": "not_run",
+      "observation": "X11only, noapprovedcompositor."
+    },
+    {
+      "id": "WGPU_tablet_otherplatforms_physicalperformance",
+      "status": "not_run",
+      "observation": "Glow/mousevirtualX11 only."
+    }
+  ],
+  "driver_interruption": "Initial144run triedXGetImage on externallyunmappedwindow andXlib aborteddriver. No productbehavior failure inferred; allownedPIDs gone. Finaldriver rejects nonviewablecapture; repeatedr2 explicitlyremaps beforecapturing andcompleted normalclose. Initialevents retained fortraceability.",
+  "artifacts": [
+    {
+      "path": "app-frame-close-preserve.png",
+      "bytes": 400470,
+      "sha256": "f38b3ff3425f2b738303bf72dcd5fdff5c676930b82c2294623b27742467d144"
+    },
+    {
+      "path": "app-frame-close-preserve.ui.json",
+      "bytes": 6494,
+      "sha256": "5f906ca125d25656083066e219d3cb9905b18e93e6df6ae8cc4883da2af15994"
+    },
+    {
+      "path": "build-final.log",
+      "bytes": 1402,
+      "sha256": "7806625d4a17d812969a880701bd3e39e4a0eb90e20b935e744f42ff1e448e0b"
+    },
+    {
+      "path": "canvas-model-redo.png",
+      "bytes": 215152,
+      "sha256": "419b706487c75512d731141b0bc3981510343b16e75db5aa3f1b56302728f05c"
+    },
+    {
+      "path": "canvas-model-redo.ui.json",
+      "bytes": 5399,
+      "sha256": "3652d1549f9f61a6b02758ca0829b839f0a499846071f5de1b784b0f20bce2c4"
+    },
+    {
+      "path": "canvas-model-undo.png",
+      "bytes": 214965,
+      "sha256": "fd0851297c3bb2892b87fc8d8ac55df0c131ba704a7437d74bf822adf1abd559"
+    },
+    {
+      "path": "canvas-model-undo.ui.json",
+      "bytes": 5399,
+      "sha256": "a725633239e9642eb93e73f2bd34d6be77e2af88edb4964f63a89869ee48b23c"
+    },
+    {
+      "path": "focused-model-redo.png",
+      "bytes": 215181,
+      "sha256": "45e3795d0f19d13d51eaf21860522c7dc7fc8660ba81647e9f88a8e3da48eef3"
+    },
+    {
+      "path": "focused-model-redo.ui.json",
+      "bytes": 5399,
+      "sha256": "c9c3a95e6c9b8c3d2a46ad5009a3e1a23ec6df56a9bedb214b2be4ebf46bad9a"
+    },
+    {
+      "path": "focused-model-undo.png",
+      "bytes": 215004,
+      "sha256": "a3d15fc730e2d4fd7a85f086290ee7d7ef083da393760692ff787ad7ce564b86"
+    },
+    {
+      "path": "focused-model-undo.ui.json",
+      "bytes": 5399,
+      "sha256": "fae6459e168ff780a49cbdfd45c9ac82753bbe9c9b18d1b836bb10a7893743ce"
+    },
+    {
+      "path": "gui-144-lifecycle-events.jsonl",
+      "bytes": 1536,
+      "sha256": "c9c1da83d3ed4c3d7b5e2c7dfe3ca337709db054db8b88df6e4646d5fca1719c"
+    },
+    {
+      "path": "gui-144-lifecycle-r2-events.jsonl",
+      "bytes": 3235,
+      "sha256": "79728eddc444ddfbd9f3c7bfff61e984eaaa9f55703a07de243bfe57e8697dc1"
+    },
+    {
+      "path": "gui-96-focus-events.jsonl",
+      "bytes": 6084,
+      "sha256": "cfa22460007d648b64fdaff4e55217add799f4a88b4797e208bd61c9358f3f87"
+    },
+    {
+      "path": "gui-human-labels-events.jsonl",
+      "bytes": 1236,
+      "sha256": "5c9dbdec5d575c3e81931274c794f60c905ef4a95dd845f208bc541704a925ae"
+    },
+    {
+      "path": "gui-recovery-close-events.jsonl",
+      "bytes": 1597,
+      "sha256": "6cc543f6178b843c69f769e4fb0374070402c597ab94dc38f130e63982c8daaa"
+    },
+    {
+      "path": "hidden-close-cancel-retained.png",
+      "bytes": 399352,
+      "sha256": "0f30f374f1ebfec3591ed6da8fd44d6dedacaf9894879663ea9df540f97b05ca"
+    },
+    {
+      "path": "hidden-close-cancel-retained.ui.json",
+      "bytes": 6185,
+      "sha256": "b3c35da7b56dac5832b3d2758bc313e24fc44845faf02c9b807b4f713508a4d6"
+    },
+    {
+      "path": "hidden-dirty-close-guard.png",
+      "bytes": 400534,
+      "sha256": "e7205ab2dd3013836a762d4560d4dac23a387f63a727d42db34d36187eb54904"
+    },
+    {
+      "path": "hidden-dirty-close-guard.ui.json",
+      "bytes": 6461,
+      "sha256": "8c224df9b683e92a45c4d616c77855ddc2d43f35af1eff4f34c1a2e060b3dc38"
+    },
+    {
+      "path": "human-labels-historical-proof-explicit.png",
+      "bytes": 221343,
+      "sha256": "b9bd50f86d8b3a36e1748043b9f6f61c1b935db66c43923cdd458b07f375d0b1"
+    },
+    {
+      "path": "human-labels-historical-proof-explicit.ui.json",
+      "bytes": 8595,
+      "sha256": "aa8fc01dda776d414a63bf93df1ee33ca1d3ef735c87b3c69962469073aada3d"
+    },
+    {
+      "path": "invalid-raw-recovery.kernspan",
+      "bytes": 2435,
+      "sha256": "e2b5b13116ad8276bb2b2f10fe913febae605c7b0017e1bdceaaf7a734f30ab1"
+    },
+    {
+      "path": "label-format-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "launch-96.png",
+      "bytes": 216144,
+      "sha256": "24f4e629ad7b0873b72e006270969904016e7b8258561b5cada1503d1142d273"
+    },
+    {
+      "path": "launch-96.ui.json",
+      "bytes": 5425,
+      "sha256": "6a5d0258883ff7baae9d569619e3528a1b42bd15dfaaac2bb01806ce521da358"
+    },
+    {
+      "path": "metadata-unfiltered-note.txt",
+      "bytes": 196,
+      "sha256": "3a93f106786024fc92e0360b8d9339552c05633683f0dad7e5eb0e5670aa8a94"
+    },
+    {
+      "path": "normal-frame-recovery-preserve.png",
+      "bytes": 220065,
+      "sha256": "66dacad4beef246a6647b978da09783daa4541d7ef90aa9a0f7fa82b1e32993d"
+    },
+    {
+      "path": "normal-frame-recovery-preserve.ui.json",
+      "bytes": 5678,
+      "sha256": "d12804ca221fe83946619041c0a026f944c67dbbc359df6af61f002474591024"
+    },
+    {
+      "path": "ordinary-path-undo-retains-model.png",
+      "bytes": 215263,
+      "sha256": "fa398eceef9f35c2ebcb8d0ff9379e504d3284e92892787c8d6162eacc159307"
+    },
+    {
+      "path": "ordinary-path-undo-retains-model.ui.json",
+      "bytes": 5399,
+      "sha256": "c9c3a95e6c9b8c3d2a46ad5009a3e1a23ec6df56a9bedb214b2be4ebf46bad9a"
+    },
+    {
+      "path": "paired96-saved.png",
+      "bytes": 215485,
+      "sha256": "cdfd7bc3d3f383b0aa508dc70b0db9ea50d77d6c0441d724fc51638383e6473b"
+    },
+    {
+      "path": "paired96-saved.ui.json",
+      "bytes": 5393,
+      "sha256": "82d825b87e8a12d1d6b664c77cdc1fa4794d21986c43645e12f379a6620bad19"
+    },
+    {
+      "path": "popout-refocused-edit-2300.png",
+      "bytes": 215366,
+      "sha256": "be45184f0adf144f641949c783c51414e9ec8ab8e59dda4526af367ea586cf96"
+    },
+    {
+      "path": "popout-refocused-edit-2300.ui.json",
+      "bytes": 5403,
+      "sha256": "f648c6e0042a92c6753b7a8ea38ea015ce7c3640d2e338ccacf95d2a7625d33f"
+    },
+    {
+      "path": "reopened-144-app-frame.png",
+      "bytes": 395166,
+      "sha256": "00c771b4799d883ccde264d110ced2204dbaf2c64ac93542994de03e2351c6ea"
+    },
+    {
+      "path": "reopened-144-app-frame.ui.json",
+      "bytes": 6174,
+      "sha256": "6fc4ba7612d8c33ac3ec050b9ab28d80c73b2bd6f1d4213624d1ec425b238647"
+    },
+    {
+      "path": "reopened-144-save-at96.png",
+      "bytes": 217267,
+      "sha256": "b802f7d687ba2359bd10b598930fc5122bdb731c458de0134a085627c45366be"
+    },
+    {
+      "path": "reopened-144-save-at96.ui.json",
+      "bytes": 5425,
+      "sha256": "260f8155b5e882f475d8269f10763137b66a64c95e8d5c541aa0135ee822a4a5"
+    },
+    {
+      "path": "runtime-tree.log",
+      "bytes": 29705,
+      "sha256": "b30861dc4530a3fe5a1eaa91d9f48ab17a2ccd17306ef2539f5de61b72377cc6"
+    },
+    {
+      "path": "saved-144.kernspan",
+      "bytes": 2277,
+      "sha256": "ca06243b2fad64c96c5481d2411f183a8dc553b8870c2515884e45be76e95c16"
+    },
+    {
+      "path": "saved-96.kernspan",
+      "bytes": 2277,
+      "sha256": "fe2e13d90be031b16c617b43954ced8fd0eadad9b7b2bf2c65e3b363072cda28"
+    },
+    {
+      "path": "source-audit.json",
+      "bytes": 345,
+      "sha256": "6d8b3d71d227a55de1810f0e9bed374d9600a48986245e31968acbacb2a5c0a0"
+    },
+    {
+      "path": "source-final.json",
+      "bytes": 119448,
+      "sha256": "b6f35a9c1be32340e97fd2185eef78444953a44a4d5376320e4a92510f824fbb"
+    },
+    {
+      "path": "source-initial.json",
+      "bytes": 119448,
+      "sha256": "4704a2a52045f91187997c00ba90353d9f83d6dd10549a51863c8364e2ea60da"
+    },
+    {
+      "path": "used-identities.json",
+      "bytes": 2631,
+      "sha256": "d54778aabc639dd26a02a3f5809d6e349db7151284590e4fab38c1883886f4b5"
+    },
+    {
+      "path": "verify-native-paired.py",
+      "bytes": 13519,
+      "sha256": "e2d11594264c6c56f3276aa4b0f65a7c34594e951c5848823fab777e564d209f"
+    },
+    {
+      "path": "workspace-tests.log",
+      "bytes": 29715,
+      "sha256": "0c05d0af9a76e9790432a78d8d3f6be1b183fec60e264f71962bb8e7aae2e25a"
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+[
+  {
+    "name": "ecolor",
+    "version": "0.36.2",
+    "source": null,
+    "manifest_path": "/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/ecolor/Cargo.toml",
+    "features": [
+      "bytemuck"
+    ]
+  },
+  {
+    "name": "eframe",
+    "version": "0.36.2",
+    "source": null,
+    "manifest_path": "/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/eframe/Cargo.toml",
+    "features": [
+      "accesskit",
+      "default_fonts",
+      "glow",
+      "x11"
+    ]
+  },
+  {
+    "name": "egui",
+    "version": "0.36.2",
+    "source": null,
+    "manifest_path": "/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui/Cargo.toml",
+    "features": [
+      "bytemuck",
+      "default_fonts"
+    ]
+  },
+  {
+    "name": "egui-winit",
+    "version": "0.36.2",
+    "source": null,
+    "manifest_path": "/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui-winit/Cargo.toml",
+    "features": [
+      "accesskit",
+      "arboard",
+      "bytemuck",
+      "clipboard",
+      "smithay-clipboard",
+      "x11"
+    ]
+  },
+  {
+    "name": "egui_glow",
+    "version": "0.36.2",
+    "source": null,
+    "manifest_path": "/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui_glow/Cargo.toml",
+    "features": [
+      "x11"
+    ]
+  },
+  {
+    "name": "emath",
+    "version": "0.36.2",
+    "source": null,
+    "manifest_path": "/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/emath/Cargo.toml",
+    "features": [
+      "bytemuck"
+    ]
+  },
+  {
+    "name": "epaint",
+    "version": "0.36.2",
+    "source": null,
+    "manifest_path": "/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/epaint/Cargo.toml",
+    "features": [
+      "bytemuck",
+      "default_fonts",
+      "epaint_default_fonts"
+    ]
+  },
+  {
+    "name": "epaint_default_fonts",
+    "version": "0.36.2",
+    "source": null,
+    "manifest_path": "/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/epaint_default_fonts/Cargo.toml",
+    "features": []
+  },
+  {
+    "name": "winit",
+    "version": "0.30.13",
+    "source": null,
+    "manifest_path": "/workspace/worktrees/builderbob/mbse-craft/verification/vendor/winit-fork/Cargo.toml",
+    "features": [
+      "ahash",
+      "bytemuck",
+      "memmap2",
+      "percent-encoding",
+      "rwh_06",
+      "sctk",
+      "wayland",
+      "wayland-backend",
+      "wayland-client",
+      "wayland-protocols",
+      "wayland-protocols-plasma",
+      "x11",
+      "x11-dl",
+      "x11rb"
+    ]
+  }
+]

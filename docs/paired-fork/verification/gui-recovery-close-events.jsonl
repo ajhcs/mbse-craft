@@ -1,0 +1,9 @@
+{"ready": true, "xft_dpi": 96, "screen_pixels": [2400, 1800], "screen_mm": [635, 476], "app_pid": 696176, "server_pid": 696173, "window": 4194307, "binary_sha256": "cb598cc054ae0f05b9a2366dd6d8f9197485ec8841e23fb4b77274858badbb71"}
+{"op": "capture", "name": "reopened-144-save-at96", "ui_sha256": "260f8155b5e882f475d8269f10763137b66a64c95e8d5c541aa0135ee822a4a5", "capture_pixels": [1440, 1000], "sha256": "b802f7d687ba2359bd10b598930fc5122bdb731c458de0134a085627c45366be", "app_returncode": null, "window_map_state": 2}
+{"op": "click", "widget": "field:1003:criterion", "x": 168, "y": 523, "app_returncode": null, "window_map_state": 2}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null, "window_map_state": 2}
+{"op": "text", "text": "9e", "app_returncode": null, "window_map_state": 2}
+{"op": "capture", "name": "unfinished-raw-before-close", "ui_sha256": "6a55bad544807c9aa0753c164247af001f37459f834c1d01341461e29bc2e104", "capture_pixels": [1440, 1000], "sha256": "46bb1faf241c932a1fff31360dd5d3e98716f1c230c693be932baa92ccb3b99a", "app_returncode": null, "window_map_state": 2}
+{"op": "close", "pause": 1, "app_returncode": null, "window_map_state": 2}
+{"op": "capture", "name": "normal-frame-recovery-preserve", "ui_sha256": "d12804ca221fe83946619041c0a026f944c67dbbc359df6af61f002474591024", "capture_pixels": [1440, 1000], "sha256": "66dacad4beef246a6647b978da09783daa4541d7ef90aa9a0f7fa82b1e32993d", "app_returncode": null, "window_map_state": 2}
+{"op": "click", "widget": "preserve:Keep recovery and continue", "pause": 3, "x": 107, "y": 168, "app_returncode": 0}

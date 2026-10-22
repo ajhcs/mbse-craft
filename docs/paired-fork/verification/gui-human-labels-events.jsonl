@@ -1,0 +1,8 @@
+{"ready": true, "xft_dpi": 96, "screen_pixels": [2400, 1800], "screen_mm": [635, 476], "app_pid": 703407, "server_pid": 703404, "window": 4194307, "binary_sha256": "cb598cc054ae0f05b9a2366dd6d8f9197485ec8841e23fb4b77274858badbb71"}
+{"op": "click", "widget": "action:Requirements and evidence", "x": 1047, "y": 12, "app_returncode": null, "window_map_state": 2}
+{"op": "click", "widget": "assurance:path", "x": 249, "y": 115, "app_returncode": null, "window_map_state": 2}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/m1/state/assurance-strict-data/register.json", "app_returncode": null, "window_map_state": 2}
+{"op": "click", "widget": "assurance:Open", "pause": 2, "x": 442, "y": 115, "app_returncode": null, "window_map_state": 2}
+{"op": "click", "widget": "assurance:evidence:5", "pause": 1, "x": 213, "y": 591, "app_returncode": null, "window_map_state": 2}
+{"op": "capture", "name": "human-labels-historical-proof-explicit", "ui_sha256": "aa8fc01dda776d414a63bf93df1ee33ca1d3ef735c87b3c69962469073aada3d", "capture_pixels": [1440, 1000], "sha256": "b9bd50f86d8b3a36e1748043b9f6f61c1b935db66c43923cdd458b07f375d0b1", "app_returncode": null, "window_map_state": 2}
+{"op": "close", "pause": 2, "app_returncode": 0}
