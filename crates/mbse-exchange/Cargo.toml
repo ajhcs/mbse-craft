@@ -1,0 +1,15 @@
+[package]
+name = "mbse-exchange"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+[dependencies]
+craft-atomic = { path = "../../vendor/craft-libs/crates/atomic" }
+mbse-model = { path = "../mbse-model" }
+sysmlv2-syntax = { path = "../mbse-model/vendor/sysmlv2-syntax" }
+roxmltree = "=0.19.0"
+zip = { version = "=0.6.6", default-features = false, features = ["deflate"] }
+serde = { version = "1", features = ["derive"] }
+sha2 = "0.10"
+[dev-dependencies]
+tempfile = "3"
