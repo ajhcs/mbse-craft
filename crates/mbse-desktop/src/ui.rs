@@ -502,6 +502,8 @@ impl Workspace {
                 ui.label(format!("{:?} · model r{} · raw v{}", self.session.status(), self.session.editor.snapshot.model_revision, self.session.editor.snapshot.raw_version));
                 if self.session.recovery_current() { ui.colored_label(ACCENT, "Current recovery copy"); }
                 ui.label(if self.preferences.value.periodic_recovery {format!("Periodic recovery on · {}s · {}",self.preferences.value.recovery_interval_seconds,if self.session.pending(){"write pending"}else if self.session.recovery_current(){"current"}else{"waiting for quiet interval"})}else{"Periodic recovery off".into()});
+                if self.preferences.pending() || self.preferences.read_only {ui.colored_label(if self.preferences.status.contains("failed")||self.preferences.read_only{ERROR}else{INK},&self.preferences.status);}
+                if self.preferences.load_warning{ui.colored_label(ERROR,"Settings load needs attention; open Recovery settings for the retained report.");}
                 ui.label(RichText::new("App-owned model · restricted SysML subset").small());
             });
         });

@@ -37,6 +37,7 @@ pub struct Preferences {
     pub status: String,
     pub persistent: bool,
     pub read_only: bool,
+    pub load_warning: bool,
     sender: Option<Sender<(u64, RecoveryPreferences)>>,
     receiver: Receiver<(u64, PreferenceWrite)>,
     worker: Option<JoinHandle<()>>,
@@ -50,6 +51,7 @@ impl Preferences {
         );
         let persistent = store.is_persistent();
         let read_only = store.is_read_only();
+        let load_warning = report.has_problems();
         let mut value = store.get().clone();
         let out_of_bounds = !(15..=3600).contains(&value.recovery_interval_seconds);
         value.recovery_interval_seconds = value.recovery_interval_seconds.clamp(15, 3600);
@@ -153,6 +155,7 @@ impl Preferences {
             },
             persistent,
             read_only,
+            load_warning,
             sender: Some(sender),
             receiver,
             worker: Some(worker),
