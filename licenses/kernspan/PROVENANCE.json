@@ -22,6 +22,14 @@
   "adaptations": [
     "stage1_io native writes use actual craft-atomic WriteOptions private atomic_write/write_new inside retained app protocol",
     "test crate imports renamed from waypoint_mbse to mbse_model",
-    "new craft_recovery integration oracle"
-  ]
+    "new craft_recovery integration oracle",
+    "Foundation test build.rs import replaced by test-only extracted source identity helper; original build main omitted",
+    "New tests exercise actual Craft write/rename failures; app-authored files formatted with installed rustfmt1.99.1"
+  ],
+  "files_sha256_scope": "Original pinned upstream source hashes before documented adaptations; not hashes of modified MBSE-Craft files",
+  "current_adapted_sha256": {
+    "crates/mbse-model/src/stage1_io.rs": "ba15896805208a6c69d37a46840f91a350f2afd8f518558e1b35f5084484e3f4",
+    "crates/mbse-model/tests/stage1_completion_foundation.rs": "a338aafadbbc3f608106216aa5b048548d32316986061e7721f0ad70659cccee",
+    "crates/mbse-model/tests/support/source_identity.rs": "dc1d6e3930f068f7e8d0060932a774652eac15859067993963358754960e7bf1"
+  }
 }
