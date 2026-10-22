@@ -1,5 +1,5 @@
 [workspace]
-members = ["crates/mbse-model", "crates/mbse-desktop", "crates/mbse-catalog"]
+members = ["crates/mbse-model", "crates/mbse-desktop", "crates/mbse-catalog", "crates/mbse-exchange"]
 exclude = ["vendor/craft-libs", "vendor/craft-libs/crates/atomic", "vendor/craft-libs/crates/ui", "vendor/craft-libs/crates/settings", "vendor/craft-libs/crates/quit", "vendor/craft-libs/crates/docpath", "vendor/craft-libs/crates/window", "vendor/craft-libs/crates/platform", "crates/mbse-model/vendor/sysmlv2-syntax"]
 resolver = "2"
 

@@ -17,3 +17,4 @@ craft-docpath = { path = "../../vendor/craft-libs/crates/docpath" }
 serde = { version = "1", features = ["derive"] }
 craft-window = { path = "../../vendor/craft-libs/crates/window", features = ["egui"] }
 mbse-catalog = { path = "../mbse-catalog" }
+mbse-exchange = { path = "../mbse-exchange" }
