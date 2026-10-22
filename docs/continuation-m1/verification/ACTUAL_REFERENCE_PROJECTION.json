@@ -1,0 +1,31 @@
+{
+  "scope": "bounded read-only actual reference model projections; counts and diagnostics only, no model contents copied",
+  "exe_sha256": "9852de1cf191954dd07a8a841adaf5cd1765703bcc111539d832b6b7487ac45b",
+  "source_commit": "43a9574",
+  "results": [
+    {
+      "path": "/workspace/repos/builderbob/kernspan/work/references/catia-workflow-20261022/model-outputs/MCOAE Incident Coordination.mdzip",
+      "source_sha256": "7beaf024aee883c5a1117b6e55bd4e2898c26d4ddbfc308dcd08fd3839c07f8a",
+      "bytes": 230071,
+      "exit_code": 0,
+      "stdout": "contract=mbse-craft.external.mdzip/1 source_sha256=7beaf024aee883c5a1117b6e55bd4e2898c26d4ddbfc308dcd08fd3839c07f8a original_bytes=230071 files=31 nodes=168 references=395 resolved=369 unresolved=26\nnode_kinds={\"Activity\": 6, \"Actor\": 3, \"Classifier\": 12, \"Constraint\": 10, \"Exchange\": 4, \"Package\": 4, \"Port\": 7, \"Property\": 8, \"Stereotype\": 13, \"Unknown\": 101}\ndiagnostic_codes=[\"SOURCE_NAMESPACES\", \"SOURCE_VERSION\", \"UNKNOWN_SOURCE_TYPES\", \"ARCHIVE_LAYOUT_UNPROJECTED\", \"UNRESOLVED_REFERENCES\", \"PARTIAL_SEMANTICS\"]\n",
+      "stderr": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/kernspan/work/references/capella-workflow-20261022/model-outputs/MCOAE/MCOAE.capella",
+      "source_sha256": "2d83896463118c73e815937b2f5fa10906d8d46a4e8b96f2b8656a2f3f0cc7cd",
+      "bytes": 54602,
+      "exit_code": 0,
+      "stdout": "contract=mbse-craft.external.capella-7/1 source_sha256=2d83896463118c73e815937b2f5fa10906d8d46a4e8b96f2b8656a2f3f0cc7cd original_bytes=54602 files=1 nodes=210 references=249 resolved=249 unresolved=0\nnode_kinds={\"Activity\": 4, \"Classifier\": 7, \"Package\": 2, \"Unknown\": 197}\ndiagnostic_codes=[\"SOURCE_NAMESPACES\", \"SOURCE_VERSION\", \"CAPELLA_AIRD_EXTERNAL\", \"UNKNOWN_SOURCE_TYPES\", \"PARTIAL_SEMANTICS\"]\n",
+      "stderr": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/kernspan/work/references/capella-workflow-20261022/model-outputs/MCOAE/MCOAE.aird",
+      "source_sha256": "5f20882b4ed3af279921d3838a4930bf5a2c975357c2b9131a5fd80f7fcf7632",
+      "bytes": 210833,
+      "exit_code": 0,
+      "stdout": "contract=mbse-craft.external.capella-7/1 source_sha256=5f20882b4ed3af279921d3838a4930bf5a2c975357c2b9131a5fd80f7fcf7632 original_bytes=210833 files=1 nodes=674 references=962 resolved=717 unresolved=245\nnode_kinds={\"Unknown\": 674}\ndiagnostic_codes=[\"SOURCE_NAMESPACES\", \"SOURCE_VERSION\", \"UNSUPPORTED_NAMESPACE_OR_VERSION\", \"CAPELLA_AIRD_EXTERNAL\", \"UNKNOWN_SOURCE_TYPES\", \"UNRESOLVED_REFERENCES\", \"PARTIAL_SEMANTICS\"]\n",
+      "stderr": ""
+    }
+  ]
+}
