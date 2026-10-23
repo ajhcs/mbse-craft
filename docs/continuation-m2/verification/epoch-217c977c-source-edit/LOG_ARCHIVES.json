@@ -1,0 +1,34 @@
+{
+  "scope": "Byte-exact original logs in gzip; raw workspace originals unchanged",
+  "archives": [
+    {
+      "archive": "core-tests.log.gz",
+      "archive_sha256": "1c3d5f3d20bbee32bfcb1d65005425234706dcef48a9b1c3ed339051b30eba6a",
+      "original_name": "core-tests.log",
+      "original_bytes": 7482,
+      "original_sha256": "8c0845fe74604e2ab76f1851f60754e476502c15bd198e5997a02cafcce20e69",
+      "decompression_exact": true
+    },
+    {
+      "archive": "ui-tests.log.gz",
+      "archive_sha256": "29b3400671ed033f81fc8cd6cf4ac984a76ca28d45ca4d561d81ba0db510ca4a",
+      "original_name": "ui-tests.log",
+      "original_bytes": 2669,
+      "original_sha256": "58d578c096988a0ae09acecdfd27d44c139765d8010cbf9351ba646ffa17976f",
+      "decompression_exact": true
+    },
+    {
+      "archive": "ui-build.log.gz",
+      "archive_sha256": "38ed66ec7eb09831716784c775adc4826d3d7c9e3c69e30523c21f7d8d104007",
+      "original_name": "ui-build.log",
+      "original_bytes": 1803,
+      "original_sha256": "86f2662da0a27e6b1130715e7ad168f8203b02d90d899bbfffb265c65df7b6a8",
+      "decompression_exact": true
+    }
+  ],
+  "packaging_validation": {
+    "initial_git_diff_check_exit": 1,
+    "cause": "Raw evidence test logs contain trailing blank line at EOF",
+    "resolution": "Preserve exact raw bytes in gzip; no normalization and no test replay"
+  }
+}

@@ -1,0 +1,373 @@
+{
+  "status": "BOUNDED_LINUX_NATIVE_WF03_WF04_PASSED",
+  "verified_utc": "2026-10-23T04:41:23.287562+00:00",
+  "head": "217c977cb12ff7de86e2748877886618becbdfcd",
+  "core_patch_sha256": "6800a3d1d51cb9f7a487a1cfde594a0394d52182cf79db71668f397a7375389d",
+  "binary_sha256": "4df50cf94f84200b9461fbb64f00f07b36d7a493dec1a5abb90e8e89264a901f",
+  "original_fixture_sha256_before_and_after": "2d83896463118c73e815937b2f5fa10906d8d46a4e8b96f2b8656a2f3f0cc7cd",
+  "fixture_key": {
+    "original_id": "6e3f4b60-f723-4e68-8297-17ad27f27918",
+    "namespace": "http://www.polarsys.org/capella/core/ctx/7.0.0",
+    "classifier": "Mission",
+    "qualified_type_spelling": "org.polarsys.capella.core.data.ctx:Mission"
+  },
+  "output": {
+    "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/review-copy.capella",
+    "bytes": 54627,
+    "sha256": "50b623bc4b9a0a7e6cd3612493ab7d88fff23be4950f22c833733f4939b40d2d",
+    "original_span": [
+      45011,
+      45066
+    ],
+    "old_encoded_value_bytes": 55,
+    "new_encoded_value_bytes": 80,
+    "outside_value_prefix_and_suffix_unchanged": true,
+    "exact_requested_decoded_name": true
+  },
+  "raw_original_copy": {
+    "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/raw-original.capella",
+    "sha256": "2d83896463118c73e815937b2f5fa10906d8d46a4e8b96f2b8656a2f3f0cc7cd",
+    "byte_exact": true
+  },
+  "xml_check": {
+    "original_elements": 226,
+    "output_elements": 226,
+    "exactly_one_name_attribute_changed": true,
+    "unchanged_other_attribute_values": 805,
+    "all_stored_id_values_and_positions_and_qnames_unchanged": true,
+    "id_attribute_count": 210,
+    "all_other_attributes_including_reference_spellings_and_unit_strings_unchanged": true,
+    "reference_target_identity_basis": "Identical stored reference strings and corresponding ID/QName inventory; no external resolution or engineering validity inferred"
+  },
+  "native_model": {
+    "snapshot_hash_before_during_after": "d3f0d5831d16bff2d3f495cf93fcd726656474cc9e5fd38504818d74c751af20",
+    "snapshot_hash_distinct_count": 1,
+    "audit_count": 20,
+    "saved_file": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/native-independent.kernspan",
+    "saved_sha256": "d2b0581a5c295b66fc382cec21048d10b86c939117d47c4643094b49d0cf2da4",
+    "saved_envelope_keys": [
+      "profile",
+      "schema_version",
+      "kind",
+      "snapshot",
+      "provenance"
+    ],
+    "native_save_and_open_actions_observed": true,
+    "native_admission": false
+  },
+  "actual_native_observations": [
+    "Authorized original opened in V2 and actual Mission selected by ID/type",
+    "Proposal remained bound when another source node selected",
+    "App and inspector close canceled with proposal retained",
+    "Exact prepared span and old/new name values inspected",
+    "Owned new copy acknowledged then explicitly reopened through expected digest",
+    "Existing destination refused visibly, proposal retained, existing output hash preserved",
+    "Exact original-byte raw copy created",
+    "Independent native model saved and reopened with unchanged snapshot hash",
+    "Application WM close exited0; owned driver exited0"
+  ],
+  "actual_not_run": [
+    "Native XML1.1/foreign-encoding adverse fixture",
+    "Live stale-source/digest race",
+    "Native late-leaf/dangling-link race",
+    "Live post-write-read-failure fixture",
+    "Physical display/IME/Wayland/otherOS/engineering acceptance"
+  ],
+  "separate_test_only_evidence": [
+    "Core source-edit/private-copy focused tests",
+    "Six injected-completion UI/controller regressions; not live native failure proofs"
+  ],
+  "cleanup": [
+    {
+      "role": "app_pid",
+      "pid": 840041,
+      "proc_path_exists": false
+    },
+    {
+      "role": "server_pid",
+      "pid": 840038,
+      "proc_path_exists": false
+    }
+  ],
+  "xauthority_removed": true,
+  "forced_app_cleanup": false,
+  "driver_exit_code": 0,
+  "renderer_started_utc": "2026-10-23T04:31:38.437912+00:00",
+  "renderer_ended_utc": "2026-10-23T04:38:30.880953+00:00",
+  "images": [
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/01-capella-v2-open.png",
+      "bytes": 192602,
+      "sha256": "eedf877354041c496260fd63c6da2116b08e11f6f5b1919b27d8533e8fd53ba4",
+      "capture_file_mtime_utc": "2026-10-23T04:32:04.750462+00:00",
+      "timestamp_basis": "actual PNG file modification time; driver log has no independent UTC field"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/02-owned-mission-selected.png",
+      "bytes": 200197,
+      "sha256": "2c22bae32b91d68ade443a0282663618cfb3c9c8e7814c6df726a8cb6d26c153",
+      "capture_file_mtime_utc": "2026-10-23T04:32:31.741318+00:00",
+      "timestamp_basis": "actual PNG file modification time; driver log has no independent UTC field"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/03-retained-proposal.png",
+      "bytes": 195169,
+      "sha256": "9ebc4a557e468f95afae17801ccff920ee5d5d9612bc8fd4182185bdc1a1eff4",
+      "capture_file_mtime_utc": "2026-10-23T04:32:54.518041+00:00",
+      "timestamp_basis": "actual PNG file modification time; driver log has no independent UTC field"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/04-proposal-visible.png",
+      "bytes": 206653,
+      "sha256": "e0ff650af4cbf1890b10de0cd20c497de2d462f69d0b10e7c59e226ceb3175c8",
+      "capture_file_mtime_utc": "2026-10-23T04:33:13.291636+00:00",
+      "timestamp_basis": "actual PNG file modification time; driver log has no independent UTC field"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/05-review-label-retained.png",
+      "bytes": 208374,
+      "sha256": "75ab575c33921bf5ca1c0b145e0d9cab586b5306ebd3a1e581c65c817b82cc5b",
+      "capture_file_mtime_utc": "2026-10-23T04:33:41.758539+00:00",
+      "timestamp_basis": "actual PNG file modification time; driver log has no independent UTC field"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/06-app-close-retains-proposal.png",
+      "bytes": 208833,
+      "sha256": "313560714de05bcb47ffd04ef88ceca99558213a4bad265fa8be967736dfd37e",
+      "capture_file_mtime_utc": "2026-10-23T04:33:42.469562+00:00",
+      "timestamp_basis": "actual PNG file modification time; driver log has no independent UTC field"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/07-inspector-close-retains-proposal.png",
+      "bytes": 208304,
+      "sha256": "8fcda1880fd1a375d00545040f81704925d1a332f36aa37a798a0cc47f437df2",
+      "capture_file_mtime_utc": "2026-10-23T04:33:43.182585+00:00",
+      "timestamp_basis": "actual PNG file modification time; driver log has no independent UTC field"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/08-other-node-selected.png",
+      "bytes": 196745,
+      "sha256": "74d101f1191d426f1cf44763b6af69936c9ca5b3869a42deacd6a94628ab8df6",
+      "capture_file_mtime_utc": "2026-10-23T04:34:13.679552+00:00",
+      "timestamp_basis": "actual PNG file modification time; driver log has no independent UTC field"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/09-draft-still-bound-to-mission.png",
+      "bytes": 202422,
+      "sha256": "e957fdcef6b27b372392c4938ab29f6673cd9369a0a0872a8c1cd26d6366f4d3",
+      "capture_file_mtime_utc": "2026-10-23T04:34:14.393574+00:00",
+      "timestamp_basis": "actual PNG file modification time; driver log has no independent UTC field"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/10-exact-proposal-prepared.png",
+      "bytes": 223663,
+      "sha256": "6308116f664698ce99b3679f16ddb2a17b60ef62aba38064483b4f98580a6aa0",
+      "capture_file_mtime_utc": "2026-10-23T04:34:15.954624+00:00",
+      "timestamp_basis": "actual PNG file modification time; driver log has no independent UTC field"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/11-prepared-destination-controls.png",
+      "bytes": 224235,
+      "sha256": "aedc34ffbd32c9882adaedbd795d58de77df2a7362a26424975fa448cdc075e8",
+      "capture_file_mtime_utc": "2026-10-23T04:34:32.803159+00:00",
+      "timestamp_basis": "actual PNG file modification time; driver log has no independent UTC field"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/12-new-copy-acknowledged.png",
+      "bytes": 211688,
+      "sha256": "d457cbfde3823552002373b2b508b87c08b070619df1db7f97996f2642cfd5d3",
+      "capture_file_mtime_utc": "2026-10-23T04:34:48.450655+00:00",
+      "timestamp_basis": "actual PNG file modification time; driver log has no independent UTC field"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/13-new-copy-opened.png",
+      "bytes": 184456,
+      "sha256": "3f9e2d84c2425fc68145e7f332a9c080504f656ac8420ceb6b9b94e23dcb5dcc",
+      "capture_file_mtime_utc": "2026-10-23T04:35:17.887467+00:00",
+      "timestamp_basis": "actual PNG file modification time; driver log has no independent UTC field"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/14-renamed-mission-reopened.png",
+      "bytes": 200170,
+      "sha256": "81a215ddea9e6ab8d2b0576cecc8cb5216256464b1a8ea50ffbded0c0fbb9a77",
+      "capture_file_mtime_utc": "2026-10-23T04:35:19.300504+00:00",
+      "timestamp_basis": "actual PNG file modification time; driver log has no independent UTC field"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/15-existing-destination-refused.png",
+      "bytes": 224835,
+      "sha256": "4343e70689dbe7aff609fec351b6bf10758a0824df6d76c8bdc151a79ab07220",
+      "capture_file_mtime_utc": "2026-10-23T04:36:25.980293+00:00",
+      "timestamp_basis": "actual PNG file modification time; driver log has no independent UTC field"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/15b-collision-message-and-retained-draft.png",
+      "bytes": 221998,
+      "sha256": "1fbbaa335ed88b756c3d218654274bbcb4ab435208fc4f9afc10eb8f14067558",
+      "capture_file_mtime_utc": "2026-10-23T04:36:41.330709+00:00",
+      "timestamp_basis": "actual PNG file modification time; driver log has no independent UTC field"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/16-exact-original-raw-copy.png",
+      "bytes": 226423,
+      "sha256": "7f1681a381eb5071a1bb2b9816f977eba55fcb91719a9f54c5db0d9846fe39e2",
+      "capture_file_mtime_utc": "2026-10-23T04:37:12.485559+00:00",
+      "timestamp_basis": "actual PNG file modification time; driver log has no independent UTC field"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/16b-raw-copy-acknowledged.png",
+      "bytes": 207610,
+      "sha256": "2e7fa261682b536d181310d93c33d891ba76f0403feadc09c3a6f696fe7f512f",
+      "capture_file_mtime_utc": "2026-10-23T04:37:49.760585+00:00",
+      "timestamp_basis": "actual PNG file modification time; driver log has no independent UTC field"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/17-native-model-saved-unchanged.png",
+      "bytes": 125266,
+      "sha256": "0696cded5f9ae946c572a87bc597f12edeecc6a8f79559164ffc5bd861039bec",
+      "capture_file_mtime_utc": "2026-10-23T04:37:53.025675+00:00",
+      "timestamp_basis": "actual PNG file modification time; driver log has no independent UTC field"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/18-native-model-reopened.png",
+      "bytes": 125371,
+      "sha256": "119edd48d1652591f4d4b14c17dc454a5e5218d36b6f03df4ad8f772f65d418f",
+      "capture_file_mtime_utc": "2026-10-23T04:38:29.513689+00:00",
+      "timestamp_basis": "actual PNG file modification time; driver log has no independent UTC field"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/01-capella-v2-open.ui.json",
+      "bytes": 6015,
+      "sha256": "3c1a201985ff1cc7720806e222dc831923fe4510d256f404d6aa5b1435fd4065"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/02-owned-mission-selected.ui.json",
+      "bytes": 5550,
+      "sha256": "22201ee418ca53f9555038dd7eedc59cb5235dc14a05b5fab15205c5f6e404b8"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/03-retained-proposal.ui.json",
+      "bytes": 6134,
+      "sha256": "6d2727dc5ca387a0cec4080b2880685052716ac3ec88f4ac444c3bcc5f1f64f2"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/04-proposal-visible.ui.json",
+      "bytes": 6134,
+      "sha256": "e98f5ce89914d88d83b1174f912ee9af98c8ccac0edf988e978158f039b9844a"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/05-review-label-retained.ui.json",
+      "bytes": 6134,
+      "sha256": "e98f5ce89914d88d83b1174f912ee9af98c8ccac0edf988e978158f039b9844a"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/06-app-close-retains-proposal.ui.json",
+      "bytes": 6134,
+      "sha256": "e98f5ce89914d88d83b1174f912ee9af98c8ccac0edf988e978158f039b9844a"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/07-inspector-close-retains-proposal.ui.json",
+      "bytes": 6134,
+      "sha256": "e98f5ce89914d88d83b1174f912ee9af98c8ccac0edf988e978158f039b9844a"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/08-other-node-selected.ui.json",
+      "bytes": 6599,
+      "sha256": "4064e4e2af1812d0dc1da7b234e1b0e5841c98bc57004f89523d87e932382121"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/09-draft-still-bound-to-mission.ui.json",
+      "bytes": 6599,
+      "sha256": "0680b7cc1680ebbac0387b6273acb0dd2e3cad882614c4bf65a2a625f38aaf56"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/10-exact-proposal-prepared.ui.json",
+      "bytes": 6584,
+      "sha256": "4d2b2481c703a7c840f0ad4a0f3083bb89eb1c4a35c1124e8e4536894c137b3e"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/11-prepared-destination-controls.ui.json",
+      "bytes": 6606,
+      "sha256": "eb4671ea8c376d8f767e736323a956b7cace355f3c1da2ce4de12f7f42fcb223"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/12-new-copy-acknowledged.ui.json",
+      "bytes": 6189,
+      "sha256": "fbbb046aec53c20221a34e9a10df2a0cf2845276c83aac00f5735ac1e88e27ff"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/13-new-copy-opened.ui.json",
+      "bytes": 6205,
+      "sha256": "e99cf17d9ed2c46feb3423c81914518832a9d6a9b9548428245a31e748bac501"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/14-renamed-mission-reopened.ui.json",
+      "bytes": 5742,
+      "sha256": "69d7fcc23a8e840c3d74b0b74129c9c2a1377b22df95c9d9b46e854c0bd85e11"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/15-existing-destination-refused.ui.json",
+      "bytes": 6243,
+      "sha256": "faa8d5cba1148286bf3ec9f1081bdedb9da873c7665768b91e20992b8a5ce6ae"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/15b-collision-message-and-retained-draft.ui.json",
+      "bytes": 6223,
+      "sha256": "3cd7e68fe3fc5027092b7d3d884205db27bf0306611650862dd59c441dc34afe"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/16-exact-original-raw-copy.ui.json",
+      "bytes": 5634,
+      "sha256": "80d3335e18383de6d3e95237277002c969be5d7f70a32c2e90ce4c23d99d0cc8"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/16b-raw-copy-acknowledged.ui.json",
+      "bytes": 5653,
+      "sha256": "476e352753ecb2ee2d3f0c55b9ba2b8b90cee0b82fc5065ab164c4d28d6228df"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/17-native-model-saved-unchanged.ui.json",
+      "bytes": 3300,
+      "sha256": "6281102329a2423083f8162392f5f32b4fc9d72858a5b3fbca0decc168d572f2"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/18-native-model-reopened.ui.json",
+      "bytes": 3313,
+      "sha256": "4917154c0284b9381649ad19cced43b0c1dec1145a2f9657c034f29c7f06952e"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/app.log",
+      "bytes": 48,
+      "sha256": "0cce862dc4913be2cce3fd531146652899fa528e6bef4c0cc05a1632efdac18e"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/events.jsonl",
+      "bytes": 12719,
+      "sha256": "0c0afc883c52033f8b6b7bd901f467acdb97cd442d388b7707707c3af55df26b"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/native-independent.kernspan",
+      "bytes": 376,
+      "sha256": "d2b0581a5c295b66fc382cec21048d10b86c939117d47c4643094b49d0cf2da4"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/raw-original.capella",
+      "bytes": 54602,
+      "sha256": "2d83896463118c73e815937b2f5fa10906d8d46a4e8b96f2b8656a2f3f0cc7cd"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/review-copy.capella",
+      "bytes": 54627,
+      "sha256": "50b623bc4b9a0a7e6cd3612493ab7d88fff23be4950f22c833733f4939b40d2d"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/paired-fork/semantic-v2-source-edit-217c977c-r02/xvfb.log",
+      "bytes": 1321,
+      "sha256": "00971f516769b092bd50063ca4a82f63a4395d9ed9ff57eab62626162f51b9ed"
+    }
+  ],
+  "private_reference_artifacts_outside_git": true,
+  "compiler_or_new_workers": false
+}
