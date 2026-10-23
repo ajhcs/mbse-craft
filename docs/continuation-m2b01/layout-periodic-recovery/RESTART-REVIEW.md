@@ -55,3 +55,25 @@ The separate UI wording correction changes only Layout changes awaiting
 preservation to Layout not saved to bound sidecar, because a current recovery
 is independent of a stale bound Save. These71-test/native results belong to
 933e871; the label-only successor requires its own build/UI evidence.
+
+## Label successor qualified separately
+
+Wording-only source8937db779410a4c0fe81d99b907ead77f070d508 built successfully,
+receipt aa6cb4c25f741e80789b5e1931772a46590ff22759915a4b261e318eb1309a93.
+Binary998b2b4b81e3f2fcc109e4bd43b482671ea234d6b6172e7ad994a950a3a7d731
+completed a separate ordinary15s timer/actual-status visual check and normal
+Save/close. Native receipt3cbdf61e3a2007dfa13e09745019daa4e0eedf27c58b605fad81c94e2feb40e5;
+three original PNGs remain local. Independent review confirms the corrected
+label alongside actual verified recovery and stale bound Save. The71tests and
+full held-gesture/failure/retry/reopen workflow were not replayed or relabelled.
+All six new identities absent/auth removed/owned_jobs=[]; renderer released.
+Exact packet expiry holds and prior admission evidence remain retained.
+
+Source publication is still stopped: original and once-permitted non-force
+retry were both rejected before execution. No branch or new PR published;
+PR2 draft/head557ee47e remains unchanged, no alternate route or merge.
+
+The next isolated feature is recovery-layout-preview at the retained57ba816
+contract steps1–2, related to CAT002/010/011 and CAP017/019 in the historical
+86-feature research index. It is bounded read-only inspection, not geometry
+copy/apply, native semantic admission or v2 migration.
