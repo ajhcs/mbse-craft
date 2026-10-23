@@ -35,6 +35,8 @@ pub struct ProposedOccurrence {
 #[derive(Debug)]
 pub struct ProposedEdge {
     pub source: VisualEdgeId,
+    pub source_occurrence: OccurrenceId,
+    pub target_occurrence: OccurrenceId,
     pub key: Option<SemanticKey>,
     pub reason: Option<String>,
 }
@@ -52,8 +54,8 @@ impl Plan {
         self.choices
             .values()
             .map(|c| {
-                128 + match c {
-                    Choice::Skip(s) => s.len(),
+                256 + match c {
+                    Choice::Skip(s) => 2 * s.len(),
                     _ => 0,
                 }
             })
@@ -64,7 +66,7 @@ impl Plan {
                 .values()
                 .filter(|e| e.view == self.view)
                 .count()
-                * 256
+                * 384
     }
     fn budget(&self, source: &Inspection) -> Result<(), String> {
         if self.choices.len() > v::MAX_PER_VIEW || self.charged_bytes(source) > MAX_PLAN_BYTES {
@@ -147,7 +149,7 @@ impl Plan {
         // Compute the proposed charge before changing choices (refusal atomic).
         let old = self.choices.get(&id).unwrap();
         let size = |c: &Choice| match c {
-            Choice::Skip(s) => s.len(),
+            Choice::Skip(s) => 2 * s.len(),
             _ => 0,
         };
         if self.charged_bytes(source) - size(old) + size(&choice) > MAX_PLAN_BYTES {
@@ -226,6 +228,8 @@ impl Plan {
             };
             edges.push(ProposedEdge {
                 source: e.id,
+                source_occurrence: e.source,
+                target_occurrence: e.target,
                 key,
                 reason,
             });
@@ -482,7 +486,10 @@ mod tests {
         assert!(p.preview(&s, &e, &v).unwrap().edges[0].key.is_none()); // the other occurrence cannot stand in for the exact endpoint
         p.choose(&s, &e, &v, bs[0], Choice::Target(mission))
             .unwrap();
-        assert!(p.preview(&s, &e, &v).unwrap().edges[0].key.is_some());
+        let edge_preview = p.preview(&s, &e, &v).unwrap();
+        assert!(edge_preview.edges[0].key.is_some());
+        assert_eq!(edge_preview.edges[0].source_occurrence, a);
+        assert_eq!(edge_preview.edges[0].target_occurrence, bs[0]);
         let other = add(&mut e, &mut v, RecordKind::Mission);
         let mut p = Plan::new(&s, view, &e, &v).unwrap();
         p.choose(&s, &e, &v, a, Choice::Target(objective)).unwrap();
@@ -496,5 +503,46 @@ mod tests {
             s.declared().occurrences[&a].presence,
             v::Presence::Detached { .. }
         ));
+    }
+    #[test]
+    fn combined_choices_and_report_reason_copies_are_bounded_before_choice_mutation() {
+        let (area, source, e, v) = fixture();
+        let mut value: serde_json::Value =
+            serde_json::from_slice(&std::fs::read(source.path()).unwrap()).unwrap();
+        let template = value["occurrences"]["3"].clone();
+        let occurrences = value["occurrences"].as_object_mut().unwrap();
+        occurrences.clear();
+        for n in 10000..11024 {
+            let mut o = template.clone();
+            o["id"] = serde_json::json!(n.to_string());
+            occurrences.insert(n.to_string(), o);
+        }
+        value["next_id"] = serde_json::json!("30000");
+        let edges = value["edges"].as_object_mut().unwrap();
+        for n in 20000..28192 {
+            edges.insert(n.to_string(),serde_json::json!({"id":n.to_string(),"view":"1","source":"10000","target":"10000","key":{"owner":"1","role":"ObjectiveSubject","target":"1","target_kind":"System"},"presence":{"state":"Detached","reason":"source claim"}}));
+        }
+        let path = area.path().join("budget-source.json");
+        std::fs::write(&path, serde_json::to_vec(&value).unwrap()).unwrap();
+        let source = Inspection::open(&path).unwrap();
+        let mut p = Plan::new(&source, source.declared().primary, &e, &v).unwrap();
+        let ids: Vec<_> = p.choices.keys().copied().collect();
+        let mut refused = false;
+        for id in ids {
+            let before = p.choices.clone();
+            match p.choose(&source, &e, &v, id, Choice::Skip("r".repeat(1024))) {
+                Ok(()) => assert!(p.charged_bytes(&source) <= MAX_PLAN_BYTES),
+                Err(error) => {
+                    assert!(error.contains("BUDGET"));
+                    assert_eq!(before, p.choices);
+                    refused = true;
+                    break;
+                }
+            }
+        }
+        assert!(
+            refused,
+            "combined retained choice and formatted preview reasons must be charged"
+        );
     }
 }

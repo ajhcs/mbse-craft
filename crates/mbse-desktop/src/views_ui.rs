@@ -99,6 +99,15 @@ impl ViewWorkspace {
     pub fn inspection_note(&self) -> &str {
         &self.inspection_note
     }
+    pub fn mapping_audit(&self, editor: &Editor) -> serde_json::Value {
+        use mbse_model::native_views_plan::Choice;
+        let current = self
+            .mapping
+            .as_ref()
+            .zip(self.inspection.as_ref())
+            .is_some_and(|(plan, source)| plan.check(source, editor, &self.views).is_ok());
+        serde_json::json!({"note":self.mapping_note,"target_current":current,"choices":self.mapping.as_ref().map(|p|p.choices().values().map(|c|match c {Choice::Unselected=>"unselected",Choice::Target(_)=>"target",Choice::Skip(_)=>"skip"}).collect::<Vec<_>>()),"checked_preview_retained":self.mapping_preview.is_some()})
+    }
     fn inspect_source(&mut self) {
         match mbse_model::native_views_inspect::Inspection::open(std::path::Path::new(
             self.inspection_path.trim(),
@@ -112,6 +121,9 @@ impl ViewWorkspace {
                 self.inspection_note="Read-only source snapshot captured. Native references and file bindings are unverified source claims.".into();
             }
             Err(error) => {
+                self.mapping_preview = None;
+                self.mapping_note =
+                    "Read refused. Retained mapping choices have not been rechecked.".into();
                 self.inspection_note =
                     format!("Source inspection refused: {error}. Previous preview retained.")
             }
@@ -135,6 +147,7 @@ impl ViewWorkspace {
                 ui.label(format!("Exact source SHA256: {}",source.source_sha256()));
                 if ui.button("Recheck source bytes").clicked() {
                     self.mapping_preview=None;
+                    self.mapping_note="Mapping preview cleared. Check the mapping again after a successful source recheck.".into();
                     self.inspection_note=match source.verify_unchanged() {Ok(())=>"Source bytes match the retained snapshot at this check.".into(),Err(error)=>format!("{error}. Retained preview remains read only.")};
                 }
                 let doc=source.declared();
@@ -155,7 +168,7 @@ impl ViewWorkspace {
                     }
                     ui.label("Mapping rehearsal only. No target view is created; no presentation IDs or history are reserved.");
                     let stale=self.mapping.as_ref().and_then(|p|p.check(source,editor,&self.views).err());
-                    if let Some(error)=&stale {ui.label(error);}
+                    if let Some(error)=&stale {self.mapping_preview=None;self.mapping_note=error.clone();ui.label(error);}
                     if self.mapping.is_some() && ui.add_enabled(stale.is_none(),egui::Button::new("Check mapping preview")).clicked() {
                         self.mapping_preview=None;
                         match self.mapping.as_ref().unwrap().preview(source,editor,&self.views) {
@@ -200,7 +213,7 @@ impl ViewWorkspace {
                         if let Some(preview)=&self.mapping_preview {
                             egui::ScrollArea::vertical().id_salt("mapping-proposal").max_height(160.).show(ui,|ui|{
                                 for o in &preview.occurrences {ui.label(format!("Provisional source occurrence {} → {} · x={} y={} · visible={} pinned={}",o.source.get(),o.target.map(|id|format!("target #{}",id.0)).unwrap_or_else(||o.reason.clone().unwrap()),o.geometry.x,o.geometry.y,o.visible,o.pinned));}
-                                for e in &preview.edges {ui.label(format!("Source edge {} → {}",e.source.get(),e.key.as_ref().map(|k|format!("authored {:?} #{} → #{}",k.role,k.owner.0,k.target.0)).unwrap_or_else(||e.reason.clone().unwrap())));}
+                                for e in &preview.edges {ui.label(format!("Source edge {} · exact source occurrences {} → {} · {}",e.source.get(),e.source_occurrence.get(),e.target_occurrence.get(),e.key.as_ref().map(|k|format!("authored {:?} #{} → #{}",k.role,k.owner.0,k.target.0)).unwrap_or_else(||e.reason.clone().unwrap())));}
                             });
                         }
                     }
