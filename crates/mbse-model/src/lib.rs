@@ -12,3 +12,5 @@ pub mod recovery;
 
 pub mod native_views;
 pub mod native_views_io;
+
+pub mod native_views_inspect;

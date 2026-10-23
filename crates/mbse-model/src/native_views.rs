@@ -25,7 +25,7 @@ use std::{
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub(crate) struct Origin(u64);
 static NEXT_ORIGIN: AtomicU64 = AtomicU64::new(1);
-fn new_origin() -> Result<Origin, String> {
+pub(crate) fn new_origin() -> Result<Origin, String> {
     NEXT_ORIGIN
         .fetch_update(Ordering::Relaxed, Ordering::Relaxed, |n| n.checked_add(1))
         .map(Origin)
@@ -303,14 +303,20 @@ impl Document {
         self.validate_with_index(snapshot, &index)
     }
     fn validate_with_index(&self, snapshot: &Snapshot, index: &EdgeIndex) -> Result<(), String> {
+        self.validate_contents(Some((snapshot, index)))
+    }
+    fn validate_contents(&self, native: Option<(&Snapshot, &EdgeIndex)>) -> Result<(), String> {
         if self.profile != PROFILE && self.profile != RECOVERY_PROFILE {
             return Err("VIEWS_FUTURE_PROFILE".into());
         }
         if !self.sidecar_id.starts_with("views:") || self.sidecar_id.len() > 1024 {
             return Err("VIEWS_SIDECAR_ID".into());
         }
-        if self.document_id != snapshot.document_id {
+        if native.is_some_and(|(snapshot, _)| self.document_id != snapshot.document_id) {
             return Err("VIEWS_DOCUMENT_MISMATCH".into());
+        }
+        if native.is_none() && (self.document_id.0.is_empty() || self.document_id.0.len() > 1024) {
+            return Err("VIEWS_SOURCE_DOCUMENT_ID".into());
         }
         if self.binding.as_ref().is_some_and(|b| {
             b.document_id != self.document_id
@@ -354,7 +360,9 @@ impl Document {
             }
             *counts.entry(o.view).or_default() += 1;
             if o.presence.active()
-                && snapshot.records.get(&o.record).map(|r| r.kind) != Some(o.expected_kind)
+                && native.is_some_and(|(snapshot, _)| {
+                    snapshot.records.get(&o.record).map(|r| r.kind) != Some(o.expected_kind)
+                })
             {
                 return Err("VIEWS_ACTIVE_TARGET_MISSING_OR_KIND".into());
             }
@@ -383,12 +391,15 @@ impl Document {
             {
                 return Err("VIEWS_EDGE_ENDPOINT_BINDING".into());
             }
-            if edge.presence.active()
-                && (!a.presence.active()
-                    || !b.presence.active()
-                    || !edge.key.exists_in(snapshot, index)?)
-            {
-                return Err("VIEWS_ACTIVE_EDGE_UNRESOLVED".into());
+            if edge.presence.active() {
+                if !a.presence.active() || !b.presence.active() {
+                    return Err("VIEWS_ACTIVE_EDGE_UNRESOLVED".into());
+                }
+                if let Some((snapshot, index)) = native {
+                    if !edge.key.exists_in(snapshot, index)? {
+                        return Err("VIEWS_ACTIVE_EDGE_UNRESOLVED".into());
+                    }
+                }
             }
             check_presence(&edge.presence)?;
         }
@@ -1016,6 +1027,19 @@ fn decode_document(bytes: &[u8]) -> Result<Document, String> {
         }
     }
     serde_json::from_value(unique.0).map_err(|e| format!("VIEWS_SCHEMA: {e}"))
+}
+
+/// Structural source inspection only: returns a declared DTO, never a Views
+/// runtime, native checkpoint, replacement authority or semantic admission.
+pub(crate) fn inspect_document(bytes: &[u8]) -> Result<Document, String> {
+    let document = decode_document(bytes)?;
+    document.validate_contents(None)?;
+    if (document.profile == PROFILE && document.binding.is_none())
+        || (document.profile == RECOVERY_PROFILE && document.binding.is_some())
+    {
+        return Err("VIEWS_SOURCE_PROFILE_BINDING".into());
+    }
+    Ok(document)
 }
 
 #[cfg(test)]

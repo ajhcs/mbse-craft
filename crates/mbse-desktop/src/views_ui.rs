@@ -40,6 +40,11 @@ pub struct ViewWorkspace {
     drag: Option<(OccurrenceId, Geometry, v::Stamp, egui::Pos2)>,
     route_source: Option<OccurrenceId>,
     route_target: Option<OccurrenceId>,
+    inspection: Option<mbse_model::native_views_inspect::Inspection>,
+    inspection_path: String,
+    inspection_open: bool,
+    inspection_view: Option<ViewId>,
+    inspection_note: String,
 }
 impl ViewWorkspace {
     pub fn new(session: &Session) -> Self {
@@ -68,7 +73,84 @@ impl ViewWorkspace {
             drag: None,
             route_source: None,
             route_target: None,
+            inspection: None,
+            inspection_path: String::new(),
+            inspection_open: false,
+            inspection_view: None,
+            inspection_note: "Choose an explicit local presentation source to inspect read only."
+                .into(),
         }
+    }
+    pub fn open_inspection(&mut self) {
+        self.inspection_open = true;
+    }
+    pub fn inspection_visible(&self) -> bool {
+        self.inspection_open
+    }
+    pub fn inspection_source_sha256(&self) -> Option<&str> {
+        self.inspection.as_ref().map(|p| p.source_sha256())
+    }
+    pub fn inspection_note(&self) -> &str {
+        &self.inspection_note
+    }
+    fn inspect_source(&mut self) {
+        match mbse_model::native_views_inspect::Inspection::open(std::path::Path::new(
+            self.inspection_path.trim(),
+        )) {
+            Ok(source) => {
+                self.inspection_view = Some(source.declared().primary);
+                self.inspection = Some(source);
+                self.inspection_note="Read-only source snapshot captured. Native references and file bindings are unverified source claims.".into();
+            }
+            Err(error) => {
+                self.inspection_note =
+                    format!("Source inspection refused: {error}. Previous preview retained.")
+            }
+        }
+    }
+    pub fn show_inspection(&mut self, ctx: &egui::Context) {
+        if !self.inspection_open {
+            return;
+        }
+        let mut open = true;
+        egui::Window::new("Read-only presentation source").id(egui::Id::new("presentation-source-inspection")).open(&mut open).default_width(760.).show(ctx,|ui|{
+            ui.label("Inspect one explicit local source. Source identifiers and bindings remain declarations; this operation does not import content.");
+            ui.horizontal(|ui|{
+                ui.label("Source file");
+                ui.add(egui::TextEdit::singleline(&mut self.inspection_path).desired_width(500.).hint_text("/workspace/…/source.mbse-views.json"));
+                if ui.button("Read source").clicked() { self.inspect_source(); }
+            });
+            ui.label(&self.inspection_note);
+            if let Some(source)=self.inspection.as_ref() {
+                ui.label(format!("Snapshot: {} · {} bytes",source.path().display(),source.source_bytes()));
+                ui.label(format!("Exact source SHA256: {}",source.source_sha256()));
+                if ui.button("Recheck source bytes").clicked() {
+                    self.inspection_note=match source.verify_unchanged() {Ok(())=>"Source bytes match the retained snapshot at this check.".into(),Err(error)=>format!("{error}. Retained preview remains read only.")};
+                }
+                let doc=source.declared();
+                ui.label(format!("Declared profile: {} · document: {}",doc.profile,doc.document_id.0));
+                ui.label(if doc.binding.is_some() {"Source declares a native-file binding (unverified)."} else {"Source is an unbound presentation recovery."});
+                if let Some(binding)=&doc.binding { ui.label(format!("Declared native artifact SHA256: {}",binding.artifact_sha256)); }
+                egui::ComboBox::from_id_salt("inspection-view").selected_text(self.inspection_view.and_then(|id|doc.views.get(&id)).map(|v|v.title.as_str()).unwrap_or("Choose source view")).show_ui(ui,|ui|{
+                    for (id,view) in &doc.views {ui.selectable_value(&mut self.inspection_view,Some(*id),format!("{} · source view {}",view.title,id.get()));}
+                });
+                if let Some(view)=self.inspection_view {
+                    let items:Vec<_>=doc.occurrences.values().filter(|o|o.view==view).collect();
+                    let edges=doc.edges.values().filter(|e|e.view==view).count();
+                    ui.label(format!("{} source occurrences · {} declared edges · geometry and presence only",items.len(),edges));
+                    egui::ScrollArea::vertical().max_height(440.).show(ui,|ui|{
+                        for o in items {
+                            ui.group(|ui|{
+                                ui.label(format!("Source occurrence {} · declared {:?} #{}",o.id.get(),o.expected_kind,o.record.0));
+                                ui.label(format!("x={} y={} width={} height={} · visible={} pinned={}",o.geometry.x,o.geometry.y,o.geometry.width,o.geometry.height,o.visible,o.pinned));
+                                ui.label(match &o.presence {v::Presence::Active=>"Source declares Active; target identity has not been matched.".into(),v::Presence::Detached{reason}=>format!("Detached source: {reason}")});
+                            });
+                        }
+                    });
+                }
+            }
+        });
+        self.inspection_open = open;
     }
     pub fn blocked(&self, session: &Session) -> bool {
         self.io.pending() || !self.io.is_saved(session, &self.views)
@@ -403,6 +485,9 @@ impl ViewWorkspace {
                 );
             }
         });
+        if ui.button("Inspect presentation source…").clicked() {
+            self.open_inspection();
+        }
         ui.horizontal_wrapped(|ui| {
             ui.label("Explicit views path");
             let path_enabled = !self.pair_pending() && !self.io.pending() && !session.pending();
@@ -1393,5 +1478,64 @@ mod tests {
         let retry = paired_native(&mut ui, &mut session, WriteKind::Recovery, area.path());
         finish_pair(&mut ui, &mut session, retry);
         ui.verify_preserved(&session, &WriteKind::Recovery).unwrap();
+    }
+    #[test]
+    fn read_only_source_inspection_is_disjoint_from_dirty_target_and_destination() {
+        let (area, session) = session();
+        let mut ui = ViewWorkspace::new(&session);
+        let mut source = ui.views.recovery(&session.editor).unwrap();
+        source.document_id.0 = "foreign-source-document".into();
+        let path = area.path().join("source.mbse-views.json");
+        std::fs::write(&path, source.encoded().unwrap()).unwrap();
+        ui.active = *ui.views.document().views.keys().last().unwrap();
+        ui.selected = ui
+            .views
+            .document()
+            .occurrences
+            .values()
+            .find(|o| o.view == ui.active)
+            .map(|o| o.id);
+        ui.route_source = ui.selected;
+        ui.route_target = ui.selected;
+        let ephemeral = (ui.active, ui.selected, ui.route_source, ui.route_target);
+        layout_edit(&mut ui, &session, "Dirty target");
+        ui.path = "retained-target-destination.mbse-views.json".into();
+        let before = (
+            session.editor.snapshot.digest(),
+            ui.views.document().digest().unwrap(),
+            ui.views.history_usage(),
+            ui.path.clone(),
+        );
+        ui.inspection_path = path.display().to_string();
+        ui.inspect_source();
+        assert!(ui.inspection.is_some());
+        assert_eq!(
+            ui.inspection.as_ref().unwrap().declared().document_id.0,
+            "foreign-source-document"
+        );
+        let hash = ui.inspection_source_sha256().unwrap().to_owned();
+        let source_view = ui.inspection_view;
+        std::fs::write(&path, b"{").unwrap();
+        ui.inspect_source();
+        assert!(ui.inspection_note.contains("refused"));
+        assert_eq!(ui.inspection_source_sha256(), Some(hash.as_str()));
+        assert_eq!(
+            (
+                session.editor.snapshot.digest(),
+                ui.views.document().digest().unwrap(),
+                ui.views.history_usage(),
+                ui.path.clone()
+            ),
+            before
+        );
+        assert_eq!(
+            (ui.active, ui.selected, ui.route_source, ui.route_target),
+            ephemeral
+        );
+        assert_eq!(ui.inspection_view, source_view);
+        assert!(!ui.io.pending());
+        assert!(!ui.pair_pending());
+        assert!(ui.blocked(&session));
+        assert_eq!(std::fs::read(&path).unwrap(), b"{");
     }
 }

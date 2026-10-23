@@ -139,6 +139,62 @@ impl Workspace {
             }
         }
     }
+    fn handle_shortcuts(&mut self, ctx: &egui::Context) {
+        if ctx.input_mut(|i| i.consume_key(egui::Modifiers::COMMAND, egui::Key::S)) {
+            if self.views.inspection_visible() {
+                self.result(Ok("Read-only source inspection: close it to use the model Save shortcut.".into()));
+            } else if self.assurance.is_visible() {
+                self.assurance.request_save();
+            } else if !self.exchange.is_visible() {
+                self.save();
+            }
+        }
+        let transition = ctx.input(|i| {
+            i.events.iter().any(|e| {
+                matches!(
+                    e,
+                    egui::Event::PointerButton { pressed: true, .. }
+                        | egui::Event::Key {
+                            key: egui::Key::Tab,
+                            pressed: true,
+                            ..
+                        }
+                )
+            })
+        });
+        let target = if self.views.inspection_visible() || self.assurance.is_visible() || self.exchange.is_visible() {
+            ShortcutTarget::Widget
+        } else {
+            shortcut_policy(
+                self.focused_raw(),
+                ctx.text_edit_focused()
+                    || egui::Popup::is_any_open(&ctx)
+                    || self.creation.is_some()
+                    || self.context_creation.is_some()
+                    || self.settings_window
+                    || self.recovery_window
+                    || self.pending.is_some(),
+                transition,
+            )
+        };
+        if !matches!(target, ShortcutTarget::Widget) {
+            let redo = ctx.input_mut(|i| {
+                i.consume_key(
+                    egui::Modifiers::COMMAND | egui::Modifiers::SHIFT,
+                    egui::Key::Z,
+                )
+            });
+            let undo =
+                !redo && ctx.input_mut(|i| i.consume_key(egui::Modifiers::COMMAND, egui::Key::Z));
+            if redo || undo {
+                let field = match target {
+                    ShortcutTarget::Field(key) => Some(key),
+                    _ => None,
+                };
+                self.history(undo, field);
+            }
+        }
+    }
     fn command(&mut self, command: Command) {
         let stamp = self.views.views.stamp(&self.session.editor);
         let result = self.views.views.dispatch(&mut self.session.editor, &stamp,
@@ -1535,6 +1591,20 @@ fn block_close(
 mod policies {
     use super::*;
     #[test]
+    fn source_inspection_shortcuts_never_undo_or_save_the_live_target() {
+        let tmp=std::env::var_os("TMPDIR").expect("workspace TMPDIR");let area=tempfile::Builder::new().prefix("inspection-shortcut-").tempdir_in(tmp).unwrap();
+        let session=Session::new(area.path()).unwrap();let ctx=egui::Context::default();
+        let mut app=Workspace::new(session,None,None,craft_window::Choice::probe(craft_window::Prefix::new("MBSE_CRAFT")),&ctx);
+        app.command(Command::EditText{key:RawKey{record:RecordId(1),field:"name".into(),item:None},text:"Retained target edit".into()});
+        let dest=area.path().join("must-not-write.kernspan");app.save_path=dest.display().to_string();app.views.open_inspection();
+        let before=(app.session.editor.snapshot.digest(),app.views.views.document().digest().unwrap());
+        let modifiers=egui::Modifiers::COMMAND;
+        let input=egui::RawInput{modifiers,events:vec![egui::Event::Key{key:egui::Key::Z,physical_key:None,pressed:true,repeat:false,modifiers},egui::Event::Key{key:egui::Key::S,physical_key:None,pressed:true,repeat:false,modifiers}],..Default::default()};
+        let _=ctx.run(input,|ctx|app.handle_shortcuts(ctx));
+        assert_eq!((app.session.editor.snapshot.digest(),app.views.views.document().digest().unwrap()),before);
+        assert!(!app.session.pending());assert!(!app.views.pair_pending());assert!(!dest.exists());assert!(app.feedback.contains("Read-only source inspection"));
+    }
+    #[test]
     fn native_worker_start_failure_clears_only_own_pair_and_retains_live_state() {
         let root=std::env::var_os("TMPDIR").expect("workspace TMPDIR");
         let area=tempfile::Builder::new().prefix("native-start-").tempdir_in(root).unwrap();
@@ -1713,58 +1783,7 @@ impl eframe::App for Workspace {
         let ctx = root.ctx().clone();
         self.frames = self.frames.saturating_add(1);
         self.audit.clear();
-        if ctx.input_mut(|i| i.consume_key(egui::Modifiers::COMMAND, egui::Key::S)) {
-            if self.assurance.is_visible() {
-                self.assurance.request_save();
-            } else if !self.exchange.is_visible() {
-                self.save();
-            }
-        }
-        let transition = ctx.input(|i| {
-            i.events.iter().any(|e| {
-                matches!(
-                    e,
-                    egui::Event::PointerButton { pressed: true, .. }
-                        | egui::Event::Key {
-                            key: egui::Key::Tab,
-                            pressed: true,
-                            ..
-                        }
-                )
-            })
-        });
-        let target = if self.assurance.is_visible() || self.exchange.is_visible() {
-            ShortcutTarget::Widget
-        } else {
-            shortcut_policy(
-                self.focused_raw(),
-                ctx.text_edit_focused()
-                    || egui::Popup::is_any_open(&ctx)
-                    || self.creation.is_some()
-                    || self.context_creation.is_some()
-                    || self.settings_window
-                    || self.recovery_window
-                    || self.pending.is_some(),
-                transition,
-            )
-        };
-        if !matches!(target, ShortcutTarget::Widget) {
-            let redo = ctx.input_mut(|i| {
-                i.consume_key(
-                    egui::Modifiers::COMMAND | egui::Modifiers::SHIFT,
-                    egui::Key::Z,
-                )
-            });
-            let undo =
-                !redo && ctx.input_mut(|i| i.consume_key(egui::Modifiers::COMMAND, egui::Key::Z));
-            if redo || undo {
-                let field = match target {
-                    ShortcutTarget::Field(key) => Some(key),
-                    _ => None,
-                };
-                self.history(undo, field);
-            }
-        }
+        self.handle_shortcuts(&ctx);
         egui::Panel::bottom("feedback").show(root, |ui| {
             ui.colored_label(if self.error { ERROR } else { INK }, &self.feedback);
         });
@@ -1773,13 +1792,14 @@ impl eframe::App for Workspace {
         self.sidebar(root);
         self.canvas(root);
         self.dialogs(&ctx);
+        self.views.show_inspection(&ctx);
         self.capture(&ctx);
         self.catalog.show(&ctx);
         self.assurance.show(&ctx, &self.session.editor);
         self.audit.extend(self.assurance.audit());
         self.audit.extend(self.exchange.show(&ctx));
         let audit = serde_json::json!({"profile":"mbse-craft.ui-geometry/1","frame_policy":format!("{:?}",self.frame_choice.frame()),"frame_override":self.frame_choice.overridden(), "pixels_per_point":ctx.pixels_per_point(),
-            "views_revision":self.views.views.document().revision().to_string(),"views_active":self.views.active.get().to_string(),"views_pending":self.views.io.pending(),"views_saved_hint":self.views.io.is_saved(&self.session,&self.views.views),"views_note":self.views.note,
+            "views_inspection_visible":self.views.inspection_visible(),"views_inspection_sha256":self.views.inspection_source_sha256(),"views_inspection_note":self.views.inspection_note(),"views_revision":self.views.views.document().revision().to_string(),"views_active":self.views.active.get().to_string(),"views_pending":self.views.io.pending(),"views_saved_hint":self.views.io.is_saved(&self.session,&self.views.views),"views_note":self.views.note,
             "model_revision":self.session.editor.snapshot.model_revision,"raw_version":self.session.editor.snapshot.raw_version,
             "snapshot_hash":self.session.editor.snapshot.digest(),"selected":self.session.editor.selected.map(|id|id.0),
             "save_status":format!("{:?}",self.session.status()),"periodic_recovery":self.preferences.value.periodic_recovery,"recovery_interval_seconds":self.preferences.value.recovery_interval_seconds,"preferences_status":self.preferences.status,"write_pending":self.session.pending(),"external_copy_pending":self.exchange.copy_pending(),"source_edit_dirty":self.exchange.source_edit_dirty(),"source_edit_pending":self.exchange.source_edit_pending(),"recovery_path":self.session.last_recovery().map(|p|p.display().to_string()),"native_recovery_status":self.periodic_recovery.status(&self.session,&self.views).0,"layout_recovery_status":self.periodic_recovery.status(&self.session,&self.views).1,"views_recovery_current_hint":self.views.io.recovery_current(&self.session,&self.views.views),"views_pair_pending":self.views.pair_pending(),"views_gesture_active":self.views.layout_gesture_active(),"feedback":self.feedback,"error":self.error,"widgets":self.audit});
