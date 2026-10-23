@@ -1,0 +1,33 @@
+{
+  "profile": "mbse-craft.native-scoped-search-native-job/1",
+  "status": "PreparedNotLaunched",
+  "owner_thread": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+  "source_commit": "83f000139379789b15a4855940edff02e7af7ae6",
+  "source_sha256": "b08746df59ca882937b0438ba10ce026a37a355be742fbad9d958c4adf7a29eb",
+  "source_manifest": "/workspace/build/builderbob/mbse-craft/native-scoped-search/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "7a34185a943d76be8903702b86a99658df3d854be2d345c30c6918939fbfc4ff",
+  "cargo_lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+  "binary": "/workspace/build/builderbob/mbse-craft/native-scoped-search/attempt-20261023T172748607351Z/mbse-desktop",
+  "binary_sha256": "b0c1ae6d64bd3489f7a1ef50329d9b99636251cce4275b3aec45a6f159143ee7",
+  "binary_bytes": 400038896,
+  "executable_copy": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/bin/mbse-desktop",
+  "build_receipt": "/workspace/build/builderbob/mbse-craft/native-scoped-search/attempt-20261023T172748607351Z/RECEIPT.json",
+  "build_receipt_sha256": "4fc3152f77e47e64e62a8e36aa9bccba043dd3a26732ed02b6c4e895dc33bf08",
+  "run_dir": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search",
+  "state_dir": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/state",
+  "config_dir": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/config",
+  "workflow": [
+    "1. Privatefreshnative state; Saveinitialpair. Addtwo nativeMissions withsameacceptedname usingtypedcreation; startSearchfromSystemscope. Freeze targetaudits/filehashes.",
+    "2. EmptyNamequerylistsmatchingSystem+twoMissions; typenamefilterMissionlistsboth exactdistinctIDs. Namecase-sensitivequeryfindsboth; explicitSelectone resultchangesonlyselection.",
+    "3. ChangeExactIDmodeandenteroneexistingMissionID: results clearondraftchange thenexactqueryreturnsone exactID; invalidleading-zeroIDrefusesandretainsno oldresults.",
+    "4. EntervalidNamequeryandsearch; makeordinarynativefieldedit outsidewindow, reportstalesandnavigationdisabled. ExplicitRunsearchrefreshes; unmatchedqueryshowsexplicitemptyresult. Type/Systemfiltercontrols visible; actualcrossSystem/fullwidthID/256limit/Unicodeprefixcases arefocusedtests only.",
+    "5. PhysicalhashlastSavefilesunchangedafterallqueries beforefinalintentionalSave. FinalSavepreservesall3native records andsamewire; normalclose/all6ownedidentities/authremoved/sourcebinaryunchanged. Captureoriginalfullframes/audits/events forindependentreview; noupload/publication."
+  ],
+  "runtime_budget_seconds": 1200,
+  "isolation": "Existing reviewed aa-exec builderbob-codex/bwrap unshare-net/private tmp, exclusive fresh run directory, Xvfb displayfd, ephemeral0600Xauthority. r09 simultaneous isolated renderer scope; no global slot reservation.",
+  "native_admission": "Fresh exact-job packet and explicit action allocation pin current independent host identity before Xvfb/app launch",
+  "compiler": false,
+  "uploads": false,
+  "new_agent_contexts": false,
+  "qualified_unique_tests": 11
+}
