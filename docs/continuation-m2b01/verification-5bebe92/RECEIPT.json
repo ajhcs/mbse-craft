@@ -1,0 +1,152 @@
+{
+  "profile": "mbse-craft.m2b01-compiler-receipt/1",
+  "status": "Passed",
+  "started_utc": "2026-10-23T05:32:24.978021+00:00",
+  "job_manifest_sha256": "3d0247c9897855797cf1f17bed064363d061e8e015e052bedc429278ecb999af",
+  "source_sha256": "20f9b9aaf933bd1b75c42c7ba885806b3a76972bb6a55878d373e60b73ddbe3f",
+  "execution_head": "5bebe92ed5c3ac7ac501592cab7f97782a3010cb",
+  "commands": [
+    {
+      "argv": [
+        "bash",
+        "scripts/dev.sh",
+        "test",
+        "--locked",
+        "--offline",
+        "-p",
+        "mbse-model",
+        "native_views",
+        "--",
+        "--test-threads=1"
+      ],
+      "started_utc": "2026-10-23T05:32:24.989121+00:00",
+      "health_packet": {
+        "job_manifest_sha256": "3d0247c9897855797cf1f17bed064363d061e8e015e052bedc429278ecb999af",
+        "source_sha256": "20f9b9aaf933bd1b75c42c7ba885806b3a76972bb6a55878d373e60b73ddbe3f",
+        "cargo_lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+        "sample_utc": "2026-10-23T05:31:53.973695Z",
+        "checked_utc": "2026-10-23T05:31:57.4747731Z",
+        "monitor_status": "OK",
+        "hold_new_launches": false,
+        "admit_new_compiler_launch": true,
+        "compiler_slot_confirmed": true,
+        "compiler_owner": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+        "renderer_slot_confirmed": false,
+        "fd_count": 452,
+        "fd_free": 572,
+        "identity": {
+          "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+          "exe": "/home/builderbob/.codex/packages/standalone/releases/0.163.0-x86_64-unknown-linux-musl/bin/codex",
+          "pid": 757634,
+          "pid_namespace": "pid:[4026531836]",
+          "start_ticks": 8481870,
+          "uid": 1000
+        },
+        "observer_pid": 16856,
+        "watchdog_checked_utc": "2026-10-23T05:31:10.6187487Z",
+        "watchdog_hold_new_launches": false
+      },
+      "log": "/workspace/build/builderbob/mbse-craft/native-views-m2b01/attempt-20261023T053224977854Z/00.log",
+      "pid": 879004,
+      "exit_code": 0,
+      "ended_utc": "2026-10-23T05:32:35.053938+00:00",
+      "log_sha256": "8c33369a605315c718aa886e5b053e50ea536516f51cc2eea408f63a1b9f4440"
+    },
+    {
+      "argv": [
+        "bash",
+        "scripts/dev.sh",
+        "test",
+        "--locked",
+        "--offline",
+        "-p",
+        "mbse-desktop",
+        "views_ui::tests",
+        "--",
+        "--test-threads=1"
+      ],
+      "started_utc": "2026-10-23T05:32:35.064018+00:00",
+      "health_packet": {
+        "job_manifest_sha256": "3d0247c9897855797cf1f17bed064363d061e8e015e052bedc429278ecb999af",
+        "source_sha256": "20f9b9aaf933bd1b75c42c7ba885806b3a76972bb6a55878d373e60b73ddbe3f",
+        "cargo_lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+        "sample_utc": "2026-10-23T05:31:53.973695Z",
+        "checked_utc": "2026-10-23T05:31:57.4747731Z",
+        "monitor_status": "OK",
+        "hold_new_launches": false,
+        "admit_new_compiler_launch": true,
+        "compiler_slot_confirmed": true,
+        "compiler_owner": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+        "renderer_slot_confirmed": false,
+        "fd_count": 452,
+        "fd_free": 572,
+        "identity": {
+          "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+          "exe": "/home/builderbob/.codex/packages/standalone/releases/0.163.0-x86_64-unknown-linux-musl/bin/codex",
+          "pid": 757634,
+          "pid_namespace": "pid:[4026531836]",
+          "start_ticks": 8481870,
+          "uid": 1000
+        },
+        "observer_pid": 16856,
+        "watchdog_checked_utc": "2026-10-23T05:31:10.6187487Z",
+        "watchdog_hold_new_launches": false
+      },
+      "log": "/workspace/build/builderbob/mbse-craft/native-views-m2b01/attempt-20261023T053224977854Z/01.log",
+      "pid": 880243,
+      "exit_code": 0,
+      "ended_utc": "2026-10-23T05:32:57.877415+00:00",
+      "log_sha256": "b5f7a3252a91ecc184e4938bf5ceca497938978b8e138a507262ef5fd69078f1"
+    },
+    {
+      "argv": [
+        "bash",
+        "scripts/dev.sh",
+        "build",
+        "--locked",
+        "--offline",
+        "-p",
+        "mbse-desktop"
+      ],
+      "started_utc": "2026-10-23T05:32:57.887022+00:00",
+      "health_packet": {
+        "job_manifest_sha256": "3d0247c9897855797cf1f17bed064363d061e8e015e052bedc429278ecb999af",
+        "source_sha256": "20f9b9aaf933bd1b75c42c7ba885806b3a76972bb6a55878d373e60b73ddbe3f",
+        "cargo_lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+        "sample_utc": "2026-10-23T05:31:53.973695Z",
+        "checked_utc": "2026-10-23T05:31:57.4747731Z",
+        "monitor_status": "OK",
+        "hold_new_launches": false,
+        "admit_new_compiler_launch": true,
+        "compiler_slot_confirmed": true,
+        "compiler_owner": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+        "renderer_slot_confirmed": false,
+        "fd_count": 452,
+        "fd_free": 572,
+        "identity": {
+          "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+          "exe": "/home/builderbob/.codex/packages/standalone/releases/0.163.0-x86_64-unknown-linux-musl/bin/codex",
+          "pid": 757634,
+          "pid_namespace": "pid:[4026531836]",
+          "start_ticks": 8481870,
+          "uid": 1000
+        },
+        "observer_pid": 16856,
+        "watchdog_checked_utc": "2026-10-23T05:31:10.6187487Z",
+        "watchdog_hold_new_launches": false
+      },
+      "log": "/workspace/build/builderbob/mbse-craft/native-views-m2b01/attempt-20261023T053224977854Z/02.log",
+      "pid": 883067,
+      "exit_code": 0,
+      "ended_utc": "2026-10-23T05:33:00.674561+00:00",
+      "log_sha256": "f6054f8e38956ce92e5e99eb1fa75c20bc826b14524296f895451dc8ae348297"
+    }
+  ],
+  "renderer": false,
+  "uploads": false,
+  "source_unchanged": true,
+  "binary_path": "/workspace/build/builderbob/mbse-craft/native-views-m2b01/attempt-20261023T053224977854Z/mbse-desktop",
+  "binary_sha256": "1b3cb0abfec43475659b32cffe2e457e4c3adc6f613b4c91b0d25ba6c6dcbd0e",
+  "binary_bytes": 398334872,
+  "ended_utc": "2026-10-23T05:33:01.003604+00:00"
+}
