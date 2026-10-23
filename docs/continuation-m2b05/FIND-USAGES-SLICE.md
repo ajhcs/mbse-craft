@@ -6,4 +6,6 @@ M2B CAT004/CAP010 acceptance: select existingnative record, explicitlyFindusages
 
 UsageReport is nonClone/nonDeserialize and pinsfull targetViewsStamp for private runtimeidentity and nativefreshness/hash. Layoutchanges conservativelystale the report but geometry neverderivessemantics. Every navigationbyreportindex rechecks the stamp. Only acceptednative relations represented by the5existinggraphroles are reported; opaque/unknown fields, drafts and unresolvedcalculationreferences are not interpreted as usages. No newsemanticgraph, importauthority, model/history mutation, migration or savewire. Target selection is a separate ephemeral operation, not an edit.
 
-Fourmodeltests authored UNRUN coverroledirection, calculationconsumer names, stale runtime/raw/layout and selectionwithoutmutation. Independentactualsourcereview, focusedtests/build and actualnativeinteraction remain required; publication is not authorized by this file.
+Fourmodeltests plusoneUIpolicytest authored UNRUN coverroledirection, calculationconsumer names, stale runtime/raw/layout and selectionwithoutmutation. Independentactualsourcereview, focusedtests/build and actualnativeinteraction remain required; publication is not authorized by this file.
+
+Independentreview identified and corrected a weakUItest baseline: typedMissioncreation alreadyselectsMission, so the test nowexplicitlyselectsSystem#1 before navigating to theMission usage. A no-opnavigator can no longerpass.
