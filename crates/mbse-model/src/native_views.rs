@@ -491,6 +491,7 @@ pub struct Views {
     past: VecDeque<Entry>,
     future: VecDeque<Entry>,
     proofs: BTreeMap<u64, HistoryProof>,
+    pristine_default: Option<Stamp>,
 }
 impl Views {
     pub fn new(editor: &Editor) -> Result<Self, String> {
@@ -565,6 +566,11 @@ impl Views {
         }
         document.validate(&editor.snapshot)?;
         Ok(Self {
+            pristine_default: Some(Stamp {
+                native: editor.freshness(),
+                snapshot_hash: editor.snapshot.digest(),
+                revision: document.revision(),
+            }),
             document,
             past: VecDeque::new(),
             future: VecDeque::new(),
@@ -577,6 +583,13 @@ impl Views {
             native: editor.freshness(),
             snapshot_hash: editor.snapshot.digest(),
         }
+    }
+    /// Runtime-only capability created solely by new(), never by wire revision.
+    /// Monotonic native/view stamps prevent Undo from recreating this capability.
+    pub(crate) fn is_pristine_default(&self, editor: &Editor) -> bool {
+        self.pristine_default
+            .as_ref()
+            .is_some_and(|initial| initial == &self.stamp(editor))
     }
     pub fn document(&self) -> &Document {
         &self.document
@@ -924,6 +937,7 @@ impl Views {
             past: VecDeque::new(),
             future: VecDeque::new(),
             proofs: BTreeMap::new(),
+            pristine_default: None,
         })
     }
     /// Explicit recovery import carries no native artifact authority and retains
@@ -939,6 +953,7 @@ impl Views {
             past: VecDeque::new(),
             future: VecDeque::new(),
             proofs: BTreeMap::new(),
+            pristine_default: None,
         })
     }
 }

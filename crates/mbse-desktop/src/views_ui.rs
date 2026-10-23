@@ -290,9 +290,9 @@ impl ViewWorkspace {
         ui.horizontal_wrapped(|ui| {
             ui.label("Explicit views path");
             ui.text_edit_singleline(&mut self.path);
-            let may_open = !self.io.pending()
-                && (self.views.document().revision() == 1
-                    || self.io.is_saved(session, &self.views));
+            // Admission is checked on click by Io::open; no disk reads in a
+            // per-frame status hint, and no wire revision grants permission.
+            let may_open = !self.io.pending() && !session.pending();
             if ui
                 .add_enabled(may_open, egui::Button::new("Open views"))
                 .clicked()
@@ -481,11 +481,14 @@ impl ViewWorkspace {
             Ok(()) => {
                 self.active = self.views.document().primary;
                 self.selected = None;
+                self.route_source = None;
+                self.route_target = None;
+                self.drag = None;
+                self.reconcile();
                 "Views opened with checked identity. Detached runtime history authority was not restored.".into()
             }
             Err(e) => format!("Views input retained read-only; current canvas retained: {e}"),
         };
-        self.reconcile();
     }
     pub fn drag(
         &mut self,
@@ -686,5 +689,47 @@ mod tests {
         assert!(!path.exists());
         assert_eq!(ui.views.document().digest().unwrap(), before);
         assert!(ui.blocked(&session));
+    }
+    #[test]
+    fn refused_sidecar_open_preserves_history_active_selection_and_route_endpoints() {
+        let (area, session) = session();
+        let mut ui = ViewWorkspace::new(&session);
+        ui.active = *ui.views.document().views.keys().last().unwrap();
+        ui.selected = ui
+            .views
+            .document()
+            .occurrences
+            .values()
+            .find(|o| o.view == ui.active)
+            .map(|o| o.id);
+        ui.route_source = ui.selected;
+        ui.route_target = ui.selected;
+        let target = area.path().join("target.mbse-views.json");
+        std::fs::write(
+            &target,
+            ui.views
+                .recovery(&session.editor)
+                .unwrap()
+                .encoded()
+                .unwrap(),
+        )
+        .unwrap();
+        ui.apply(
+            &session.editor,
+            Layout::Move(ui.selected.unwrap(), Geometry::at(444., 555.)),
+        );
+        let (active, selected, source, target_id) =
+            (ui.active, ui.selected, ui.route_source, ui.route_target);
+        let digest = ui.views.document().digest().unwrap();
+        let history = ui.views.history_usage();
+        ui.path = target.display().to_string();
+        ui.open(&session, true);
+        assert!(ui.note.contains("PRESERVATION"));
+        assert_eq!(ui.views.document().digest().unwrap(), digest);
+        assert_eq!(ui.views.history_usage(), history);
+        assert_eq!(
+            (ui.active, ui.selected, ui.route_source, ui.route_target),
+            (active, selected, source, target_id)
+        );
     }
 }

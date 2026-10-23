@@ -321,6 +321,26 @@ impl Io {
         let _ = views; // live revision is deliberately not acknowledged here
         true
     }
+    /// Every local layout replacement crosses this preservation boundary.
+    /// Cached status and deserialized revisions never authorize replacement.
+    fn verify_replacement(&self, session: &Session, views: &Views) -> Result<(), String> {
+        if self.pending() || session.pending() {
+            return Err(
+                "VIEWS_WRITE_PENDING: wait or cancel navigation; live layout retained".into(),
+            );
+        }
+        if views.is_pristine_default(&session.editor) {
+            return Ok(());
+        }
+        if self.verify_preserved(session, views, Kind::Bound).is_ok()
+            || self
+                .verify_preserved(session, views, Kind::Recovery)
+                .is_ok()
+        {
+            return Ok(());
+        }
+        Err("VIEWS_REPLACEMENT_REQUIRES_PRESERVATION: save or keep recovery to a fresh destination, verify it, then retry Open; cancel keeps current layout and history".into())
+    }
     /// Explicit path only; failed/future/mismatched bytes remain available and
     /// protected. No directory scan, repair or automatic rewrite takes place.
     pub fn open(
@@ -330,9 +350,7 @@ impl Io {
         path: &Path,
         recovery: bool,
     ) -> Result<(), String> {
-        if self.pending() {
-            return Err("VIEWS_WRITE_PENDING".into());
-        }
+        self.verify_replacement(session, views)?;
         let path = destination(path)?;
         let bytes = local_input::read(&path, MAX_BYTES, "VIEWS_OPEN")?;
         let result = if recovery {
@@ -360,6 +378,10 @@ impl Io {
                     native_freshness: session.editor.freshness(),
                     binding: candidate.document().binding.clone(),
                 };
+                // A replacement starts a new acknowledgment ledger. Opposite
+                // kinds cannot certify unrelated layouts at a colliding revision.
+                self.saved = None;
+                self.recovered = None;
                 if recovery {
                     self.recovered = Some(ack);
                 } else {
@@ -858,5 +880,176 @@ mod tests {
         assert!(io.failed_start(&session, token, "injected".into()));
         assert!(!io.pending());
         drop(next);
+    }
+    fn replacement_move(session: &Session, views: &mut Views, x: f64) {
+        let id = *views.document().occurrences.keys().next().unwrap();
+        let stamp = views.stamp(&session.editor);
+        views
+            .apply(
+                &session.editor,
+                &stamp,
+                Layout::Move(id, Geometry::at(x, 456.)),
+            )
+            .unwrap();
+    }
+    fn independent_layout_file(session: &Session, views: &Views, path: &Path, kind: Kind) {
+        let mut writer = Io::default();
+        let job = writer.begin(session, views, path, kind).unwrap();
+        assert!(writer.complete(session, views, execute(job)));
+        assert!(writer.last_error.is_none());
+    }
+    #[test]
+    fn replacement_clears_opposite_ack_and_revision_collision_cannot_discard_recovery_edits() {
+        let area = area();
+        let mut session = Session::new(area.path()).unwrap();
+        native_save(&mut session, &area.path().join("model.kernspan"));
+        let mut a = Views::new(&session.editor).unwrap();
+        for x in [10., 20., 30., 40.] {
+            replacement_move(&session, &mut a, x);
+        }
+        let a_path = area.path().join("a.mbse-views.json");
+        let mut io = Io::default();
+        let job = io.begin(&session, &a, &a_path, Kind::Bound).unwrap();
+        io.complete(&session, &a, execute(job));
+        assert_eq!(a.document().revision(), 5);
+        let mut b = Views::new(&session.editor).unwrap();
+        for x in [100., 200., 300.] {
+            replacement_move(&session, &mut b, x);
+        }
+        let b_path = area.path().join("b.mbse-views.json");
+        independent_layout_file(&session, &b, &b_path, Kind::Recovery);
+        assert_eq!(b.document().revision(), 4);
+        io.open(&session, &mut a, &b_path, true).unwrap();
+        assert!(io.saved.is_none());
+        assert!(io.recovery_current(&session, &a));
+        replacement_move(&session, &mut a, 400.);
+        assert_eq!(a.document().revision(), 5);
+        assert!(!io.is_saved(&session, &a));
+        let before = a.document().digest().unwrap();
+        let history = a.history_usage();
+        let a_bytes = fs::read(&a_path).unwrap();
+        let b_bytes = fs::read(&b_path).unwrap();
+        assert!(io
+            .open(&session, &mut a, &a_path, false)
+            .unwrap_err()
+            .contains("PRESERVATION"));
+        assert_eq!(a.document().digest().unwrap(), before);
+        assert_eq!(a.history_usage(), history);
+        assert_eq!(fs::read(&a_path).unwrap(), a_bytes);
+        assert_eq!(fs::read(&b_path).unwrap(), b_bytes);
+    }
+    #[test]
+    fn same_revision_different_bound_files_replace_ack_content_not_just_counter() {
+        let area = area();
+        let mut session = Session::new(area.path()).unwrap();
+        native_save(&mut session, &area.path().join("model.kernspan"));
+        let mut a = Views::new(&session.editor).unwrap();
+        replacement_move(&session, &mut a, 10.);
+        let mut b = Views::new(&session.editor).unwrap();
+        replacement_move(&session, &mut b, 900.);
+        assert_eq!(a.document().revision(), b.document().revision());
+        let a_path = area.path().join("a.mbse-views.json");
+        let b_path = area.path().join("b.mbse-views.json");
+        let mut io = Io::default();
+        let job = io.begin(&session, &a, &a_path, Kind::Bound).unwrap();
+        io.complete(&session, &a, execute(job));
+        independent_layout_file(&session, &b, &b_path, Kind::Bound);
+        io.open(&session, &mut a, &b_path, false).unwrap();
+        assert_eq!(io.saved_path(), Some(b_path.as_path()));
+        assert!(io.recovered.is_none());
+        io.verify_preserved(&session, &a, Kind::Bound).unwrap();
+        fs::write(&b_path, b"changed").unwrap();
+        let digest = a.document().digest().unwrap();
+        assert!(io.open(&session, &mut a, &a_path, false).is_err());
+        assert_eq!(a.document().digest().unwrap(), digest);
+    }
+    #[test]
+    fn local_replacement_rechecks_deleted_truncated_and_tampered_bound_or_recovery_artifact() {
+        for kind in [Kind::Bound, Kind::Recovery] {
+            for mode in 0..3 {
+                let area = area();
+                let mut session = Session::new(area.path()).unwrap();
+                native_save(&mut session, &area.path().join("model.kernspan"));
+                let mut current = Views::new(&session.editor).unwrap();
+                replacement_move(&session, &mut current, 500.);
+                let current_path = area.path().join("current.mbse-views.json");
+                let mut io = Io::default();
+                let job = io
+                    .begin(&session, &current, &current_path, kind.clone())
+                    .unwrap();
+                io.complete(&session, &current, execute(job));
+                let target = Views::new(&session.editor).unwrap();
+                let target_path = area.path().join("target.mbse-views.json");
+                independent_layout_file(&session, &target, &target_path, Kind::Recovery);
+                let target_bytes = fs::read(&target_path).unwrap();
+                match mode {
+                    0 => fs::remove_file(&current_path).unwrap(),
+                    1 => fs::write(&current_path, b"").unwrap(),
+                    _ => fs::write(&current_path, b"tampered").unwrap(),
+                }
+                let digest = current.document().digest().unwrap();
+                let history = current.history_usage();
+                assert!(io.open(&session, &mut current, &target_path, true).is_err());
+                assert_eq!(current.document().digest().unwrap(), digest);
+                assert_eq!(current.history_usage(), history);
+                assert_eq!(fs::read(&target_path).unwrap(), target_bytes);
+            }
+        }
+    }
+    #[test]
+    fn imported_revision_one_has_no_runtime_pristine_replacement_capability() {
+        let area = area();
+        let session = Session::new(area.path()).unwrap();
+        let default = Views::new(&session.editor).unwrap();
+        assert!(default.is_pristine_default(&session.editor));
+        let bytes = default
+            .recovery(&session.editor)
+            .unwrap()
+            .encoded()
+            .unwrap();
+        let mut imported = Views::restore(&bytes, &session.editor).unwrap();
+        assert_eq!(imported.document().revision(), 1);
+        assert!(!imported.is_pristine_default(&session.editor));
+        let target_path = area.path().join("target.mbse-views.json");
+        fs::write(&target_path, &bytes).unwrap();
+        let mut io = Io::default();
+        assert!(io
+            .open(&session, &mut imported, &target_path, true)
+            .is_err());
+        let mut runtime_default = Views::new(&session.editor).unwrap();
+        io.open(&session, &mut runtime_default, &target_path, true)
+            .unwrap();
+        assert!(!runtime_default.is_pristine_default(&session.editor));
+        fs::remove_file(&target_path).unwrap();
+        let another = area.path().join("another.mbse-views.json");
+        fs::write(&another, bytes).unwrap();
+        assert!(io
+            .open(&session, &mut runtime_default, &another, true)
+            .is_err());
+    }
+    #[test]
+    fn recovery_to_bound_replacement_clears_recovery_ack_and_pending_refuses_all_replacement() {
+        let area = area();
+        let mut session = Session::new(area.path()).unwrap();
+        native_save(&mut session, &area.path().join("model.kernspan"));
+        let mut views = Views::new(&session.editor).unwrap();
+        replacement_move(&session, &mut views, 80.);
+        let mut io = Io::default();
+        let recovery = area.path().join("recovery.mbse-views.json");
+        let job = io
+            .begin(&session, &views, &recovery, Kind::Recovery)
+            .unwrap();
+        io.complete(&session, &views, execute(job));
+        let bound = area.path().join("bound.mbse-views.json");
+        independent_layout_file(&session, &views, &bound, Kind::Bound);
+        io.open(&session, &mut views, &bound, false).unwrap();
+        assert!(io.recovered.is_none());
+        assert!(io.is_saved(&session, &views));
+        let pending = io.begin(&session, &views, &bound, Kind::Bound).unwrap();
+        let before = views.document().digest().unwrap();
+        assert!(io.open(&session, &mut views, &recovery, true).is_err());
+        assert_eq!(views.document().digest().unwrap(), before);
+        assert!(io.pending());
+        drop(pending);
     }
 }
