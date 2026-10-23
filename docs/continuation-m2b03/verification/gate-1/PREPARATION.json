@@ -1,0 +1,14 @@
+{
+  "status": "PreparedNotLaunched",
+  "job_sha256": "66deedf0e5e9c9f47a6b4a1083e0d169f3b8a2683ec8b3a27a75fc4b76e23157",
+  "launcher_sha256": "e193ffea7ee4a542d40bf143ed5c7b366421387d999b3030e93983886acf250d",
+  "staging_helper_sha256": "695b5133033251acd641753d435d46e256210fa5237aaa88728fab96d297b367",
+  "source_commit": "92a0fc3a62a2601474b44254e9915e50caa5d19a",
+  "source_sha256": "5aed38a274a3986cd61f231aa8d8c525d6d9eaa8c582bf47f61587ba453904d0",
+  "source_manifest_sha256": "9be0fdd9d8474c777b35e0adf2d78cca3e94efef14bdde845f646249d6f4097e",
+  "source_files": 662,
+  "expected_tests": 83,
+  "tests_executed": 0,
+  "owned_jobs": [],
+  "renderer_reserved": false
+}

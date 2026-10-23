@@ -51,3 +51,33 @@ tests or a GUI. The corrected-label periodic recovery source remains frozen in
 a separate worktree; no second target writer, idle compiler/renderer, source
 upload or PR merge is authorized by this document. Publication remains stopped
 following two pre-execution auto-review denials; no alternate route is attempted.
+
+## Executed bounded qualification
+
+The qualification chain now retains83 unique actual passes:40model/presentation
+and15nativeIO tests on92a0fc3;24controller and3policy passes onc2013a6; the final
+shortcut regression onf0a3247. The first two attempts preserve their test-harness
+compile/texture-disposal failures. Only harness API/disposal lines changed;
+model/vendored/product runtime code remained unchanged across continuations.
+No successful commands replayed. Final build receipt
+9190a47511819d12d5bd682cdf39dd2818aa6f7e1d580b234b09b420fb2b195d.
+
+Binary6f6d7d3a41b2e1deb57975b97215240bc05b6f690cb2c170dda1942f75db0733
+ran actual native workflow2026-10-23T16:24:54.611454Z–16:29:08.282664Z.
+Dirty-target inspection, declared foreign source/geometry, real CtrlZ/S target
+isolation, unchanged/changed byte recheck, corrupt-source retained-preview refusal,
+then intentional target Save and normal close were observed.11original PNGs
+remain local; exact hashes/audits/bytes/events and independent review are linked
+in verification/native. Source/binary unchanged through run, all six recorded
+identities absent, auth removed, owned_jobs=[], renderer released.
+
+Observed native flow covers an unbound v1 source. Bound-file, profile, budgets,
+malformation and sealed-checkpoint separation have bounded unit coverage. No
+copy/apply, migration, semantic equivalence/admission, large-file UI performance,
+general accessibility/platform or full86-feature parity claim is made.
+
+The completed periodic-recovery worktree remains separate and clean at
+a0079d5232996e9e6350f5bae71138a9b2d276ed. Its exact non-force push is stopped
+after two pre-execution denials; remote candidate ref absent and PR2 remains
+draft/head557ee47e at last readback. This preview branch has not been published
+and must not be included in approval for the completed recovery payload.
