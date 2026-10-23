@@ -1,6 +1,10 @@
 # Layout-only periodic recovery candidate
 
-Status: source-only candidate. No Cargo command or GUI has run for this epoch.
+Status: 47 focused tests passed on source cfe7b4b306d673d72b36d008537e55f980877363.
+No native desktop binary build or GUI has run for this epoch. The preparation
+record below describes the state before execution; verification/ contains exact
+frozen job, source manifest, admission, allocation, launcher, raw receipt and
+losslessly compressed logs.
 
 The previous timer required a dirty native session, so a layout-only change
 could remain without a periodic recovery copy. The scheduler now observes the
@@ -62,3 +66,28 @@ Observed Ok(()), Ok(true), VIEWS_PINNED and missing-target error notes are
 recorded for later wording work. Recovered-layout-copy/v2 migration, semantic
 edge native workflows, Fit, live delayed/foreign acknowledgment timing and
 broader product qualification are outside this candidate.
+
+## Focused test execution
+
+The exact frozen job07b4c238 ran at2026-10-23T13:23:55.395479Z through
+13:24:30.210983Z. Both commands returned0: thirty native_views model/IO tests
+and seventeen views_ui controller tests, including all nine new periodic cases.
+The model Cargo PID1021089/start13618628 ran10.859s; desktop Cargo
+PID1022344/start13619715 ran23.925s. Each launch independently validated the
+original fresh job-bound health. The desktop launch at13:24:06.275549Z preceded
+the original packet expiry13:24:18.927461Z and watchdog-age cutoff. The packet
+was not extended. One Cargo job and one test thread were used. No automatic
+retry, source repair, second writer, GUI, or monitoring helper was launched.
+
+Receipt SHA2566b3939ecc7120d8d9d9020bef74023556f8e9eb0d91e10690bad34c45028e767.
+All661 source-closure files and Cargo.lock were unchanged through execution.
+Both exact Cargo identities are now absent and owned_jobs=[]; test allocation
+released. Existing target apparent bytes5805647217, allocated5695596KiB. Peak
+RSS was not measured. Observer/coordinator evidence must establish any actual
+overlap and concurrency result; this test receipt does not establish either.
+
+Existing unused patch/unused import/unused variable/deprecation warnings remain;
+no warning-only cleanup was mixed into this source. This bounded controller
+qualification is not native timer UI, accessibility, performance, platform or
+engineering acceptance. The qualified09df25d/199226d5 native epoch remains
+separate and unchanged.
