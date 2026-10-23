@@ -1600,7 +1600,7 @@ mod policies {
         let before=(app.session.editor.snapshot.digest(),app.views.views.document().digest().unwrap());
         let modifiers=egui::Modifiers::COMMAND;
         let input=egui::RawInput{events:vec![egui::Event::ModifiersChanged(modifiers),egui::Event::Key{key:egui::Key::Z,physical_key:None,pressed:true,repeat:false,modifiers},egui::Event::Key{key:egui::Key::S,physical_key:None,pressed:true,repeat:false,modifiers}],..Default::default()};
-        let _=ctx.run_ui(input,|ui|app.handle_shortcuts(ui.ctx()));
+        ctx.run_ui(input,|ui|app.handle_shortcuts(ui.ctx())).drop_without_applying_deltas();
         assert_eq!((app.session.editor.snapshot.digest(),app.views.views.document().digest().unwrap()),before);
         assert!(!app.session.pending());assert!(!app.views.pair_pending());assert!(!dest.exists());assert!(app.feedback.contains("Read-only source inspection"));
     }
