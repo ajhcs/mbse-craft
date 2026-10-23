@@ -920,4 +920,279 @@ mod tests {
         assert!(ui.io.complete(&session, &ui.views, receipt));
         assert!(!ui.pair_pending());
     }
+
+    // Clock-controlled timer/controller regressions. No GUI, sleeping, or
+    // background workers: actual frozen jobs execute against isolated files.
+    const INTERVAL: std::time::Duration = std::time::Duration::from_secs(15);
+    const QUIET: std::time::Duration = std::time::Duration::from_millis(750);
+    fn layout_edit(ui: &mut ViewWorkspace, session: &Session, title: &str) {
+        ui.apply(&session.editor, Layout::RenameView(ui.active, title.into()));
+    }
+    fn native_edit(ui: &mut ViewWorkspace, session: &mut Session) {
+        let stamp = ui.views.stamp(&session.editor);
+        ui.views
+            .dispatch(
+                &mut session.editor,
+                &stamp,
+                v::NativeAction::Command(mbse_model::stage1::Command::EditText {
+                    key: mbse_model::stage1::RawKey {
+                        record: RecordId(1),
+                        field: "name".into(),
+                        item: None,
+                    },
+                    text: "Changed native system".into(),
+                }),
+            )
+            .unwrap();
+    }
+    fn paired_native(
+        ui: &mut ViewWorkspace,
+        session: &mut Session,
+        kind: WriteKind,
+        path: &Path,
+    ) -> mbse_model::stage1_io::WriteJob {
+        let prepared = ui
+            .prepare_native(session, kind.clone(), Some(path))
+            .unwrap();
+        let job = match kind {
+            WriteKind::Save => session.begin_save(path).unwrap(),
+            WriteKind::Recovery => session.begin_recovery().unwrap(),
+        };
+        ui.capture_native(session, &job.ticket, &kind, prepared)
+            .unwrap();
+        job
+    }
+    fn finish_pair(
+        ui: &mut ViewWorkspace,
+        session: &mut Session,
+        native: mbse_model::stage1_io::WriteJob,
+    ) {
+        let (ticket, kind) = (native.ticket.clone(), native.kind.clone());
+        assert!(session.complete(mbse_model::stage1_io::execute_write(native)));
+        let job = ui.view_job_after_native(session, &ticket, &kind).unwrap();
+        assert!(ui.io.complete(session, &ui.views, io::execute(job)));
+    }
+    fn saved_pair(area: &tempfile::TempDir, session: &mut Session) -> ViewWorkspace {
+        let mut ui = ViewWorkspace::new(session);
+        let native = paired_native(
+            &mut ui,
+            session,
+            WriteKind::Save,
+            &area.path().join("model.kernspan"),
+        );
+        finish_pair(&mut ui, session, native);
+        ui.verify_preserved(session, &WriteKind::Save).unwrap();
+        ui
+    }
+    fn tick(
+        timer: &mut crate::periodic_recovery::PeriodicRecovery,
+        at: std::time::Instant,
+        session: &Session,
+        ui: &ViewWorkspace,
+    ) -> bool {
+        timer.due(at, true, INTERVAL, false, session, ui)
+    }
+    #[test]
+    fn periodic_layout_only_clean_native_creates_verified_pair_without_repeating() {
+        let (area, mut session) = session();
+        let mut ui = saved_pair(&area, &mut session);
+        assert!(!session.is_dirty());
+        let now = std::time::Instant::now();
+        let mut timer = crate::periodic_recovery::PeriodicRecovery::new(now, &session, &ui);
+        layout_edit(&mut ui, &session, "Layout only");
+        assert!(!tick(&mut timer, now + INTERVAL, &session, &ui));
+        assert!(tick(&mut timer, now + INTERVAL + QUIET, &session, &ui));
+        let job = paired_native(&mut ui, &mut session, WriteKind::Recovery, area.path());
+        finish_pair(&mut ui, &mut session, job);
+        assert!(!session.is_dirty());
+        assert!(session.recovery_current());
+        ui.verify_preserved(&session, &WriteKind::Recovery).unwrap();
+        assert!(!tick(&mut timer, now + INTERVAL * 3, &session, &ui));
+    }
+    #[test]
+    fn periodic_both_dirty_preserves_native_and_layout_independently() {
+        let (area, mut session) = session();
+        let mut ui = saved_pair(&area, &mut session);
+        let now = std::time::Instant::now();
+        let mut timer = crate::periodic_recovery::PeriodicRecovery::new(now, &session, &ui);
+        native_edit(&mut ui, &mut session);
+        layout_edit(&mut ui, &session, "Both dirty");
+        assert!(!tick(&mut timer, now + INTERVAL, &session, &ui));
+        assert!(tick(&mut timer, now + INTERVAL + QUIET, &session, &ui));
+        let job = paired_native(&mut ui, &mut session, WriteKind::Recovery, area.path());
+        finish_pair(&mut ui, &mut session, job);
+        assert!(session.is_dirty()); // Recovery is not native Save.
+        assert!(session.recovery_current());
+        assert!(!ui.preserved(&session, &WriteKind::Save));
+        ui.verify_preserved(&session, &WriteKind::Recovery).unwrap();
+    }
+    #[test]
+    fn periodic_native_edit_during_recovery_cannot_ack_newer_snapshot() {
+        let (area, mut session) = session();
+        let mut ui = saved_pair(&area, &mut session);
+        let now = std::time::Instant::now();
+        let mut timer = crate::periodic_recovery::PeriodicRecovery::new(now, &session, &ui);
+        layout_edit(&mut ui, &session, "Before recovery");
+        assert!(!tick(&mut timer, now + INTERVAL, &session, &ui));
+        assert!(tick(&mut timer, now + INTERVAL + QUIET, &session, &ui));
+        let job = paired_native(&mut ui, &mut session, WriteKind::Recovery, area.path());
+        let ticket = job.ticket.clone();
+        native_edit(&mut ui, &mut session);
+        assert!(session.complete(mbse_model::stage1_io::execute_write(job)));
+        assert!(!session.recovery_current());
+        // Same decision as Workspace::finish_writes for an old native result.
+        assert!(ui.cancel_native_capture(&ticket, &WriteKind::Recovery));
+        assert!(!ui.io.pending());
+        assert!(!tick(&mut timer, now + INTERVAL * 2, &session, &ui));
+        assert!(tick(&mut timer, now + INTERVAL * 2 + QUIET, &session, &ui));
+    }
+    #[test]
+    fn periodic_layout_edit_during_write_leaves_new_revision_due() {
+        let (area, mut session) = session();
+        let mut ui = saved_pair(&area, &mut session);
+        let now = std::time::Instant::now();
+        let mut timer = crate::periodic_recovery::PeriodicRecovery::new(now, &session, &ui);
+        layout_edit(&mut ui, &session, "Frozen layout");
+        let native = paired_native(&mut ui, &mut session, WriteKind::Recovery, area.path());
+        let ticket = native.ticket.clone();
+        assert!(session.complete(mbse_model::stage1_io::execute_write(native)));
+        let views_job = ui
+            .view_job_after_native(&session, &ticket, &WriteKind::Recovery)
+            .unwrap();
+        layout_edit(&mut ui, &session, "Newer live layout");
+        let digest = ui.views.document().digest().unwrap();
+        assert!(!tick(&mut timer, now + INTERVAL, &session, &ui));
+        assert!(ui.io.complete(&session, &ui.views, io::execute(views_job)));
+        assert!(!ui.preserved(&session, &WriteKind::Recovery));
+        assert!(ui.verify_preserved(&session, &WriteKind::Recovery).is_err());
+        assert_eq!(ui.views.document().digest().unwrap(), digest);
+        assert!(tick(&mut timer, now + INTERVAL + QUIET, &session, &ui));
+    }
+    #[test]
+    fn periodic_busy_manual_pair_coalesces_without_replacing_ticket_or_destination() {
+        let (area, mut session) = session();
+        let mut ui = saved_pair(&area, &mut session);
+        let now = std::time::Instant::now();
+        let mut timer = crate::periodic_recovery::PeriodicRecovery::new(now, &session, &ui);
+        let job = paired_native(
+            &mut ui,
+            &mut session,
+            WriteKind::Save,
+            &area.path().join("model.kernspan"),
+        );
+        let ticket = job.ticket.clone();
+        layout_edit(&mut ui, &session, "During manual save");
+        assert!(!tick(&mut timer, now + INTERVAL, &session, &ui));
+        assert!(!tick(&mut timer, now + INTERVAL * 2, &session, &ui));
+        assert_eq!(session.pending_ticket(), Some(&ticket));
+        assert!(ui.pair_pending());
+        assert!(session.complete(mbse_model::stage1_io::execute_write(job)));
+        let views_job = ui
+            .view_job_after_native(&session, &ticket, &WriteKind::Save)
+            .unwrap();
+        assert!(!tick(&mut timer, now + INTERVAL * 3, &session, &ui));
+        assert!(ui.io.complete(&session, &ui.views, io::execute(views_job)));
+        // Waiting did not consume a new interval; current edits remain due.
+        assert!(tick(&mut timer, now + INTERVAL * 3, &session, &ui));
+    }
+    #[test]
+    fn periodic_recovery_worker_failure_keeps_native_success_and_retries_later() {
+        let (area, mut session) = session();
+        let mut ui = saved_pair(&area, &mut session);
+        let now = std::time::Instant::now();
+        let mut timer = crate::periodic_recovery::PeriodicRecovery::new(now, &session, &ui);
+        layout_edit(&mut ui, &session, "Worker failure");
+        assert!(!tick(&mut timer, now + INTERVAL, &session, &ui));
+        let attempt = now + INTERVAL + QUIET;
+        assert!(tick(&mut timer, attempt, &session, &ui));
+        let native = paired_native(&mut ui, &mut session, WriteKind::Recovery, area.path());
+        let ticket = native.ticket.clone();
+        assert!(session.complete(mbse_model::stage1_io::execute_write(native)));
+        let job = ui
+            .view_job_after_native(&session, &ticket, &WriteKind::Recovery)
+            .unwrap();
+        let digest = ui.views.document().digest().unwrap();
+        assert!(ui
+            .start_job_with(&session, job, |_| Err(std::io::Error::other(
+                "injected worker failure"
+            )))
+            .is_err());
+        assert!(session.recovery_current());
+        assert!(!ui.io.pending());
+        assert!(!ui.pair_pending());
+        assert_eq!(ui.views.document().digest().unwrap(), digest);
+        assert!(!tick(&mut timer, attempt + QUIET, &session, &ui));
+        assert!(tick(&mut timer, attempt + INTERVAL, &session, &ui));
+    }
+    #[test]
+    fn periodic_frozen_destination_failure_never_overwrites_foreign_leaf() {
+        let (area, mut session) = session();
+        let mut ui = saved_pair(&area, &mut session);
+        layout_edit(&mut ui, &session, "Destination failure");
+        let native = paired_native(&mut ui, &mut session, WriteKind::Recovery, area.path());
+        let ticket = native.ticket.clone();
+        let destination = ui
+            .native_capture
+            .as_ref()
+            .unwrap()
+            .prepared
+            .destination
+            .path()
+            .to_owned();
+        std::fs::write(&destination, b"foreign leaf").unwrap();
+        assert!(session.complete(mbse_model::stage1_io::execute_write(native)));
+        assert!(ui
+            .view_job_after_native(&session, &ticket, &WriteKind::Recovery)
+            .is_err());
+        assert_eq!(std::fs::read(&destination).unwrap(), b"foreign leaf");
+        assert!(session.recovery_current());
+        assert!(!ui.pair_pending());
+        assert!(!ui.io.pending());
+        assert!(!ui.preserved(&session, &WriteKind::Recovery));
+        // Retry allocates a new leaf rather than claiming the failed one.
+        let retry = ui
+            .prepare_native(&session, WriteKind::Recovery, None)
+            .unwrap();
+        assert_ne!(retry.destination.path(), destination);
+    }
+    #[test]
+    fn periodic_disabled_navigation_and_origin_change_reset_quiet_observation() {
+        let (area, mut session) = session();
+        let mut ui = saved_pair(&area, &mut session);
+        let now = std::time::Instant::now();
+        let mut timer = crate::periodic_recovery::PeriodicRecovery::new(now, &session, &ui);
+        layout_edit(&mut ui, &session, "Disabled edit");
+        assert!(!timer.due(now + INTERVAL, false, INTERVAL, false, &session, &ui));
+        assert!(!timer.due(now + INTERVAL + QUIET, true, INTERVAL, true, &session, &ui));
+        assert!(tick(&mut timer, now + INTERVAL + QUIET, &session, &ui));
+        // Same native document and default revision, distinct private origin.
+        let foreign = ViewWorkspace::new(&session);
+        assert!(!tick(&mut timer, now + INTERVAL * 3, &session, &foreign));
+        assert!(tick(
+            &mut timer,
+            now + INTERVAL * 3 + QUIET,
+            &session,
+            &foreign
+        ));
+    }
+    #[test]
+    fn periodic_native_failure_does_not_start_or_ack_views() {
+        let (area, mut session) = session();
+        let mut ui = saved_pair(&area, &mut session);
+        layout_edit(&mut ui, &session, "Native failure");
+        let native = paired_native(&mut ui, &mut session, WriteKind::Recovery, area.path());
+        let ticket = native.ticket.clone();
+        std::fs::write(&ticket.destination, b"foreign native leaf").unwrap();
+        let result = mbse_model::stage1_io::execute_write(native);
+        assert!(result.error().is_some());
+        assert!(session.complete(result));
+        assert!(ui.cancel_native_capture(&ticket, &WriteKind::Recovery));
+        assert!(!session.recovery_current());
+        assert!(!ui.io.pending());
+        assert!(!ui.preserved(&session, &WriteKind::Recovery));
+        assert_eq!(
+            std::fs::read(&ticket.destination).unwrap(),
+            b"foreign native leaf"
+        );
+    }
 }

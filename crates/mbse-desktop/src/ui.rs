@@ -53,8 +53,7 @@ pub struct Workspace {
     pending_continue: Option<(Load, WriteKind)>,
     preferences: Preferences,
     settings_window: bool,
-    last_edit: Instant,
-    last_periodic: Instant,
+    periodic_recovery: crate::periodic_recovery::PeriodicRecovery,
     feedback: String,
     error: bool,
     creation: Option<(RecordKind, RecordId, String)>,
@@ -111,7 +110,8 @@ impl Workspace {
         let (writes, completed_writes) = mpsc::channel();
         let preferences = Preferences::open(config, ctx.clone());
         let views = crate::views_ui::ViewWorkspace::new(&session);
-        let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,last_edit:Instant::now(),last_periodic:Instant::now(), feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
+        let periodic_recovery = crate::periodic_recovery::PeriodicRecovery::new(Instant::now(), &session, &views);
+        let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,periodic_recovery, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
             creation: None, relation: None, popout: None, pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new() };
         app.refresh_recoveries();
         app
@@ -159,9 +159,6 @@ impl Workspace {
                 "Draft retained; last accepted model value is unchanged.".into()
             }
         });
-        if message.is_ok() {
-            self.last_edit = Instant::now();
-        }
         self.result(message);
     }
     fn select(&mut self, id: RecordId) {
@@ -401,7 +398,7 @@ impl Workspace {
                     .unwrap_or_default();
                 self.model_fields.clear();
                 self.allow_close = None;
-                self.last_edit = Instant::now();
+                self.periodic_recovery = crate::periodic_recovery::PeriodicRecovery::new(Instant::now(), &self.session, &self.views);
                 self.refresh_recoveries();
                 self.result(Ok(
                     "Model opened. Imported and recovered documents are independent drafts.".into(),
@@ -513,7 +510,7 @@ impl Workspace {
             ui.horizontal_wrapped(|ui| {
                 ui.label(format!("{:?} · model r{} · raw v{}", self.session.status(), self.session.editor.snapshot.model_revision, self.session.editor.snapshot.raw_version));
                 if self.session.recovery_current() { ui.colored_label(ACCENT, "Current recovery copy"); }
-                ui.label(if self.preferences.value.periodic_recovery {format!("Periodic recovery on · {}s · {}",self.preferences.value.recovery_interval_seconds,if self.session.pending(){"write pending"}else if self.session.recovery_current(){"current"}else{"waiting for quiet interval"})}else{"Periodic recovery off".into()});
+                ui.label(if self.preferences.value.periodic_recovery {format!("Periodic recovery on · {}s · {}",self.preferences.value.recovery_interval_seconds,if self.session.pending()||self.views.pair_pending()||self.views.io.pending(){"write pending"}else if self.session.recovery_current()&&self.views.preserved(&self.session,&WriteKind::Recovery){"native and views current"}else{"waiting for quiet interval"})}else{"Periodic recovery off".into()});
                 if self.preferences.pending() || self.preferences.read_only {ui.colored_label(if self.preferences.status.contains("failed")||self.preferences.read_only{ERROR}else{INK},&self.preferences.status);}
                 if self.preferences.load_warning{ui.colored_label(ERROR,"Settings load needs attention; open Recovery settings for the retained report.");}
                 ui.label(RichText::new("App-owned model · restricted SysML subset").small());
@@ -531,9 +528,6 @@ impl Workspace {
             NativeOutcome::History(changed) => Ok(changed), _ => Err("Unexpected command outcome".into()),
         });
         self.views.reconcile();
-        if result.as_ref().is_ok_and(|changed| *changed) {
-            self.last_edit = Instant::now();
-        }
         let text_history = field.is_some();
         self.result(result.map(|changed| {if text_history {if changed {"Field text history applied; accepted values and raw drafts retain their separate state.".into()}else{"No field text history available.".into()}}else if changed {"Model history applied. Raw drafts remain separately retained.".into()}else{"No model history available.".into()}}));
     }
@@ -1268,13 +1262,13 @@ impl Workspace {
         egui::Window::new("Recovery settings").id(egui::Id::new("recovery-settings")).open(&mut open).default_width(480.).show(ctx,|ui|{
             ui.label("Application-local recovery copies; never an automatic save to your source file.");let response=ui.checkbox(&mut self.preferences.value.periodic_recovery,"Enable periodic recovery");self.bound("settings:periodic",&response);
             let combo=egui::ComboBox::from_id_salt("recovery-interval").selected_text(format!("Every {} seconds",self.preferences.value.recovery_interval_seconds)).show_ui(ui,|ui|{for seconds in [15,30,60,120,300,600,3600]{let response=ui.selectable_value(&mut self.preferences.value.recovery_interval_seconds,seconds,format!("{seconds} seconds"));self.bound(format!("settings:interval:{seconds}"),&response);}});self.bound("settings:interval",&combo.response);
-            ui.label("A changed snapshot is copied only after a quiet period and the interval. New edits stay separate from a pending write; its receipt must verify the current snapshot before current recovery is shown.");
+            ui.label("Native or layout changes are copied after a quiet period and the interval. Pending writes finish independently; newer edits wait for another recovery copy.");
             ui.label(&self.preferences.report);ui.label(&self.preferences.status);if self.preferences.pending(){ui.label("Preference write pending; the GUI remains responsive.");}
             ui.label(format!("Recovery data: {}",self.session.state_root.display()));
         });
         self.settings_window = open;
         if self.preferences.value != before {
-            self.last_periodic = Instant::now();
+            self.periodic_recovery.reset_interval(Instant::now());
             self.preferences.changed();
         }
     }
@@ -1664,15 +1658,14 @@ impl eframe::App for Workspace {
         }
         let now = Instant::now();
         let interval = Duration::from_secs(self.preferences.value.recovery_interval_seconds);
-        if self.preferences.value.periodic_recovery
-            && self.pending.is_none()
-            && !self.session.pending()
-            && self.session.is_dirty()
-            && !self.session.recovery_current()
-            && now.duration_since(self.last_edit) >= Duration::from_millis(750)
-            && now.duration_since(self.last_periodic) >= interval
-        {
-            self.last_periodic = now;
+        if self.periodic_recovery.due(
+            now,
+            self.preferences.value.periodic_recovery,
+            interval,
+            self.pending.is_some(),
+            &self.session,
+            &self.views,
+        ) {
             self.recovery();
         }
         if self.preferences.value.periodic_recovery || self.session.pending() || self.views.io.pending() {
