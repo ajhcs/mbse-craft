@@ -312,7 +312,7 @@ impl Workspace {
                 ui.heading(format!("{} #{} · {}",report.kind().label(),report.target().0,report.name()));
                 let stale=report.check(&self.session.editor,&self.views.views).err();if let Some(error)=&stale {ui.colored_label(ERROR,error);}
                 let (usages,occurrences,edges)=report.totals();let (drafts,creations)=report.drafts();
-                ui.label(format!("Stored field draft entries: {drafts}; pending creation drafts owned here: {creations}. Field count includes valid, incomplete and retained generation entries; draft text is not copied into this report."));
+                ui.label(format!("Stored field draft entries: {drafts}; stored creation draft entries owned here: {creations}. Field count includes valid, incomplete and retained generation entries; draft text is not copied into this report."));
                 egui::ScrollArea::vertical().max_height(650.).show(ui,|ui|{
                     ui.label(format!("Direct native usages: showing {} of {usages} ({} omitted)",report.usages().len(),usages-report.usages().len()));
                     for (index,row) in report.usages().iter().enumerate() {ui.group(|ui|{
