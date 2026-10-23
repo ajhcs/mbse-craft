@@ -17,7 +17,20 @@ fn edge_index(snapshot: &Snapshot) -> Result<EdgeIndex, String> {
 }
 use serde::{de, Deserialize, Deserializer, Serialize, Serializer};
 use sha2::{Digest, Sha256};
-use std::collections::{BTreeMap, BTreeSet, VecDeque};
+use std::{
+    collections::{BTreeMap, BTreeSet, VecDeque},
+    sync::atomic::{AtomicU64, Ordering},
+};
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub(crate) struct Origin(u64);
+static NEXT_ORIGIN: AtomicU64 = AtomicU64::new(1);
+fn new_origin() -> Result<Origin, String> {
+    NEXT_ORIGIN
+        .fetch_update(Ordering::Relaxed, Ordering::Relaxed, |n| n.checked_add(1))
+        .map(Origin)
+        .map_err(|_| "VIEWS_RUNTIME_ORIGIN_EXHAUSTED".into())
+}
 
 pub const PROFILE: &str = "mbse-craft.native-views/1";
 pub const RECOVERY_PROFILE: &str = "mbse-craft.native-views-recovery/1";
@@ -404,6 +417,7 @@ fn check_presence(p: &Presence) -> Result<(), String> {
 }
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Stamp {
+    origin: Origin,
     native: Freshness,
     snapshot_hash: String,
     revision: u64,
@@ -454,11 +468,15 @@ struct HistoryProof {
 /// Bounded immutable layout frozen alongside a native request. It carries no
 /// I/O authority; a sealed accepted native checkpoint is still required.
 pub struct Capture {
+    origin: Origin,
     document: Document,
     native: Freshness,
     snapshot_hash: String,
 }
 impl Capture {
+    pub(crate) fn origin(&self) -> Origin {
+        self.origin
+    }
     pub(crate) fn document(
         self,
         editor: &Editor,
@@ -487,6 +505,7 @@ impl Capture {
 }
 /// Presentation transaction owner. Session and native I/O ownership are not cloned.
 pub struct Views {
+    origin: Origin,
     document: Document,
     past: VecDeque<Entry>,
     future: VecDeque<Entry>,
@@ -565,8 +584,11 @@ impl Views {
             );
         }
         document.validate(&editor.snapshot)?;
+        let origin = new_origin()?;
         Ok(Self {
+            origin,
             pristine_default: Some(Stamp {
+                origin,
                 native: editor.freshness(),
                 snapshot_hash: editor.snapshot.digest(),
                 revision: document.revision(),
@@ -579,6 +601,7 @@ impl Views {
     }
     pub fn capture(&self, editor: &Editor) -> Capture {
         Capture {
+            origin: self.origin,
             document: self.document.clone(),
             native: editor.freshness(),
             snapshot_hash: editor.snapshot.digest(),
@@ -591,11 +614,15 @@ impl Views {
             .as_ref()
             .is_some_and(|initial| initial == &self.stamp(editor))
     }
+    pub(crate) fn origin(&self) -> Origin {
+        self.origin
+    }
     pub fn document(&self) -> &Document {
         &self.document
     }
     pub fn stamp(&self, editor: &Editor) -> Stamp {
         Stamp {
+            origin: self.origin,
             native: editor.freshness(),
             snapshot_hash: editor.snapshot.digest(),
             revision: self.document.revision(),
@@ -933,6 +960,7 @@ impl Views {
         }
         document.validate(&editor.snapshot)?;
         Ok(Self {
+            origin: new_origin()?,
             document,
             past: VecDeque::new(),
             future: VecDeque::new(),
@@ -949,6 +977,7 @@ impl Views {
         }
         document.validate(&editor.snapshot)?;
         Ok(Self {
+            origin: new_origin()?,
             document,
             past: VecDeque::new(),
             future: VecDeque::new(),
@@ -1395,5 +1424,49 @@ mod tests {
         }
         let maximum = serde_json::json!({"records":[{"id":u64::MAX,"type":"System","name":"Exhausted identity","scope":u64::MAX,"purpose":""}]});
         assert!(Snapshot::from_fixture(DocumentId("max-native".into()), &maximum).is_err());
+    }
+    #[test]
+    fn same_wire_sidecar_revision_geometry_or_record_cannot_reuse_runtime_stamp() {
+        let mut e = editor();
+        let mut setup = Views::new(&e).unwrap();
+        let one = add(&mut setup, &mut e, RecordKind::Mission, RecordId(1), "One");
+        let two = add(&mut setup, &mut e, RecordKind::Mission, RecordId(1), "Two");
+        let a = Views::new(&e).unwrap();
+        let stamp = a.stamp(&e);
+        let occurrence = a
+            .document
+            .occurrences
+            .values()
+            .find(|o| o.record == one)
+            .unwrap()
+            .id;
+        for change_target in [false, true] {
+            let mut wire = serde_json::to_value(a.recovery(&e).unwrap()).unwrap();
+            if change_target {
+                wire["occurrences"][occurrence.get().to_string()]["record"] =
+                    serde_json::json!(two.0.to_string());
+            } else {
+                wire["occurrences"][occurrence.get().to_string()]["geometry"]["x"] =
+                    serde_json::json!(987.);
+            }
+            let mut b = Views::restore(&serde_json::to_vec(&wire).unwrap(), &e).unwrap();
+            assert_eq!(a.document.sidecar_id, b.document.sidecar_id);
+            assert_eq!(a.document.revision(), b.document.revision());
+            assert_ne!(a.origin, b.origin);
+            let digest = b.document.digest().unwrap();
+            let history = b.history_usage();
+            let next = b.document.next_id();
+            let native = e.snapshot.digest();
+            assert!(b
+                .apply(&e, &stamp, Layout::Move(occurrence, Geometry::at(5., 6.)))
+                .is_err());
+            assert!(b.apply(&e, &stamp, Layout::Remove(occurrence)).is_err());
+            assert!(b.undo(&e, &stamp, false).is_err());
+            assert!(b.dispatch(&mut e, &stamp, NativeAction::ModelUndo).is_err());
+            assert_eq!(b.document.digest().unwrap(), digest);
+            assert_eq!(b.history_usage(), history);
+            assert_eq!(b.document.next_id(), next);
+            assert_eq!(e.snapshot.digest(), native);
+        }
     }
 }

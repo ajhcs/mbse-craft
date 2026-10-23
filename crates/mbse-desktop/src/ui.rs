@@ -253,8 +253,8 @@ impl Workspace {
             }
         }
     }
-    fn spawn_write(&mut self, job: WriteJob) {
-        self.views.capture_native(&self.session);
+    fn spawn_write(&mut self, job: WriteJob, prepared: crate::views_ui::PreparedPair) {
+        if let Err(error) = self.views.capture_native(&self.session, &job.ticket, &job.kind, prepared) { self.result(Err(error)); }
         let tx = self.writes.clone();
         let ctx = self.context.clone();
         let kind = job.kind.clone();
@@ -273,12 +273,13 @@ impl Workspace {
             self.result(Err("Enter a native save destination before saving.".into()));
             return false;
         }
-        match self
-            .session
-            .begin_save(&PathBuf::from(self.save_path.trim()))
-        {
+        let native_path = PathBuf::from(self.save_path.trim());
+        let prepared = match self.views.prepare_native(&self.session, WriteKind::Save, Some(&native_path)) {
+            Ok(prepared) => prepared, Err(error) => { self.result(Err(error)); return false; }
+        };
+        match self.session.begin_save(&native_path) {
             Ok(job) => {
-                self.spawn_write(job);
+                self.spawn_write(job, prepared);
                 true
             }
             Err(error) => {
@@ -289,9 +290,12 @@ impl Workspace {
     }
     fn recovery(&mut self) -> bool {
         if self.views.io.pending() { self.result(Err("Views write pending; current work retained.".into())); return false; }
+        let prepared = match self.views.prepare_native(&self.session, WriteKind::Recovery, None) {
+            Ok(prepared) => prepared, Err(error) => { self.result(Err(error)); return false; }
+        };
         match self.session.begin_recovery() {
             Ok(job) => {
-                self.spawn_write(job);
+                self.spawn_write(job, prepared);
                 true
             }
             Err(error) => {
@@ -303,6 +307,7 @@ impl Workspace {
     fn finish_writes(&mut self, ctx: &egui::Context) {
         while let Ok(result) = self.completed_writes.try_recv() {
             let kind = result.kind.clone();
+            let ticket = result.ticket.clone();
             let error = result.error().map(ToString::to_string);
             let consumed = self.session.complete(result);
             let current = consumed
@@ -314,21 +319,16 @@ impl Workspace {
                     }
                     WriteKind::Recovery => self.session.recovery_current() && !matches!(self.session.status(), stage1_io::SaveStatus::Error(_) | stage1_io::SaveStatus::Conflict(_)),
                 };
+            if !consumed {
+                self.result(Err("Stale native receipt ignored; active request and paired capture retained.".into()));
+                continue;
+            }
             if let Some(error) = error {
-                self.views.cancel_native_capture();
-                self.result(Err(format!(
-                    "{kind:?} failed: {error}. Current work retained."
-                )));
-                self.pending_continue = None;
-            } else if !consumed {
-                self.views.cancel_native_capture();
-                self.result(Err(
-                    "Write receipt did not match the active document; current work retained."
-                        .into(),
-                ));
+                self.views.cancel_native_capture(&ticket, &kind);
+                self.result(Err(format!("{kind:?} failed: {error}. Current work retained.")));
                 self.pending_continue = None;
             } else if !current {
-                self.views.cancel_native_capture();
+                self.views.cancel_native_capture(&ticket, &kind);
                 self.result(Ok(format!("Earlier {kind:?} snapshot written. Newer accepted values or drafts remain unsaved; repeat preservation to continue.")));
                 self.pending_continue = None;
             } else {
@@ -345,7 +345,7 @@ impl Workspace {
                     ),
                 }));
                 self.refresh_recoveries();
-                if let Err(error) = self.views.after_native(&self.session, &kind) {
+                if let Err(error) = self.views.after_native(&self.session, &ticket, &kind) {
                     self.result(Err(format!("Native preservation succeeded; views remain unsaved: {error}")));
                     self.pending_continue = None;
                 }

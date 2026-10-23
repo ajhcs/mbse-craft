@@ -2,7 +2,7 @@
 //! No cross-file atomicity, noncooperating-writer CAS or power-loss guarantee.
 use crate::{
     local_input,
-    native_views::{Capture, Document, NativeBinding, Views, MAX_BYTES},
+    native_views::{Capture, Document, NativeBinding, Origin, Views, MAX_BYTES},
     stage1::Freshness,
     stage1_io::{NativeCheckpoint, Session},
 };
@@ -23,6 +23,7 @@ pub enum Kind {
 }
 #[derive(Clone, Debug, PartialEq, Eq)]
 struct Ticket {
+    origin: Origin,
     session: String,
     instance: String,
     request: u64,
@@ -52,6 +53,19 @@ impl Job {
         }
     }
 }
+pub struct Destination {
+    path: PathBuf,
+    expected: Option<String>,
+    kind: Kind,
+    session: String,
+    instance: String,
+    origin: Origin,
+}
+impl Destination {
+    pub fn path(&self) -> &Path {
+        &self.path
+    }
+}
 pub struct Receipt {
     ticket: Ticket,
     outcome: Result<(), String>,
@@ -68,6 +82,7 @@ pub struct RetainedInput {
     pub reason: String,
 }
 struct Acknowledged {
+    origin: Origin,
     path: PathBuf,
     disk_hash: String,
     content_digest: String,
@@ -103,7 +118,8 @@ impl Io {
     /// Cheap in-memory status hint. This does not prove current disk contents.
     pub fn is_saved(&self, session: &Session, views: &Views) -> bool {
         self.saved.as_ref().is_some_and(|s| {
-            s.revision == views.document().revision()
+            s.origin == views.origin()
+                && s.revision == views.document().revision()
                 && s.native_freshness == session.editor.freshness()
                 && s.binding.as_ref().is_some_and(|b| {
                     session.accepted_native_artifact_sha256() == Some(b.artifact_sha256.as_str())
@@ -113,7 +129,8 @@ impl Io {
     /// Cheap recovery status hint; verification is separate before navigation.
     pub fn recovery_current(&self, session: &Session, views: &Views) -> bool {
         self.recovered.as_ref().is_some_and(|s| {
-            s.revision == views.document().revision()
+            s.origin == views.origin()
+                && s.revision == views.document().revision()
                 && s.native_freshness == session.editor.freshness()
         })
     }
@@ -136,7 +153,8 @@ impl Io {
             Kind::Recovery => self.recovered.as_ref(),
         }
         .ok_or("VIEWS_NOT_ACKNOWLEDGED")?;
-        if ack.revision != views.document().revision()
+        if ack.origin != views.origin()
+            || ack.revision != views.document().revision()
             || ack.native_freshness != session.editor.freshness()
         {
             return Err("VIEWS_NEWER_STATE_UNSAVED".into());
@@ -159,6 +177,41 @@ impl Io {
             return Err("VIEWS_CONTINUE_CONTENT_CHANGED".into());
         }
         Ok(())
+    }
+    pub fn freeze_destination(
+        &self,
+        session: &Session,
+        views: &Views,
+        path: &Path,
+        kind: Kind,
+    ) -> Result<Destination, String> {
+        if self.pending() {
+            return Err("VIEWS_WRITE_PENDING".into());
+        }
+        let path = destination(path)?;
+        if self.protected.contains(&path) {
+            return Err("VIEWS_PROTECTED_INPUT".into());
+        }
+        if session.path.as_ref() == Some(&path) {
+            return Err("VIEWS_NATIVE_PATH_FORBIDDEN".into());
+        }
+        let expected = if kind == Kind::Bound {
+            self.saved
+                .as_ref()
+                .filter(|s| s.path == path && s.origin == views.origin())
+                .map(|s| s.disk_hash.clone())
+        } else {
+            None
+        };
+        check_target(&path, expected.as_deref())?;
+        Ok(Destination {
+            path,
+            expected,
+            kind,
+            session: session.session_id().0.clone(),
+            instance: session.instance_id().0.clone(),
+            origin: views.origin(),
+        })
     }
     pub fn begin(
         &mut self,
@@ -186,52 +239,56 @@ impl Io {
         } else {
             views.recovery(&session.editor)?
         };
-        self.prepare(session, document, path, kind)
+        let destination = self.freeze_destination(session, views, path, kind)?;
+        self.prepare(session, document, destination)
     }
     pub fn begin_captured(
         &mut self,
         session: &Session,
+        views: &Views,
         capture: Capture,
-        path: &Path,
-        kind: Kind,
+        destination: Destination,
     ) -> Result<Job, String> {
         if self.pending() {
             return Err("VIEWS_WRITE_PENDING".into());
         }
-        let checkpoint = if kind == Kind::Bound {
+        if capture.origin() != views.origin() || destination.origin != views.origin() {
+            return Err("VIEWS_CAPTURE_ORIGIN_CHANGED".into());
+        }
+        let checkpoint = if destination.kind == Kind::Bound {
             Some(accepted_native(session)?)
         } else {
             None
         };
         let document = capture.document(&session.editor, checkpoint.as_ref())?;
-        self.prepare(session, document, path, kind)
+        self.prepare(session, document, destination)
     }
     fn prepare(
         &mut self,
         session: &Session,
         document: Document,
-        path: &Path,
-        kind: Kind,
+        destination: Destination,
     ) -> Result<Job, String> {
-        let path = destination(path)?;
-        if self.protected.contains(&path) {
-            return Err("VIEWS_PROTECTED_INPUT: choose a fresh destination".into());
+        if destination.session != session.session_id().0
+            || destination.instance != session.instance_id().0
+        {
+            return Err("VIEWS_DESTINATION_OWNER_CHANGED".into());
         }
-        if session.path.as_ref() == Some(&path) {
-            return Err("VIEWS_NATIVE_PATH_FORBIDDEN".into());
+        let Destination {
+            path,
+            expected,
+            kind,
+            origin,
+            ..
+        } = destination;
+        if self.protected.contains(&path) {
+            return Err("VIEWS_PROTECTED_INPUT".into());
         }
         let bytes = document.encoded()?;
-        let expected = if kind == Kind::Bound {
-            self.saved
-                .as_ref()
-                .filter(|s| s.path == path)
-                .map(|s| s.disk_hash.clone())
-        } else {
-            None
-        };
         check_target(&path, expected.as_deref())?;
         let request = self.next.checked_add(1).ok_or("VIEWS_REQUEST_EXHAUSTED")?;
         let ticket = Ticket {
+            origin,
             session: session.session_id().0.clone(),
             instance: session.instance_id().0.clone(),
             request,
@@ -269,6 +326,7 @@ impl Io {
             || pending.session != session.session_id().0
             || pending.instance != session.instance_id().0
             || pending.document != session.editor.snapshot.document_id.0
+            || pending.origin != views.origin()
         {
             return false;
         }
@@ -296,6 +354,7 @@ impl Io {
                     // The frozen revision may be older. Its digest is recorded,
                     // but is_saved compares to the live presentation independently.
                     self.saved = Some(Acknowledged {
+                        origin: ticket.origin,
                         path: ticket.path.clone(),
                         disk_hash: ticket.hash.clone(),
                         content_digest: ticket.hash.clone(),
@@ -306,6 +365,7 @@ impl Io {
                 }
                 Kind::Recovery => {
                     self.recovered = Some(Acknowledged {
+                        origin: ticket.origin,
                         path: ticket.path.clone(),
                         disk_hash: ticket.hash.clone(),
                         content_digest: ticket.hash.clone(),
@@ -367,6 +427,7 @@ impl Io {
                 // Noncanonical but valid input is tracked by its canonical
                 // content digest separately from the exact prior disk hash.
                 let ack = Acknowledged {
+                    origin: candidate.origin(),
                     path: path.clone(),
                     disk_hash: digest,
                     content_digest: if recovery {
@@ -861,6 +922,10 @@ mod tests {
         let mut views = Views::new(&session.editor).unwrap();
         let mut io = Io::default();
         let capture = views.capture(&session.editor);
+        let path = area.path().join("layout.mbse-views.json");
+        let destination = io
+            .freeze_destination(&session, &views, &path, Kind::Bound)
+            .unwrap();
         let native = session
             .begin_save(&area.path().join("model.kernspan"))
             .unwrap();
@@ -868,7 +933,7 @@ mod tests {
         assert!(session.complete(stage1_io::execute_write(native)));
         let path = area.path().join("layout.mbse-views.json");
         let job = io
-            .begin_captured(&session, capture, &path, Kind::Bound)
+            .begin_captured(&session, &views, capture, destination)
             .unwrap();
         let old_token = job.start_token();
         assert!(io.complete(&session, &views, execute(job)));
@@ -1051,5 +1116,34 @@ mod tests {
         assert_eq!(views.document().digest().unwrap(), before);
         assert!(io.pending());
         drop(pending);
+    }
+    #[test]
+    fn foreign_presentation_origin_refuses_capture_and_ack_without_clearing_pending() {
+        let area = area();
+        let mut session = Session::new(area.path()).unwrap();
+        native_save(&mut session, &area.path().join("model.kernspan"));
+        let a = Views::new(&session.editor).unwrap();
+        let b = Views::restore(
+            &a.recovery(&session.editor).unwrap().encoded().unwrap(),
+            &session.editor,
+        )
+        .unwrap();
+        let mut io = Io::default();
+        let path = area.path().join("layout.mbse-views.json");
+        let destination = io
+            .freeze_destination(&session, &a, &path, Kind::Bound)
+            .unwrap();
+        assert!(io
+            .begin_captured(&session, &b, a.capture(&session.editor), destination)
+            .is_err());
+        assert!(!io.pending());
+        assert!(!path.exists());
+        let job = io.begin(&session, &a, &path, Kind::Bound).unwrap();
+        let token = job.start_token();
+        let receipt = execute(job);
+        assert!(!io.complete(&session, &b, receipt));
+        assert!(io.pending());
+        assert!(!io.is_saved(&session, &b));
+        assert!(io.failed_start(&session, token, "test cleanup".into()));
     }
 }

@@ -6,13 +6,24 @@ use mbse_model::{
     },
     native_views_io::{self as io, Io, Kind, Receipt},
     stage1::{Editor, RecordId},
-    stage1_io::{Session, WriteKind},
+    stage1_io::{IoTicket, Session, WriteKind},
 };
 use std::{
     path::PathBuf,
     sync::mpsc::{self, Receiver, Sender},
 };
 
+pub struct PreparedPair {
+    capture: v::Capture,
+    destination: io::Destination,
+    kind: WriteKind,
+    native_stamp: mbse_model::stage1::Freshness,
+    snapshot_hash: String,
+}
+struct NativePair {
+    ticket: IoTicket,
+    prepared: PreparedPair,
+}
 pub struct ViewWorkspace {
     pub views: Views,
     pub io: Io,
@@ -25,7 +36,7 @@ pub struct ViewWorkspace {
     sender: Sender<Receipt>,
     receiver: Receiver<Receipt>,
     recovery_serial: u64,
-    native_capture: Option<v::Capture>,
+    native_capture: Option<NativePair>,
     drag: Option<(OccurrenceId, Geometry, v::Stamp, egui::Pos2)>,
     route_source: Option<OccurrenceId>,
     route_target: Option<OccurrenceId>,
@@ -96,30 +107,28 @@ impl ViewWorkspace {
             };
         }
     }
-    pub fn capture_native(&mut self, session: &Session) {
-        self.native_capture = Some(self.views.capture(&session.editor));
+    pub fn pair_pending(&self) -> bool {
+        self.native_capture.is_some()
     }
-    pub fn cancel_native_capture(&mut self) {
-        self.native_capture = None;
-    }
-    /// Called only after the native controller verified a current completion.
-    pub fn after_native(&mut self, session: &Session, kind: &WriteKind) -> Result<(), String> {
-        if self.io.pending() {
-            return Err("Views write pending; repeat preservation after acknowledgment.".into());
+    pub fn prepare_native(
+        &mut self,
+        session: &Session,
+        kind: WriteKind,
+        native_path: Option<&std::path::Path>,
+    ) -> Result<PreparedPair, String> {
+        if self.pair_pending() || self.io.pending() || session.pending() {
+            return Err("Preservation already pending; current layout retained".into());
         }
-        let (path, kind) = match kind {
+        let (path, view_kind) = match kind {
             WriteKind::Save => {
-                io::accepted_native(session)?;
-                if self.path.trim().is_empty() {
-                    self.path = session
-                        .path
-                        .as_ref()
-                        .ok_or("Native path missing")?
+                let path = if self.path.trim().is_empty() {
+                    native_path
+                        .ok_or("Native save path required")?
                         .with_extension("mbse-views.json")
-                        .display()
-                        .to_string();
-                }
-                (PathBuf::from(self.path.trim()), Kind::Bound)
+                } else {
+                    PathBuf::from(self.path.trim())
+                };
+                (path, Kind::Bound)
             }
             WriteKind::Recovery => {
                 self.recovery_serial = self
@@ -136,21 +145,117 @@ impl ViewWorkspace {
                 )
             }
         };
-        let capture = self
+        let destination = self
+            .io
+            .freeze_destination(session, &self.views, &path, view_kind)?;
+        Ok(PreparedPair {
+            capture: self.views.capture(&session.editor),
+            destination,
+            kind,
+            native_stamp: session.editor.freshness(),
+            snapshot_hash: session.editor.snapshot.digest(),
+        })
+    }
+    pub fn capture_native(
+        &mut self,
+        session: &Session,
+        ticket: &IoTicket,
+        kind: &WriteKind,
+        prepared: PreparedPair,
+    ) -> Result<(), String> {
+        if self.pair_pending()
+            || prepared.kind != *kind
+            || session.pending_ticket() != Some(ticket)
+            || ticket.session_id != *session.session_id()
+            || ticket.instance_id != *session.instance_id()
+            || ticket.document_id != prepared.native_stamp.document_id
+            || ticket.model_revision != prepared.native_stamp.model_revision
+            || ticket.raw_version != prepared.native_stamp.raw_version
+            || ticket.snapshot_hash != prepared.snapshot_hash
+        {
+            return Err("Native/views request correlation refused; existing pair retained".into());
+        }
+        self.native_capture = Some(NativePair {
+            ticket: ticket.clone(),
+            prepared,
+        });
+        Ok(())
+    }
+    pub fn cancel_native_capture(&mut self, ticket: &IoTicket, kind: &WriteKind) -> bool {
+        if !self
             .native_capture
-            .take()
-            .ok_or("Missing frozen native/views request pair")?;
-        let job = self.io.begin_captured(session, capture, &path, kind)?;
+            .as_ref()
+            .is_some_and(|p| p.ticket == *ticket && p.prepared.kind == *kind)
+        {
+            return false;
+        }
+        self.native_capture = None;
+        true
+    }
+    fn view_job_after_native(
+        &mut self,
+        session: &Session,
+        ticket: &IoTicket,
+        kind: &WriteKind,
+    ) -> Result<io::Job, String> {
+        if !self
+            .native_capture
+            .as_ref()
+            .is_some_and(|p| p.ticket == *ticket && p.prepared.kind == *kind)
+        {
+            return Err("Stale native completion; newer paired capture retained".into());
+        }
+        if self.io.pending() || session.pending() {
+            return Err("Preservation still pending".into());
+        }
+        match kind {
+            WriteKind::Save => {
+                let c = io::accepted_native(session)?;
+                if c.accepted_request() != Some(&ticket.request_id)
+                    || c.session_id() != &ticket.session_id
+                    || c.instance_id() != &ticket.instance_id
+                    || c.path() != ticket.destination.as_path()
+                    || c.snapshot_sha256() != ticket.snapshot_hash
+                {
+                    return Err("Native accepted checkpoint does not own this pair".into());
+                }
+            }
+            WriteKind::Recovery => {
+                if !session.recovery_current()
+                    || session.last_recovery() != Some(ticket.destination.as_path())
+                    || matches!(
+                        session.status(),
+                        mbse_model::stage1_io::SaveStatus::Error(_)
+                            | mbse_model::stage1_io::SaveStatus::Conflict(_)
+                    )
+                {
+                    return Err("Native recovery does not own this pair".into());
+                }
+            }
+        }
+        let pair = self.native_capture.take().expect("matched pair");
+        self.io.begin_captured(
+            session,
+            &self.views,
+            pair.prepared.capture,
+            pair.prepared.destination,
+        )
+    }
+    /// Only the exact accepted owning native request starts its frozen views job.
+    pub fn after_native(
+        &mut self,
+        session: &Session,
+        ticket: &IoTicket,
+        kind: &WriteKind,
+    ) -> Result<(), String> {
+        let job = self.view_job_after_native(session, ticket, kind)?;
         self.start_job_with(session, job, |work| {
             std::thread::Builder::new()
                 .name("mbse-views-write".into())
                 .spawn(work)
                 .map(|_| ())
         })?;
-        self.note = format!(
-            "Native preservation acknowledged. Views write pending: {}",
-            path.display()
-        );
+        self.note = "Native preservation acknowledged; frozen views destination pending".into();
         Ok(())
     }
     fn start_job_with(
@@ -289,10 +394,11 @@ impl ViewWorkspace {
         });
         ui.horizontal_wrapped(|ui| {
             ui.label("Explicit views path");
-            ui.text_edit_singleline(&mut self.path);
+            let path_enabled = !self.pair_pending() && !self.io.pending() && !session.pending();
+            ui.add_enabled(path_enabled, egui::TextEdit::singleline(&mut self.path));
             // Admission is checked on click by Io::open; no disk reads in a
             // per-frame status hint, and no wire revision grants permission.
-            let may_open = !self.io.pending() && !session.pending();
+            let may_open = !self.io.pending() && !session.pending() && !self.pair_pending();
             if ui
                 .add_enabled(may_open, egui::Button::new("Open views"))
                 .clicked()
@@ -472,6 +578,11 @@ impl ViewWorkspace {
         );
     }
     fn open(&mut self, session: &Session, recovery: bool) {
+        if self.pair_pending() || session.pending() {
+            self.note =
+                "Paired preservation pending; Open canceled and current layout retained".into();
+            return;
+        }
         self.note = match self.io.open(
             session,
             &mut self.views,
@@ -731,5 +842,82 @@ mod tests {
             (ui.active, ui.selected, ui.route_source, ui.route_target),
             (active, selected, source, target_id)
         );
+    }
+    #[test]
+    fn deferred_native_ack_keeps_original_destination_and_refuses_open_while_pending() {
+        let (area, mut session) = session();
+        let mut ui = ViewWorkspace::new(&session);
+        let path_a = area.path().join("a.mbse-views.json");
+        let path_b = area.path().join("b.mbse-views.json");
+        let native_path = area.path().join("model.kernspan");
+        ui.path = path_a.display().to_string();
+        let prepared = ui
+            .prepare_native(&session, WriteKind::Save, Some(&native_path))
+            .unwrap();
+        let native = session.begin_save(&native_path).unwrap();
+        let ticket = native.ticket.clone();
+        ui.capture_native(&session, &ticket, &WriteKind::Save, prepared)
+            .unwrap();
+        let source = ui
+            .views
+            .recovery(&session.editor)
+            .unwrap()
+            .encoded()
+            .unwrap();
+        std::fs::write(&path_b, &source).unwrap();
+        ui.path = path_b.display().to_string();
+        let before = ui.views.document().digest().unwrap();
+        ui.open(&session, true);
+        assert!(ui.note.contains("pending"));
+        assert_eq!(ui.views.document().digest().unwrap(), before);
+        assert!(ui.io.open(&session, &mut ui.views, &path_b, true).is_err());
+        assert!(session.complete(mbse_model::stage1_io::execute_write(native)));
+        let job = ui
+            .view_job_after_native(&session, &ticket, &WriteKind::Save)
+            .unwrap();
+        let receipt = io::execute(job);
+        assert!(ui.io.complete(&session, &ui.views, receipt));
+        assert!(path_a.is_file());
+        assert_eq!(std::fs::read(&path_b).unwrap(), source);
+        ui.verify_preserved(&session, &WriteKind::Save).unwrap();
+    }
+    #[test]
+    fn stale_native_cancel_or_ack_cannot_clear_newer_paired_request() {
+        let (area, mut session) = session();
+        let mut ui = ViewWorkspace::new(&session);
+        let native_path = area.path().join("model.kernspan");
+        ui.path = area
+            .path()
+            .join("views.mbse-views.json")
+            .display()
+            .to_string();
+        let prepared = ui
+            .prepare_native(&session, WriteKind::Save, Some(&native_path))
+            .unwrap();
+        let first = session.begin_save(&native_path).unwrap();
+        let old = first.ticket.clone();
+        ui.capture_native(&session, &old, &WriteKind::Save, prepared)
+            .unwrap();
+        assert!(session.complete(mbse_model::stage1_io::execute_write(first)));
+        assert!(ui.cancel_native_capture(&old, &WriteKind::Save));
+        let prepared = ui
+            .prepare_native(&session, WriteKind::Save, Some(&native_path))
+            .unwrap();
+        let second = session.begin_save(&native_path).unwrap();
+        let newer = second.ticket.clone();
+        ui.capture_native(&session, &newer, &WriteKind::Save, prepared)
+            .unwrap();
+        assert!(!ui.cancel_native_capture(&old, &WriteKind::Save));
+        assert!(ui
+            .view_job_after_native(&session, &old, &WriteKind::Save)
+            .is_err());
+        assert!(ui.pair_pending());
+        assert!(session.complete(mbse_model::stage1_io::execute_write(second)));
+        let job = ui
+            .view_job_after_native(&session, &newer, &WriteKind::Save)
+            .unwrap();
+        let receipt = io::execute(job);
+        assert!(ui.io.complete(&session, &ui.views, receipt));
+        assert!(!ui.pair_pending());
     }
 }
