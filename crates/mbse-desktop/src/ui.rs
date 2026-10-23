@@ -64,6 +64,8 @@ pub struct Workspace {
     search_query: mbse_model::native_search::Query,
     search_report: Option<mbse_model::native_search::Report>,
     search_note: String,
+    browser_revealed: Option<RecordId>,
+    browser_open_groups: BTreeMap<String,bool>,
     pending: Option<Load>,
     context_creation: Option<(RecordId, String, ContextKind)>,
     recovery_window: bool,
@@ -117,7 +119,7 @@ impl Workspace {
         let views = crate::views_ui::ViewWorkspace::new(&session);
         let periodic_recovery = crate::periodic_recovery::PeriodicRecovery::new(Instant::now(), &session, &views);
         let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,periodic_recovery, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
-            creation: None, relation: None, popout: None, usages: None, search_open:false, search_query:Default::default(), search_report:None, search_note:String::new(), pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new() };
+            creation: None, relation: None, popout: None, usages: None, search_open:false, search_query:Default::default(), search_report:None, search_note:String::new(), browser_revealed:None,browser_open_groups:BTreeMap::new(), pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new() };
         app.refresh_recoveries();
         app
     }
@@ -323,7 +325,7 @@ impl Workspace {
         let result = self.session.editor.select(id);
         if let Err(error) = result {
             self.result(Err(error));
-        }
+        } else { self.browser_revealed=None; }
     }
     fn field(
         &mut self,
@@ -559,7 +561,7 @@ impl Workspace {
                 self.relation = None;
                 self.popout = None;
                 self.usages = None;
-                self.search_open=false;self.search_query=Default::default();self.search_report=None;self.search_note.clear();
+                self.search_open=false;self.search_query=Default::default();self.search_report=None;self.search_note.clear();self.browser_revealed=None;self.browser_open_groups.clear();
                 self.save_path = self
                     .session
                     .path
@@ -707,6 +709,15 @@ impl Workspace {
         let text_history = field.is_some();
         self.result(result.map(|changed| {if text_history {if changed {"Field text history applied; accepted values and raw drafts retain their separate state.".into()}else{"No field text history available.".into()}}else if changed {"Model history applied. Raw drafts remain separately retained.".into()}else{"No model history available.".into()}}));
     }
+    fn browser_group_key(&self,system:RecordId)->egui::Id {
+        egui::Id::new(("native-system-membership",self.session.editor.freshness().instance_id,system.0))
+    }
+    fn browser_reveal_system(&mut self)->Option<RecordId> {
+        let selected=self.session.editor.selected;
+        if selected==self.browser_revealed {return None;}
+        self.browser_revealed=selected;
+        selected.and_then(|id|self.session.editor.snapshot.records.get(&id).map(|record|record.scope))
+    }
     fn sidebar(&mut self, root: &mut egui::Ui) {
         egui::Panel::left("model_navigation").default_size(338.).size_range(290. ..=420.).resizable(true).show(root, |ui| {
             egui::ScrollArea::vertical().show(ui, |ui| {
@@ -714,13 +725,23 @@ impl Workspace {
                 let response=ui.button("Search native records");self.bound("action:Search native records",&response);if response.clicked(){self.open_search();}
                 let records: Vec<_> = self.session.editor.snapshot.records.values().cloned().collect();
                 let selected = self.session.editor.selected;
-                egui::CollapsingHeader::new(format!("Records · {}", records.len())).default_open(true).show(ui, |ui| {
-                    for record in &records {
-                        let response = ui.selectable_label(selected == Some(record.id), format!("{} · {}", record.kind.label(), if record.name.is_empty() { "Unnamed" } else { &record.name }));
-                        self.bound(format!("tree:{}",record.id.0),&response);
-                        if response.clicked() { self.select(record.id); }
-                    }
-                });
+                ui.label(format!("System membership · {} native records",records.len()));
+                ui.label(RichText::new("Membership follows each record's System scope; typed relations remain separate.").small());
+                let reveal=self.browser_reveal_system();self.browser_open_groups.clear();
+                match mbse_model::native_system_browser::project(&self.session.editor.snapshot) {
+                    Ok(groups)=>for group in groups {
+                        let system=group.system.id;
+                        let title=format!("System #{} · {}{} · {} members",system.0,group.system.name,if group.system.shortened {" [name shortened]"}else{""},group.members.len());
+                        let response=egui::CollapsingHeader::new(title).id_salt(self.browser_group_key(system)).default_open(true).open(if reveal==Some(system){Some(true)}else{None}).show(ui,|ui|{
+                            let response=ui.selectable_label(selected==Some(system),format!("Select System #{}",system.0));self.bound(format!("tree:{}",system.0),&response);if response.clicked(){self.select(system);}
+                            for member in group.members {
+                                let response=ui.selectable_label(selected==Some(member.id),format!("{} #{} · {}{}",member.kind.label(),member.id.0,member.name,if member.shortened {" [name shortened]"}else{""}));self.bound(format!("tree:{}",member.id.0),&response);if response.clicked(){self.select(member.id);}
+                            }
+                        });
+                        self.bound(format!("tree:system:{}:header",system.0),&response.header_response);self.browser_open_groups.insert(system.0.to_string(),response.fully_open());
+                    },
+                    Err(error)=>{ui.colored_label(ERROR,format!("Native membership unavailable: {error}. Model retained."));}
+                }
                 ui.separator();
                 if let Some(record) = selected.and_then(|id| records.iter().find(|r| r.id == id)).cloned() {
                     ui.label(RichText::new(format!("{} #{}", record.kind.label(), record.id.0)).color(ACCENT));
@@ -1693,6 +1714,13 @@ fn block_close(
 mod policies {
     use super::*;
     #[test]
+    fn browser_reveal_tracks_explicit_selection_and_runtime_without_model_edits() {
+        let area=tempfile::Builder::new().prefix("native-browser-ui-").tempdir_in(std::env::var_os("TMPDIR").expect("workspace TMPDIR")).unwrap();let session=Session::new(area.path()).unwrap();let ctx=egui::Context::default();let mut app=Workspace::new(session,None,None,craft_window::Choice::probe(craft_window::Prefix::new("MBSE_CRAFT")),&ctx);
+        app.command(Command::Add{kind:RecordKind::Mission,owner:RecordId(1),name:"Duplicate".into()});let mission=app.session.editor.selected.unwrap();app.select(RecordId(1));assert_eq!(app.browser_reveal_system(),Some(RecordId(1)));assert_eq!(app.browser_reveal_system(),None);
+        let before=(app.session.editor.snapshot.digest(),app.views.views.document().digest().unwrap(),app.views.views.history_usage(),app.save_path.clone());app.select(mission);assert_eq!(app.browser_reveal_system(),Some(RecordId(1)));assert_eq!(app.browser_reveal_system(),None);app.select(mission);assert_eq!(app.browser_reveal_system(),Some(RecordId(1)));assert_eq!((app.session.editor.snapshot.digest(),app.views.views.document().digest().unwrap(),app.views.views.history_usage(),app.save_path.clone()),before);
+        let key=app.browser_group_key(RecordId(1));let second=area.path().join("second-runtime");std::fs::create_dir(&second).unwrap();let mut session=Session::new(&second).unwrap();session.editor.snapshot=app.session.editor.snapshot.clone();let replacement=Workspace::new(session,None,None,craft_window::Choice::probe(craft_window::Prefix::new("MBSE_CRAFT")),&ctx);assert_ne!(key,replacement.browser_group_key(RecordId(1)));assert!(!app.session.pending());assert!(!app.views.pair_pending());
+    }
+    #[test]
     fn native_search_draft_changes_clear_results_and_navigation_preserves_dirty_target() {
         use mbse_model::native_search::{Mode,Query};
         let area=tempfile::Builder::new().prefix("native-search-ui-").tempdir_in(std::env::var_os("TMPDIR").expect("workspace TMPDIR")).unwrap();let session=Session::new(area.path()).unwrap();let ctx=egui::Context::default();let mut app=Workspace::new(session,None,None,craft_window::Choice::probe(craft_window::Prefix::new("MBSE_CRAFT")),&ctx);
@@ -1922,7 +1950,7 @@ impl eframe::App for Workspace {
         let audit = serde_json::json!({"profile":"mbse-craft.ui-geometry/1","frame_policy":format!("{:?}",self.frame_choice.frame()),"frame_override":self.frame_choice.overridden(), "pixels_per_point":ctx.pixels_per_point(),
             "views_camera":self.views.camera_audit(),"views_mapping_rehearsal":self.views.mapping_audit(&self.session.editor),"views_inspection_visible":self.views.inspection_visible(),"views_inspection_sha256":self.views.inspection_source_sha256(),"views_inspection_note":self.views.inspection_note(),"views_revision":self.views.views.document().revision().to_string(),"views_active":self.views.active.get().to_string(),"views_pending":self.views.io.pending(),"views_saved_hint":self.views.io.is_saved(&self.session,&self.views.views),"views_note":self.views.note,
             "model_revision":self.session.editor.snapshot.model_revision,"raw_version":self.session.editor.snapshot.raw_version,
-            "native_search":serde_json::json!({"open":self.search_open,"note":self.search_note,"query_mode":format!("{:?}",self.search_query.mode),"report":self.search_report.as_ref().map(|report|serde_json::json!({"total":report.total(),"ids":report.hits().iter().map(|h|h.record.0.to_string()).collect::<Vec<_>>(),"current":report.check(&self.session.editor,&self.views.views).is_ok()}))}),"native_usages":self.usages.as_ref().map(|report|serde_json::json!({"target":report.target().0,"rows":report.usages().len(),"current":report.check(&self.session.editor,&self.views.views).is_ok()})),"snapshot_hash":self.session.editor.snapshot.digest(),"selected":self.session.editor.selected.map(|id|id.0),
+            "native_system_browser":serde_json::json!({"open_groups":self.browser_open_groups}),"native_search":serde_json::json!({"open":self.search_open,"note":self.search_note,"query_mode":format!("{:?}",self.search_query.mode),"report":self.search_report.as_ref().map(|report|serde_json::json!({"total":report.total(),"ids":report.hits().iter().map(|h|h.record.0.to_string()).collect::<Vec<_>>(),"current":report.check(&self.session.editor,&self.views.views).is_ok()}))}),"native_usages":self.usages.as_ref().map(|report|serde_json::json!({"target":report.target().0,"rows":report.usages().len(),"current":report.check(&self.session.editor,&self.views.views).is_ok()})),"snapshot_hash":self.session.editor.snapshot.digest(),"selected":self.session.editor.selected.map(|id|id.0),
             "save_status":format!("{:?}",self.session.status()),"periodic_recovery":self.preferences.value.periodic_recovery,"recovery_interval_seconds":self.preferences.value.recovery_interval_seconds,"preferences_status":self.preferences.status,"write_pending":self.session.pending(),"external_copy_pending":self.exchange.copy_pending(),"source_edit_dirty":self.exchange.source_edit_dirty(),"source_edit_pending":self.exchange.source_edit_pending(),"recovery_path":self.session.last_recovery().map(|p|p.display().to_string()),"native_recovery_status":self.periodic_recovery.status(&self.session,&self.views).0,"layout_recovery_status":self.periodic_recovery.status(&self.session,&self.views).1,"views_recovery_current_hint":self.views.io.recovery_current(&self.session,&self.views.views),"views_pair_pending":self.views.pair_pending(),"views_gesture_active":self.views.layout_gesture_active(),"feedback":self.feedback,"error":self.error,"widgets":self.audit});
         if let Ok(bytes) = serde_json::to_vec_pretty(&audit) {
             if bytes != self.audit_previous {

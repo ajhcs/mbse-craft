@@ -20,3 +20,5 @@ pub mod native_views_plan;
 pub mod native_navigation;
 
 pub mod native_search;
+
+pub mod native_system_browser;
