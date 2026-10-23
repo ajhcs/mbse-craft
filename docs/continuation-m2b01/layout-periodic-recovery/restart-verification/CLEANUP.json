@@ -1,0 +1,33 @@
+{
+  "checked_utc": "2026-10-23T15:33:20.577281+00:00",
+  "owned_identities": [
+    {
+      "pid": 1103056,
+      "start_ticks": 14384179,
+      "original_identity_absent": true
+    },
+    {
+      "pid": 1104110,
+      "start_ticks": 14384812,
+      "original_identity_absent": true
+    },
+    {
+      "pid": 1104137,
+      "start_ticks": 14384864,
+      "original_identity_absent": true
+    },
+    {
+      "pid": 1105158,
+      "start_ticks": 14385575,
+      "original_identity_absent": true
+    },
+    {
+      "pid": 1105169,
+      "start_ticks": 14385583,
+      "original_identity_absent": true
+    }
+  ],
+  "owned_jobs": [],
+  "build_allocation_released": true,
+  "renderer_used": false
+}

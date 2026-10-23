@@ -38,3 +38,20 @@ status/continued editing/close behavior require a new exact-binary native run.
 
 No screenshot upload work, old evidence changes, service/security operations,
 external parity/admission or recovered-layout-copy/v2 implementation is included.
+
+## Executed qualification for933e871
+
+All71 focused tests plus build passed, receiptc3950adfb5e7ac9aa049054f37eb91da4061fb9bd8f19ea98e47c377a759a49a.
+Binaryf5cb158b4e4811df712b978a4bd1c8a36e4e0840869800be45e98b0a4333dc3d
+completed actual native timer workflow15:36:34.990356Z–15:44:17.881812Z.
+Held pointer, normal15s recovery, disabled timer, controlled partial failure,
+ordinary retry, cancel-close, bound reopen and independent native Recover were
+observed.18 original PNGs remain local; hashes and receipts are retained here.
+Independent review corroborated narrow claims with the two documented timing/
+wording limitations in native/INDEPENDENT-REVIEW.md. All six identities absent,
+Xauthority removed, owned_jobs=[]. No upload/publication/merge.
+
+The separate UI wording correction changes only Layout changes awaiting
+preservation to Layout not saved to bound sidecar, because a current recovery
+is independent of a stale bound Save. These71-test/native results belong to
+933e871; the label-only successor requires its own build/UI evidence.

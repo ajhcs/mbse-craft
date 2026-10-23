@@ -530,7 +530,7 @@ impl Workspace {
                     else if self.views.io.pending() { "Layout write pending".into() }
                     else if let Some(error) = &self.views.io.last_error { format!("Layout write failed: {error}; live layout retained") }
                     else if self.views.io.is_saved(&self.session, &self.views.views) { "Layout saved receipt (file rechecked before navigation)".into() }
-                    else { "Layout changes awaiting preservation".into() });
+                    else { "Layout not saved to bound sidecar".into() });
                 ui.label(if self.preferences.value.periodic_recovery {format!("Periodic recovery on · {}s · {}",self.preferences.value.recovery_interval_seconds,if self.session.pending()||self.views.pair_pending()||self.views.io.pending(){"write pending"}else{"waiting for quiet interval"})}else{"Periodic recovery off".into()});
                 if self.preferences.pending() || self.preferences.read_only {ui.colored_label(if self.preferences.status.contains("failed")||self.preferences.read_only{ERROR}else{INK},&self.preferences.status);}
                 if self.preferences.load_warning{ui.colored_label(ERROR,"Settings load needs attention; open Recovery settings for the retained report.");}
