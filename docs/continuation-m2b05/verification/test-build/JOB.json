@@ -1,0 +1,93 @@
+{
+  "profile": "mbse-craft.native-find-usages-job/1",
+  "status": "PreparedNotLaunched",
+  "owner_thread": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+  "cwd": "/workspace/worktrees/builderbob/mbse-craft/native-find-usages",
+  "branch": "feature/native-find-usages",
+  "source_commit": "16aa9adcfda5f69aea2336209829744922aa6509",
+  "source_sha256": "3e42753480893ec64477fabf97a8c383fb274f1d2f2972967d776a8ae032acd8",
+  "source_manifest": "/workspace/build/builderbob/mbse-craft/native-find-usages/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "1ec6df64e909fedfd3481539b971336d661dacc20327c61ba1de4e579a5653a6",
+  "cargo_lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-model",
+      "native_navigation",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-model",
+      "stage1_graph",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop",
+      "ui::policies",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/semantic-v2/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/semantic-v2/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "CARGO_TERM_COLOR": "never",
+    "RUST_TEST_THREADS": "1"
+  },
+  "binary_source": "/workspace/build/builderbob/mbse-craft/semantic-v2/target/debug/mbse-desktop",
+  "disk_budget": {
+    "target_apparent_bytes_before": 5805647217,
+    "workspace_available_bytes_at_preparation": 64276987904,
+    "planned_additional_bytes": 1073741824,
+    "minimum_free_bytes_before_launch": 2147483648,
+    "preserved_binary_max_bytes": 536870912,
+    "prior_native_binary_bytes": 398406064,
+    "notes": "Existing shared MBSE single-writer target plus one bounded binary; no target duplication or cleanup. No enforced filesystem quota."
+  },
+  "admission": "Fresh exact-job packet plus explicit same-target sole-writer action allocation required. Allocation must independently pin current host appserver identity; no stale993990 assumption or substitute resource probe.",
+  "target_isolation": "This integrator is sole candidate/target writer; historical exact-owned jobs checked absent in current executor namespace. New host visibility/restart health must be reconciled by coordinator. No idle global mutex.",
+  "gui": false,
+  "uploads": false,
+  "new_agent_contexts": false,
+  "independent_review": "Actual-source review confirms normalized role semantics and sealed navigation; UI transition test corrected before execution; final reviewer closure pending.",
+  "timeout": "No hard timeout in prior reviewed wait-based wrapper; expected bounded incremental work, do not assert estimate as timeout.",
+  "scope": "M2B CAT004/CAP010 native authored-graph Findusages and sealed stale-safe index navigation; no source/model/layout/save/schema mutation.",
+  "expected_tests_unrun": {
+    "native_navigation": 4,
+    "stage1_graph": 3,
+    "desktop_policies": 5,
+    "total": 12
+  },
+  "new_tests_authored": 5
+}

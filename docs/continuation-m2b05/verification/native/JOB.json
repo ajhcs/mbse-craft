@@ -1,0 +1,33 @@
+{
+  "profile": "mbse-craft.native-find-usages-native-job/1",
+  "status": "PreparedNotLaunched",
+  "owner_thread": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+  "source_commit": "16aa9adcfda5f69aea2336209829744922aa6509",
+  "source_sha256": "3e42753480893ec64477fabf97a8c383fb274f1d2f2972967d776a8ae032acd8",
+  "source_manifest": "/workspace/build/builderbob/mbse-craft/native-find-usages/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "1ec6df64e909fedfd3481539b971336d661dacc20327c61ba1de4e579a5653a6",
+  "cargo_lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+  "binary": "/workspace/build/builderbob/mbse-craft/native-find-usages/attempt-20261023T170544485848Z/mbse-desktop",
+  "binary_sha256": "0f066bc91d50998e74f8a92e83f57334a19ccf661459d0353dfce8e405a6b414",
+  "binary_bytes": 399829520,
+  "executable_copy": "/workspace/build/builderbob/mbse-craft/native-find-usages/native-gate/bin/mbse-desktop",
+  "build_receipt": "/workspace/build/builderbob/mbse-craft/native-find-usages/attempt-20261023T170544485848Z/RECEIPT.json",
+  "build_receipt_sha256": "4e5119b1b6a43d2eff8209038860f6722f8bb337ab11409c2f64c653bd3bfc3c",
+  "run_dir": "/workspace/build/builderbob/mbse-craft/native-find-usages/native-gate/run-usages",
+  "state_dir": "/workspace/build/builderbob/mbse-craft/native-find-usages/native-gate/state",
+  "config_dir": "/workspace/build/builderbob/mbse-craft/native-find-usages/native-gate/config",
+  "workflow": [
+    "1. Private fresh state/display/auth; Save an initial native/views pair. Add one nativeMission through existing typedcreation dialog with explicitname; selectSystem#1; freeze actualnative/raw/layout stamps and lastSavefile hashes.",
+    "2. Findusages forSystem#1; observeMission referencingSystem underScope. ExplicitSelectreferencingrecord changes onlyselection, preserving native/raw/layout/Save destination and histories.",
+    "3. Edit thatMission name through ordinary nativefield; retainreport. Report mustvisiblystale andSelectdisabled. Refresh explicitly; validreport updateslabel andnavigationworks.",
+    "4. Close report; selectMission; Findusages gives scopedemptyresult for supportedroles (not exhaustiveallreferences claim). Missing/unresolved/direction/calc cases remainfocusedtests.",
+    "5. Inspect targetSavepairhashes beforeintentionalfinalSave. FinalexplicitSave preservesrecords andsamewire; closeappnormally, checkall6exactownedidentities/authremoved andsource/binaryunchanged. Capture originalfullframePNGs/audits/events forindependentreview; no upload/publication."
+  ],
+  "runtime_budget_seconds": 1200,
+  "isolation": "Existing reviewed aa-exec builderbob-codex/bwrap unshare-net/private tmp, exclusive fresh run directory, Xvfb displayfd, ephemeral0600Xauthority. r09 simultaneous isolated renderer scope; no global slot reservation.",
+  "native_admission": "Fresh exact-job packet and explicit action allocation pin current independent host identity before Xvfb/app launch",
+  "compiler": false,
+  "uploads": false,
+  "new_agent_contexts": false,
+  "qualified_unique_tests": 12
+}
