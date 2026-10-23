@@ -334,7 +334,7 @@ mod tests {
                 target: mission,
             },
         );
-        let mut d = v.document().clone();
+        let mut d = v.recovery(&e).unwrap();
         d.occurrences.get_mut(&hidden).unwrap().presence = Presence::Detached {
             reason: "Retained presentation diagnostic".into(),
         };
