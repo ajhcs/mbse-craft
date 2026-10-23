@@ -1,0 +1,30 @@
+{
+  "owner_thread_id": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+  "job_manifest_sha256": "129ad844031915df22e06c6c01a726c319670a19e6e443e4c2ed15dcd5db8fd1",
+  "commands_authorized": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "target_dir": "/workspace/build/builderbob/mbse-craft/semantic-v2/target",
+  "target_exclusive_confirmed": true,
+  "build_launch_authorized": true,
+  "expected_appserver_identity": {
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+    "pid": 1072280,
+    "pid_namespace": "pid:[4026531836]",
+    "start_ticks": 14235850,
+    "uid": 1000
+  },
+  "authority": "Authorized one-string status fix build; coordinator directs exact job now after normal checks",
+  "writer_confirmation": "Sole MBSE target writer; previous gate completed and exact identities absent; next feature edits are in a separate worktree and no compiler there",
+  "gui": false,
+  "uploads": false
+}

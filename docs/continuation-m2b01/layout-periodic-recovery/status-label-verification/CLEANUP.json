@@ -1,0 +1,14 @@
+{
+  "checked_utc": "2026-10-23T15:51:16.220949+00:00",
+  "owned_jobs": [],
+  "allocation_released": true,
+  "commands": [
+    {
+      "pid": 1112828,
+      "start_ticks": 14499053,
+      "started_utc": "2026-10-23T15:50:39.646583+00:00",
+      "ended_utc": "2026-10-23T15:50:41.595187+00:00",
+      "exit_code": 0
+    }
+  ]
+}
