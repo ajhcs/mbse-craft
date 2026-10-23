@@ -107,6 +107,9 @@ impl ViewWorkspace {
             };
         }
     }
+    pub fn layout_gesture_active(&self) -> bool {
+        self.drag.is_some()
+    }
     pub fn pair_pending(&self) -> bool {
         self.native_capture.is_some()
     }
@@ -248,7 +251,15 @@ impl ViewWorkspace {
         ticket: &IoTicket,
         kind: &WriteKind,
     ) -> Result<(), String> {
-        let job = self.view_job_after_native(session, ticket, kind)?;
+        let job = match self.view_job_after_native(session, ticket, kind) {
+            Ok(job) => job,
+            Err(error) => {
+                self.cancel_native_capture(ticket, kind);
+                self.note =
+                    format!("Views recovery/save could not start: {error}. Live layout retained.");
+                return Err(error);
+            }
+        };
         self.start_job_with(session, job, |work| {
             std::thread::Builder::new()
                 .name("mbse-views-write".into())
@@ -1194,5 +1205,193 @@ mod tests {
             std::fs::read(&ticket.destination).unwrap(),
             b"foreign native leaf"
         );
+    }
+
+    #[test]
+    fn periodic_held_pointer_gesture_and_release_wait_for_persisted_quiet_layout() {
+        let (area, mut session) = session();
+        let mut ui = saved_pair(&area, &mut session);
+        let now = std::time::Instant::now();
+        let mut timer = crate::periodic_recovery::PeriodicRecovery::new(now, &session, &ui);
+        layout_edit(&mut ui, &session, "Prior unsaved edit");
+        let o = ui
+            .views
+            .document()
+            .occurrences
+            .values()
+            .next()
+            .unwrap()
+            .clone();
+        ui.drag = Some((
+            o.id,
+            o.geometry.clone(),
+            ui.views.stamp(&session.editor),
+            egui::Pos2::ZERO,
+        ));
+        assert!(!tick(&mut timer, now + INTERVAL, &session, &ui));
+        assert!(!tick(&mut timer, now + INTERVAL * 2, &session, &ui));
+        ui.drag = None;
+        ui.apply(
+            &session.editor,
+            Layout::Move(o.id, Geometry::at(400., 300.)),
+        );
+        let release = now + INTERVAL * 2;
+        assert!(!tick(&mut timer, release, &session, &ui));
+        assert!(!tick(
+            &mut timer,
+            release + QUIET - std::time::Duration::from_millis(1),
+            &session,
+            &ui
+        ));
+        assert!(tick(&mut timer, release + QUIET, &session, &ui));
+    }
+    #[test]
+    fn periodic_due_time_rechecks_removed_truncated_and_tampered_bound_artifacts() {
+        for mutation in 0..3 {
+            let (area, mut session) = session();
+            let mut ui = saved_pair(&area, &mut session);
+            let path = ui.io.saved_path().unwrap().to_owned();
+            let original = std::fs::read(&path).unwrap();
+            let now = std::time::Instant::now();
+            let mut timer = crate::periodic_recovery::PeriodicRecovery::new(now, &session, &ui);
+            match mutation {
+                0 => std::fs::remove_file(&path).unwrap(),
+                1 => std::fs::write(&path, b"{").unwrap(),
+                _ => {
+                    let mut bytes = original;
+                    bytes.push(b'\n');
+                    std::fs::write(&path, bytes).unwrap();
+                }
+            }
+            let retained = std::fs::read(&path).ok();
+            assert!(ui.io.is_saved(&session, &ui.views)); // Hint deliberately stale.
+            assert!(!tick(&mut timer, now + INTERVAL - QUIET, &session, &ui));
+            assert_eq!(timer.status(&session, &ui).0, "awaiting timer check");
+            assert!(tick(&mut timer, now + INTERVAL, &session, &ui));
+            let native = paired_native(&mut ui, &mut session, WriteKind::Recovery, area.path());
+            finish_pair(&mut ui, &mut session, native);
+            ui.verify_preserved(&session, &WriteKind::Recovery).unwrap();
+            assert_eq!(std::fs::read(&path).ok(), retained); // No Save target repair/write.
+        }
+    }
+    #[test]
+    fn periodic_due_time_rechecks_layout_recovery_and_preserves_damaged_evidence() {
+        for mutation in 0..3 {
+            let (area, mut session) = session();
+            let mut ui = saved_pair(&area, &mut session);
+            layout_edit(&mut ui, &session, "Recovered layout");
+            let native = paired_native(&mut ui, &mut session, WriteKind::Recovery, area.path());
+            let path = ui
+                .native_capture
+                .as_ref()
+                .unwrap()
+                .prepared
+                .destination
+                .path()
+                .to_owned();
+            finish_pair(&mut ui, &mut session, native);
+            let now = std::time::Instant::now();
+            let mut timer = crate::periodic_recovery::PeriodicRecovery::new(now, &session, &ui);
+            match mutation {
+                0 => std::fs::remove_file(&path).unwrap(),
+                1 => std::fs::write(&path, b"{").unwrap(),
+                _ => {
+                    let mut bytes = std::fs::read(&path).unwrap();
+                    bytes.push(b'\n');
+                    std::fs::write(&path, bytes).unwrap();
+                }
+            }
+            let retained = std::fs::read(&path).ok();
+            assert!(session.recovery_current());
+            assert!(ui.io.recovery_current(&session, &ui.views));
+            assert!(tick(&mut timer, now + INTERVAL, &session, &ui));
+            assert_eq!(
+                timer.status(&session, &ui),
+                ("verified at timer check", "not verified at timer check")
+            );
+            let retry = paired_native(&mut ui, &mut session, WriteKind::Recovery, area.path());
+            finish_pair(&mut ui, &mut session, retry);
+            assert_eq!(std::fs::read(&path).ok(), retained);
+            ui.verify_preserved(&session, &WriteKind::Recovery).unwrap();
+        }
+    }
+    #[test]
+    fn periodic_verified_noop_checks_are_interval_bounded_and_native_loss_is_due() {
+        let (area, mut session) = session();
+        let mut ui = saved_pair(&area, &mut session);
+        layout_edit(&mut ui, &session, "Current recovery");
+        let job = paired_native(&mut ui, &mut session, WriteKind::Recovery, area.path());
+        finish_pair(&mut ui, &mut session, job);
+        let now = std::time::Instant::now();
+        let mut timer = crate::periodic_recovery::PeriodicRecovery::new(now, &session, &ui);
+        assert!(!tick(&mut timer, now + INTERVAL, &session, &ui));
+        assert_eq!(
+            timer.status(&session, &ui),
+            ("verified at timer check", "verified at timer check")
+        );
+        std::fs::remove_file(session.last_recovery().unwrap()).unwrap();
+        for seconds in 16..30 {
+            assert!(!tick(
+                &mut timer,
+                now + std::time::Duration::from_secs(seconds),
+                &session,
+                &ui
+            ));
+        }
+        assert!(tick(&mut timer, now + INTERVAL * 2, &session, &ui));
+        assert_eq!(
+            timer.status(&session, &ui),
+            ("not verified at timer check", "verified at timer check")
+        );
+        let missing = session.last_recovery().unwrap().to_owned();
+        let job = paired_native(&mut ui, &mut session, WriteKind::Recovery, area.path());
+        let ticket = job.ticket.clone();
+        let result = mbse_model::stage1_io::execute_write(job);
+        assert!(result.error().is_some());
+        assert!(session.complete(result));
+        assert!(ui.cancel_native_capture(&ticket, &WriteKind::Recovery));
+        assert!(!missing.exists()); // No silent repair of removed acknowledged artifact.
+        assert!(!ui.io.pending());
+        assert!(matches!(
+            session.status(),
+            mbse_model::stage1_io::SaveStatus::Conflict(_)
+                | mbse_model::stage1_io::SaveStatus::Error(_)
+        ));
+    }
+    #[test]
+    fn periodic_native_only_edit_is_eligible_without_layout_mutation() {
+        let (area, mut session) = session();
+        let mut ui = saved_pair(&area, &mut session);
+        let now = std::time::Instant::now();
+        let mut timer = crate::periodic_recovery::PeriodicRecovery::new(now, &session, &ui);
+        native_edit(&mut ui, &mut session);
+        assert!(!tick(&mut timer, now + INTERVAL, &session, &ui));
+        assert!(tick(&mut timer, now + INTERVAL + QUIET, &session, &ui));
+        let job = paired_native(&mut ui, &mut session, WriteKind::Recovery, area.path());
+        finish_pair(&mut ui, &mut session, job);
+        assert!(session.recovery_current());
+        ui.verify_preserved(&session, &WriteKind::Recovery).unwrap();
+    }
+    #[test]
+    fn native_validation_failure_clears_exact_pair_and_allows_recovery_retry() {
+        let (area, mut session) = session();
+        let mut ui = saved_pair(&area, &mut session);
+        layout_edit(&mut ui, &session, "Keep geometry on native tamper");
+        let native = paired_native(&mut ui, &mut session, WriteKind::Recovery, area.path());
+        let ticket = native.ticket.clone();
+        assert!(session.complete(mbse_model::stage1_io::execute_write(native)));
+        let bytes = std::fs::read(&ticket.destination).unwrap();
+        let digest = ui.views.document().digest().unwrap();
+        std::fs::write(&ticket.destination, b"controlled native tamper").unwrap();
+        assert!(ui
+            .after_native(&session, &ticket, &WriteKind::Recovery)
+            .is_err());
+        assert!(!ui.pair_pending());
+        assert!(!ui.io.pending());
+        assert_eq!(ui.views.document().digest().unwrap(), digest);
+        std::fs::write(&ticket.destination, bytes).unwrap(); // Restore owned fixture only.
+        let retry = paired_native(&mut ui, &mut session, WriteKind::Recovery, area.path());
+        finish_pair(&mut ui, &mut session, retry);
+        ui.verify_preserved(&session, &WriteKind::Recovery).unwrap();
     }
 }

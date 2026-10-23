@@ -8,6 +8,7 @@ pub struct PeriodicRecovery {
     observed: Stamp,
     last_edit: Instant,
     last_attempt: Instant,
+    verified: Option<(Stamp, bool, bool)>,
 }
 impl PeriodicRecovery {
     pub fn new(now: Instant, session: &Session, views: &ViewWorkspace) -> Self {
@@ -15,6 +16,25 @@ impl PeriodicRecovery {
             observed: views.views.stamp(&session.editor),
             last_edit: now,
             last_attempt: now,
+            verified: None,
+        }
+    }
+    /// Cached point-in-time evidence for display, never navigation permission.
+    pub fn status(&self, session: &Session, views: &ViewWorkspace) -> (&'static str, &'static str) {
+        match &self.verified {
+            Some((stamp, native, layout)) if *stamp == views.views.stamp(&session.editor) => (
+                if *native {
+                    "verified at timer check"
+                } else {
+                    "not verified at timer check"
+                },
+                if *layout {
+                    "verified at timer check"
+                } else {
+                    "not verified at timer check"
+                },
+            ),
+            _ => ("awaiting timer check", "awaiting timer check"),
         }
     }
     pub fn reset_interval(&mut self, now: Instant) {
@@ -33,6 +53,11 @@ impl PeriodicRecovery {
         if self.observed != stamp {
             self.observed = stamp;
             self.last_edit = now;
+            self.verified = None;
+        }
+        if views.layout_gesture_active() {
+            self.last_edit = now;
+            return false;
         }
         if !enabled
             || navigation_pending
@@ -44,17 +69,20 @@ impl PeriodicRecovery {
         {
             return false;
         }
-        // These layout hints only schedule work; they never authorize leaving
-        // a document. Close/open retain their exact-artifact verification.
-        let native_needed = session.is_dirty() && !session.recovery_current();
-        let layout_needed = !views.io.is_saved(session, &views.views)
-            && !views.io.recovery_current(session, &views.views);
-        if !native_needed && !layout_needed {
-            return false;
-        }
-        // Throttle failed preparation/start as well as successful attempts.
-        // Merely waiting for somebody else's pair does not consume an interval.
+        // Bounded artifact verification runs at most once per interval, even
+        // when the acknowledged pair is a no-op or verification fails.
         self.last_attempt = now;
-        true
+        let native_current = session.recovery_current();
+        let layout_current = views.preserved(session, &mbse_model::stage1_io::WriteKind::Recovery)
+            && views
+                .verify_preserved(session, &mbse_model::stage1_io::WriteKind::Recovery)
+                .is_ok();
+        self.verified = Some((self.observed.clone(), native_current, layout_current));
+        let saved_pair = !session.is_dirty()
+            && views.preserved(session, &mbse_model::stage1_io::WriteKind::Save)
+            && views
+                .verify_preserved(session, &mbse_model::stage1_io::WriteKind::Save)
+                .is_ok();
+        !saved_pair && !(native_current && layout_current)
     }
 }
