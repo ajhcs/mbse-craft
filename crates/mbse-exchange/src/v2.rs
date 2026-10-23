@@ -460,10 +460,7 @@ impl ProjectionSet {
         if hash(self.primary_bytes()) != self.primary_sha256 {
             return Err("V2_PRIMARY_HASH_CHANGED".into());
         }
-        craft_atomic::WriteOptions::default()
-            .with_new_file_permissions(craft_atomic::NewFilePermissions::Private)
-            .write_new(path, self.primary_bytes())
-            .map_err(|e| e.to_string())
+        crate::new_copy::write_private_new(path, self.primary_bytes())
     }
     pub fn admission_preview(&self, selected: &[ElementKey]) -> AdmissionPreview {
         // Bound the borrowed selection before building indexes or cloning identifiers.
@@ -586,6 +583,14 @@ pub fn open(primary: &Path) -> Result<ProjectionSet, String> {
         .file_name()
         .and_then(|s| s.to_str())
         .ok_or("V2_PRIMARY_NAME")?;
+    inspect_primary_bytes(name, bytes)
+}
+/// Inspect explicitly supplied bytes without filesystem discovery or URI fetching.
+/// Uses exactly the same admission and projection bounds as `open`.
+pub fn inspect_primary_bytes(name: &str, bytes: Vec<u8>) -> Result<ProjectionSet, String> {
+    if bytes.len() > MAX_PRIMARY {
+        return Err("V2_PRIMARY_LIMIT".into());
+    }
     if !logical_path(name) {
         return Err("V2_PRIMARY_NAME".into());
     }

@@ -224,10 +224,7 @@ pub fn fresh_copy(doc: &ExternalDocument, path: &Path) -> Result<(), String> {
     if hash(&doc.original_bytes) != doc.sha256 {
         return Err("EXTERNAL_ORIGINAL_HASH_CHANGED".into());
     }
-    craft_atomic::WriteOptions::default()
-        .with_new_file_permissions(craft_atomic::NewFilePermissions::Private)
-        .write_new(path, &doc.original_bytes)
-        .map_err(|error| error.to_string())
+    new_copy::write_private_new(path, &doc.original_bytes)
 }
 fn safe_member(name: &str) -> bool {
     !name.is_empty()
@@ -834,3 +831,7 @@ fn walk_members(
 
 /// Additive source-specific v2 projection; V1 APIs and native formats stay separate.
 pub mod v2;
+
+pub mod source_edit;
+
+mod new_copy;
