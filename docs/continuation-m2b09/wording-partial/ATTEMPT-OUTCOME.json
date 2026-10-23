@@ -1,0 +1,155 @@
+{
+  "status": "WordingCapturesCompleteNormalCloseNotQualified",
+  "started_utc": "2026-10-23T20:08:07.845041+00:00",
+  "ended_utc": "2026-10-23T20:08:19.716814+00:00",
+  "cleanup_verified_utc": "2026-10-23T20:09:45.879061+00:00",
+  "job_sha256": "8f1087d53e4a9229b2d8e61b42c3dfbe0f0a8531871d1121191af418f75f1215",
+  "source_commit": "f1b6c71681b221aba446f4b308d847fe08aef2eb",
+  "binary_sha256": "0a53007f1ac2f0c655bb8da6bd77aa053e44d95158ce0a1bf002b05db4096514",
+  "capture_count": 3,
+  "wording_counts": [
+    1,
+    1,
+    0
+  ],
+  "stored_creation_entries": 1,
+  "native_model_raw_views_unchanged": true,
+  "source_fixture_sha256_after": "a80f93ee8fe07f3c82d8dd9d272666e011d8a1bcfa76e03f097706b97d7e9de2",
+  "normal_close_qualified": false,
+  "app_exit_code": -15,
+  "driver_exit_code": 0,
+  "reason": "WMclose left app running: preservation dialog requires Save or recovery for unsaved generated default views. Queued stop then caused driverfinally SIGTERM. NoSave constraint was respected; no guarded-close bypass, Save, edits, native workflow replay or data loss. New guard-compatible scope needed to prove normalclose.",
+  "post_close_guard_audit_sha256": "ab293bd5f34ab4effb9b63f7e66a483626a6fa56d08c1bb2cfe6d7fd7a43c991",
+  "owned_process_checks": [
+    {
+      "owned": {
+        "pid": 1254249,
+        "start_ticks": 16043782,
+        "uid": 1000,
+        "exe": "/usr/bin/python3.12",
+        "pid_namespace": "pid:[4026531836]",
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+      },
+      "original_identity_absent": true
+    },
+    {
+      "owned": {
+        "pid": 1254258,
+        "start_ticks": 16043897,
+        "uid": 1000,
+        "exe": "/usr/bin/python3.12",
+        "pid_namespace": "pid:[4026531836]",
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+      },
+      "original_identity_absent": true
+    },
+    {
+      "owned": {
+        "pid": 1254259,
+        "start_ticks": 16043923,
+        "uid": 1000,
+        "exe": "/usr/bin/aa-exec",
+        "pid_namespace": "pid:[4026531836]",
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+      },
+      "original_identity_absent": true
+    },
+    {
+      "owned": {
+        "pid": 1254260,
+        "start_ticks": 16043923,
+        "uid": 1000,
+        "exe": "/usr/bin/python3.12",
+        "pid_namespace": "pid:[4026531836]",
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+      },
+      "original_identity_absent": true
+    },
+    {
+      "owned": {
+        "pid": 1254261,
+        "start_ticks": 16043950,
+        "uid": 1000,
+        "exe": "/workspace/cache/builderbob/global-tools/releases/blender/5.2.2/xvfb/usr/bin/Xvfb",
+        "pid_namespace": "pid:[4026531836]",
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+      },
+      "original_identity_absent": true
+    },
+    {
+      "owned": {
+        "pid": 1254264,
+        "start_ticks": 16043952,
+        "uid": 1000,
+        "exe": "/workspace/build/builderbob/mbse-craft/native-record-impact-wording/native-gate/bin/mbse-desktop",
+        "pid_namespace": "pid:[4026531836]",
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+      },
+      "original_identity_absent": true
+    }
+  ],
+  "owned_jobs": [],
+  "xauthority_removed": true,
+  "files": [
+    {
+      "path": "00-objective-open.png",
+      "bytes": 311151,
+      "sha256": "158cfab4082a9032511b5b951b8c6a8038fd4ad713c25a8bcd4b307cfc469770"
+    },
+    {
+      "path": "00-objective-open.ui.json",
+      "bytes": 7514,
+      "sha256": "752b46cd3493e2c0761f67cf7078c63bc2174ff337f7f9d125be3b5045d83090"
+    },
+    {
+      "path": "01-stored-creation-journal-wording.png",
+      "bytes": 286947,
+      "sha256": "2d3383ff015c65804da7183d05f85c311ba6bb497a7556f64ed5684665e6c73d"
+    },
+    {
+      "path": "01-stored-creation-journal-wording.ui.json",
+      "bytes": 7954,
+      "sha256": "09a3675afe3162d9bfe77d02c12af24e7416fa5d514f0687f3ba9c1a8f7d532b"
+    },
+    {
+      "path": "02-inspection-closed-unchanged.png",
+      "bytes": 311249,
+      "sha256": "eba1eb40caca4fdd8d6c7844930584689ff317c245ac91de72616670ffa65a33"
+    },
+    {
+      "path": "02-inspection-closed-unchanged.ui.json",
+      "bytes": 7568,
+      "sha256": "7feccb8e18a351e6a517fb94e8f8ed35f7bcf7d0d72bb747adfbe1a6b349012d"
+    },
+    {
+      "path": "CLEANUP.json",
+      "bytes": 886,
+      "sha256": "ba0b053d9d67ccd932f28a235933d6e15ceb3394556afc18594ff2de1614f4ee"
+    },
+    {
+      "path": "OUTER-RECEIPT.json",
+      "bytes": 3094,
+      "sha256": "51e1044fa9455d55c1282f1ea8c7e0ee3f4e6a4bfcfe6f9e13051d45716d58ef"
+    },
+    {
+      "path": "POST-CLOSE-GUARD.ui.json",
+      "bytes": 7853,
+      "sha256": "ab293bd5f34ab4effb9b63f7e66a483626a6fa56d08c1bb2cfe6d7fd7a43c991"
+    },
+    {
+      "path": "app.log",
+      "bytes": 48,
+      "sha256": "0cce862dc4913be2cce3fd531146652899fa528e6bef4c0cc05a1632efdac18e"
+    },
+    {
+      "path": "events.jsonl",
+      "bytes": 2602,
+      "sha256": "8d37ae7f9ae88453e03f0fafa8022b0e7e2976a5027d7c2240093c5719d96fae"
+    },
+    {
+      "path": "xvfb.log",
+      "bytes": 1321,
+      "sha256": "00971f516769b092bd50063ca4a82f63a4395d9ed9ff57eab62626162f51b9ed"
+    }
+  ]
+}

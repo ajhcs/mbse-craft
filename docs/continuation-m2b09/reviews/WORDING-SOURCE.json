@@ -1,0 +1,17 @@
+{
+  "status": "StaticBuildOnlyReadyNotExecutionAdmission",
+  "recorded_utc": "2026-10-23T19:59:22.904122+00:00",
+  "reviewer": "/root/periodic_actual_review",
+  "source_commit": "f1b6c71681b221aba446f4b308d847fe08aef2eb",
+  "compiled_files_verified": 668,
+  "only_intended_ui_literal_changed": true,
+  "job_sha256": "1f3c58de9d20b723d154ca2936a3104c60076aed1953a1b25b22461bb831f793",
+  "wording_delta_sha256": "fdc91a6e2e6193ff1ccddf00d62d87feea1d858f4c0665b2884ffe5310103e72",
+  "prior15tests_and_28frame_source": "88d813e19d5eb18fab1b8962aab030a1731ea39d",
+  "commands": "Offline desktop build only",
+  "tests_to_replay": 0,
+  "build_launched": false,
+  "native_wording_check": "Pending separate exact-binary short run",
+  "reviewer_execution": false,
+  "reviewer_changes": false
+}

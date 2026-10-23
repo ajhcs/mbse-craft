@@ -1,0 +1,26 @@
+{
+  "status": "BoundedInspectionBehaviorSupportedWordingCorrectionRequired",
+  "recorded_utc": "2026-10-23T19:57:15.418923+00:00",
+  "reviewer": "/root/periodic_actual_review",
+  "source_commit": "88d813e19d5eb18fab1b8962aab030a1731ea39d",
+  "native_receipt_sha256": "c43fc87884892e94a09f92553cd88651511b403a4be4820d648e926af286552c",
+  "original_frames_inspected": 28,
+  "receipt_files_verified": 63,
+  "source_files_verified": 668,
+  "verified": [
+    "Scope/ForObjective counts, realnavigation, originaltargetRefresh and staledisablednavigation",
+    "HiddenReviewoccurrence10, incomplete12e+ draftretained, frozenlabels untilRefresh",
+    "OrdinaryOpenclearsreport andexplicitviewsrestore",
+    "Currentframe20shows exactedge11/view1/sourceocc8to7/count1; frame17Objectiveedge sectionclipped",
+    "Schema2native/v1sidecarbinding exact, normalexits/6ownedabsent/authremoved, source/binary/fixture unchanged"
+  ],
+  "wording_issue": "Pending creation drafts is inaccurate for all stored journals, including retained entries after completed Add; use stored creation draft entries. No pendingdialog claim.",
+  "limits": [
+    "Known direct roles only",
+    "Detached/highID/budget cases aretest evidence",
+    "Physicalhashes sampled, notcontinuous",
+    "Originals2200x1600, displayedpreviewsresized"
+  ],
+  "reviewer_execution": false,
+  "reviewer_edits": false
+}
