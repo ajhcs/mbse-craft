@@ -1,0 +1,26 @@
+{
+  "profile": "mbse-craft.admission-preparation/1",
+  "initial_expiry": "11:57:37 receipt expired during required preparation; no Cargo launched",
+  "mutex_clarification": "Root clarified mutex referred to Windows observer recovery; unsupported Linux mutex requirement removed before launch; no substitute mutex created or process query used",
+  "first_wave": {
+    "receipt": "TESTS-HELD-RECEIPT.json",
+    "tests_passed": 38,
+    "build_started": false,
+    "hold_cause": "Actual watchdog checked12:04:10.4728409Z exceeded120seconds when tests completed12:06:18.615806Z; traceback points to watchdog-age assertion; original receipt reason string is empty and retained unchanged"
+  },
+  "prelaunch_continuation_refusal": {
+    "tool_chunk_id": "abd8d6",
+    "exit_code": 1,
+    "compiler_started": false,
+    "cause": "Watchdog-age assertion before output-directory/child creation",
+    "receipt_checked_utc": "2026-10-23T12:06:48.7566404+00:00",
+    "source_changed": false
+  },
+  "final_continuation": {
+    "receipt": "BUILD-CONTINUATION-RECEIPT.json",
+    "only_command_index": 2,
+    "repeated_tests": false,
+    "build_exit_code": 0
+  },
+  "latest_crossed_receipt": "12:09:48 packet arrived after build completion and was not used; no duplicate launch"
+}
