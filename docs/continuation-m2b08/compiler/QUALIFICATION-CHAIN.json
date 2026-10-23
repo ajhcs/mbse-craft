@@ -1,0 +1,24 @@
+{
+  "source_commit": "ee12a79f2f644def4d8a565f6ad1890e3f1d9a11",
+  "source_sha256": "9b2fab814a4a2ed49d285a810dc3e903f1fc3b1b0174e8aa6fc7c9dafa3c3cf2",
+  "receipts": [
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-system-browser/attempt-20261023T184229559485Z/RECEIPT.json",
+      "sha256": "e12bea7e0cd75e4fc35d2e5d61880357b0232295c5cbbf26bf02d08b2c0e07fb"
+    }
+  ],
+  "unique_passed_tests": [
+    "native_system_browser::tests::exact_membership_keeps_duplicate_names_and_typed_relations_distinct",
+    "native_system_browser::tests::group_and_member_labels_are_bounded_without_shortening_ids",
+    "native_system_browser::tests::malformed_scope_and_key_refuse_without_partial_projection_or_repair",
+    "native_system_browser::tests::projection_is_deterministic_and_preserves_native_values_and_raw_state",
+    "ui::policies::browser_reveal_tracks_explicit_selection_and_runtime_without_model_edits",
+    "ui::policies::close_requires_current_preservation_even_while_hidden",
+    "ui::policies::native_search_draft_changes_clear_results_and_navigation_preserves_dirty_target",
+    "ui::policies::native_usages_navigation_preserves_dirty_target_and_refuses_stale_rows",
+    "ui::policies::native_worker_start_failure_clears_only_own_pair_and_retains_live_state",
+    "ui::policies::ordinary_text_and_focus_transitions_do_not_undo_model",
+    "ui::policies::source_inspection_shortcuts_never_undo_or_save_the_live_target"
+  ],
+  "qualification": "11 focused tests, checked synthetic fixture emission and build passed; no native evidence yet"
+}

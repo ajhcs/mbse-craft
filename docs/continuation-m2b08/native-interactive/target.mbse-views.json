@@ -1,0 +1,121 @@
+{
+  "profile": "mbse-craft.native-views/1",
+  "sidecar_id": "views:instance:stage1-session-MnXdDs",
+  "document_id": "document:session:stage1-session-b24AHV",
+  "binding": {
+    "document_id": "document:session:stage1-session-b24AHV",
+    "artifact_sha256": "a80f93ee8fe07f3c82d8dd9d272666e011d8a1bcfa76e03f097706b97d7e9de2",
+    "snapshot_sha256": "1e8d599f12c7b27155806d712f7b8aae2790c4e479948713797bb0a2e4bec99f"
+  },
+  "revision": "2",
+  "next_id": "8",
+  "primary": "1",
+  "views": {
+    "1": {
+      "id": "1",
+      "title": "Primary canvas",
+      "camera": {
+        "x": 0.0,
+        "y": 0.0,
+        "zoom": 1.25
+      }
+    },
+    "2": {
+      "id": "2",
+      "title": "Review view",
+      "camera": {
+        "x": 0.0,
+        "y": 0.0,
+        "zoom": 1.0
+      }
+    }
+  },
+  "occurrences": {
+    "3": {
+      "id": "3",
+      "view": "1",
+      "record": "1",
+      "expected_kind": "System",
+      "geometry": {
+        "x": 25.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "4": {
+      "id": "4",
+      "view": "1",
+      "record": "2",
+      "expected_kind": "System",
+      "geometry": {
+        "x": 319.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "5": {
+      "id": "5",
+      "view": "1",
+      "record": "1000",
+      "expected_kind": "Mission",
+      "geometry": {
+        "x": 613.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "6": {
+      "id": "6",
+      "view": "1",
+      "record": "1001",
+      "expected_kind": "Mission",
+      "geometry": {
+        "x": 25.0,
+        "y": 179.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "7": {
+      "id": "7",
+      "view": "2",
+      "record": "1",
+      "expected_kind": "System",
+      "geometry": {
+        "x": 25.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    }
+  },
+  "edges": {}
+}
