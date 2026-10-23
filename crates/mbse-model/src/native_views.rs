@@ -316,7 +316,7 @@ impl Document {
     pub fn digest(&self) -> Result<String, String> {
         self.encoded().map(|b| hash(&b))
     }
-    fn validate(&self, snapshot: &Snapshot) -> Result<(), String> {
+    pub(crate) fn validate(&self, snapshot: &Snapshot) -> Result<(), String> {
         let index = edge_index(snapshot)?;
         self.validate_with_index(snapshot, &index)
     }

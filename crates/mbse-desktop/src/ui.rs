@@ -60,6 +60,10 @@ pub struct Workspace {
     relation: Option<EdgeId>,
     popout: Option<RecordId>,
     usages: Option<mbse_model::native_navigation::UsageReport>,
+    impact_open: bool,
+    impact_target: Option<RecordId>,
+    impact_report: Option<mbse_model::native_record_impact::Report>,
+    impact_note: String,
     search_open: bool,
     search_query: mbse_model::native_search::Query,
     search_report: Option<mbse_model::native_search::Report>,
@@ -119,7 +123,7 @@ impl Workspace {
         let views = crate::views_ui::ViewWorkspace::new(&session);
         let periodic_recovery = crate::periodic_recovery::PeriodicRecovery::new(Instant::now(), &session, &views);
         let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,periodic_recovery, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
-            creation: None, relation: None, popout: None, usages: None, search_open:false, search_query:Default::default(), search_report:None, search_note:String::new(), browser_revealed:None,browser_open_groups:BTreeMap::new(), pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new() };
+            creation: None, relation: None, popout: None, usages: None, impact_open:false,impact_target:None,impact_report:None,impact_note:String::new(), search_open:false, search_query:Default::default(), search_report:None, search_note:String::new(), browser_revealed:None,browser_open_groups:BTreeMap::new(), pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new() };
         app.refresh_recoveries();
         app
     }
@@ -281,6 +285,49 @@ impl Workspace {
             }
         });
         self.search_open=open;if !open {self.search_report=None;} else if let Some(index)=navigate {self.navigate_search(index);}
+    }
+    fn open_impact(&mut self,id:RecordId) {
+        self.impact_open=true;self.impact_target=Some(id);self.refresh_impact();
+    }
+    fn refresh_impact(&mut self) {
+        self.impact_report=None;
+        let Some(target)=self.impact_target else {self.impact_note="Choose a native record to inspect.".into();return;};
+        match mbse_model::native_record_impact::inspect(&self.session.editor,&self.views.views,target) {
+            Ok(report)=>{self.impact_report=Some(report);self.impact_note="Inspection refreshed. No deletion action is available.".into();},
+            Err(error)=>self.impact_note=format!("Inspection failed: {error}. Previous rows cleared; live work retained."),
+        }
+    }
+    fn navigate_impact(&mut self,index:usize) {
+        let result=self.impact_report.as_ref().ok_or_else(||"No current record impact report".to_string()).and_then(|report|report.referencing_record(&self.session.editor,&self.views.views,index));
+        match result {Ok(id)=>self.select(id),Err(error)=>self.result(Err(error))}
+    }
+    fn show_impact(&mut self,ctx:&egui::Context) {
+        if !self.impact_open {return;}
+        let report=self.impact_report.take();let mut open=true;let mut refresh=false;let mut navigate=None;
+        egui::Window::new("Native record impact inspection").id(egui::Id::new("native-record-impact")).open(&mut open).default_width(800.).show(ctx,|ui|{
+            ui.label("Read-only inspection of supported direct usages and the current presentation. This is not a safe-to-delete verdict; no Delete or Apply action is available.");
+            ui.label("Opaque/external references, unresolved calculation outputs and transitive dependencies are not analyzed. Persisted presentation edges are listed separately from authored native usages.");
+            let response=ui.button("Refresh original target");self.bound("impact:refresh",&response);refresh=response.clicked();ui.label(&self.impact_note);
+            if let Some(report)=report.as_ref() {
+                ui.heading(format!("{} #{} · {}",report.kind().label(),report.target().0,report.name()));
+                let stale=report.check(&self.session.editor,&self.views.views).err();if let Some(error)=&stale {ui.colored_label(ERROR,error);}
+                let (usages,occurrences,edges)=report.totals();let (drafts,creations)=report.drafts();
+                ui.label(format!("Stored field draft entries: {drafts}; pending creation drafts owned here: {creations}. Field count includes valid, incomplete and retained generation entries; draft text is not copied into this report."));
+                egui::ScrollArea::vertical().max_height(650.).show(ui,|ui|{
+                    ui.label(format!("Direct native usages: showing {} of {usages} ({} omitted)",report.usages().len(),usages-report.usages().len()));
+                    for (index,row) in report.usages().iter().enumerate() {ui.group(|ui|{
+                        ui.label(format!("Native #{} · {:?} · {}",row.record.0,row.role,row.name));
+                        if !row.binding_names.is_empty(){ui.label(format!("Calculation binding names: {}",row.binding_names.join(", ")));}
+                        let response=ui.add_enabled(stale.is_none(),egui::Button::new("Select referencing record"));self.bound(format!("impact:select:{index}"),&response);if response.clicked(){navigate=Some(index);}
+                    });}
+                    ui.separator();ui.label(format!("Current all-view occurrences: showing {} of {occurrences} ({} omitted)",report.occurrences().len(),occurrences-report.occurrences().len()));
+                    for row in report.occurrences(){ui.label(format!("Occurrence #{} · view #{} · {} · expected {} · {} · {}",row.id.get(),row.view.get(),row.title,row.expected_kind.label(),if row.visible{"Visible"}else{"Hidden"},row.presence));}
+                    ui.separator();ui.label(format!("Persisted touching visual edges: showing {} of {edges} ({} omitted)",report.edges().len(),edges-report.edges().len()));
+                    for row in report.edges(){ui.label(format!("Visual edge #{} · view #{} · occurrence #{} -> occurrence #{} · {}",row.id.get(),row.view.get(),row.source.get(),row.target.get(),row.presence));}
+                });
+            }
+        });
+        self.impact_open=open;if open {self.impact_report=report;if refresh {self.refresh_impact();}else if let Some(index)=navigate {self.navigate_impact(index);}}else{self.impact_report=None;self.impact_target=None;}
     }
     fn open_usages(&mut self, id: RecordId) {
         match mbse_model::native_navigation::find_usages(&self.session.editor,&self.views.views,id) {
@@ -561,6 +608,7 @@ impl Workspace {
                 self.relation = None;
                 self.popout = None;
                 self.usages = None;
+                self.impact_open=false;self.impact_target=None;self.impact_report=None;self.impact_note.clear();
                 self.search_open=false;self.search_query=Default::default();self.search_report=None;self.search_note.clear();self.browser_revealed=None;self.browser_open_groups.clear();
                 self.save_path = self
                     .session
@@ -746,6 +794,7 @@ impl Workspace {
                 if let Some(record) = selected.and_then(|id| records.iter().find(|r| r.id == id)).cloned() {
                     ui.label(RichText::new(format!("{} #{}", record.kind.label(), record.id.0)).color(ACCENT));
                     let response=ui.button("Find usages");self.bound("action:Find usages",&response);if response.clicked(){self.open_usages(record.id);}
+                    let response=ui.button("Inspect record impact");self.bound("action:Inspect record impact",&response);if response.clicked(){self.open_impact(record.id);}
                     self.inspector(ui, &record, &records);
                 }
                 ui.separator(); ui.label(RichText::new("Add a typed record").strong());
@@ -1714,6 +1763,13 @@ fn block_close(
 mod policies {
     use super::*;
     #[test]
+    fn impact_navigation_and_original_target_refresh_preserve_live_state_and_clear_failed_rows() {
+        let area=tempfile::Builder::new().prefix("native-impact-ui-").tempdir_in(std::env::var_os("TMPDIR").expect("workspace TMPDIR")).unwrap();let session=Session::new(area.path()).unwrap();let ctx=egui::Context::default();let mut app=Workspace::new(session,None,None,craft_window::Choice::probe(craft_window::Prefix::new("MBSE_CRAFT")),&ctx);
+        app.command(Command::Add{kind:RecordKind::Mission,owner:RecordId(1),name:"Mission".into()});let mission=app.session.editor.selected.unwrap();app.open_impact(RecordId(1));let index=app.impact_report.as_ref().unwrap().usages().iter().position(|u|u.record==mission).unwrap();let before=(app.session.editor.snapshot.digest(),app.views.views.document().digest().unwrap(),app.views.views.history_usage(),app.save_path.clone());app.navigate_impact(index);assert_eq!(app.session.editor.selected,Some(mission));assert_eq!((app.session.editor.snapshot.digest(),app.views.views.document().digest().unwrap(),app.views.views.history_usage(),app.save_path.clone()),before);
+        app.refresh_impact();assert_eq!(app.impact_report.as_ref().unwrap().target(),RecordId(1));app.command(Command::EditText{key:RawKey{record:mission,field:"name".into(),item:None},text:"Changed".into()});app.navigate_impact(index);assert!(app.error);assert!(app.feedback.contains("STALE"));app.impact_target=Some(RecordId(u64::MAX));app.refresh_impact();assert!(app.impact_report.is_none());assert!(app.impact_note.contains("failed"));assert_eq!(app.session.editor.selected,Some(mission));assert!(!app.session.pending());assert!(!app.views.pair_pending());
+    }
+
+    #[test]
     fn browser_reveal_tracks_explicit_selection_and_runtime_without_model_edits() {
         let area=tempfile::Builder::new().prefix("native-browser-ui-").tempdir_in(std::env::var_os("TMPDIR").expect("workspace TMPDIR")).unwrap();let session=Session::new(area.path()).unwrap();let ctx=egui::Context::default();let mut app=Workspace::new(session,None,None,craft_window::Choice::probe(craft_window::Prefix::new("MBSE_CRAFT")),&ctx);
         app.command(Command::Add{kind:RecordKind::Mission,owner:RecordId(1),name:"Duplicate".into()});let mission=app.session.editor.selected.unwrap();app.select(RecordId(1));assert_eq!(app.browser_reveal_system(),Some(RecordId(1)));assert_eq!(app.browser_reveal_system(),None);
@@ -1940,6 +1996,7 @@ impl eframe::App for Workspace {
         self.canvas(root);
         self.dialogs(&ctx);
         self.show_usages(&ctx);
+        self.show_impact(&ctx);
         self.show_search(&ctx);
         self.views.show_inspection(&ctx, &self.session.editor);
         self.capture(&ctx);
@@ -1950,7 +2007,7 @@ impl eframe::App for Workspace {
         let audit = serde_json::json!({"profile":"mbse-craft.ui-geometry/1","frame_policy":format!("{:?}",self.frame_choice.frame()),"frame_override":self.frame_choice.overridden(), "pixels_per_point":ctx.pixels_per_point(),
             "views_camera":self.views.camera_audit(),"views_mapping_rehearsal":self.views.mapping_audit(&self.session.editor),"views_inspection_visible":self.views.inspection_visible(),"views_inspection_sha256":self.views.inspection_source_sha256(),"views_inspection_note":self.views.inspection_note(),"views_revision":self.views.views.document().revision().to_string(),"views_active":self.views.active.get().to_string(),"views_pending":self.views.io.pending(),"views_saved_hint":self.views.io.is_saved(&self.session,&self.views.views),"views_note":self.views.note,
             "model_revision":self.session.editor.snapshot.model_revision,"raw_version":self.session.editor.snapshot.raw_version,
-            "native_system_browser":serde_json::json!({"open_groups":self.browser_open_groups}),"native_search":serde_json::json!({"open":self.search_open,"note":self.search_note,"query_mode":format!("{:?}",self.search_query.mode),"report":self.search_report.as_ref().map(|report|serde_json::json!({"total":report.total(),"ids":report.hits().iter().map(|h|h.record.0.to_string()).collect::<Vec<_>>(),"current":report.check(&self.session.editor,&self.views.views).is_ok()}))}),"native_usages":self.usages.as_ref().map(|report|serde_json::json!({"target":report.target().0,"rows":report.usages().len(),"current":report.check(&self.session.editor,&self.views.views).is_ok()})),"snapshot_hash":self.session.editor.snapshot.digest(),"selected":self.session.editor.selected.map(|id|id.0),
+            "native_record_impact":serde_json::json!({"open":self.impact_open,"target":self.impact_target.map(|id|id.0.to_string()),"note":self.impact_note,"report":self.impact_report.as_ref().map(|report|serde_json::json!({"target":report.target().0.to_string(),"counts":report.totals(),"shown":[report.usages().len(),report.occurrences().len(),report.edges().len()],"drafts":report.drafts(),"current":report.check(&self.session.editor,&self.views.views).is_ok()}))}),"native_system_browser":serde_json::json!({"open_groups":self.browser_open_groups}),"native_search":serde_json::json!({"open":self.search_open,"note":self.search_note,"query_mode":format!("{:?}",self.search_query.mode),"report":self.search_report.as_ref().map(|report|serde_json::json!({"total":report.total(),"ids":report.hits().iter().map(|h|h.record.0.to_string()).collect::<Vec<_>>(),"current":report.check(&self.session.editor,&self.views.views).is_ok()}))}),"native_usages":self.usages.as_ref().map(|report|serde_json::json!({"target":report.target().0,"rows":report.usages().len(),"current":report.check(&self.session.editor,&self.views.views).is_ok()})),"snapshot_hash":self.session.editor.snapshot.digest(),"selected":self.session.editor.selected.map(|id|id.0),
             "save_status":format!("{:?}",self.session.status()),"periodic_recovery":self.preferences.value.periodic_recovery,"recovery_interval_seconds":self.preferences.value.recovery_interval_seconds,"preferences_status":self.preferences.status,"write_pending":self.session.pending(),"external_copy_pending":self.exchange.copy_pending(),"source_edit_dirty":self.exchange.source_edit_dirty(),"source_edit_pending":self.exchange.source_edit_pending(),"recovery_path":self.session.last_recovery().map(|p|p.display().to_string()),"native_recovery_status":self.periodic_recovery.status(&self.session,&self.views).0,"layout_recovery_status":self.periodic_recovery.status(&self.session,&self.views).1,"views_recovery_current_hint":self.views.io.recovery_current(&self.session,&self.views.views),"views_pair_pending":self.views.pair_pending(),"views_gesture_active":self.views.layout_gesture_active(),"feedback":self.feedback,"error":self.error,"widgets":self.audit});
         if let Ok(bytes) = serde_json::to_vec_pretty(&audit) {
             if bytes != self.audit_previous {
