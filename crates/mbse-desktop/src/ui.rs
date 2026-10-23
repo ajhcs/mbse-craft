@@ -260,7 +260,7 @@ impl Workspace {
                     for record in self.session.editor.snapshot.records.values().filter(|r|r.kind==RecordKind::System) {ui.selectable_value(&mut query.system,Some(record.id),format!("System #{} · {}",record.id.0,record.name.chars().take(64).collect::<String>()));}
                 }).response;self.bound("search:system",&response);
             });
-            ui.label("System scope uses the authored System membership field. At most256 result rows; display names may be shortened. IDs are exact.");
+            ui.label("System scope uses the authored System membership field. At most 256 result rows; display names may be shortened. IDs are exact.");
             self.replace_search_query(query.clone());
             let response=ui.button("Run native search");self.bound("search:run",&response);if response.clicked(){self.run_search();}
             ui.label(&self.search_note);

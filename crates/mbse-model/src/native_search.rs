@@ -67,7 +67,7 @@ impl Report {
 }
 pub fn search(editor: &Editor, views: &Views, query: Query) -> Result<Report, String> {
     if query.text.len() > 1024 {
-        return Err("NATIVE_SEARCH_QUERY_BUDGET: at most1024UTF8bytes".into());
+        return Err("NATIVE_SEARCH_QUERY_BUDGET: use at most 1024 UTF-8 bytes".into());
     }
     editor.snapshot.validate()?;
     if let Some(scope) = query.system {
