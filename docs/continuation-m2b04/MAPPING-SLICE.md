@@ -1,0 +1,9 @@
+# Explicit mapping rehearsal
+
+Status: implementation in progress, UNRUN. Sole writer is existing integration owner01a1653d-9c16-76a3-ad80-df98ba1e5c94; base358443099827c854b023194383add51c520ea01e. Assigned isolated branchfeature/recovery-layout-mapping. Completed recoverya0079d5 and preview3584430 stay frozen.
+
+This continues M2B and retained57ba816 contract steps3–5: explicitly choose an existing target record of the source occurrence expected kind, or skip with a visible reason; rehearse geometry and edges without changing native records or target views. Choices default unselected, including numerically identical IDs and names. Source native bindings remain declared and unverified. A plan pins the ephemeral inspection origin, exact source hash/bytes and target runtime Stamp (native freshness/snapshot plus presentation origin/revision). Same-byte source reopen or a different native/view runtime refuses old planning. One authoritative graph derivation checks exact mapped occurrence endpoint relationships.
+
+No live Apply, ID allocation, history mutation, provenance serialization, v1 rewrite or v2 migration is introduced. Preview IDs remain source identifiers and target native choices; no durable new presentation reference is fabricated. Future live application requires reviewed provenance DTO, deliberate SaveAs policy, atomic target allocation/history/budgets and fresh admission. Mapping rehearsal is not native semantic equivalence.
+
+Host storage was freshly verified Samsung990PRO rw via host-context bob-admin workspace-status before worktree creation; sandbox DEVICE_ALIAS_MISSING did not trigger repair. No compiler or renderer has been launched for this slice. Existing MBSE target remains single writer; fresh job-bound health and scoped allocation are required at execution time.

@@ -45,6 +45,9 @@ pub struct ViewWorkspace {
     inspection_open: bool,
     inspection_view: Option<ViewId>,
     inspection_note: String,
+    mapping: Option<mbse_model::native_views_plan::Plan>,
+    mapping_preview: Option<mbse_model::native_views_plan::Preview>,
+    mapping_note: String,
 }
 impl ViewWorkspace {
     pub fn new(session: &Session) -> Self {
@@ -73,6 +76,9 @@ impl ViewWorkspace {
             drag: None,
             route_source: None,
             route_target: None,
+            mapping: None,
+            mapping_preview: None,
+            mapping_note: String::new(),
             inspection: None,
             inspection_path: String::new(),
             inspection_open: false,
@@ -100,6 +106,9 @@ impl ViewWorkspace {
             Ok(source) => {
                 self.inspection_view = Some(source.declared().primary);
                 self.inspection = Some(source);
+                self.mapping = None;
+                self.mapping_preview = None;
+                self.mapping_note.clear();
                 self.inspection_note="Read-only source snapshot captured. Native references and file bindings are unverified source claims.".into();
             }
             Err(error) => {
@@ -108,7 +117,7 @@ impl ViewWorkspace {
             }
         }
     }
-    pub fn show_inspection(&mut self, ctx: &egui::Context) {
+    pub fn show_inspection(&mut self, ctx: &egui::Context, editor: &Editor) {
         if !self.inspection_open {
             return;
         }
@@ -125,16 +134,36 @@ impl ViewWorkspace {
                 ui.label(format!("Snapshot: {} · {} bytes",source.path().display(),source.source_bytes()));
                 ui.label(format!("Exact source SHA256: {}",source.source_sha256()));
                 if ui.button("Recheck source bytes").clicked() {
+                    self.mapping_preview=None;
                     self.inspection_note=match source.verify_unchanged() {Ok(())=>"Source bytes match the retained snapshot at this check.".into(),Err(error)=>format!("{error}. Retained preview remains read only.")};
                 }
                 let doc=source.declared();
                 ui.label(format!("Declared profile: {} · document: {}",doc.profile,doc.document_id.0));
                 ui.label(if doc.binding.is_some() {"Source declares a native-file binding (unverified)."} else {"Source is an unbound presentation recovery."});
                 if let Some(binding)=&doc.binding { ui.label(format!("Declared native artifact SHA256: {}",binding.artifact_sha256)); }
+                let old_view=self.inspection_view;
                 egui::ComboBox::from_id_salt("inspection-view").selected_text(self.inspection_view.and_then(|id|doc.views.get(&id)).map(|v|v.title.as_str()).unwrap_or("Choose source view")).show_ui(ui,|ui|{
                     for (id,view) in &doc.views {ui.selectable_value(&mut self.inspection_view,Some(*id),format!("{} · source view {}",view.title,id.get()));}
                 });
+                if self.inspection_view!=old_view {self.mapping=None;self.mapping_preview=None;self.mapping_note.clear();}
                 if let Some(view)=self.inspection_view {
+                    if ui.button("Start mapping rehearsal").clicked() {
+                        match mbse_model::native_views_plan::Plan::new(source,view,editor,&self.views) {
+                            Ok(plan)=>{self.mapping=Some(plan);self.mapping_preview=None;self.mapping_note="Every source occurrence starts unselected. Choose target identities explicitly.".into();}
+                            Err(error)=>{self.mapping_note=error;self.mapping_preview=None;}
+                        }
+                    }
+                    ui.label("Mapping rehearsal only. No target view is created; no presentation IDs or history are reserved.");
+                    let stale=self.mapping.as_ref().and_then(|p|p.check(source,editor,&self.views).err());
+                    if let Some(error)=&stale {ui.label(error);}
+                    if self.mapping.is_some() && ui.add_enabled(stale.is_none(),egui::Button::new("Check mapping preview")).clicked() {
+                        self.mapping_preview=None;
+                        match self.mapping.as_ref().unwrap().preview(source,editor,&self.views) {
+                            Ok(preview)=>{self.mapping_note=format!("Checked point-in-time preview: {} mapped, {} skipped/unselected, {} proposed edges, {} skipped edges. Capacity, SaveAs and live Apply remain deferred.",preview.occurrences.iter().filter(|o|o.target.is_some()).count(),preview.occurrences.iter().filter(|o|o.target.is_none()).count(),preview.edges.iter().filter(|e|e.key.is_some()).count(),preview.edges.iter().filter(|e|e.key.is_none()).count());self.mapping_preview=Some(preview);}
+                            Err(error)=>self.mapping_note=error,
+                        }
+                    }
+                    ui.label(&self.mapping_note);
                     let items:Vec<_>=doc.occurrences.values().filter(|o|o.view==view).collect();
                     let edges=doc.edges.values().filter(|e|e.view==view).count();
                     ui.label(format!("{} source occurrences · {} declared edges · geometry and presence only",items.len(),edges));
@@ -143,10 +172,38 @@ impl ViewWorkspace {
                             ui.group(|ui|{
                                 ui.label(format!("Source occurrence {} · declared {:?} #{}",o.id.get(),o.expected_kind,o.record.0));
                                 ui.label(format!("x={} y={} width={} height={} · visible={} pinned={}",o.geometry.x,o.geometry.y,o.geometry.width,o.geometry.height,o.visible,o.pinned));
+                                if let Some(plan)=&mut self.mapping {
+                                    use mbse_model::native_views_plan::Choice;
+                                    if let Some(old)=plan.choices().get(&o.id).cloned() {
+                                        let mut choice=old.clone();
+                                        ui.add_enabled_ui(stale.is_none(),|ui|{
+                                            egui::ComboBox::from_id_salt(("map-occurrence",o.id.get())).selected_text(match &choice {Choice::Unselected=>"Unselected".into(),Choice::Target(id)=>format!("Target #{}",id.0),Choice::Skip(_)=>"Skip occurrence".into()}).show_ui(ui,|ui|{
+                                                ui.selectable_value(&mut choice,Choice::Unselected,"Unselected");
+                                                ui.selectable_value(&mut choice,Choice::Skip("Skipped by operator".into()),"Skip occurrence");
+                                                for record in editor.snapshot.records.values().filter(|r|r.kind==o.expected_kind) {
+                                                    ui.selectable_value(&mut choice,Choice::Target(record.id),format!("Target {:?} #{} · {}",record.kind,record.id.0,record.name));
+                                                }
+                                            });
+                                            if let Choice::Skip(reason)=&mut choice {ui.add(egui::TextEdit::singleline(reason).char_limit(1024).hint_text("Why skip this occurrence?"));}
+                                        });
+                                        if choice!=old {
+                                            self.mapping_preview=None;
+                                            self.mapping_note=match plan.choose(source,editor,&self.views,o.id,choice){Ok(())=>"Choices changed. Check the mapping preview again.".into(),Err(error)=>error};
+                                        }
+                                    }
+                                }
                                 ui.label(match &o.presence {v::Presence::Active=>"Source declares Active; target identity has not been matched.".into(),v::Presence::Detached{reason}=>format!("Detached source: {reason}")});
                             });
                         }
                     });
+                    if stale.is_none() {
+                        if let Some(preview)=&self.mapping_preview {
+                            egui::ScrollArea::vertical().id_salt("mapping-proposal").max_height(160.).show(ui,|ui|{
+                                for o in &preview.occurrences {ui.label(format!("Provisional source occurrence {} → {} · x={} y={} · visible={} pinned={}",o.source.get(),o.target.map(|id|format!("target #{}",id.0)).unwrap_or_else(||o.reason.clone().unwrap()),o.geometry.x,o.geometry.y,o.visible,o.pinned));}
+                                for e in &preview.edges {ui.label(format!("Source edge {} → {}",e.source.get(),e.key.as_ref().map(|k|format!("authored {:?} #{} → #{}",k.role,k.owner.0,k.target.0)).unwrap_or_else(||e.reason.clone().unwrap())));}
+                            });
+                        }
+                    }
                 }
             }
         });
@@ -1537,5 +1594,65 @@ mod tests {
         assert!(!ui.pair_pending());
         assert!(ui.blocked(&session));
         assert_eq!(std::fs::read(&path).unwrap(), b"{");
+    }
+    #[test]
+    fn mapping_rehearsal_preserves_pending_pair_destination_selection_and_histories() {
+        use mbse_model::native_views_plan::{Choice, Plan};
+        let (area, mut session) = session();
+        let mut ui = saved_pair(&area, &mut session);
+        layout_edit(&mut ui, &session, "Dirty layout retained");
+        let source_path = area.path().join("foreign-source.json");
+        let mut doc = ui.views.recovery(&session.editor).unwrap();
+        doc.document_id.0 = "foreign".into();
+        std::fs::write(&source_path, doc.encoded().unwrap()).unwrap();
+        ui.inspection_path = source_path.display().to_string();
+        ui.inspect_source();
+        let native = paired_native(&mut ui, &mut session, WriteKind::Recovery, area.path());
+        let before = (
+            ui.path.clone(),
+            ui.active,
+            ui.selected,
+            ui.route_source,
+            ui.route_target,
+            ui.views.document().digest().unwrap(),
+            ui.views.history_usage(),
+            session.editor.snapshot.digest(),
+            native.ticket.destination.clone(),
+        );
+        let source = ui.inspection.as_ref().unwrap();
+        let mut p = Plan::new(
+            source,
+            source.declared().primary,
+            &session.editor,
+            &ui.views,
+        )
+        .unwrap();
+        let id = *p.choices().keys().next().unwrap();
+        p.choose(
+            source,
+            &session.editor,
+            &ui.views,
+            id,
+            Choice::Target(RecordId(1)),
+        )
+        .unwrap();
+        assert!(p.preview(source, &session.editor, &ui.views).is_ok());
+        assert!(ui.pair_pending());
+        assert_eq!(
+            (
+                ui.path.clone(),
+                ui.active,
+                ui.selected,
+                ui.route_source,
+                ui.route_target,
+                ui.views.document().digest().unwrap(),
+                ui.views.history_usage(),
+                session.editor.snapshot.digest(),
+                native.ticket.destination.clone()
+            ),
+            before
+        );
+        finish_pair(&mut ui, &mut session, native);
+        ui.verify_preserved(&session, &WriteKind::Recovery).unwrap();
     }
 }

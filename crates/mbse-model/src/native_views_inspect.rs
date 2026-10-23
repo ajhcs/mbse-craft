@@ -28,6 +28,9 @@ impl Inspection {
             _origin: v::new_origin()?,
         })
     }
+    pub(crate) fn origin(&self) -> Origin {
+        self._origin
+    }
     pub fn path(&self) -> &Path {
         &self.path
     }

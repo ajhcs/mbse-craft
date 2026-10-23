@@ -7,8 +7,8 @@ use crate::{
     stage1_graph::{self, RelationRole},
     stage1_io::NativeCheckpoint,
 };
-type EdgeIndex = BTreeSet<(RecordId, RelationRole, RecordId)>;
-fn edge_index(snapshot: &Snapshot) -> Result<EdgeIndex, String> {
+pub(crate) type EdgeIndex = BTreeSet<(RecordId, RelationRole, RecordId)>;
+pub(crate) fn edge_index(snapshot: &Snapshot) -> Result<EdgeIndex, String> {
     Ok(stage1_graph::derive_graph(snapshot)?
         .edges
         .into_iter()
@@ -219,7 +219,7 @@ impl SemanticKey {
     fn exists(&self, snapshot: &Snapshot) -> Result<bool, String> {
         self.exists_in(snapshot, &edge_index(snapshot)?)
     }
-    fn exists_in(&self, snapshot: &Snapshot, index: &EdgeIndex) -> Result<bool, String> {
+    pub(crate) fn exists_in(&self, snapshot: &Snapshot, index: &EdgeIndex) -> Result<bool, String> {
         let Some(owner) = snapshot.records.get(&self.owner) else {
             return Ok(false);
         };

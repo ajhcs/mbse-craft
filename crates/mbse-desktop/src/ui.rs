@@ -1792,7 +1792,7 @@ impl eframe::App for Workspace {
         self.sidebar(root);
         self.canvas(root);
         self.dialogs(&ctx);
-        self.views.show_inspection(&ctx);
+        self.views.show_inspection(&ctx, &self.session.editor);
         self.capture(&ctx);
         self.catalog.show(&ctx);
         self.assurance.show(&ctx, &self.session.editor);
