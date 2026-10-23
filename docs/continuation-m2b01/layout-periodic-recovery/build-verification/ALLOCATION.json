@@ -1,0 +1,25 @@
+{
+  "owner_thread_id": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+  "job_manifest_sha256": "f9be2ebbdd48a25a24001abe852ec71192cef9af69709f544335148182ca64c3",
+  "commands_authorized": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "target_dir": "/workspace/build/builderbob/mbse-craft/semantic-v2/target",
+  "target_exclusive_confirmed": true,
+  "build_launch_authorized": true,
+  "authority": "Direct incident-owner01a165b9-9828-768d-a69d-bcd556fb1032 measured new build allocation under parent scope",
+  "writer_confirmation": "Sole MBSE integrator owns this existing MBSE target. Both prior47-test Cargo identities were verified absent; no MBSE compiler job or second target writer allocated since release. Current coordinator allocates only this one command; SysON partner uses disjoint project target. No broad process enumeration or global mutex.",
+  "requested_joint_start_utc": "2026-10-23T14:21:29.486Z",
+  "allocated_utc": "2026-10-23T14:21:34.414254+00:00",
+  "hard_timeout": "None asserted; expected under60seconds is an estimate only",
+  "gui": false,
+  "uploads": false
+}

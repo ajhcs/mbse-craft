@@ -1,7 +1,7 @@
 # Layout-only periodic recovery candidate
 
 Status: 47 focused tests passed on source cfe7b4b306d673d72b36d008537e55f980877363.
-No native desktop binary build or GUI has run for this epoch. The preparation
+The native desktop binary build has now passed; no GUI has run for this epoch. The preparation
 record below describes the state before execution; verification/ contains exact
 frozen job, source manifest, admission, allocation, launcher, raw receipt and
 losslessly compressed logs.
@@ -91,3 +91,32 @@ no warning-only cleanup was mixed into this source. This bounded controller
 qualification is not native timer UI, accessibility, performance, platform or
 engineering acceptance. The qualified09df25d/199226d5 native epoch remains
 separate and unchanged.
+
+## Native test binary build
+
+Exact build-only jobf9be2ebb / launchera55c0f57 passed on unchanged source
+closure7bdf94d6 and execution HEAD973c7c22d527e45a0d610cc392afffb91d291e73.
+Cargo PID1051084/start13964534 ran2026-10-23T14:21:34.459828Z through
+14:21:38.308972Z, exit0. Requested joint start was14:21:29.486Z; packet remained
+valid when actual launch occurred5seconds later. Overall attempt ended
+14:21:39.104813Z after binary preservation. The original admission packet was
+not extended, launcher was unchanged, and no completed tests were replayed.
+
+Receipt SHA256e7ecc1b88fece8931ecdc25f4314f56c167b10f3b8bddbcfa8ad22a1b66364a8.
+Preserved binary398432768bytes, SHA256
+d0a0cf7427d2a09cbf1f56ae44469ce7e794b2d1e736dd10d56119732952dab1,
+path /workspace/build/builderbob/mbse-craft/layout-periodic-recovery-build/attempt-20261023T142134449671Z/mbse-desktop,
+mode0700. This is the default debug profile native test binary, not a release.
+
+All661 source-closure files and Cargo.lock remained unchanged. Cargo's exact
+identity is absent, owned_jobs=[], allocation released. Existing target apparent
+bytes5806060738, growth413521; preserved binary adds398432768bytes. Remaining
+workspace free bytes87187574784. PeakRSS was not measured. The independent
+observer/coordinator timeline must establish actual overlap and any concurrency
+qualification. This receipt alone proves neither. No GUI or upload was launched.
+
+Exact job, admission, allocation, launcher, source manifest, receipt, cleanup and
+losslessly compressed raw build log are in build-verification/. Next native
+work needs a newly pinned binary-specific job, private owned state/display/auth,
+reviewed workflow and fresh action admission. Native periodic timer behavior
+remains UNRUN.
