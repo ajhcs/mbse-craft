@@ -16,3 +16,5 @@ pub mod native_views_io;
 pub mod native_views_inspect;
 
 pub mod native_views_plan;
+
+pub mod native_navigation;

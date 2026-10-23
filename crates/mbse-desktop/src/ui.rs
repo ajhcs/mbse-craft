@@ -59,6 +59,7 @@ pub struct Workspace {
     creation: Option<(RecordKind, RecordId, String)>,
     relation: Option<EdgeId>,
     popout: Option<RecordId>,
+    usages: Option<mbse_model::native_navigation::UsageReport>,
     pending: Option<Load>,
     context_creation: Option<(RecordId, String, ContextKind)>,
     recovery_window: bool,
@@ -112,7 +113,7 @@ impl Workspace {
         let views = crate::views_ui::ViewWorkspace::new(&session);
         let periodic_recovery = crate::periodic_recovery::PeriodicRecovery::new(Instant::now(), &session, &views);
         let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,periodic_recovery, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
-            creation: None, relation: None, popout: None, pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new() };
+            creation: None, relation: None, popout: None, usages: None, pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new() };
         app.refresh_recoveries();
         app
     }
@@ -216,6 +217,40 @@ impl Workspace {
             }
         });
         self.result(message);
+    }
+    fn open_usages(&mut self, id: RecordId) {
+        match mbse_model::native_navigation::find_usages(&self.session.editor,&self.views.views,id) {
+            Ok(report)=>self.usages=Some(report),Err(error)=>self.result(Err(error)),
+        }
+    }
+    fn navigate_usage(&mut self, index: usize) {
+        let result=self.usages.as_ref().ok_or_else(||"No native usages report".to_string()).and_then(|report|report.referencing_record(&self.session.editor,&self.views.views,index));
+        match result {Ok(id)=>self.select(id),Err(error)=>self.result(Err(error))}
+    }
+    fn show_usages(&mut self,ctx:&egui::Context) {
+        let Some(report)=self.usages.take() else {return;};
+        let target=report.target();let stale=report.check(&self.session.editor,&self.views.views).err();
+        let mut open=true;let mut refresh=false;let mut navigate=None;
+        egui::Window::new("Native Find usages").id(egui::Id::new("native-find-usages")).open(&mut open).default_width(760.).show(ctx,|ui|{
+            ui.heading(format!("Authored graph usages of native record #{}",target.0));
+            ui.label("Known scope, contributesTo, subject, forObjective and resolved calculation-output references only. Opaque fields, drafts and unresolved references are not interpreted here.");
+            ui.label("This report selects existing native records. It does not edit references or change diagram occurrences.");
+            let response=ui.button("Refresh usages");self.bound("usages:refresh",&response);refresh=response.clicked();
+            if let Some(error)=&stale {ui.label(error);}
+            ui.label(format!("{} referencing record/role rows (named calculation inputs are grouped).",report.usages().len()));
+            egui::ScrollArea::vertical().id_salt("native-usage-rows").max_height(500.).show(ui,|ui|{
+                for (index,usage) in report.usages().iter().enumerate() {
+                    let label=self.session.editor.snapshot.records.get(&usage.referencing_record).map(|record|format!("{} #{} · {}",record.kind.label(),record.id.0,record.name)).unwrap_or_else(||format!("Unavailable #{}",usage.referencing_record.0));
+                    ui.group(|ui|{
+                        ui.label(format!("{label} references #{} via {:?}",target.0,usage.role));
+                        if !usage.binding_names.is_empty(){ui.label(format!("Input bindings: {}",usage.binding_names.join(", ")));}
+                        let response=ui.add_enabled(stale.is_none(),egui::Button::new("Select referencing record"));self.bound(format!("usages:select:{index}"),&response);if response.clicked(){navigate=Some(index);}
+                    });
+                }
+                if report.usages().is_empty(){ui.label("No usages found among the supported authored graph roles at this snapshot.");}
+            });
+        });
+        if open {self.usages=Some(report);if refresh {self.open_usages(target);} else if let Some(index)=navigate {self.navigate_usage(index);}}
     }
     fn select(&mut self, id: RecordId) {
         if let Some(focused) = self.context.memory(|m| m.focused()) {
@@ -461,6 +496,7 @@ impl Workspace {
                 self.context_creation = None;
                 self.relation = None;
                 self.popout = None;
+                self.usages = None;
                 self.save_path = self
                     .session
                     .path
@@ -624,6 +660,7 @@ impl Workspace {
                 ui.separator();
                 if let Some(record) = selected.and_then(|id| records.iter().find(|r| r.id == id)).cloned() {
                     ui.label(RichText::new(format!("{} #{}", record.kind.label(), record.id.0)).color(ACCENT));
+                    let response=ui.button("Find usages");self.bound("action:Find usages",&response);if response.clicked(){self.open_usages(record.id);}
                     self.inspector(ui, &record, &records);
                 }
                 ui.separator(); ui.label(RichText::new("Add a typed record").strong());
@@ -1591,6 +1628,15 @@ fn block_close(
 mod policies {
     use super::*;
     #[test]
+    fn native_usages_navigation_preserves_dirty_target_and_refuses_stale_rows() {
+        let area=tempfile::Builder::new().prefix("native-usages-ui-").tempdir_in(std::env::var_os("TMPDIR").expect("workspace TMPDIR")).unwrap();
+        let session=Session::new(area.path()).unwrap();let ctx=egui::Context::default();let mut app=Workspace::new(session,None,None,craft_window::Choice::probe(craft_window::Prefix::new("MBSE_CRAFT")),&ctx);
+        app.command(Command::Add{kind:RecordKind::Mission,owner:RecordId(1),name:"Mission".into()});let mission=app.session.editor.snapshot.records.values().find(|r|r.kind==RecordKind::Mission).unwrap().id;
+        app.open_usages(RecordId(1));let index=app.usages.as_ref().unwrap().usages().iter().position(|u|u.referencing_record==mission).unwrap();
+        let before=(app.session.editor.snapshot.digest(),app.views.views.document().digest().unwrap(),app.views.views.history_usage(),app.save_path.clone());app.navigate_usage(index);assert_eq!(app.session.editor.selected,Some(mission));assert_eq!((app.session.editor.snapshot.digest(),app.views.views.document().digest().unwrap(),app.views.views.history_usage(),app.save_path.clone()),before);
+        app.command(Command::EditText{key:RawKey{record:mission,field:"name".into(),item:None},text:"Edited after report".into()});let selected=app.session.editor.selected;app.navigate_usage(index);assert!(app.error);assert!(app.feedback.contains("USAGES_STALE"));assert_eq!(app.session.editor.selected,selected);assert!(!app.session.pending());assert!(!app.views.pair_pending());
+    }
+    #[test]
     fn source_inspection_shortcuts_never_undo_or_save_the_live_target() {
         let tmp=std::env::var_os("TMPDIR").expect("workspace TMPDIR");let area=tempfile::Builder::new().prefix("inspection-shortcut-").tempdir_in(tmp).unwrap();
         let session=Session::new(area.path()).unwrap();let ctx=egui::Context::default();
@@ -1792,6 +1838,7 @@ impl eframe::App for Workspace {
         self.sidebar(root);
         self.canvas(root);
         self.dialogs(&ctx);
+        self.show_usages(&ctx);
         self.views.show_inspection(&ctx, &self.session.editor);
         self.capture(&ctx);
         self.catalog.show(&ctx);
@@ -1801,7 +1848,7 @@ impl eframe::App for Workspace {
         let audit = serde_json::json!({"profile":"mbse-craft.ui-geometry/1","frame_policy":format!("{:?}",self.frame_choice.frame()),"frame_override":self.frame_choice.overridden(), "pixels_per_point":ctx.pixels_per_point(),
             "views_mapping_rehearsal":self.views.mapping_audit(&self.session.editor),"views_inspection_visible":self.views.inspection_visible(),"views_inspection_sha256":self.views.inspection_source_sha256(),"views_inspection_note":self.views.inspection_note(),"views_revision":self.views.views.document().revision().to_string(),"views_active":self.views.active.get().to_string(),"views_pending":self.views.io.pending(),"views_saved_hint":self.views.io.is_saved(&self.session,&self.views.views),"views_note":self.views.note,
             "model_revision":self.session.editor.snapshot.model_revision,"raw_version":self.session.editor.snapshot.raw_version,
-            "snapshot_hash":self.session.editor.snapshot.digest(),"selected":self.session.editor.selected.map(|id|id.0),
+            "native_usages":self.usages.as_ref().map(|report|serde_json::json!({"target":report.target().0,"rows":report.usages().len(),"current":report.check(&self.session.editor,&self.views.views).is_ok()})),"snapshot_hash":self.session.editor.snapshot.digest(),"selected":self.session.editor.selected.map(|id|id.0),
             "save_status":format!("{:?}",self.session.status()),"periodic_recovery":self.preferences.value.periodic_recovery,"recovery_interval_seconds":self.preferences.value.recovery_interval_seconds,"preferences_status":self.preferences.status,"write_pending":self.session.pending(),"external_copy_pending":self.exchange.copy_pending(),"source_edit_dirty":self.exchange.source_edit_dirty(),"source_edit_pending":self.exchange.source_edit_pending(),"recovery_path":self.session.last_recovery().map(|p|p.display().to_string()),"native_recovery_status":self.periodic_recovery.status(&self.session,&self.views).0,"layout_recovery_status":self.periodic_recovery.status(&self.session,&self.views).1,"views_recovery_current_hint":self.views.io.recovery_current(&self.session,&self.views.views),"views_pair_pending":self.views.pair_pending(),"views_gesture_active":self.views.layout_gesture_active(),"feedback":self.feedback,"error":self.error,"widgets":self.audit});
         if let Ok(bytes) = serde_json::to_vec_pretty(&audit) {
             if bytes != self.audit_previous {
