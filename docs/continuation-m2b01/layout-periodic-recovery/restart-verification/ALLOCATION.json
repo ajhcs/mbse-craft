@@ -1,0 +1,79 @@
+{
+  "owner_thread_id": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+  "job_manifest_sha256": "16c649e8f8e85799b3ba45d9699887cf6d0437ef4b1f740e98c02da0001a3a06",
+  "commands_authorized": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-model",
+      "native_views",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-model",
+      "stage1_io::tests",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop",
+      "views_ui::tests",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop",
+      "ui::policies",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "target_dir": "/workspace/build/builderbob/mbse-craft/semantic-v2/target",
+  "target_exclusive_confirmed": true,
+  "build_launch_authorized": true,
+  "expected_appserver_identity": {
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+    "pid": 1072280,
+    "pid_namespace": "pid:[4026531836]",
+    "start_ticks": 14235850,
+    "uid": 1000
+  },
+  "authority": "Trusted restart continuation authorizes necessary new tests/build. Coordinator explicitly directs exact fresh gate execution now after checks.",
+  "writer_confirmation": "This integrator remains sole MBSE candidate/target writer; all prior exact owned identities checked absent, no new Cargo launch since previous gate. No global slot reservation or second writer.",
+  "allocated_utc": "2026-10-23T15:30:38.022575+00:00",
+  "gui": false,
+  "uploads": false
+}

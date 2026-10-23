@@ -1,0 +1,46 @@
+{
+  "checked_utc": "2026-10-23T15:45:17.412737+00:00",
+  "started_utc": "2026-10-23T15:36:34.990356+00:00",
+  "ended_utc": "2026-10-23T15:44:17.881812+00:00",
+  "display": ":0",
+  "identities": [
+    {
+      "pid": 1107312,
+      "start_ticks": 14414526,
+      "original_identity_absent": true
+    },
+    {
+      "pid": 1107315,
+      "start_ticks": 14414609,
+      "original_identity_absent": true
+    },
+    {
+      "pid": 1107316,
+      "start_ticks": 14414634,
+      "original_identity_absent": true
+    },
+    {
+      "pid": 1107317,
+      "start_ticks": 14414635,
+      "original_identity_absent": true
+    },
+    {
+      "pid": 1107319,
+      "start_ticks": 14414660,
+      "original_identity_absent": true
+    },
+    {
+      "pid": 1107322,
+      "start_ticks": 14414679,
+      "original_identity_absent": true
+    }
+  ],
+  "auth_absent": true,
+  "app_exit_code": 0,
+  "server_exit_code": 0,
+  "driver_exit_code": 0,
+  "renderer_released": true,
+  "owned_jobs": [],
+  "source_binary_unchanged": true,
+  "original_pngs": 18
+}

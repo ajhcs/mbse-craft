@@ -4,6 +4,7 @@ mod exchange_ui;
 mod semantic_ui;
 mod source_edit_ui;
 mod preferences;
+mod periodic_recovery;
 mod ui;
 mod views_ui;
 use mbse_model::{stage1::RecordId, stage1_io::Session};

@@ -1,0 +1,20 @@
+{
+  "checked_utc": "2026-10-23T14:23:05.723215+00:00",
+  "owned_identity_checks": [
+    {
+      "pid": 1051084,
+      "recorded_start_ticks": 13964534,
+      "original_identity_absent": true
+    }
+  ],
+  "owned_jobs": [],
+  "build_allocation_released": true,
+  "renderer_used": false,
+  "target_apparent_bytes_after": 5806060738,
+  "target_apparent_bytes_before": 5805647217,
+  "target_apparent_growth_bytes": 413521,
+  "preserved_binary_bytes": 398432768,
+  "workspace_free_bytes_after": 87187574784,
+  "peak_rss": "Not measured",
+  "overlap": "Only independent observer/coordinator timeline can establish overlap or concurrency qualification."
+}
