@@ -112,6 +112,24 @@ pub struct Camera {
     pub y: f64,
     pub zoom: f64,
 }
+impl Camera {
+    pub const MIN_ZOOM: f64 = 0.05;
+    pub const MAX_ZOOM: f64 = 20.;
+    pub fn checked(x: f64, y: f64, zoom: f64) -> Result<Self, String> {
+        let camera = Self { x, y, zoom };
+        if !camera.valid() {
+            return Err("VIEWS_CAMERA_INVALID".into());
+        }
+        Ok(camera)
+    }
+    fn valid(&self) -> bool {
+        [self.x, self.y]
+            .iter()
+            .all(|n| n.is_finite() && n.abs() <= LIMIT)
+            && self.zoom.is_finite()
+            && (Self::MIN_ZOOM..=Self::MAX_ZOOM).contains(&self.zoom)
+    }
+}
 impl Default for Camera {
     fn default() -> Self {
         Self {
@@ -340,11 +358,7 @@ impl Document {
                 || !ids.insert(id.0)
                 || v.title.is_empty()
                 || v.title.len() > 1024
-                || ![v.camera.x, v.camera.y]
-                    .iter()
-                    .all(|n| n.is_finite() && n.abs() <= LIMIT)
-                || !v.camera.zoom.is_finite()
-                || !(0.05..=20.).contains(&v.camera.zoom)
+                || !v.camera.valid()
             {
                 return Err("VIEWS_VIEW_INVALID".into());
             }
@@ -1092,6 +1106,61 @@ mod tests {
             },
         );
         *v.document.occurrences.keys().last().unwrap()
+    }
+    #[test]
+    fn checked_camera_uses_the_existing_finite_wire_limits() {
+        for (x, y, z) in [
+            (0., 0., Camera::MIN_ZOOM),
+            (LIMIT, -LIMIT, Camera::MAX_ZOOM),
+        ] {
+            assert!(Camera::checked(x, y, z).is_ok());
+        }
+        for (x, y, z) in [
+            (f64::NAN, 0., 1.),
+            (0., f64::INFINITY, 1.),
+            (LIMIT + 1., 0., 1.),
+            (0., 0., 0.),
+            (0., 0., Camera::MAX_ZOOM + 0.01),
+            (0., 0., f64::NAN),
+        ] {
+            assert!(Camera::checked(x, y, z).is_err());
+        }
+    }
+    #[test]
+    fn invalid_camera_refuses_layout_and_source_restore_without_mutation() {
+        let e = editor();
+        let mut views = Views::new(&e).unwrap();
+        let before = (
+            views.document().digest().unwrap(),
+            views.history_usage(),
+            views.document().next_id(),
+        );
+        let bad = Camera {
+            x: 0.,
+            y: 0.,
+            zoom: 21.,
+        };
+        let stamp = views.stamp(&e);
+        assert!(views
+            .apply(
+                &e,
+                &stamp,
+                Layout::Camera(views.document().primary, bad.clone())
+            )
+            .is_err());
+        assert_eq!(
+            (
+                views.document().digest().unwrap(),
+                views.history_usage(),
+                views.document().next_id()
+            ),
+            before
+        );
+        let mut d = views.recovery(&e).unwrap();
+        d.views.get_mut(&d.primary).unwrap().camera = bad;
+        let bytes = d.encoded().unwrap();
+        assert!(Views::restore(&bytes, &e).is_err());
+        assert!(inspect_document(&bytes).is_err());
     }
     #[test]
     fn same_element_two_views_move_hide_and_non_reused_ids() {

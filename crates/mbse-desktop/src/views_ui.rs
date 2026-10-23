@@ -9,6 +9,7 @@ use mbse_model::{
     stage1_io::{IoTicket, Session, WriteKind},
 };
 use std::{
+    collections::BTreeMap,
     path::PathBuf,
     sync::mpsc::{self, Receiver, Sender},
 };
@@ -23,6 +24,17 @@ pub struct PreparedPair {
 struct NativePair {
     ticket: IoTicket,
     prepared: PreparedPair,
+}
+#[derive(Clone, Copy)]
+enum CameraCommand {
+    ZoomIn,
+    ZoomOut,
+    HundredPercent,
+    PanLeft,
+    PanRight,
+    PanUp,
+    PanDown,
+    Reset,
 }
 pub struct ViewWorkspace {
     pub views: Views,
@@ -48,6 +60,7 @@ pub struct ViewWorkspace {
     mapping: Option<mbse_model::native_views_plan::Plan>,
     mapping_preview: Option<mbse_model::native_views_plan::Preview>,
     mapping_note: String,
+    toolbar_bounds: BTreeMap<String, [f32; 4]>,
 }
 impl ViewWorkspace {
     pub fn new(session: &Session) -> Self {
@@ -79,6 +92,7 @@ impl ViewWorkspace {
             mapping: None,
             mapping_preview: None,
             mapping_note: String::new(),
+            toolbar_bounds: BTreeMap::new(),
             inspection: None,
             inspection_path: String::new(),
             inspection_open: false,
@@ -477,13 +491,79 @@ impl ViewWorkspace {
             self.drag = None;
         }
     }
+    pub fn toolbar_bounds(&self) -> impl Iterator<Item = (String, [f32; 4])> + '_ {
+        self.toolbar_bounds.iter().map(|(k, v)| (k.clone(), *v))
+    }
+    pub fn camera_audit(&self) -> serde_json::Value {
+        self.views.document().views.get(&self.active).map(|view|serde_json::json!({"view":self.active.get().to_string(),"x":view.camera.x,"y":view.camera.y,"zoom":view.camera.zoom})).unwrap_or(serde_json::Value::Null)
+    }
+    fn toolbar_bound(&mut self, key: impl Into<String>, response: &egui::Response) {
+        let rect = response.rect.intersect(response.interact_rect);
+        self.toolbar_bounds
+            .insert(key.into(), [rect.min.x, rect.min.y, rect.max.x, rect.max.y]);
+    }
+    fn set_camera(&mut self, editor: &Editor, camera: v::Camera) -> Result<bool, String> {
+        if self.drag.is_some() {
+            return Err("VIEWS_CAMERA_GESTURE_ACTIVE: release the occurrence gesture first".into());
+        }
+        let camera = v::Camera::checked(camera.x, camera.y, camera.zoom)?;
+        let view = self.active;
+        let old = &self
+            .views
+            .document()
+            .views
+            .get(&view)
+            .ok_or("VIEWS_NO_VIEW")?
+            .camera;
+        if *old == camera {
+            return Ok(false);
+        }
+        let stamp = self.views.stamp(editor);
+        self.views
+            .apply(editor, &stamp, Layout::Camera(view, camera))?;
+        Ok(true)
+    }
+    fn camera_target(old: &v::Camera, command: CameraCommand) -> Result<v::Camera, String> {
+        let mut next = old.clone();
+        let step = 64. / old.zoom;
+        match command {
+            CameraCommand::ZoomIn => next.zoom = (old.zoom * 1.25).min(v::Camera::MAX_ZOOM),
+            CameraCommand::ZoomOut => next.zoom = (old.zoom / 1.25).max(v::Camera::MIN_ZOOM),
+            CameraCommand::HundredPercent => next.zoom = 1.,
+            CameraCommand::PanLeft => next.x -= step,
+            CameraCommand::PanRight => next.x += step,
+            CameraCommand::PanUp => next.y -= step,
+            CameraCommand::PanDown => next.y += step,
+            CameraCommand::Reset => next = v::Camera::default(),
+        }
+        v::Camera::checked(next.x, next.y, next.zoom)
+    }
+    fn camera_command(&mut self, editor: &Editor, command: CameraCommand) -> Result<bool, String> {
+        if self.drag.is_some() {
+            return Err("VIEWS_CAMERA_GESTURE_ACTIVE: release the occurrence gesture first".into());
+        }
+        let old = &self
+            .views
+            .document()
+            .views
+            .get(&self.active)
+            .ok_or("VIEWS_NO_VIEW")?
+            .camera;
+        let camera = Self::camera_target(old, command)?;
+        self.set_camera(editor, camera)
+    }
     fn layout_history(&mut self, editor: &Editor, redo: bool) {
+        if self.drag.is_some() {
+            self.note="VIEWS_CAMERA_GESTURE_ACTIVE: release the occurrence gesture before layout history.".into();
+            return;
+        }
         let stamp = self.views.stamp(editor);
         self.note = format!("{:?}", self.views.undo(editor, &stamp, redo));
         self.reconcile();
     }
     /// Returns a selected native ID; selection itself is not a semantic edit.
     pub fn toolbar(&mut self, ui: &mut egui::Ui, session: &Session) -> Option<RecordId> {
+        self.toolbar_bounds.clear();
         let mut select = None;
         let tabs: Vec<_> = self
             .views
@@ -494,15 +574,24 @@ impl ViewWorkspace {
             .collect();
         ui.horizontal_wrapped(|ui| {
             for (id, title) in tabs {
-                if ui.selectable_label(self.active == id, title).clicked() {
+                let response = ui.add_enabled(
+                    self.drag.is_none(),
+                    egui::Button::selectable(self.active == id, title),
+                );
+                self.toolbar_bound(format!("view:tab:{}", id.get()), &response);
+                if response.clicked() {
                     self.active = id;
                     self.selected = None;
                 }
             }
-            if ui.button("Layout Undo").clicked() {
+            let response = ui.add_enabled(self.drag.is_none(), egui::Button::new("Layout Undo"));
+            self.toolbar_bound("view:Layout Undo", &response);
+            if response.clicked() {
                 self.layout_history(&session.editor, false);
             }
-            if ui.button("Layout Redo").clicked() {
+            let response = ui.add_enabled(self.drag.is_none(), egui::Button::new("Layout Redo"));
+            self.toolbar_bound("view:Layout Redo", &response);
+            if response.clicked() {
                 self.layout_history(&session.editor, true);
             }
         });
@@ -528,7 +617,9 @@ impl ViewWorkspace {
             {
                 self.apply(&session.editor, Layout::CloseView(self.active));
             }
-            if ui.button("Fit").clicked() {
+            let response = ui.add_enabled(self.drag.is_none(), egui::Button::new("Fit"));
+            self.toolbar_bound("camera:Fit", &response);
+            if response.clicked() {
                 let items: Vec<_> = self
                     .views
                     .document()
@@ -549,12 +640,55 @@ impl ViewWorkspace {
                 let zoom = ((ui.available_width().max(300.) as f64 / (right - x + 50.))
                     .min(400. / (bottom - y + 50.)))
                 .clamp(0.05, 20.);
-                self.apply(
-                    &session.editor,
-                    Layout::Camera(self.active, v::Camera { x, y, zoom }),
+                self.note = format!(
+                    "{:?}",
+                    self.set_camera(&session.editor, v::Camera { x, y, zoom })
                 );
             }
         });
+        if let Some(camera) = self
+            .views
+            .document()
+            .views
+            .get(&self.active)
+            .map(|view| view.camera.clone())
+        {
+            ui.horizontal_wrapped(|ui| {
+                ui.label("Camera");
+                for (label, command) in [
+                    ("Zoom out", CameraCommand::ZoomOut),
+                    ("100%", CameraCommand::HundredPercent),
+                    ("Zoom in", CameraCommand::ZoomIn),
+                    ("Pan left", CameraCommand::PanLeft),
+                    ("Pan right", CameraCommand::PanRight),
+                    ("Pan up", CameraCommand::PanUp),
+                    ("Pan down", CameraCommand::PanDown),
+                    ("Reset camera", CameraCommand::Reset),
+                ] {
+                    let enabled = self.drag.is_none()
+                        && Self::camera_target(&camera, command).is_ok_and(|next| next != camera);
+                    let response = ui.add_enabled(enabled, egui::Button::new(label));
+                    self.toolbar_bound(format!("camera:{label}"), &response);
+                    if response.clicked() {
+                        self.note = match self.camera_command(&session.editor, command) {
+                            Ok(true) => {
+                                "Camera updated. Native model and occurrence geometry retained."
+                                    .into()
+                            }
+                            Ok(false) => "Camera unchanged.".into(),
+                            Err(error) => error,
+                        };
+                    }
+                }
+                let current = &self.views.document().views[&self.active].camera;
+                ui.label(format!(
+                    "{:.0}% · origin ({:.2}, {:.2})",
+                    current.zoom * 100.,
+                    current.x,
+                    current.y
+                ));
+            });
+        }
         if ui.button("Inspect presentation source…").clicked() {
             self.open_inspection();
         }
@@ -565,10 +699,9 @@ impl ViewWorkspace {
             // Admission is checked on click by Io::open; no disk reads in a
             // per-frame status hint, and no wire revision grants permission.
             let may_open = !self.io.pending() && !session.pending() && !self.pair_pending();
-            if ui
-                .add_enabled(may_open, egui::Button::new("Open views"))
-                .clicked()
-            {
+            let response = ui.add_enabled(may_open, egui::Button::new("Open views"));
+            self.toolbar_bound("views:Open views", &response);
+            if response.clicked() {
                 self.open(session, false);
             }
             if ui
@@ -1667,5 +1800,263 @@ mod tests {
         );
         finish_pair(&mut ui, &mut session, native);
         ui.verify_preserved(&session, &WriteKind::Recovery).unwrap();
+    }
+    #[test]
+    fn camera_commands_are_per_view_and_preserve_native_meaning_and_geometry() {
+        let (_area, session) = session();
+        let mut ui = ViewWorkspace::new(&session);
+        let primary = ui.active;
+        let other = *ui
+            .views
+            .document()
+            .views
+            .keys()
+            .find(|id| **id != primary)
+            .unwrap();
+        let before = (
+            session.editor.snapshot.digest(),
+            session.editor.freshness(),
+            session.editor.calculation_stamp(),
+            ui.views.document().occurrences.clone(),
+            ui.views.document().next_id(),
+        );
+        assert!(ui
+            .camera_command(&session.editor, CameraCommand::ZoomIn)
+            .unwrap());
+        assert!(ui
+            .camera_command(&session.editor, CameraCommand::PanRight)
+            .unwrap());
+        let first = ui.views.document().views[&primary].camera.clone();
+        assert_eq!(first.zoom, 1.25);
+        assert_eq!(first.x, 64. / 1.25);
+        ui.active = other;
+        assert_eq!(
+            ui.views.document().views[&other].camera,
+            v::Camera::default()
+        );
+        ui.camera_command(&session.editor, CameraCommand::ZoomOut)
+            .unwrap();
+        assert_eq!(ui.views.document().views[&other].camera.zoom, 0.8);
+        assert_eq!(ui.views.document().views[&primary].camera, first);
+        assert_eq!(
+            (
+                session.editor.snapshot.digest(),
+                session.editor.freshness(),
+                session.editor.calculation_stamp(),
+                ui.views.document().occurrences.clone(),
+                ui.views.document().next_id()
+            ),
+            before
+        );
+    }
+    #[test]
+    fn camera_noops_and_rejected_bounds_preserve_revision_history_and_redo() {
+        let (_area, session) = session();
+        let mut ui = ViewWorkspace::new(&session);
+        ui.camera_command(&session.editor, CameraCommand::ZoomIn)
+            .unwrap();
+        ui.layout_history(&session.editor, false);
+        let before = (
+            ui.views.document().digest().unwrap(),
+            ui.views.history_usage(),
+        );
+        assert!(!ui
+            .camera_command(&session.editor, CameraCommand::HundredPercent)
+            .unwrap());
+        assert!(!ui
+            .camera_command(&session.editor, CameraCommand::Reset)
+            .unwrap());
+        assert_eq!(
+            (
+                ui.views.document().digest().unwrap(),
+                ui.views.history_usage()
+            ),
+            before
+        );
+        ui.layout_history(&session.editor, true);
+        assert_eq!(ui.views.document().views[&ui.active].camera.zoom, 1.25);
+        ui.set_camera(
+            &session.editor,
+            v::Camera::checked(10., 20., v::Camera::MAX_ZOOM).unwrap(),
+        )
+        .unwrap();
+        let before = ui.views.document().digest().unwrap();
+        assert!(!ui
+            .camera_command(&session.editor, CameraCommand::ZoomIn)
+            .unwrap());
+        assert_eq!(ui.views.document().digest().unwrap(), before);
+        ui.camera_command(&session.editor, CameraCommand::HundredPercent)
+            .unwrap();
+        assert_eq!(
+            ui.views.document().views[&ui.active].camera,
+            v::Camera::checked(10., 20., 1.).unwrap()
+        );
+        ui.set_camera(
+            &session.editor,
+            v::Camera::checked(1_000_000., 0., v::Camera::MIN_ZOOM).unwrap(),
+        )
+        .unwrap();
+        let before = (
+            ui.views.document().digest().unwrap(),
+            ui.views.history_usage(),
+        );
+        assert!(!ui
+            .camera_command(&session.editor, CameraCommand::ZoomOut)
+            .unwrap());
+        assert!(ui
+            .camera_command(&session.editor, CameraCommand::PanRight)
+            .is_err());
+        assert!(ui
+            .set_camera(
+                &session.editor,
+                v::Camera {
+                    x: f64::NAN,
+                    y: 0.,
+                    zoom: 1.
+                }
+            )
+            .is_err());
+        assert_eq!(
+            (
+                ui.views.document().digest().unwrap(),
+                ui.views.history_usage()
+            ),
+            before
+        );
+    }
+    #[test]
+    fn camera_and_layout_history_refuse_during_an_occurrence_gesture() {
+        let (_area, session) = session();
+        let mut ui = ViewWorkspace::new(&session);
+        let o = ui
+            .views
+            .document()
+            .occurrences
+            .values()
+            .next()
+            .unwrap()
+            .clone();
+        ui.drag = Some((
+            o.id,
+            o.geometry.clone(),
+            ui.views.stamp(&session.editor),
+            egui::Pos2::ZERO,
+        ));
+        let before = (
+            ui.views.document().digest().unwrap(),
+            ui.views.history_usage(),
+        );
+        assert!(ui
+            .camera_command(&session.editor, CameraCommand::ZoomIn)
+            .unwrap_err()
+            .contains("GESTURE_ACTIVE"));
+        assert!(ui
+            .set_camera(&session.editor, v::Camera::checked(5., 6., 0.5).unwrap())
+            .is_err());
+        ui.layout_history(&session.editor, false);
+        assert!(ui.note.contains("GESTURE_ACTIVE"));
+        assert_eq!(
+            (
+                ui.views.document().digest().unwrap(),
+                ui.views.history_usage()
+            ),
+            before
+        );
+        ui.drag = None;
+        assert!(ui
+            .camera_command(&session.editor, CameraCommand::ZoomIn)
+            .unwrap());
+    }
+    #[test]
+    fn two_view_cameras_round_trip_only_after_explicit_bound_sidecar_open() {
+        let (area, mut session) = session();
+        let mut ui = saved_pair(&area, &mut session);
+        let primary = ui.active;
+        let other = *ui
+            .views
+            .document()
+            .views
+            .keys()
+            .find(|id| **id != primary)
+            .unwrap();
+        let geometry = ui.views.document().occurrences.clone();
+        let native_hash = session.editor.snapshot.digest();
+        ui.set_camera(
+            &session.editor,
+            v::Camera::checked(51.2, -16., 1.25).unwrap(),
+        )
+        .unwrap();
+        ui.active = other;
+        ui.set_camera(&session.editor, v::Camera::checked(-32., 64., 0.8).unwrap())
+            .unwrap();
+        let expected: Vec<_> = ui
+            .views
+            .document()
+            .views
+            .iter()
+            .map(|(id, v)| (*id, v.camera.clone()))
+            .collect();
+        let native = paired_native(
+            &mut ui,
+            &mut session,
+            WriteKind::Save,
+            &area.path().join("model.kernspan"),
+        );
+        finish_pair(&mut ui, &mut session, native);
+        ui.verify_preserved(&session, &WriteKind::Save).unwrap();
+        let reopened = Session::open(area.path(), &area.path().join("model.kernspan")).unwrap();
+        let mut fresh = ViewWorkspace::new(&reopened);
+        assert!(fresh
+            .views
+            .document()
+            .views
+            .values()
+            .all(|v| v.camera == v::Camera::default()));
+        fresh.open(&reopened, false);
+        assert_eq!(
+            fresh
+                .views
+                .document()
+                .views
+                .iter()
+                .map(|(id, v)| (*id, v.camera.clone()))
+                .collect::<Vec<_>>(),
+            expected
+        );
+        assert_eq!(fresh.views.document().occurrences, geometry);
+        assert_eq!(reopened.editor.snapshot.digest(), native_hash);
+        assert_eq!(fresh.views.document().profile, v::PROFILE);
+    }
+    #[test]
+    fn camera_edit_during_save_is_not_acknowledged_by_an_older_frozen_pair() {
+        let (area, mut session) = session();
+        let mut ui = saved_pair(&area, &mut session);
+        ui.camera_command(&session.editor, CameraCommand::ZoomIn)
+            .unwrap();
+        let native = paired_native(
+            &mut ui,
+            &mut session,
+            WriteKind::Save,
+            &area.path().join("model.kernspan"),
+        );
+        ui.camera_command(&session.editor, CameraCommand::PanRight)
+            .unwrap();
+        let current = ui.views.document().views[&ui.active].camera.clone();
+        finish_pair(&mut ui, &mut session, native);
+        assert!(ui.verify_preserved(&session, &WriteKind::Save).is_err());
+        assert_eq!(ui.views.document().views[&ui.active].camera, current);
+        let saved: serde_json::Value = serde_json::from_slice(
+            &std::fs::read(area.path().join("model.mbse-views.json")).unwrap(),
+        )
+        .unwrap();
+        assert_eq!(saved["views"]["1"]["camera"]["x"], 0.);
+        let retry = paired_native(
+            &mut ui,
+            &mut session,
+            WriteKind::Save,
+            &area.path().join("model.kernspan"),
+        );
+        finish_pair(&mut ui, &mut session, retry);
+        ui.verify_preserved(&session, &WriteKind::Save).unwrap();
     }
 }
