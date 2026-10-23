@@ -72,3 +72,5 @@ The additive semantic-set V2 core has [independent focused checks and actual ref
 ## Licenses
 
 Original app code is MIT. Reused Kernspan core retains its MIT copyright; the pinned syntax crate is Apache-2.0; Craft libraries are MIT OR Apache-2.0 with complete NOTICE/ATTRIBUTION retained. See [third-party notices](THIRD_PARTY_NOTICES.md). No upstream brand endorsement is claimed.
+
+Experimental persistent native views are prepared on the separate `feature/native-views-m2b01` source branch. [M2B-01 adoption and held validation gate](docs/continuation-m2b01/ADOPTION.md) describes the implementation and UNRUN tests. This source preparation does not extend any earlier binary or native-workflow qualification.

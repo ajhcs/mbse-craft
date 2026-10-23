@@ -188,6 +188,34 @@ struct Pending {
     byte_len: u64,
 }
 
+/// Proof of an accepted native Save/open. Only Session can construct it.
+/// It may describe an older durable snapshot while the live editor is dirty.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct NativeCheckpoint {
+    document_id: DocumentId,
+    artifact_sha256: String,
+    snapshot_sha256: String,
+    path: PathBuf,
+    session_id: SessionId,
+    instance_id: InstanceId,
+    accepted_request: Option<RequestId>,
+}
+impl NativeCheckpoint {
+    pub fn document_id(&self) -> &DocumentId { &self.document_id }
+    pub fn artifact_sha256(&self) -> &str { &self.artifact_sha256 }
+    pub fn snapshot_sha256(&self) -> &str { &self.snapshot_sha256 }
+    pub fn path(&self) -> &Path { &self.path }
+    pub fn session_id(&self) -> &SessionId { &self.session_id }
+    pub fn instance_id(&self) -> &InstanceId { &self.instance_id }
+    pub fn accepted_request(&self) -> Option<&RequestId> { self.accepted_request.as_ref() }
+    pub fn is_current(&self, session: &Session) -> bool {
+        self.session_id == session.session_id && self.instance_id == session.instance_id
+            && self.document_id == session.editor.snapshot.document_id
+            && self.snapshot_sha256 == session.editor.snapshot.digest()
+            && session.disk_hash.as_deref() == Some(self.artifact_sha256.as_str())
+    }
+}
+
 pub struct Session {
     pub editor: Editor,
     pub path: Option<PathBuf>,
@@ -198,6 +226,7 @@ pub struct Session {
     next_request: u64,
     pending: Option<Pending>,
     durable_snapshot_hash: Option<String>,
+    accepted_save_request: Option<RequestId>,
     disk_hash: Option<String>,
     last_failure: Option<WriteFailure>,
     recovery_path: Option<PathBuf>,
@@ -209,6 +238,29 @@ pub struct Session {
     last_export: Option<ExportReceipt>,
 }
 impl Session {
+    /// Status hint only: accepted artifact identity without filesystem I/O.
+    /// Destructive navigation must use native_checkpoint() for revalidation.
+    pub fn accepted_native_artifact_sha256(&self) -> Option<&str> { self.disk_hash.as_deref() }
+    /// Revalidate the accepted file, never infer success from complete()'s bool.
+    /// Recovery and failed writes cannot mint a native checkpoint.
+    pub fn native_checkpoint(&self) -> Result<Option<NativeCheckpoint>, String> {
+        let (Some(path), Some(disk), Some(snapshot)) =
+            (&self.path, &self.disk_hash, &self.durable_snapshot_hash) else { return Ok(None); };
+        let bytes = read_bounded(path)?;
+        if hash(&bytes) != *disk { return Err("STAGE1_CHECKPOINT_DISK_CHANGED".into()); }
+        let envelope = decode(&bytes)?;
+        if envelope.kind != WriteKind::Save || envelope.snapshot.digest() != *snapshot
+            || envelope.snapshot.document_id != self.editor.snapshot.document_id {
+            return Err("STAGE1_CHECKPOINT_IDENTITY_CHANGED".into());
+        }
+        Ok(Some(NativeCheckpoint {
+            document_id: envelope.snapshot.document_id,
+            artifact_sha256: disk.clone(), snapshot_sha256: snapshot.clone(), path: path.clone(),
+            session_id: self.session_id.clone(), instance_id: self.instance_id.clone(),
+            accepted_request: self.accepted_save_request.clone(),
+        }))
+    }
+
     pub fn new(state_root: &Path) -> Result<Self, String> {
         let (root, reservation, session, instance) = reserve(state_root)?;
         let snapshot = Snapshot::new(DocumentId(format!("document:{}", session.0)));
@@ -432,6 +484,7 @@ impl Session {
             next_request: 1,
             pending: None,
             durable_snapshot_hash: None,
+            accepted_save_request: None,
             disk_hash: None,
             last_failure: None,
             recovery_path: None,
@@ -677,6 +730,7 @@ impl Session {
                         self.last_failure = None;
                         match pending.kind {
                             WriteKind::Save => {
+                                self.accepted_save_request = Some(pending.ticket.request_id.clone());
                                 self.path = Some(receipt.destination);
                                 self.disk_hash = Some(receipt.envelope_hash);
                                 self.durable_snapshot_hash = Some(pending.ticket.snapshot_hash);
@@ -970,7 +1024,7 @@ fn check_shape(value: &Value) -> Result<(), String> {
     Ok(())
 }
 
-struct UniqueValue(Value);
+pub(crate) struct UniqueValue(pub(crate) Value);
 impl<'de> Deserialize<'de> for UniqueValue {
     fn deserialize<D: Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
         struct UniqueVisitor;

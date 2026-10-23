@@ -9,3 +9,6 @@ pub mod stage1_io;
 pub mod stage1_sysml;
 
 pub mod recovery;
+
+pub mod native_views;
+pub mod native_views_io;
