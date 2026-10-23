@@ -1,0 +1,18 @@
+{
+  "owner_thread_id": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+  "job_manifest_sha256": "2c762f89a3cbe9946ff3bd6f369037e7001680d1e0c702f27b849d9fc6e5255d",
+  "renderer_allocated": true,
+  "native_launch_authorized": true,
+  "expected_appserver_identity": {
+    "pid": 1072280,
+    "start_ticks": 14235850,
+    "uid": 1000,
+    "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+    "pid_namespace": "pid:[4026531836]",
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+  },
+  "authority": "Authorized bounded read-only native camera controls workflow; coordinator exact-job health and workflow direction",
+  "isolation": "Exclusive new private run/status display/auth; previous exact owned identities absent, no other MBSE renderer",
+  "compiler_allocated": false,
+  "uploads": false
+}
