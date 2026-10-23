@@ -323,11 +323,13 @@ mod tests {
             &mut v,
             Layout::Route {
                 view: primary,
-                key: SemanticKey {
-                    owner: RecordId(200),
-                    role: SemanticRole::CapabilityContributesToMission,
-                    target: RecordId(100),
-                },
+                key: SemanticKey::checked(
+                    &e.snapshot,
+                    RecordId(200),
+                    SemanticRole::CapabilityContributesToMission,
+                    RecordId(100),
+                )
+                .unwrap(),
                 source: capability,
                 target: mission,
             },
@@ -341,6 +343,7 @@ mod tests {
             reason: "Retained endpoint kind mismatch".into(),
         };
         for edge in d.edges.values_mut() {
+            edge.key.owner = RecordId(100); // exact binding retained even while detached
             edge.presence = Presence::Detached {
                 reason: "Retained old routing".into(),
             };
