@@ -60,6 +60,10 @@ pub struct Workspace {
     relation: Option<EdgeId>,
     popout: Option<RecordId>,
     usages: Option<mbse_model::native_navigation::UsageReport>,
+    search_open: bool,
+    search_query: mbse_model::native_search::Query,
+    search_report: Option<mbse_model::native_search::Report>,
+    search_note: String,
     pending: Option<Load>,
     context_creation: Option<(RecordId, String, ContextKind)>,
     recovery_window: bool,
@@ -113,7 +117,7 @@ impl Workspace {
         let views = crate::views_ui::ViewWorkspace::new(&session);
         let periodic_recovery = crate::periodic_recovery::PeriodicRecovery::new(Instant::now(), &session, &views);
         let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,periodic_recovery, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
-            creation: None, relation: None, popout: None, usages: None, pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new() };
+            creation: None, relation: None, popout: None, usages: None, search_open:false, search_query:Default::default(), search_report:None, search_note:String::new(), pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new() };
         app.refresh_recoveries();
         app
     }
@@ -217,6 +221,64 @@ impl Workspace {
             }
         });
         self.result(message);
+    }
+    fn open_search(&mut self) {
+        let system=self.session.editor.selected.and_then(|id|self.session.editor.snapshot.records.get(&id).map(|r|r.scope));
+        self.search_query=mbse_model::native_search::Query{system,..Default::default()};self.search_report=None;self.search_note="Choose filters and run a native search.".into();self.search_open=true;
+    }
+    fn replace_search_query(&mut self,query:mbse_model::native_search::Query) {
+        if query!=self.search_query {self.search_query=query;self.search_report=None;self.search_note="Filters changed. Run search again.".into();}
+    }
+    fn run_search(&mut self) {
+        self.search_report=None;
+        match mbse_model::native_search::search(&self.session.editor,&self.views.views,self.search_query.clone()) {
+            Ok(report)=>{self.search_note=format!("Showing {} of {} matching native records. Narrow filters if results are limited.",report.hits().len(),report.total());self.search_report=Some(report);}
+            Err(error)=>self.search_note=error,
+        }
+    }
+    fn navigate_search(&mut self,index:usize) {
+        let result=self.search_report.as_ref().ok_or_else(||"Run native search first".to_string()).and_then(|r|r.record(&self.session.editor,&self.views.views,index));
+        match result {Ok(id)=>self.select(id),Err(error)=>self.search_note=error}
+    }
+    fn show_search(&mut self,ctx:&egui::Context) {
+        if !self.search_open {return;}
+        use mbse_model::native_search::Mode;
+        let mut open=true;let mut navigate=None;let mut query=self.search_query.clone();
+        egui::Window::new("Search native records").id(egui::Id::new("native-scoped-search")).open(&mut open).default_width(760.).show(ctx,|ui|{
+            ui.label("Search accepted native record names or exact IDs. Empty name query lists matching records; name matching is case-sensitive and literal.");
+            ui.horizontal(|ui|{
+                let response=egui::ComboBox::from_id_salt("native-search-mode").selected_text(match query.mode {Mode::NameContains=>"Name contains",Mode::ExactId=>"Exact ID"}).show_ui(ui,|ui|{ui.selectable_value(&mut query.mode,Mode::NameContains,"Name contains");ui.selectable_value(&mut query.mode,Mode::ExactId,"Exact ID");}).response;self.bound("search:mode",&response);
+                let response=ui.add(egui::TextEdit::singleline(&mut query.text).char_limit(1024).desired_width(400.).hint_text("Name text or canonical positive decimal ID"));self.bound("search:text",&response);
+            });
+            ui.horizontal(|ui|{
+                let response=egui::ComboBox::from_id_salt("native-search-kind").selected_text(query.kind.map(|k|k.label()).unwrap_or("All record types")).show_ui(ui,|ui|{
+                    ui.selectable_value(&mut query.kind,None,"All record types");
+                    for kind in [RecordKind::System,RecordKind::Mission,RecordKind::Capability,RecordKind::Objective,RecordKind::Measure,RecordKind::Stakeholder,RecordKind::Expectation,RecordKind::Environment,RecordKind::Organization,RecordKind::Actor] {ui.selectable_value(&mut query.kind,Some(kind),kind.label());}
+                }).response;self.bound("search:kind",&response);
+                let response=egui::ComboBox::from_id_salt("native-search-system").selected_text(query.system.map(|id|format!("System #{}",id.0)).unwrap_or("All Systems".into())).show_ui(ui,|ui|{
+                    ui.selectable_value(&mut query.system,None,"All Systems");
+                    for record in self.session.editor.snapshot.records.values().filter(|r|r.kind==RecordKind::System) {ui.selectable_value(&mut query.system,Some(record.id),format!("System #{} · {}",record.id.0,record.name.chars().take(64).collect::<String>()));}
+                }).response;self.bound("search:system",&response);
+            });
+            ui.label("System scope uses the authored System membership field. At most256 result rows; display names may be shortened. IDs are exact.");
+            self.replace_search_query(query.clone());
+            let response=ui.button("Run native search");self.bound("search:run",&response);if response.clicked(){self.run_search();}
+            ui.label(&self.search_note);
+            if let Some(report)=self.search_report.take() {
+                let stale=report.check(&self.session.editor,&self.views.views).err();if let Some(error)=&stale {ui.label(error);}
+                egui::ScrollArea::vertical().id_salt("native-search-hits").max_height(500.).show(ui,|ui|{
+                    for (index,hit) in report.hits().iter().enumerate() {
+                        ui.group(|ui|{
+                            ui.label(format!("{} #{} · System #{} · {}{}",hit.kind.label(),hit.record.0,hit.system.0,hit.name_preview,if hit.name_truncated {" [name shortened]"}else{""}));
+                            let response=ui.add_enabled(stale.is_none(),egui::Button::new("Select native record"));self.bound(format!("search:select:{index}"),&response);if response.clicked(){navigate=Some(index);}
+                        });
+                    }
+                    if report.total()==0 {ui.label("No native records match these filters.");}
+                });
+                self.search_report=Some(report);
+            }
+        });
+        self.search_open=open;if !open {self.search_report=None;} else if let Some(index)=navigate {self.navigate_search(index);}
     }
     fn open_usages(&mut self, id: RecordId) {
         match mbse_model::native_navigation::find_usages(&self.session.editor,&self.views.views,id) {
@@ -497,6 +559,7 @@ impl Workspace {
                 self.relation = None;
                 self.popout = None;
                 self.usages = None;
+                self.search_open=false;self.search_query=Default::default();self.search_report=None;self.search_note.clear();
                 self.save_path = self
                     .session
                     .path
@@ -648,6 +711,7 @@ impl Workspace {
         egui::Panel::left("model_navigation").default_size(338.).size_range(290. ..=420.).resizable(true).show(root, |ui| {
             egui::ScrollArea::vertical().show(ui, |ui| {
                 ui.heading("Model");
+                let response=ui.button("Search native records");self.bound("action:Search native records",&response);if response.clicked(){self.open_search();}
                 let records: Vec<_> = self.session.editor.snapshot.records.values().cloned().collect();
                 let selected = self.session.editor.selected;
                 egui::CollapsingHeader::new(format!("Records · {}", records.len())).default_open(true).show(ui, |ui| {
@@ -1628,6 +1692,13 @@ fn block_close(
 mod policies {
     use super::*;
     #[test]
+    fn native_search_draft_changes_clear_results_and_navigation_preserves_dirty_target() {
+        use mbse_model::native_search::{Mode,Query};
+        let area=tempfile::Builder::new().prefix("native-search-ui-").tempdir_in(std::env::var_os("TMPDIR").expect("workspace TMPDIR")).unwrap();let session=Session::new(area.path()).unwrap();let ctx=egui::Context::default();let mut app=Workspace::new(session,None,None,craft_window::Choice::probe(craft_window::Prefix::new("MBSE_CRAFT")),&ctx);
+        app.command(Command::Add{kind:RecordKind::Mission,owner:RecordId(1),name:"1000".into()});let mission=app.session.editor.selected.unwrap();app.select(RecordId(1));app.replace_search_query(Query{mode:Mode::ExactId,text:mission.0.to_string(),..Default::default()});app.run_search();assert!(app.search_report.is_some());let before=(app.session.editor.snapshot.digest(),app.views.views.document().digest().unwrap(),app.views.views.history_usage(),app.save_path.clone());app.navigate_search(0);assert_eq!(app.session.editor.selected,Some(mission));assert_eq!((app.session.editor.snapshot.digest(),app.views.views.document().digest().unwrap(),app.views.views.history_usage(),app.save_path.clone()),before);
+        app.replace_search_query(Query{mode:Mode::ExactId,text:"001".into(),..Default::default()});assert!(app.search_report.is_none());assert!(!app.search_note.contains("Showing"));app.run_search();assert!(app.search_report.is_none());assert!(app.search_note.contains("EXACT_ID"));app.navigate_search(0);assert_eq!(app.session.editor.selected,Some(mission));assert!(!app.session.pending());assert!(!app.views.pair_pending());
+    }
+    #[test]
     fn native_usages_navigation_preserves_dirty_target_and_refuses_stale_rows() {
         let area=tempfile::Builder::new().prefix("native-usages-ui-").tempdir_in(std::env::var_os("TMPDIR").expect("workspace TMPDIR")).unwrap();
         let session=Session::new(area.path()).unwrap();let ctx=egui::Context::default();let mut app=Workspace::new(session,None,None,craft_window::Choice::probe(craft_window::Prefix::new("MBSE_CRAFT")),&ctx);
@@ -1840,6 +1911,7 @@ impl eframe::App for Workspace {
         self.canvas(root);
         self.dialogs(&ctx);
         self.show_usages(&ctx);
+        self.show_search(&ctx);
         self.views.show_inspection(&ctx, &self.session.editor);
         self.capture(&ctx);
         self.catalog.show(&ctx);
@@ -1849,7 +1921,7 @@ impl eframe::App for Workspace {
         let audit = serde_json::json!({"profile":"mbse-craft.ui-geometry/1","frame_policy":format!("{:?}",self.frame_choice.frame()),"frame_override":self.frame_choice.overridden(), "pixels_per_point":ctx.pixels_per_point(),
             "views_mapping_rehearsal":self.views.mapping_audit(&self.session.editor),"views_inspection_visible":self.views.inspection_visible(),"views_inspection_sha256":self.views.inspection_source_sha256(),"views_inspection_note":self.views.inspection_note(),"views_revision":self.views.views.document().revision().to_string(),"views_active":self.views.active.get().to_string(),"views_pending":self.views.io.pending(),"views_saved_hint":self.views.io.is_saved(&self.session,&self.views.views),"views_note":self.views.note,
             "model_revision":self.session.editor.snapshot.model_revision,"raw_version":self.session.editor.snapshot.raw_version,
-            "native_usages":self.usages.as_ref().map(|report|serde_json::json!({"target":report.target().0,"rows":report.usages().len(),"current":report.check(&self.session.editor,&self.views.views).is_ok()})),"snapshot_hash":self.session.editor.snapshot.digest(),"selected":self.session.editor.selected.map(|id|id.0),
+            "native_search":serde_json::json!({"open":self.search_open,"note":self.search_note,"query_mode":format!("{:?}",self.search_query.mode),"report":self.search_report.as_ref().map(|report|serde_json::json!({"total":report.total(),"ids":report.hits().iter().map(|h|h.record.0.to_string()).collect::<Vec<_>>(),"current":report.check(&self.session.editor,&self.views.views).is_ok()}))}),"native_usages":self.usages.as_ref().map(|report|serde_json::json!({"target":report.target().0,"rows":report.usages().len(),"current":report.check(&self.session.editor,&self.views.views).is_ok()})),"snapshot_hash":self.session.editor.snapshot.digest(),"selected":self.session.editor.selected.map(|id|id.0),
             "save_status":format!("{:?}",self.session.status()),"periodic_recovery":self.preferences.value.periodic_recovery,"recovery_interval_seconds":self.preferences.value.recovery_interval_seconds,"preferences_status":self.preferences.status,"write_pending":self.session.pending(),"external_copy_pending":self.exchange.copy_pending(),"source_edit_dirty":self.exchange.source_edit_dirty(),"source_edit_pending":self.exchange.source_edit_pending(),"recovery_path":self.session.last_recovery().map(|p|p.display().to_string()),"native_recovery_status":self.periodic_recovery.status(&self.session,&self.views).0,"layout_recovery_status":self.periodic_recovery.status(&self.session,&self.views).1,"views_recovery_current_hint":self.views.io.recovery_current(&self.session,&self.views.views),"views_pair_pending":self.views.pair_pending(),"views_gesture_active":self.views.layout_gesture_active(),"feedback":self.feedback,"error":self.error,"widgets":self.audit});
         if let Ok(bytes) = serde_json::to_vec_pretty(&audit) {
             if bytes != self.audit_previous {
