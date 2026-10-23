@@ -1,5 +1,7 @@
 # M2B-01 persistent native views: adopted source contract
 
+Current follow-up: [P1 replacement-guard source fix and held retest](replacement-guard/README.md). The passing epoch below qualifies only source5bebe92; the follow-up fix is UNRUN.
+
 Status: experimental implementation;23 focused model tests,5 desktop controller tests and the scoped desktop build passed for source `5bebe92`. The actual native multi-view workflow remains UNRUN. [Execution evidence](verification-5bebe92/README.md). Base: `5b907c333d423df60de7d539da2a0900941825aa`. Sole integrator, isolated branch `feature/native-views-m2b01`, worktree `/workspace/worktrees/builderbob/mbse-craft/native-views-m2b01`. No compiler/renderer allocation is implied by this document. The sealed integration-m1 worktree, original receipts and published draft PR remain unchanged.
 
 The parent directly authorized source implementation and test authoring after the original draft. [Original v0.2 draft](ORIGINAL-v0.2-DRAFT.md) retains that supplied text separately, including its historical permission statements. [Original vectors](ORIGINAL-VIEW-VECTORS.json) retains all 16 supplied vector objects with JSON formatting normalized. Those originals are proposals, not execution evidence. This document adopts the following bounded implementation decisions.
