@@ -1,0 +1,82 @@
+{
+  "schema": "mbse-craft.p02-supported-dispatch-route-review/1",
+  "recorded_utc": "2026-10-24T21:28:51.130913+00:00",
+  "user_scope": "Find or restore a supported dispatch route to the existing resource coordinator, obtain fresh admission, and complete P02; preserve work and record exact evidence in PR5.",
+  "official_sources": [
+    {
+      "url": "https://learn.chatgpt.com/docs/cli/reference",
+      "observed": "codex queue is documented for existing session UUID/name and explicit remote endpoint; no raw client is required."
+    },
+    {
+      "url": "https://learn.chatgpt.com/docs/remote-connections",
+      "observed": "Connected hosts provide their own execution environment; handoff and host connections are distinct from local session queuing."
+    }
+  ],
+  "cli": {
+    "version": "0.164.0",
+    "app_server_version": "0.164.0",
+    "daemon_status": "running",
+    "socket": "/home/builderbob/.codex/app-server-control/app-server-control.sock",
+    "version_route": "codex app-server daemon version in host context",
+    "server_start_restart": false
+  },
+  "catalog": {
+    "native_list_read_wait_available": true,
+    "native_send_handoff_available": false
+  },
+  "plugin_discovery": {
+    "queries": [
+      "Codex task dispatch remote computer coordinator",
+      "remote desktop computer control Codex"
+    ],
+    "suitable_dispatch_plugin_returned": false,
+    "plugins_installed_or_permissions_changed": false
+  },
+  "connected_surface_checks": {
+    "document_sessions": 0,
+    "browser_pages": [
+      "about:blank"
+    ],
+    "configured_SSH_targets_include_Lenovo": false,
+    "unrelated_hosts_contacted": false
+  },
+  "direct_coordinator_attempt": {
+    "target": "01a165b9-9828-768d-a69d-bcd556fb1032",
+    "title": "Repair BuilderBob handle exhaustion",
+    "route": "documented codex queue against existing Linux server",
+    "result": "definitive_no_rollout_found_before_delivery",
+    "delivered": false,
+    "receipt": "queue-resource-coordinator.json"
+  },
+  "existing_integrator_relay": {
+    "target": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+    "title": "MBSE-Craft independent BuilderBob integration",
+    "message_id": "01a16fcb-901d-7f72-9d17-387c03220a73",
+    "turn_id": "01a16fcb-9022-7422-89b6-fe8dbcd7c6ea",
+    "queue_exit_code": 0,
+    "active_turn_observed": true,
+    "completed_turn_observed": true,
+    "relay_delivered_to_resource_coordinator": false,
+    "receipt": "queue-existing-integrator.json"
+  },
+  "original_health_packet": "not_obtained",
+  "exact_compiler_allocation": "not_obtained",
+  "job_sha256": "f74c46e5522493e28e59494b2514ee686f49757d2017ceb41054ea472206a750",
+  "regression_commands_started": 0,
+  "builds_started": 0,
+  "native_runs_started": 0,
+  "conclusion": "A supported existing-session dispatch route is verified on Linux, but it does not reach the durable/Lenovo resource coordinator. The existing integrator also confirms no supported cross-host relay in its current catalog. No available repair action can provide the missing destination route without a working client/host connection.",
+  "required_external_change": "Continue the existing Repair BuilderBob handle exhaustion conversation on its original connected host, or restore supported cross-host send/dispatch provisioning; obtain a genuine fresh packet and exact allocation for the frozen job. Existing general execution authorization remains valid.",
+  "no_changes": [
+    "product source",
+    "old receipts",
+    "existing targets",
+    "observer/watchdog",
+    "services",
+    "security settings",
+    "credentials",
+    "pairings",
+    "app-server lifecycle",
+    "new owners or agent contexts"
+  ]
+}

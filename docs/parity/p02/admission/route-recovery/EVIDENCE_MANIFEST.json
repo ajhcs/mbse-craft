@@ -1,0 +1,43 @@
+{
+  "schema": "mbse-craft.p02-dispatch-evidence-manifest/1",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3277,
+      "sha256": "cf3901a20678ac0abf820f0c8ca93e6341a2d0c26e073a5888509e77a7785ecd"
+    },
+    {
+      "path": "RELAY_RESULT.json",
+      "bytes": 1115,
+      "sha256": "9bc2de84760e90aba33487d5866d5037e4bb9d26b89f6882f639ba9df1cc3730"
+    },
+    {
+      "path": "RESULT.json",
+      "bytes": 3649,
+      "sha256": "d818947e2e08c8bee9634bb6aa38206c2ab261cb53746be16f078409089b6334"
+    },
+    {
+      "path": "queue-existing-integrator.json",
+      "bytes": 563,
+      "sha256": "3a3bc21effcd1c9d7622097c5fa8b870f86a64de60cd94d28b2bfcb0a332ca33"
+    },
+    {
+      "path": "queue-resource-coordinator.json",
+      "bytes": 768,
+      "sha256": "551538f8aed20ac42d8976df9000c1f32652b43616118256d7f01a64f69b0b63"
+    },
+    {
+      "path": "request-existing-integrator.txt",
+      "bytes": 2762,
+      "sha256": "bf746fa60ff77b211c7eb97e73c677972be772c55c7a2ed214b90ac486aadcd7"
+    },
+    {
+      "path": "request-resource-coordinator.txt",
+      "bytes": 1795,
+      "sha256": "7d1c1ea3206659428fe36a266a0cc5086583d1fc476545f090e06f2a9b2a4796"
+    }
+  ],
+  "other_worktrees_preserved": 20,
+  "regression_commands_started": 0,
+  "native_runs_started": 0
+}

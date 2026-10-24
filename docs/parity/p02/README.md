@@ -88,6 +88,12 @@ but no original packet or exact-job allocation was available; zero regression
 commands and zero native runs started. P02 remains unaccepted. The guarded
 runner is prepared, not product-qualification evidence.
 
+The later [supported dispatch recovery](admission/route-recovery/README.md)
+verified the documented CLI queue route to the existing Linux integrator. Direct
+delivery to the resource coordinator failed because that rollout is not in the
+Linux store; the integrator's completed relay also reports no supported
+cross-host route. Fresh original admission remains unavailable.
+
 ```bash
 PYTHONDONTWRITEBYTECODE=1 python3 scripts/check-p02-readiness.py
 ```

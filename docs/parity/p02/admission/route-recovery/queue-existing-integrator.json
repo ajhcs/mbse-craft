@@ -1,0 +1,12 @@
+{
+  "schema": "mbse-craft.p02-supported-queue-attempt/1",
+  "started_utc": "2026-10-24T21:22:54.102131+00:00",
+  "target_thread_id": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+  "scope": "existing integrator admission relay only",
+  "message_sha256": "bf746fa60ff77b211c7eb97e73c677972be772c55c7a2ed214b90ac486aadcd7",
+  "daemon_start_restart_requested": false,
+  "ended_utc": "2026-10-24T21:22:54.174149+00:00",
+  "exit_code": 0,
+  "stdout": "Queued message 01a16fcb-901d-7f72-9d17-387c03220a73 for thread 01a1653d-9c16-76a3-ad80-df98ba1e5c94.\n",
+  "stderr": ""
+}
