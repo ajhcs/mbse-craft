@@ -1,0 +1,171 @@
+{
+  "schema": "mbse-craft.p02-readiness-audit/1",
+  "reviewed_pr": 1,
+  "reviewed_head": "5b907c333d423df60de7d539da2a0900941825aa",
+  "result": "retained_evidence_consistent_acceptance_pending",
+  "source_closure": {
+    "source_sha256": "fe2c135180c5489306ff46f139c6fad5b5553b72749169bc25edea70b3dfca04",
+    "files": 657,
+    "exact_historical_match": true,
+    "manifest_path": "docs/continuation-m2/verification/epoch-217c977c-source-edit/SOURCE_MANIFEST.json"
+  },
+  "lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+  "historical_waves": [
+    {
+      "scope": "core/desktop focused wave before final UI integration",
+      "tests": [
+        "exchange_ui::tests::member_identity_never_silently_chooses_first_global_id",
+        "ui::policies::close_requires_current_preservation_even_while_hidden",
+        "ui::policies::ordinary_text_and_focus_transitions_do_not_undo_model",
+        "assurance_ui::tests::delayed_evidence_cannot_apply_to_changed_bytes_with_unchanged_revisions",
+        "assurance_ui::tests::disconnected_worker_clears_pending_without_acknowledging_save",
+        "assurance_ui::tests::unadmitted_form_text_binds_dirty_close_and_delayed_open",
+        "assurance_ui::tests::delayed_load_does_not_replace_newer_register_edits",
+        "preferences::tests::newer_schema_stays_byte_exact_and_read_only",
+        "assurance_ui::tests::older_save_ack_keeps_new_edits_dirty_and_close_permission_is_exact",
+        "assurance_ui::tests::delayed_attachment_keeps_new_requirement_selection_and_evidence",
+        "preferences::tests::actual_store_failure_reports_backoff_and_retries",
+        "preferences::tests::defaults_off_and_actual_store_debounces_while_preserving_unknowns",
+        "preferences::worker_adapter_tests::older_saved_generation_cannot_clear_latest_pending_worker_change",
+        "preferences::worker_adapter_tests::actual_worker_retries_same_generation_after_local_write_failure",
+        "new_copy::tests::dangling_symlink_and_late_symlink_never_create_target",
+        "new_copy::tests::existing_destination_and_late_arrival_are_preserved",
+        "new_copy::tests::private_success_cleans_stage",
+        "namespace_false_friends_and_wrong_versions_remain_unknown",
+        "lexical_reference_resolution_is_scoped_and_ambiguity_stays_explicit",
+        "mdzip_projects_actual_named_core_and_retains_unknown_members_without_extraction",
+        "capella_explicit_components_ports_exchange_and_no_sidecar_fetch",
+        "textual_ast_has_declared_spans_and_explicit_unresolved_typing",
+        "xml_refuses_dtd_duplicate_ids_depth_and_encoding",
+        "zip_refuses_paths_duplicate_candidates_and_high_ratio",
+        "uml_nodes_id_endpoints_stereotypes_unknown_unit_strings_and_exact_copy",
+        "duplicate_ids_archive_paths_and_missing_members_refuse_without_losing_primary",
+        "profile_layers_keep_exact_base_metaclass_and_coverage_gaps",
+        "semantic_endpoints_cannot_resolve_to_a_reference_proxy_mention",
+        "typed_aird_and_uml_href_mentions_are_proxies_not_owned_domain_elements",
+        "identity_carrier_policy_is_order_independent_and_does_not_impose_ncname_on_estring",
+        "capella_stored_roles_containment_defaults_and_unevaluated_bodies",
+        "child_namespace_declarations_obey_per_value_and_scope_limits",
+        "content_dispatch_ignores_misleading_suffix_and_keeps_v2_text_refusal",
+        "exact_namespaces_wrong_version_and_uml_falsefriends_remain_unsupported",
+        "source_digest_excludes_physical_directory_and_includes_opaque_archive_member",
+        "inherited_involved_role_accepts_audited_function_and_rejects_known_wrong_kind",
+        "native_preview_refuses_with_actionable_exact_selection_and_new_copy_is_exact",
+        "reference_uri_policy_is_literal_local_subset_with_no_percent_decode_or_invalidity_claim",
+        "aggregate_per_node_and_text_limits_refuse_typed_output_but_keep_bytes",
+        "exact_json_expansion_limit_and_diagnostic_truncation_preserve_raw_source",
+        "ordered_slots_unknown_namespace_features_and_global_aggregation_are_bounded",
+        "supplied_byte_reader_matches_disk_and_refuses_oversize",
+        "source_edit_and_frozen_raw_copy_refuse_dangling_symlink_without_target_creation",
+        "anonymous_foreign_namespace_and_archive_elements_refuse_name_edits",
+        "stale_source_and_forged_range_refuse_before_destination_creation",
+        "missing_name_unknown_class_proxy_and_invalid_characters_refuse",
+        "unsupported_xml_declarations_refuse_before_output_creation",
+        "rename_preserves_other_bytes_original_and_reference_spellings",
+        "supported_classes_preserve_original_ids_references_and_unit_lexical_values",
+        "bom_no_declaration_quotes_and_original_whitespace_keep_exact_other_bytes"
+      ],
+      "count": 50,
+      "wrapper_status": "PAUSED_HEALTH_RECEIPT_EXPIRED",
+      "new_execution": false
+    },
+    {
+      "scope": "six integrated source-name UI tests on final compiled inputs",
+      "tests": [
+        "semantic_ui::source_name_tests::selecting_another_scoped_node_retains_name_proposal_and_blocks_source_open",
+        "source_edit_ui::tests::delayed_preparation_cannot_replace_changed_raw_or_source",
+        "source_edit_ui::tests::existing_draft_binding_survives_other_node_begin_and_close",
+        "source_edit_ui::tests::matching_copy_ack_clears_only_its_draft_and_exposes_exact_digest_open",
+        "source_edit_ui::tests::pending_write_refuses_discard_close_and_source_replacement",
+        "source_edit_ui::tests::stale_copy_ack_and_created_output_error_preserve_draft_and_destination"
+      ],
+      "count": 6,
+      "wrapper_status": "PASSED",
+      "new_execution": false
+    }
+  ],
+  "log_bindings": [
+    {
+      "archive": "core-tests.log.gz",
+      "archive_sha256": "1c3d5f3d20bbee32bfcb1d65005425234706dcef48a9b1c3ed339051b30eba6a",
+      "original_sha256": "8c0845fe74604e2ab76f1851f60754e476502c15bd198e5997a02cafcce20e69",
+      "original_bytes": 7482
+    },
+    {
+      "archive": "ui-tests.log.gz",
+      "archive_sha256": "29b3400671ed033f81fc8cd6cf4ac984a76ca28d45ca4d561d81ba0db510ca4a",
+      "original_sha256": "58d578c096988a0ae09acecdfd27d44c139765d8010cbf9351ba646ffa17976f",
+      "original_bytes": 2669
+    },
+    {
+      "archive": "ui-build.log.gz",
+      "archive_sha256": "38ed66ec7eb09831716784c775adc4826d3d7c9e3c69e30523c21f7d8d104007",
+      "original_sha256": "86f2662da0a27e6b1130715e7ad168f8203b02d90d899bbfffb265c65df7b6a8",
+      "original_bytes": 1803
+    }
+  ],
+  "selected_capture_bindings": [
+    {
+      "path": "14-renamed-mission-reopened.png",
+      "bytes": 200170,
+      "sha256": "81a215ddea9e6ab8d2b0576cecc8cb5216256464b1a8ea50ffbded0c0fbb9a77"
+    },
+    {
+      "path": "15b-collision-message-and-retained-draft.png",
+      "bytes": 221998,
+      "sha256": "1fbbaa335ed88b756c3d218654274bbcb4ab435208fc4f9afc10eb8f14067558"
+    }
+  ],
+  "vendor_bindings": [
+    {
+      "path": "vendor/craft-libs",
+      "revision": "b1401e33b105ca2861575ede90f67f4d54449001",
+      "checked_files": 76
+    },
+    {
+      "path": "vendor/egui-fork",
+      "revision": "767b1cad294120689a514bb4bd68c077e46679b9",
+      "checked_files": 308
+    },
+    {
+      "path": "vendor/winit-fork",
+      "revision": "ffae5198770d7730e718043f035a772b7dbc3b1b",
+      "checked_files": 203
+    }
+  ],
+  "preserved_binary": {
+    "status": "sha256_verified_without_execution",
+    "sha256": "4df50cf94f84200b9461fbb64f00f07b36d7a493dec1a5abb90e8e89264a901f",
+    "bytes": 390981248
+  },
+  "newest_native_coverage": {
+    "record_count": 1,
+    "record_kinds": [
+      "System"
+    ],
+    "evidence": "Source inspection/name-copy plus unchanged independent blank native save/reopen; no new blank-author system/calculation/draft acceptance.",
+    "native_receipt_path": "docs/continuation-m2/verification/epoch-217c977c-source-edit/NATIVE_RECEIPT.json"
+  },
+  "pending_gates": [
+    {
+      "id": "P02-REGRESSION",
+      "status": "not_run",
+      "detail": "Focused native-model/draft/calculation/preservation regressions for the declared integrated P02 scenario."
+    },
+    {
+      "id": "P02-NATIVE",
+      "status": "not_run",
+      "detail": "M1-AUTHOR at this exact compiled closure: blank author, typed links, 15 m/s, 2.5 km, raw 9e/accepted 95, history, failed-save/Cancel and normal-close/reopen."
+    },
+    {
+      "id": "P02-ADMISSION",
+      "status": "not_available_in_this_review",
+      "detail": "No fresh original resource-health packet or exact-job compiler/renderer allocation was supplied. Historical admission is expired and is not reused."
+    }
+  ],
+  "new_application_tests": 0,
+  "new_gui_runs": 0,
+  "build_executed": false,
+  "service_changes": false,
+  "declaration": "This read-only evidence audit does not make P02 accepted, approve/merge PR1, or sum historical results into a new passing suite."
+}
