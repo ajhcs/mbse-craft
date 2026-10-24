@@ -82,6 +82,12 @@ other existing feature drafts remain separate.
 
 ## Reproduce the evidence audit
 
+The subsequent execution request and actual held preflight are retained in
+[the exact-job admission packet](admission/REQUEST.md). The source check passed,
+but no original packet or exact-job allocation was available; zero regression
+commands and zero native runs started. P02 remains unaccepted. The guarded
+runner is prepared, not product-qualification evidence.
+
 ```bash
 PYTHONDONTWRITEBYTECODE=1 python3 scripts/check-p02-readiness.py
 ```
