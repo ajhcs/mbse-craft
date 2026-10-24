@@ -1,0 +1,1609 @@
+{
+  "schema": "mbse-craft.parity-matrix/1",
+  "capabilities": [
+    {
+      "id": "CAT-001",
+      "title": "Create, open and save a scoped project",
+      "capability_key": "model.lifecycle",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "partial_bounded",
+      "status_scope": "Typed Stage1 author/save/reopen has frozen Linux qualification; broader native project/schema lifecycle is incomplete.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P02",
+        "P14"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-001"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [
+        "SRC-BASE"
+      ],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-002",
+      "title": "Separate recovery copies and dirty-close decisions",
+      "capability_key": "model.recovery",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "partial_bounded",
+      "status_scope": "Native/raw recovery and layout-only recovery have separate frozen qualification; aggregate recovered presentation copy/apply remains unimplemented.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P03",
+        "P04",
+        "P07",
+        "P08"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-002"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [
+        "SRC-BASE"
+      ],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-003",
+      "title": "Browse containment and scoped model structure",
+      "capability_key": "navigation.browser",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE",
+        "SRC-IMPACT",
+        "SRC-NAV"
+      ],
+      "status": "partial_bounded",
+      "status_scope": "Qualified System membership browser exists locally; it does not implement general containment or decomposition.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P05",
+        "P16"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-003"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [
+        "SRC-BASE"
+      ],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-004",
+      "title": "Search by name/type/ID and navigate usages",
+      "capability_key": "navigation.search",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE",
+        "SRC-IMPACT",
+        "SRC-NAV"
+      ],
+      "status": "partial_bounded",
+      "status_scope": "Qualified local scoped search and direct Find usages exist; occurrence report-row navigation is source reviewed and unrun; generic references remain unsupported.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P05",
+        "P06"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-004"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [
+        "SRC-BASE"
+      ],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-005",
+      "title": "Role/perspective discovery with recoverable layout",
+      "capability_key": "navigation.discoverability",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "partial_bounded",
+      "status_scope": "Existing native shell has explicit inspectors/popouts; recoverable role/perspective workspaces and command discovery are not qualified.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P09",
+        "P11",
+        "P12"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-005"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [
+        "SRC-BASE"
+      ],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-006",
+      "title": "Reuse one semantic element across views",
+      "capability_key": "model.identity",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE",
+        "SRC-IMPACT",
+        "SRC-NAV"
+      ],
+      "status": "partial_bounded",
+      "status_scope": "Experimental native views reuse semantic IDs; integrated exact-source acceptance remains separate from later bounded native continuations.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P03",
+        "P05"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-006"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [
+        "SRC-BASE"
+      ],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-007",
+      "title": "Define types, parts, references and decomposition",
+      "capability_key": "model.structure",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "not_implemented",
+      "status_scope": "No accepted implementation of this full capability in the inspected baseline.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P14",
+        "P15",
+        "P16"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-007"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-008",
+      "title": "Define ports, connectors and conveyed items",
+      "capability_key": "model.interfaces",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "not_implemented",
+      "status_scope": "No accepted implementation of this full capability in the inspected baseline.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P17",
+        "P18"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-008"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-009",
+      "title": "Clone, move and refactor without identity confusion",
+      "capability_key": "model.refactoring",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE",
+        "SRC-IMPACT",
+        "SRC-NAV"
+      ],
+      "status": "not_implemented",
+      "status_scope": "No accepted implementation of this full capability in the inspected baseline.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P20",
+        "P21"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-009"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-010",
+      "title": "Create named purpose-specific diagrams",
+      "capability_key": "view.authoring",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "partial_bounded",
+      "status_scope": "Two named experimental views and occurrences exist; the full purpose-specific diagram repertoire is absent.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P03",
+        "P29"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-010"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [
+        "SRC-BASE"
+      ],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-011",
+      "title": "Editable layout, fit, zoom and reusable port placement",
+      "capability_key": "view.layout",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE",
+        "SRC-IMPACT",
+        "SRC-NAV"
+      ],
+      "status": "partial_bounded",
+      "status_scope": "Qualified local per-view camera controls and occurrence geometry/history exist; broad routing/port-placement/dense-layout parity is absent.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P03",
+        "P05",
+        "P18",
+        "P50"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-011"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [
+        "SRC-BASE"
+      ],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-012",
+      "title": "Inspect and author relations in matrices/maps",
+      "capability_key": "view.matrix",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "not_implemented",
+      "status_scope": "No accepted implementation of this full capability in the inspected baseline.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P28"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-012"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-013",
+      "title": "Record stakeholder viewpoints and exposed model scope",
+      "capability_key": "view.viewpoint",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-SOSA"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "not_implemented",
+      "status_scope": "No accepted implementation of this full capability in the inspected baseline.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P29"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-013"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-014",
+      "title": "Edit typed properties, documentation and references",
+      "capability_key": "properties.typed-editing",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "partial_bounded",
+      "status_scope": "Existing typed domain properties preserve raw drafts; general normative typed-property and reference editing is incomplete.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P15",
+        "P47"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-014"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [
+        "SRC-BASE"
+      ],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-015",
+      "title": "Preserve units, dimensions and declared quantity kinds",
+      "capability_key": "properties.quantities",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "partial_bounded",
+      "status_scope": "Bounded scalar/ratio/count/length/duration/speed evaluator with units exists; general quantity kinds and parameter bindings are incomplete.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P19",
+        "P35",
+        "P36"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-015"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [
+        "SRC-BASE"
+      ],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-016",
+      "title": "Separate type defaults, instance values and derived results",
+      "capability_key": "properties.instances",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "not_implemented",
+      "status_scope": "No accepted implementation of this full capability in the inspected baseline.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P19"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-016"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-017",
+      "title": "Author identified hierarchical requirements",
+      "capability_key": "requirements.authoring",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "partial_bounded",
+      "status_scope": "Separate requirements/evidence register exists; native hierarchical requirement semantics and full identifiers/traces remain incomplete.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P23"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-017"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [
+        "SRC-BASE"
+      ],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-018",
+      "title": "Keep derive/refine/satisfy/verify/copy meanings distinct",
+      "capability_key": "requirements.trace-links",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "not_implemented",
+      "status_scope": "No accepted implementation of this full capability in the inspected baseline.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P24"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-018"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-019",
+      "title": "Query trace gaps and change impact",
+      "capability_key": "requirements.coverage",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE",
+        "SRC-IMPACT",
+        "SRC-NAV"
+      ],
+      "status": "partial_bounded",
+      "status_scope": "Historical evidence staleness and bounded direct record impact exist; general typed trace coverage/transitive impact is absent.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P25"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-019"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [
+        "SRC-BASE"
+      ],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-020",
+      "title": "Author normal and alternative operational scenarios",
+      "capability_key": "behavior.scenario",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "not_implemented",
+      "status_scope": "No accepted implementation of this full capability in the inspected baseline.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P34"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-020"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-021",
+      "title": "Represent activity flows, partitions, pins and guards",
+      "capability_key": "behavior.activity",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-EXEC"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "not_implemented",
+      "status_scope": "No accepted implementation of this full capability in the inspected baseline.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P30",
+        "P31"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-021"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-022",
+      "title": "Specify states, transitions and events",
+      "capability_key": "behavior.state-machine",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-EXEC"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "not_implemented",
+      "status_scope": "No accepted implementation of this full capability in the inspected baseline.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P32",
+        "P33"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-022"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-023",
+      "title": "Represent sequence messages, lifelines and alternatives",
+      "capability_key": "behavior.interactions",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "not_implemented",
+      "status_scope": "No accepted implementation of this full capability in the inspected baseline.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P34"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-023"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-024",
+      "title": "Author constraint blocks, parameters and bindings",
+      "capability_key": "analysis.parametric-specification",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-EXEC"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "not_implemented",
+      "status_scope": "No accepted implementation of this full capability in the inspected baseline.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P35"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-024"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-025",
+      "title": "Execute bounded quantitative analysis and Boolean assessment",
+      "capability_key": "analysis.execution",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-EXEC"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "partial_bounded",
+      "status_scope": "Existing bounded numeric evaluator produces derived receipts; general parametric execution/Boolean assessment is incomplete and never implies verification Passed.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P36"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-025"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [
+        "SRC-BASE"
+      ],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-026",
+      "title": "Compute trace/model metrics separately from simulation",
+      "capability_key": "analysis.model-metrics",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "not_implemented",
+      "status_scope": "No accepted implementation of this full capability in the inspected baseline.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P37"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-026"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-027",
+      "title": "Treat co-simulation, equation solvers and external languages as optional contracts",
+      "capability_key": "analysis.external-engines",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-EXEC"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "not_implemented",
+      "status_scope": "No accepted implementation of this full capability in the inspected baseline.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P57"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-027"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-028",
+      "title": "Run named validation suites with actionable issues",
+      "capability_key": "validation.diagnostics",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "not_implemented",
+      "status_scope": "No accepted implementation of this full capability in the inspected baseline.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P26"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-028"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-029",
+      "title": "Register reviewed custom rules without implicit execution",
+      "capability_key": "validation.custom-rules",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "not_implemented",
+      "status_scope": "No accepted implementation of this full capability in the inspected baseline.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P27"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-029"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-030",
+      "title": "Use pinned reusable projects/libraries with read-only boundaries",
+      "capability_key": "reuse.library-catalog",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "partial_bounded",
+      "status_scope": "Frozen external source catalog/browser exists; native reusable-library instantiation and update semantics are absent.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P44",
+        "P45"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-030"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [
+        "SRC-BASE"
+      ],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-031",
+      "title": "Manage exact metamodel/profile identity and extension tags",
+      "capability_key": "reuse.profiles",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-SOSA"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "not_implemented",
+      "status_scope": "No accepted implementation of this full capability in the inspected baseline.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P22",
+        "P58"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-031"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-032",
+      "title": "Bundle source/evidence attachments without broken references",
+      "capability_key": "reuse.attachments",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "not_implemented",
+      "status_scope": "No accepted implementation of this full capability in the inspected baseline.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P45"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-032"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-033",
+      "title": "Open vendor MDZIP/XMI content as a versioned source projection",
+      "capability_key": "formats.native-archive",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "partial_bounded",
+      "status_scope": "Bounded MDZIP/UML source projections and raw-byte retention exist; explicit complete source sets, editable admission and round-trip fidelity are absent.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P38",
+        "P39"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-033"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [
+        "SRC-BASE"
+      ],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-034",
+      "title": "Export selected authored diagrams as real output artifacts",
+      "capability_key": "formats.diagram-export",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "not_implemented",
+      "status_scope": "No accepted implementation of this full capability in the inspected baseline.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P42"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-034"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-035",
+      "title": "Generate scoped documents and tables with provenance",
+      "capability_key": "formats.reports",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "not_implemented",
+      "status_scope": "No accepted implementation of this full capability in the inspected baseline.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P43"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-035"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-036",
+      "title": "Import/export tabular properties and typed relations with mapping preview",
+      "capability_key": "formats.tabular-roundtrip",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-MBSE"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "not_implemented",
+      "status_scope": "No accepted implementation of this full capability in the inspected baseline.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P41"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-036"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-037",
+      "title": "Distinguish architecture export from executable co-simulation",
+      "capability_key": "formats.external-simulation",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-EXEC"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "not_implemented",
+      "status_scope": "No accepted implementation of this full capability in the inspected baseline.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P57"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-037"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-038",
+      "title": "Server branches, locks, commits and merge governance",
+      "capability_key": "collaboration.repository",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-COLLAB"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "not_implemented",
+      "status_scope": "No accepted implementation of this full capability in the inspected baseline.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P51",
+        "P52",
+        "P54",
+        "P55",
+        "P56"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-038"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-039",
+      "title": "Published stakeholder review separate from model editing",
+      "capability_key": "collaboration.review",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-COLLAB"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "not_implemented",
+      "status_scope": "No accepted implementation of this full capability in the inspected baseline.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P53"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-039"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "CAT-040",
+      "title": "Model mission, capability, objective and stakeholder context explicitly",
+      "capability_key": "model.mission-architecture",
+      "family": "NoMagic",
+      "target_refs": [
+        "NOMAGIC-SOSA"
+      ],
+      "source_refs": [
+        "SRC-CATALOG",
+        "SRC-BASE"
+      ],
+      "status": "partial_bounded",
+      "status_scope": "Custom mission/capability/objective/stakeholder context exists; custom domain identity is not normative UAF/SysML equivalence.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P02",
+        "P29",
+        "P58"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-CAT-040"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [
+        "SRC-BASE"
+      ],
+      "completion_rule": "All scenario assertions, failure paths and target-specific coverage pass on the exact integrated source; bounded predecessors do not close the row."
+    },
+    {
+      "id": "UI-001",
+      "title": "Command menus and discoverability",
+      "capability_key": "ui-001",
+      "family": "CraftUI",
+      "target_refs": [
+        "PhotoCraft",
+        "LightCraft",
+        "VectorCraft"
+      ],
+      "source_refs": [
+        "SRC-CRAFT-AUDIT",
+        "SRC-CRAFT-THEME",
+        "SRC-CRAFT-INTEGRATION"
+      ],
+      "status": "unqualified",
+      "status_scope": "Selected shared mechanisms or custom interactions exist; cross-app/target acceptance is not established.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P09"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-UI-001"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "Run pinned interaction comparisons on selected targets; audit of shared code alone cannot qualify app behavior."
+    },
+    {
+      "id": "UI-002",
+      "title": "Shortcut scopes and configuration",
+      "capability_key": "ui-002",
+      "family": "CraftUI",
+      "target_refs": [
+        "WordCraft",
+        "GridCraft",
+        "DeckCraft"
+      ],
+      "source_refs": [
+        "SRC-CRAFT-AUDIT",
+        "SRC-CRAFT-THEME",
+        "SRC-CRAFT-INTEGRATION"
+      ],
+      "status": "unqualified",
+      "status_scope": "Selected shared mechanisms or custom interactions exist; cross-app/target acceptance is not established.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P10"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-UI-002"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "Run pinned interaction comparisons on selected targets; audit of shared code alone cannot qualify app behavior."
+    },
+    {
+      "id": "UI-003",
+      "title": "Transactional docking",
+      "capability_key": "ui-003",
+      "family": "CraftUI",
+      "target_refs": [
+        "PhotoCraft",
+        "VectorCraft",
+        "DesignCraft",
+        "FilmCraft",
+        "EffectCraft",
+        "CADCraft",
+        "PdfCraft",
+        "SoundCraft",
+        "LightCraft"
+      ],
+      "source_refs": [
+        "SRC-CRAFT-AUDIT",
+        "SRC-CRAFT-THEME",
+        "SRC-CRAFT-INTEGRATION"
+      ],
+      "status": "unqualified",
+      "status_scope": "Selected shared mechanisms or custom interactions exist; cross-app/target acceptance is not established.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P11"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-UI-003"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "Run pinned interaction comparisons on selected targets; audit of shared code alone cannot qualify app behavior."
+    },
+    {
+      "id": "UI-004",
+      "title": "Workspace persistence and reset",
+      "capability_key": "ui-004",
+      "family": "CraftUI",
+      "target_refs": [
+        "PhotoCraft",
+        "FilmCraft",
+        "EffectCraft"
+      ],
+      "source_refs": [
+        "SRC-CRAFT-AUDIT",
+        "SRC-CRAFT-THEME",
+        "SRC-CRAFT-INTEGRATION"
+      ],
+      "status": "unqualified",
+      "status_scope": "Selected shared mechanisms or custom interactions exist; cross-app/target acceptance is not established.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P12"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-UI-004"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "Run pinned interaction comparisons on selected targets; audit of shared code alone cannot qualify app behavior."
+    },
+    {
+      "id": "UI-005",
+      "title": "Native dialogs and background progress",
+      "capability_key": "ui-005",
+      "family": "CraftUI",
+      "target_refs": [
+        "PdfCraft",
+        "CADCraft"
+      ],
+      "source_refs": [
+        "SRC-CRAFT-AUDIT",
+        "SRC-CRAFT-THEME",
+        "SRC-CRAFT-INTEGRATION"
+      ],
+      "status": "unqualified",
+      "status_scope": "Selected shared mechanisms or custom interactions exist; cross-app/target acceptance is not established.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P13"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-UI-005"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "Run pinned interaction comparisons on selected targets; audit of shared code alone cannot qualify app behavior."
+    },
+    {
+      "id": "UI-006",
+      "title": "Themes and state styling",
+      "capability_key": "ui-006",
+      "family": "CraftUI",
+      "target_refs": [
+        "PhotoCraft",
+        "VectorCraft",
+        "DesignCraft",
+        "LightCraft",
+        "FilmCraft",
+        "EffectCraft",
+        "WordCraft",
+        "PdfCraft"
+      ],
+      "source_refs": [
+        "SRC-CRAFT-AUDIT",
+        "SRC-CRAFT-THEME",
+        "SRC-CRAFT-INTEGRATION"
+      ],
+      "status": "partial_bounded",
+      "status_scope": "Selected shared mechanisms or custom interactions exist; cross-app/target acceptance is not established.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P46"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-UI-006"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "Run pinned interaction comparisons on selected targets; audit of shared code alone cannot qualify app behavior."
+    },
+    {
+      "id": "UI-007",
+      "title": "Inspectors icons and labels",
+      "capability_key": "ui-007",
+      "family": "CraftUI",
+      "target_refs": [
+        "PdfCraft",
+        "PhotoCraft",
+        "CADCraft"
+      ],
+      "source_refs": [
+        "SRC-CRAFT-AUDIT",
+        "SRC-CRAFT-THEME",
+        "SRC-CRAFT-INTEGRATION"
+      ],
+      "status": "partial_bounded",
+      "status_scope": "Selected shared mechanisms or custom interactions exist; cross-app/target acceptance is not established.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P47"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-UI-007"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "Run pinned interaction comparisons on selected targets; audit of shared code alone cannot qualify app behavior."
+    },
+    {
+      "id": "UI-008",
+      "title": "Numeric commit and transaction gestures",
+      "capability_key": "ui-008",
+      "family": "CraftUI",
+      "target_refs": [
+        "LightCraft",
+        "FilmCraft",
+        "EffectCraft",
+        "DesignCraft"
+      ],
+      "source_refs": [
+        "SRC-CRAFT-AUDIT",
+        "SRC-CRAFT-THEME",
+        "SRC-CRAFT-INTEGRATION"
+      ],
+      "status": "unqualified",
+      "status_scope": "Selected shared mechanisms or custom interactions exist; cross-app/target acceptance is not established.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P47"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-UI-008"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "Run pinned interaction comparisons on selected targets; audit of shared code alone cannot qualify app behavior."
+    },
+    {
+      "id": "UI-009",
+      "title": "Fonts and script coverage",
+      "capability_key": "ui-009",
+      "family": "CraftUI",
+      "target_refs": [
+        "DesignCraft",
+        "WordCraft",
+        "PdfCraft"
+      ],
+      "source_refs": [
+        "SRC-CRAFT-AUDIT",
+        "SRC-CRAFT-THEME",
+        "SRC-CRAFT-INTEGRATION"
+      ],
+      "status": "unqualified",
+      "status_scope": "Selected shared mechanisms or custom interactions exist; cross-app/target acceptance is not established.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P48"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-UI-009"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "Run pinned interaction comparisons on selected targets; audit of shared code alone cannot qualify app behavior."
+    },
+    {
+      "id": "UI-010",
+      "title": "Localization and RTL layout",
+      "capability_key": "ui-010",
+      "family": "CraftUI",
+      "target_refs": [
+        "DesignCraft",
+        "WordCraft",
+        "DeckCraft"
+      ],
+      "source_refs": [
+        "SRC-CRAFT-AUDIT",
+        "SRC-CRAFT-THEME",
+        "SRC-CRAFT-INTEGRATION"
+      ],
+      "status": "unqualified",
+      "status_scope": "Selected shared mechanisms or custom interactions exist; cross-app/target acceptance is not established.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P48"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-UI-010"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "Run pinned interaction comparisons on selected targets; audit of shared code alone cannot qualify app behavior."
+    },
+    {
+      "id": "UI-011",
+      "title": "Keyboard-only completion",
+      "capability_key": "ui-011",
+      "family": "CraftUI",
+      "target_refs": [
+        "PdfCraft",
+        "WordCraft",
+        "GridCraft",
+        "DeckCraft"
+      ],
+      "source_refs": [
+        "SRC-CRAFT-AUDIT",
+        "SRC-CRAFT-THEME",
+        "SRC-CRAFT-INTEGRATION"
+      ],
+      "status": "unqualified",
+      "status_scope": "Selected shared mechanisms or custom interactions exist; cross-app/target acceptance is not established.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P49"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-UI-011"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "Run pinned interaction comparisons on selected targets; audit of shared code alone cannot qualify app behavior."
+    },
+    {
+      "id": "UI-012",
+      "title": "Assistive technology",
+      "capability_key": "ui-012",
+      "family": "CraftUI",
+      "target_refs": [
+        "PdfCraft",
+        "LightCraft"
+      ],
+      "source_refs": [
+        "SRC-CRAFT-AUDIT",
+        "SRC-CRAFT-THEME",
+        "SRC-CRAFT-INTEGRATION"
+      ],
+      "status": "unqualified",
+      "status_scope": "Selected shared mechanisms or custom interactions exist; cross-app/target acceptance is not established.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P49"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-UI-012"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "Run pinned interaction comparisons on selected targets; audit of shared code alone cannot qualify app behavior."
+    },
+    {
+      "id": "UI-013",
+      "title": "Scaling and dense-model performance",
+      "capability_key": "ui-013",
+      "family": "CraftUI",
+      "target_refs": [
+        "PhotoCraft",
+        "CADCraft",
+        "FigCraft"
+      ],
+      "source_refs": [
+        "SRC-CRAFT-AUDIT",
+        "SRC-CRAFT-THEME",
+        "SRC-CRAFT-INTEGRATION"
+      ],
+      "status": "unqualified",
+      "status_scope": "Selected shared mechanisms or custom interactions exist; cross-app/target acceptance is not established.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P50"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-UI-013"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "Run pinned interaction comparisons on selected targets; audit of shared code alone cannot qualify app behavior."
+    },
+    {
+      "id": "UI-014",
+      "title": "Native focus IME and platforms",
+      "capability_key": "ui-014",
+      "family": "CraftUI",
+      "target_refs": [
+        "PhotoCraft",
+        "VectorCraft",
+        "FigCraft"
+      ],
+      "source_refs": [
+        "SRC-CRAFT-AUDIT",
+        "SRC-CRAFT-THEME",
+        "SRC-CRAFT-INTEGRATION"
+      ],
+      "status": "unqualified",
+      "status_scope": "Selected shared mechanisms or custom interactions exist; cross-app/target acceptance is not established.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P58"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-UI-014"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "Run pinned interaction comparisons on selected targets; audit of shared code alone cannot qualify app behavior."
+    },
+    {
+      "id": "UI-015",
+      "title": "Canvas selection camera and layout history",
+      "capability_key": "ui-015",
+      "family": "CraftUI",
+      "target_refs": [
+        "CADCraft",
+        "FigCraft",
+        "VectorCraft"
+      ],
+      "source_refs": [
+        "SRC-CRAFT-AUDIT",
+        "SRC-CRAFT-THEME",
+        "SRC-CRAFT-INTEGRATION"
+      ],
+      "status": "partial_bounded",
+      "status_scope": "Selected shared mechanisms or custom interactions exist; cross-app/target acceptance is not established.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P03",
+        "P05",
+        "P06",
+        "P18"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-UI-015"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "Run pinned interaction comparisons on selected targets; audit of shared code alone cannot qualify app behavior."
+    },
+    {
+      "id": "UI-016",
+      "title": "Document and workspace state separation",
+      "capability_key": "ui-016",
+      "family": "CraftUI",
+      "target_refs": [
+        "DesignCraft",
+        "FilmCraft",
+        "FigCraft"
+      ],
+      "source_refs": [
+        "SRC-CRAFT-AUDIT",
+        "SRC-CRAFT-THEME",
+        "SRC-CRAFT-INTEGRATION"
+      ],
+      "status": "partial_bounded",
+      "status_scope": "Selected shared mechanisms or custom interactions exist; cross-app/target acceptance is not established.",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "planned_prs": [
+        "P03",
+        "P04",
+        "P12"
+      ],
+      "acceptance_fixture_ids": [
+        "AC-UI-016"
+      ],
+      "acceptance_state": "not_run",
+      "evidence_refs": [],
+      "completion_rule": "Run pinned interaction comparisons on selected targets; audit of shared code alone cannot qualify app behavior."
+    }
+  ],
+  "scope_state": "initial_inventory_not_full_parity_freeze",
+  "status_definitions": {
+    "partial_bounded": "Some bounded behavior has source or earlier qualification; named capability remains incomplete.",
+    "not_implemented": "No implementation accepted for the named full capability.",
+    "unqualified": "Reference interaction or target behavior has not been qualified."
+  },
+  "unresolved_scope": [
+    {
+      "id": "GATE-EDITION",
+      "title": "Installed comparison editions/builds and add-on entitlement",
+      "required_for": "full parity freeze",
+      "planned_prs": [
+        "P01",
+        "P58"
+      ]
+    },
+    {
+      "id": "GATE-STANDARDS",
+      "title": "Construct/rule/diagram coverage for selected SysML v1, SysML v2, UML and UAF versions",
+      "required_for": "standards/parity claim",
+      "planned_prs": [
+        "P22",
+        "P58"
+      ]
+    },
+    {
+      "id": "GATE-PORTFOLIO",
+      "title": "Software/code/database engineering, DDS, Alf and specialist safety/security extensions inventory",
+      "required_for": "full NoMagic portfolio claim",
+      "planned_prs": [
+        "P01",
+        "P57",
+        "P58"
+      ]
+    },
+    {
+      "id": "GATE-CRAFT-EXPANSION",
+      "title": "FigCraft and other apps outside the upstream twelve-app audit require own source/build pins and interaction fixtures",
+      "required_for": "full Craft-family UI claim",
+      "planned_prs": [
+        "P01",
+        "P58"
+      ]
+    },
+    {
+      "id": "GATE-PLATFORMS",
+      "title": "Per OS/backend/IME/accessibility/physical hardware acceptance",
+      "required_for": "cross-platform claim",
+      "planned_prs": [
+        "P49",
+        "P50",
+        "P58"
+      ]
+    },
+    {
+      "id": "GATE-RESOURCING",
+      "title": "Benchmark thresholds, machine tiers and supported graph sizes accepted before performance work",
+      "required_for": "performance claim",
+      "planned_prs": [
+        "P01",
+        "P50"
+      ]
+    }
+  ],
+  "claim_policy": "No completion percentage or parity assertion from research, fixture existence, static checks or historical test totals."
+}

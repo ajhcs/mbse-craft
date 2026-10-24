@@ -35,6 +35,7 @@ Calculations use the inherited bounded scalar/ratio/count/length/duration/speed 
 
 ## Compatibility and provenance
 
+- [Ordered parity roadmap](docs/PARITY_ROADMAP.md) and [capability matrix / synthetic acceptance specifications](docs/parity/README.md) — preparation only; no new product acceptance or full parity claim.
 - [Implementation plan and acceptance criteria](docs/IMPLEMENTATION_PLAN.md)
 - [Ten-repository source/license and compatibility matrix](docs/UPSTREAM_COMPATIBILITY.md)
 - [Pinned upstream manifests](docs/UPSTREAM_SOURCES.json)

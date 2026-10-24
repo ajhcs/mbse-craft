@@ -1,0 +1,104 @@
+{
+  "schema": "mbse-craft.parity-sources/1",
+  "sources": [
+    {
+      "id": "SRC-CATALOG",
+      "kind": "historical_research",
+      "repository": "ajhcs/mbse-craft",
+      "commit": "7cb7876ee182872d1a2bf41f5b7707c9a04e04a0",
+      "path": "docs/continuation-m2b03/PROGRAM-INDEX-86-HANDOFF.json",
+      "scope": "40 CATIA plus 46 Capella source-research records; no execution or completion tally",
+      "sha256": "16a875c5ceb11094bdf9978a5efca7a5e8dae873764f74e0baa151351b82f4e0",
+      "git_blob_sha": "81007e83edb14319ddbaf1bb4fd347804c5b03cf",
+      "availability": "local_unpublished_continuation"
+    },
+    {
+      "id": "SRC-BASE",
+      "kind": "implementation",
+      "repository": "ajhcs/mbse-craft",
+      "commit": "5b907c333d423df60de7d539da2a0900941825aa",
+      "path": "README.md",
+      "scope": "Published draft implementation head; source-edit and earlier frozen epochs remain separately qualified",
+      "sha256": "dbaae63d272d9df5a211289d52b34e7385287c4219d6b7b84d7dda1873983890",
+      "git_blob_sha": "8be8ce9d4aa6f29407128b925125ffa438aae3c4",
+      "availability": "existing_draft_PR_1_history"
+    },
+    {
+      "id": "SRC-CATIA-CROSSWALK",
+      "kind": "bounded_reference_crosswalk",
+      "repository": "ajhcs/mbse-craft",
+      "commit": "5b907c333d423df60de7d539da2a0900941825aa",
+      "path": "docs/CATIA_REFERENCE_CROSSWALK.md",
+      "scope": "Authored textual observations only; private proprietary source artifacts are not copied",
+      "sha256": "21f8b39243592d20677e3b127a6bd920a8b6d3074bdc3745df2f18b1a061ed4b",
+      "git_blob_sha": "caa9236869b3d09b80ad92dfc0d81ff596901392",
+      "availability": "existing_draft_PR_1_history"
+    },
+    {
+      "id": "SRC-NAV",
+      "kind": "source_candidate",
+      "repository": "ajhcs/mbse-craft",
+      "commit": "7cb7876ee182872d1a2bf41f5b7707c9a04e04a0",
+      "path": "docs/continuation-m2b10/OCCURRENCE-NAVIGATION-CONTRACT.md",
+      "scope": "Source reviewed; no executed test/build/native gate for this occurrence-navigation candidate",
+      "sha256": "c03fb01657ac062b9757f88b2cb77232802a329915071b6b7dd6d5b496dca575",
+      "git_blob_sha": "c4368659b9929646d9db1c1267322daf52c95b47",
+      "availability": "local_unpublished_continuation"
+    },
+    {
+      "id": "SRC-IMPACT",
+      "kind": "bounded_qualification",
+      "repository": "ajhcs/mbse-craft",
+      "commit": "a985205ca8a77c5f051dadc71ae2d83c1470a4ee",
+      "path": "docs/continuation-m2b09/QUALIFICATION.md",
+      "scope": "Direct supported roles, journals, occurrences and edges; no exhaustive deletion or transitive-impact verdict",
+      "sha256": "9979e4ac96344cec706df0930401359eac38b0a0745c47d9c26214bb8e9a163c",
+      "git_blob_sha": "2032259c1d60b5e411421a97a163718d79168731",
+      "availability": "local_unpublished_continuation"
+    },
+    {
+      "id": "SRC-NOMAGIC",
+      "kind": "vendor_documentation",
+      "url": "https://www.3ds.com/products/catia/catia-magic/",
+      "document_version": "Vendor page observed 2026-10-24; 2026x Desktop Client and UAF 1.3 advertised",
+      "scope": "Product-family scope, not an installed edition/build audit or independent conformance evidence"
+    },
+    {
+      "id": "SRC-NOMAGIC-V2",
+      "kind": "vendor_documentation",
+      "url": "https://docs.nomagic.com/SYSML2P/2026x/catia-magic-cameo-sysml-v2-community-edition-286557495.html",
+      "document_version": "2026x",
+      "scope": "SysML v2 comparison target; language/standard coverage requires separate construct-level work"
+    },
+    {
+      "id": "SRC-CRAFT-AUDIT",
+      "kind": "upstream_source_audit",
+      "repository": "storytold/craft-libs",
+      "blob_sha": "76cd0405d26bdbb1d33b99e27fbfa977605e3b51",
+      "path": "docs/ui-components-audit.md",
+      "url": "https://github.com/storytold/craft-libs/blob/main/docs/ui-components-audit.md",
+      "scope": "Pinned Git blob identity; source audit across twelve Rust editors, not interactive acceptance"
+    },
+    {
+      "id": "SRC-CRAFT-THEME",
+      "kind": "upstream_source_audit",
+      "repository": "storytold/craft-libs",
+      "blob_sha": "1c4aabba12109d1f6ac5555b24e98b28d446c9ec",
+      "path": "docs/theme-infrastructure.md",
+      "url": "https://github.com/storytold/craft-libs/blob/main/docs/theme-infrastructure.md",
+      "scope": "Eight-app pinned source comparison; app palettes and theme models differ"
+    },
+    {
+      "id": "SRC-CRAFT-INTEGRATION",
+      "kind": "implementation_contract",
+      "repository": "ajhcs/mbse-craft",
+      "commit": "5b907c333d423df60de7d539da2a0900941825aa",
+      "path": "docs/continuation-m1/COMPATIBILITY_MATRIX.md",
+      "scope": "Required/conditional/optional contracts and exact upstream pins; research rows may predate later adoption",
+      "sha256": "07df2b29e3360d75306b9a8c33c3a3af487bb8e776f746287e8c19d9633ffff3",
+      "git_blob_sha": "a534050567087ad605ee754c6b5a27f7beebc581",
+      "availability": "existing_draft_PR_1_history"
+    }
+  ],
+  "exclusion": "No proprietary screenshots, archives, private project data, restricted Syside sources or external code are added. URLs identify sources, not permission to copy."
+}
