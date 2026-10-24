@@ -32,6 +32,10 @@
         "id": "I-B",
         "type": "T-SENSOR",
         "gain": 3
+      },
+      {
+        "id": "I-RECORDER",
+        "type": "T-RECORDER"
       }
     ],
     "ports": [
@@ -43,7 +47,7 @@
       },
       {
         "id": "PORT-IN",
-        "owner": "T-RECORDER",
+        "owner": "I-RECORDER",
         "direction": "in",
         "item_type": "Sample"
       }
@@ -181,7 +185,7 @@
   ],
   "known_counts": {
     "planned_types": 2,
-    "planned_instances": 2,
+    "planned_instances": 3,
     "planned_ports": 2,
     "planned_exchanges": 1,
     "planned_requirements": 2,

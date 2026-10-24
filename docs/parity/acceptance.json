@@ -1972,7 +1972,7 @@
     {
       "id": "ASSET-ENGINEERING",
       "path": "docs/parity/fixtures/engineering.json",
-      "sha256": "61312072c978f9e9754e6e453e66850124864107b81c1ee1a5b1ceb9e1394bc6",
+      "sha256": "8f60653f749881e84b0fd413a0d5f60ec2ac98ae8adb538568dd8cd296e32ad2",
       "format": "mbse-craft.parity-engineering-spec/1",
       "origin": "Original synthetic prospective model; never admitted as native input."
     },

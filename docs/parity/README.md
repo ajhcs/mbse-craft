@@ -51,6 +51,8 @@ results or completion percentages in this package.
 
 `fixtures/engineering.json` specifies an original synthetic future model and
 independently checkable numeric expectations. It is not a native import file.
+Its assembly has two Sensor instances and one Recorder instance; connector
+ports belong to those instances, while type definitions remain distinct.
 `fixtures/ui.json` specifies strings, state combinations and proposed sizes and
 budgets. Target hardware, mode, sample counts and thresholds require review
 before performance qualification. Desired large-model tiers may exceed current
@@ -61,6 +63,12 @@ ID, contain a cross-member reference, an unresolved member and unknown metadata.
 They are minimal original XML fragments, not complete vendor projects. Their
 source-set oracle is stored in `milestone1.json`. The checker validates the bytes
 and these declared fixture facts, **not** MBSE-Craft's parser or admission.
+
+Milestone 1 vectors are self-contained baseline scenarios with their own input
+assets and P02–P06 prerequisites. Their `related_spec_ids` only trace to the
+later full-capability scenarios; they do not inherit those scenarios' future
+requirements. Passing M1-AUTHOR therefore cannot close general typed property,
+normative mission-architecture or schema-migration parity.
 
 The existing `kernspan.stage1.qa-fixture/1` inspection input is referenced by path
 and hash, without copying or rewriting it. It is not a serialized Session save.
@@ -92,7 +100,8 @@ The dependency-free checker verifies identifiers, dependency ordering, matrix
 coverage, source/app/fixture references, SHA-256 input bindings, concrete fixture
 oracles, roadmap rendering and that planned scenarios cannot claim a pass. Its
 negative cases exercise forged acceptance, duplicate IDs, dangling references,
-forward dependencies, removed scope gates and modified fixture bytes. A passing
+forward dependencies, removed scope gates, modified fixture bytes, contradictory
+oracles, invalid connector ownership and ambiguous baseline prerequisites. A passing
 checker establishes package consistency only. See [VALIDATION.md](VALIDATION.md)
 for this PR's actual result and limits.
 

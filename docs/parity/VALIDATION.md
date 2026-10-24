@@ -44,3 +44,12 @@ No existing PR is merged and no local product continuation is integrated by
 this preparation PR. The sole integrator retains ownership of subsequent P02–P06
 work. The agreed roadmap's P48/P50/P57/P58 remain explicit decomposition gates,
 not single implementation-sized changes.
+
+## PR 4 review successor
+
+The same-agent [PR review](PR4_REVIEW.md) addresses three preparation findings:
+assembly endpoint identity, declared-oracle/metadata validation and baseline
+versus future-capability prerequisite ambiguity. The updated checker passes with
+18 negative cases rejected. The original 11-case result above remains historical;
+the new cases do not represent replayed application tests. Input digests were
+updated only for the deliberately corrected synthetic engineering fixture.

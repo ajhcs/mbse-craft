@@ -49,6 +49,13 @@ def indexed(items, label):
     return result
 
 
+def string_list(value, label):
+    require(isinstance(value, list) and value and all(isinstance(x, str) and x.strip() for x in value),
+            f'{label}: expected nonempty list of strings')
+    require(len(value) == len(set(value)), f'{label}: duplicate entries')
+    return value
+
+
 def bound_file(path):
     require(isinstance(path, str), 'non-string local path')
     relative = Path(path)
@@ -108,13 +115,16 @@ def validate(data, asset_override=None, check_sources=False, check_render=True):
         require(cap['status_scope'] and cap['completion_rule'] and cap['owner_role'], f'{cid}: missing scope/ownership')
         require(cap['planned_prs'] and all(p in prs for p in cap['planned_prs']), f'{cid}: missing PR')
         require(cap['source_refs'] and all(s in sources for s in cap['source_refs']), f'{cid}: missing source')
-        require(all(t in targets for t in cap['target_refs']), f'{cid}: missing target')
+        require(all(t in targets for t in string_list(cap['target_refs'], f'{cid} targets')), f'{cid}: missing target')
         require(cap['acceptance_fixture_ids'] and all(f in scenarios for f in cap['acceptance_fixture_ids']), f'{cid}: missing fixture')
         for fid in cap['acceptance_fixture_ids']:
             require(cid in scenarios[fid]['capability_ids'], f'{cid}: fixture is not reciprocal')
     for fid, scenario in scenarios.items():
         require(scenario['execution_state'] == 'not_run' and scenario['kind'] == 'declarative_acceptance_specification', f'{fid}: forged product result')
         require(scenario['action'] and scenario['expected'] and scenario['failure_invariants'] and scenario['evidence_required'], f'{fid}: incomplete oracle')
+        for key in ('expected', 'failure_invariants', 'evidence_required', 'preconditions',
+                    'capability_ids', 'requires_prs', 'input_asset_ids'):
+            string_list(scenario[key], f'{fid} {key}')
         require(all(c in caps and fid in caps[c]['acceptance_fixture_ids'] for c in scenario['capability_ids']), f'{fid}: dangling/nonreciprocal capability')
         require(all(p in prs for p in scenario['requires_prs']), f'{fid}: dangling prerequisite')
         require(all(a in assets for a in scenario['input_asset_ids'] + scenario.get('native_seed_asset_ids', [])), f'{fid}: dangling asset')
@@ -123,16 +133,19 @@ def validate(data, asset_override=None, check_sources=False, check_render=True):
         require(all(f in scenarios for f in app['comparison_fixture_ids']), 'app fixture missing')
         require(app['reference_build_status'] == 'not_run_not_pinned_for_interactive_comparison', 'invented reference qualification')
 
+    asset_bytes = {}
     for aid, asset in assets.items():
         require(re.fullmatch(r'[0-9a-f]{64}', asset['sha256']), f'{aid}: missing SHA256')
+        path = bound_file(asset['path'])
         raw = (asset_override or {}).get(aid)
         if raw is None:
-            raw = bound_file(asset['path']).read_bytes()
+            raw = path.read_bytes()
         require(hashlib.sha256(raw).hexdigest() == asset['sha256'], f'{aid}: changed input bytes')
-    seed = json.loads(bound_file(assets['ASSET-NATIVE']['path']).read_text())
+        asset_bytes[aid] = raw
+    seed = json.loads(asset_bytes['ASSET-NATIVE'], object_pairs_hook=unique_pairs)
     require(seed['schema'] == 'kernspan.stage1.qa-fixture/1', 'native seed format relabeled')
     require(any(d['recordId'] == 301 and d['rawText'] == '9e' and d['acceptedNumeric'] == 95 for d in seed['rawDrafts']), 'seed draft oracle changed')
-    engineering = json.loads(bound_file(assets['ASSET-ENGINEERING']['path']).read_text())
+    engineering = json.loads(asset_bytes['ASSET-ENGINEERING'], object_pairs_hook=unique_pairs)
     numeric = {o['id']: o for o in engineering['numeric_oracles']}
     require(numeric['speed']['inputs']['distance_m'] / numeric['speed']['inputs']['duration_s'] == numeric['speed']['expected']['value'] == 15, 'speed oracle incorrect')
     require(numeric['length']['inputs']['length_m'] / 1000 == numeric['length']['expected']['value'] == 2.5, 'length oracle incorrect')
@@ -141,6 +154,16 @@ def validate(data, asset_override=None, check_sources=False, check_render=True):
     require(percent == calc['expected']['value'] == 87.5 and calc['expected']['target_met'] == (percent >= calc['inputs']['target_percent']), 'assessment oracle incorrect')
     require(numeric['zero']['inputs']['denominator'] == 0 and numeric['zero']['expected']['outcome'] == 'invalid', 'zero-denominator oracle incorrect')
     model = engineering['planned_model']
+    types = indexed(model['types'], 'engineering types')
+    instances = indexed(model['instances'], 'engineering instances')
+    ports = indexed(model['ports'], 'engineering ports')
+    require(all(i['type'] in types for i in instances.values()), 'instance has unknown type')
+    require(all(p['owner'] in instances for p in ports.values()), 'assembly port owner must be a declared instance')
+    exchange = model['exchange']
+    require(exchange['source'] in ports and exchange['target'] in ports, 'exchange has unknown endpoint')
+    source_port, target_port = ports[exchange['source']], ports[exchange['target']]
+    require(source_port['direction'] == 'out' and target_port['direction'] == 'in', 'exchange direction mismatch')
+    require(source_port['item_type'] == target_port['item_type'] == exchange['item_type'], 'exchange item type mismatch')
     count_keys = {'planned_types':'types', 'planned_instances':'instances', 'planned_ports':'ports', 'planned_requirements':'requirements', 'planned_views':'views'}
     for key, collection in count_keys.items():
         require(engineering['known_counts'][key] == len(model[collection]), f'incorrect count: {key}')
@@ -158,15 +181,29 @@ def validate(data, asset_override=None, check_sources=False, check_render=True):
     require(set(m1) == {'M1-AUTHOR','M1-PAIR','M1-RECOVERY','M1-NAV','M1-OCCURRENCE','M1-SOURCE'}, 'Milestone 1 integrated vectors incomplete')
     for vec in m1.values():
         require(vec['execution_state'] == 'not_run' and vec['expected'] and vec['steps'], 'Milestone 1 vector misrepresents execution')
-        require(all(p in prs for p in vec['requires_prs']) and all(f in scenarios for f in vec['fixture_ids']), 'Milestone 1 dangling reference')
+        require('fixture_ids' not in vec, 'baseline/full-capability fixture semantics must be explicit')
+        for key in ('requires_prs', 'related_spec_ids', 'input_asset_ids', 'steps', 'expected', 'evidence_required'):
+            string_list(vec[key], f'{vec["id"]} {key}')
+        require(all(p in prs and prs[p]['milestone'] == 'M01' for p in vec['requires_prs']), 'baseline vector depends on later milestone')
+        require(all(f in scenarios for f in vec['related_spec_ids']), 'Milestone 1 dangling related specification')
+        require(all(a in assets for a in vec['input_asset_ids']), 'Milestone 1 dangling input asset')
     # Facts about original XML fixture bytes only. This is not a product parser test.
     xmi_id = '{http://www.omg.org/XMI}id'
-    primary = ET.fromstring(bound_file(assets['ASSET-SOURCE-PRIMARY']['path']).read_bytes())
-    other = ET.fromstring(bound_file(assets['ASSET-SOURCE-OTHER']['path']).read_bytes())
+    primary = ET.fromstring(asset_bytes['ASSET-SOURCE-PRIMARY'])
+    other = ET.fromstring(asset_bytes['ASSET-SOURCE-OTHER'])
     require(any(n.get(xmi_id) == 'SYN-DUP' and n.get('name') == 'Primary sensor' for n in primary), 'primary local-ID oracle incorrect')
     require(any(n.get(xmi_id) == 'SYN-DUP' and n.get('name') == 'Companion sensor' for n in other), 'companion local-ID oracle incorrect')
     require([n.get('href') for n in primary.iter() if n.get('href')] == ['source-other.xmi#SYN-DUP','missing.xmi#SYN-MISSING'], 'source references changed')
     require(any(n.get('{urn:mbse-craft:synthetic:unknown:1}tag') == 'preserve-me' for n in primary), 'unknown-metadata fixture missing')
+    oracle = data['milestone1']['source_set_oracle']
+    require(oracle == {
+        'member_keys': ['source-primary.xmi#SYN-DUP', 'source-other.xmi#SYN-DUP'],
+        'names': ['Primary sensor', 'Companion sensor'],
+        'unresolved_missing_href': 'missing.xmi#SYN-MISSING',
+        'unknown_attribute': '{urn:mbse-craft:synthetic:unknown:1}tag',
+        'unknown_value': 'preserve-me',
+        'supplied_but_not_implicitly_resolved_href': 'source-other.xmi#SYN-DUP',
+    }, 'declared source-set oracle contradicts checked fixture facts')
     require(data['baseline']['base_commit'] == '5b907c333d423df60de7d539da2a0900941825aa', 'implementation baseline changed')
     if check_render:
         rendered = (ROOT / 'docs/PARITY_ROADMAP.md').read_text()
@@ -201,6 +238,21 @@ def self_test(data):
     add('unknown source', lambda d: d['matrix']['capabilities'][0]['source_refs'].append('SRC-MISSING'))
     add('unsafe fixture path', lambda d: d['acceptance']['assets'][0].update(path='../../outside.json'))
     add('unknown schema', lambda d: d['matrix'].update(schema='mbse-craft.parity-matrix/99'))
+    add('contradictory declared source oracle', lambda d: d['milestone1']['source_set_oracle'].update(unknown_value='WRONG'))
+    add('malformed baseline steps', lambda d: d['milestone1']['vectors'][0].update(steps='not a step list'))
+    add('empty target scope', lambda d: d['matrix']['capabilities'][0].update(target_refs=[]))
+    add('later milestone required by baseline', lambda d: d['milestone1']['vectors'][0]['requires_prs'].append('P58'))
+    add('ambiguous baseline fixture relation', lambda d: d['milestone1']['vectors'][0].update(fixture_ids=['AC-CAT-001']))
+    def altered_engineering(name, mutate):
+        changed = copy.deepcopy(data)
+        asset = next(a for a in changed['acceptance']['assets'] if a['id'] == 'ASSET-ENGINEERING')
+        model = json.loads(bound_file(asset['path']).read_text())
+        mutate(model['planned_model'])
+        raw = (json.dumps(model) + '\n').encode()
+        asset['sha256'] = hashlib.sha256(raw).hexdigest()
+        cases.append((name, changed, {'ASSET-ENGINEERING': raw}))
+    altered_engineering('assembly connector bound to type', lambda m: m['ports'][1].update(owner='T-RECORDER'))
+    altered_engineering('exchange item mismatch', lambda m: m['ports'][1].update(item_type='Temperature'))
     cases.append(('tampered source bytes', copy.deepcopy(data), {'ASSET-SOURCE-PRIMARY': b'<changed/>'}))
     for name, altered, override in cases:
         try:

@@ -8,12 +8,6 @@
       "requires_prs": [
         "P02"
       ],
-      "fixture_ids": [
-        "AC-CAT-001",
-        "AC-CAT-014",
-        "AC-CAT-015",
-        "AC-CAT-040"
-      ],
       "steps": [
         "Start a separate blank native document, author System purpose, Mission, Capability, Objective and Measure through existing commands.",
         "Evaluate 120 m / 8 s and convert 2500 m to km using the inherited bounded evaluator.",
@@ -29,18 +23,22 @@
         "Exact actual native/build/fixture hashes",
         "Action observations and saved-byte/negative-case checks",
         "Independent review and normal-close/owned-process cleanup evidence where applicable"
+      ],
+      "related_spec_ids": [
+        "AC-CAT-001",
+        "AC-CAT-014",
+        "AC-CAT-015",
+        "AC-CAT-040"
+      ],
+      "input_asset_ids": [
+        "ASSET-NATIVE",
+        "ASSET-ENGINEERING"
       ]
     },
     {
       "id": "M1-PAIR",
       "requires_prs": [
         "P03"
-      ],
-      "fixture_ids": [
-        "AC-CAT-002",
-        "AC-CAT-006",
-        "AC-CAT-010",
-        "AC-CAT-011"
       ],
       "steps": [
         "Through actual Session and native view commands, create Primary/Review occurrences of Mission 100; capture the real allocated IDs and native checkpoint.",
@@ -57,16 +55,22 @@
         "Exact actual native/build/fixture hashes",
         "Action observations and saved-byte/negative-case checks",
         "Independent review and normal-close/owned-process cleanup evidence where applicable"
+      ],
+      "related_spec_ids": [
+        "AC-CAT-002",
+        "AC-CAT-006",
+        "AC-CAT-010",
+        "AC-CAT-011"
+      ],
+      "input_asset_ids": [
+        "ASSET-NATIVE",
+        "ASSET-ENGINEERING"
       ]
     },
     {
       "id": "M1-RECOVERY",
       "requires_prs": [
         "P04"
-      ],
-      "fixture_ids": [
-        "AC-CAT-002",
-        "AC-UI-016"
       ],
       "steps": [
         "Opt in to the ordinary 15 second recovery timer; change only diagram layout while native model is clean.",
@@ -83,18 +87,20 @@
         "Exact actual native/build/fixture hashes",
         "Action observations and saved-byte/negative-case checks",
         "Independent review and normal-close/owned-process cleanup evidence where applicable"
+      ],
+      "related_spec_ids": [
+        "AC-CAT-002",
+        "AC-UI-016"
+      ],
+      "input_asset_ids": [
+        "ASSET-NATIVE",
+        "ASSET-ENGINEERING"
       ]
     },
     {
       "id": "M1-NAV",
       "requires_prs": [
         "P05"
-      ],
-      "fixture_ids": [
-        "AC-CAT-003",
-        "AC-CAT-004",
-        "AC-CAT-011",
-        "AC-CAT-019"
       ],
       "steps": [
         "Load a separately emitted native fixture with two Systems and duplicate names; do not assume new-System UI authoring exists.",
@@ -111,17 +117,22 @@
         "Exact actual native/build/fixture hashes",
         "Action observations and saved-byte/negative-case checks",
         "Independent review and normal-close/owned-process cleanup evidence where applicable"
+      ],
+      "related_spec_ids": [
+        "AC-CAT-003",
+        "AC-CAT-004",
+        "AC-CAT-011",
+        "AC-CAT-019"
+      ],
+      "input_asset_ids": [
+        "ASSET-NATIVE",
+        "ASSET-ENGINEERING"
       ]
     },
     {
       "id": "M1-OCCURRENCE",
       "requires_prs": [
         "P06"
-      ],
-      "fixture_ids": [
-        "AC-CAT-004",
-        "AC-CAT-006",
-        "AC-UI-015"
       ],
       "steps": [
         "From an actually emitted two-view fixture with hidden and detached occurrences, retain a current impact report; derive row tickets through the actual report API.",
@@ -138,15 +149,21 @@
         "Exact actual native/build/fixture hashes",
         "Action observations and saved-byte/negative-case checks",
         "Independent review and normal-close/owned-process cleanup evidence where applicable"
+      ],
+      "related_spec_ids": [
+        "AC-CAT-004",
+        "AC-CAT-006",
+        "AC-UI-015"
+      ],
+      "input_asset_ids": [
+        "ASSET-NATIVE",
+        "ASSET-ENGINEERING"
       ]
     },
     {
       "id": "M1-SOURCE",
       "requires_prs": [
         "P02"
-      ],
-      "fixture_ids": [
-        "AC-CAT-033"
       ],
       "steps": [
         "Inspect each explicitly supplied original synthetic XMI member separately and the Capella fragment, recording independent origin/member hashes; do not assume open_set exists.",
@@ -163,6 +180,14 @@
         "Exact actual native/build/fixture hashes",
         "Action observations and saved-byte/negative-case checks",
         "Independent review and normal-close/owned-process cleanup evidence where applicable"
+      ],
+      "related_spec_ids": [
+        "AC-CAT-033"
+      ],
+      "input_asset_ids": [
+        "ASSET-SOURCE-PRIMARY",
+        "ASSET-SOURCE-OTHER",
+        "ASSET-CAPELLA"
       ]
     }
   ],
@@ -180,5 +205,6 @@
     "unknown_value": "preserve-me",
     "supplied_but_not_implicitly_resolved_href": "source-other.xmi#SYN-DUP"
   },
-  "partial_execution_policy": "Store held/failed/partial outcomes separately; never replace them with proposed success or replay spent actions."
+  "partial_execution_policy": "Store held/failed/partial outcomes separately; never replace them with proposed success or replay spent actions.",
+  "related_spec_policy": "related_spec_ids are traceability links to later full-capability specifications, not prerequisites or inherited acceptance criteria. Each baseline vector is self-contained and uses only its declared requires_prs and input_asset_ids."
 }
