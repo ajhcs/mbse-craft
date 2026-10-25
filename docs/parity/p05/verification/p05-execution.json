@@ -1,0 +1,10 @@
+{
+  "schema": "mbse-craft.m1-local-job-receipt/1",
+  "job_sha256": "7cf435679b2709d85100c77f5034b68813897fc8756659a80173283ac36ff894",
+  "started_utc": "2026-10-25T20:33:43.410260+00:00",
+  "status": "held_or_failed",
+  "commands": [],
+  "owned_jobs": [],
+  "reason": "ValueError('Existing compiler/native process requires coordination: [{\"pid\": 2103801, \"comm\": \"cargo\"}, {\"pid\": 2105137, \"comm\": \"rustc\"}]')",
+  "ended_utc": "2026-10-25T20:33:43.443042+00:00"
+}
