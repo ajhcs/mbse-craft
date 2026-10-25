@@ -1,0 +1,272 @@
+{
+  "profile": "mbse-craft.native-views-receipt/1",
+  "status": "BoundedNativeWorkflowCompleted; IndependentRootCropReviewPending",
+  "source_commit": "09df25de9fdff9e2c68e1c931b2155f08049254c",
+  "source_sha256": "e6cc2113f5283a9b4a86c837a782a12028f1733c83f13cfb2cc70809b18691f4",
+  "binary_sha256": "199226d504ccd1cc066b30bb29e8a8a64f0fb0eeaf2dd63c47b8668bc492a9b4",
+  "native_job_sha256": "8c420ca1c9a22803c1a72923dd222c98ec7e46fccaaaaeaa46f9e5c5d5932363",
+  "started_utc": "2026-10-23T12:42:38.404114+00:00",
+  "ended_utc": "2026-10-23T13:02:15.463393+00:00",
+  "actual_observations": [
+    "Actual System1 and shared Mission1000; Primary occurrence5 and Review occurrence6 derive renamed native label",
+    "Real drag measured+129,+74, pin rejects Move right, hide scoped to Primary, Layout Undo restores; native snapshot/model/raw stamps unchanged",
+    "Exact native/views save and explicit reopen restores IDs, independent geometry, revision8/highwater7",
+    "Unowned destination preflight refuses before native write, preserves both original file hashes and live native/layout edits",
+    "Controlled owned cooperative-lock fixture allows actual changed native Save, sidecar failure preserves prior sidecar bytes/live geometry and blocks close; own fixture verified/removed, retry succeeds",
+    "Active view7 creation Undo/close Redo falls back to Primary without panic; new view8 does not reuse7; retired highwater9 persists",
+    "Native Undo detaches occurrence9 for Mission1001; matching same-runtime Redo reactivates; Layout Undo while target missing refuses without resurrection and later restores same9 after nativeRedo",
+    "Local Open refuses current unsaved layout without changing snapshot/view revision",
+    "Independent native and unbound views recovery retained; recovered native changes DocumentId but retains all three native records; old bound/unbound views refused and originals unchanged",
+    "Controlled acknowledged-sidecar whitespace change preserves semantic JSON but invalidates exact artifact; local Open and close refuse despite cached saved hint; fresh destination Save succeeds",
+    "Actual normal app/driver/server exits0; all six exact recorded owned identities absent, auth disposed and renderer released"
+  ],
+  "limits": [
+    "Native persisted explicit semantic edge endpoint/routing workflows not exercised in this epoch; covered by focused unit/controller tests only",
+    "Fit not exercised in this native epoch",
+    "Foreign-origin stale stamps and delayed native ACK timing remain controller-only",
+    "No uncontrolled live stale-source/late-leaf races or power-loss/CAS/multifile atomicity proof",
+    "No engineering/external-source admission/full SysML/Arcadia/interop/platform/accessibility/performance acceptance",
+    "No evaluator execution/result-preservation proof; view-only native/evaluator stamp isolation is separate",
+    "Harness28/29 mis-targeted after recovery notice shifted controls23px; retained unasserted, corrected28b/29b prove actual refusal",
+    "Temporary mission creation input appended to retained draft because harness did not clear it; actual stored name retained, IDs used as authority",
+    "Implementation-shaped Ok(()), Ok(true), VIEWS_PINNED and missing-target error note observed; actionable wording is later UX work"
+  ],
+  "cleanup": {
+    "checked_utc": "2026-10-23T13:02:39.017830+00:00",
+    "explicit_owned_identity_checks": [
+      {
+        "pid": 998428,
+        "recorded_start_ticks": 13370837,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 998461,
+        "recorded_start_ticks": 13370951,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 998462,
+        "recorded_start_ticks": 13370953,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 998463,
+        "recorded_start_ticks": 13370953,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 998464,
+        "recorded_start_ticks": 13370955,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 998467,
+        "recorded_start_ticks": 13370974,
+        "original_identity_absent": true
+      }
+    ],
+    "cleanup": {
+      "ended_utc": "2026-10-23T13:02:15.316339+00:00",
+      "children": [
+        {
+          "owned": {
+            "pid": 998464,
+            "start_ticks": 13370955,
+            "uid": 1000,
+            "exe": "/workspace/cache/builderbob/global-tools/releases/blender/5.2.2/xvfb/usr/bin/Xvfb",
+            "pid_namespace": "pid:[4026531836]",
+            "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+          },
+          "original_identity_absent": true
+        },
+        {
+          "owned": {
+            "pid": 998467,
+            "start_ticks": 13370974,
+            "uid": 1000,
+            "exe": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/bin/mbse-desktop",
+            "pid_namespace": "pid:[4026531836]",
+            "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+          },
+          "original_identity_absent": true
+        }
+      ],
+      "app_exit_code": 0,
+      "server_exit_code": 0,
+      "xauthority_removed": true
+    },
+    "outer_exit_code": 0,
+    "driver_exit_code": 0,
+    "auth_absent": true,
+    "renderer_released": true,
+    "source_and_binary_unchanged": true
+  },
+  "artifacts": {
+    "UNOWNED-PREFLIGHT-RESULT.json": {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/UNOWNED-PREFLIGHT-RESULT.json",
+      "sha256": "53b9d5f4f750c08973c58df0ce27c4bc9dc4e42defa79e9e7b2694112d933d00"
+    },
+    "CONTROLLED-LOCK-RESULT.json": {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/CONTROLLED-LOCK-RESULT.json",
+      "sha256": "cc036390e5f67b686474eab67f16087409b20c1fa79fc9bb2b292c734e35534b"
+    },
+    "RECOVERY-PRESERVED.json": {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/RECOVERY-PRESERVED.json",
+      "sha256": "a218bd4205dbc58bf1afc2b3fa027f7c311f9a8c3ebd46733e3a4cc63a7f94c6"
+    },
+    "RECOVERY-SEPARATION-RESULT.json": {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/RECOVERY-SEPARATION-RESULT.json",
+      "sha256": "d757be37aedce664647b89401aad8e1cc1c6c5899bc5d000345cd806010fb980"
+    },
+    "FINAL-PRESERVATION.json": {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/FINAL-PRESERVATION.json",
+      "sha256": "03bdacfca5d580917ee5481dbaa2fd05299a59150c3f0701aee3e67b4d7a93ed"
+    }
+  },
+  "pngs": [
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/00-initial.png",
+      "sha256": "4e799004c17e6b0d62ac63f34650ee97a2d21b129f2cef575f242ca159a0ecf7"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/01-add-mission-dialog.png",
+      "sha256": "1d475b1fdb3b7368ac17759093c4da88d022e670c3f81a452cddff1c684a06f6"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/02-review-shared-mission-renamed.png",
+      "sha256": "78ccff31d4b78674d41ba5c0d21132a4ab4eece9f0adea2809ab735b72d645e5"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/03-primary-shared-mission-renamed.png",
+      "sha256": "42cd76234347c553377694a8204268460ad434958b744f79fa7284d9475345f7"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/04-selected-primary-occurrence.png",
+      "sha256": "78dd0b90e7c16728168a5c220d2fff6d55403361e46f655f10b7a1029777ac08"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/05-primary-occurrence-dragged.png",
+      "sha256": "526375cf409f31215c07300dc53b6cf1e258a751d901eb5110729aa093e4e55b"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/06-pinned-move-refused.png",
+      "sha256": "63f43c1efba9fa215ff5d19a5513ef973d0ca2ccf90738c5a7a0b0f9f1c0120e"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/07-primary-occurrence-hidden.png",
+      "sha256": "833b8c669592ed3b5fd97254cd32bbd391d09bed9649eb3ce43f4bdaa309b6d3"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/08-review-occurrence-unaffected.png",
+      "sha256": "5fac6d25b3173bce761c7e80b3e87e055f3ed76886ae78da15a8c99722ee1970"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/09-layout-undo-restores-hidden.png",
+      "sha256": "e3501418269ce267994c88f33af4ff73c315d9d4c323d08b934cd017b62b736f"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/10-native-and-views-saved.png",
+      "sha256": "ff21dc6c602c9a3e27a5650c1cc83ad2127241c7bb787dae5969e083f49b779b"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/11-native-reopened-default-views.png",
+      "sha256": "aa3a6b90517422909272050b6cec202c7e7b884a9349693a1676879eada3795c"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/12-exact-bound-views-reopened.png",
+      "sha256": "29cc0fb19772f025568040db370d13d12422e3a7e9f64f40acf7e4c5f72c2199"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/13-unowned-destination-preflight-refused.png",
+      "sha256": "826c3fc01474152d92a1925736803d82fddeedb0fafddcd7a8aaf1bd4d27ad35"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/14-controlled-lock-native-saved-views-unsaved.png",
+      "sha256": "01f4a11e03404492cb7856f5058f4bd64ac550e548c9986fb850865a96f35cb3"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/15-partial-save-close-retains-layout.png",
+      "sha256": "150b9efbe22e1b745c36330bf0021e01557151e5f456bb156ad1291506f96645"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/16-retry-native-and-views-saved.png",
+      "sha256": "3b65c079ee394067a3e7d5bd8a37f22577513d7e5a136d5ec1fe187d61894492"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/17-temporary-view-selected.png",
+      "sha256": "4b52f536284297db25179ecfcc063248a3f4334cf53a35ac49df4fda97449073"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/18-undo-selected-view-falls-back-primary.png",
+      "sha256": "db7a12dd337c770f46dd06cc2ccb3a139ee8309e41bea482fb77646e8fb64c2b"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/19-redo-close-selected-view-keeps-primary.png",
+      "sha256": "46daa586f0091ac4a14479392d15199fdb56d0a87a605a747b8b95861db93a2c"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/20-retired-view-id-not-reused.png",
+      "sha256": "4b52f536284297db25179ecfcc063248a3f4334cf53a35ac49df4fda97449073"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/21-native-undo-detaches-occurrence.png",
+      "sha256": "2c926db57b804e26a3b0c4aee8b4619b6432c62de7ce8e863465cfbb21b316b3"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/22-native-redo-reactivates-occurrence.png",
+      "sha256": "17a449967c3cada41982a13bec75060c62667531bb970091dfbb8a1ddf507576"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/23-layout-undo-missing-native-refused.png",
+      "sha256": "a43e6755c8c893c6ecbf9b284979580733160de0abdf46912c338b78cdee9084"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/24-layout-undo-restores-same-occurrence.png",
+      "sha256": "a13243ba20237e5e6249d10f430e96b5f0e27325d40b6dd7f189d2f71e0a4578"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/25-local-open-refuses-unsaved-layout.png",
+      "sha256": "748ae3baf7f62fcfa27bbc8ff9ba4443e990b772e76cea6a2cf96cff9e7239a8"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/26-native-and-views-recovery-preserved.png",
+      "sha256": "b5e2848011882db6090621c03a12bb5e2d945fa3c8e1e331c5a59422b62afd5f"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/27-recovered-native-independent-document.png",
+      "sha256": "9a5fc9272cda23f0b3c42fc8e15fa1ab72716776382c5a56267cfd1f092ff4c4"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/28-recovered-document-refuses-old-bound-views.png",
+      "sha256": "c0b815ca2380363e5b0ce3cdbaa8d9280f1fd9deedd940b155640b89cbe4712c"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/28b-recovered-refuses-old-bound.png",
+      "sha256": "636900e34b69230b73e7995bff194d5d090fc43e7616adbe05c70b89430b30bc"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/29-recovered-document-refuses-old-unbound-views.png",
+      "sha256": "d1bd0d3090cb315f27e94a8e5a964882b3045a47b6cff617b3745aa5465556c7"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/29b-recovered-refuses-old-unbound.png",
+      "sha256": "6c14c7bb6368b12547498c8eda37eab3b079ca9ff0fb09de70c766a53323b0cb"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/30-changed-ack-artifact-local-open-refused.png",
+      "sha256": "63044c42c39990a9ca49a7638ce6367764b3c93e410cf875c796b435c96c6fc7"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/31-changed-artifact-close-retains-layout.png",
+      "sha256": "d2681b056659dfdf755d8dc1a8ab3202ebed22b102b7d5ae8dd1d89f323f684e"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/32-final-preserved-recovered-document.png",
+      "sha256": "6fe3d9c98c064ce799d64129a1279835fd8eb76bca55aff530f9f8f1a3d569f9"
+    }
+  ],
+  "lossless_crop_manifest": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/review-crops/MANIFEST.json",
+  "compiler": false,
+  "new_agent_contexts": false,
+  "uploads": false
+}

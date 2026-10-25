@@ -1,0 +1,22 @@
+{
+  "fixture": "Controlled unowned sidecar destination; preflight refusal expected",
+  "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/artifacts/unowned.mbse-views.json",
+  "sha256": "78020f0e8e9a64a735e72a7d4c1cfe78ff9c41d28ded13c01704807f95b7af5b",
+  "native_before_sha256": "57af4c6ca06cacde2f8b6a1796934bdab95aa8974612f6c7f9d34a8f727e9ecd",
+  "views_before_sha256": "2c67ec223184f3ea2e08e34e01d5d86ac65629d4835802c11e3763f3cc7026cc",
+  "observed_ui": {
+    "save_status": "Unsaved",
+    "write_pending": false,
+    "views_pending": false,
+    "views_saved_hint": false,
+    "views_note": "Layout updated; semantic identity unchanged. Layout Undo is separate.",
+    "feedback": "VIEWS_EXISTING_UNOWNED_TARGET",
+    "error": true,
+    "snapshot_hash": "e208010b791042495a5ca88ad17a90ef571f4fc97a18cbb3ce34b978ae28fbd7",
+    "views_revision": "9"
+  },
+  "native_after_sha256": "57af4c6ca06cacde2f8b6a1796934bdab95aa8974612f6c7f9d34a8f727e9ecd",
+  "views_after_sha256": "2c67ec223184f3ea2e08e34e01d5d86ac65629d4835802c11e3763f3cc7026cc",
+  "native_unchanged": true,
+  "views_unchanged": true
+}

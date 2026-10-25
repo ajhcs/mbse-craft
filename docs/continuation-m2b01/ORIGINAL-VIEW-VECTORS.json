@@ -1,0 +1,160 @@
+{
+  "profile": "mbse-craft.native-views/0.2-draft",
+  "status": "ProposedNotRun; original design vectors, not implementation tests",
+  "source_pin": "0dfa6f1341b26f955777b15d3f743f4f39c0a9ef",
+  "frozen_candidate_excluded": "217c977c plus core patch6800a3d1 remains unchanged",
+  "scope": "Native views sidecar, identity and scoped histories; no semantic delete or external source admission",
+  "vectors": [
+    {
+      "id": "NV-01",
+      "case": "Reuse one native mission in two views, edit its name through existing command",
+      "expect": [
+        "One native RecordId",
+        "Two independent OccurrenceIds",
+        "Both derive current name",
+        "Separate layout survives save/reopen with exact native binding"
+      ]
+    },
+    {
+      "id": "NV-02",
+      "case": "Same native DocumentId but changed native artifact bytes",
+      "expect": [
+        "Sidecar remains unbound/read-only",
+        "No name-based or record-number-only rebinding",
+        "Native model can open safely with default canvas"
+      ]
+    },
+    {
+      "id": "NV-03",
+      "case": "Native save succeeds; view save fails",
+      "expect": [
+        "Native saved / views unsaved shown separately",
+        "No false whole-project acknowledgment",
+        "View memory/recovery retained",
+        "Reopen does not silently mix generations"
+      ]
+    },
+    {
+      "id": "NV-04",
+      "case": "Late view-save acknowledgment after new layout edit",
+      "expect": [
+        "Old request cannot mark newer view revision saved",
+        "Native saved state unchanged",
+        "Current geometry retained"
+      ]
+    },
+    {
+      "id": "NV-05",
+      "case": "Model Undo removes an added element used in a view",
+      "expect": [
+        "No fabricated native record",
+        "Presentation becomes inactive detached state with exact geometry/ID",
+        "Active edges cannot target missing record",
+        "Matching same-instance model redo may reactivate after validation"
+      ]
+    },
+    {
+      "id": "NV-06",
+      "case": "Layout Undo while its native target is absent",
+      "expect": [
+        "Atomic actionable refusal",
+        "No hidden model resurrection",
+        "No retarget to same-label record",
+        "All dirty/evidence states retained"
+      ]
+    },
+    {
+      "id": "NV-07",
+      "case": "Reopen detached presentation then add or discover similar-named record",
+      "expect": [
+        "No restored live history",
+        "No automatic reactivation by label or numeric coincidence",
+        "Explicit reviewed copy/reconciliation needed"
+      ]
+    },
+    {
+      "id": "NV-08",
+      "case": "Remove one of two same-view occurrences with an explicitly attached edge",
+      "expect": [
+        "No semantic relation removed",
+        "No silent visual edge retarget",
+        "Undo restores original identity if target still valid"
+      ]
+    },
+    {
+      "id": "NV-09",
+      "case": "Persist routing for contributesTo, typed subject and forObjective",
+      "expect": [
+        "Role/owner/target/kind resolved through current core",
+        "No array-index identity",
+        "Other graph links remain visible with derived/unpersisted route status"
+      ]
+    },
+    {
+      "id": "NV-10",
+      "case": "Request semantic delete from first-slice view menu",
+      "expect": [
+        "Unavailable with clear scope",
+        "No direct records-map mutation",
+        "Presentation remove remains available and distinct"
+      ]
+    },
+    {
+      "id": "NV-11",
+      "case": "Interleave native field/text Undo and view layout Undo",
+      "expect": [
+        "Explicit operation scope and labels",
+        "No layout command edits accepted/raw semantic data",
+        "Unrelated layout action does not erase native redo",
+        "No old evaluator authority restored"
+      ]
+    },
+    {
+      "id": "NV-12",
+      "case": "Recover native document with new DocumentId",
+      "expect": [
+        "Recovered document stays dirty and independent",
+        "Old sidecar not auto-admitted",
+        "Original sources and presentation recovery retained"
+      ]
+    },
+    {
+      "id": "NV-13",
+      "case": "Future/unknown sidecar fields/profile or corrupt/missing sidecar",
+      "expect": [
+        "Original bytes preserved",
+        "No rewrite as current profile",
+        "Unbound/read-only status and default native canvas"
+      ]
+    },
+    {
+      "id": "NV-14",
+      "case": "Native RecordId beyond JavaScript-safe integer range or maximumu64",
+      "expect": [
+        "Canonical decimal string checked against existing core RecordId",
+        "No floating-point conversion",
+        "Overflow/noncanonical spelling refuses",
+        "Presentation allocator never reuses retired ID"
+      ]
+    },
+    {
+      "id": "NV-15",
+      "case": "Coordinate nonfinite/overflow, item/output/history budget exceeded",
+      "expect": [
+        "Refusal before partial view commit or large clone",
+        "Detached items count toward budgets",
+        "Native/raw/evidence unchanged",
+        "Later ordinary view edit succeeds"
+      ]
+    },
+    {
+      "id": "NV-16",
+      "case": "View-only hide, move, pin, fit and save after evaluation",
+      "expect": [
+        "Native accepted/raw input stamps unchanged",
+        "View revision/dirty state changes appropriately",
+        "Semantic quantity/reference edit still invalidates under existing evaluator policy"
+      ]
+    }
+  ]
+}
