@@ -1,0 +1,14 @@
+[
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m2-p08-live-copy-fixed-20261025T232418Z/00.log",
+    "path": "00.log.gz",
+    "sha256": "37292f33ec49318a9076fa6d7cd79b8c1760f82e7142b5c31a3cf5c1afc6bef7",
+    "stored_sha256": "b58ff147fa9a64a71802392f803a4448d6b51dcccb5f77bde051b0e42c457d06"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m2-p08-live-copy-fixed-20261025T232418Z/01.log",
+    "path": "01.log.gz",
+    "sha256": "224aaa8ce11abce3e8a52355df741c956f7d7a4a0fcda3365e1792170f9ffd05",
+    "stored_sha256": "9ea881eae202bac03f83caf96acbe82f354048a593e8b8d2ccf76eb3f937831d"
+  }
+]
