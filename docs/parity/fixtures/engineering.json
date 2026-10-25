@@ -1,0 +1,196 @@
+{
+  "schema": "mbse-craft.parity-engineering-spec/1",
+  "qualification": "Original synthetic acceptance input; proposed constructs are not a native model or accepted engineering content.",
+  "existing_seed": {
+    "system_id": 1,
+    "mission_id": 100,
+    "capability_id": 200,
+    "objective_id": 300,
+    "measure_id": 301,
+    "accepted_criterion": 95,
+    "raw_criterion": "9e"
+  },
+  "planned_model": {
+    "types": [
+      {
+        "id": "T-SENSOR",
+        "name": "Sensor",
+        "default_gain": 2
+      },
+      {
+        "id": "T-RECORDER",
+        "name": "Recorder"
+      }
+    ],
+    "instances": [
+      {
+        "id": "I-A",
+        "type": "T-SENSOR",
+        "gain": "inherited"
+      },
+      {
+        "id": "I-B",
+        "type": "T-SENSOR",
+        "gain": 3
+      },
+      {
+        "id": "I-RECORDER",
+        "type": "T-RECORDER"
+      }
+    ],
+    "ports": [
+      {
+        "id": "PORT-OUT",
+        "owner": "I-A",
+        "direction": "out",
+        "item_type": "Sample"
+      },
+      {
+        "id": "PORT-IN",
+        "owner": "I-RECORDER",
+        "direction": "in",
+        "item_type": "Sample"
+      }
+    ],
+    "exchange": {
+      "id": "EX-SAMPLE",
+      "source": "PORT-OUT",
+      "target": "PORT-IN",
+      "item_type": "Sample"
+    },
+    "requirements": [
+      {
+        "id": "R-1",
+        "statement": "Retain each accepted synthetic sample.",
+        "parent": null
+      },
+      {
+        "id": "R-2",
+        "statement": "Report an unavailable input explicitly.",
+        "parent": "R-1"
+      }
+    ],
+    "trace_fixture": {
+      "satisfy": [
+        {
+          "requirement": "R-1",
+          "element": "T-RECORDER"
+        }
+      ],
+      "verify": [],
+      "expected_unsatisfied": [
+        "R-2"
+      ],
+      "expected_unverified": [
+        "R-1",
+        "R-2"
+      ]
+    },
+    "activity": {
+      "actions": [
+        "Receive",
+        "Record",
+        "Reject"
+      ],
+      "guards": [
+        "input_valid",
+        "not input_valid"
+      ],
+      "expected_true_trace": [
+        "Receive",
+        "Record"
+      ],
+      "expected_false_trace": [
+        "Receive",
+        "Reject"
+      ],
+      "step_limit": 100
+    },
+    "state_machine": {
+      "initial": "Idle",
+      "events": [
+        "start",
+        "stop"
+      ],
+      "expected_states": [
+        "Running",
+        "Idle"
+      ]
+    },
+    "views": [
+      {
+        "name": "Primary",
+        "zoom": 1.25,
+        "semantic_record_id": 100,
+        "x": 120,
+        "y": 80
+      },
+      {
+        "name": "Review",
+        "zoom": 0.8,
+        "semantic_record_id": 100,
+        "x": 480,
+        "y": 160
+      }
+    ]
+  },
+  "numeric_oracles": [
+    {
+      "id": "speed",
+      "inputs": {
+        "distance_m": 120,
+        "duration_s": 8
+      },
+      "expected": {
+        "value": 15,
+        "unit": "m/s"
+      }
+    },
+    {
+      "id": "length",
+      "inputs": {
+        "length_m": 2500
+      },
+      "expected": {
+        "value": 2.5,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "assessment",
+      "inputs": {
+        "numerator": 7,
+        "denominator": 8,
+        "target_percent": 80
+      },
+      "expected": {
+        "value": 87.5,
+        "unit": "percent",
+        "target_met": true
+      }
+    },
+    {
+      "id": "zero",
+      "inputs": {
+        "numerator": 7,
+        "denominator": 0,
+        "target_percent": 80
+      },
+      "expected": {
+        "outcome": "invalid",
+        "diagnostic": "division_by_zero",
+        "verification": "unreviewed"
+      }
+    }
+  ],
+  "known_counts": {
+    "planned_types": 2,
+    "planned_instances": 3,
+    "planned_ports": 2,
+    "planned_exchanges": 1,
+    "planned_requirements": 2,
+    "declared_satisfy_links": 1,
+    "declared_verify_links": 0,
+    "planned_views": 2
+  }
+}

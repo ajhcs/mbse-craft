@@ -1,0 +1,208 @@
+{
+  "schema": "mbse-craft.parity-craft-apps/1",
+  "apps": [
+    {
+      "name": "PhotoCraft",
+      "repository": "storytold/photocraft",
+      "source_refs": [
+        "SRC-CRAFT-AUDIT"
+      ],
+      "audit_scope": "upstream_twelve_app_source_audit",
+      "reference_build_status": "not_run_not_pinned_for_interactive_comparison",
+      "comparison_fixture_ids": [
+        "AC-UI-001",
+        "AC-UI-003",
+        "AC-UI-004",
+        "AC-UI-006",
+        "AC-UI-007",
+        "AC-UI-013",
+        "AC-UI-014"
+      ]
+    },
+    {
+      "name": "VectorCraft",
+      "repository": "storytold/vectorcraft",
+      "source_refs": [
+        "SRC-CRAFT-AUDIT"
+      ],
+      "audit_scope": "upstream_twelve_app_source_audit",
+      "reference_build_status": "not_run_not_pinned_for_interactive_comparison",
+      "comparison_fixture_ids": [
+        "AC-UI-001",
+        "AC-UI-003",
+        "AC-UI-006",
+        "AC-UI-014",
+        "AC-UI-015"
+      ]
+    },
+    {
+      "name": "DesignCraft",
+      "repository": "storytold/designcraft",
+      "source_refs": [
+        "SRC-CRAFT-AUDIT"
+      ],
+      "audit_scope": "upstream_twelve_app_source_audit",
+      "reference_build_status": "not_run_not_pinned_for_interactive_comparison",
+      "comparison_fixture_ids": [
+        "AC-UI-003",
+        "AC-UI-006",
+        "AC-UI-008",
+        "AC-UI-009",
+        "AC-UI-010",
+        "AC-UI-016"
+      ]
+    },
+    {
+      "name": "PdfCraft",
+      "repository": "storytold/pdfcraft",
+      "source_refs": [
+        "SRC-CRAFT-AUDIT"
+      ],
+      "audit_scope": "upstream_twelve_app_source_audit",
+      "reference_build_status": "not_run_not_pinned_for_interactive_comparison",
+      "comparison_fixture_ids": [
+        "AC-UI-003",
+        "AC-UI-005",
+        "AC-UI-006",
+        "AC-UI-007",
+        "AC-UI-009",
+        "AC-UI-011",
+        "AC-UI-012"
+      ]
+    },
+    {
+      "name": "LightCraft",
+      "repository": "storytold/lightcraft",
+      "source_refs": [
+        "SRC-CRAFT-AUDIT"
+      ],
+      "audit_scope": "upstream_twelve_app_source_audit",
+      "reference_build_status": "not_run_not_pinned_for_interactive_comparison",
+      "comparison_fixture_ids": [
+        "AC-UI-001",
+        "AC-UI-003",
+        "AC-UI-006",
+        "AC-UI-008",
+        "AC-UI-012"
+      ]
+    },
+    {
+      "name": "FilmCraft",
+      "repository": "storytold/filmcraft",
+      "source_refs": [
+        "SRC-CRAFT-AUDIT"
+      ],
+      "audit_scope": "upstream_twelve_app_source_audit",
+      "reference_build_status": "not_run_not_pinned_for_interactive_comparison",
+      "comparison_fixture_ids": [
+        "AC-UI-003",
+        "AC-UI-004",
+        "AC-UI-006",
+        "AC-UI-008",
+        "AC-UI-016"
+      ]
+    },
+    {
+      "name": "EffectCraft",
+      "repository": "storytold/effectcraft",
+      "source_refs": [
+        "SRC-CRAFT-AUDIT"
+      ],
+      "audit_scope": "upstream_twelve_app_source_audit",
+      "reference_build_status": "not_run_not_pinned_for_interactive_comparison",
+      "comparison_fixture_ids": [
+        "AC-UI-003",
+        "AC-UI-004",
+        "AC-UI-006",
+        "AC-UI-008"
+      ]
+    },
+    {
+      "name": "WordCraft",
+      "repository": "storytold/wordcraft",
+      "source_refs": [
+        "SRC-CRAFT-AUDIT"
+      ],
+      "audit_scope": "upstream_twelve_app_source_audit",
+      "reference_build_status": "not_run_not_pinned_for_interactive_comparison",
+      "comparison_fixture_ids": [
+        "AC-UI-002",
+        "AC-UI-006",
+        "AC-UI-009",
+        "AC-UI-010",
+        "AC-UI-011"
+      ]
+    },
+    {
+      "name": "GridCraft",
+      "repository": "storytold/gridcraft",
+      "source_refs": [
+        "SRC-CRAFT-AUDIT"
+      ],
+      "audit_scope": "upstream_twelve_app_source_audit",
+      "reference_build_status": "not_run_not_pinned_for_interactive_comparison",
+      "comparison_fixture_ids": [
+        "AC-UI-002",
+        "AC-UI-011"
+      ]
+    },
+    {
+      "name": "DeckCraft",
+      "repository": "storytold/deckcraft",
+      "source_refs": [
+        "SRC-CRAFT-AUDIT"
+      ],
+      "audit_scope": "upstream_twelve_app_source_audit",
+      "reference_build_status": "not_run_not_pinned_for_interactive_comparison",
+      "comparison_fixture_ids": [
+        "AC-UI-002",
+        "AC-UI-010",
+        "AC-UI-011"
+      ]
+    },
+    {
+      "name": "CADCraft",
+      "repository": "storytold/cadcraft",
+      "source_refs": [
+        "SRC-CRAFT-AUDIT"
+      ],
+      "audit_scope": "upstream_twelve_app_source_audit",
+      "reference_build_status": "not_run_not_pinned_for_interactive_comparison",
+      "comparison_fixture_ids": [
+        "AC-UI-003",
+        "AC-UI-005",
+        "AC-UI-007",
+        "AC-UI-013",
+        "AC-UI-015"
+      ]
+    },
+    {
+      "name": "SoundCraft",
+      "repository": "storytold/soundcraft",
+      "source_refs": [
+        "SRC-CRAFT-AUDIT"
+      ],
+      "audit_scope": "upstream_twelve_app_source_audit",
+      "reference_build_status": "not_run_not_pinned_for_interactive_comparison",
+      "comparison_fixture_ids": [
+        "AC-UI-003"
+      ]
+    },
+    {
+      "name": "FigCraft",
+      "repository": "storytold/figcraft",
+      "source_refs": [
+        "SRC-CRAFT-INTEGRATION"
+      ],
+      "audit_scope": "separate_integration_research",
+      "reference_build_status": "not_run_not_pinned_for_interactive_comparison",
+      "comparison_fixture_ids": [
+        "AC-UI-013",
+        "AC-UI-014",
+        "AC-UI-015",
+        "AC-UI-016"
+      ]
+    }
+  ],
+  "coverage_rule": "These thirteen named references are an initial inventory, not an assertion that the evolving full Craft family has exactly thirteen apps. App-specific file formats and creative engines are not implied by shared UI behavior."
+}

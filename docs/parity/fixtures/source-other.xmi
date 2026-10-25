@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Original synthetic MIT acceptance fragment; not a complete vendor project. -->
+<uml:Model xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML"
+ xmlns:xmi="http://www.omg.org/XMI" xmi:version="2.0"
+ xmi:id="SYN-Q" name="Synthetic companion">
+ <packagedElement xmi:type="uml:Class" xmi:id="SYN-DUP" name="Companion sensor"/>
+</uml:Model>

@@ -1,0 +1,2009 @@
+{
+  "schema": "mbse-craft.parity-acceptance/1",
+  "scenarios": [
+    {
+      "id": "AC-CAT-001",
+      "capability_ids": [
+        "CAT-001"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P02",
+        "P14"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Create Mission 1002 in System 1, save and reopen.",
+      "expected": [
+        "Same stable ID and authored name; criterion accepted 95 and raw 9e both survive."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-002",
+      "capability_ids": [
+        "CAT-002"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P03",
+        "P04",
+        "P07",
+        "P08"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Retain an incomplete criterion, change view geometry, fail one preservation write, Cancel close, then recover independently.",
+      "expected": [
+        "Live work remains; recovery has a new document identity and no inherited save destination; explicit presentation mapping is required."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-003",
+      "capability_ids": [
+        "CAT-003"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P05",
+        "P16"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Create two Systems and same-name Missions; expand/collapse one System and select by exact ID.",
+      "expected": [
+        "Other group stays expanded; selected ID/scope is exact; membership is not invented containment."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-004",
+      "capability_ids": [
+        "CAT-004"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P05",
+        "P06"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Search Mission by exact ID and type/System scope, Find usages, then mutate model/raw/layout before following an old result.",
+      "expected": [
+        "Current results navigate exact IDs; stale result refuses without changing selection, drafts or cameras."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-005",
+      "capability_ids": [
+        "CAT-005"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P09",
+        "P11",
+        "P12"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Move inspector, hide relations, restart and Reset workspace while a criterion contains 9e.",
+      "expected": [
+        "Panels are reachable and resettable; raw 9e and accepted 95 survive; workspace changes create no model history."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-006",
+      "capability_ids": [
+        "CAT-006"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P03",
+        "P05"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Place Mission 100 in Primary and Review, rename the single semantic record, then hide only Review occurrence.",
+      "expected": [
+        "Both labels reflect one record ID; Primary remains visible; geometry is independent; no cloned semantic record."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-007",
+      "capability_ids": [
+        "CAT-007"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P14",
+        "P15",
+        "P16"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Create Sensor type, two parts and one non-owning reference; attempt parent cycle.",
+      "expected": [
+        "Types/parts/references stay distinct; cycle refuses atomically; valid structure survives Undo/Redo and reopen."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-008",
+      "capability_ids": [
+        "CAT-008"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P17",
+        "P18"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Connect typed output Sample to matching input, then try incompatible Temperature input.",
+      "expected": [
+        "Compatible connector retains endpoint IDs and conveyed item; incompatible connection refuses without graph mutation."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-009",
+      "capability_ids": [
+        "CAT-009"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P20",
+        "P21"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Preview clone of part with internal and external references; Cancel; Apply; move original; preview delete after a later edit.",
+      "expected": [
+        "Cancel is no-op; clone IDs are fresh; move IDs are stable; stale deletion refuses; Undo restores complete structure."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-010",
+      "capability_ids": [
+        "CAT-010"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P03",
+        "P29"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Create Context and Review named views with the same element and distinct geometry; save/reopen.",
+      "expected": [
+        "View IDs, titles, occurrence IDs and each independent position survive; relation identity is not inferred from geometry."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-011",
+      "capability_ids": [
+        "CAT-011"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P03",
+        "P05",
+        "P18",
+        "P50"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Pan Primary at 125 percent, leave Review at 80 percent, pin one occurrence, drag another, undo and reopen.",
+      "expected": [
+        "Only active-view camera changes; pinned geometry stays fixed; layout Undo does not change model/raw state; saved cameras restore."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-012",
+      "capability_ids": [
+        "CAT-012"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P28"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Add satisfy relation by matrix cell and inspect it in diagram; try wrong-kind cell; Undo and reopen.",
+      "expected": [
+        "One authoritative typed relation exists; invalid cell cannot mutate; matrix/diagram/history agree."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-013",
+      "capability_ids": [
+        "CAT-013"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P29"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Bind Reviewer concern to Review viewpoint; filter Measure occurrences and switch views.",
+      "expected": [
+        "Scope is explicit; filtered semantic records remain; other view geometry and requirement evidence stay unchanged."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-014",
+      "capability_ids": [
+        "CAT-014"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P15",
+        "P47"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Edit multiplicity to invalid 2..1 and type reference to wrong kind; switch selection and reopen.",
+      "expected": [
+        "Accepted property stays unchanged; invalid text remains a draft; exact target IDs disambiguate duplicate labels."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-015",
+      "capability_ids": [
+        "CAT-015"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P19",
+        "P35",
+        "P36"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Evaluate 120 m / 8 s, convert 2500 m to km, then bind duration as length.",
+      "expected": [
+        "Results are 15 m/s and 2.5 km; dimension mismatch yields a diagnostic and no fabricated quantity."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-016",
+      "capability_ids": [
+        "CAT-016"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P19"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Set Sensor default gain 2; create inheriting A and override B to 3; change default to 4 and compute derived output.",
+      "expected": [
+        "A is 4; B remains 3; derived output is separately labeled and cannot overwrite the default or override."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-017",
+      "capability_ids": [
+        "CAT-017"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P23"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Author R-1 with child R-2; attempt duplicate R-2 and parent cycle; leave empty draft statement.",
+      "expected": [
+        "Duplicate/cycle refuses; accepted statement retained beside invalid draft; maturity cannot set implementation or verification."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-018",
+      "capability_ids": [
+        "CAT-018"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P24"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Create distinct derive/refine/satisfy/verify/copy links using declared compatible endpoints; attempt a wrong-kind endpoint.",
+      "expected": [
+        "Each relation retains its own type and endpoint rules; rename cannot change semantics; invalid endpoint refuses."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-019",
+      "capability_ids": [
+        "CAT-019"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P25"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Leave R-2 unsatisfied and R-1 unverified, run coverage, then change a requirement with retained evidence.",
+      "expected": [
+        "Exact missing-link IDs appear; affected evidence becomes stale; unknown reference types are disclosed."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-020",
+      "capability_ids": [
+        "CAT-020"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P34"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Author normal response and unavailable-input alternative reusing the same port/exchange IDs.",
+      "expected": [
+        "Both paths retain exact reused identities and alternative guard; authoring alone does not create execution evidence."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-021",
+      "capability_ids": [
+        "CAT-021"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P30",
+        "P31"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Author Receive, branch on input_valid, Record or Reject actions in two partitions; run with true and false.",
+      "expected": [
+        "Declared traces are Receive/Record and Receive/Reject; deadlock, Cancel and finite step limit are explicit terminal outcomes."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-022",
+      "capability_ids": [
+        "CAT-022"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P32",
+        "P33"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Author Idle --start--> Running --stop--> Idle; replay start,stop, then an unsupported event and conflicting transition.",
+      "expected": [
+        "Expected states are Running then Idle; unsupported/conflict policy is explicit; no arbitrary transition is selected."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-023",
+      "capability_ids": [
+        "CAT-023"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P34"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Author Requester/Recorder lifelines, submit/ack messages and alt unavailable; remove Recorder after saving.",
+      "expected": [
+        "Messages bind exact participants; alt guard persists; participant loss produces an actionable issue rather than retargeting by name."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-024",
+      "capability_ids": [
+        "CAT-024"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P35"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Define speed=distance/duration with typed bindings; leave duration unbound, then bind 8 s and 120 m.",
+      "expected": [
+        "Unbound parameter is diagnosed; correct binding yields 15 m/s only on explicit run; wrong dimensions refuse."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-025",
+      "capability_ids": [
+        "CAT-025"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P36"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Compute 7/8*100 and compare >=80, then set denominator 0.",
+      "expected": [
+        "87.5 percent and true for valid inputs; explicit invalid result on zero; verification remains unreviewed until a separate adequacy decision."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-026",
+      "capability_ids": [
+        "CAT-026"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P37"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Count the fixed synthetic engineering graph and filtered Review scope; export metrics.",
+      "expected": [
+        "Counts equal declared fixture counts; output records exact scope, model revision and rule version; metrics are not execution."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-027",
+      "capability_ids": [
+        "CAT-027"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P57"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Explicitly invoke a selected pinned adapter with known inputs; Cancel; retry with unsupported mapping.",
+      "expected": [
+        "Inputs/tool/output hashes are retained; Cancel terminates boundedly; unsupported mapping refuses; opening input never invokes an engine."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-028",
+      "capability_ids": [
+        "CAT-028"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P26"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Seed dangling type, invalid containment and unit mismatch; run a named suite; select each issue.",
+      "expected": [
+        "Stable rule IDs identify exact records/fields; scope is reported; issue navigation leaves accepted model and raw drafts unchanged."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-029",
+      "capability_ids": [
+        "CAT-029"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P27"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Register reviewed declarative positive-gain rule, preview fix gain -1 to 1, change model and attempt stale fix.",
+      "expected": [
+        "Known violation appears; stale fix refuses; current fix is one Undoable transaction; unknown executable code is not loaded."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-030",
+      "capability_ids": [
+        "CAT-030"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P44",
+        "P45"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Pin synthetic Sensor library and instantiate reference versus copy; modify the library source file afterward.",
+      "expected": [
+        "Reference and copy semantics differ explicitly; copies get fresh IDs; hash drift is detected; source library is untouched."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-031",
+      "capability_ids": [
+        "CAT-031"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P22",
+        "P58"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Apply allowlisted profile/version tag, reopen, then import same local name under a different namespace/version.",
+      "expected": [
+        "Exact identity round-trips; mismatched profile stays unknown or refuses; custom Stage1 records gain no normative identity."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-032",
+      "capability_ids": [
+        "CAT-032"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P45"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Attach bounded local evidence, move project package, reopen and then tamper attachment.",
+      "expected": [
+        "Relative package references resolve offline; hash drift is visible; no attachment is executed or fetched."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-033",
+      "capability_ids": [
+        "CAT-033"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING",
+        "ASSET-SOURCE-PRIMARY",
+        "ASSET-SOURCE-OTHER",
+        "ASSET-CAPELLA"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P38",
+        "P39"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Inspect synthetic source set with duplicate IDs in separate members and one missing companion; request unsupported editable admission.",
+      "expected": [
+        "Member-scoped identities remain distinct; missing dependency and losses are explicit; original bytes preserved; unsupported admission refuses."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-034",
+      "capability_ids": [
+        "CAT-034"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P42"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Export only Review to SVG, including declared hidden-item policy; open in an independent viewer.",
+      "expected": [
+        "Expected labels, occurrence geometry and selected scope match; output is a real artifact; failed export preserves prior destination."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-035",
+      "capability_ids": [
+        "CAT-035"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P43"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Generate scoped requirement/evidence report from fixed revision, then make evidence stale before a second report.",
+      "expected": [
+        "IDs/counts match the selected revision; stale evidence is labeled; failure does not truncate prior report."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-036",
+      "capability_ids": [
+        "CAT-036"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P41"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Preview CSV with duplicate ID, invalid unit and unresolved endpoint; Cancel; correct and Apply; export/reimport.",
+      "expected": [
+        "Errors precede Apply; Cancel is no-op; supported properties and typed relations round-trip with unchanged identities."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-037",
+      "capability_ids": [
+        "CAT-037"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P57"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Export architecture to selected co-simulation adapter with an unsupported construct, then request execution separately.",
+      "expected": [
+        "Export declares mapping/loss; unsupported executable semantics refuse; architecture export alone is not a successful run."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-038",
+      "capability_ids": [
+        "CAT-038"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P51",
+        "P52",
+        "P54",
+        "P55",
+        "P56"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Two authenticated clients branch from same revision, edit same property offline, reconnect, review conflict, merge, and try unauthorized push.",
+      "expected": [
+        "No silent overwrite; chosen merge is validated; unauthorized push refuses; lost locks do not authorize writes; audit records exact actors/revisions."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-039",
+      "capability_ids": [
+        "CAT-039"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P53"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Create immutable review package, comment on record 100 at revision A, advance native model to B.",
+      "expected": [
+        "Comment stays anchored to A/100; superseded view is labeled; review decision cannot set engineering verification."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-CAT-040",
+      "capability_ids": [
+        "CAT-040"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P02",
+        "P29",
+        "P58"
+      ],
+      "preconditions": [
+        "Use a new synthetic document and isolated state/config paths.",
+        "Implement the declared target constructs before running; this JSON is not a native model format."
+      ],
+      "action": "Author System purpose, neutral Mission, Capability contributesTo Mission, Objective subject and Stakeholder concern/viewpoint.",
+      "expected": [
+        "IDs and typed roles survive reopen; System membership is not UAF equivalence; custom measure classifications remain explicit metadata."
+      ],
+      "failure_invariants": [
+        "Refused/cancelled/stale actions retain accepted model, pending raw input, selection/history and prior disk bytes except explicitly declared successful effects."
+      ],
+      "evidence_required": [
+        "Exact source/build/input hashes and tool/OS/backend identity",
+        "Focused regression output plus native interaction/output evidence where applicable",
+        "Independent expected-result check; separate historical and live authority"
+      ],
+      "oracle_origin": "Original synthetic expected results; no private CATIA/Capella model used."
+    },
+    {
+      "id": "AC-UI-001",
+      "capability_ids": [
+        "UI-001"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING",
+        "ASSET-UI"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P09"
+      ],
+      "preconditions": [
+        "Select and pin reference application source/build and actual target OS/backend before execution.",
+        "Apply shared component mechanisms with MBSE-specific command and draft policy."
+      ],
+      "action": "Invoke the same command by menu, toolbar and shortcut; repeat while disabled.",
+      "expected": [
+        "Enabled state, semantic result and prerequisite explanation agree."
+      ],
+      "failure_invariants": [
+        "No semantic mutation from workspace/camera-only actions; no loss of incomplete drafts."
+      ],
+      "evidence_required": [
+        "Actual native interaction and original captures",
+        "Reference and candidate source/build pins",
+        "Keyboard/focus/disabled/cancel observations"
+      ],
+      "oracle_origin": "Proposed synthetic interaction acceptance; reference app execution is not claimed."
+    },
+    {
+      "id": "AC-UI-002",
+      "capability_ids": [
+        "UI-002"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING",
+        "ASSET-UI"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P10"
+      ],
+      "preconditions": [
+        "Select and pin reference application source/build and actual target OS/backend before execution.",
+        "Apply shared component mechanisms with MBSE-specific command and draft policy."
+      ],
+      "action": "Remap command, introduce conflict, focus raw 9e field, invoke Undo, restart.",
+      "expected": [
+        "Conflict is explicit; field Undo never dispatches model/layout Undo; valid override persists."
+      ],
+      "failure_invariants": [
+        "No semantic mutation from workspace/camera-only actions; no loss of incomplete drafts."
+      ],
+      "evidence_required": [
+        "Actual native interaction and original captures",
+        "Reference and candidate source/build pins",
+        "Keyboard/focus/disabled/cancel observations"
+      ],
+      "oracle_origin": "Proposed synthetic interaction acceptance; reference app execution is not claimed."
+    },
+    {
+      "id": "AC-UI-003",
+      "capability_ids": [
+        "UI-003"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING",
+        "ASSET-UI"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P11"
+      ],
+      "preconditions": [
+        "Select and pin reference application source/build and actual target OS/backend before execution.",
+        "Apply shared component mechanisms with MBSE-specific command and draft policy."
+      ],
+      "action": "Move inspector into tabs, float and redock; attempt invalid target while editing 9e.",
+      "expected": [
+        "Panel ID, focus and raw text survive; invalid drop is no-op; model history unchanged."
+      ],
+      "failure_invariants": [
+        "No semantic mutation from workspace/camera-only actions; no loss of incomplete drafts."
+      ],
+      "evidence_required": [
+        "Actual native interaction and original captures",
+        "Reference and candidate source/build pins",
+        "Keyboard/focus/disabled/cancel observations"
+      ],
+      "oracle_origin": "Proposed synthetic interaction acceptance; reference app execution is not claimed."
+    },
+    {
+      "id": "AC-UI-004",
+      "capability_ids": [
+        "UI-004"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING",
+        "ASSET-UI"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P12"
+      ],
+      "preconditions": [
+        "Select and pin reference application source/build and actual target OS/backend before execution.",
+        "Apply shared component mechanisms with MBSE-specific command and draft policy."
+      ],
+      "action": "Restart with saved workspace, corrupt its settings, then Reset; recover off-screen panel.",
+      "expected": [
+        "Valid arrangement restores; corrupt layout cannot damage document; reset and recovery controls are reachable."
+      ],
+      "failure_invariants": [
+        "No semantic mutation from workspace/camera-only actions; no loss of incomplete drafts."
+      ],
+      "evidence_required": [
+        "Actual native interaction and original captures",
+        "Reference and candidate source/build pins",
+        "Keyboard/focus/disabled/cancel observations"
+      ],
+      "oracle_origin": "Proposed synthetic interaction acceptance; reference app execution is not claimed."
+    },
+    {
+      "id": "AC-UI-005",
+      "capability_ids": [
+        "UI-005"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING",
+        "ASSET-UI"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P13"
+      ],
+      "preconditions": [
+        "Select and pin reference application source/build and actual target OS/backend before execution.",
+        "Apply shared component mechanisms with MBSE-specific command and draft policy."
+      ],
+      "action": "Open chooser, cancel; initiate long export, cancel; deliver stale selection reply.",
+      "expected": [
+        "Cancel/failure/indeterminate differ; stale reply has no effect; completion cannot discard later edits."
+      ],
+      "failure_invariants": [
+        "No semantic mutation from workspace/camera-only actions; no loss of incomplete drafts."
+      ],
+      "evidence_required": [
+        "Actual native interaction and original captures",
+        "Reference and candidate source/build pins",
+        "Keyboard/focus/disabled/cancel observations"
+      ],
+      "oracle_origin": "Proposed synthetic interaction acceptance; reference app execution is not claimed."
+    },
+    {
+      "id": "AC-UI-006",
+      "capability_ids": [
+        "UI-006"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING",
+        "ASSET-UI"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P46"
+      ],
+      "preconditions": [
+        "Select and pin reference application source/build and actual target OS/backend before execution.",
+        "Apply shared component mechanisms with MBSE-specific command and draft policy."
+      ],
+      "action": "Inspect control-state grid in light/dark/high-contrast with pending and invalid fields.",
+      "expected": [
+        "Every required state is distinguishable without color alone; focus and invalid text remain legible."
+      ],
+      "failure_invariants": [
+        "No semantic mutation from workspace/camera-only actions; no loss of incomplete drafts."
+      ],
+      "evidence_required": [
+        "Actual native interaction and original captures",
+        "Reference and candidate source/build pins",
+        "Keyboard/focus/disabled/cancel observations"
+      ],
+      "oracle_origin": "Proposed synthetic interaction acceptance; reference app execution is not claimed."
+    },
+    {
+      "id": "AC-UI-007",
+      "capability_ids": [
+        "UI-007"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING",
+        "ASSET-UI"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P47"
+      ],
+      "preconditions": [
+        "Select and pin reference application source/build and actual target OS/backend before execution.",
+        "Apply shared component mechanisms with MBSE-specific command and draft policy."
+      ],
+      "action": "Navigate typed properties with duplicate labels, disabled icons and pending raw values.",
+      "expected": [
+        "Accessible names and stable IDs disambiguate controls; invalid and accepted values are separately visible."
+      ],
+      "failure_invariants": [
+        "No semantic mutation from workspace/camera-only actions; no loss of incomplete drafts."
+      ],
+      "evidence_required": [
+        "Actual native interaction and original captures",
+        "Reference and candidate source/build pins",
+        "Keyboard/focus/disabled/cancel observations"
+      ],
+      "oracle_origin": "Proposed synthetic interaction acceptance; reference app execution is not claimed."
+    },
+    {
+      "id": "AC-UI-008",
+      "capability_ids": [
+        "UI-008"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING",
+        "ASSET-UI"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P47"
+      ],
+      "preconditions": [
+        "Select and pin reference application source/build and actual target OS/backend before execution.",
+        "Apply shared component mechanisms with MBSE-specific command and draft policy."
+      ],
+      "action": "Drag gain 2 to 3, Undo, edit invalid 9e, Escape, then switch panels.",
+      "expected": [
+        "One completed drag is one transaction; Escape targets its edit; invalid raw text follows declared preservation policy."
+      ],
+      "failure_invariants": [
+        "No semantic mutation from workspace/camera-only actions; no loss of incomplete drafts."
+      ],
+      "evidence_required": [
+        "Actual native interaction and original captures",
+        "Reference and candidate source/build pins",
+        "Keyboard/focus/disabled/cancel observations"
+      ],
+      "oracle_origin": "Proposed synthetic interaction acceptance; reference app execution is not claimed."
+    },
+    {
+      "id": "AC-UI-009",
+      "capability_ids": [
+        "UI-009"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING",
+        "ASSET-UI"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P48"
+      ],
+      "preconditions": [
+        "Select and pin reference application source/build and actual target OS/backend before execution.",
+        "Apply shared component mechanisms with MBSE-specific command and draft policy."
+      ],
+      "action": "Display synthetic English, Arabic and Japanese names and an unavailable glyph.",
+      "expected": [
+        "Chosen script set shapes without clipping; fallback is inspectable; exact font/asset licenses are recorded."
+      ],
+      "failure_invariants": [
+        "No semantic mutation from workspace/camera-only actions; no loss of incomplete drafts."
+      ],
+      "evidence_required": [
+        "Actual native interaction and original captures",
+        "Reference and candidate source/build pins",
+        "Keyboard/focus/disabled/cancel observations"
+      ],
+      "oracle_origin": "Proposed synthetic interaction acceptance; reference app execution is not claimed."
+    },
+    {
+      "id": "AC-UI-010",
+      "capability_ids": [
+        "UI-010"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING",
+        "ASSET-UI"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P48"
+      ],
+      "preconditions": [
+        "Select and pin reference application source/build and actual target OS/backend before execution.",
+        "Apply shared component mechanisms with MBSE-specific command and draft policy."
+      ],
+      "action": "Switch locale to Arabic and pseudo locale; operate same command IDs and docking layout.",
+      "expected": [
+        "RTL order and text are correct; command IDs and shortcuts persist; missing translations follow declared fallback."
+      ],
+      "failure_invariants": [
+        "No semantic mutation from workspace/camera-only actions; no loss of incomplete drafts."
+      ],
+      "evidence_required": [
+        "Actual native interaction and original captures",
+        "Reference and candidate source/build pins",
+        "Keyboard/focus/disabled/cancel observations"
+      ],
+      "oracle_origin": "Proposed synthetic interaction acceptance; reference app execution is not claimed."
+    },
+    {
+      "id": "AC-UI-011",
+      "capability_ids": [
+        "UI-011"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING",
+        "ASSET-UI"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P49"
+      ],
+      "preconditions": [
+        "Select and pin reference application source/build and actual target OS/backend before execution.",
+        "Apply shared component mechanisms with MBSE-specific command and draft policy."
+      ],
+      "action": "Create, connect, validate, save and recover without pointer; Escape nested dialog.",
+      "expected": [
+        "All required actions are reachable; focus order/restoration is deterministic; no keyboard trap or lost draft."
+      ],
+      "failure_invariants": [
+        "No semantic mutation from workspace/camera-only actions; no loss of incomplete drafts."
+      ],
+      "evidence_required": [
+        "Actual native interaction and original captures",
+        "Reference and candidate source/build pins",
+        "Keyboard/focus/disabled/cancel observations"
+      ],
+      "oracle_origin": "Proposed synthetic interaction acceptance; reference app execution is not claimed."
+    },
+    {
+      "id": "AC-UI-012",
+      "capability_ids": [
+        "UI-012"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING",
+        "ASSET-UI"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P49"
+      ],
+      "preconditions": [
+        "Select and pin reference application source/build and actual target OS/backend before execution.",
+        "Apply shared component mechanisms with MBSE-specific command and draft policy."
+      ],
+      "action": "Use an actual screen reader/accessibility client on tree, inspector, dialog, issue and save status.",
+      "expected": [
+        "Role/name/state and changes are exposed; critical controls operate; canvas relationships have an equivalent accessible route."
+      ],
+      "failure_invariants": [
+        "No semantic mutation from workspace/camera-only actions; no loss of incomplete drafts."
+      ],
+      "evidence_required": [
+        "Actual native interaction and original captures",
+        "Reference and candidate source/build pins",
+        "Keyboard/focus/disabled/cancel observations"
+      ],
+      "oracle_origin": "Proposed synthetic interaction acceptance; reference app execution is not claimed."
+    },
+    {
+      "id": "AC-UI-013",
+      "capability_ids": [
+        "UI-013"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING",
+        "ASSET-UI"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P50"
+      ],
+      "preconditions": [
+        "Select and pin reference application source/build and actual target OS/backend before execution.",
+        "Apply shared component mechanisms with MBSE-specific command and draft policy."
+      ],
+      "action": "Exercise small/medium/large graph at declared window sizes/scales on recorded hardware.",
+      "expected": [
+        "Declared measured budgets pass; critical controls remain reachable; dense relation inspection stays readable."
+      ],
+      "failure_invariants": [
+        "No semantic mutation from workspace/camera-only actions; no loss of incomplete drafts."
+      ],
+      "evidence_required": [
+        "Actual native interaction and original captures",
+        "Reference and candidate source/build pins",
+        "Keyboard/focus/disabled/cancel observations"
+      ],
+      "oracle_origin": "Proposed synthetic interaction acceptance; reference app execution is not claimed."
+    },
+    {
+      "id": "AC-UI-014",
+      "capability_ids": [
+        "UI-014"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING",
+        "ASSET-UI"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P58"
+      ],
+      "preconditions": [
+        "Select and pin reference application source/build and actual target OS/backend before execution.",
+        "Apply shared component mechanisms with MBSE-specific command and draft policy."
+      ],
+      "action": "Per selected OS/backend, refocus incomplete field, compose non-Latin text, resize/minimize and request dirty close.",
+      "expected": [
+        "Composition, clipboard, focus and preservation hold on the actual target; Xvfb is not physical/compositor acceptance."
+      ],
+      "failure_invariants": [
+        "No semantic mutation from workspace/camera-only actions; no loss of incomplete drafts."
+      ],
+      "evidence_required": [
+        "Actual native interaction and original captures",
+        "Reference and candidate source/build pins",
+        "Keyboard/focus/disabled/cancel observations"
+      ],
+      "oracle_origin": "Proposed synthetic interaction acceptance; reference app execution is not claimed."
+    },
+    {
+      "id": "AC-UI-015",
+      "capability_ids": [
+        "UI-015"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING",
+        "ASSET-UI"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P03",
+        "P05",
+        "P06",
+        "P18"
+      ],
+      "preconditions": [
+        "Select and pin reference application source/build and actual target OS/backend before execution.",
+        "Apply shared component mechanisms with MBSE-specific command and draft policy."
+      ],
+      "action": "Navigate same-name occurrences, pan/zoom one view, attempt camera command during drag, Undo.",
+      "expected": [
+        "Exact occurrence remains authoritative; camera is view-local; busy action refuses; semantic snapshot stays fixed."
+      ],
+      "failure_invariants": [
+        "No semantic mutation from workspace/camera-only actions; no loss of incomplete drafts."
+      ],
+      "evidence_required": [
+        "Actual native interaction and original captures",
+        "Reference and candidate source/build pins",
+        "Keyboard/focus/disabled/cancel observations"
+      ],
+      "oracle_origin": "Proposed synthetic interaction acceptance; reference app execution is not claimed."
+    },
+    {
+      "id": "AC-UI-016",
+      "capability_ids": [
+        "UI-016"
+      ],
+      "kind": "declarative_acceptance_specification",
+      "execution_state": "not_run",
+      "input_asset_ids": [
+        "ASSET-ENGINEERING",
+        "ASSET-UI"
+      ],
+      "native_seed_asset_ids": [
+        "ASSET-NATIVE"
+      ],
+      "requires_prs": [
+        "P03",
+        "P04",
+        "P12"
+      ],
+      "preconditions": [
+        "Select and pin reference application source/build and actual target OS/backend before execution.",
+        "Apply shared component mechanisms with MBSE-specific command and draft policy."
+      ],
+      "action": "Change only panel layout, then only diagram layout, then model value; observe saves, recovery and Undo.",
+      "expected": [
+        "Each state domain has explicit history and persistence; workspace save cannot claim native/model saved."
+      ],
+      "failure_invariants": [
+        "No semantic mutation from workspace/camera-only actions; no loss of incomplete drafts."
+      ],
+      "evidence_required": [
+        "Actual native interaction and original captures",
+        "Reference and candidate source/build pins",
+        "Keyboard/focus/disabled/cancel observations"
+      ],
+      "oracle_origin": "Proposed synthetic interaction acceptance; reference app execution is not claimed."
+    }
+  ],
+  "assets": [
+    {
+      "id": "ASSET-NATIVE",
+      "path": "crates/mbse-model/fixtures/stage1/inspection.json",
+      "sha256": "feddb1b85b3a120937dff452501053408d39a8e139355e70a505d39013a337ca",
+      "format": "kernspan.stage1.qa-fixture/1",
+      "origin": "Existing attributed synthetic baseline fixture, unchanged; not a .kernspan saved Session."
+    },
+    {
+      "id": "ASSET-ENGINEERING",
+      "path": "docs/parity/fixtures/engineering.json",
+      "sha256": "8f60653f749881e84b0fd413a0d5f60ec2ac98ae8adb538568dd8cd296e32ad2",
+      "format": "mbse-craft.parity-engineering-spec/1",
+      "origin": "Original synthetic prospective model; never admitted as native input."
+    },
+    {
+      "id": "ASSET-UI",
+      "path": "docs/parity/fixtures/ui.json",
+      "sha256": "6e9d25571a7523c1045fd7e039e56338206351172136d1f1ce4c3fb4f30e89be",
+      "format": "mbse-craft.parity-ui-spec/1",
+      "origin": "Original synthetic UI strings/state/scale requirements; not a native layout file."
+    },
+    {
+      "id": "ASSET-SOURCE-PRIMARY",
+      "path": "docs/parity/fixtures/source-primary.xmi",
+      "sha256": "51416b04b738ae66c6d52c57227dbe44cd696b5db132d65d8d4930ee872ce552",
+      "format": "synthetic UML/XMI fragment",
+      "origin": "Original MIT synthetic member, not a vendor project."
+    },
+    {
+      "id": "ASSET-SOURCE-OTHER",
+      "path": "docs/parity/fixtures/source-other.xmi",
+      "sha256": "60f52b80bebe73711381bd4e9228e6e1d975d5566e86b713e9a4aa127dc7d7a6",
+      "format": "synthetic UML/XMI fragment",
+      "origin": "Original MIT synthetic companion with deliberately duplicated local ID."
+    },
+    {
+      "id": "ASSET-CAPELLA",
+      "path": "docs/continuation-m2/fixtures/capella-semantic-fragment.xml",
+      "sha256": "c2281dfd54b28b5d3cd38fa451aaa55715100626bf23b0adfc2910c52e29b890",
+      "format": "synthetic Capella semantic fragment",
+      "origin": "Existing original MIT synthetic fragment; not a complete Capella project; unchanged."
+    }
+  ],
+  "result_policy": "All scenarios start not_run. Executing this package checker validates metadata and oracles, not application behavior. Future execution receipts must be separately pinned and reviewed."
+}

@@ -1,0 +1,210 @@
+{
+  "schema": "mbse-craft.parity-milestone1/1",
+  "state": "not_run",
+  "note": "Prospective integrated vectors. Reusing original receipts does not establish that these vectors passed on this new branch.",
+  "vectors": [
+    {
+      "id": "M1-AUTHOR",
+      "requires_prs": [
+        "P02"
+      ],
+      "steps": [
+        "Start a separate blank native document, author System purpose, Mission, Capability, Objective and Measure through existing commands.",
+        "Evaluate 120 m / 8 s and convert 2500 m to km using the inherited bounded evaluator.",
+        "Enter incomplete criterion 9e beside accepted 95, save through Session, close normally and reopen."
+      ],
+      "expected": [
+        "Typed same-System relations and exact authored IDs survive reopen.",
+        "Independent numeric results are 15 m/s and 2.5 km; pending criterion remains 9e beside accepted 95.",
+        "A separate test can load ASSET-NATIVE; it must not pretend that this proves blank authoring."
+      ],
+      "execution_state": "not_run",
+      "evidence_required": [
+        "Exact actual native/build/fixture hashes",
+        "Action observations and saved-byte/negative-case checks",
+        "Independent review and normal-close/owned-process cleanup evidence where applicable"
+      ],
+      "related_spec_ids": [
+        "AC-CAT-001",
+        "AC-CAT-014",
+        "AC-CAT-015",
+        "AC-CAT-040"
+      ],
+      "input_asset_ids": [
+        "ASSET-NATIVE",
+        "ASSET-ENGINEERING"
+      ]
+    },
+    {
+      "id": "M1-PAIR",
+      "requires_prs": [
+        "P03"
+      ],
+      "steps": [
+        "Through actual Session and native view commands, create Primary/Review occurrences of Mission 100; capture the real allocated IDs and native checkpoint.",
+        "Move only Review, save both artifacts to fresh owned destinations, close and reopen native then explicit views.",
+        "In a separate controlled owned fixture, fail views write after native success; edit again before an older completion; retry."
+      ],
+      "expected": [
+        "One semantic record; independent geometry and actual view/occurrence IDs round-trip.",
+        "Native success and views failure have separate acknowledgments; live geometry/drafts survive failure.",
+        "Older completion never acknowledges later model/raw/layout state; retry preserves binding; no two-file atomicity claim."
+      ],
+      "execution_state": "not_run",
+      "evidence_required": [
+        "Exact actual native/build/fixture hashes",
+        "Action observations and saved-byte/negative-case checks",
+        "Independent review and normal-close/owned-process cleanup evidence where applicable"
+      ],
+      "related_spec_ids": [
+        "AC-CAT-002",
+        "AC-CAT-006",
+        "AC-CAT-010",
+        "AC-CAT-011"
+      ],
+      "input_asset_ids": [
+        "ASSET-NATIVE",
+        "ASSET-ENGINEERING"
+      ]
+    },
+    {
+      "id": "M1-RECOVERY",
+      "requires_prs": [
+        "P04"
+      ],
+      "steps": [
+        "Opt in to the ordinary 15 second recovery timer; change only diagram layout while native model is clean.",
+        "Hold a real multi-frame pointer drag across due time, release and observe quiet-period scheduling.",
+        "Repeat with recovery disabled and with a controlled owned partial-write failure; Cancel close, retry, then restore independent native recovery."
+      ],
+      "expected": [
+        "Held gesture suppresses the request; release settles before scheduling; disabled timer performs no recovery write.",
+        "Failure retains work and separate status; retry is explicit under the actual artifact-conflict policy.",
+        "Recovered native has a new identity; old bound presentation is refused/preserved until explicit mapping/copy exists."
+      ],
+      "execution_state": "not_run",
+      "evidence_required": [
+        "Exact actual native/build/fixture hashes",
+        "Action observations and saved-byte/negative-case checks",
+        "Independent review and normal-close/owned-process cleanup evidence where applicable"
+      ],
+      "related_spec_ids": [
+        "AC-CAT-002",
+        "AC-UI-016"
+      ],
+      "input_asset_ids": [
+        "ASSET-NATIVE",
+        "ASSET-ENGINEERING"
+      ]
+    },
+    {
+      "id": "M1-NAV",
+      "requires_prs": [
+        "P05"
+      ],
+      "steps": [
+        "Load a separately emitted native fixture with two Systems and duplicate names; do not assume new-System UI authoring exists.",
+        "Use exact ID/type/System search, Find usages and System membership browser to select known existing records.",
+        "Keep criterion 9e focused, inspect record impact, pan Primary at 125 percent and Review at 80 percent; change a model/raw/layout value and follow a stale report."
+      ],
+      "expected": [
+        "Exact record/scope wins over labels; group collapse is independent; unsupported references remain disclosed.",
+        "Inspection/navigation preserve accepted/raw state; camera is view-local.",
+        "Stale reports cannot navigate until Refresh; supported direct impact is not exhaustive transitive/delete safety."
+      ],
+      "execution_state": "not_run",
+      "evidence_required": [
+        "Exact actual native/build/fixture hashes",
+        "Action observations and saved-byte/negative-case checks",
+        "Independent review and normal-close/owned-process cleanup evidence where applicable"
+      ],
+      "related_spec_ids": [
+        "AC-CAT-003",
+        "AC-CAT-004",
+        "AC-CAT-011",
+        "AC-CAT-019"
+      ],
+      "input_asset_ids": [
+        "ASSET-NATIVE",
+        "ASSET-ENGINEERING"
+      ]
+    },
+    {
+      "id": "M1-OCCURRENCE",
+      "requires_prs": [
+        "P06"
+      ],
+      "steps": [
+        "From an actually emitted two-view fixture with hidden and detached occurrences, retain a current impact report; derive row tickets through the actual report API.",
+        "Navigate exact Primary and Review rows; navigate hidden Active row and detached row.",
+        "Mutate native/raw/layout/runtime independently, and separately exercise native pending, views pending, pair pending and held gesture before consuming tickets."
+      ],
+      "expected": [
+        "Current rows select exact view/occurrence IDs; hidden row stays hidden without Fit/pan; detached row preserves native selection and focused draft.",
+        "Every stale/busy case refuses before ephemeral selection/route state publication.",
+        "Successful selection itself leaves the report current; no model/raw/layout/history/allocator/camera/save-path mutation."
+      ],
+      "execution_state": "not_run",
+      "evidence_required": [
+        "Exact actual native/build/fixture hashes",
+        "Action observations and saved-byte/negative-case checks",
+        "Independent review and normal-close/owned-process cleanup evidence where applicable"
+      ],
+      "related_spec_ids": [
+        "AC-CAT-004",
+        "AC-CAT-006",
+        "AC-UI-015"
+      ],
+      "input_asset_ids": [
+        "ASSET-NATIVE",
+        "ASSET-ENGINEERING"
+      ]
+    },
+    {
+      "id": "M1-SOURCE",
+      "requires_prs": [
+        "P02"
+      ],
+      "steps": [
+        "Inspect each explicitly supplied original synthetic XMI member separately and the Capella fragment, recording independent origin/member hashes; do not assume open_set exists.",
+        "Keep the two SYN-DUP IDs member-scoped, report missing.xmi, and retain unknown namespaced attribute bytes.",
+        "For Capella owned identified ctx/7.0.0 Mission SYN-M only, propose a new name, Cancel close, then create a fresh private XML review copy and reparse it; try an existing destination separately."
+      ],
+      "expected": [
+        "Primary and Companion sensor retain distinct original source identities; both supplied and missing companion references remain explicit; single-file inspection implies no cross-member resolution or ambient acquisition.",
+        "The XML fixture facts below are independently checkable bytes, not proof that current product resolves a source set.",
+        "Source-edit copy changes only the selected existing name value; source and all other bytes stay intact; existing destinations refuse; source expressions never execute."
+      ],
+      "execution_state": "not_run",
+      "evidence_required": [
+        "Exact actual native/build/fixture hashes",
+        "Action observations and saved-byte/negative-case checks",
+        "Independent review and normal-close/owned-process cleanup evidence where applicable"
+      ],
+      "related_spec_ids": [
+        "AC-CAT-033"
+      ],
+      "input_asset_ids": [
+        "ASSET-SOURCE-PRIMARY",
+        "ASSET-SOURCE-OTHER",
+        "ASSET-CAPELLA"
+      ]
+    }
+  ],
+  "source_set_oracle": {
+    "member_keys": [
+      "source-primary.xmi#SYN-DUP",
+      "source-other.xmi#SYN-DUP"
+    ],
+    "names": [
+      "Primary sensor",
+      "Companion sensor"
+    ],
+    "unresolved_missing_href": "missing.xmi#SYN-MISSING",
+    "unknown_attribute": "{urn:mbse-craft:synthetic:unknown:1}tag",
+    "unknown_value": "preserve-me",
+    "supplied_but_not_implicitly_resolved_href": "source-other.xmi#SYN-DUP"
+  },
+  "partial_execution_policy": "Store held/failed/partial outcomes separately; never replace them with proposed success or replay spent actions.",
+  "related_spec_policy": "related_spec_ids are traceability links to later full-capability specifications, not prerequisites or inherited acceptance criteria. Each baseline vector is self-contained and uses only its declared requires_prs and input_asset_ids."
+}
