@@ -1,0 +1,129 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-25T21:38:57.172474+00:00",
+  "job_sha256": "2b9dca263d63a391f929686d762da65cda84b5301a46ad3ac812c90d2882e87f",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-review-controller-01/run",
+      "started_utc": "2026-10-25T21:38:57.199474+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 2225796,
+          "start_ticks": 33868817
+        },
+        "server_pid": {
+          "pid": 2225793,
+          "start_ticks": 33868813
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/build/builderbob/mbse-craft/milestone1/native-p06-01/reopen/final-blank-authored.kernspan",
+        "--select",
+        "1000"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 2225796,
+        "server_pid": 2225793,
+        "window": 4194307,
+        "binary_sha256": "90dfe7eb3709d7ca57e174bfdbd06942d140f8c21f823e74d1bf3b58abe7f844"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-25T21:39:33.615921+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-25T21:38:57.199093+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 14883012608,
+    "available_memory_bytes": 29634129920,
+    "conflicting_processes": [],
+    "other_project_compilers": [
+      {
+        "pid": 2223610,
+        "comm": "cargo",
+        "cwd": "/workspace/worktrees/builderbob/kernspan/architecture-p4-20261025",
+        "output_dirs": []
+      },
+      {
+        "pid": 2225491,
+        "comm": "rustc",
+        "cwd": "/workspace/worktrees/builderbob/kernspan/architecture-p4-20261025",
+        "output_dirs": [
+          "/workspace/repos/builderbob/kernspan/work/architecture-p4-20261025/build/target/debug/deps"
+        ]
+      }
+    ],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 455
+      },
+      {
+        "pid": 2064687,
+        "start_ticks": 33257528,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "action_errors": [
+    {
+      "action": "n.click('views:Open views'); before=n.audit()['snapshot_hash']; n.capture('00-first-opened-pair'); klass=type(n); exe=Path(n.child.args[3]); source=Path(receipt['runs'][0]['argv_extra'][1]); n.close(); receipt['preflight_second']=check.local_preflight(compiler_roots=['/workspace/repos/builderbob/mbse-craft','/workspace/worktrees/builderbob/mbse-craft','/workspace/build/builderbob/mbse-craft/milestone1']); n=klass(exe,output/'second',['--open',str(source),'--select','1000'],receipt['runs']); n.click('views:Open views'); assert n.audit()['snapshot_hash']==before; n.capture('01-second-live-after-first-closed'); receipt['lifecycle_observation']='First driver closed0; second actual driver is live and must be included in controller status/FINISH ownership.'",
+      "error": "ValueError('Less than 8 GiB workspace reserve')"
+    },
+    {
+      "action": "finish=klass.__init__.__globals__['finish_runs']; exec(\"try:\\n finish(receipt)\\nexcept AssertionError as error:\\n receipt['finish_refused_live_second']=str(error)\\nelse:\\n raise AssertionError('Live second run was incorrectly accepted')\"); assert receipt['status']=='active'; assert 'second' in receipt['finish_refused_live_second']; n.close(); receipt['all_inputs_unchanged']=all(base.digest(Path(path))==expected for path,expected in json.loads(Path('docs/parity/review-pr4-9/NATIVE_JOB.json').read_text())['inputs'].items()); assert receipt['all_inputs_unchanged']",
+      "error": "AssertionError('Live second run was incorrectly accepted')"
+    }
+  ],
+  "ended_utc": "2026-10-25T21:40:01.276538+00:00"
+}
