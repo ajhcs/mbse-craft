@@ -33,13 +33,16 @@ def need(value, reason):
         raise ValueError(reason)
 
 
-def local_preflight():
+def local_preflight(compiler_roots=None):
     workspace = json.loads(subprocess.check_output(['bob-admin', 'workspace-status'], text=True))
     need(workspace['outcome'] == 'ok', 'Workspace identity unavailable')
     need(workspace['device']['uuid'] == 'dcb87552-b22f-411c-bd86-4e2da80f1c6f', 'Wrong workspace')
     free = shutil.disk_usage(ROOT).free
     need(free >= 8 * 1024**3, 'Less than 8 GiB workspace reserve')
-    processes, appservers = [], []
+    processes, appservers, other_compilers = [], [], []
+    memory = dict(line.split(':', 1) for line in Path('/proc/meminfo').read_text().splitlines())
+    available_memory = int(memory['MemAvailable'].split()[0]) * 1024
+    need(available_memory >= 4 * 1024**3, 'Less than 4 GiB available memory')
     for path in Path('/proc').iterdir():
         if not path.name.isdigit():
             continue
@@ -48,7 +51,13 @@ def local_preflight():
                 continue
             comm = (path/'comm').read_text().strip()
             if comm in ('cargo', 'rustc', 'mbse-desktop'):
-                processes.append(dict(pid=int(path.name), comm=comm))
+                cwd = os.readlink(path/'cwd')
+                args = (path/'cmdline').read_bytes().decode(errors='replace').split('\0')
+                destinations = [args[i+1] for i, arg in enumerate(args[:-1]) if arg in ('--out-dir', '--target-dir')]
+                row = dict(pid=int(path.name), comm=comm, cwd=cwd, output_dirs=destinations)
+                same_scope = compiler_roots is None or any(
+                    Path(value).is_relative_to(Path(root)) for root in compiler_roots for value in [cwd, *destinations])
+                (processes if comm == 'mbse-desktop' or same_scope else other_compilers).append(row)
             if comm != 'codex':
                 continue
             args = (path/'cmdline').read_bytes().split(b'\0')
@@ -69,7 +78,8 @@ def local_preflight():
     return dict(schema='mbse-craft.builderbob-local-preflight/1', checked_utc=now(),
                 uid=os.getuid(), boot_id=Path('/proc/sys/kernel/random/boot_id').read_text().strip(),
                 pid_namespace=os.readlink('/proc/self/ns/pid'), workspace=workspace,
-                free_workspace_bytes=free, conflicting_processes=processes, appservers=appservers,
+                free_workspace_bytes=free, available_memory_bytes=available_memory,
+                conflicting_processes=processes, other_project_compilers=other_compilers, appservers=appservers,
                 observer_started=False, original_observer_admission_claimed=False)
 
 

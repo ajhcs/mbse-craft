@@ -1,0 +1,11 @@
+test_driver_exit_without_verified_normal_app_close_cannot_finish (test_m1_native_session.SessionOwnership.test_driver_exit_without_verified_normal_app_close_cannot_finish) ... ok
+test_every_run_must_be_owned_and_closed_before_success (test_m1_native_session.SessionOwnership.test_every_run_must_be_owned_and_closed_before_success) ... ok
+test_failed_readiness_still_registers_child_for_cleanup (test_m1_native_session.SessionOwnership.test_failed_readiness_still_registers_child_for_cleanup) ... ok
+test_interrupted_cleanup_visits_all_owned_runs_despite_an_error (test_m1_native_session.SessionOwnership.test_interrupted_cleanup_visits_all_owned_runs_despite_an_error) ... ok
+test_out_of_order_normal_close_updates_its_own_record (test_m1_native_session.SessionOwnership.test_out_of_order_normal_close_updates_its_own_record) ... ok
+test_second_live_driver_blocks_finish_after_first_exits (test_m1_native_session.SessionOwnership.test_second_live_driver_blocks_finish_after_first_exits) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+OK

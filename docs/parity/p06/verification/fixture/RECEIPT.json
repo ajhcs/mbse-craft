@@ -1,0 +1,15 @@
+{
+  "active_primary": "7",
+  "actual_native_kind": "Objective",
+  "detached_expected_kind": "Mission",
+  "detached_review": "12",
+  "hidden_review": "10",
+  "native_artifact_sha256": "11d0ae70c91c1e115ad47f2b26f02e4571c4fc7cac4d87d998e49a65f672e78c",
+  "qualification": "Public synthetic QA fixture; no engineering or blank-author claim",
+  "result": "ValidatedAndSavedThroughActualNativeAndViewsProtocols",
+  "schema": "mbse-craft.m1-occurrence-fixture/1",
+  "snapshot_sha256": "2e69564fe583f9ee3938020fd3a924ead78802f4a2eee41c54a4fbee2e1e8560",
+  "source_native": "/workspace/repos/builderbob/mbse-craft/work/m1-p06-occurrence/docs/parity/p05/verification/native/run/navigation.kernspan",
+  "source_views": "/workspace/repos/builderbob/mbse-craft/work/m1-p06-occurrence/docs/parity/p05/verification/native/run/navigation.mbse-views.json",
+  "target_native": "1002"
+}

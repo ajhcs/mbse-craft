@@ -1,5 +1,7 @@
 # Parity matrix and acceptance package
 
+For current execution and PR status, see [Milestone 1 results](MILESTONE1_RESULTS.md). This package introduction describes the original P01 scope; later execution records are separate.
+
 This is the first preparation PR in [the agreed roadmap](../PARITY_ROADMAP.md),
 P01 of Milestone 1. It starts the scope/fixture freeze; it does not finish all of
 Milestone 1, integrate existing feature branches, or qualify application behavior.

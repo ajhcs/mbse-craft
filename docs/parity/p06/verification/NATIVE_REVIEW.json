@@ -1,0 +1,31 @@
+{
+  "schema": "mbse-craft.m1-native-review/1",
+  "recorded_utc": "2026-10-25T21:13:25.857998+00:00",
+  "reviewer": "Same executing agent; independent PR/native review remains separate",
+  "result": "Captured pixels, exact typed saved models, source-copy byte oracle and normal-exit evidence agree in reviewed bounded scenarios",
+  "reviewed_images": [
+    "run/02-hidden-review-not-shown.png",
+    "run/03-detached-retains-native-draft.png",
+    "run/14-held35s-no-recovery.png",
+    "run/15-layout-only-normal-timer-recovered.png",
+    "reopen/22-final-candidate-15-metres-per-second.png",
+    "reopen/25-source-primary-independent-inspection.png",
+    "reopen/28-capella-mission-filter.png",
+    "reopen/29-name-proposal-visible.png",
+    "reopen/32-existing-copy-refused-draft-retained.png",
+    "author-reopen/34-final-blank-author-normal-reopen.png"
+  ],
+  "harness_corrections_retained": [
+    "Initial occurrence row clipped; controller first scrolled wrong region, then actual report resize/scroll exposed rows without restarting app.",
+    "Unsaved recovered native first refuses old views with VIEWS_NATIVE_SAVE_REQUIRED; assertion was narrowed incorrectly. After saving the independent native, actual old binding refusal was checked separately.",
+    "Controller terminal app_running refers to first driver after a new driver is assigned in its execution namespace; actual3run records/PIDs/captures/exits are the authority."
+  ],
+  "limits": [
+    "Busy/stale runtime/token race assertions remain actual controller/model tests unless specifically observed native.",
+    "Field draft retention observed; no new actual button keyboard-focus guarantee.",
+    "Existing-output error text was above the captured viewport; unacknowledged proposal, unchanged output bytes and retained dirty state were checked.",
+    "No platform/accessibility/performance/engineering or full No Magic/Craft parity claim."
+  ],
+  "all_input_hashes_unchanged": true,
+  "all_3_auth_files_absent": true
+}

@@ -40,6 +40,8 @@ def source_check(job):
         assert path.stat().st_size == row['bytes'] and sha(path) == row['sha256'], row['path']
     assert sha(ROOT/'Cargo.lock') == job['cargo_lock_sha256'], 'Lock changed'
     assert job['env']['CARGO_BUILD_JOBS'] == job['env']['RUST_TEST_THREADS'] == '1'
+    for path, expected in job.get('input_hashes', {}).items():
+        assert sha(Path(path)) == expected, 'Job input changed: ' + path
 
 
 def main():
@@ -62,7 +64,7 @@ def main():
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
         assert sha(ROOT/'scripts/run-p02-local.py') == job['preflight_module_sha256']
-        receipt['preflight'] = module.local_preflight()
+        receipt['preflight'] = module.local_preflight(compiler_roots=job.get('compiler_roots'))
         if not args.execute:
             receipt['status'] = 'preflight_passed_no_execution'
             return 0
@@ -82,7 +84,7 @@ def main():
                 path=Path(env[key]);assert path.is_relative_to(output_root);path.mkdir(parents=True,exist_ok=True)
             for index, command in enumerate(job['commands']):
                 source_check(job)
-                preflight=module.local_preflight()
+                preflight=module.local_preflight(compiler_roots=job.get('compiler_roots'))
                 log=output/f'{index:02}.log'
                 entry=dict(index=index,argv=command,started_utc=now(),preflight=preflight,log=str(log))
                 receipt['commands'].append(entry)

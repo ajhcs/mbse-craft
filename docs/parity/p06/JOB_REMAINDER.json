@@ -1,0 +1,78 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "p06-remainder",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m1-p06-occurrence",
+  "source_manifest": "docs/parity/p06/SOURCE_MANIFEST_FIXED.json",
+  "source_manifest_sha256": "c1e7be76f1919c5732993175939a28c848b57ecfd638fb7770aef83fa227fe3e",
+  "source_sha256": "8b43545d4033edf12c69e86e7d1f32a650c55b867911347542f2ac1d99f30e2b",
+  "cargo_lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+  "runner_sha256": "e46973977defacf490fb80344f71b9d93c28f17e726cda482dd95f8b50d093b3",
+  "preflight_module_sha256": "38efc089eda12310b89fa5115718d5c6c18a9b7b23931567241a7c57bb0af6c0",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop",
+      "views_ui::tests::occurrence_navigation_busy_and_stale_refusals_publish_no_ephemeral_state",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "--workspace",
+      "--exclude",
+      "mbse-desktop",
+      "--exclude",
+      "mbse-catalog",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "run",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-model",
+      "--example",
+      "m1_occurrence_fixture",
+      "--",
+      "/workspace/repos/builderbob/mbse-craft/work/m1-p06-occurrence/docs/parity/p05/verification/native/run/navigation.kernspan",
+      "/workspace/repos/builderbob/mbse-craft/work/m1-p06-occurrence/docs/parity/p05/verification/native/run/navigation.mbse-views.json",
+      "/workspace/build/builderbob/mbse-craft/milestone1/p06-fixture"
+    ]
+  ],
+  "rationale": "OriginalP06 run retained78 passes and1 fixture failure before build/emission. Correct only test filename extension; rerun that failed test and run previously unexecuted workspace packages/build/emitter, preserving prior passes.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/m1-p06-occurrence/docs/parity/p05/verification/native/run/navigation.kernspan": "11d0ae70c91c1e115ad47f2b26f02e4571c4fc7cac4d87d998e49a65f672e78c",
+    "/workspace/repos/builderbob/mbse-craft/work/m1-p06-occurrence/docs/parity/p05/verification/native/run/navigation.mbse-views.json": "e7fbbc8baad2c14d3a959f057eba116d99f97ca11e713e3162ce2fc86b8a866f"
+  }
+}

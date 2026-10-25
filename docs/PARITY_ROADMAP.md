@@ -1,5 +1,7 @@
 # MBSE-Craft parity roadmap
 
+Current execution status: [Milestone 1 results and PR stack](parity/MILESTONE1_RESULTS.md). Six positions are ready for review with bounded evidence; full parity remains open.
+
 Saved from the agreed 2026-10-24 roadmap. Proposed P-numbers are backlog positions, not GitHub PR numbers. The canonical checked data is [roadmap.json](parity/roadmap.json).
 
 Build on the existing implementation and qualified local continuations. The matrix and acceptance package are [documented here](parity/README.md). Full portfolio, language and platform coverage requires the explicit unresolved-scope gates; neither this list nor a shared dependency proves parity.
