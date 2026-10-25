@@ -65,7 +65,10 @@ class Native:
             if rect and rect[2] > rect[0] and rect[3] > rect[1] and 0 <= rect[1] < rect[3] <= 1000:
                 return
             assert rect is not None, 'Missing live widget: ' + widget
-            self.send(op='scroll', x=160, y=650, steps=-4 if rect[3] < 200 else 4, pause=.25)
+            popup = '-option:' in widget
+            self.send(op='scroll', x=int((rect[0]+rect[2])/2) if popup else 160,
+                      y=int(min(rect[1], rect[3])-16) if popup else 650,
+                      steps=-4 if rect[3] < 200 else 4, pause=.25)
         raise AssertionError('Cannot reveal live widget: ' + widget)
 
     def click(self, widget):
