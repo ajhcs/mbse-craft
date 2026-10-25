@@ -2021,7 +2021,7 @@ impl eframe::App for Workspace {
         self.show_usages(&ctx);
         self.show_impact(&ctx);
         self.show_search(&ctx);
-        self.views.show_inspection(&ctx, &self.session.editor);
+        self.views.show_inspection(&ctx, &self.session);
         self.capture(&ctx);
         self.catalog.show(&ctx);
         self.assurance.show(&ctx, &self.session.editor);

@@ -1,5 +1,4 @@
-//! Explicit read-only mapping rehearsal. No application, allocator, wire DTO,
-//! checkpoint or native/history mutation capability is exposed by this module.
+//! Explicit mapping review and sealed, point-in-time presentation-copy Apply.
 use crate::{
     native_views::{
         self as v, Geometry, OccurrenceId, Origin, SemanticKey, Stamp, ViewId, Views, VisualEdgeId,
@@ -17,6 +16,8 @@ pub enum Choice {
 }
 
 pub struct Plan {
+    plan_origin: Origin,
+    generation: u64,
     origin: Origin,
     source_sha256: String,
     view: ViewId,
@@ -44,6 +45,21 @@ pub struct ProposedEdge {
 pub struct Preview {
     pub occurrences: Vec<ProposedOccurrence>,
     pub edges: Vec<ProposedEdge>,
+}
+/// Cannot be forged, deserialized or edited. Only a checked Plan can mint it.
+pub struct ReviewedCopy {
+    plan_origin: Origin,
+    generation: u64,
+    title: String,
+    preview: Preview,
+}
+impl ReviewedCopy {
+    pub fn title(&self) -> &str {
+        &self.title
+    }
+    pub fn preview(&self) -> &Preview {
+        &self.preview
+    }
 }
 // Existing inspection retains at most8MiB raw plus8MiB encoded payload.
 // Rehearsal adds no source/target/history clone; charge all rows/edges and
@@ -86,6 +102,8 @@ impl Plan {
             return Err("VIEWS_PLAN_SOURCE_VIEW".into());
         }
         let plan = Self {
+            plan_origin: v::new_origin()?,
+            generation: 0,
             origin: source.origin(),
             source_sha256: source.source_sha256().into(),
             view,
@@ -155,8 +173,62 @@ impl Plan {
         if self.charged_bytes(source) - size(old) + size(&choice) > MAX_PLAN_BYTES {
             return Err("VIEWS_PLAN_BUDGET".into());
         }
+        let generation = self
+            .generation
+            .checked_add(1)
+            .ok_or("VIEWS_PLAN_GENERATION_EXHAUSTED")?;
         self.choices.insert(id, choice);
+        self.generation = generation;
         Ok(())
+    }
+    pub fn review(
+        &self,
+        source: &Inspection,
+        editor: &Editor,
+        target: &Views,
+        title: &str,
+    ) -> Result<ReviewedCopy, String> {
+        if title.trim().is_empty() || title.len() > 1024 {
+            return Err("VIEWS_COPY_TITLE".into());
+        }
+        Ok(ReviewedCopy {
+            plan_origin: self.plan_origin,
+            generation: self.generation,
+            title: title.into(),
+            preview: self.preview(source, editor, target)?,
+        })
+    }
+    pub fn check_review(
+        &self,
+        source: &Inspection,
+        editor: &Editor,
+        target: &Views,
+        reviewed: &ReviewedCopy,
+    ) -> Result<(), String> {
+        self.check(source, editor, target)?;
+        if reviewed.plan_origin != self.plan_origin || reviewed.generation != self.generation {
+            return Err("VIEWS_COPY_REVIEW_STALE: check the changed mapping again".into());
+        }
+        Ok(())
+    }
+    pub fn apply_copy(
+        &self,
+        source: &Inspection,
+        editor: &Editor,
+        target: &mut Views,
+        reviewed: &ReviewedCopy,
+    ) -> Result<ViewId, String> {
+        self.check_review(source, editor, target, reviewed)?;
+        source.verify_unchanged()?;
+        target.commit_copy(
+            editor,
+            &self.target,
+            source,
+            self.view,
+            reviewed.title(),
+            reviewed.preview(),
+            &self.choices,
+        )
     }
     pub fn preview(
         &self,
