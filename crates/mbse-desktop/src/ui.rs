@@ -1,6 +1,6 @@
+//! App-owned UI over the bounded, provenance-preserving Stage1 contract.
 #[path = "ui_commands.rs"]
 mod workspace_commands;
-//! App-owned UI over the bounded, provenance-preserving Stage1 contract.
 use crate::preferences::Preferences;
 use craft_ui::{
     buttons::{ButtonVisuals, IconButton, IconButtonStyle},
