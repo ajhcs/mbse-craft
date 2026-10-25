@@ -1,0 +1,95 @@
+{
+  "profile": "mbse-craft.native-views/2",
+  "sidecar_id": "views:instance:stage1-session-sL9Mtp",
+  "document_id": "document:session:stage1-session-sL9Mtp",
+  "binding": {
+    "document_id": "document:session:stage1-session-sL9Mtp",
+    "artifact_sha256": "eefc3606af8a0e31bf8a513f942fc9bbe5122fb1417c5c98789af941cbc1c1fd",
+    "snapshot_sha256": "8a5ac88a1e220ba6ef385f34beb8a7dd989db63828d8d59843a3557afefb306b"
+  },
+  "revision": "1",
+  "next_id": "5",
+  "primary": "1",
+  "views": {
+    "1": {
+      "id": "1",
+      "title": "Primary canvas",
+      "camera": {
+        "x": 0.0,
+        "y": 0.0,
+        "zoom": 1.0
+      }
+    },
+    "2": {
+      "id": "2",
+      "title": "Review view",
+      "camera": {
+        "x": 0.0,
+        "y": 0.0,
+        "zoom": 1.0
+      },
+      "copy_origin": {
+        "profile": "mbse-craft.presentation-copy-origin/1",
+        "source_sha256": "d3e046c92cb84bc124191141758e729343dd3e5166e574cb09dc2f6a10592ec0",
+        "source_profile": "mbse-craft.native-views/1",
+        "source_document_id": "document:session:stage1-session-sL9Mtp",
+        "source_sidecar_id": "views:instance:stage1-session-sL9Mtp",
+        "source_view": "1",
+        "declared_native_binding": {
+          "document_id": "document:session:stage1-session-sL9Mtp",
+          "artifact_sha256": "eefc3606af8a0e31bf8a513f942fc9bbe5122fb1417c5c98789af941cbc1c1fd",
+          "snapshot_sha256": "8a5ac88a1e220ba6ef385f34beb8a7dd989db63828d8d59843a3557afefb306b"
+        },
+        "occurrences": {
+          "3": {
+            "source_record": "1",
+            "expected_kind": "System",
+            "outcome": {
+              "state": "Mapped",
+              "target_occurrence": "4",
+              "target_record": "1"
+            }
+          }
+        },
+        "edges": {}
+      }
+    }
+  },
+  "occurrences": {
+    "3": {
+      "id": "3",
+      "view": "1",
+      "record": "1",
+      "expected_kind": "System",
+      "geometry": {
+        "x": 25.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "4": {
+      "id": "4",
+      "view": "2",
+      "record": "1",
+      "expected_kind": "System",
+      "geometry": {
+        "x": 25.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    }
+  },
+  "edges": {}
+}

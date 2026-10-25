@@ -1,0 +1,493 @@
+{
+  "error": false,
+  "external_copy_pending": false,
+  "feedback": "Select a model card to edit its fields. Model values and unfinished text remain separate.",
+  "frame_override": null,
+  "frame_policy": "Desktop",
+  "layout_recovery_status": "awaiting timer check",
+  "model_revision": 23,
+  "native_record_impact": {
+    "note": "",
+    "open": false,
+    "report": null,
+    "target": null
+  },
+  "native_recovery_status": "awaiting timer check",
+  "native_search": {
+    "note": "",
+    "open": false,
+    "query_mode": "NameContains",
+    "report": null
+  },
+  "native_system_browser": {
+    "open_groups": {
+      "1": true
+    }
+  },
+  "native_usages": null,
+  "periodic_recovery": false,
+  "pixels_per_point": 1.0,
+  "preferences_status": "Session preferences.",
+  "profile": "mbse-craft.ui-geometry/1",
+  "raw_version": 19,
+  "recovery_interval_seconds": 60,
+  "recovery_path": null,
+  "save_status": "Saved",
+  "selected": 1003,
+  "snapshot_hash": "8a5ac88a1e220ba6ef385f34beb8a7dd989db63828d8d59843a3557afefb306b",
+  "source_edit_dirty": false,
+  "source_edit_pending": false,
+  "views_active": "1",
+  "views_camera": {
+    "view": "1",
+    "x": 0.0,
+    "y": 0.0,
+    "zoom": 1.0
+  },
+  "views_gesture_active": false,
+  "views_inspection_copy_origin": null,
+  "views_inspection_note": "Choose an explicit local presentation source to inspect read only.",
+  "views_inspection_profile": null,
+  "views_inspection_sha256": null,
+  "views_inspection_visible": false,
+  "views_mapping_rehearsal": {
+    "checked_preview_retained": false,
+    "choices": null,
+    "note": "",
+    "target_current": false
+  },
+  "views_note": "Views input retained read-only; current canvas retained: VIEWS_SCHEMA: unknown field `future_authority`, expected one of `profile`, `source_sha256`, `source_profile`, `source_document_id`, `source_sidecar_id`, `source_view`, `declared_native_binding`, `occurrences`, `edges`",
+  "views_occurrence_navigation": {
+    "active_view": "1",
+    "document_sha256": "d3e046c92cb84bc124191141758e729343dd3e5166e574cb09dc2f6a10592ec0",
+    "history_usage": [
+      0,
+      0
+    ],
+    "next_id": "5",
+    "occurrence": null,
+    "selected_occurrence": null
+  },
+  "views_pair_pending": false,
+  "views_pending": false,
+  "views_recovery_current_hint": false,
+  "views_revision": "1",
+  "views_saved_hint": true,
+  "widgets": {
+    "action:Add Actor": [
+      101.375,
+      1310.0,
+      167.59375,
+      1328.0
+    ],
+    "action:Add Capability": [
+      94.9375,
+      1284.0,
+      186.375,
+      1302.0
+    ],
+    "action:Add Environment": [
+      8.0,
+      1336.0,
+      116.96875,
+      1354.0
+    ],
+    "action:Add Expectation": [
+      8.0,
+      1362.0,
+      111.6875,
+      1380.0
+    ],
+    "action:Add Measure": [
+      8.0,
+      1310.0,
+      92.375,
+      1328.0
+    ],
+    "action:Add Mission": [
+      8.0,
+      1284.0,
+      85.9375,
+      1302.0
+    ],
+    "action:Add Objective": [
+      195.375,
+      1284.0,
+      285.125,
+      1302.0
+    ],
+    "action:Add Organization": [
+      125.96875,
+      1336.0,
+      235.5,
+      1354.0
+    ],
+    "action:Add Stakeholder": [
+      176.59375,
+      1310.0,
+      280.625,
+      1328.0
+    ],
+    "action:Browse library folder": [
+      1140.875,
+      3.5,
+      1270.28125,
+      21.5
+    ],
+    "action:Find usages": [
+      8.0,
+      443.0,
+      83.5,
+      461.0
+    ],
+    "action:Import SysML": [
+      390.96875,
+      3.5,
+      477.46875,
+      21.5
+    ],
+    "action:Inspect record impact": [
+      8.0,
+      469.0,
+      141.3125,
+      487.0
+    ],
+    "action:New": [
+      234.46875,
+      3.5,
+      268.875,
+      21.5
+    ],
+    "action:Open": [
+      277.875,
+      3.5,
+      318.03125,
+      21.5
+    ],
+    "action:Open external projection": [
+      800.84375,
+      3.5,
+      954.15625,
+      21.5
+    ],
+    "action:Recover": [
+      327.03125,
+      3.5,
+      381.96875,
+      21.5
+    ],
+    "action:Recovery copy": [
+      530.15625,
+      3.5,
+      621.78125,
+      21.5
+    ],
+    "action:Redo": [
+      1591.96875,
+      2.0,
+      1635.96875,
+      30.0
+    ],
+    "action:Requirements and evidence": [
+      963.15625,
+      3.5,
+      1131.875,
+      21.5
+    ],
+    "action:Save": [
+      486.46875,
+      3.5,
+      521.15625,
+      21.5
+    ],
+    "action:Search native records": [
+      8.0,
+      159.0,
+      139.65625,
+      177.0
+    ],
+    "action:Undo": [
+      1538.96875,
+      2.0,
+      1582.96875,
+      30.0
+    ],
+    "calc:Add count input": [
+      134.4375,
+      1141.0,
+      235.71875,
+      1159.0
+    ],
+    "calc:Add duration input": [
+      8.0,
+      1141.0,
+      125.4375,
+      1159.0
+    ],
+    "calc:Add length input": [
+      117.84375,
+      1115.0,
+      223.46875,
+      1133.0
+    ],
+    "calc:Add scalar input": [
+      8.0,
+      1115.0,
+      108.84375,
+      1133.0
+    ],
+    "camera:100%": [
+      472.8125,
+      218.0,
+      513.625,
+      236.0
+    ],
+    "camera:Fit": [
+      943.8125,
+      191.5,
+      966.6875,
+      209.5
+    ],
+    "camera:Pan down": [
+      774.4375,
+      218.0,
+      839.625,
+      236.0
+    ],
+    "camera:Pan left": [
+      586.59375,
+      218.0,
+      639.53125,
+      236.0
+    ],
+    "camera:Pan right": [
+      648.53125,
+      218.0,
+      708.90625,
+      236.0
+    ],
+    "camera:Pan up": [
+      717.90625,
+      218.0,
+      765.4375,
+      236.0
+    ],
+    "camera:Reset camera": [
+      848.625,
+      218.0,
+      934.875,
+      236.0
+    ],
+    "camera:Zoom in": [
+      522.625,
+      218.0,
+      577.59375,
+      236.0
+    ],
+    "camera:Zoom out": [
+      399.34375,
+      218.0,
+      463.8125,
+      236.0
+    ],
+    "field:1003:calc.expression": [
+      8.0,
+      887.0,
+      329.0,
+      906.0
+    ],
+    "field:1003:calc.input.x": [
+      8.0,
+      960.0,
+      329.0,
+      979.0
+    ],
+    "field:1003:calc.input.x1": [
+      8.0,
+      1036.0,
+      329.0,
+      1055.0
+    ],
+    "field:1003:criterion": [
+      8.0,
+      643.0,
+      329.0,
+      662.0
+    ],
+    "field:1003:name": [
+      8.0,
+      518.0,
+      329.0,
+      537.0
+    ],
+    "input-unit:1003:x": [
+      8.0,
+      987.0,
+      108.0,
+      1005.0
+    ],
+    "input-unit:1003:x1": [
+      8.0,
+      1063.0,
+      108.0,
+      1081.0
+    ],
+    "measure-unit:1003": [
+      8.0,
+      594.0,
+      116.1875,
+      612.0
+    ],
+    "occurrence:3": [
+      371.0,
+      521.0,
+      641.0,
+      605.0
+    ],
+    "output-unit:1003": [
+      8.0,
+      1089.0,
+      108.0,
+      1107.0
+    ],
+    "path": [
+      202.6875,
+      38.0,
+      2192.0,
+      57.0
+    ],
+    "recovery:Review copies": [
+      630.78125,
+      3.5,
+      791.84375,
+      21.5
+    ],
+    "relation:ContributesTo:1001:1000": [
+      346.0,
+      1291.0,
+      1000.59375,
+      1309.0
+    ],
+    "relation:ForObjective:1003:1002": [
+      346.0,
+      1343.0,
+      1059.0625,
+      1361.0
+    ],
+    "relation:Scope:1:1000": [
+      346.0,
+      1187.0,
+      886.125,
+      1205.0
+    ],
+    "relation:Scope:1:1001": [
+      346.0,
+      1213.0,
+      932.53125,
+      1231.0
+    ],
+    "relation:Scope:1:1002": [
+      346.0,
+      1239.0,
+      975.84375,
+      1257.0
+    ],
+    "relation:Scope:1:1003": [
+      346.0,
+      1265.0,
+      910.375,
+      1283.0
+    ],
+    "relation:Subject:1002:1001": [
+      346.0,
+      1317.0,
+      1049.875,
+      1335.0
+    ],
+    "save-path": [
+      137.46875,
+      65.0,
+      2192.0,
+      84.0
+    ],
+    "scope:1003": [
+      8.0,
+      545.0,
+      113.21875,
+      563.0
+    ],
+    "settings:Open": [
+      1279.28125,
+      3.5,
+      1389.84375,
+      21.5
+    ],
+    "tree:1": [
+      26.0,
+      262.0,
+      132.6875,
+      280.0
+    ],
+    "tree:1000": [
+      26.0,
+      288.0,
+      272.125,
+      306.0
+    ],
+    "tree:1001": [
+      26.0,
+      314.0,
+      318.53125,
+      332.0
+    ],
+    "tree:1002": [
+      26.0,
+      340.0,
+      297.96875,
+      372.0
+    ],
+    "tree:1003": [
+      26.0,
+      380.0,
+      296.375,
+      398.0
+    ],
+    "tree:system:1:header": [
+      8.0,
+      236.0,
+      322.5625,
+      254.0
+    ],
+    "view:Layout Redo": [
+      627.96875,
+      165.0,
+      708.53125,
+      183.0
+    ],
+    "view:Layout Undo": [
+      537.3125,
+      165.0,
+      618.96875,
+      183.0
+    ],
+    "view:tab:1": [
+      346.0,
+      165.0,
+      440.15625,
+      183.0
+    ],
+    "view:tab:2": [
+      449.15625,
+      165.0,
+      528.3125,
+      183.0
+    ],
+    "views:Open views": [
+      750.53125,
+      270.5,
+      825.75,
+      288.5
+    ]
+  },
+  "write_pending": false
+}
