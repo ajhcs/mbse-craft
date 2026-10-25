@@ -1,0 +1,81 @@
+{
+  "schema": "mbse-craft.pr4-9-merges/1",
+  "integration_branch": "implementation/native-alpha",
+  "merge_method": "merge",
+  "order": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "results": [
+    {
+      "pr": 4,
+      "head": "725e28c1c852429449a5f7303ba981db66f775fc",
+      "base": "implementation/native-alpha",
+      "base_before": "5b907c333d423df60de7d539da2a0900941825aa",
+      "result": {
+        "sha": "2fb0c373997e8bcf6e3144b21b62d2ba13a3d2c9",
+        "merged": true,
+        "message": "Pull Request successfully merged"
+      }
+    },
+    {
+      "pr": 5,
+      "head": "7f3cbfb8fb8976fcf563eae5ffd10d02f5b2f910",
+      "base": "implementation/native-alpha",
+      "base_before": "2fb0c373997e8bcf6e3144b21b62d2ba13a3d2c9",
+      "result": {
+        "sha": "7f64de3df1aee2c6c19982e41b4e3f3f689e5396",
+        "merged": true,
+        "message": "Pull Request successfully merged"
+      }
+    },
+    {
+      "pr": 6,
+      "head": "486a95b156ed4619123633703a6d25833cb865b5",
+      "base": "implementation/native-alpha",
+      "base_before": "7f64de3df1aee2c6c19982e41b4e3f3f689e5396",
+      "result": {
+        "sha": "2935e4eb37231bb536b27bd60e2a531df9b45384",
+        "merged": true,
+        "message": "Pull Request successfully merged"
+      }
+    },
+    {
+      "pr": 7,
+      "head": "73b2c8df938a7fdda65fc056aa8ad727a83bc1ee",
+      "base": "implementation/native-alpha",
+      "base_before": "2935e4eb37231bb536b27bd60e2a531df9b45384",
+      "result": {
+        "sha": "c4e46ca3e94d548a1c312587ffdd288fda2f9daf",
+        "merged": true,
+        "message": "Pull Request successfully merged"
+      }
+    },
+    {
+      "pr": 8,
+      "head": "c815d0a364e120c5f97bb70bddf597be7820403d",
+      "base": "implementation/native-alpha",
+      "base_before": "c4e46ca3e94d548a1c312587ffdd288fda2f9daf",
+      "result": {
+        "sha": "c7cd858951ce7d6bfbf731ada65e54f8f3c72084",
+        "merged": true,
+        "message": "Pull Request successfully merged"
+      }
+    },
+    {
+      "pr": 9,
+      "head": "ec0b6c3942472ddec9ae59d898693a103985581f",
+      "base": "implementation/native-alpha",
+      "base_before": "c7cd858951ce7d6bfbf731ada65e54f8f3c72084",
+      "result": {
+        "sha": "c61d3379a136c56afc531e80936376922f2ea98a",
+        "merged": true,
+        "message": "Pull Request successfully merged"
+      }
+    }
+  ]
+}

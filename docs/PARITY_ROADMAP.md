@@ -1,6 +1,6 @@
 # MBSE-Craft parity roadmap
 
-Current execution status: [Milestone 1 results and PR stack](parity/MILESTONE1_RESULTS.md). Six positions are ready for review with bounded evidence; full parity remains open.
+Current execution status: [Milestone 1 results and PR stack](parity/MILESTONE1_RESULTS.md). Six positions are reviewed and merged into `implementation/native-alpha` with bounded evidence; full parity remains open.
 
 Saved from the agreed 2026-10-24 roadmap. Proposed P-numbers are backlog positions, not GitHub PR numbers. The canonical checked data is [roadmap.json](parity/roadmap.json).
 

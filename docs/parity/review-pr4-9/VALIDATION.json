@@ -17,7 +17,7 @@
     "state": "partial_second_run_held_by_resource_preflight",
     "completed_normal_runs": 1,
     "requested_runs": 2,
-    "reason": "Less than8GiB workspace reserve before second run",
+    "reason": "Less than 8 GiB workspace reserve before second run",
     "available_workspace_bytes_at_followup": 7413981184,
     "original_receipt": "native-partial/RECEIPT.json",
     "harness_assertion_correction": "The controller tried the two-run negative assertion after the preflight had refused the second run. The one completed run legitimately satisfies finish_runs. This was an expectation error, not a product defect; original action errors retained."

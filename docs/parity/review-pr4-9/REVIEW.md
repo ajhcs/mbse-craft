@@ -71,12 +71,15 @@ retains its original source/binary pins, and all 669 application inputs match.
 No disk cleanup, reserve relaxation or unrelated job mutation was performed.
 No actionable finding remains within this code/evidence review scope.
 
-## Integration plan
+## Completed integration
 
-Merge commits preserve the original feature/source history. Merge #4 into
-`implementation/native-alpha`, then retarget #5 to that branch and merge it;
-repeat in order through #9. Check the expected head and current mergeability
-before every mutation. Main and original PRs #1–#3 are outside this merge scope.
+Merge commits preserved the original feature/source history. #4 merged into
+`implementation/native-alpha`; each successor was then retargeted and merged
+in #5→#9 order. Every expected head, base merge commit and current mergeability
+was checked before merging. [MERGES.json](MERGES.json) records the results.
+The final merged tree exactly matches the reviewed ec0b6c3 tree; all 669 build
+input hashes still match. [PRESERVATION_AFTER.json](PRESERVATION_AFTER.json)
+verifies all 25 pre-existing worktree heads and statuses unchanged. Main and original PRs #1–#3 are outside this merge scope.
 No existing branch is reset, force-pushed or deleted. All pre-review worktree
 heads/statuses are in [PRESERVATION_BEFORE.json](PRESERVATION_BEFORE.json).
 
