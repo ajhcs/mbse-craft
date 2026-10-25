@@ -1,0 +1,110 @@
+{
+  "schema": "mbse-craft.milestone1-results/1",
+  "recorded_utc": "2026-10-25T21:24:58.005239+00:00",
+  "milestone": "M01",
+  "state": "implementation_and_bounded_linux_verification_ready_for_review",
+  "prs": [
+    {
+      "position": "P01",
+      "title": "Freeze the parity matrix and acceptance fixtures",
+      "branch": "codex/parity-matrix",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/4",
+      "implementation_state": "verified_with_stated_limits",
+      "review_state": "pending",
+      "merge_state": "unmerged",
+      "evidence": "PR4_REVIEW.md",
+      "source_commit": "725e28c1c852429449a5f7303ba981db66f775fc"
+    },
+    {
+      "position": "P02",
+      "title": "Complete readiness review of existing draft PR #1",
+      "branch": "codex/p02-readiness",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/5",
+      "implementation_state": "verified_with_stated_limits",
+      "review_state": "pending",
+      "merge_state": "unmerged",
+      "evidence": "p02/RUN_RESULTS.md",
+      "source_commit": "7f3cbfb8fb8976fcf563eae5ffd10d02f5b2f910"
+    },
+    {
+      "position": "P03",
+      "title": "Complete native acceptance of existing draft PR #2",
+      "branch": "codex/m1-p03-views",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/6",
+      "implementation_state": "verified_with_stated_limits",
+      "review_state": "pending",
+      "merge_state": "unmerged",
+      "evidence": "p03/README.md",
+      "source_commit": "486a95b156ed4619123633703a6d25833cb865b5"
+    },
+    {
+      "position": "P04",
+      "title": "Integrate existing draft PR #3 layout recovery",
+      "branch": "codex/m1-p04-recovery",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/7",
+      "implementation_state": "verified_with_stated_limits",
+      "review_state": "pending",
+      "merge_state": "unmerged",
+      "evidence": "p04/README.md",
+      "source_commit": "73b2c8df938a7fdda65fc056aa8ad727a83bc1ee"
+    },
+    {
+      "position": "P05",
+      "title": "Integrate qualified local navigation continuations",
+      "branch": "codex/m1-p05-navigation",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/8",
+      "implementation_state": "verified_with_stated_limits",
+      "review_state": "pending",
+      "merge_state": "unmerged",
+      "evidence": "p05/README.md",
+      "source_commit": "c815d0a364e120c5f97bb70bddf597be7820403d"
+    },
+    {
+      "position": "P06",
+      "title": "Finish exact report-row occurrence navigation",
+      "branch": "codex/m1-p06-occurrence",
+      "pr_url": null,
+      "implementation_state": "verified_with_stated_limits",
+      "review_state": "pending",
+      "merge_state": "unmerged",
+      "evidence": "p06/README.md",
+      "source_commit": "eccc4181539a2af532b7024669756d70d906e5d1",
+      "commit_scope": "Runtime, harness and frozen jobs before documentation-only evidence commits"
+    }
+  ],
+  "final_candidate": {
+    "source_files": 669,
+    "source_sha256": "8b43545d4033edf12c69e86e7d1f32a650c55b867911347542f2ac1d99f30e2b",
+    "binary_sha256": "4b14d96f30d387ab21a1bb736444b062c155a59ad4e6e9170447ef2054c7bf0c",
+    "test_evidence": "p06/verification/TEST_RECONCILIATION.json",
+    "distinct_passed_tests": 319,
+    "passing_test_executions": 332,
+    "repeated_passes": 13,
+    "resolved_earlier_failures": 1,
+    "single_final_closure_full_run": false,
+    "native_sessions": [
+      "p06/verification/native/RECEIPT.json",
+      "p06/verification/native-completion/RECEIPT.json"
+    ]
+  },
+  "admission": {
+    "route": "new bounded BuilderBob-local preflight plus exclusive target lease",
+    "original_observer_grant_claimed": false,
+    "observer_or_service_started": false,
+    "other_job_holds_released": false
+  },
+  "review_limits": [
+    "Same executing agent reviewed new native captures and byte oracles; independent final PR/native review pending.",
+    "Earlier P03/P04 reviews retain their source-specific scope; races/busy/late acknowledgments have model/controller scope.",
+    "Original six baseline vectors and56 full-capability declarations remain frozen prospective specifications. Actual execution results are separate."
+  ],
+  "remaining": {
+    "milestones": 9,
+    "roadmap_positions": 52,
+    "first": "P07",
+    "last": "P58",
+    "decomposition_children_additional": true,
+    "full_parity_accepted": false
+  },
+  "preservation": "p06/PRESERVATION.json"
+}

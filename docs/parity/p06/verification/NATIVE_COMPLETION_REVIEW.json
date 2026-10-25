@@ -1,0 +1,26 @@
+{
+  "schema": "mbse-craft.m1-native-completion-review/1",
+  "recorded_utc": "2026-10-25T21:23:26.403415+00:00",
+  "reviewer": "Same executing agent; independent review remains pending",
+  "observations": [
+    "Actual UI reused existing Mission1000 as Primary occurrence5 and Review occurrence6; five semantic records remain.",
+    "One name edit visible in both views; accepted Measure and raw draft retained; actual paired save acknowledged.",
+    "Explicit source read and Target1/Target1000 menu choices produced2mapped preview. Native/layout/hash/history/next-id unchanged.",
+    "Source byte recheck cleared preview without target mutation.",
+    "Normal app/driver exits0; exact owned identities absent; original inputs unchanged."
+  ],
+  "reviewed_images": [
+    "01-mission-reused-review.png",
+    "02-review-shared-name.png",
+    "04-inspection-open.png",
+    "07-system-target-options.png",
+    "09-mission-target-options.png",
+    "10-two-explicit-mappings-checked.png",
+    "11-source-rechecked-preview-cleared.png"
+  ],
+  "harness_correction": "The audit exposes choice kinds as target, not target:ID. Incorrect assertion retained; exact IDs are checked in recorded menu actions and pixels. Same app continued; no product failure or rerun.",
+  "limits": [
+    "No live Apply, import, ID/history reservation or engineering acceptance claim.",
+    "No new independent native review."
+  ]
+}

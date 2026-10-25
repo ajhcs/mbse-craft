@@ -82,9 +82,10 @@
       "acceptance": [
         "Every capability has a source, current status, owner role, scenario and completion condition; unresolved edition/platform scope stays visible."
       ],
-      "state": "preparation_in_progress",
+      "state": "ready_for_review",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/MILESTONE1_RESULTS.md"
     },
     {
       "id": "P02",
@@ -96,9 +97,10 @@
       "acceptance": [
         "The integrated candidate passes relevant regressions and blank-author, calculate, save and reopen; documentation matches limitations."
       ],
-      "state": "planned",
+      "state": "ready_for_review",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/MILESTONE1_RESULTS.md"
     },
     {
       "id": "P03",
@@ -110,9 +112,10 @@
       "acceptance": [
         "One element appears in two views; independent geometry survives reopen; native-success/views-failure retains work; stale acknowledgments cannot save later edits."
       ],
-      "state": "planned",
+      "state": "ready_for_review",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/MILESTONE1_RESULTS.md"
     },
     {
       "id": "P04",
@@ -124,9 +127,10 @@
       "acceptance": [
         "Layout-only edits recover after the timer; held drags defer recovery; disabled recovery stays inactive; partial failures retain geometry."
       ],
-      "state": "planned",
+      "state": "ready_for_review",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/MILESTONE1_RESULTS.md"
     },
     {
       "id": "P05",
@@ -138,9 +142,10 @@
       "acceptance": [
         "Inspection, rehearsal, usages, search, cameras, System browsing and impact work together without identity, draft or layout regressions."
       ],
-      "state": "planned",
+      "state": "ready_for_review",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/MILESTONE1_RESULTS.md"
     },
     {
       "id": "P06",
@@ -152,9 +157,10 @@
       "acceptance": [
         "Exact cross-view occurrence selection works; hidden stays hidden; detached preserves native selection; stale and busy requests have no effects; focused and native gates pass."
       ],
-      "state": "planned",
+      "state": "ready_for_review",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/MILESTONE1_RESULTS.md"
     },
     {
       "id": "P07",

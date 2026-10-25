@@ -1,0 +1,450 @@
+{
+  "error": false,
+  "external_copy_pending": false,
+  "feedback": "Saved accepted values and drafts; current bytes verified.",
+  "frame_override": null,
+  "frame_policy": "Desktop",
+  "layout_recovery_status": "awaiting timer check",
+  "model_revision": 7,
+  "native_record_impact": {
+    "note": "",
+    "open": false,
+    "report": null,
+    "target": null
+  },
+  "native_recovery_status": "awaiting timer check",
+  "native_search": {
+    "note": "",
+    "open": false,
+    "query_mode": "NameContains",
+    "report": null
+  },
+  "native_system_browser": {
+    "open_groups": {
+      "1": true,
+      "2": true
+    }
+  },
+  "native_usages": null,
+  "periodic_recovery": false,
+  "pixels_per_point": 1.0,
+  "preferences_status": "Session preferences.",
+  "profile": "mbse-craft.ui-geometry/1",
+  "raw_version": 14,
+  "recovery_interval_seconds": 60,
+  "recovery_path": null,
+  "save_status": "Saved",
+  "selected": 1,
+  "snapshot_hash": "6048b2a5a9d64052e667c588b9dc729e7ac4c4747cbaabe89e614ecf0a1c700b",
+  "source_edit_dirty": false,
+  "source_edit_pending": false,
+  "views_active": "1",
+  "views_camera": {
+    "view": "1",
+    "x": 0.0,
+    "y": 0.0,
+    "zoom": 1.0
+  },
+  "views_gesture_active": false,
+  "views_inspection_note": "Choose an explicit local presentation source to inspect read only.",
+  "views_inspection_sha256": null,
+  "views_inspection_visible": false,
+  "views_mapping_rehearsal": {
+    "checked_preview_retained": false,
+    "choices": null,
+    "note": "",
+    "target_current": false
+  },
+  "views_note": "Views input retained read-only; current canvas retained: VIEWS_EXACT_NATIVE_BINDING_REQUIRED",
+  "views_occurrence_navigation": {
+    "active_view": "1",
+    "document_sha256": "7033ac02359d7bd2a816497ba3e94f4a6004668a1366cea0c0fb6aba8e5b3b5c",
+    "history_usage": [
+      0,
+      0
+    ],
+    "next_id": "10",
+    "occurrence": null,
+    "selected_occurrence": null
+  },
+  "views_pair_pending": false,
+  "views_pending": false,
+  "views_recovery_current_hint": false,
+  "views_revision": "1",
+  "views_saved_hint": true,
+  "widgets": {
+    "action:Add Actor": [
+      101.375,
+      696.0,
+      167.59375,
+      714.0
+    ],
+    "action:Add Capability": [
+      94.9375,
+      670.0,
+      186.375,
+      688.0
+    ],
+    "action:Add Environment": [
+      8.0,
+      722.0,
+      116.96875,
+      740.0
+    ],
+    "action:Add Expectation": [
+      8.0,
+      748.0,
+      111.6875,
+      766.0
+    ],
+    "action:Add Measure": [
+      8.0,
+      696.0,
+      92.375,
+      714.0
+    ],
+    "action:Add Mission": [
+      8.0,
+      670.0,
+      85.9375,
+      688.0
+    ],
+    "action:Add Objective": [
+      195.375,
+      670.0,
+      285.125,
+      688.0
+    ],
+    "action:Add Organization": [
+      125.96875,
+      722.0,
+      235.5,
+      740.0
+    ],
+    "action:Add Stakeholder": [
+      176.59375,
+      696.0,
+      280.625,
+      714.0
+    ],
+    "action:Browse library folder": [
+      1140.875,
+      3.5,
+      1270.28125,
+      21.5
+    ],
+    "action:Find usages": [
+      8.0,
+      466.0,
+      83.5,
+      484.0
+    ],
+    "action:Import SysML": [
+      390.96875,
+      3.5,
+      477.46875,
+      21.5
+    ],
+    "action:Inspect record impact": [
+      8.0,
+      492.0,
+      141.3125,
+      510.0
+    ],
+    "action:New": [
+      234.46875,
+      3.5,
+      268.875,
+      21.5
+    ],
+    "action:Open": [
+      277.875,
+      3.5,
+      318.03125,
+      21.5
+    ],
+    "action:Open external projection": [
+      800.84375,
+      3.5,
+      954.15625,
+      21.5
+    ],
+    "action:Recover": [
+      327.03125,
+      3.5,
+      381.96875,
+      21.5
+    ],
+    "action:Recovery copy": [
+      530.15625,
+      3.5,
+      621.78125,
+      21.5
+    ],
+    "action:Redo": [
+      1591.96875,
+      2.0,
+      1635.96875,
+      30.0
+    ],
+    "action:Requirements and evidence": [
+      963.15625,
+      3.5,
+      1131.875,
+      21.5
+    ],
+    "action:Save": [
+      486.46875,
+      3.5,
+      521.15625,
+      21.5
+    ],
+    "action:Search native records": [
+      8.0,
+      144.0,
+      139.65625,
+      162.0
+    ],
+    "action:Undo": [
+      1538.96875,
+      2.0,
+      1582.96875,
+      30.0
+    ],
+    "camera:100%": [
+      472.8125,
+      203.0,
+      513.625,
+      221.0
+    ],
+    "camera:Fit": [
+      943.8125,
+      176.5,
+      966.6875,
+      194.5
+    ],
+    "camera:Pan down": [
+      774.4375,
+      203.0,
+      839.625,
+      221.0
+    ],
+    "camera:Pan left": [
+      586.59375,
+      203.0,
+      639.53125,
+      221.0
+    ],
+    "camera:Pan right": [
+      648.53125,
+      203.0,
+      708.90625,
+      221.0
+    ],
+    "camera:Pan up": [
+      717.90625,
+      203.0,
+      765.4375,
+      221.0
+    ],
+    "camera:Reset camera": [
+      848.625,
+      203.0,
+      934.875,
+      221.0
+    ],
+    "camera:Zoom in": [
+      522.625,
+      203.0,
+      577.59375,
+      221.0
+    ],
+    "camera:Zoom out": [
+      399.34375,
+      203.0,
+      463.8125,
+      221.0
+    ],
+    "field:1:name": [
+      8.0,
+      541.0,
+      329.0,
+      560.0
+    ],
+    "field:1:purpose": [
+      8.0,
+      591.0,
+      329.0,
+      625.0
+    ],
+    "occurrence:3": [
+      371.0,
+      506.0,
+      641.0,
+      590.0
+    ],
+    "occurrence:4": [
+      665.0,
+      506.0,
+      935.0,
+      590.0
+    ],
+    "occurrence:5": [
+      959.0,
+      506.0,
+      1229.0,
+      590.0
+    ],
+    "occurrence:6": [
+      371.0,
+      661.0,
+      641.0,
+      745.0
+    ],
+    "occurrence:7": [
+      665.0,
+      661.0,
+      935.0,
+      745.0
+    ],
+    "occurrence:8": [
+      959.0,
+      661.0,
+      1229.0,
+      745.0
+    ],
+    "path": [
+      202.6875,
+      38.0,
+      2192.0,
+      57.0
+    ],
+    "recovery:Review copies": [
+      630.78125,
+      3.5,
+      791.84375,
+      21.5
+    ],
+    "relation:ForObjective:1003:1002": [
+      346.0,
+      1285.0,
+      991.09375,
+      1303.0
+    ],
+    "relation:Scope:1:1000": [
+      346.0,
+      1181.0,
+      803.875,
+      1199.0
+    ],
+    "relation:Scope:2:1001": [
+      346.0,
+      1207.0,
+      803.71875,
+      1225.0
+    ],
+    "relation:Scope:2:1002": [
+      346.0,
+      1233.0,
+      864.15625,
+      1251.0
+    ],
+    "relation:Scope:2:1003": [
+      346.0,
+      1259.0,
+      875.40625,
+      1277.0
+    ],
+    "save-path": [
+      137.46875,
+      65.0,
+      2192.0,
+      84.0
+    ],
+    "settings:Open": [
+      1279.28125,
+      3.5,
+      1389.84375,
+      21.5
+    ],
+    "tree:1": [
+      26.0,
+      247.0,
+      132.6875,
+      265.0
+    ],
+    "tree:1000": [
+      26.0,
+      273.0,
+      229.09375,
+      291.0
+    ],
+    "tree:1001": [
+      26.0,
+      351.0,
+      229.09375,
+      369.0
+    ],
+    "tree:1002": [
+      26.0,
+      377.0,
+      289.5,
+      395.0
+    ],
+    "tree:1003": [
+      26.0,
+      403.0,
+      300.78125,
+      421.0
+    ],
+    "tree:2": [
+      26.0,
+      325.0,
+      132.6875,
+      343.0
+    ],
+    "tree:system:1:header": [
+      8.0,
+      221.0,
+      283.34375,
+      239.0
+    ],
+    "tree:system:2:header": [
+      8.0,
+      299.0,
+      283.1875,
+      317.0
+    ],
+    "view:Layout Redo": [
+      627.96875,
+      150.0,
+      708.53125,
+      168.0
+    ],
+    "view:Layout Undo": [
+      537.3125,
+      150.0,
+      618.96875,
+      168.0
+    ],
+    "view:tab:1": [
+      346.0,
+      150.0,
+      440.15625,
+      168.0
+    ],
+    "view:tab:2": [
+      449.15625,
+      150.0,
+      528.3125,
+      168.0
+    ],
+    "views:Open views": [
+      750.53125,
+      255.5,
+      825.75,
+      273.5
+    ]
+  },
+  "write_pending": false
+}
