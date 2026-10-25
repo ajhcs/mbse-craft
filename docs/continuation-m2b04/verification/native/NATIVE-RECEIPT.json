@@ -1,0 +1,176 @@
+{
+  "profile": "mbse-craft.mapping-rehearsal-native-receipt/1",
+  "status": "BoundedMappingRehearsalCompletedAndIndependentlyReviewed",
+  "source_commit": "0c89780e9e5591b2d02ff0e5b6c288d7921584f8",
+  "source_sha256": "9789f0d4a2963a1fbf9892cfe6ed9861c27e81042a5dab0ed5e484dda8e2865c",
+  "binary_sha256": "191799dae9008377a5c46a83d7cb5414138fa9728a6035e221ec4b25fb69c49d",
+  "job_sha256": "5563fadfcd7df86091480245758fedb73174b62d444a50b5a8724d0c13d2bedc",
+  "launcher_sha256": "c0ed1164e0a13b58198c839ec90b070bc532f4483a05c74dab1ca20b055c44eb",
+  "driver_sha256": "f70bbd14c20aa54e718f8cf96e14f8a0f23d5569427016fc8c211e45bdcb1ce6",
+  "focused_tests_passed": 76,
+  "new_tests_passed": 8,
+  "test_build_receipt_sha256": "fed5ef5c093a4aa5538b0bb757f99a32a5db8a78fbc5b757c7705eda1c350c7d",
+  "started_utc": "2026-10-23T16:50:18.478362+00:00",
+  "ended_utc": "2026-10-23T16:54:05.170393+00:00",
+  "workflow_result_sha256": "5799be2c11f9f3e4510e1f170a0c840307d040aaea4a04fd080d999edf64dfe6",
+  "review_sha256": "7825b639a09ea856927d69635c8d639112e66214f572305ad47d25dbe93784d2",
+  "cleanup": {
+    "checked_utc": "2026-10-23T16:54:46.919151+00:00",
+    "started_utc": "2026-10-23T16:50:18.478362+00:00",
+    "ended_utc": "2026-10-23T16:54:05.170393+00:00",
+    "identities": [
+      {
+        "pid": 1145374,
+        "start_ticks": 14856875,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1145382,
+        "start_ticks": 14856958,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1145383,
+        "start_ticks": 14856983,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1145384,
+        "start_ticks": 14856983,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1145385,
+        "start_ticks": 14857007,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1145388,
+        "start_ticks": 14857009,
+        "original_identity_absent": true
+      }
+    ],
+    "owned_jobs": [],
+    "auth_absent": true,
+    "renderer_released": true,
+    "app_exit_code": 0,
+    "driver_exit_code": 0,
+    "source_binary_unchanged": true,
+    "original_pngs": 20
+  },
+  "actual": [
+    "Explicit unselected/target/skip/reset without target mutation",
+    "Changedsource refusal; freshReadreset; targetstale refusal and explicitreplan",
+    "InspectorCtrlZ/S isolation and final explicit targetSave/normalclose"
+  ],
+  "limits": [
+    "SingleSystem unboundsourceGUI; edges/budgets/samebyteorigin testedonly",
+    "Physical savedfilehash samples through08 and finalSave; no later preSave sample",
+    "Provisionalrow separator glyphrendersbox; no broadfont/accessibility qualification",
+    "No livecopy/apply, schema migration, provenancewire or full86feature acceptance"
+  ],
+  "pngs": [
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-mapping/native-gate/run-mapping/00-clean-target-pair.png",
+      "bytes": 202505,
+      "sha256": "cc1c9d5b67bc04ef4a7c0604fa0abd2f47d7c8554b0d82eb25d2955dae8ccb98"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-mapping/native-gate/run-mapping/01-dirty-target-baseline.png",
+      "bytes": 203901,
+      "sha256": "1e36ae356e1d73b74aefb71d0dfbc779515bf2102a840d0d5a7144a26f24898f"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-mapping/native-gate/run-mapping/02-source-inspected.png",
+      "bytes": 207718,
+      "sha256": "08ff2ab479e19bfcd569576f7c4b07a72762834745f36dc27a875413fb0a8da9"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-mapping/native-gate/run-mapping/03-default-unselected-rehearsal.png",
+      "bytes": 189261,
+      "sha256": "13ccac662589f01f1ee38b2f01b470a2d6ba64c22de542c9555603cdc4c30b45"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-mapping/native-gate/run-mapping/04-started-unselected.png",
+      "bytes": 193127,
+      "sha256": "5d43b34aa028486234acd7aa11560d19d4bcdb8788f17d36f2cae0026341b841"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-mapping/native-gate/run-mapping/05-unselected-preview.png",
+      "bytes": 202626,
+      "sha256": "6b11e6ecfe50f585f14581d0f03c7373aeac6a0a94e89d9250fb49a37be28538"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-mapping/native-gate/run-mapping/06-explicit-target-options.png",
+      "bytes": 205800,
+      "sha256": "787fd615b0b954ad70769f4d0ef3f8be4a09ecc1deae9013a4e3762e4e756272"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-mapping/native-gate/run-mapping/07-explicit-target-preview.png",
+      "bytes": 200548,
+      "sha256": "1c1faa6be271a53fc77327aafc75166daf4e941fc6889d224f7cb769cbcf586b"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-mapping/native-gate/run-mapping/08-explicit-skip-reason-preview.png",
+      "bytes": 205792,
+      "sha256": "9e85415e4cd4cb8fb571d2cabdef219a709ba7e5f199ba817e3f7b56dbfcdd95"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-mapping/native-gate/run-mapping/09-reset-unselected-preview.png",
+      "bytes": 202626,
+      "sha256": "6b11e6ecfe50f585f14581d0f03c7373aeac6a0a94e89d9250fb49a37be28538"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-mapping/native-gate/run-mapping/10-mapped-shortcuts-retain-target.png",
+      "bytes": 200704,
+      "sha256": "746c1f3103cb7f5996b1287daa4fd2c742362d477121daddb50e1d1144a2731d"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-mapping/native-gate/run-mapping/11-changed-source-refusal.png",
+      "bytes": 193356,
+      "sha256": "37a92c1d482221c93f6c356e0157f10e5e337b6d378abe8a804ac9689dc3c0b1"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-mapping/native-gate/run-mapping/12-fresh-read-clears-mappings.png",
+      "bytes": 189625,
+      "sha256": "a1b213f90bf8a51f74e5c74741925d108aeaa1188fad84313cf5cd8a4c8468d5"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-mapping/native-gate/run-mapping/13-fresh-rehearsal-default-unselected.png",
+      "bytes": 202984,
+      "sha256": "7f133063144dda2b71811e684d23708c588b6b025437eeac0b1bcf85ff5cfa22"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-mapping/native-gate/run-mapping/14-explicit-target-layout-edit.png",
+      "bytes": 203955,
+      "sha256": "eb22069631b2b92f31be28efadca789879403fa688c916e4252b94686a90f361"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-mapping/native-gate/run-mapping/15-target-stale-rehearsal.png",
+      "bytes": 202880,
+      "sha256": "1398c2ac9f1a484167272420df9184611b3dcfa67f3bf3af2d80720f0d1c39ea"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-mapping/native-gate/run-mapping/16-actual-target-layout-edit.png",
+      "bytes": 203601,
+      "sha256": "e5e18d32691b91868a727885371ca84644adcef57a7c250be4f6ac2a040789a2"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-mapping/native-gate/run-mapping/17-target-stale-refusal.png",
+      "bytes": 194993,
+      "sha256": "dbb12c05e3fb97f5857fcaba6d42cd108d9d0838552e5f3d4ebc77ff3bd880e6"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-mapping/native-gate/run-mapping/18-explicit-new-rehearsal-after-target-edit.png",
+      "bytes": 193368,
+      "sha256": "3defa4a5dc83258a4e43684cf66ef06bf9c9e8a3e2cce688203c3c0e783eb306"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-mapping/native-gate/run-mapping/19-final-target-pair-preserved.png",
+      "bytes": 207702,
+      "sha256": "e11f267dbe8670f56733c9669026e492f03ef8701682a4e1ec532b9a2d1858b9"
+    }
+  ],
+  "owned_jobs": [],
+  "uploads": false
+}

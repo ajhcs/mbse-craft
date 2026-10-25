@@ -1,0 +1,17 @@
+{
+  "profile": "mbse-craft.private-native-route/1",
+  "native_job_sha256": "c2cf240a69d8cdd90b62f708d4fa7f886e98468255e7728b4ac2940dd98ccd7a",
+  "driver": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/driver.py",
+  "driver_sha256": "60528797a61ae6f6471f90c2b9388044ee5713d91cfd281045b4dafbf3b9378d",
+  "run_dir": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search",
+  "state_dir": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/state",
+  "config_dir": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/config",
+  "screen": "2400x1800x24",
+  "dpi": 96,
+  "display_protocol": "private Xvfb displayfd, no ambient DISPLAY",
+  "authentication": "per-run0600cookie removed by owned cleanup; cookie never logged",
+  "actual_input": "XTest keyboard/pointer, pointer down/move/up for held gesture",
+  "compiler": false,
+  "uploads": false,
+  "runtime_budget_seconds": 1200
+}

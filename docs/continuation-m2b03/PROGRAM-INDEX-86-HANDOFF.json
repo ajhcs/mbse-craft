@@ -1,0 +1,533 @@
+{
+  "status": "historical research and proposed acceptance, not current product qualification",
+  "source_files": [
+    {
+      "path": "C:\\Users\\colet\\Documents\\Codex\\2026-10-22\\task-7\\essential-features\\catia\\features.json",
+      "sha256": "caddc8dc507b7ec90312298d9c60f2704e9cfa6c7db1b162b79134af77d40b1c"
+    },
+    {
+      "path": "C:\\Users\\colet\\Documents\\Codex\\2026-10-22\\task-7\\essential-features\\capella\\features.json",
+      "sha256": "221026ed576454697edc99ca830689688aae1997d06201fad51e1d3099410885"
+    }
+  ],
+  "feature_count": 86,
+  "features": [
+    {
+      "id": "CAT-001",
+      "category": "lifecycle",
+      "capability_key": "model.lifecycle",
+      "title": "Create, open and save a scoped project"
+    },
+    {
+      "id": "CAT-002",
+      "category": "lifecycle",
+      "capability_key": "model.recovery",
+      "title": "Separate recovery copies and dirty-close decisions"
+    },
+    {
+      "id": "CAT-003",
+      "category": "navigation",
+      "capability_key": "navigation.browser",
+      "title": "Browse containment and scoped model structure"
+    },
+    {
+      "id": "CAT-004",
+      "category": "navigation",
+      "capability_key": "navigation.search",
+      "title": "Search by name/type/ID and navigate usages"
+    },
+    {
+      "id": "CAT-005",
+      "category": "navigation",
+      "capability_key": "navigation.discoverability",
+      "title": "Role/perspective discovery with recoverable layout"
+    },
+    {
+      "id": "CAT-006",
+      "category": "elements-relationships",
+      "capability_key": "model.identity",
+      "title": "Reuse one semantic element across views"
+    },
+    {
+      "id": "CAT-007",
+      "category": "elements-relationships",
+      "capability_key": "model.structure",
+      "title": "Define types, parts, references and decomposition"
+    },
+    {
+      "id": "CAT-008",
+      "category": "elements-relationships",
+      "capability_key": "model.interfaces",
+      "title": "Define ports, connectors and conveyed items"
+    },
+    {
+      "id": "CAT-009",
+      "category": "elements-relationships",
+      "capability_key": "model.refactoring",
+      "title": "Clone, move and refactor without identity confusion"
+    },
+    {
+      "id": "CAT-010",
+      "category": "views-diagrams",
+      "capability_key": "view.authoring",
+      "title": "Create named purpose-specific diagrams"
+    },
+    {
+      "id": "CAT-011",
+      "category": "views-diagrams",
+      "capability_key": "view.layout",
+      "title": "Editable layout, fit, zoom and reusable port placement"
+    },
+    {
+      "id": "CAT-012",
+      "category": "views-diagrams",
+      "capability_key": "view.matrix",
+      "title": "Inspect and author relations in matrices/maps"
+    },
+    {
+      "id": "CAT-013",
+      "category": "views-diagrams",
+      "capability_key": "view.viewpoint",
+      "title": "Record stakeholder viewpoints and exposed model scope"
+    },
+    {
+      "id": "CAT-014",
+      "category": "properties",
+      "capability_key": "properties.typed-editing",
+      "title": "Edit typed properties, documentation and references"
+    },
+    {
+      "id": "CAT-015",
+      "category": "properties",
+      "capability_key": "properties.quantities",
+      "title": "Preserve units, dimensions and declared quantity kinds"
+    },
+    {
+      "id": "CAT-016",
+      "category": "properties",
+      "capability_key": "properties.instances",
+      "title": "Separate type defaults, instance values and derived results"
+    },
+    {
+      "id": "CAT-017",
+      "category": "requirements-traceability",
+      "capability_key": "requirements.authoring",
+      "title": "Author identified hierarchical requirements"
+    },
+    {
+      "id": "CAT-018",
+      "category": "requirements-traceability",
+      "capability_key": "requirements.trace-links",
+      "title": "Keep derive/refine/satisfy/verify/copy meanings distinct"
+    },
+    {
+      "id": "CAT-019",
+      "category": "requirements-traceability",
+      "capability_key": "requirements.coverage",
+      "title": "Query trace gaps and change impact"
+    },
+    {
+      "id": "CAT-020",
+      "category": "behavior",
+      "capability_key": "behavior.scenario",
+      "title": "Author normal and alternative operational scenarios"
+    },
+    {
+      "id": "CAT-021",
+      "category": "behavior",
+      "capability_key": "behavior.activity",
+      "title": "Represent activity flows, partitions, pins and guards"
+    },
+    {
+      "id": "CAT-022",
+      "category": "behavior",
+      "capability_key": "behavior.state-machine",
+      "title": "Specify states, transitions and events"
+    },
+    {
+      "id": "CAT-023",
+      "category": "behavior",
+      "capability_key": "behavior.interactions",
+      "title": "Represent sequence messages, lifelines and alternatives"
+    },
+    {
+      "id": "CAT-024",
+      "category": "calculations-analysis",
+      "capability_key": "analysis.parametric-specification",
+      "title": "Author constraint blocks, parameters and bindings"
+    },
+    {
+      "id": "CAT-025",
+      "category": "calculations-analysis",
+      "capability_key": "analysis.execution",
+      "title": "Execute bounded quantitative analysis and Boolean assessment"
+    },
+    {
+      "id": "CAT-026",
+      "category": "calculations-analysis",
+      "capability_key": "analysis.model-metrics",
+      "title": "Compute trace/model metrics separately from simulation"
+    },
+    {
+      "id": "CAT-027",
+      "category": "calculations-analysis",
+      "capability_key": "analysis.external-engines",
+      "title": "Treat co-simulation, equation solvers and external languages as optional contracts"
+    },
+    {
+      "id": "CAT-028",
+      "category": "validation",
+      "capability_key": "validation.diagnostics",
+      "title": "Run named validation suites with actionable issues"
+    },
+    {
+      "id": "CAT-029",
+      "category": "validation",
+      "capability_key": "validation.custom-rules",
+      "title": "Register reviewed custom rules without implicit execution"
+    },
+    {
+      "id": "CAT-030",
+      "category": "reuse-libraries",
+      "capability_key": "reuse.library-catalog",
+      "title": "Use pinned reusable projects/libraries with read-only boundaries"
+    },
+    {
+      "id": "CAT-031",
+      "category": "reuse-libraries",
+      "capability_key": "reuse.profiles",
+      "title": "Manage exact metamodel/profile identity and extension tags"
+    },
+    {
+      "id": "CAT-032",
+      "category": "reuse-libraries",
+      "capability_key": "reuse.attachments",
+      "title": "Bundle source/evidence attachments without broken references"
+    },
+    {
+      "id": "CAT-033",
+      "category": "interchange-export",
+      "capability_key": "formats.native-archive",
+      "title": "Open vendor MDZIP/XMI content as a versioned source projection"
+    },
+    {
+      "id": "CAT-034",
+      "category": "interchange-export",
+      "capability_key": "formats.diagram-export",
+      "title": "Export selected authored diagrams as real output artifacts"
+    },
+    {
+      "id": "CAT-035",
+      "category": "interchange-export",
+      "capability_key": "formats.reports",
+      "title": "Generate scoped documents and tables with provenance"
+    },
+    {
+      "id": "CAT-036",
+      "category": "interchange-export",
+      "capability_key": "formats.tabular-roundtrip",
+      "title": "Import/export tabular properties and typed relations with mapping preview"
+    },
+    {
+      "id": "CAT-037",
+      "category": "interchange-export",
+      "capability_key": "formats.external-simulation",
+      "title": "Distinguish architecture export from executable co-simulation"
+    },
+    {
+      "id": "CAT-038",
+      "category": "collaboration",
+      "capability_key": "collaboration.repository",
+      "title": "Server branches, locks, commits and merge governance"
+    },
+    {
+      "id": "CAT-039",
+      "category": "collaboration",
+      "capability_key": "collaboration.review",
+      "title": "Published stakeholder review separate from model editing"
+    },
+    {
+      "id": "CAT-040",
+      "category": "elements-relationships",
+      "capability_key": "model.mission-architecture",
+      "title": "Model mission, capability, objective and stakeholder context explicitly"
+    },
+    {
+      "id": "CAP-001",
+      "category": "lifecycle",
+      "capability_key": "method.operational-needs",
+      "title": "Operational need before a chosen solution"
+    },
+    {
+      "id": "CAP-002",
+      "category": "lifecycle",
+      "capability_key": "method.system-need",
+      "title": "System need and boundary"
+    },
+    {
+      "id": "CAP-003",
+      "category": "lifecycle",
+      "capability_key": "method.logical-architecture",
+      "title": "Logical architecture and allocation"
+    },
+    {
+      "id": "CAP-004",
+      "category": "lifecycle",
+      "capability_key": "method.physical-architecture",
+      "title": "Physical architecture and deployment decisions"
+    },
+    {
+      "id": "CAP-005",
+      "category": "lifecycle",
+      "capability_key": "method.integration-contracts",
+      "title": "EPBS and integration contract preparation"
+    },
+    {
+      "id": "CAP-006",
+      "category": "lifecycle",
+      "capability_key": "model.project-lifecycle",
+      "title": "Create/open/save/close and resource identity"
+    },
+    {
+      "id": "CAP-007",
+      "category": "lifecycle",
+      "capability_key": "model.version-migration",
+      "title": "Version-aware migration with backups"
+    },
+    {
+      "id": "CAP-008",
+      "category": "navigation",
+      "capability_key": "navigation.method-guide",
+      "title": "Activity Explorer task guide"
+    },
+    {
+      "id": "CAP-009",
+      "category": "navigation",
+      "capability_key": "navigation.containment-search",
+      "title": "Containment browser and scoped search"
+    },
+    {
+      "id": "CAP-010",
+      "category": "navigation",
+      "capability_key": "navigation.semantic-relations",
+      "title": "Semantic browser and relation history"
+    },
+    {
+      "id": "CAP-011",
+      "category": "elements-relationships",
+      "capability_key": "model.mission-capability-actor",
+      "title": "Mission, capability and actor involvement"
+    },
+    {
+      "id": "CAP-012",
+      "category": "elements-relationships",
+      "capability_key": "model.functions-exchanges",
+      "title": "Functions, ports and typed exchanges"
+    },
+    {
+      "id": "CAP-013",
+      "category": "elements-relationships",
+      "capability_key": "model.data-types-interfaces",
+      "title": "Data structures and provided/required interfaces"
+    },
+    {
+      "id": "CAP-014",
+      "category": "elements-relationships",
+      "capability_key": "model.layer-realizations",
+      "title": "Iterative transitions across engineering phases"
+    },
+    {
+      "id": "CAP-015",
+      "category": "elements-relationships",
+      "capability_key": "model.semantic-delete",
+      "title": "Semantic deletion with impact preview"
+    },
+    {
+      "id": "CAP-016",
+      "category": "elements-relationships",
+      "capability_key": "model.function-allocation",
+      "title": "Allocate functions to components"
+    },
+    {
+      "id": "CAP-017",
+      "category": "views-diagrams",
+      "capability_key": "views.semantic-identity",
+      "title": "Independent views of shared semantic identities"
+    },
+    {
+      "id": "CAP-018",
+      "category": "views-diagrams",
+      "capability_key": "views.visibility-filters",
+      "title": "Synchronization, filters, layers and visibility"
+    },
+    {
+      "id": "CAP-019",
+      "category": "views-diagrams",
+      "capability_key": "views.layout-pin-undo",
+      "title": "Layout, pinning, zoom and safe layout mode"
+    },
+    {
+      "id": "CAP-020",
+      "category": "views-diagrams",
+      "capability_key": "views.derived-simplifications",
+      "title": "Computed links and higher-level simplifications"
+    },
+    {
+      "id": "CAP-021",
+      "category": "views-diagrams",
+      "capability_key": "views.matrices",
+      "title": "Tables and allocation matrices"
+    },
+    {
+      "id": "CAP-022",
+      "category": "properties",
+      "capability_key": "properties.inspector",
+      "title": "Semantic properties, linked descriptions and reference chooser"
+    },
+    {
+      "id": "CAP-023",
+      "category": "properties",
+      "capability_key": "properties.annotations",
+      "title": "Base Property Values and groups versus PVMT"
+    },
+    {
+      "id": "CAP-024",
+      "category": "properties",
+      "capability_key": "properties.lifecycle-review",
+      "title": "Project-defined progress status and review fields"
+    },
+    {
+      "id": "CAP-025",
+      "category": "requirements-traceability",
+      "capability_key": "trace.declared-links",
+      "title": "Generic traces and semantic justification"
+    },
+    {
+      "id": "CAP-026",
+      "category": "requirements-traceability",
+      "capability_key": "requirements.basic-vp",
+      "title": "Legacy requirements moved to Basic Requirement VP"
+    },
+    {
+      "id": "CAP-027",
+      "category": "requirements-traceability",
+      "capability_key": "requirements.reqif-vp",
+      "title": "ReqIF import and linking through Requirements Viewpoint"
+    },
+    {
+      "id": "CAP-028",
+      "category": "behavior",
+      "capability_key": "behavior.scenarios",
+      "title": "Functional, exchange and interface scenarios"
+    },
+    {
+      "id": "CAP-029",
+      "category": "behavior",
+      "capability_key": "behavior.functional-chains",
+      "title": "Functional chains, operational processes and physical paths"
+    },
+    {
+      "id": "CAP-030",
+      "category": "behavior",
+      "capability_key": "behavior.modes-states",
+      "title": "Modes, states and transitions as authored behavior"
+    },
+    {
+      "id": "CAP-031",
+      "category": "calculations-analysis",
+      "capability_key": "analysis.specification-run",
+      "title": "Constraint/formula specification versus executed analysis"
+    },
+    {
+      "id": "CAP-032",
+      "category": "calculations-analysis",
+      "capability_key": "analysis.metrics",
+      "title": "Model inventory counts and CSV metrics"
+    },
+    {
+      "id": "CAP-033",
+      "category": "validation",
+      "capability_key": "validation.scoped-rules",
+      "title": "Scoped structural, integrity, quality and design validation"
+    },
+    {
+      "id": "CAP-034",
+      "category": "validation",
+      "capability_key": "validation.live-quickfix",
+      "title": "Live rules, quick fixes and diagnostic export"
+    },
+    {
+      "id": "CAP-035",
+      "category": "reuse-libraries",
+      "capability_key": "reuse.library-catalog",
+      "title": "Read-only libraries with explicit dependencies"
+    },
+    {
+      "id": "CAP-036",
+      "category": "reuse-libraries",
+      "capability_key": "reuse.rec-rpl",
+      "title": "REC/RPL definition, instantiation and conformance"
+    },
+    {
+      "id": "CAP-037",
+      "category": "reuse-libraries",
+      "capability_key": "reuse.subsystem-transition",
+      "title": "System-to-subsystem model extraction"
+    },
+    {
+      "id": "CAP-038",
+      "category": "interchange-export",
+      "capability_key": "interchange.capella-resource-set",
+      "title": "Capella native semantic, representation and viewpoint resource set"
+    },
+    {
+      "id": "CAP-039",
+      "category": "interchange-export",
+      "capability_key": "export.archive-report",
+      "title": "Complete project archive export and report/image export"
+    },
+    {
+      "id": "CAP-040",
+      "category": "interchange-export",
+      "capability_key": "interchange.sysml-bridge",
+      "title": "SysML conversion requires a separate bridge contract"
+    },
+    {
+      "id": "CAP-041",
+      "category": "collaboration",
+      "capability_key": "collaboration.file-workflow",
+      "title": "File-based project coordination and baselines"
+    },
+    {
+      "id": "CAP-042",
+      "category": "collaboration",
+      "capability_key": "collaboration.team-server",
+      "title": "Shared repository and fine-grained locks via Team for Capella"
+    },
+    {
+      "id": "CAP-043",
+      "category": "properties",
+      "capability_key": "properties.pvmt",
+      "title": "PVMT and DiagramStyler domain-property tooling"
+    },
+    {
+      "id": "CAP-044",
+      "category": "interchange-export",
+      "capability_key": "export.xhtml-docx",
+      "title": "XHTML site and Word document generation"
+    },
+    {
+      "id": "CAP-045",
+      "category": "behavior",
+      "capability_key": "behavior.textual-scenario",
+      "title": "Textual scenario editing with diagram synchronization"
+    },
+    {
+      "id": "CAP-046",
+      "category": "calculations-analysis",
+      "capability_key": "analysis.execution-extensions",
+      "title": "Simulation and external engineering-analysis integrations"
+    }
+  ],
+  "roadmap": "# Prioritized implementation roadmap, r01\n\nThis proposal continues the existing MBSE-Craft implementation. It does not create another product team, replace the current integrator or count research as implementation. Read the [feature catalog](index.html), [workflow acceptance](WORKFLOW_ACCEPTANCE.md), [format contracts](FORMAT_CONTRACTS.md) and [compatibility gates](COMPATIBILITY_POLICY.md) together.\n\n**Next executable milestone:** finish the preserved minimal source-edit batch, then qualify the V2 viewer and fresh-copy edit on Linux. **Next design milestone:** freeze model/view occurrence identity and explicit companion-set provenance contracts. Product execution remains held pending incident disposition and explicit release. Incident read-only diagnostics are a separate scope.\n\n## Milestones and completion gates\n\n| Milestone | Coherent user outcome | Existing evidence / actual gap | Dependencies and closure |\n| --- | --- | --- | --- |\n| M2A: inspect and edit a bounded external source safely | Open authorized Capella/CATIA source, inspect source semantics/unknowns; minimally rename a supported owned Capella object into a fresh file and re-open it. | V1 native browsing exists; V2 core corrections/build have38 focused tests. V2 native viewer and minimal name write are unfinished; destination dangling-symlink and XML declaration restrictions need resolution. | Incident release; inspect preserved dirty state; no duplicate source writer. WF-03/04 adverse cases, focused tests, independent exact-binary Linux workflow and actual output reparse. Capella independent-reader reopen is a separate unclosed gate. |\n| M2B: coherent multi-view authoring | Browse, search, inspect properties and find usages; reuse one element in two named views; hide/remove occurrences independently; explicit semantic delete shows impact. | Core typed records, primary canvas, relation ledger, popouts and Undo exist. General saved multi-view occurrences, semantic browser and transactional layout remain gaps. | Stable-ID command/view contract; model persistence migration before UI. WF-01/02/09; round-trip both view layouts; keyboard and error/recovery checks; retain original audit history. |\n| M2C: explicit source project context | Bind primary, AIRD/AFM and supplied dependencies; inspect member-scoped resolved/unresolved references and loss report; reopen offline. | V2 scoped keys and retained raw assets exist. Published open(primary) has no explicit open_set; AIRD alone does not bind Capella context. | Freeze exact source-set profile and aggregate limits; no ambient filesystem/network fetch. WF-03/05/11; duplicate IDs across members, missing/changed companions, unknown namespaces and raw-preservation vectors. Editable admission remains per-construct and separate. |\n| M3A: requirement and validation workbench | Author requirement and typed declared traces; inspect impact and diagnostics; bind selected run output to explicit adequacy/truth reviews and a labeled operator decision. | Current separate register, lifecycle statuses, private run proof, retained historical decisions and staleness are implemented with bounded receipts. Truth/attestation policy reconciliation, generic typed traces and actionable model validation need scoped extensions. | Extend current services rather than duplicate them. WF-06/09; tamper, raw9e, delayed ack, model/config/source closure, selected-success/global-failure and reopen-history cases. No maturity-to-acceptance inference. |\n| M3B: functional context and finite behavior | Author component/function allocation, typed ports/exchanges and a scenario that reuses them; specify and execute only a defined finite/bounded subset. | Domain context and bounded quantity calculations exist. General function/port/exchange/sequence/state semantics and engine coverage do not. | Model identity/reference contract and M2B navigation first. WF-07/08; one exchange across views/scenarios, typed mismatch, invalid guards, cycles/resource caps and reproducible receipts. Do not port restricted libraries or claim general SysML execution. |\n| M4: libraries, output and local review | Pin/reuse a licensed local library; preview changes; export real views/reports; compare/reconcile local revisions with visible conflicts. | Frozen external source catalog and output evidence exist. Native model reuse/update, broad export contracts and deterministic semantic diff/merge remain gaps. | M2C provenance plus stable native model/view schema. WF-10/11/12. License and fresh hash checks, update conflicts, external reopen and visible losses. Network collaboration/server parity requires a later separately authorized contract. |\n\nMilestones may be split into small reviewable commits and draft PR updates. Do not bundle all new classifiers or diagram menus into one unverified change. Finish one complete user path and its failure path before widening the supported profile. P0 means essential foundation for this proposed program, not a claim the upstream function belongs to a base edition.\n\n## Reconciled capability crosswalk\n\nThese are workflow relationships, not semantic-equivalence assertions. CAT-* and CAP-* identify exact evidence records; their base/add-on/method scope stays attached.\n\n| Common capability | CATIA records | Capella/Arcadia records | MBSE-Craft direction | Workflow gate |\n| --- | --- | --- | --- | --- |\n| Project save, migration and recovery | CAT-001/002 | CAP-006/007 | Preserve existing raw/accepted distinction and recovery; version every new native model/view schema. | WF-01/04 |\n| Containment, search and semantic navigation | CAT-003/004/005 | CAP-008/009/010 | Stable identity, typed search and find-usages with task guidance; labels remain presentation. | WF-01/02/09 |\n| Shared elements and distinct views | CAT-006/009/010/011 | CAP-015/017/018/019 | Separate model key and view occurrence, explicit hide/remove/delete, layout transactions and Undo. | WF-02 |\n| Typed properties and quantities | CAT-014/015/016 | CAP-022/023/024/043 | Editable units/type/reference controls; raw drafts retained; defaults/instance values/results separate. PVMT/DiagramStyler remains a separate extension boundary. | WF-01/08 |\n| Context and architecture | CAT-007/008/040 | CAP-001-005/011-016 | Preserve custom domain meaning; incrementally add typed function/component/port/exchange/allocation semantics. Arcadia method is guidance, not a file format or inferred classifier mapping. | WF-07 |\n| Requirements and traceability | CAT-017/018/019 | CAP-025/026/027 | Extend current requirement/evidence service with explicit trace kinds and impact. Basic Requirement and ReqIF viewpoints remain separate Capella extension scopes. | WF-06/09 |\n| Scenarios and behavior | CAT-020-023 | CAP-028/029/030/045 | Reused exchange identities and guards first; finite semantics before execution. Optional textual scenario tooling is not base support by implication. | WF-07/08 |\n| Calculations and assessment | CAT-024-027 | CAP-031/032/046 | Current bounded engine is an independent implementation. Recorded CATIA run and Capella documentary formulas are different evidence; matched fixtures required for comparisons. | WF-08/06 |\n| Validation and fixes | CAT-028/029 | CAP-033/034 | Versioned rule registry and actionable diagnostics; reviewed fix commands with stale checks. No unrestricted custom-code execution. | WF-09 |\n| Libraries and reuse | CAT-030/031/032 | CAP-035/036/037 | Explicit reuse/clone/update semantics, read-only pins, provenance and conflicts; do not infer REC/RPL parity. | WF-10 |\n| Interchange and reports | CAT-033-037 | CAP-038/039/040/044 | Per-format stages and losses; fresh outputs; semantic and layout round-trips separately tested. Bridge/report extensions remain scoped. | WF-03/04/05/11 |\n| Review and collaboration | CAT-038/039 | CAP-041/042 | Local immutable revisions/diffs first; no claim of paid server locks, web review, access control or multi-user service parity. | WF-12 |\n\n## Continuous implementation lanes under one owner\n\n| Lane | Exclusive proposed path ownership | Integration dependency | Independent reviewer |\n| --- | --- | --- | --- |\n| Source/provenance | Existing exchange crate and source-edit tests; exact path list assigned by integrator | M2A dirty batch is owned already. Freeze source-set interface before parallel adapter changes. | Model/license reviewer checks fixtures, identity, losses and fresh-output failures. |\n| Model/commands | Core model/command/schema files assigned in isolated worktree | Publish stable transaction/view contract before UI consumes it. | Semantics reviewer checks wrong-kind/cross-System/ref integrity and migration. |\n| Native UI | Desktop/browser/property/view files assigned after contract freeze | Consume frozen model APIs; no shadow state or second semantic register. | Native verifier exercises actual keyboard, drafts, errors, save/reopen and visible distinctions. |\n| Assurance | Existing requirement/evidence/validation services; no competing engine | Share vocabulary and vectors with Kernspan, not source structs or branches. | Independent proof/freshness/tamper review. |\n| Verification | Original tests/fixtures and receipts, separate worktree/output epoch | One Cargo slot, no concurrent build jobs or unrelated display/process changes. | Exact source/binary review, actual outputs and failure preservation. |\n| Research/catalog | Desktop essential-features and read-only upstream/reference audit | Continues while product execution is held; no product source writes. | Cross-lane source/version/add-on and missing-function reconciliation. |\n\nExisting remote task owners remain responsible; these are allocation proposals, not newly dispatched product writers. Before each batch, record interface revision, exclusive paths, expected input commit, acceptance IDs and prerequisites. The integrator resolves conflicts and merges only into its draft implementation branch; no PR merge is authorized. Parent owns recurring monitoring; this program creates no automation.\n"
+}

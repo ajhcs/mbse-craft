@@ -1,0 +1,161 @@
+{
+  "status": "GuardedNormalCloseVerifiedPendingIndependentReview",
+  "source_commit": "f1b6c71681b221aba446f4b308d847fe08aef2eb",
+  "source_sha256": "00ef25c2e92305c2d1d1e386dc778c3582324f5b278f9330a2ad82831611e9e4",
+  "binary_sha256": "0a53007f1ac2f0c655bb8da6bd77aa053e44d95158ce0a1bf002b05db4096514",
+  "job_sha256": "165a0c00e1d77e5e0dbcff53f70debfc9d4e59271cc7d9148ba7d344b8f36296",
+  "launch_started_utc": "2026-10-23T20:15:40.122455+00:00",
+  "native_ready_utc": "2026-10-23T20:15:44.419575+00:00",
+  "confirmation_app_exit0_observed_utc": "2026-10-23T20:16:11.020486+00:00",
+  "launch_ended_utc": "2026-10-23T20:16:22.954774+00:00",
+  "cleanup_verified_utc": "2026-10-23T20:17:02.134861+00:00",
+  "app_exit_code": 0,
+  "driver_exit_code": 0,
+  "stop_order": "Driverstdin retained through actual Save-and-continue app_returncode0 event; stop sentonlyafterobserved0",
+  "preservation_confirmation_count": 1,
+  "captures": 2,
+  "fresh_native_path": "/workspace/build/builderbob/mbse-craft/native-record-impact-wording/native-close-gate/run-close/target.kernspan",
+  "fresh_views_path": "/workspace/build/builderbob/mbse-craft/native-record-impact-wording/native-close-gate/run-close/target.mbse-views.json",
+  "native_sha256": "a80f93ee8fe07f3c82d8dd9d272666e011d8a1bcfa76e03f097706b97d7e9de2",
+  "views_sha256": "fa3e942024f1b790cb202fce543be7f1ba5312e11334a48278c15d9537e63fab",
+  "snapshot_sha256": "1e8d599f12c7b27155806d712f7b8aae2790c4e479948713797bb0a2e4bec99f",
+  "native_bytes_identical_to_input_fixture": true,
+  "native_model_revision": 2,
+  "raw_version": 3,
+  "views_revision": "1",
+  "source_files_verified": 668,
+  "source_binary_fixture_unchanged": true,
+  "owned_process_checks": [
+    {
+      "owned": {
+        "pid": 1257718,
+        "start_ticks": 16089008,
+        "uid": 1000,
+        "exe": "/usr/bin/python3.12",
+        "pid_namespace": "pid:[4026531836]",
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+      },
+      "original_identity_absent": true
+    },
+    {
+      "owned": {
+        "pid": 1257775,
+        "start_ticks": 16089124,
+        "uid": 1000,
+        "exe": "/usr/bin/python3.12",
+        "pid_namespace": "pid:[4026531836]",
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+      },
+      "original_identity_absent": true
+    },
+    {
+      "owned": {
+        "pid": 1257776,
+        "start_ticks": 16089150,
+        "uid": 1000,
+        "exe": "/usr/bin/aa-exec",
+        "pid_namespace": "pid:[4026531836]",
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+      },
+      "original_identity_absent": true
+    },
+    {
+      "owned": {
+        "pid": 1257777,
+        "start_ticks": 16089150,
+        "uid": 1000,
+        "exe": "/usr/bin/python3.12",
+        "pid_namespace": "pid:[4026531836]",
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+      },
+      "original_identity_absent": true
+    },
+    {
+      "owned": {
+        "pid": 1257778,
+        "start_ticks": 16089176,
+        "uid": 1000,
+        "exe": "/workspace/cache/builderbob/global-tools/releases/blender/5.2.2/xvfb/usr/bin/Xvfb",
+        "pid_namespace": "pid:[4026531836]",
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+      },
+      "original_identity_absent": true
+    },
+    {
+      "owned": {
+        "pid": 1257781,
+        "start_ticks": 16089195,
+        "uid": 1000,
+        "exe": "/workspace/build/builderbob/mbse-craft/native-record-impact-wording/native-close-gate/bin/mbse-desktop",
+        "pid_namespace": "pid:[4026531836]",
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+      },
+      "original_identity_absent": true
+    }
+  ],
+  "xauthority_removed": true,
+  "owned_jobs": [],
+  "prior_attempt_outcome_sha256": "c0392692db4ebff2c1519f6a3b9acf7e1b0c50244918416f3605f3898128f4d5",
+  "previous_attempt_normal_close_qualified": false,
+  "wording_visibility_review_sha256": "f6eff2a7d36841816f0df576419fab7e63322e8501742c341792bc4da544985a",
+  "prior15tests_28frame_source": "88d813e19d5eb18fab1b8962aab030a1731ea39d",
+  "tests_or_workflow_replayed": false,
+  "independent_review": "Pending",
+  "files": [
+    {
+      "path": "00-fresh-preservation-destinations.png",
+      "bytes": 310168,
+      "sha256": "9196a8d713da33deea2ffb3d5402aebfda0756e48f857a86e174bfc10ce9c300"
+    },
+    {
+      "path": "00-fresh-preservation-destinations.ui.json",
+      "bytes": 7514,
+      "sha256": "752b46cd3493e2c0761f67cf7078c63bc2174ff337f7f9d125be3b5045d83090"
+    },
+    {
+      "path": "01-ordinary-preservation-guard.png",
+      "bytes": 311592,
+      "sha256": "2b87d375407c44a58662509ebe23cc4154537f1cdd0716d0e58f02d62552c544"
+    },
+    {
+      "path": "01-ordinary-preservation-guard.ui.json",
+      "bytes": 7799,
+      "sha256": "98da834e3aa7daafaf034fd2bf1d3101960ee5b77d90b0d3472a705abe2eea47"
+    },
+    {
+      "path": "CLEANUP.json",
+      "bytes": 890,
+      "sha256": "e32a1e4c72c9b8b39edc406f6aa60032671449bc0d99e9b2e886c58839b6318c"
+    },
+    {
+      "path": "OUTER-RECEIPT.json",
+      "bytes": 3162,
+      "sha256": "4611163ede0f275e3c59e5778036896d631495d92f446bf7538a13043288934e"
+    },
+    {
+      "path": "app.log",
+      "bytes": 48,
+      "sha256": "0cce862dc4913be2cce3fd531146652899fa528e6bef4c0cc05a1632efdac18e"
+    },
+    {
+      "path": "events.jsonl",
+      "bytes": 3129,
+      "sha256": "97ca893a3d1333f95631d3f5704730fd17635e471aabb3b999ff793e59050b5a"
+    },
+    {
+      "path": "target.kernspan",
+      "bytes": 1467,
+      "sha256": "a80f93ee8fe07f3c82d8dd9d272666e011d8a1bcfa76e03f097706b97d7e9de2"
+    },
+    {
+      "path": "target.mbse-views.json",
+      "bytes": 3115,
+      "sha256": "fa3e942024f1b790cb202fce543be7f1ba5312e11334a48278c15d9537e63fab"
+    },
+    {
+      "path": "xvfb.log",
+      "bytes": 1321,
+      "sha256": "00971f516769b092bd50063ca4a82f63a4395d9ed9ff57eab62626162f51b9ed"
+    }
+  ]
+}

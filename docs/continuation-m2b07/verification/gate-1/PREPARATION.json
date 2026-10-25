@@ -1,0 +1,19 @@
+{
+  "status": "PreparedNotLaunched",
+  "job_sha256": "95f2883a65ec2ef6b9b53fb1e8b88318a57e76549c873383af62b16b4c2e1bee",
+  "source_sha256": "9a1b92eca6d06f8dc25bcd542c0b70cf69428b44d9e4211c140d6b235b4211bd",
+  "source_commit": "2425208da6758b734193fdbdc93642b4482df325",
+  "source_files": 665,
+  "launcher_sha256": "a22fad114fb5744594cf99b0e97ff4ae1457c360c2e43a7ac4cb66da8d558c75",
+  "stage_sha256": "c3359c4fc7f69d38ff40e5a9233172dbb1a7762ca6e49e57efde3d63d25288c3",
+  "independently_observed_identity": {
+    "pid": 1072280,
+    "start_ticks": 14235850,
+    "uid": 1000,
+    "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+    "pid_namespace": "pid:[4026531836]",
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+  },
+  "owned_jobs": [],
+  "review": "Actualsourceclosedwithoutblocker; sevennewtests UNRUN; no compiler/native launched."
+}

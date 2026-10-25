@@ -1,0 +1,17 @@
+{
+  "profile": "mbse-craft.private-native-route/1",
+  "native_job_sha256": "2c762f89a3cbe9946ff3bd6f369037e7001680d1e0c702f27b849d9fc6e5255d",
+  "driver": "/workspace/build/builderbob/mbse-craft/native-camera-controls/native-gate/driver.py",
+  "driver_sha256": "0a3aa6f6a83ab7cf969665c588e7ff71966b0c0adedbc9ad9b0a504bd770d8cb",
+  "run_dir": "/workspace/build/builderbob/mbse-craft/native-camera-controls/native-gate/run-camera",
+  "state_dir": "/workspace/build/builderbob/mbse-craft/native-camera-controls/native-gate/state",
+  "config_dir": "/workspace/build/builderbob/mbse-craft/native-camera-controls/native-gate/config",
+  "screen": "2400x1800x24",
+  "dpi": 96,
+  "display_protocol": "private Xvfb displayfd, no ambient DISPLAY",
+  "authentication": "per-run0600cookie removed by owned cleanup; cookie never logged",
+  "actual_input": "XTest keyboard/pointer, pointer down/move/up for held gesture",
+  "compiler": false,
+  "uploads": false,
+  "runtime_budget_seconds": 1200
+}

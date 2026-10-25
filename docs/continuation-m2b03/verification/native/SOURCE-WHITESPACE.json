@@ -1,0 +1,66 @@
+{
+  "profile": "mbse-craft.native-views-recovery/1",
+  "sidecar_id": "views:instance:stage1-session-Mb0wrr",
+  "document_id": "document:session:stage1-session-Mb0wrr",
+  "binding": null,
+  "revision": "3",
+  "next_id": "5",
+  "primary": "1",
+  "views": {
+    "1": {
+      "id": "1",
+      "title": "Primary canvas",
+      "camera": {
+        "x": 0.0,
+        "y": 0.0,
+        "zoom": 1.0
+      }
+    },
+    "2": {
+      "id": "2",
+      "title": "Review view",
+      "camera": {
+        "x": 0.0,
+        "y": 0.0,
+        "zoom": 1.0
+      }
+    }
+  },
+  "occurrences": {
+    "3": {
+      "id": "3",
+      "view": "1",
+      "record": "1",
+      "expected_kind": "System",
+      "geometry": {
+        "x": 128.0,
+        "y": 79.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "4": {
+      "id": "4",
+      "view": "2",
+      "record": "1",
+      "expected_kind": "System",
+      "geometry": {
+        "x": 25.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    }
+  },
+  "edges": {}
+}

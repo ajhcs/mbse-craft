@@ -1,0 +1,112 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-25T20:39:31.339429+00:00",
+  "job_sha256": "7a57246fdf014386aeaae7696836df8e11ac01dd5961ced77b3585e4179413f0",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p05-01/run",
+      "started_utc": "2026-10-25T20:39:34.735948+00:00",
+      "ready": {
+        "ready": true,
+        "app_pid": 2131738,
+        "server_pid": 2131735,
+        "window": 4194307,
+        "binary_sha256": "72625352be4ecafa0bd0f34e63553cc6779f04752fbe8abe0c2c91e8fbf4879a"
+      },
+      "identities": {
+        "app_pid": {
+          "pid": 2131738,
+          "start_ticks": 33512229
+        },
+        "server_pid": {
+          "pid": 2131735,
+          "start_ticks": 33512228
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/repos/builderbob/mbse-craft/work/m1-p05-navigation/docs/continuation-m2b09/core-native/target.kernspan",
+        "--select",
+        "1003"
+      ],
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-25T20:43:50.557411+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-25T20:39:31.359974+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 35612131328,
+    "conflicting_processes": [],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 284
+      },
+      {
+        "pid": 2064687,
+        "start_ticks": 33257528,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "observations": [
+    "Exact scope duplicate-name search and all-System duplicate identities",
+    "Mission-kind plus exact ID1000 selects actual record",
+    "Independent browser collapse",
+    "Objective usages navigates actual Measure retaining snapshot",
+    "Primary125/Review80 cameras independent with unchanged native snapshot",
+    "Layout-stale referencing navigation refused, Refresh retains original target",
+    "Raw and native edits stale impact report; accepted95/raw9e retained in actual save",
+    "Paired native/views save; normal app/driver exit0 and owned app/display absence"
+  ],
+  "ended_utc": "2026-10-25T20:44:05.038412+00:00"
+}

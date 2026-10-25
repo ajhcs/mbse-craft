@@ -1,0 +1,22 @@
+{
+  "status": "NoMaterialSourceBlocker",
+  "reviewer": "/root/periodic_actual_review",
+  "recorded_utc": "2026-10-23T18:36:07.772113+00:00",
+  "source_commit": "ee12a79f2f644def4d8a565f6ad1890e3f1d9a11",
+  "source_sha256": "9b2fab814a4a2ed49d285a810dc3e903f1fc3b1b0174e8aa6fc7c9dafa3c3cf2",
+  "observed": [
+    "Snapshot validation and map-key identity before projection",
+    "Exact Record.scope membership under self-scoped Systems",
+    "Each record identity once, deterministic ID ordering and bounded labels",
+    "Explicit same-ID selection reveal and runtime/System-keyed collapse",
+    "Synthetic fixture fresh destination and checked Session Save plus revalidated checkpoint"
+  ],
+  "limits": [
+    "Tests/build/emitter/native not run",
+    "UI helper test does not render collapsed group",
+    "Focused raw-field retention/history require stronger test or actual native evidence"
+  ],
+  "reviewer_execution": false,
+  "reviewer_edits": false,
+  "uploads": false
+}

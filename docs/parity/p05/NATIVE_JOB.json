@@ -1,0 +1,27 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "id": "p05-navigation",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/p05-build-only-20261025T203729Z/mbse-desktop",
+  "binary_sha256": "72625352be4ecafa0bd0f34e63553cc6779f04752fbe8abe0c2c91e8fbf4879a",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "d694298f290931a27f801ac26c838aae4719e9c110a621efd1f6f4d2ef3d5377",
+    "scripts/verify-m1-native.py": "e0e14f8c37f0fa5686ba2bae7fb71adfc068d7ca11a748ffb123e49aac058aba",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "38efc089eda12310b89fa5115718d5c6c18a9b7b23931567241a7c57bb0af6c0"
+  },
+  "inputs": {
+    "/workspace/repos/builderbob/mbse-craft/work/m1-p05-navigation/docs/continuation-m2b09/core-native/target.kernspan": "c3d8173e5492462988c2c215f2b02fb852ba84dd93bc6dac7cdf08b93158225a",
+    "/workspace/repos/builderbob/mbse-craft/work/m1-p05-navigation/docs/continuation-m2b09/core-native/target.mbse-views.json": "5a1a31b2103f0ded66de01dc922f1630b3dba79ddc57bb1e7673b016bb89eb52"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p05-01",
+  "argv_extra": [
+    "--open",
+    "/workspace/repos/builderbob/mbse-craft/work/m1-p05-navigation/docs/continuation-m2b09/core-native/target.kernspan",
+    "--select",
+    "1003"
+  ],
+  "scenario": "M1-NAV: actual fixture-assisted two-System duplicate-name search/usages/browser/impact/camera navigation, accepted95/raw9e, stale/Refresh, explicit paired Save and normal close. Existing source inspection/rehearsal work remains read-only.",
+  "input_authority": "Retained public synthetic fixtures emitted through actual native/view save protocols; no blank-author claim. Inputs read-only and hashed.",
+  "actions": "Interactive actual XTest input, every high-level submitted action and low-level event retained; geometry-targeted controls and screenshot-reviewed coordinates only. No observer/service.",
+  "cleanup": "Normal close with existing paired Save flow; exact app/display identities absent and auth removed."
+}

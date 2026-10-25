@@ -1,0 +1,18 @@
+{
+  "profile": "mbse-craft.private-native-route/1",
+  "native_job_sha256": "f87333dbede00916f1ede86f02674dc9218fa8862a51630b7d0540986505cd22",
+  "driver": "/workspace/build/builderbob/mbse-craft/native-record-impact/native-gate/driver.py",
+  "driver_sha256": "e4a2f131730f39a6327aae3b2c52f799d7e7901ae660cfcc180177ab509c3986",
+  "run_dir": "/workspace/build/builderbob/mbse-craft/native-record-impact/native-gate/run-impact",
+  "state_dir": "/workspace/build/builderbob/mbse-craft/native-record-impact/native-gate/state",
+  "config_dir": "/workspace/build/builderbob/mbse-craft/native-record-impact/native-gate/config",
+  "screen": "2400x1800x24",
+  "dpi": 96,
+  "display_protocol": "private Xvfb displayfd, no ambient DISPLAY",
+  "authentication": "per-run0600cookie removed by owned cleanup; cookie never logged",
+  "actual_input": "XTest keyboard/pointer, pointer down/move/up for held gesture",
+  "compiler": false,
+  "uploads": false,
+  "runtime_budget_seconds": 1200,
+  "interactive_terminal_required": true
+}

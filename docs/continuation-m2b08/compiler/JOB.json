@@ -1,0 +1,93 @@
+{
+  "profile": "mbse-craft.native-system-browser-job/1",
+  "status": "PreparedNotLaunched",
+  "owner_thread": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+  "cwd": "/workspace/worktrees/builderbob/mbse-craft/native-system-browser",
+  "branch": "feature/native-system-browser",
+  "source_commit": "ee12a79f2f644def4d8a565f6ad1890e3f1d9a11",
+  "source_sha256": "9b2fab814a4a2ed49d285a810dc3e903f1fc3b1b0174e8aa6fc7c9dafa3c3cf2",
+  "source_manifest": "/workspace/build/builderbob/mbse-craft/native-system-browser/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "e43f8051ad77f3337038c3cc70a7fb8823918fd7bd97a2c90de4e332fcfe0f11",
+  "cargo_lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-model",
+      "native_system_browser",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop",
+      "ui::policies",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "run",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-model",
+      "--example",
+      "system_browser_fixture",
+      "--",
+      "/workspace/build/builderbob/mbse-craft/native-system-browser/fixture/two-systems.kernspan"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/semantic-v2/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/semantic-v2/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "CARGO_TERM_COLOR": "never",
+    "RUST_TEST_THREADS": "1"
+  },
+  "binary_source": "/workspace/build/builderbob/mbse-craft/semantic-v2/target/debug/mbse-desktop",
+  "disk_budget": {
+    "target_apparent_bytes_before": 5805647217,
+    "workspace_available_bytes_at_preparation": 60028866560,
+    "planned_additional_bytes": 1073741824,
+    "minimum_free_bytes_before_launch": 2147483648,
+    "preserved_binary_max_bytes": 536870912,
+    "prior_native_binary_bytes": 398426864,
+    "notes": "Existing shared single-writer target and one bounded binary, plus small new synthetic fixture. No target duplication or cleanup. No filesystem quota enforced."
+  },
+  "admission": "Fresh exact-job packet plus explicit same-target sole-writer action allocation required. Allocation must independently pin current host appserver identity; no stale993990 assumption or substitute resource probe.",
+  "target_isolation": "This integrator is sole candidate/target writer; historical exact-owned jobs checked absent in current executor namespace. New host visibility/restart health must be reconciled by coordinator. No idle global mutex.",
+  "gui": false,
+  "uploads": false,
+  "new_agent_contexts": false,
+  "independent_review": "Existing read-only independent reviewer found no material source blocker. Rendered collapse/reveal and focused raw-field retention remain native gates.",
+  "timeout": "No hard timeout in prior reviewed wait-based wrapper; expected bounded incremental work, do not assert estimate as timeout.",
+  "scope": "M2B CAT003/CAT004/CAP009 read-only actual System membership browser and exact-ID navigation; no nested semantic hierarchy or wire change.",
+  "expected_tests_unrun": {
+    "native_system_browser": 4,
+    "desktop_policies": 7,
+    "total": 11
+  },
+  "new_tests_authored": 5
+}

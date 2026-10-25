@@ -1,0 +1,138 @@
+{
+  "profile": "mbse-craft.presentation-inspection-native-receipt/1",
+  "status": "BoundedReadOnlyInspectionWorkflowCompletedAndIndependentlyReviewed",
+  "source_commit": "f0a3247a784e5f93076faef0e4353887afbefec8",
+  "source_sha256": "0649d70e6295e352929206a0a1cad72797216e88c090a4f36444cb349cf21de7",
+  "binary_sha256": "6f6d7d3a41b2e1deb57975b97215240bc05b6f690cb2c170dda1942f75db0733",
+  "job_sha256": "07d14544a9795af70cd042c27b847356de731e76b7c1322cc3a0cc3b621a3222",
+  "driver_sha256": "77b77eecbeccac949c1ba41cc0633b9c205d03c185559685070fa74875816ac4",
+  "launcher_sha256": "2b0104b25cf464d98d3e3ebf65e65a983c29cf29fc0793c8fb7bacbff1e26722",
+  "qualified_unique_tests": 83,
+  "qualification_chain_sha256": "415a8c63e022eeed9d4616b7fdad6e163b657bcc670cf19847c607539347e8c5",
+  "started_utc": "2026-10-23T16:24:54.611454+00:00",
+  "ended_utc": "2026-10-23T16:29:08.282664+00:00",
+  "display": ":0",
+  "actual": [
+    "Read foreign unbound presentation source with dirty native/model/layout target retained",
+    "Independent source path and declared source IDs/geometry without target matching/admission",
+    "Actual CtrlZ/CtrlS in inspector do not undo or Save live target",
+    "Explicit byte recheck matches before controlled mutation; changed whitespace refuses and retains old preview",
+    "Corrupt owned fixture Read refuses; prior preview/SHA and target persist",
+    "Inspector close then intentional Save preserves target native/views pair with exact artifact binding and no new wire fields",
+    "Normal close0; six exact identities absent/auth removed"
+  ],
+  "limits": [
+    "No copy/apply or v2 migration",
+    "No native source semantic equivalence/admission",
+    "Observed unbound-source native flow; strict bound/large/corrupt/profile gates covered by bounded tests only",
+    "No large-file UI performance, general platform/accessibility or full parity acceptance"
+  ],
+  "cleanup": {
+    "checked_utc": "2026-10-23T16:30:16.404703+00:00",
+    "started_utc": "2026-10-23T16:24:54.611454+00:00",
+    "ended_utc": "2026-10-23T16:29:08.282664+00:00",
+    "display": ":0",
+    "source_commit": "f0a3247a784e5f93076faef0e4353887afbefec8",
+    "binary_sha256": "6f6d7d3a41b2e1deb57975b97215240bc05b6f690cb2c170dda1942f75db0733",
+    "source_binary_unchanged": true,
+    "identities": [
+      {
+        "pid": 1129791,
+        "start_ticks": 14704487,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1129794,
+        "start_ticks": 14704572,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1129795,
+        "start_ticks": 14704596,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1129796,
+        "start_ticks": 14704596,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1129797,
+        "start_ticks": 14704621,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1129800,
+        "start_ticks": 14704624,
+        "original_identity_absent": true
+      }
+    ],
+    "auth_absent": true,
+    "owned_jobs": [],
+    "renderer_released": true,
+    "app_exit_code": 0,
+    "server_exit_code": 0,
+    "driver_exit_code": 0,
+    "original_pngs": 11
+  },
+  "independent_review": "/workspace/build/builderbob/mbse-craft/recovery-layout-preview-shortcut-fix/native-gate/INDEPENDENT-REVIEW.md",
+  "pngs": [
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-preview-shortcut-fix/native-gate/run-inspection/00-clean-target-pair.png",
+      "bytes": 203088,
+      "sha256": "4e8122f1c0eab52d73da532887663f064625f0c689757c33d74959d08ebc3e1e"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-preview-shortcut-fix/native-gate/run-inspection/01-native-target-edited.png",
+      "bytes": 204286,
+      "sha256": "6399b910f8d5490b32c79b6044b06843dde9422033265264db5b422d468108a7"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-preview-shortcut-fix/native-gate/run-inspection/02-dirty-native-and-layout-before-inspection.png",
+      "bytes": 200719,
+      "sha256": "59e8a97d3b4ff8d23607daab223e0a2742d983b2b86f98302469b981e6009f9e"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-preview-shortcut-fix/native-gate/run-inspection/03-separate-source-inspection-window.png",
+      "bytes": 200125,
+      "sha256": "2c9809eeaf97c5b82786a77c95593620dca911a73a0433d5ce527ef8a6178e64"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-preview-shortcut-fix/native-gate/run-inspection/04-foreign-source-inspected-target-retained.png",
+      "bytes": 212612,
+      "sha256": "9225314afddda4a078bcbd1d25be7bffc8dfc19a35e695408c89cefef235d923"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-preview-shortcut-fix/native-gate/run-inspection/05-source-bytes-recheck-match.png",
+      "bytes": 210614,
+      "sha256": "85068cf4c8615f7133cc854d27715e5c53b23f84e8877342c82d9304a9473f78"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-preview-shortcut-fix/native-gate/run-inspection/06-inspection-shortcuts-retain-dirty-target.png",
+      "bytes": 210763,
+      "sha256": "34239d4a01773fa410757b5999c8f463f1955cc4298a16f59c7aaf7c82897616"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-preview-shortcut-fix/native-gate/run-inspection/07-changed-source-recheck-retains-preview.png",
+      "bytes": 213905,
+      "sha256": "b6df05cea72cac626af44ae444c12dc0b1b3365ef0fe65c7a4cbad5d3f1c8a75"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-preview-shortcut-fix/native-gate/run-inspection/08-corrupt-read-retains-prior-preview.png",
+      "bytes": 213831,
+      "sha256": "ab7f99c0ed9ea2521eff7a906d470f7cdfaa130a6e30aa05fa6c2881e6a800c7"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-preview-shortcut-fix/native-gate/run-inspection/09-inspector-closed-target-still-dirty.png",
+      "bytes": 200750,
+      "sha256": "f22ddfaf57d2dba50271b776575227a15871bb9297f2c10ce17d7b806e5361de"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-preview-shortcut-fix/native-gate/run-inspection/10-final-target-pair-preserved.png",
+      "bytes": 204746,
+      "sha256": "e8803b6a26f481b7ffdc61f47e29026b9ce6cb2ce666b4b4e1054c67deea2dab"
+    }
+  ],
+  "owned_jobs": [],
+  "uploads": false
+}

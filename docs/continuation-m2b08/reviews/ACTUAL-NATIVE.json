@@ -1,0 +1,27 @@
+{
+  "status": "NoMaterialBrowserDefectInBoundedObservedRun",
+  "recorded_utc": "2026-10-23T19:27:13.545725+00:00",
+  "reviewer": "/root/periodic_actual_review",
+  "source_commit": "ee12a79f2f644def4d8a565f6ad1890e3f1d9a11",
+  "binary_sha256": "4871d770f416a059774a0f0389e3984cc4aecbf66130416a61d09f910614729b",
+  "native_receipt_sha256": "1be4fe1d1e703bbea6e8d52e6b578e3b2bfc8dd2c029af5ae2fc037ae51502e8",
+  "original_frames_inspected": 27,
+  "receipt_listed_files_verified": 61,
+  "compiled_source_files_verified": 667,
+  "findings": [
+    "Independent collapse, exact Mission1000/1001 selection and same-ID Search reveal observed",
+    "Frames14-19 preserve snapshot/model2/raw3 and incomplete12e- through navigation/reveal; acceptedcriterion absent",
+    "Zoom changes layout camera/revision only",
+    "Ordinary nativeOpen resets collapse/camera, explicitOpenviews restores125%; saved drafts/memberships/schema2/v1binding verified",
+    "Normal app/driver exits, exact6owned identities absent, Xauthority removed"
+  ],
+  "retained_failure_assessment": "Frame01 is partial preservation, not successful paired baseline. Explicit sidecar path beside read-only fixture failed visibly and retained layout. Ordinary UI correction to authorized run path produced acknowledged saves21/26. Harness destination limitation, no browser regression evidence.",
+  "limits": [
+    "Runtime-key behavior combines source/policy test with observed Open reset; not direct runtime-ID audit",
+    "Physical file hashes sampled, not continuously monitored",
+    "Displayed images resized; originals2200x1600 retained",
+    "No broad platform/performance/hierarchy/full86feature acceptance"
+  ],
+  "reviewer_execution": false,
+  "reviewer_changes": false
+}
