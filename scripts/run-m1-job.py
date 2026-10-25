@@ -40,6 +40,8 @@ def source_check(job):
         assert path.stat().st_size == row['bytes'] and sha(path) == row['sha256'], row['path']
     assert sha(ROOT/'Cargo.lock') == job['cargo_lock_sha256'], 'Lock changed'
     assert job['env']['CARGO_BUILD_JOBS'] == job['env']['RUST_TEST_THREADS'] == '1'
+    for path, expected in job.get('input_hashes', {}).items():
+        assert sha(Path(path)) == expected, 'Job input changed: ' + path
 
 
 def main():
