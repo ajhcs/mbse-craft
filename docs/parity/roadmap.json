@@ -172,11 +172,12 @@
       "acceptance": [
         "Old files remain readable; future and unknown versions stay preserved; malformed source-to-target mappings refuse without target mutation."
       ],
-      "state": "implemented_draft_pending_review",
+      "state": "merged",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "execution_results": "docs/parity/p07/README.md",
-      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/10"
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/10",
+      "merge_commit": "7244b562cf0e2de6462feeb70f24c69225c829e2"
     },
     {
       "id": "P08",
@@ -188,9 +189,11 @@
       "acceptance": [
         "Only selected occurrences copy; skipped mappings remain visible; stale source or target refuses; one layout Undo reverses the copy."
       ],
-      "state": "planned",
+      "state": "implemented_draft_pending_review",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/p08/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/11"
     },
     {
       "id": "P09",

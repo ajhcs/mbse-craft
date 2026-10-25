@@ -1426,7 +1426,6 @@ impl Workspace {
         egui::CentralPanel::default().show(root, |ui| {
             ui.heading("Native views");
             if let Some(record) = self.views.toolbar(ui, &self.session) { self.select(record); }
-            self.audit.extend(self.views.toolbar_bounds());
             let records: Vec<_> = self.session.editor.snapshot.records.values().cloned().collect();
             let graph = match stage1_graph::derive_graph(&self.session.editor.snapshot) {
                 Ok(graph) => graph, Err(error) => { ui.colored_label(ERROR, error); return; }
@@ -2021,7 +2020,8 @@ impl eframe::App for Workspace {
         self.show_usages(&ctx);
         self.show_impact(&ctx);
         self.show_search(&ctx);
-        self.views.show_inspection(&ctx, &self.session.editor);
+        self.views.show_inspection(&ctx, &self.session);
+        self.audit.extend(self.views.toolbar_bounds());
         self.capture(&ctx);
         self.catalog.show(&ctx);
         self.assurance.show(&ctx, &self.session.editor);

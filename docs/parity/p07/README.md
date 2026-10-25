@@ -1,6 +1,6 @@
 # P07: versioned presentation-copy format and provenance
 
-Draft review: [PR #10](https://github.com/ajhcs/mbse-craft/pull/10).
+Merged [PR #10](https://github.com/ajhcs/mbse-craft/pull/10) at `7244b562cf0e2de6462feeb70f24c69225c829e2`; [requested review](REVIEW_FOLLOWUP.md) found no additional actionable P07 issue. The execution record below remains source-specific; [P08](../p08/README.md) adds live Apply/Undo.
 
 P07 builds on the merged Milestone 1 baseline at
 `bfbe0f1ad361739fd14d728d93db3b9527c76b0a`, in isolated branch
@@ -8,7 +8,7 @@ P07 builds on the merged Milestone 1 baseline at
 bounded inert copy provenance, exact source/mapping checks and a fresh Save As
 boundary between format versions. Existing v1 reads and canonical serialization
 are unchanged. The native inspector displays recorded origin as **unverified
-source data**. Live Copy/Apply and its one-transaction Undo remain **P08**.
+source data**. Live Copy/Apply and its one-transaction Undo are implemented separately in **P08**.
 
 The [format contract and acceptance criteria](CONTRACT.md) explain the fields,
 bounds and historical-reference policy. Constructed QA v2 input is not output
@@ -78,6 +78,6 @@ feature checkouts are preserved. Only this isolated P07 branch is published.
 Dependencies, external projects, shared skills, services and release workflows
 were not changed.
 
-This draft supplies bounded Linux format/native evidence. Independent PR/native
-review, live Apply/Undo integration, engineering acceptance and full No Magic/Craft
-parity remain separate. Milestone 2's exit is still open until P08 completes.
+P07 supplies bounded Linux format/native evidence and is merged. P08 now records
+its separate Apply/Undo execution; independent native review, engineering
+acceptance and full No Magic/Craft parity remain separate.

@@ -37,7 +37,7 @@ The dependency graph uses conservative serial integration order. It does not res
 
 ## Milestone 2: Presentation recovery
 
-P07 implementation and bounded acceptance evidence: [versioned copy provenance](parity/p07/README.md). P08 and the milestone exit remain open.
+P07 is merged in [PR #10](https://github.com/ajhcs/mbse-craft/pull/10). P08 [live Apply/Undo evidence](parity/p08/README.md) covers the bounded milestone workflow; PR review and milestone engineering acceptance remain open.
 
 7. **Version the presentation-copy format and provenance.** Acceptance: Old files remain readable; future and unknown versions stay preserved; malformed source-to-target mappings refuse without target mutation.
 

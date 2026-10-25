@@ -1,0 +1,294 @@
+{
+  "profile": "mbse-craft.native-views/2",
+  "sidecar_id": "views:instance:stage1-session-AG4a9h",
+  "document_id": "recovered:session:stage1-session-AG4a9h",
+  "binding": {
+    "document_id": "recovered:session:stage1-session-AG4a9h",
+    "artifact_sha256": "b4222ecc1a7200ffe437af0840850700da0e7ced88df81f7851e354aa97b8b69",
+    "snapshot_sha256": "a93d5ff592399a352901f68c069d3511548228bd2fee98812517a97719721973"
+  },
+  "revision": "7",
+  "next_id": "14",
+  "primary": "1",
+  "views": {
+    "1": {
+      "id": "1",
+      "title": "Primary canvas",
+      "camera": {
+        "x": 64.0,
+        "y": 0.0,
+        "zoom": 1.0
+      }
+    },
+    "2": {
+      "id": "2",
+      "title": "Review view",
+      "camera": {
+        "x": 0.0,
+        "y": 0.0,
+        "zoom": 1.0
+      }
+    },
+    "9": {
+      "id": "9",
+      "title": "Reviewed recovered presentation",
+      "camera": {
+        "x": 20.0,
+        "y": 30.0,
+        "zoom": 1.25
+      },
+      "copy_origin": {
+        "profile": "mbse-craft.presentation-copy-origin/1",
+        "source_sha256": "9e51cc77f98f52a7f2cb69400171c412504a7171b490c49c4437a729b2fe62a3",
+        "source_profile": "mbse-craft.native-views-recovery/1",
+        "source_document_id": "document:p08-original-source",
+        "source_sidecar_id": "views:p08-source",
+        "source_view": "1",
+        "declared_native_binding": null,
+        "occurrences": {
+          "3": {
+            "source_record": "1",
+            "expected_kind": "System",
+            "outcome": {
+              "state": "Skipped",
+              "reason": "Unselected; not copied"
+            }
+          },
+          "4": {
+            "source_record": "1000",
+            "expected_kind": "Mission",
+            "outcome": {
+              "state": "Mapped",
+              "target_occurrence": "10",
+              "target_record": "1000"
+            }
+          },
+          "5": {
+            "source_record": "1001",
+            "expected_kind": "Capability",
+            "outcome": {
+              "state": "Skipped",
+              "reason": "Not needed in this recovered view"
+            }
+          },
+          "6": {
+            "source_record": "1002",
+            "expected_kind": "Objective",
+            "outcome": {
+              "state": "Mapped",
+              "target_occurrence": "11",
+              "target_record": "1002"
+            }
+          },
+          "7": {
+            "source_record": "1003",
+            "expected_kind": "Measure",
+            "outcome": {
+              "state": "Mapped",
+              "target_occurrence": "12",
+              "target_record": "1003"
+            }
+          }
+        },
+        "edges": {
+          "8": {
+            "source_occurrence": "5",
+            "target_occurrence": "4",
+            "outcome": {
+              "state": "Skipped",
+              "reason": "Both exact source occurrence endpoints must be explicitly mapped"
+            }
+          },
+          "9": {
+            "source_occurrence": "6",
+            "target_occurrence": "5",
+            "outcome": {
+              "state": "Skipped",
+              "reason": "Both exact source occurrence endpoints must be explicitly mapped"
+            }
+          },
+          "10": {
+            "source_occurrence": "7",
+            "target_occurrence": "6",
+            "outcome": {
+              "state": "Mapped",
+              "target_edge": "13"
+            }
+          }
+        }
+      }
+    }
+  },
+  "occurrences": {
+    "3": {
+      "id": "3",
+      "view": "1",
+      "record": "1",
+      "expected_kind": "System",
+      "geometry": {
+        "x": 25.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "4": {
+      "id": "4",
+      "view": "1",
+      "record": "1000",
+      "expected_kind": "Mission",
+      "geometry": {
+        "x": 319.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "5": {
+      "id": "5",
+      "view": "1",
+      "record": "1001",
+      "expected_kind": "Capability",
+      "geometry": {
+        "x": 613.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "6": {
+      "id": "6",
+      "view": "1",
+      "record": "1002",
+      "expected_kind": "Objective",
+      "geometry": {
+        "x": 25.0,
+        "y": 179.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "7": {
+      "id": "7",
+      "view": "1",
+      "record": "1003",
+      "expected_kind": "Measure",
+      "geometry": {
+        "x": 319.0,
+        "y": 179.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "8": {
+      "id": "8",
+      "view": "2",
+      "record": "1",
+      "expected_kind": "System",
+      "geometry": {
+        "x": 25.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "10": {
+      "id": "10",
+      "view": "9",
+      "record": "1000",
+      "expected_kind": "Mission",
+      "geometry": {
+        "x": 315.0,
+        "y": 30.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "11": {
+      "id": "11",
+      "view": "9",
+      "record": "1002",
+      "expected_kind": "Objective",
+      "geometry": {
+        "x": 25.0,
+        "y": 180.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "12": {
+      "id": "12",
+      "view": "9",
+      "record": "1003",
+      "expected_kind": "Measure",
+      "geometry": {
+        "x": 315.0,
+        "y": 180.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    }
+  },
+  "edges": {
+    "13": {
+      "id": "13",
+      "view": "9",
+      "key": {
+        "owner": "1003",
+        "role": "MeasureForObjective",
+        "target": "1002",
+        "target_kind": "Objective"
+      },
+      "source": "12",
+      "target": "11",
+      "presence": {
+        "state": "Active"
+      }
+    }
+  }
+}

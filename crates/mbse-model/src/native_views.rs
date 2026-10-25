@@ -839,6 +839,71 @@ impl Views {
         self.prune_proofs();
         Ok(())
     }
+    /// Stage all content, provenance, IDs and history before publishing one view.
+    /// The caller is the sealed reviewed Plan; neither source claims nor Preview
+    /// values supplied by external callers can reach this crate-private boundary.
+    pub(crate) fn commit_copy(
+        &mut self, editor: &Editor, stamp: &Stamp,
+        source: &crate::native_views_inspect::Inspection, source_view: ViewId,
+        title: &str, preview: &crate::native_views_plan::Preview,
+        choices: &BTreeMap<OccurrenceId, crate::native_views_plan::Choice>,
+    ) -> Result<ViewId, String> {
+        use crate::native_views_copy::{CopyOrigin,OccurrenceMapping,OccurrenceOutcome,EdgeMapping,EdgeOutcome};
+        use crate::native_views_plan::Choice;
+        self.check(editor,stamp)?;
+        self.document.validate(&editor.snapshot)?;
+        let count = preview.occurrences.iter().filter(|o|o.target.is_some()).count();
+        let edges = preview.edges.iter().filter(|e|e.key.is_some()).count();
+        if count == 0 { return Err("VIEWS_COPY_NO_MAPPINGS".into()); }
+        if self.document.views.len() >= MAX_VIEWS || count > MAX_PER_VIEW
+            || self.document.occurrences.len() + count > MAX_OCCURRENCES
+            || self.document.edges.len() + edges > MAX_EDGES {
+            return Err("VIEWS_COPY_CAPACITY".into());
+        }
+        if title.trim().is_empty() || title.len() > 1024 { return Err("VIEWS_COPY_TITLE".into()); }
+        let declared=source.declared();
+        let camera=declared.views.get(&source_view).ok_or("VIEWS_COPY_SOURCE_VIEW")?.camera.clone();
+        let mut next=self.document.clone();
+        next.profile=if bound_profile(&next.profile) {COPY_PROFILE}else{COPY_RECOVERY_PROFILE}.into();
+        let view=ViewId(next.allocate()?);
+        next.views.insert(view,View{id:view,title:title.into(),camera,copy_origin:None});
+        let mut origin=CopyOrigin{profile:crate::native_views_copy::PROFILE.into(),source_sha256:source.source_sha256().into(),source_profile:declared.profile.clone(),source_document_id:declared.document_id.clone(),source_sidecar_id:declared.sidecar_id.clone(),source_view,declared_native_binding:declared.binding.clone(),occurrences:BTreeMap::new(),edges:BTreeMap::new()};
+        let mut mapped=BTreeMap::new();
+        for row in &preview.occurrences {
+            let old=declared.occurrences.get(&row.source).ok_or("VIEWS_COPY_SOURCE_OCCURRENCE")?;
+            let outcome=if let Some(record)=row.target {
+                if editor.snapshot.records.get(&record).map(|r|r.kind)!=Some(old.expected_kind) {return Err("VIEWS_COPY_TARGET_KIND".into());}
+                let id=OccurrenceId(next.allocate()?);
+                next.occurrences.insert(id,Occurrence{id,view,record,expected_kind:old.expected_kind,geometry:row.geometry.clone(),visible:row.visible,pinned:row.pinned,presence:Presence::Active});
+                mapped.insert(row.source,id);
+                OccurrenceOutcome::Mapped{target_occurrence:id,target_record:record}
+            } else {
+                let reason=match choices.get(&row.source) {Some(Choice::Skip(reason))=>reason.clone(),Some(Choice::Unselected)=>"Unselected; not copied".into(),_=>return Err("VIEWS_COPY_CHOICE_MISMATCH".into())};
+                OccurrenceOutcome::Skipped{reason}
+            };
+            origin.occurrences.insert(row.source,OccurrenceMapping{source_record:old.record,expected_kind:old.expected_kind,outcome});
+        }
+        for row in &preview.edges {
+            let outcome=if let Some(key)=&row.key {
+                let source=*mapped.get(&row.source_occurrence).ok_or("VIEWS_COPY_EDGE_SOURCE")?;
+                let target=*mapped.get(&row.target_occurrence).ok_or("VIEWS_COPY_EDGE_TARGET")?;
+                let id=VisualEdgeId(next.allocate()?);
+                next.edges.insert(id,VisualEdge{id,view,key:key.clone(),source,target,presence:Presence::Active});
+                EdgeOutcome::Mapped{target_edge:id}
+            } else {EdgeOutcome::Skipped{reason:row.reason.clone().ok_or("VIEWS_COPY_EDGE_REASON")?}};
+            origin.edges.insert(row.source,EdgeMapping{source_occurrence:row.source_occurrence,target_occurrence:row.target_occurrence,outcome});
+        }
+        origin.verify_source(source)?;
+        next.views.get_mut(&view).expect("staged view").copy_origin=Some(origin);
+        next.bump()?;
+        next.validate(&editor.snapshot)?;
+        self.check(editor,stamp)?;
+        source.verify_unchanged()?;
+        self.retain(self.document.clone())?;
+        self.document=next;
+        self.prune_proofs();
+        Ok(view)
+    }
     pub fn undo(&mut self, editor: &Editor, stamp: &Stamp, redo: bool) -> Result<bool, String> {
         self.check(editor, stamp)?;
         self.document.validate(&editor.snapshot)?;
@@ -850,6 +915,8 @@ impl Views {
         next.next_id = self.document.next_id;
         next.revision = self.document.revision;
         next.binding = self.document.binding.clone();
+        // Copy Undo removes content, never silently downgrades the output format.
+        if copy_profile(&self.document.profile) { next.profile = self.document.profile.clone(); }
         next.bump()?;
         // Refuse the entire operation before a history pop if a restored active
         // occurrence/key no longer resolves. No semantic resurrection occurs.

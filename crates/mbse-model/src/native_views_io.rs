@@ -61,6 +61,7 @@ pub struct Destination {
     session: String,
     instance: String,
     origin: Origin,
+    copy_format: bool,
 }
 impl Destination {
     pub fn path(&self) -> &Path {
@@ -217,6 +218,7 @@ impl Io {
             session: session.session_id().0.clone(),
             instance: session.instance_id().0.clone(),
             origin: views.origin(),
+            copy_format: crate::native_views::copy_profile(&views.document().profile),
         })
     }
     pub fn begin(
@@ -279,6 +281,9 @@ impl Io {
             || destination.instance != session.instance_id().0
         {
             return Err("VIEWS_DESTINATION_OWNER_CHANGED".into());
+        }
+        if destination.copy_format != crate::native_views::copy_profile(&document.profile) {
+            return Err("VIEWS_DESTINATION_FORMAT_CHANGED: choose and freeze the destination again".into());
         }
         let Destination {
             path,

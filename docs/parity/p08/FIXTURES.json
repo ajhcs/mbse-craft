@@ -1,0 +1,15 @@
+{
+  "qualification": "Synthetic native/workflow inputs, not accepted engineering content; presentation constructed for actual decoder and native checks",
+  "files": [
+    {
+      "path": "docs/parity/p08/fixtures/old-presentation.mbse-views.json",
+      "bytes": 3118,
+      "sha256": "c7a5b5fbb193eaaec6d6351f39cf90c680bffa27990a2f65f247c6e94984a83c"
+    },
+    {
+      "path": "docs/parity/p08/fixtures/original.kernspan",
+      "bytes": 2674,
+      "sha256": "eefc3606af8a0e31bf8a513f942fc9bbe5122fb1417c5c98789af941cbc1c1fd"
+    }
+  ]
+}
