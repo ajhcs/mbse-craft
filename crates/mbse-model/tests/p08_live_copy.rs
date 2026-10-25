@@ -664,6 +664,12 @@ fn detached_source_requires_explicit_match_and_remains_unchanged() {
     let id = f.row(300);
     value["occurrences"][id.get().to_string()]["presence"] =
         json!({"state":"Detached","reason":"Prior source history is untrusted"});
+    for edge in value["edges"].as_object_mut().unwrap().values_mut() {
+        if edge["source"] == id.get().to_string() || edge["target"] == id.get().to_string() {
+            edge["presence"] =
+                json!({"state":"Detached","reason":"Historical endpoint is detached"});
+        }
+    }
     let bytes = serde_json::to_vec(&value).unwrap();
     std::fs::write(f.source.path(), &bytes).unwrap();
     f.source = Inspection::open(f.source.path()).unwrap();
