@@ -1,0 +1,32 @@
+{
+  "fixture": "CONTROLLED OWNED COOPERATIVE-LOCK FIXTURE; not an uncontrolled race",
+  "path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/artifacts/review.mbse-views.json.lock",
+  "inode": 65332896,
+  "sha256": "9c10eaf628421ceefc48d43fe5da80396dde64ddb591d4bd6b336eb374c6565d",
+  "native_before_sha256": "57af4c6ca06cacde2f8b6a1796934bdab95aa8974612f6c7f9d34a8f727e9ecd",
+  "views_before_sha256": "2c67ec223184f3ea2e08e34e01d5d86ac65629d4835802c11e3763f3cc7026cc",
+  "ui_partial": {
+    "save_status": "Saved",
+    "write_pending": false,
+    "views_pending": false,
+    "views_saved_hint": false,
+    "views_note": "Native and views preservation are independent. Views failed: VIEWS_BUSY: File exists (os error 17). Geometry retained.",
+    "snapshot_hash": "e208010b791042495a5ca88ad17a90ef571f4fc97a18cbb3ce34b978ae28fbd7",
+    "views_revision": "9",
+    "feedback": "Saved accepted values and drafts; current bytes verified."
+  },
+  "native_after_sha256": "c8d107906f7907fde30c563aa62343d8a48cac476c0327462f2531aabd441ced",
+  "views_after_sha256": "2c67ec223184f3ea2e08e34e01d5d86ac65629d4835802c11e3763f3cc7026cc",
+  "native_changed": true,
+  "views_unchanged": true,
+  "close_guard": {
+    "app_retained": true,
+    "preserve_buttons": [
+      "preserve:Cancel",
+      "preserve:Keep recovery and continue",
+      "preserve:Save and continue"
+    ],
+    "snapshot_hash": "e208010b791042495a5ca88ad17a90ef571f4fc97a18cbb3ce34b978ae28fbd7",
+    "views_revision": "9"
+  }
+}

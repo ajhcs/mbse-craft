@@ -1,0 +1,70 @@
+{
+  "checked_utc": "2026-10-23T13:02:39.017830+00:00",
+  "explicit_owned_identity_checks": [
+    {
+      "pid": 998428,
+      "recorded_start_ticks": 13370837,
+      "original_identity_absent": true
+    },
+    {
+      "pid": 998461,
+      "recorded_start_ticks": 13370951,
+      "original_identity_absent": true
+    },
+    {
+      "pid": 998462,
+      "recorded_start_ticks": 13370953,
+      "original_identity_absent": true
+    },
+    {
+      "pid": 998463,
+      "recorded_start_ticks": 13370953,
+      "original_identity_absent": true
+    },
+    {
+      "pid": 998464,
+      "recorded_start_ticks": 13370955,
+      "original_identity_absent": true
+    },
+    {
+      "pid": 998467,
+      "recorded_start_ticks": 13370974,
+      "original_identity_absent": true
+    }
+  ],
+  "cleanup": {
+    "ended_utc": "2026-10-23T13:02:15.316339+00:00",
+    "children": [
+      {
+        "owned": {
+          "pid": 998464,
+          "start_ticks": 13370955,
+          "uid": 1000,
+          "exe": "/workspace/cache/builderbob/global-tools/releases/blender/5.2.2/xvfb/usr/bin/Xvfb",
+          "pid_namespace": "pid:[4026531836]",
+          "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+        },
+        "original_identity_absent": true
+      },
+      {
+        "owned": {
+          "pid": 998467,
+          "start_ticks": 13370974,
+          "uid": 1000,
+          "exe": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/bin/mbse-desktop",
+          "pid_namespace": "pid:[4026531836]",
+          "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+        },
+        "original_identity_absent": true
+      }
+    ],
+    "app_exit_code": 0,
+    "server_exit_code": 0,
+    "xauthority_removed": true
+  },
+  "outer_exit_code": 0,
+  "driver_exit_code": 0,
+  "auth_absent": true,
+  "renderer_released": true,
+  "source_and_binary_unchanged": true
+}

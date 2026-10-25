@@ -1,0 +1,99 @@
+{
+  "schema": "mbse-craft.p03-existing-evidence-audit/1",
+  "reviewed_pr2_head": "557ee47e0bb7237a5064c8e51718506431f8f825",
+  "integration_checkout": "5b89ab2c4d9fc2e343fb3867b6c365cd1c11990e",
+  "source_sha256": "e6cc2113f5283a9b4a86c837a782a12028f1733c83f13cfb2cc70809b18691f4",
+  "source_files_verified": 660,
+  "all_35_native_png_hashes_verified": true,
+  "all_5_native_artifact_receipt_hashes_verified": true,
+  "independent_crop_review_receipt_binding_verified": true,
+  "retained_tests": 38,
+  "new_tests_or_gui_runs": 0,
+  "disposition": "P03 baseline criteria covered on identical build-input bytes. Foreign-origin and delayed-ACK behavior remains controller-only; actual two-view geometry/reopen and native-success/views-failure are observed native workflows.",
+  "evidence": [
+    {
+      "original": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/NATIVE_RECEIPT.json",
+      "path": "NATIVE_RECEIPT.json",
+      "sha256": "6a480622298b71750fba58081064ff9ec4ae34a1d409cc99179644dbb45916b2",
+      "bytes": 15477
+    },
+    {
+      "original": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/INDEPENDENT-CROP-REVIEW.json",
+      "path": "INDEPENDENT-CROP-REVIEW.json",
+      "sha256": "1da6cf5c95c48a0c7248cfa570fa2cbc63aa61a1734c34139dbdc1f349819226",
+      "bytes": 1152
+    },
+    {
+      "original": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/FINAL-CLEANUP.json",
+      "path": "FINAL-CLEANUP.json",
+      "sha256": "c35788159506fff588b03160e5dac1020e320a35cbb8fa2b7cdb169108b5ced1",
+      "bytes": 1866
+    },
+    {
+      "original": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/UNOWNED-PREFLIGHT-RESULT.json",
+      "path": "artifacts/UNOWNED-PREFLIGHT-RESULT.json",
+      "sha256": "53b9d5f4f750c08973c58df0ce27c4bc9dc4e42defa79e9e7b2694112d933d00",
+      "bytes": 1148
+    },
+    {
+      "original": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/CONTROLLED-LOCK-RESULT.json",
+      "path": "artifacts/CONTROLLED-LOCK-RESULT.json",
+      "sha256": "cc036390e5f67b686474eab67f16087409b20c1fa79fc9bb2b292c734e35534b",
+      "bytes": 1530
+    },
+    {
+      "original": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/RECOVERY-PRESERVED.json",
+      "path": "artifacts/RECOVERY-PRESERVED.json",
+      "sha256": "a218bd4205dbc58bf1afc2b3fa027f7c311f9a8c3ebd46733e3a4cc63a7f94c6",
+      "bytes": 2569
+    },
+    {
+      "original": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/RECOVERY-SEPARATION-RESULT.json",
+      "path": "artifacts/RECOVERY-SEPARATION-RESULT.json",
+      "sha256": "d757be37aedce664647b89401aad8e1cc1c6c5899bc5d000345cd806010fb980",
+      "bytes": 550
+    },
+    {
+      "original": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/FINAL-PRESERVATION.json",
+      "path": "artifacts/FINAL-PRESERVATION.json",
+      "sha256": "03bdacfca5d580917ee5481dbaa2fd05299a59150c3f0701aee3e67b4d7a93ed",
+      "bytes": 882
+    },
+    {
+      "original": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/02-review-shared-mission-renamed.png",
+      "path": "captures/02-review-shared-mission-renamed.png",
+      "sha256": "78ccff31d4b78674d41ba5c0d21132a4ab4eece9f0adea2809ab735b72d645e5",
+      "bytes": 209701
+    },
+    {
+      "original": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/03-primary-shared-mission-renamed.png",
+      "path": "captures/03-primary-shared-mission-renamed.png",
+      "sha256": "42cd76234347c553377694a8204268460ad434958b744f79fa7284d9475345f7",
+      "bytes": 209732
+    },
+    {
+      "original": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/12-exact-bound-views-reopened.png",
+      "path": "captures/12-exact-bound-views-reopened.png",
+      "sha256": "29cc0fb19772f025568040db370d13d12422e3a7e9f64f40acf7e4c5f72c2199",
+      "bytes": 218311
+    },
+    {
+      "original": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/14-controlled-lock-native-saved-views-unsaved.png",
+      "path": "captures/14-controlled-lock-native-saved-views-unsaved.png",
+      "sha256": "01f4a11e03404492cb7856f5058f4bd64ac550e548c9986fb850865a96f35cb3",
+      "bytes": 235737
+    },
+    {
+      "original": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/15-partial-save-close-retains-layout.png",
+      "path": "captures/15-partial-save-close-retains-layout.png",
+      "sha256": "150b9efbe22e1b745c36330bf0021e01557151e5f456bb156ad1291506f96645",
+      "bytes": 241631
+    },
+    {
+      "original": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/16-retry-native-and-views-saved.png",
+      "path": "captures/16-retry-native-and-views-saved.png",
+      "sha256": "3b65c079ee394067a3e7d5bd8a37f22577513d7e5a136d5ec1fe187d61894492",
+      "bytes": 233016
+    }
+  ]
+}
