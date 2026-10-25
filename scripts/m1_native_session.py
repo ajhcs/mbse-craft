@@ -19,17 +19,33 @@ base=importlib.util.module_from_spec(spec);spec.loader.exec_module(base)
 
 
 class NativeM1(base.Native):
+    instances = []
+
     def __init__(self,exe,run,extra,evidence):
         self.run,self.evidence=run,evidence
         self.stderr=run.parent/(run.name+'-driver.log')
         self.child=subprocess.Popen([sys.executable,str(ROOT/'scripts/verify-m1-native.py'),
             '--exe',str(exe),'--run-dir',str(run),'--',*extra],stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,stderr=self.stderr.open('x'),text=True,bufsize=1)
-        self.ready=self.read();assert self.ready.get('ready'),self.ready
         self.identities={}
+        self.record=dict(run=str(run),started_utc=base.utc(),identities=self.identities,argv_extra=extra)
+        evidence.append(self.record)
+        self.instances.append(self)
+        self.ready=self.read();assert self.ready.get('ready'),self.ready
         for key in ('app_pid','server_pid'):
             pid=self.ready[key];self.identities[key]=dict(pid=pid,start_ticks=int(Path(f'/proc/{pid}/stat').read_text().rsplit(')',1)[1].split()[19]))
-        evidence.append(dict(run=str(run),started_utc=base.utc(),ready=self.ready,identities=self.identities,argv_extra=extra))
+        self.record['ready']=self.ready
+
+    def close(self):
+        result=self.send(op='close',pause=1)
+        assert result['app_returncode']==0,result
+        self.child.stdin.write('{"op":"stop"}\n');self.child.stdin.flush();self.child.stdin.close()
+        assert self.child.wait(timeout=15)==0,self.stderr.read_text()
+        self.record.update(normal_app_exit=0,driver_exit=0,ended_utc=base.utc())
+        for identity in self.identities.values():
+            path=Path(f"/proc/{identity['pid']}/stat")
+            assert not path.exists() or int(path.read_text().rsplit(')',1)[1].split()[19])!=identity['start_ticks'],'Owned process remains'
+        self.record['owned_processes_absent']=True
 
     def seek(self,widget):
         for _ in range(16):
@@ -49,6 +65,35 @@ class NativeM1(base.Native):
         self.send(op='key',key='BackSpace')
 
 
+def owned_drivers(receipt):
+    return [driver for driver in NativeM1.instances if driver.evidence is receipt['runs']]
+
+
+def running_runs(receipt):
+    return [str(driver.run) for driver in owned_drivers(receipt) if driver.child.poll() is None]
+
+
+def finish_runs(receipt):
+    drivers=owned_drivers(receipt)
+    assert drivers and len(drivers)==len(receipt['runs']),'Every recorded run must have an owned driver'
+    for driver in drivers:
+        assert driver.child.poll()==0,'Close every app normally and stop every driver first: '+str(driver.run)
+        assert driver.record.get('normal_app_exit')==0 and driver.record.get('driver_exit')==0 and driver.record.get('owned_processes_absent') is True,'Normal cleanup not verified: '+str(driver.run)
+    receipt['status']='actions_completed_review_pending'
+
+
+def cleanup_runs(receipt):
+    for driver in owned_drivers(receipt):
+        if driver.child.poll() is None:
+            result=dict(run=str(driver.run),normal_app_exit_claimed=False)
+            try:
+                driver.child.stdin.write('{"op":"stop"}\n');driver.child.stdin.flush()
+                result['driver_exit']=driver.child.wait(timeout=15)
+            except Exception as error:
+                result['error']=repr(error)
+            receipt.setdefault('interrupted_cleanup',[]).append(result)
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--job',type=Path,required=True);args=parser.parse_args()
     job=json.loads(args.job.read_text());exe=Path(job['binary']);assert base.digest(exe)==job['binary_sha256']
@@ -59,27 +104,28 @@ def main():
     output=Path(job['output']);assert str(output).startswith('/workspace/build/builderbob/mbse-craft/milestone1/');output.mkdir(exist_ok=False)
     check_spec=importlib.util.spec_from_file_location('local_preflight',ROOT/'scripts/run-p02-local.py');check=importlib.util.module_from_spec(check_spec);check_spec.loader.exec_module(check)
     receipt=dict(schema='mbse-craft.m1-native-session/1',started_utc=base.utc(),job_sha256=base.digest(args.job),status='active',runs=[],preflight=check.local_preflight(compiler_roots=job.get('compiler_roots')))
-    n=NativeM1(exe,output/'run',job['argv_extra'],receipt['runs'])
-    context=dict(n=n,output=output,receipt=receipt,Path=Path,json=json,base=base,check=check)
-    actions=(output/'CONTROLLER_ACTIONS.py').open('x')
+    actions=None
     try:
+        n=NativeM1(exe,output/'run',job['argv_extra'],receipt['runs'])
+        context=dict(n=n,output=output,receipt=receipt,Path=Path,json=json,base=base,check=check)
+        actions=(output/'CONTROLLER_ACTIONS.py').open('x')
         print(json.dumps(dict(ready=True,output=str(output),selected=n.audit()['selected'],widget_count=len(n.audit()['widgets']))),flush=True)
         for line in sys.stdin:
             actions.write(line);actions.flush()
             if line.strip()=='FINISH':
-                assert n.child.poll()==0,'Close app normally and stop driver first'
-                receipt['status']='actions_completed_review_pending';break
+                finish_runs(receipt);break
             try:
                 exec(compile(line,'<recorded-acceptance-action>','exec'),context)
-                print(json.dumps(dict(action_completed=True,app_running=n.child.poll() is None)),flush=True)
+                active=running_runs(receipt)
+                print(json.dumps(dict(action_completed=True,app_running=bool(active),running_runs=active)),flush=True)
             except Exception as error:
                 receipt.setdefault('action_errors',[]).append(dict(action=line.rstrip(),error=repr(error)))
                 print(json.dumps(dict(action_completed=False,error=repr(error))),flush=True)
     finally:
-        if n.child.poll() is None:
-            n.child.stdin.write('{"op":"stop"}\n');n.child.stdin.flush();n.child.wait(timeout=15)
-            receipt['interrupted_cleanup']='Driver stopped; normal app exit not claimed.'
-        receipt['ended_utc']=base.utc();actions.close();(output/'RECEIPT.json').write_text(json.dumps(receipt,indent=2)+'\n')
+        cleanup_runs(receipt)
+        receipt['ended_utc']=base.utc()
+        if actions is not None:actions.close()
+        (output/'RECEIPT.json').write_text(json.dumps(receipt,indent=2)+'\n')
         lease.close()
 
 

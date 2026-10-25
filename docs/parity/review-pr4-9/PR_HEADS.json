@@ -1,0 +1,44 @@
+[
+  {
+    "number": 4,
+    "head": "725e28c1c852429449a5f7303ba981db66f775fc",
+    "base": "implementation/native-alpha",
+    "base_sha": "5b907c333d423df60de7d539da2a0900941825aa",
+    "url": "https://github.com/ajhcs/mbse-craft/pull/4"
+  },
+  {
+    "number": 5,
+    "head": "7f3cbfb8fb8976fcf563eae5ffd10d02f5b2f910",
+    "base": "codex/parity-matrix",
+    "base_sha": "725e28c1c852429449a5f7303ba981db66f775fc",
+    "url": "https://github.com/ajhcs/mbse-craft/pull/5"
+  },
+  {
+    "number": 6,
+    "head": "486a95b156ed4619123633703a6d25833cb865b5",
+    "base": "codex/p02-readiness",
+    "base_sha": "7f3cbfb8fb8976fcf563eae5ffd10d02f5b2f910",
+    "url": "https://github.com/ajhcs/mbse-craft/pull/6"
+  },
+  {
+    "number": 7,
+    "head": "73b2c8df938a7fdda65fc056aa8ad727a83bc1ee",
+    "base": "codex/m1-p03-views",
+    "base_sha": "486a95b156ed4619123633703a6d25833cb865b5",
+    "url": "https://github.com/ajhcs/mbse-craft/pull/7"
+  },
+  {
+    "number": 8,
+    "head": "c815d0a364e120c5f97bb70bddf597be7820403d",
+    "base": "codex/m1-p04-recovery",
+    "base_sha": "73b2c8df938a7fdda65fc056aa8ad727a83bc1ee",
+    "url": "https://github.com/ajhcs/mbse-craft/pull/8"
+  },
+  {
+    "number": 9,
+    "head": "6b1288ee3c5d267fb7c46bad58d36525bfd95c0d",
+    "base": "codex/m1-p05-navigation",
+    "base_sha": "c815d0a364e120c5f97bb70bddf597be7820403d",
+    "url": "https://github.com/ajhcs/mbse-craft/pull/9"
+  }
+]

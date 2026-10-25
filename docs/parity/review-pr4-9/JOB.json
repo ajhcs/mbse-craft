@@ -1,0 +1,49 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m1-pr4-9-review",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/review-m1-pr4-9",
+  "source_manifest": "docs/parity/p06/SOURCE_MANIFEST_FIXED.json",
+  "source_manifest_sha256": "c1e7be76f1919c5732993175939a28c848b57ecfd638fb7770aef83fa227fe3e",
+  "source_sha256": "8b43545d4033edf12c69e86e7d1f32a650c55b867911347542f2ac1d99f30e2b",
+  "cargo_lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "--workspace",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "Fresh full-workspace review gate for the final unchanged669-file application closure; acceptance-controller fixes have separate Python regressions. This is a new exact review job, not replay of an old spent job.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Exact conflicting compiler cwd is /workspace/worktrees/builderbob/kernspan/conops-behavior-p3-20261025, a separate target. Current MemAvailable29211200KiB. Record unrelated compilers, block MBSE/target writers and any MBSE desktop; >=4GiB memory, >=8GiB disk, FD reserve and target flock remain required. No other job hold, writer or service is changed."
+}
