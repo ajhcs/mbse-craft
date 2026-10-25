@@ -34,6 +34,17 @@ pub(crate) fn new_origin() -> Result<Origin, String> {
 
 pub const PROFILE: &str = "mbse-craft.native-views/1";
 pub const RECOVERY_PROFILE: &str = "mbse-craft.native-views-recovery/1";
+pub const COPY_PROFILE: &str = "mbse-craft.native-views/2";
+pub const COPY_RECOVERY_PROFILE: &str = "mbse-craft.native-views-recovery/2";
+pub fn supported_profile(profile: &str) -> bool {
+    matches!(profile, PROFILE | RECOVERY_PROFILE | COPY_PROFILE | COPY_RECOVERY_PROFILE)
+}
+pub fn bound_profile(profile: &str) -> bool {
+    matches!(profile, PROFILE | COPY_PROFILE)
+}
+pub fn copy_profile(profile: &str) -> bool {
+    matches!(profile, COPY_PROFILE | COPY_RECOVERY_PROFILE)
+}
 pub const MAX_BYTES: usize = 8 * 1024 * 1024;
 pub const MAX_VIEWS: usize = 16;
 pub const MAX_OCCURRENCES: usize = 4096;
@@ -77,7 +88,7 @@ id!(ViewId);
 id!(OccurrenceId);
 id!(VisualEdgeId);
 id!(Serial);
-mod native_id {
+pub(crate) mod native_id {
     use super::*;
     pub fn serialize<S: Serializer>(id: &RecordId, s: S) -> Result<S::Ok, S::Error> {
         s.serialize_str(&id.0.to_string())
@@ -181,6 +192,8 @@ pub struct View {
     pub id: ViewId,
     pub title: String,
     pub camera: Camera,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub copy_origin: Option<crate::native_views_copy::CopyOrigin>,
 }
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -324,8 +337,19 @@ impl Document {
         self.validate_contents(Some((snapshot, index)))
     }
     fn validate_contents(&self, native: Option<(&Snapshot, &EdgeIndex)>) -> Result<(), String> {
-        if self.profile != PROFILE && self.profile != RECOVERY_PROFILE {
+        if !supported_profile(&self.profile) {
             return Err("VIEWS_FUTURE_PROFILE".into());
+        }
+        let mut provenance_bytes = 0;
+        for view in self.views.values() {
+            if let Some(origin) = &view.copy_origin {
+                if !copy_profile(&self.profile) { return Err("VIEWS_COPY_REQUIRES_V2".into()); }
+                origin.validate(self, view.id)?;
+                provenance_bytes += serde_json::to_vec(origin).map_err(|e| e.to_string())?.len();
+            }
+        }
+        if provenance_bytes > crate::native_views_copy::MAX_PROVENANCE_BYTES {
+            return Err("VIEWS_COPY_PROVENANCE_BUDGET".into());
         }
         if !self.sidecar_id.starts_with("views:") || self.sidecar_id.len() > 1024 {
             return Err("VIEWS_SIDECAR_ID".into());
@@ -518,10 +542,10 @@ impl Capture {
             {
                 return Err("VIEWS_CAPTURE_CHECKPOINT_MISMATCH".into());
             }
-            document.profile = PROFILE.into();
+            document.profile = if copy_profile(&document.profile) { COPY_PROFILE } else { PROFILE }.into();
             document.binding = Some(NativeBinding::from_checkpoint(c));
         } else {
-            document.profile = RECOVERY_PROFILE.into();
+            document.profile = if copy_profile(&document.profile) { COPY_RECOVERY_PROFILE } else { RECOVERY_PROFILE }.into();
             document.binding = None;
         }
         document.validate(&editor.snapshot)?;
@@ -554,6 +578,7 @@ impl Views {
                     View {
                         id: ViewId(1),
                         title: "Primary canvas".into(),
+                        copy_origin: None,
                         camera: Camera::default(),
                     },
                 ),
@@ -562,6 +587,7 @@ impl Views {
                     View {
                         id: ViewId(2),
                         title: "Review view".into(),
+                        copy_origin: None,
                         camera: Camera::default(),
                     },
                 ),
@@ -707,6 +733,7 @@ impl Views {
                     View {
                         id,
                         title,
+                        copy_origin: None,
                         camera: Camera::default(),
                     },
                 );
@@ -955,7 +982,7 @@ impl Views {
             return Err("VIEWS_NATIVE_CHECKPOINT_NOT_CURRENT".into());
         }
         let mut frozen = self.document.clone();
-        frozen.profile = PROFILE.into();
+        frozen.profile = if copy_profile(&frozen.profile) { COPY_PROFILE } else { PROFILE }.into();
         frozen.binding = Some(NativeBinding::from_checkpoint(checkpoint));
         frozen.validate(&editor.snapshot)?;
         Ok(frozen)
@@ -963,7 +990,7 @@ impl Views {
     pub fn recovery(&self, editor: &Editor) -> Result<Document, String> {
         self.document.validate(&editor.snapshot)?;
         let mut frozen = self.document.clone();
-        frozen.profile = RECOVERY_PROFILE.into();
+        frozen.profile = if copy_profile(&frozen.profile) { COPY_RECOVERY_PROFILE } else { RECOVERY_PROFILE }.into();
         frozen.binding = None;
         Ok(frozen)
     }
@@ -973,7 +1000,7 @@ impl Views {
         checkpoint: &NativeCheckpoint,
     ) -> Result<Self, String> {
         let document = decode_document(bytes)?;
-        if document.profile != PROFILE
+        if !bound_profile(&document.profile)
             || !document
                 .binding
                 .as_ref()
@@ -997,7 +1024,7 @@ impl Views {
     /// detached state. A fresh native Save is still required before a bound Save.
     pub fn restore(bytes: &[u8], editor: &Editor) -> Result<Self, String> {
         let document = decode_document(bytes)?;
-        if document.profile != RECOVERY_PROFILE || document.binding.is_some() {
+        if bound_profile(&document.profile) || document.binding.is_some() {
             return Err("VIEWS_NOT_UNBOUND_RECOVERY".into());
         }
         document.validate(&editor.snapshot)?;
@@ -1025,6 +1052,9 @@ fn decode_document(bytes: &[u8]) -> Result<Document, String> {
     let unique: crate::stage1_io::UniqueValue =
         serde_json::from_slice(bytes).map_err(|e| format!("VIEWS_JSON: {e}"))?;
     let root = unique.0.as_object().ok_or("VIEWS_OBJECT_REQUIRED")?;
+    let profile = root.get("profile").and_then(serde_json::Value::as_str).ok_or("VIEWS_PROFILE_REQUIRED")?;
+    if !supported_profile(profile) { return Err("VIEWS_FUTURE_PROFILE".into()); }
+    crate::native_views_copy::check_wire_budget(root, copy_profile(profile))?;
     for (key, max) in [
         ("views", MAX_VIEWS),
         ("occurrences", MAX_OCCURRENCES),
@@ -1048,8 +1078,8 @@ fn decode_document(bytes: &[u8]) -> Result<Document, String> {
 pub(crate) fn inspect_document(bytes: &[u8]) -> Result<Document, String> {
     let document = decode_document(bytes)?;
     document.validate_contents(None)?;
-    if (document.profile == PROFILE && document.binding.is_none())
-        || (document.profile == RECOVERY_PROFILE && document.binding.is_some())
+    if (bound_profile(&document.profile) && document.binding.is_none())
+        || (!bound_profile(&document.profile) && document.binding.is_some())
     {
         return Err("VIEWS_SOURCE_PROFILE_BINDING".into());
     }

@@ -1,0 +1,33 @@
+{
+  "schema": "mbse-craft.milestone2-results/1",
+  "recorded_utc": "2026-10-25T22:54:39.081230+00:00",
+  "state": "in_progress",
+  "base_commit": "bfbe0f1ad361739fd14d728d93db3b9527c76b0a",
+  "p07": {
+    "state": "implemented_draft_pending_review",
+    "branch": "codex/m2-p07-copy-format",
+    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/10",
+    "source_files": 671,
+    "source_sha256": "8ecb8f9c36f2b976acf9aaba98235db4371acf0f10685e20e78447977320ba8c",
+    "binary_sha256": "b1e8b7f07d5dcf1ad5d9d636510c772d175704a8b498e6696b0e3988f925862d",
+    "workspace_tests_passed": 330,
+    "new_p07_tests": 11,
+    "native_runs": 2,
+    "native_action_errors": 0,
+    "acceptance": "p07/README.md",
+    "contract": "p07/CONTRACT.md",
+    "compiler_receipt": "p07/verification/COMPILER_RECEIPT.json",
+    "native_receipt": "p07/verification/native/RECEIPT.json",
+    "same_agent_review": "p07/verification/NATIVE_REVIEW.json",
+    "original_compile_failure": "p07/failed-compile/RECEIPT.json",
+    "preservation": "p07/PRESERVATION_AFTER.json"
+  },
+  "p08": {
+    "state": "planned",
+    "title": "Apply a reviewed presentation copy transaction",
+    "requires": "P07 review/merge before integration",
+    "exit": "Fresh explicit mappings Apply once; one layout Undo; save/reopen; preserve originals"
+  },
+  "milestone_exit_accepted": false,
+  "full_parity_accepted": false
+}

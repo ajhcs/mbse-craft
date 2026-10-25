@@ -37,6 +37,8 @@ The dependency graph uses conservative serial integration order. It does not res
 
 ## Milestone 2: Presentation recovery
 
+P07 implementation and bounded acceptance evidence: [versioned copy provenance](parity/p07/README.md). P08 and the milestone exit remain open.
+
 7. **Version the presentation-copy format and provenance.** Acceptance: Old files remain readable; future and unknown versions stay preserved; malformed source-to-target mappings refuse without target mutation.
 
 8. **Apply a reviewed presentation copy transaction.** Acceptance: Only selected occurrences copy; skipped mappings remain visible; stale source or target refuses; one layout Undo reverses the copy.

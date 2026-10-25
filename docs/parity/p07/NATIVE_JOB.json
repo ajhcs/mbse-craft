@@ -1,0 +1,40 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "id": "p07-version-and-provenance-native",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m2-p07-format-fixed-20261025T224517Z/mbse-desktop",
+  "binary_sha256": "b1e8b7f07d5dcf1ad5d9d636510c772d175704a8b498e6696b0e3988f925862d",
+  "source_sha256": "8ecb8f9c36f2b976acf9aaba98235db4371acf0f10685e20e78447977320ba8c",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "3b7f668763ac85a195af7cac3c61425518c7a28008a13779823dcc464cb14b91",
+    "scripts/verify-m1-native.py": "e0e14f8c37f0fa5686ba2bae7fb71adfc068d7ca11a748ffb123e49aac058aba",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "inputs": {
+    "/workspace/repos/builderbob/mbse-craft/work/m2-p07-copy-format/docs/parity/p07/fixtures/future-version.mbse-views.json": "a2e0f74449dd46b32ddd67f96fc2a7634067732aa4fd3086d40cf7cc4a8b2b06",
+    "/workspace/repos/builderbob/mbse-craft/work/m2-p07-copy-format/docs/parity/p07/fixtures/legacy-v1.mbse-views.json": "d3e046c92cb84bc124191141758e729343dd3e5166e574cb09dc2f6a10592ec0",
+    "/workspace/repos/builderbob/mbse-craft/work/m2-p07-copy-format/docs/parity/p07/fixtures/malformed-mapping.mbse-views.json": "f05dd9959bc9442fffdeefc5eb129abcbeb9d537e7b3a2c7bef276b4b0a0dc68",
+    "/workspace/repos/builderbob/mbse-craft/work/m2-p07-copy-format/docs/parity/p07/fixtures/native.kernspan": "eefc3606af8a0e31bf8a513f942fc9bbe5122fb1417c5c98789af941cbc1c1fd",
+    "/workspace/repos/builderbob/mbse-craft/work/m2-p07-copy-format/docs/parity/p07/fixtures/source-v2.mbse-views.json": "4d538ac2a9d9e6f0b0c6e60f9dad95159729b0e9707bf2bbff7089b0a736ff8d",
+    "/workspace/repos/builderbob/mbse-craft/work/m2-p07-copy-format/docs/parity/p07/fixtures/unknown-provenance.mbse-views.json": "c70a4cdc21a819b0338bcdb13d7a5f69a10d7d7757121bc1ed4356234628de04"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p07-01",
+  "argv_extra": [
+    "--open",
+    "/workspace/repos/builderbob/mbse-craft/work/m2-p07-copy-format/docs/parity/p07/fixtures/native.kernspan",
+    "--select",
+    "1003"
+  ],
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "scenarios": [
+    "Read exact v1 native/views without migration",
+    "Future, unknown-field and malformed-mapping Open refuses without target mutation or original-byte changes",
+    "Read v2 provenance and inspect it as unverified source data",
+    "Existing v1 destination refuses; fresh v2 pair Save and normal reopen retains provenance and native/raw snapshot"
+  ],
+  "claim_policy": "P07 format compatibility/provenance only; constructed QA inputs, no live Apply, semantic-copy, broad parity or engineering acceptance claim."
+}

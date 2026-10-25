@@ -110,6 +110,13 @@ impl ViewWorkspace {
     pub fn inspection_source_sha256(&self) -> Option<&str> {
         self.inspection.as_ref().map(|p| p.source_sha256())
     }
+    pub fn inspection_profile(&self) -> Option<&str> {
+        self.inspection.as_ref().map(|p| p.declared().profile.as_str())
+    }
+    pub fn inspection_copy_origin(&self) -> serde_json::Value {
+        let origin = self.inspection.as_ref().and_then(|p| self.inspection_view.and_then(|id| p.declared().views.get(&id))).and_then(|v| v.copy_origin.as_ref());
+        serde_json::json!(origin.map(|p| serde_json::json!({"source_sha256":p.source_sha256,"source_profile":p.source_profile,"source_view":p.source_view.get().to_string(),"occurrences":p.occurrences.len(),"edges":p.edges.len(),"authority":"unverified source declaration"})))
+    }
     pub fn inspection_note(&self) -> &str {
         &self.inspection_note
     }
@@ -174,6 +181,11 @@ impl ViewWorkspace {
                 });
                 if self.inspection_view!=old_view {self.mapping=None;self.mapping_preview=None;self.mapping_note.clear();}
                 if let Some(view)=self.inspection_view {
+                    if let Some(origin)=doc.views.get(&view).and_then(|v|v.copy_origin.as_ref()) {
+                        ui.label(format!("Recorded copy origin (unverified): source view {} · {} occurrence mappings · {} edge mappings",origin.source_view.get(),origin.occurrences.len(),origin.edges.len()));
+                        ui.label(format!("Recorded source SHA256: {}",origin.source_sha256));
+                        ui.label("This provenance is inert source data. It grants no target identity, native binding or Undo authority.");
+                    }
                     if ui.button("Start mapping rehearsal").clicked() {
                         match mbse_model::native_views_plan::Plan::new(source,view,editor,&self.views) {
                             Ok(plan)=>{self.mapping=Some(plan);self.mapping_preview=None;self.mapping_note="Every source occurrence starts unselected. Choose target identities explicitly.".into();}

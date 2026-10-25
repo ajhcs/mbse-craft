@@ -1,0 +1,30 @@
+{
+  "schema": "mbse-craft.p07-native-review/1",
+  "recorded_utc": "2026-10-25T22:53:07.199320+00:00",
+  "reviewer": "Same executing agent; independent PR/native review remains separate",
+  "status": "passed_with_stated_scope",
+  "native_scenarios": [
+    "Actual v1 Open without migration",
+    "Future, unknown-field and malformed mapping refusals preserve exact native/layout/history/allocator state",
+    "v2 provenance displayed as unverified source claims without target mutation",
+    "Existing v1 destination refused before any native output; fresh v2 pair acknowledged",
+    "Both app/driver runs closed normally; exact v2 pair/provenance/native/raw state reopened with no restored history; all original inputs unchanged"
+  ],
+  "reviewed_captures": [
+    "run/02-malformed-mapping-refused.png",
+    "run/05-provenance-inspection-open.png",
+    "run/08-v2-provenance-unverified-visible.png",
+    "run/09-existing-v1-save-destination-refused.png",
+    "reopen/11-v2-normal-reopen-raw-retained.png"
+  ],
+  "normal_native_runs": 2,
+  "action_errors": 0,
+  "all_original_inputs_unchanged": true,
+  "all_auth_files_absent": true,
+  "limits": [
+    "v2 provenance fixture is constructed QA input, not live Apply output; Apply is P08.",
+    "The specific owned-version-change SaveAs guard and recovery profile/byte/budget/edge cases have actual API test scope; native existing-v1 destination refusal used the existing-unowned-target guard.",
+    "An initial coordinate click missed the source-view combo without changing target data; actual menu is07b and selected provenance is08.",
+    "No external/domain/platform/performance or full-parity claim."
+  ]
+}

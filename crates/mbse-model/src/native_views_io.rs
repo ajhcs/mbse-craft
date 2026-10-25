@@ -24,6 +24,7 @@ pub enum Kind {
 #[derive(Clone, Debug, PartialEq, Eq)]
 struct Ticket {
     origin: Origin,
+    profile: String,
     session: String,
     instance: String,
     request: u64,
@@ -83,6 +84,7 @@ pub struct RetainedInput {
 }
 struct Acknowledged {
     origin: Origin,
+    profile: String,
     path: PathBuf,
     disk_hash: String,
     content_digest: String,
@@ -195,6 +197,10 @@ impl Io {
         if session.path.as_ref() == Some(&path) {
             return Err("VIEWS_NATIVE_PATH_FORBIDDEN".into());
         }
+        if self.saved.as_ref().is_some_and(|saved| saved.path == path
+            && crate::native_views::copy_profile(&saved.profile) != crate::native_views::copy_profile(&views.document().profile)) {
+            return Err("VIEWS_FORMAT_SAVE_AS_REQUIRED: preserve the existing version; choose a fresh views destination".into());
+        }
         let expected = if kind == Kind::Bound {
             self.saved
                 .as_ref()
@@ -289,6 +295,7 @@ impl Io {
         let request = self.next.checked_add(1).ok_or("VIEWS_REQUEST_EXHAUSTED")?;
         let ticket = Ticket {
             origin,
+            profile: document.profile.clone(),
             session: session.session_id().0.clone(),
             instance: session.instance_id().0.clone(),
             request,
@@ -355,6 +362,7 @@ impl Io {
                     // but is_saved compares to the live presentation independently.
                     self.saved = Some(Acknowledged {
                         origin: ticket.origin,
+                        profile: ticket.profile.clone(),
                         path: ticket.path.clone(),
                         disk_hash: ticket.hash.clone(),
                         content_digest: ticket.hash.clone(),
@@ -366,6 +374,7 @@ impl Io {
                 Kind::Recovery => {
                     self.recovered = Some(Acknowledged {
                         origin: ticket.origin,
+                        profile: ticket.profile.clone(),
                         path: ticket.path.clone(),
                         disk_hash: ticket.hash.clone(),
                         content_digest: ticket.hash.clone(),
@@ -428,6 +437,7 @@ impl Io {
                 // content digest separately from the exact prior disk hash.
                 let ack = Acknowledged {
                     origin: candidate.origin(),
+                    profile: candidate.document().profile.clone(),
                     path: path.clone(),
                     disk_hash: digest,
                     content_digest: if recovery {

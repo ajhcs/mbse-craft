@@ -172,9 +172,11 @@
       "acceptance": [
         "Old files remain readable; future and unknown versions stay preserved; malformed source-to-target mappings refuse without target mutation."
       ],
-      "state": "planned",
+      "state": "implemented_draft_pending_review",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/p07/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/10"
     },
     {
       "id": "P08",

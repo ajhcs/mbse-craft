@@ -1,0 +1,272 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-25T22:47:17.490202+00:00",
+  "job_sha256": "582b2c34320409137e1da82e4161766f536a980ff353e9791d9139fdead28d4c",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p07-01/run",
+      "started_utc": "2026-10-25T22:47:17.510165+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 2296817,
+          "start_ticks": 34278846
+        },
+        "server_pid": {
+          "pid": 2296814,
+          "start_ticks": 34278843
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/repos/builderbob/mbse-craft/work/m2-p07-copy-format/docs/parity/p07/fixtures/native.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 2296817,
+        "server_pid": 2296814,
+        "window": 4194307,
+        "binary_sha256": "b1e8b7f07d5dcf1ad5d9d636510c772d175704a8b498e6696b0e3988f925862d"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-25T22:50:08.986617+00:00",
+      "owned_processes_absent": true
+    },
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p07-01/reopen",
+      "started_utc": "2026-10-25T22:50:56.033629+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 2312959,
+          "start_ticks": 34300698
+        },
+        "server_pid": {
+          "pid": 2312956,
+          "start_ticks": 34300695
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/build/builderbob/mbse-craft/milestone1/native-p07-01/run/p07-v2-saved.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 2312959,
+        "server_pid": 2312956,
+        "window": 4194307,
+        "binary_sha256": "b1e8b7f07d5dcf1ad5d9d636510c772d175704a8b498e6696b0e3988f925862d"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-25T22:51:01.234339+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-25T22:47:17.509876+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 70070419456,
+    "available_memory_bytes": 28305379328,
+    "conflicting_processes": [],
+    "other_project_compilers": [
+      {
+        "pid": 2291298,
+        "comm": "cargo",
+        "cwd": "/workspace/worktrees/builderbob/kernspan/requirements-p5-20261025",
+        "output_dirs": []
+      }
+    ],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 561
+      },
+      {
+        "pid": 2064687,
+        "start_ticks": 33257528,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      },
+      {
+        "pid": 2295872,
+        "start_ticks": 34278309,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "native_snapshot_before": "8a5ac88a1e220ba6ef385f34beb8a7dd989db63828d8d59843a3557afefb306b",
+  "legacy_read_no_migration": true,
+  "invalid_opens_preserve_exact_native_layout_history_allocator": true,
+  "inert_source_provenance_display": {
+    "authority": "unverified source declaration",
+    "edges": 0,
+    "occurrences": 1,
+    "source_profile": "mbse-craft.native-views/1",
+    "source_sha256": "d3e046c92cb84bc124191141758e729343dd3e5166e574cb09dc2f6a10592ec0",
+    "source_view": "1"
+  },
+  "existing_v1_destination_refusal": "VIEWS_EXISTING_UNOWNED_TARGET",
+  "preflight_reopen": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-25T22:50:56.033407+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 70064099328,
+    "available_memory_bytes": 28026183680,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 526
+      },
+      {
+        "pid": 2295872,
+        "start_ticks": 34278309,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "saved_pair": {
+    "native": "/workspace/build/builderbob/mbse-craft/milestone1/native-p07-01/run/p07-v2-saved.kernspan",
+    "native_sha256": "eefc3606af8a0e31bf8a513f942fc9bbe5122fb1417c5c98789af941cbc1c1fd",
+    "views": "/workspace/build/builderbob/mbse-craft/milestone1/native-p07-01/run/p07-v2-saved.mbse-views.json",
+    "views_sha256": "63f0a00e27c22a5fe0f535fa010feab6e600b8bc84a75680a7b2ff4f9f40519c",
+    "profile": "mbse-craft.native-views/2",
+    "copy_origin": {
+      "profile": "mbse-craft.presentation-copy-origin/1",
+      "source_sha256": "d3e046c92cb84bc124191141758e729343dd3e5166e574cb09dc2f6a10592ec0",
+      "source_profile": "mbse-craft.native-views/1",
+      "source_document_id": "document:session:stage1-session-sL9Mtp",
+      "source_sidecar_id": "views:instance:stage1-session-sL9Mtp",
+      "source_view": "1",
+      "declared_native_binding": {
+        "document_id": "document:session:stage1-session-sL9Mtp",
+        "artifact_sha256": "eefc3606af8a0e31bf8a513f942fc9bbe5122fb1417c5c98789af941cbc1c1fd",
+        "snapshot_sha256": "8a5ac88a1e220ba6ef385f34beb8a7dd989db63828d8d59843a3557afefb306b"
+      },
+      "occurrences": {
+        "3": {
+          "source_record": "1",
+          "expected_kind": "System",
+          "outcome": {
+            "state": "Mapped",
+            "target_occurrence": "4",
+            "target_record": "1"
+          }
+        }
+      },
+      "edges": {}
+    },
+    "native_snapshot_unchanged": true,
+    "reopened_layout_digest_matches_saved_bytes": true,
+    "reopened_history": [
+      0,
+      0
+    ]
+  },
+  "all_inputs_unchanged": true,
+  "all_auth_files_absent": true,
+  "completed_native_scenarios": [
+    "Actual v1 Open without migration",
+    "Future, unknown-field and malformed mapping refusals preserve exact native/layout/history/allocator state",
+    "v2 provenance displayed as unverified source claims without target mutation",
+    "Existing v1 destination refused before any native output; fresh v2 pair acknowledged",
+    "Both app/driver runs closed normally; exact v2 pair/provenance/native/raw state reopened with no restored history; all original inputs unchanged"
+  ],
+  "ended_utc": "2026-10-25T22:51:01.235091+00:00"
+}
