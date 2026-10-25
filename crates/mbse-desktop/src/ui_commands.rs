@@ -407,6 +407,13 @@ mod tests {
                         repeat: false,
                         modifiers: s.modifiers,
                     },
+                    egui::Event::Key {
+                        key: s.logical_key,
+                        physical_key: None,
+                        pressed: false,
+                        repeat: false,
+                        modifiers: s.modifiers,
+                    },
                 ],
                 ..Default::default()
             },
@@ -618,6 +625,24 @@ mod tests {
         assert!(retained);
         assert!(app.last_workspace_command.is_none());
         let s = Id::Search.spec().shortcut;
+        // A real repeat has a preceding key-down still held in InputState.
+        ctx.run_ui(
+            egui::RawInput {
+                events: vec![egui::Event::Key {
+                    key: s.logical_key,
+                    physical_key: None,
+                    pressed: true,
+                    repeat: false,
+                    modifiers: s.modifiers,
+                }],
+                ..Default::default()
+            },
+            |ui| app.handle_shortcuts(ui.ctx()),
+        )
+        .drop_without_applying_deltas();
+        assert!(app.search_open);
+        app.search_open = false;
+        app.last_workspace_command = None;
         ctx.run_ui(
             egui::RawInput {
                 events: vec![egui::Event::Key {
