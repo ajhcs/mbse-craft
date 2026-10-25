@@ -1,6 +1,6 @@
 {
   "schema": "mbse-craft.milestone1-results/1",
-  "recorded_utc": "2026-10-25T21:24:58.005239+00:00",
+  "recorded_utc": "2026-10-25T21:26:46.067115+00:00",
   "milestone": "M01",
   "state": "implementation_and_bounded_linux_verification_ready_for_review",
   "prs": [
@@ -63,7 +63,7 @@
       "position": "P06",
       "title": "Finish exact report-row occurrence navigation",
       "branch": "codex/m1-p06-occurrence",
-      "pr_url": null,
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/9",
       "implementation_state": "verified_with_stated_limits",
       "review_state": "pending",
       "merge_state": "unmerged",

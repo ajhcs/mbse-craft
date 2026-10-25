@@ -13,7 +13,7 @@ Lenovo admission or release of another job's hold is claimed.
 | P03 | [PR #6](https://github.com/ajhcs/mbse-craft/pull/6) | [Qualification](p03/README.md): original 38 tests and actual two-view paired-save/failure/reopen evidence bound to identical source bytes |
 | P04 | [PR #7](https://github.com/ajhcs/mbse-craft/pull/7) | [Qualification](p04/README.md): 71-test behavior epoch, ordinary timer/held gesture/failure/retry/recovery; wording successor kept separate |
 | P05 | [PR #8](https://github.com/ajhcs/mbse-craft/pull/8) | [Integrated navigation](p05/README.md): 312 workspace tests, separate build remainder, actual scoped/exact search, usages, browser, cameras and stale impact refusal |
-| P06 | `codex/m1-p06-occurrence` (publication pending) | [Final candidate](p06/README.md): sealed exact occurrence navigation, hidden/detached and stale checks, final native baseline, source copy, UI reuse and presentation rehearsal |
+| P06 | [PR #9](https://github.com/ajhcs/mbse-craft/pull/9) | [Final candidate](p06/README.md): sealed exact occurrence navigation, hidden/detached and stale checks, final native baseline, source copy, UI reuse and presentation rehearsal |
 
 ## Final candidate and evidence boundaries
 
