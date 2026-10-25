@@ -1,0 +1,15 @@
+{
+  "recorded_utc": "2026-10-23T15:31:04.615711+00:00",
+  "status": "ResourcePreflightHeldBeforeCargo",
+  "job_sha256": "16c649e8f8e85799b3ba45d9699887cf6d0437ef4b1f740e98c02da0001a3a06",
+  "source_commit": "933e8718dbce90ae85d10dc8329a23e2599905ae",
+  "packet_checked_utc": "2026-10-23T15:29:35.1723620+00:00",
+  "packet_expires_utc": "2026-10-23T15:30:39.2289570+00:00",
+  "staged_utc": "2026-10-23T15:30:38.022575+00:00",
+  "hold": "Original heartbeat_age_seconds58.1 plus elapsed from health.checked_utc exceeded120; unchanged validator refused before attempt creation",
+  "appserver_identity": "Validated PID1072280/start14235850 UID1000/exe0.164.0/bootb0688b87/ns4026531836",
+  "cargo_launches": 0,
+  "owned_jobs": [],
+  "source_or_wrapper_changed": false,
+  "next_required_action": "Refresh original exact-job health from existing unchanged checker after fresh observer sample; do not reuse/extend prior packet"
+}

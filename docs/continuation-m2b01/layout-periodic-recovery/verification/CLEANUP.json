@@ -1,0 +1,22 @@
+{
+  "checked_utc": "2026-10-23T13:25:46.235032+00:00",
+  "owned_identity_checks": [
+    {
+      "pid": 1021089,
+      "recorded_start_ticks": 13618628,
+      "original_identity_absent": true
+    },
+    {
+      "pid": 1022344,
+      "recorded_start_ticks": 13619715,
+      "original_identity_absent": true
+    }
+  ],
+  "owned_jobs": [],
+  "test_allocation_released": true,
+  "renderer_used": false,
+  "target_apparent_bytes": 5805647217,
+  "target_allocated_kib": 5695596,
+  "peak_rss": "Not measured",
+  "overlap": "Independent observer/coordinator must establish actual overlap from its retained timeline; this receipt alone does not prove concurrency qualification."
+}

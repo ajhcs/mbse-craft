@@ -1,0 +1,15 @@
+{
+  "status": "PreparedNotLaunched",
+  "job_sha256": "16c649e8f8e85799b3ba45d9699887cf6d0437ef4b1f740e98c02da0001a3a06",
+  "launcher_sha256": "6fbbb2a7ef6bfd7bc36d1d22e662f3aaad463bd969a224a05e251ce16a1023f7",
+  "source_commit": "933e8718dbce90ae85d10dc8329a23e2599905ae",
+  "source_sha256": "9b8b2edbea95db990ddb6e8cee9485869c39aa91f9aada4bf1cc963140e2d89c",
+  "manifest_sha256": "193f1b2c04fa9c33fb3481fa8070b717a591f1d591a9bfe35c1db308f208c96e",
+  "source_files": 661,
+  "independent_review": "Source reviewed, no compiler/GUI by reviewer",
+  "new_tests_authored": 8,
+  "execution": "All new source unrun. Historical47test/d0a0binary gates remain preserved, not substituted.",
+  "owned_jobs": [],
+  "identity_rule": "Fresh independent allocation expected_appserver_identity must exactly equal each original health packet identity. Old hostPID not assumed in restarted executor.",
+  "blocker": "Fresh action/resource admission not yet supplied"
+}

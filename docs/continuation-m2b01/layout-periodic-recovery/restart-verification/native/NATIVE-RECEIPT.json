@@ -1,0 +1,171 @@
+{
+  "profile": "mbse-craft.periodic-recovery-native-receipt/1",
+  "status": "BoundedNativeWorkflowCompletedWithDocumentedWordingLimitation",
+  "source_commit": "933e8718dbce90ae85d10dc8329a23e2599905ae",
+  "source_sha256": "9b8b2edbea95db990ddb6e8cee9485869c39aa91f9aada4bf1cc963140e2d89c",
+  "binary_sha256": "f5cb158b4e4811df712b978a4bd1c8a36e4e0840869800be45e98b0a4333dc3d",
+  "job_sha256": "3abab6a17f78f8ddbb5b5b7d0f43f7fe0f3b36c0a474cc856401bf14d3377005",
+  "driver_sha256": "a0425b35443b20f0b8535336066db0cd49ad209c6ffb9f191cd4facd045104bc",
+  "launcher_sha256": "b08872d954aba798844fa013b955a5e6cef76f36c216ad4c917daf07745d9e40",
+  "build_receipt_sha256": "c3950adfb5e7ac9aa049054f37eb91da4061fb9bd8f19ea98e47c377a759a49a",
+  "tests_passed": 71,
+  "started_utc": "2026-10-23T15:36:34.990356+00:00",
+  "ended_utc": "2026-10-23T15:44:17.881812+00:00",
+  "display": ":0",
+  "actual": [
+    "Held pointer35s with dirty persisted layout; no scheduled recovery during gesture",
+    "Normal15s scheduler after release created native and unbound layout recovery,revision3 geometry128,79; native stamps and Save targets unchanged during timerphase",
+    "Disabled timer retained revision4 without extra recovery",
+    "Controlled owned sidecar lock: native Save accepted unchanged snapshot, views VIEWS_BUSY, live geometry retained; close blocked/canceled",
+    "Owned lock verified/removed; ordinary timer retried recovery of revision4 geometry151,94 before subsequent explicit Save",
+    "Actual native Open plus explicit bound layout Open restored revision4 geometry",
+    "Actual native Recover made independent DocumentId preserving records; saved new native/views pair; no old-layout-copy claim",
+    "Normal WM close returned0; exact six identities absent/auth removed"
+  ],
+  "limits": [
+    "Current original images retain ambiguous stale-bound-Save label; separate wording correction follows",
+    "Retry RESULT.audit was after Save; capture12 own audit is pre-Save authority",
+    "Native stale-origin/failed-start timing remain bounded controller tests, no uncontrolled native race/powerloss proof",
+    "No recovered-layout-copy/v2, full parity, external admission, platform/accessibility/performance acceptance"
+  ],
+  "cleanup": {
+    "checked_utc": "2026-10-23T15:45:17.412737+00:00",
+    "started_utc": "2026-10-23T15:36:34.990356+00:00",
+    "ended_utc": "2026-10-23T15:44:17.881812+00:00",
+    "display": ":0",
+    "identities": [
+      {
+        "pid": 1107312,
+        "start_ticks": 14414526,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1107315,
+        "start_ticks": 14414609,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1107316,
+        "start_ticks": 14414634,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1107317,
+        "start_ticks": 14414635,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1107319,
+        "start_ticks": 14414660,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1107322,
+        "start_ticks": 14414679,
+        "original_identity_absent": true
+      }
+    ],
+    "auth_absent": true,
+    "app_exit_code": 0,
+    "server_exit_code": 0,
+    "driver_exit_code": 0,
+    "renderer_released": true,
+    "owned_jobs": [],
+    "source_binary_unchanged": true,
+    "original_pngs": 18
+  },
+  "pngs": [
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/run-timer-r02/00-clean-native-and-views.png",
+      "sha256": "a08981d452b7df98de24dc52b9ec3ac00b8df36dcb1f9be45616e865eff9d0d1",
+      "bytes": 200503
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/run-timer-r02/01-clean-acknowledged-pair.png",
+      "sha256": "a08981d452b7df98de24dc52b9ec3ac00b8df36dcb1f9be45616e865eff9d0d1",
+      "bytes": 200503
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/run-timer-r02/02-normal-fifteen-second-settings.png",
+      "sha256": "c251af5a735ae06f67bf52d2aea8a7c9e202e8acf9f767b3ace6a70dc02a404e",
+      "bytes": 214180
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/run-timer-r02/03-held-gesture-before-due.png",
+      "sha256": "fed27dac74a74457536c0efe4f007599c1934bd9a885a5fae75fb61be93f2939",
+      "bytes": 196397
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/run-timer-r02/04-held-gesture-after-normal-interval.png",
+      "sha256": "fed27dac74a74457536c0efe4f007599c1934bd9a885a5fae75fb61be93f2939",
+      "bytes": 196397
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/run-timer-r02/05-released-layout-awaits-quiet.png",
+      "sha256": "72d48bc611a4c46ac9a47e9a3cf51108b707fea2488dc840da6172b5c6cf1834",
+      "bytes": 197089
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/run-timer-r02/06-ordinary-timer-preserved-layout.png",
+      "sha256": "5f7247d1583da7a9f2ab23d161263394da4201bf28ab0189359b9363f1ae220b",
+      "bytes": 210252
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/run-timer-r02/07-disabled-timer-new-layout-retained.png",
+      "sha256": "6d7c8bfd22e135b23538c507a2e6ba781b83a380836884f897b22139ca5c0921",
+      "bytes": 207574
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/run-timer-r02/08-disabled-after-ordinary-interval.png",
+      "sha256": "6d7c8bfd22e135b23538c507a2e6ba781b83a380836884f897b22139ca5c0921",
+      "bytes": 207574
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/run-timer-r02/09-native-saved-layout-failed.png",
+      "sha256": "3fc41c6a4be0346ea53e37d11986ec000ef9a2a81ca4ef84753c464fc33807a8",
+      "bytes": 209159
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/run-timer-r02/10-partial-save-close-blocked.png",
+      "sha256": "6c3ece487e14458ff261201dc3bde5ed22b84fca65c28fb28124c9c81b2451cc",
+      "bytes": 218463
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/run-timer-r02/11-cancel-close-retains-work-timer-reenabled.png",
+      "sha256": "cae536d4dd1b58699def8c7834c6bd14efe1e43aaefab3a0ff4d2a08564381f8",
+      "bytes": 212290
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/run-timer-r02/12-ordinary-timer-retry-preserved-newer-layout.png",
+      "sha256": "91d600d28b5e48c86dc272b5120b672b945617dd4063e59bdbc6e84c982760eb",
+      "bytes": 212108
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/run-timer-r02/13-final-saved-native-and-layout.png",
+      "sha256": "fd11298b20a36215e309eed6ef611ca10cbefac9fb89564f55caaecfd2878f07",
+      "bytes": 207074
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/run-timer-r02/14-native-reopened-default-presentation.png",
+      "sha256": "14d77357b136da2c83b9eafe2527a41e9dc3951ad7af16c1f54fbdcbff54f873",
+      "bytes": 212596
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/run-timer-r02/15-exact-bound-layout-reopened.png",
+      "sha256": "90134bc528a0240fba8254b52103aa306b11141e267a1a3e1d3435405e5054f4",
+      "bytes": 219634
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/run-timer-r02/16-native-recovery-independent-draft.png",
+      "sha256": "37c27f1b001b294c8d444171fc1c1147a319066c0550f0d76e7f35dadc1a1a06",
+      "bytes": 205393
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/run-timer-r02/17-recovered-draft-preserved-as-new-pair.png",
+      "sha256": "b1cd44e7970c4da8d0e064ae16be3d4865f30210d8038042541bd1053a1fee1f",
+      "bytes": 209386
+    }
+  ],
+  "uploads": false,
+  "owned_jobs": []
+}

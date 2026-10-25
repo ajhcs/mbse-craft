@@ -1,0 +1,6 @@
+{
+  "path": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/run-timer-r02/review.mbse-views.json.lock",
+  "inode": 65464342,
+  "sha256": "cba67ee9277dd5f88df9f9a4daac52ecb246a7c365ecc6b51030cf2c504dc1e5",
+  "purpose": "Controlled manual paired-sidecar write failure; preserve live layout and separate statuses"
+}

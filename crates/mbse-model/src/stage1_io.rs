@@ -76,6 +76,14 @@ pub struct WriteJob {
     expected_disk_hash: Option<String>,
 }
 
+/// Sealed capability to abandon only the matching job whose worker did not start.
+pub struct WriteStartToken { ticket: IoTicket, kind: WriteKind, hash: String }
+impl WriteJob {
+    pub fn start_token(&self) -> WriteStartToken {
+        WriteStartToken { ticket: self.frozen_ticket.clone(), kind: self.frozen_kind.clone(), hash: hash(&self.bytes) }
+    }
+}
+
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct WriteFailure {
     pub message: String,
@@ -693,6 +701,16 @@ impl Session {
         })
     }
 
+    pub fn failed_start(&mut self, token: WriteStartToken, error: String) -> bool {
+        if !self.pending.as_ref().is_some_and(|p| p.ticket == token.ticket
+            && p.kind == token.kind && p.envelope_hash == token.hash) {
+            return false;
+        }
+        self.pending = None;
+        self.last_failure = Some(WriteFailure { message: format!("STAGE1_WORKER_START: {error}"), conflict: false });
+        true
+    }
+
     /// True means this active operation was consumed, including a genuine I/O
     /// failure. It is not a success flag. Mismatched, duplicate or forged-looking
     /// completions leave the active request owned and untouched.
@@ -1295,6 +1313,20 @@ mod tests {
             .prefix("stage1-io-test-")
             .tempdir_in(root)
             .unwrap()
+    }
+    #[test]
+    fn failed_native_worker_start_token_cannot_clear_a_newer_request() {
+        let area=area();let mut session=Session::new(area.path()).unwrap();
+        let first=session.begin_recovery().unwrap();
+        let stale=first.start_token();let token=first.start_token();
+        let hash=session.editor.snapshot.digest();
+        assert!(session.failed_start(token,"injected start failure".into()));
+        assert!(!session.pending());assert!(matches!(session.status(),SaveStatus::Error(_)));
+        let second=session.begin_recovery().unwrap();let ticket=second.ticket.clone();
+        assert!(!session.failed_start(stale,"late old start failure".into()));
+        assert_eq!(session.pending_ticket(),Some(&ticket));
+        assert_eq!(session.editor.snapshot.digest(),hash);
+        assert!(session.complete(execute_write(second)));assert!(session.recovery_current());
     }
     fn rename(session: &mut Session, name: &str) {
         session
