@@ -1,6 +1,6 @@
 # Parity matrix and acceptance package
 
-For current execution and PR status, see [Milestone 1 results](MILESTONE1_RESULTS.md). This package introduction describes the original P01 scope; later execution records are separate.
+For current execution and PR status, see [Milestone 1 results](MILESTONE1_RESULTS.md) and [Milestone 2 results](milestone2-results.json). This package introduction describes the original P01 scope; later execution records are separate.
 
 This is the first preparation PR in [the agreed roadmap](../PARITY_ROADMAP.md),
 P01 of Milestone 1. It starts the scope/fixture freeze; it does not finish all of
@@ -19,7 +19,8 @@ Milestone 1, integrate existing feature branches, or qualify application behavio
 | [sources.json](sources.json) | Versioned source identities and limits on what each source establishes |
 | [craft-apps.json](craft-apps.json) | Twelve apps in the upstream source audit plus separately researched FigCraft |
 | [p02 readiness review](p02/README.md) | Read-only audit of PR 1 evidence, actual coverage gap and prepared unlaunched execution plan |
-| [P07 format and provenance](p07/README.md) | Milestone 2 draft implementation, acceptance results and preservation evidence |
+| [P07 format and provenance](p07/README.md) | Merged P07 format implementation, acceptance results and preservation evidence |
+| [P08 live Apply/Undo](p08/README.md) | Draft transaction implementation, native recovery/copy/reopen evidence and preservation |
 | [fixtures](fixtures) | Original synthetic engineering/UI/source inputs; not production or accepted engineering models |
 
 The historical 86-row handoff supplies the CAT identifiers and feature titles.

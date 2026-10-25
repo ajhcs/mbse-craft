@@ -1,0 +1,39 @@
+{
+  "schema": "mbse-craft.p08-native-review/1",
+  "reviewer": "Codex, same implementing agent",
+  "independent_review": false,
+  "result": "bounded_scenarios_passed_with_retained_harness_corrections",
+  "raw_receipt_status": "actions_completed_review_pending",
+  "runs": 2,
+  "action_errors_retained": 2,
+  "pixels_reviewed": [
+    "run/02-source-defaults-unselected.png",
+    "run/06-source-changed-apply-refused.png",
+    "run/08-live-copy-three-mapped-two-skipped.png",
+    "run/09-v1-format-save-as-required.png",
+    "run/10-one-layout-undo-removes-copy.png",
+    "run/11-layout-redo-restores-exact-copy.png",
+    "reopen/13-fresh-reopen-native-and-copied-views.png"
+  ],
+  "observations": [
+    "Default unselected rows and disabled Apply are visible; lower rows are reached by actual scroll within the mapping area",
+    "Source-change refusal and successful three-row copy with two explicit skipped/unselected outcomes are visible",
+    "New view #9 has Mission, Objective and Measure; one authored Measure\u2192Objective edge; old views remain",
+    "One Undo removes new tab and restores old geometry. Raw9e, accepted95metre and calculated2.5km remain visible",
+    "Owned-v1 Save As refusal is visible and both original output hashes remain exact",
+    "Redo restores copied canvas; normal fresh reopen shows all three view tabs, raw9e, accepted95 and2.5km",
+    "Saved provenance lists all5source rows and3edges; target IDs9\u201313 allocated once, next14 remains afterUndo/Redo",
+    "Independent recovery original/recovered DocIDs compared explicitly; records/drafts and native snapshot unchanged by copy"
+  ],
+  "harness_corrections": [
+    "Recovery banner shifted controls: first coordinate click hit Zoom out; explicit100% restored camera before mapping. Original action error retained; subsequent inspector click anchored to live Open views geometry.",
+    "First reopen assertion used nonexistent audit key snapshot_sha256; corrected to exported snapshot_hash without changing app state. Error retained.",
+    "A conditional no-op in the final artifact checks is not used as evidence; the explicit original/recovered/saved DocumentId comparison on the following action is authoritative."
+  ],
+  "limits": [
+    "Linux private Xvfb/software renderer only; same-agent review",
+    "Capacity, allocator, history dependency, busy pending-ticket and combined-budget refusals have API/controller test evidence",
+    "Fresh reopen selects original Primary view; copied tab retained and exact loaded sidecar digest verified. Copied canvas rendered in first run afterRedo",
+    "No full No Magic, Craft accessibility/keyboard/platform, domain engineering or production acceptance"
+  ]
+}
