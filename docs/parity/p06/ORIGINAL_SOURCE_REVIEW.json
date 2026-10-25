@@ -1,0 +1,23 @@
+{
+  "status": "ActualSourceReviewClosedNoBlockingFinding",
+  "recorded_utc": "2026-10-23T20:41:43.170473+00:00",
+  "reviewer": "/root/periodic_actual_review",
+  "source_commit": "7cb7876ee182872d1a2bf41f5b7707c9a04e04a0",
+  "source_sha256": "f30a1a2827af65242751df14afb5251f2212188f4b3c774907626de685ef487a",
+  "job_sha256": "d2b6907f5b14bf19ba6846bf29217bfad51a210fded5ab358717703d8e20f2d6",
+  "source_files_verified": 668,
+  "verified": [
+    "Consumedticketrechecksfullstamp/documentdigest/exactoccurrenceidentitybeforeephemeralpublication",
+    "Controllerblocksall4busyindependently;hiddenstayshidden;bothrouteendpointsreconciled;noLayoutmutation",
+    "DetachedreturnsNoneandavoidsWorkspace.select",
+    "7newtestsconsistentwithactualfixture/recovery/start-token APIs",
+    "Realcrossview/native transitions andreadonlystateproved by authoredassertions"
+  ],
+  "limits": [
+    "22tests/buildunrun",
+    "Focustestdirecthandleronly,actualbuttonfocusnotestablished",
+    "Nativenavigationdoesnotguaranteevisiblecard orcamera movement"
+  ],
+  "reviewer_execution": false,
+  "reviewer_changes": false
+}
