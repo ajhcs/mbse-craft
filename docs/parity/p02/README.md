@@ -1,5 +1,11 @@
 # P02 readiness review of draft PR 1
 
+**Current result: P02 regression/build and blank-author native execution passed
+on BuilderBob on October 25.** [Exact results and limits](RUN_RESULTS.md) include
+64 passing tests, actual calculation/draft/failure/Cancel observations, normal
+close/reopen equality and retained partial-attempt evidence. PR review remains
+separate; this is not a full-workspace or independent product acceptance claim.
+
 ## October 25 execution contract update
 
 The operator asked to complete P02 on BuilderBob and questioned the continued
@@ -21,7 +27,9 @@ admission. Original held jobs, packets, route failures and plans remain intact.
 The following sections retain the original readiness review and historical
 gate; actual new outcomes will be recorded separately.
 
-**Decision: retained evidence is consistent; P02 integrated acceptance remains
+## Original October 24 review, retained as history
+
+**Original decision: retained evidence is consistent; P02 integrated acceptance remains
 pending.** Reviewed PR head: `5b907c333d423df60de7d539da2a0900941825aa`.
 The review is isolated on `codex/p02-readiness`, stacked on reviewed PR 4 head
 `725e28c1c852429449a5f7303ba981db66f775fc`. No PR 1 application source is changed.
