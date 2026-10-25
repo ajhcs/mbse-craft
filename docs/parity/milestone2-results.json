@@ -45,7 +45,8 @@
     "compiler_receipt": "p08/verification/COMPILER_RECEIPT.json",
     "native_receipt": "p08/verification/native/RECEIPT.json",
     "same_agent_review": "p08/verification/NATIVE_REVIEW.json",
-    "preservation": "p08/PRESERVATION_AFTER.json"
+    "preservation": "p08/PRESERVATION_AFTER.json",
+    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/11"
   },
   "milestone_exit_accepted": false,
   "full_parity_accepted": false,
