@@ -1,0 +1,32 @@
+{
+  "profile": "mbse-craft.layout-status-label-native-job/1",
+  "status": "PreparedNotLaunched",
+  "owner_thread": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+  "source_commit": "8937db779410a4c0fe81d99b907ead77f070d508",
+  "source_sha256": "0735b58512f11edeb07d9fc49b3c14afbda3cb15698bb3a3e1c7b79635565239",
+  "source_manifest": "/workspace/build/builderbob/mbse-craft/layout-recovery-status-label/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "1f2ab08e1fd1a8a4de20da0e1d6f88176e592f462a872cb527afd87674633041",
+  "cargo_lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+  "binary": "/workspace/build/builderbob/mbse-craft/layout-recovery-status-label/attempt-20261023T155039636307Z/mbse-desktop",
+  "binary_sha256": "998b2b4b81e3f2fcc109e4bd43b482671ea234d6b6172e7ad994a950a3a7d731",
+  "binary_bytes": 398415120,
+  "executable_copy": "/workspace/build/builderbob/mbse-craft/layout-recovery-status-label/native-gate/bin/mbse-desktop",
+  "build_receipt": "/workspace/build/builderbob/mbse-craft/layout-recovery-status-label/attempt-20261023T155039636307Z/RECEIPT.json",
+  "build_receipt_sha256": "aa6cb4c25f741e80789b5e1931772a46590ff22759915a4b261e318eb1309a93",
+  "run_dir": "/workspace/build/builderbob/mbse-craft/layout-recovery-status-label/native-gate/run-status-label",
+  "state_dir": "/workspace/build/builderbob/mbse-craft/layout-recovery-status-label/native-gate/state",
+  "config_dir": "/workspace/build/builderbob/mbse-craft/layout-recovery-status-label/native-gate/config",
+  "workflow": [
+    "actual Save model/views clean",
+    "edit ONLY layout; enable ordinary15second timer; no manual Recovery copy",
+    "verify actual unbound recovery bytes/geometry and updated bound-Save wording alongside recovery state",
+    "Save pair and close normally; exact cleanup"
+  ],
+  "runtime_budget_seconds": 600,
+  "isolation": "Existing reviewed aa-exec builderbob-codex/bwrap unshare-net/private tmp, exclusive fresh run directory, Xvfb displayfd, ephemeral0600Xauthority. r09 simultaneous isolated renderer scope; no global slot reservation.",
+  "native_admission": "Fresh exact-job packet and explicit action allocation pin current independent host identity before Xvfb/app launch",
+  "compiler": false,
+  "uploads": false,
+  "new_agent_contexts": false,
+  "base_qualified_tests": 71
+}

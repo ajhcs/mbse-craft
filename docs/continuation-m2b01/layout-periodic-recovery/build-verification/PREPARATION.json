@@ -1,0 +1,25 @@
+{
+  "status": "ReadyNotLaunched",
+  "source_commit": "973c7c22d527e45a0d610cc392afffb91d291e73",
+  "code_commit": "cfe7b4b306d673d72b36d008537e55f980877363",
+  "source_sha256": "7bdf94d6ff6c342a457218ee037c9b708759903a8bac1d2eafd2fe4220bc4145",
+  "source_manifest_sha256": "65b005dbdc38171a17770d66c6d4afac76786f1ca6c6efe34c79cc7ed1d6b0d2",
+  "job_sha256": "f9be2ebbdd48a25a24001abe852ec71192cef9af69709f544335148182ca64c3",
+  "launcher_sha256": "a55c0f5797dc9f580523d76ad096420837e8094589d6803cc2c597d651c79bc8",
+  "source_files": 661,
+  "source_clean": true,
+  "source_unchanged_since47_tests": true,
+  "target_writer_claim": "Sole MBSE owner, previous Cargo identities absent; no new writer allocated since release. Reconfirm at launch.",
+  "disk_budget": {
+    "target_apparent_bytes_before": 5805647217,
+    "workspace_available_bytes_at_preparation": 87735652352,
+    "planned_additional_bytes": 1073741824,
+    "minimum_free_bytes_before_launch": 2147483648,
+    "preserved_binary_max_bytes": 536870912,
+    "prior_native_binary_bytes": 398406064,
+    "notes": "Planning allowance uses existing incremental target plus one preserved binary; target growth is not an enforced filesystem quota. No duplicate target, cleanup, or package installation."
+  },
+  "owned_jobs": [],
+  "build_launches": 0,
+  "gui_launches": 0
+}

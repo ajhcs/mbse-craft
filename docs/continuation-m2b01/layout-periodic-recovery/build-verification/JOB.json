@@ -1,0 +1,60 @@
+{
+  "profile": "mbse-craft.layout-periodic-recovery-build/1",
+  "status": "PreparedNotLaunched",
+  "owner_thread": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+  "cwd": "/workspace/worktrees/builderbob/mbse-craft/layout-periodic-recovery",
+  "branch": "feature/layout-periodic-recovery",
+  "source_commit": "973c7c22d527e45a0d610cc392afffb91d291e73",
+  "code_commit": "cfe7b4b306d673d72b36d008537e55f980877363",
+  "source_sha256": "7bdf94d6ff6c342a457218ee037c9b708759903a8bac1d2eafd2fe4220bc4145",
+  "source_manifest": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-build/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "65b005dbdc38171a17770d66c6d4afac76786f1ca6c6efe34c79cc7ed1d6b0d2",
+  "cargo_lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/semantic-v2/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/semantic-v2/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "CARGO_TERM_COLOR": "never",
+    "RUST_TEST_THREADS": "1"
+  },
+  "profile_note": "Cargo default debug profile, consistent with previous native qualification. No release/deployment.",
+  "qualification": {
+    "focused_tests_passed": 47,
+    "receipt": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery/attempt-20261023T132355395254Z/RECEIPT.json",
+    "receipt_sha256": "6b3939ecc7120d8d9d9020bef74023556f8e9eb0d91e10690bad34c45028e767",
+    "tests_replayed": false
+  },
+  "binary_source": "/workspace/build/builderbob/mbse-craft/semantic-v2/target/debug/mbse-desktop",
+  "preserved_binary": "Per-attempt new mbse-desktop under this output root, mode0700",
+  "disk_budget": {
+    "target_apparent_bytes_before": 5805647217,
+    "workspace_available_bytes_at_preparation": 87735652352,
+    "planned_additional_bytes": 1073741824,
+    "minimum_free_bytes_before_launch": 2147483648,
+    "preserved_binary_max_bytes": 536870912,
+    "prior_native_binary_bytes": 398406064,
+    "notes": "Planning allowance uses existing incremental target plus one preserved binary; target growth is not an enforced filesystem quota. No duplicate target, cleanup, or package installation."
+  },
+  "target_isolation": "This owner has no live Cargo job after47-test receipt and exact identity cleanup. Existing MBSE-only target; next action allocation must reconfirm sole writer. Partner must use disjoint project target. No global mutex asserted.",
+  "admission": "Prepared only. Fresh exact-job health plus explicit build allocation/joint start required.",
+  "runtime_estimate": "Previous source build2.7s; this source unbuilt and untimed. Conservative expected under60s with existing target.",
+  "peak_rss": "Unknown",
+  "gui": false,
+  "network": false,
+  "new_agent_contexts": false,
+  "uploads": false,
+  "owned_jobs": []
+}

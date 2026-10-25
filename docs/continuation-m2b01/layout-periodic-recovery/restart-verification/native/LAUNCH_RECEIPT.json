@@ -1,0 +1,213 @@
+{
+  "status": "FINISHED_NOT_AUTOMATIC_ACCEPTANCE",
+  "started_utc": "2026-10-23T15:36:34.990356+00:00",
+  "job_sha256": "3abab6a17f78f8ddbb5b5b7d0f43f7fe0f3b36c0a474cc856401bf14d3377005",
+  "job": {
+    "profile": "mbse-craft.periodic-recovery-native-job/1",
+    "status": "PreparedNotLaunched",
+    "owner_thread": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+    "source_commit": "933e8718dbce90ae85d10dc8329a23e2599905ae",
+    "source_sha256": "9b8b2edbea95db990ddb6e8cee9485869c39aa91f9aada4bf1cc963140e2d89c",
+    "source_manifest": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/SOURCE_MANIFEST.json",
+    "source_manifest_sha256": "193f1b2c04fa9c33fb3481fa8070b717a591f1d591a9bfe35c1db308f208c96e",
+    "cargo_lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+    "binary": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/attempt-20261023T153130896757Z/mbse-desktop",
+    "binary_sha256": "f5cb158b4e4811df712b978a4bd1c8a36e4e0840869800be45e98b0a4333dc3d",
+    "binary_bytes": 398415120,
+    "executable_copy": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/bin/mbse-desktop",
+    "build_receipt": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/attempt-20261023T153130896757Z/RECEIPT.json",
+    "build_receipt_sha256": "c3950adfb5e7ac9aa049054f37eb91da4061fb9bd8f19ea98e47c377a759a49a",
+    "tests_passed": 71,
+    "run_dir": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/run-timer-r02",
+    "state_dir": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/state",
+    "config_dir": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/config",
+    "workflow": [
+      "actual Save model/views clean",
+      "edit ONLY layout; normal15second periodic scheduler, no manual recovery trigger",
+      "real held multi-frame pointer gesture across due interval; persisted quiet time after release",
+      "actual independent native/layout recovery receipts/bytes/geometry and unchanged Save files",
+      "continued editing and disabled-timer retention",
+      "cancel close and supported exact reopen; do not claim recovered-layout-copy/v2"
+    ],
+    "runtime_budget_seconds": 1800,
+    "isolation": "Existing reviewed aa-exec builderbob-codex/bwrap unshare-net/private tmp, exclusive fresh run directory, Xvfb displayfd, ephemeral0600Xauthority. r09 simultaneous isolated renderer scope; no global slot reservation.",
+    "native_admission": "Fresh exact-job packet and explicit action allocation pin current independent host identity before Xvfb/app launch",
+    "compiler": false,
+    "uploads": false,
+    "new_agent_contexts": false
+  },
+  "route": {
+    "profile": "mbse-craft.private-native-route/1",
+    "native_job_sha256": "3abab6a17f78f8ddbb5b5b7d0f43f7fe0f3b36c0a474cc856401bf14d3377005",
+    "driver": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/driver.py",
+    "driver_sha256": "a0425b35443b20f0b8535336066db0cd49ad209c6ffb9f191cd4facd045104bc",
+    "run_dir": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/run-timer-r02",
+    "state_dir": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/state",
+    "config_dir": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/config",
+    "screen": "2400x1800x24",
+    "dpi": 96,
+    "display_protocol": "private Xvfb displayfd, no ambient DISPLAY",
+    "authentication": "per-run0600cookie removed by owned cleanup; cookie never logged",
+    "actual_input": "XTest keyboard/pointer, pointer down/move/up for held gesture",
+    "compiler": false,
+    "uploads": false,
+    "runtime_budget_seconds": 1800
+  },
+  "launcher_sha256": "b08872d954aba798844fa013b955a5e6cef76f36c216ad4c917daf07745d9e40",
+  "allocation": {
+    "owner_thread_id": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+    "job_manifest_sha256": "3abab6a17f78f8ddbb5b5b7d0f43f7fe0f3b36c0a474cc856401bf14d3377005",
+    "renderer_allocated": true,
+    "native_launch_authorized": true,
+    "expected_appserver_identity": {
+      "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+      "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+      "pid": 1072280,
+      "pid_namespace": "pid:[4026531836]",
+      "start_ticks": 14235850,
+      "uid": 1000
+    },
+    "authority": "Authorized exact-candidate native UI workflow; coordinator fresh job-bound resource packet; normal action review",
+    "isolation": "Exclusive new run-timer-r02, private net/tmp/displayfd/Xauthority; sole MBSE renderer, no global reservation",
+    "compiler_allocated": false,
+    "uploads": false
+  },
+  "health": {
+    "schema": "builderbob.job-bound-health/1",
+    "checked_utc": "2026-10-23T15:35:33.9941864+00:00",
+    "owner_thread_id": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+    "job_label": "MBSE layout periodic recovery native timer exact f5cb158b binary",
+    "expected_job_manifest_sha256": "3abab6a17f78f8ddbb5b5b7d0f43f7fe0f3b36c0a474cc856401bf14d3377005",
+    "job_hash_verification": "Caller supplies frozen SHA; existing owner must verify actual manifest/source and scoped permission at action time. This checker does not access the remote job.",
+    "resource_admission": "PASS",
+    "expires_utc": "2026-10-23T15:36:39.1555040+00:00",
+    "sample_age_seconds": 54.8,
+    "watchdog_age_seconds": 23.3,
+    "watchdog_identity_matches": true,
+    "health": {
+      "schema": "builderbob.fd-watch-health/1",
+      "checked_utc": "2026-10-23T15:35:33.9555061+00:00",
+      "observation_route": "AVAILABLE",
+      "observer_pid": 15648,
+      "exact_process_start_matches": true,
+      "status_pid_matches": true,
+      "observer_state": "RUNNING",
+      "completed_samples": 48,
+      "planned_samples": 1440,
+      "planned_last_sample_utc": "2026-10-24T14:46:36.5991315+00:00",
+      "monitor_status": "OK",
+      "reasons": [],
+      "trend_matches_latest_observation": true,
+      "growth_fds_per_minute": -1.0,
+      "recent_peak_positive_fds_per_minute": 33,
+      "forecast_seconds_to_90_percent_with_64_fd_reserve": 1105.0,
+      "heartbeat_age_seconds": 57.0,
+      "successful_sample_age_seconds": 54.8,
+      "latest_observation": {
+        "fd_count": 250,
+        "fd_types": {
+          "anon_inode": 9,
+          "file_or_device": 63,
+          "pidfd": 29,
+          "pipe": 87,
+          "socket": 62
+        },
+        "hard_nofile": 1048576,
+        "headroom": 774,
+        "identity": {
+          "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+          "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+          "pid": 1072280,
+          "pid_namespace": "pid:[4026531836]",
+          "start_ticks": 14235850,
+          "uid": 1000
+        },
+        "max_fd": 307,
+        "mutations": false,
+        "occupied_below_soft": 250,
+        "pidfd_targets": {
+          "live": 29
+        },
+        "schema": "builderbob.fd-observation/1",
+        "soft_nofile": 1024,
+        "status": "OK",
+        "thresholds": {
+          "critical_free_fds": 64,
+          "critical_percent": 90,
+          "warning_free_fds": 128,
+          "warning_percent": 80
+        },
+        "used_percent": 24.4140625,
+        "utc": "2026-10-23T11:34:39.155504-04:00"
+      },
+      "log_path": "C:\\Users\\colet\\Documents\\Codex\\2026-10-22\\task-16\\evidence\\FD-WATCH-20261023T144736Z.jsonl",
+      "alert_path": "C:\\Users\\colet\\Documents\\Codex\\2026-10-22\\task-16\\evidence\\FD-ALERTS-20261023T144736Z.jsonl",
+      "automatic_remediation": false
+    },
+    "watchdog": {
+      "checked_utc": "2026-10-23T15:35:10.6777573+00:00",
+      "decision": {
+        "level": "OK",
+        "hold_new_launches": false,
+        "reasons": [],
+        "seconds_to_observer_end": 83485.9,
+        "automatic_remediation": false
+      },
+      "console_window_handle": 0,
+      "notification_hold": false
+    },
+    "permission_or_job_allocation_granted": false,
+    "remote_commands_executed": 0,
+    "target_launches": 0,
+    "automatic_remediation": false
+  },
+  "command": [
+    "/usr/bin/python3",
+    "-B",
+    "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/driver.py",
+    "--dpi",
+    "96",
+    "--exe",
+    "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/bin/mbse-desktop",
+    "--run-dir",
+    "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/run-timer-r02",
+    "--state-dir",
+    "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/state",
+    "--config-dir",
+    "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/config"
+  ],
+  "launcher_identity": {
+    "pid": 1107312,
+    "start_ticks": 14414526,
+    "uid": 1000,
+    "exe": "/usr/bin/python3.12",
+    "pid_namespace": "pid:[4026531836]",
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+  },
+  "executable_copy": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/bin/mbse-desktop",
+  "executable_copy_sha256": "f5cb158b4e4811df712b978a4bd1c8a36e4e0840869800be45e98b0a4333dc3d",
+  "compiler": false,
+  "uploads": false,
+  "driver_identity": {
+    "pid": 1107315,
+    "start_ticks": 14414609,
+    "uid": 1000,
+    "exe": "/usr/bin/python3.12",
+    "pid_namespace": "pid:[4026531836]",
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+  },
+  "driver_exit_code": 0,
+  "ended_utc": "2026-10-23T15:44:17.881812+00:00",
+  "executable_sha256_after": "f5cb158b4e4811df712b978a4bd1c8a36e4e0840869800be45e98b0a4333dc3d",
+  "driver_after_wait": {
+    "owned": {
+      "pid": 1107315,
+      "start_ticks": 14414609,
+      "uid": 1000,
+      "exe": "/usr/bin/python3.12",
+      "pid_namespace": "pid:[4026531836]",
+      "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+    },
+    "original_identity_absent": true
+  }
+}

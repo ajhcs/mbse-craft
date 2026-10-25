@@ -1,0 +1,21 @@
+{
+  "status": "SourceFrozenTestsNotRun",
+  "source_commit": "cfe7b4b306d673d72b36d008537e55f980877363",
+  "source_sha256": "7bdf94d6ff6c342a457218ee037c9b708759903a8bac1d2eafd2fe4220bc4145",
+  "source_files": 661,
+  "job_sha256": "07b4c2383b0c46a9b6fe98e1470aeacc7abc029c025f9edd8046ed4a1b9053b0",
+  "launcher_sha256": "b220e94db1e4237971f8b978d730d99b03ef75aff7e05c4f57b4b44ba34c54a6",
+  "lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+  "rust_parse": "rustfmt parsed all four changed files; no type check",
+  "whitespace": "git diff --check passed before commit",
+  "source_worktree_clean": true,
+  "qualified_baseline_clean_unchanged": true,
+  "new_tests_authored_not_executed": 9,
+  "compiler_launches": 0,
+  "renderer_launches": 0,
+  "owned_jobs": [],
+  "target_writer_allocation": "Not received; no target write authorized by preparation",
+  "target": "/workspace/build/builderbob/mbse-craft/semantic-v2/target",
+  "display": "Not applicable to test-only job",
+  "peak_rss": "Unknown"
+}

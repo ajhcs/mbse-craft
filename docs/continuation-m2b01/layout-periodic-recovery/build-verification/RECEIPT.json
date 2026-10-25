@@ -1,0 +1,153 @@
+{
+  "profile": "mbse-craft.layout-periodic-recovery-build-receipt/1",
+  "status": "Passed",
+  "started_utc": "2026-10-23T14:21:34.449908+00:00",
+  "job_manifest_sha256": "f9be2ebbdd48a25a24001abe852ec71192cef9af69709f544335148182ca64c3",
+  "source_commit": "973c7c22d527e45a0d610cc392afffb91d291e73",
+  "source_sha256": "7bdf94d6ff6c342a457218ee037c9b708759903a8bac1d2eafd2fe4220bc4145",
+  "launcher_sha256": "a55c0f5797dc9f580523d76ad096420837e8094589d6803cc2c597d651c79bc8",
+  "allocation": {
+    "owner_thread_id": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+    "job_manifest_sha256": "f9be2ebbdd48a25a24001abe852ec71192cef9af69709f544335148182ca64c3",
+    "commands_authorized": [
+      [
+        "bash",
+        "scripts/dev.sh",
+        "build",
+        "--locked",
+        "--offline",
+        "-p",
+        "mbse-desktop"
+      ]
+    ],
+    "target_dir": "/workspace/build/builderbob/mbse-craft/semantic-v2/target",
+    "target_exclusive_confirmed": true,
+    "build_launch_authorized": true,
+    "authority": "Direct incident-owner01a165b9-9828-768d-a69d-bcd556fb1032 measured new build allocation under parent scope",
+    "writer_confirmation": "Sole MBSE integrator owns this existing MBSE target. Both prior47-test Cargo identities were verified absent; no MBSE compiler job or second target writer allocated since release. Current coordinator allocates only this one command; SysON partner uses disjoint project target. No broad process enumeration or global mutex.",
+    "requested_joint_start_utc": "2026-10-23T14:21:29.486Z",
+    "allocated_utc": "2026-10-23T14:21:34.414254+00:00",
+    "hard_timeout": "None asserted; expected under60seconds is an estimate only",
+    "gui": false,
+    "uploads": false
+  },
+  "commands": [
+    {
+      "argv": [
+        "bash",
+        "scripts/dev.sh",
+        "build",
+        "--locked",
+        "--offline",
+        "-p",
+        "mbse-desktop"
+      ],
+      "started_utc": "2026-10-23T14:21:34.459828+00:00",
+      "health_packet": {
+        "schema": "builderbob.job-bound-health/1",
+        "checked_utc": "2026-10-23T14:20:29.4864348+00:00",
+        "owner_thread_id": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+        "job_label": "MBSE new necessary desktop binary joint build",
+        "expected_job_manifest_sha256": "f9be2ebbdd48a25a24001abe852ec71192cef9af69709f544335148182ca64c3",
+        "job_hash_verification": "Caller supplies frozen SHA; existing owner must verify actual manifest/source and scoped permission at action time. This checker does not access the remote job.",
+        "resource_admission": "PASS",
+        "expires_utc": "2026-10-23T14:22:19.1080300+00:00",
+        "sample_age_seconds": 10.4,
+        "watchdog_age_seconds": 18.9,
+        "watchdog_identity_matches": true,
+        "health": {
+          "schema": "builderbob.fd-watch-health/1",
+          "checked_utc": "2026-10-23T14:20:29.4482446+00:00",
+          "observation_route": "AVAILABLE",
+          "observer_pid": 15132,
+          "exact_process_start_matches": true,
+          "status_pid_matches": true,
+          "observer_state": "RUNNING",
+          "completed_samples": 153,
+          "planned_samples": 1440,
+          "planned_last_sample_utc": "2026-10-24T11:47:16.9086906+00:00",
+          "monitor_status": "OK",
+          "reasons": [],
+          "trend_matches_latest_observation": true,
+          "growth_fds_per_minute": 38,
+          "recent_peak_positive_fds_per_minute": 38,
+          "forecast_seconds_to_90_percent_with_64_fd_reserve": 830,
+          "heartbeat_age_seconds": 12.2,
+          "successful_sample_age_seconds": 10.3,
+          "latest_observation": {
+            "fd_count": 332,
+            "fd_types": {
+              "anon_inode": 9,
+              "file_or_device": 70,
+              "pidfd": 57,
+              "pipe": 171,
+              "socket": 25
+            },
+            "hard_nofile": 1048576,
+            "headroom": 692,
+            "identity": {
+              "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+              "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+              "pid": 993990,
+              "pid_namespace": "pid:[4026531836]",
+              "start_ticks": 13319989,
+              "uid": 1000
+            },
+            "max_fd": 435,
+            "mutations": false,
+            "occupied_below_soft": 332,
+            "pidfd_targets": {
+              "live": 57
+            },
+            "schema": "builderbob.fd-observation/1",
+            "soft_nofile": 1024,
+            "status": "OK",
+            "thresholds": {
+              "critical_free_fds": 64,
+              "critical_percent": 90,
+              "warning_free_fds": 128,
+              "warning_percent": 80
+            },
+            "used_percent": 32.421875,
+            "utc": "2026-10-23T10:20:19.10803-04:00"
+          },
+          "log_path": "C:\\Users\\colet\\Documents\\Codex\\2026-10-22\\task-16\\evidence\\FD-WATCH-20261023T114816Z.jsonl",
+          "alert_path": "C:\\Users\\colet\\Documents\\Codex\\2026-10-22\\task-16\\evidence\\FD-ALERTS-20261023T114816Z.jsonl",
+          "automatic_remediation": false
+        },
+        "watchdog": {
+          "checked_utc": "2026-10-23T14:20:10.5466640+00:00",
+          "decision": {
+            "level": "OK",
+            "hold_new_launches": false,
+            "reasons": [],
+            "seconds_to_observer_end": 77226.4,
+            "automatic_remediation": false
+          },
+          "console_window_handle": 0,
+          "notification_hold": false
+        },
+        "permission_or_job_allocation_granted": false,
+        "remote_commands_executed": 0,
+        "target_launches": 0,
+        "automatic_remediation": false
+      },
+      "log": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-build/attempt-20261023T142134449671Z/00.log",
+      "pid": 1051084,
+      "start_ticks": 13964534,
+      "exit_code": 0,
+      "ended_utc": "2026-10-23T14:21:38.308972+00:00",
+      "log_sha256": "d256514af3d32d2a01b00a66dcbb889b2c0e15380fafcb321ade39af0fd89a9d",
+      "actual_passed_tests": []
+    }
+  ],
+  "gui": false,
+  "uploads": false,
+  "owned_jobs": [],
+  "binary_path": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-build/attempt-20261023T142134449671Z/mbse-desktop",
+  "binary_sha256": "d0a0cf7427d2a09cbf1f56ae44469ce7e794b2d1e736dd10d56119732952dab1",
+  "binary_bytes": 398432768,
+  "workspace_free_bytes_after": 87187574784,
+  "source_unchanged": true,
+  "ended_utc": "2026-10-23T14:21:39.104813+00:00"
+}

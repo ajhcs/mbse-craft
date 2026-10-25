@@ -1,0 +1,208 @@
+{
+  "recorded_utc": "2026-10-23T15:38:39.032162+00:00",
+  "held_gesture_beyond15s": true,
+  "audit": {
+    "error": false,
+    "external_copy_pending": false,
+    "feedback": "Saved accepted values and drafts; current bytes verified.",
+    "frame_override": null,
+    "frame_policy": "Desktop",
+    "layout_recovery_status": "awaiting timer check",
+    "model_revision": 0,
+    "native_recovery_status": "awaiting timer check",
+    "periodic_recovery": true,
+    "pixels_per_point": 1.0,
+    "preferences_status": "Preferences saved.",
+    "profile": "mbse-craft.ui-geometry/1",
+    "raw_version": 0,
+    "recovery_interval_seconds": 15,
+    "recovery_path": null,
+    "save_status": "Saved",
+    "selected": 1,
+    "snapshot_hash": "d872161f64d62e7c45c4a9b758b5bdaab2f0669162c959397ee2d00f59141406",
+    "source_edit_dirty": false,
+    "source_edit_pending": false,
+    "views_active": "1",
+    "views_gesture_active": true,
+    "views_note": "Ok(())",
+    "views_pair_pending": false,
+    "views_pending": false,
+    "views_recovery_current_hint": false,
+    "views_revision": "2",
+    "views_saved_hint": false,
+    "widgets": {
+      "action:Add Actor": [
+        101.375,
+        410.9375,
+        167.59375,
+        428.9375
+      ],
+      "action:Add Capability": [
+        94.9375,
+        384.9375,
+        186.375,
+        402.9375
+      ],
+      "action:Add Environment": [
+        8.0,
+        436.9375,
+        116.96875,
+        454.9375
+      ],
+      "action:Add Expectation": [
+        8.0,
+        462.9375,
+        111.6875,
+        480.9375
+      ],
+      "action:Add Measure": [
+        8.0,
+        410.9375,
+        92.375,
+        428.9375
+      ],
+      "action:Add Mission": [
+        8.0,
+        384.9375,
+        85.9375,
+        402.9375
+      ],
+      "action:Add Objective": [
+        195.375,
+        384.9375,
+        285.125,
+        402.9375
+      ],
+      "action:Add Organization": [
+        125.96875,
+        436.9375,
+        235.5,
+        454.9375
+      ],
+      "action:Add Stakeholder": [
+        176.59375,
+        410.9375,
+        280.625,
+        428.9375
+      ],
+      "action:Browse library folder": [
+        1140.875,
+        3.5,
+        1270.28125,
+        21.5
+      ],
+      "action:Import SysML": [
+        390.96875,
+        3.5,
+        477.46875,
+        21.5
+      ],
+      "action:New": [
+        234.46875,
+        3.5,
+        268.875,
+        21.5
+      ],
+      "action:Open": [
+        277.875,
+        3.5,
+        318.03125,
+        21.5
+      ],
+      "action:Open external projection": [
+        800.84375,
+        3.5,
+        954.15625,
+        21.5
+      ],
+      "action:Recover": [
+        327.03125,
+        3.5,
+        381.96875,
+        21.5
+      ],
+      "action:Recovery copy": [
+        530.15625,
+        3.5,
+        621.78125,
+        21.5
+      ],
+      "action:Redo": [
+        1591.96875,
+        2.0,
+        1635.96875,
+        30.0
+      ],
+      "action:Requirements and evidence": [
+        963.15625,
+        3.5,
+        1131.875,
+        21.5
+      ],
+      "action:Save": [
+        486.46875,
+        3.5,
+        521.15625,
+        21.5
+      ],
+      "action:Undo": [
+        1538.96875,
+        2.0,
+        1582.96875,
+        30.0
+      ],
+      "field:1:name": [
+        8.0,
+        256.0,
+        329.0,
+        275.0
+      ],
+      "field:1:purpose": [
+        8.0,
+        306.0,
+        329.0,
+        339.9375
+      ],
+      "occurrence:3": [
+        394.0,
+        469.0,
+        664.0,
+        553.0
+      ],
+      "path": [
+        202.6875,
+        38.0,
+        2192.0,
+        57.0
+      ],
+      "recovery:Review copies": [
+        630.78125,
+        3.5,
+        791.84375,
+        21.5
+      ],
+      "save-path": [
+        137.46875,
+        65.0,
+        2192.0,
+        84.0
+      ],
+      "settings:Open": [
+        1279.28125,
+        3.5,
+        1389.84375,
+        21.5
+      ],
+      "tree:1": [
+        26.0,
+        170.0,
+        140.9375,
+        188.0
+      ]
+    },
+    "write_pending": false
+  },
+  "views_recovery_files": [],
+  "native_sha256": "489f1362033a3fc662516f1d6e121940e69112f646f6b9dc79e69878035249c9",
+  "views_sha256": "f14601761178a99366eff19e58231c8cf59cc65fb48987c908b76bea05867247"
+}
