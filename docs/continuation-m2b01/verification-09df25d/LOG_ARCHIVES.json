@@ -1,0 +1,102 @@
+{
+  "raw_bytes_preserved": true,
+  "archives": [
+    {
+      "archive": "00.log.gz",
+      "archive_sha256": "d8a052f8be494f596f70a2e25555a58bbca7094d50a307932c06b4793e408d18",
+      "raw_sha256": "2e7940824e05433d869a894f57fd0f24ceb15e7d97aa99b3d022deeb4c8ecc24",
+      "raw_bytes": 7030,
+      "passed_tests": [
+        "native_views::tests::budgets_refuse_without_mutation_and_detached_counts",
+        "native_views::tests::canonical_u64_wire_future_unknown_duplicate_and_corrupt_refused",
+        "native_views::tests::detached_occurrences_share_per_view_budget_and_oversized_input_refuses",
+        "native_views::tests::duplicate_occurrence_edge_restores_exact_pair_and_three_keys_are_checked",
+        "native_views::tests::history_budget_evicts_and_proof_churn_prunes_orphans",
+        "native_views::tests::layout_undo_missing_target_refuses_atomically_and_does_not_discard_native_redo",
+        "native_views::tests::model_text_layout_histories_interleave_without_semantic_delete",
+        "native_views::tests::native_ids_beyond_js_precision_round_trip_without_expanding_core_range",
+        "native_views::tests::native_undo_detaches_and_only_observed_redo_reactivates",
+        "native_views::tests::reopened_detached_has_no_runtime_redo_authority",
+        "native_views::tests::same_element_two_views_move_hide_and_non_reused_ids",
+        "native_views::tests::same_wire_sidecar_revision_geometry_or_record_cannot_reuse_runtime_stamp",
+        "native_views::tests::stale_command_and_nonfinite_refuse_without_history_or_allocator_change",
+        "native_views_io::tests::acknowledged_saved_and_recovery_delete_truncate_tamper_blocks_continuation",
+        "native_views_io::tests::bound_save_requires_actual_native_ack_and_round_trips_two_views",
+        "native_views_io::tests::failed_native_completion_does_not_mint_checkpoint_and_old_ack_is_historical",
+        "native_views_io::tests::foreign_presentation_origin_refuses_capture_and_ack_without_clearing_pending",
+        "native_views_io::tests::imported_revision_one_has_no_runtime_pristine_replacement_capability",
+        "native_views_io::tests::local_replacement_rechecks_deleted_truncated_and_tampered_bound_or_recovery_artifact",
+        "native_views_io::tests::missing_future_unknown_duplicate_corrupt_inputs_preserve_default_and_original",
+        "native_views_io::tests::native_and_views_freeze_together_and_old_start_token_cannot_clear_new_job",
+        "native_views_io::tests::native_checkpoint_detects_on_disk_change_and_open_is_sealed_without_request",
+        "native_views_io::tests::noncanonical_recovery_tracks_exact_disk_hash_and_canonical_content_separately",
+        "native_views_io::tests::partial_native_success_views_failure_retains_live_layout_and_native_saved",
+        "native_views_io::tests::recovered_native_document_id_refuses_old_bound_and_unbound_views",
+        "native_views_io::tests::recovery_to_bound_replacement_clears_recovery_ack_and_pending_refuses_all_replacement",
+        "native_views_io::tests::replacement_clears_opposite_ack_and_revision_collision_cannot_discard_recovery_edits",
+        "native_views_io::tests::same_revision_different_bound_files_replace_ack_content_not_just_counter",
+        "native_views_io::tests::same_snapshot_different_artifact_is_refused_and_original_bytes_retained",
+        "native_views_io::tests::stale_views_and_recovery_ack_cannot_preserve_new_layout"
+      ],
+      "warnings": [
+        "patch `egui_extras v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/views-origin-paired-save/vendor/egui-fork/crates/egui_extras)` was not used in the crate graph",
+        "patch `egui_inspection v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/views-origin-paired-save/vendor/egui-fork/crates/egui_inspection)` was not used in the crate graph",
+        "patch `egui_kittest v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/views-origin-paired-save/vendor/egui-fork/crates/egui_kittest)` was not used in the crate graph",
+        "use of deprecated method `std::sync::atomic::Atomic::<u64>::fetch_update`: renamed to `try_update` for consistency",
+        "`mbse-model` (lib) generated 1 warning (run `cargo fix --lib -p mbse-model` to apply 1 suggestion)",
+        "`mbse-model` (lib test) generated 1 warning (1 duplicate)"
+      ]
+    },
+    {
+      "archive": "01.log.gz",
+      "archive_sha256": "b808aa2d7a530a40240f6a9a3140f6bfc46d87ae746b2458942443224e11d98f",
+      "raw_sha256": "11f1b59dfde881ce34842a4d33009c220961ed640fb909349798ebbbc5999cd8",
+      "raw_bytes": 6878,
+      "passed_tests": [
+        "views_ui::tests::deferred_native_ack_keeps_original_destination_and_refuses_open_while_pending",
+        "views_ui::tests::injected_worker_start_failure_clears_only_owned_pending_and_keeps_geometry",
+        "views_ui::tests::native_success_alone_and_stale_layout_ack_cannot_authorize_continuation",
+        "views_ui::tests::redo_close_selected_view_reconciles_and_keeps_primary",
+        "views_ui::tests::refused_sidecar_open_preserves_history_active_selection_and_route_endpoints",
+        "views_ui::tests::stale_native_cancel_or_ack_cannot_clear_newer_paired_request",
+        "views_ui::tests::tampered_recovery_hint_cannot_authorize_navigation",
+        "views_ui::tests::undo_selected_new_view_reconciles_to_primary_without_panicking"
+      ],
+      "warnings": [
+        "patch `egui_extras v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/views-origin-paired-save/vendor/egui-fork/crates/egui_extras)` was not used in the crate graph",
+        "patch `egui_inspection v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/views-origin-paired-save/vendor/egui-fork/crates/egui_inspection)` was not used in the crate graph",
+        "patch `egui_kittest v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/views-origin-paired-save/vendor/egui-fork/crates/egui_kittest)` was not used in the crate graph",
+        "use of deprecated constant `std::f32::EPSILON`: replaced by the `EPSILON` associated constant on `f32`",
+        "`egui` (lib) generated 1 warning",
+        "use of deprecated method `std::sync::atomic::Atomic::<u64>::fetch_update`: renamed to `try_update` for consistency",
+        "`mbse-model` (lib) generated 1 warning (run `cargo fix --lib -p mbse-model` to apply 1 suggestion)",
+        "unused import: `Pos2`",
+        "unused variable: `ctx`",
+        "method `open` is never used",
+        "field `zoom` is never read",
+        "`mbse-desktop` (bin \"mbse-desktop\" test) generated 4 warnings (run `cargo fix --bin \"mbse-desktop\" -p mbse-desktop --tests` to apply 2 suggestions)"
+      ]
+    },
+    {
+      "archive": "02.log.gz",
+      "archive_sha256": "077a940632f68515169695e820a9953e9d0c9b968fb1f4afb52062464fb16ece",
+      "raw_sha256": "d042ed6652764e2d6e45c33f87b42c3e7cf8532b7f8f7b5755831e6b5689e786",
+      "raw_bytes": 3434,
+      "passed_tests": [],
+      "warnings": [
+        "patch `egui_extras v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/views-origin-paired-save/vendor/egui-fork/crates/egui_extras)` was not used in the crate graph",
+        "patch `egui_inspection v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/views-origin-paired-save/vendor/egui-fork/crates/egui_inspection)` was not used in the crate graph",
+        "patch `egui_kittest v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/views-origin-paired-save/vendor/egui-fork/crates/egui_kittest)` was not used in the crate graph",
+        "use of deprecated constant `std::f32::EPSILON`: replaced by the `EPSILON` associated constant on `f32`",
+        "`egui` (lib) generated 1 warning",
+        "use of deprecated method `std::sync::atomic::Atomic::<u64>::fetch_update`: renamed to `try_update` for consistency",
+        "`mbse-model` (lib) generated 1 warning (run `cargo fix --lib -p mbse-model` to apply 1 suggestion)",
+        "unused import: `Pos2`",
+        "unused variable: `ctx`",
+        "method `open` is never used",
+        "field `zoom` is never read",
+        "`mbse-desktop` (bin \"mbse-desktop\") generated 4 warnings (run `cargo fix --bin \"mbse-desktop\" -p mbse-desktop` to apply 2 suggestions)"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+# Revised native views gate: prepared, NOT LAUNCHED
+
+The38-test/scoped-build gate passed for exact source09df25d/sourcee6cc2113. Renderer remains Kernspan first; no display, application, GUI driver or screenshot job is started/reserved here. Fresh explicit renderer allocation and independent admission bound to the prepared native JOB SHA are still required. The compiler is released. Library/image upload remains stopped; local native captures never grant upload authority.
+
+Use only the new preserved executable `/workspace/build/builderbob/mbse-craft/views-origin-paired-save/attempt-20261023T120936367854Z/mbse-desktop`,398406064bytes, SHA256`199226d504ccd1cc066b30bb29e8a8a64f0fb0eeaf2dd63c47b8668bc492a9b4`. Verify binary/source/lock/normal permissions before launch. Older1b3 binary and28-pass epoch cannot prove these preservation fixes. No rebuild or warning-only source cleanup belongs to native preparation.
+
+The prepared JOB.json records argv, workspace-only state/config, immutable identities and allocation requirements. DISPLAY and XAUTHORITY are deliberately unassigned: the coordinator must supply a private owned renderer, not the ambient desktop. Confirm actual owned workload using explicit receipts; do not enumerate unrelated processes, create substitute probes or hold an idle GUI slot.
+
+## Core actual walkthrough
+
+Follow the original two-view workflow with the new executable: fresh synthetic native System/Mission; explicit reuse of one Mission in two named views; inspector rename visible in both; occurrence move/drag, pin/unpin, hide/show/remove and scoped Layout Undo/Redo; active-view creation/Undo/close/Redo without panic; supported explicit edge endpoint restoration with duplicate occurrences; exact native/views save/reopen IDs/high-water; native Undo detach/matching Redo; old sidecar refusal after native recovery changes DocumentId. Preserve the complete semantic ledger and source/native identities. Record native snapshot/model/raw stamps during view-only actions separately from evaluator/output execution. If no actual evaluation ran, do not claim evaluated-result preservation.
+
+## Corrected preservation cases
+
+**A. Unowned sidecar destination is a preflight refusal.** Under the owned gate directory create a clearly labeled controlled file at a fresh `.mbse-views.json` destination that the app has never acknowledged. Record exact bytes/hash. Make a native edit and a layout edit so both states are visibly dirty, then select this views destination and Save. Destination/ownership validation now happens before the native request begins: native on-disk artifact must remain at the old hash, the edited native state stays dirty, no view write occurs, both edits remain available and feedback explains the refusal/fresh destination. This is not a post-native partial-save demonstration.
+
+**B. Owned cooperative-lock fixture demonstrates post-native view-write failure.** First complete genuine native+views preservation in the same app session; record both acknowledged artifact hashes. Make another native edit and a layout edit. Create only the exact cooperative sidecar lock expected by this source, using exclusive creation under the owned gate directory. Rust uses `sidecar_path.with_extension("json.lock")`: for `review.mbse-views.json`, the lock is `review.mbse-views.json.lock`. Label the receipt/capture **controlled owned cooperative-lock fixture** and record lock path, inode and bytes/hash. Do not use permissions, broad resource exhaustion, races or another renderer to force failure.
+
+Save to that already acknowledged sidecar destination. Preflight can verify its owned prior bytes; native Save should succeed and produce an actually changed native artifact. The views worker then refuses the existing cooperative lock. Verify native Saved/current native bytes independently, views Unsaved/current geometry retained, sidecar bytes still at their prior hash, and close/load refuses to discard the live layout. A pending/native completion alone is not aggregate success. Capture actual feedback and artifact identities. This is controlled native failure evidence, not proof of an uncontrolled filesystem race or power-loss behavior.
+
+Once the app reports the owned view job no longer pending, remove only the lock fixture this gate created after verifying its inode/hash. Do not remove another writer's lock or any unrelated source/backup. Retry preservation and verify both acknowledgments and reopen. Keep every before/failure/after artifact and receipt.
+
+## Replacement, origin and pending-request observations
+
+Create independently preserved boundA/recoveryB layouts over the same native model where practical. Open the preserved recovery explicitly, edit it, then attempt another local Open: unsaved geometry/history must remain. Delete/truncate/tamper only an acknowledged fixture created by this gate, then attempt Open: actual artifact verification must refuse and preserve current geometry/selection. Importing a revision1 file does not make it a pristine runtime default. Successful replacement resets transient drag/route selection; equal numeric occurrence IDs do not imply retained gestures.
+
+The38 passing tests include controlled same-ID/revision foreign-origin stamps, deferred native acknowledgments and stale native completion ownership. If live timing cannot expose the relevant window, keep those results labeled **controller-only**, and do not describe them as observed native races. The UI disables views path changes/Open during a paired request, and the frozen destination never comes from later path text. No artificial transport delay or additional process fixture is authorized by this plan.
+
+## Evidence and cleanup
+
+Retain actual binary/source hashes, app/display PID/start/end/exit, owned fixture identities, source/native/views before/after bytes, audit records and any separately authorized local captures. A screenshot alone is not a pass. End the native run and clean up only owned renderer/auth resources, then release renderer promptly; source/doc review must not hold it idle. Full-workspace, platform/accessibility/performance, external-tool/engineering acceptance, automatic recovered-view copy and broader routing remain separate gates.

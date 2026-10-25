@@ -38,6 +38,7 @@ enum Load {
 
 pub struct Workspace {
     session: Session,
+    views: crate::views_ui::ViewWorkspace,
     path: String,
     save_path: String,
     model_fields: HashMap<egui::Id, RawKey>,
@@ -109,7 +110,8 @@ impl Workspace {
             .unwrap_or_default();
         let (writes, completed_writes) = mpsc::channel();
         let preferences = Preferences::open(config, ctx.clone());
-        let mut app=Self { session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,last_edit:Instant::now(),last_periodic:Instant::now(), feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
+        let views = crate::views_ui::ViewWorkspace::new(&session);
+        let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,last_edit:Instant::now(),last_periodic:Instant::now(), feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
             creation: None, relation: None, popout: None, pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new() };
         app.refresh_recoveries();
         app
@@ -138,10 +140,13 @@ impl Workspace {
         }
     }
     fn command(&mut self, command: Command) {
-        let result = self
-            .session
-            .editor
-            .command(&self.session.editor.freshness(), command);
+        let stamp = self.views.views.stamp(&self.session.editor);
+        let result = self.views.views.dispatch(&mut self.session.editor, &stamp,
+            mbse_model::native_views::NativeAction::Command(command)).and_then(|outcome| match outcome {
+                mbse_model::native_views::NativeOutcome::Edit(outcome) => Ok(outcome),
+                _ => Err("Unexpected native history outcome".into()),
+            });
+        self.views.reconcile();
         let message = result.map(|outcome| {
             if let Some(id) = outcome.created {
                 if self.session.editor.snapshot.records.contains_key(&id) {
@@ -248,7 +253,8 @@ impl Workspace {
             }
         }
     }
-    fn spawn_write(&mut self, job: WriteJob) {
+    fn spawn_write(&mut self, job: WriteJob, prepared: crate::views_ui::PreparedPair) {
+        if let Err(error) = self.views.capture_native(&self.session, &job.ticket, &job.kind, prepared) { self.result(Err(error)); }
         let tx = self.writes.clone();
         let ctx = self.context.clone();
         let kind = job.kind.clone();
@@ -262,16 +268,18 @@ impl Workspace {
         )));
     }
     fn save(&mut self) -> bool {
+        if self.views.io.pending() { self.result(Err("Views write pending; current work retained.".into())); return false; }
         if self.save_path.trim().is_empty() {
             self.result(Err("Enter a native save destination before saving.".into()));
             return false;
         }
-        match self
-            .session
-            .begin_save(&PathBuf::from(self.save_path.trim()))
-        {
+        let native_path = PathBuf::from(self.save_path.trim());
+        let prepared = match self.views.prepare_native(&self.session, WriteKind::Save, Some(&native_path)) {
+            Ok(prepared) => prepared, Err(error) => { self.result(Err(error)); return false; }
+        };
+        match self.session.begin_save(&native_path) {
             Ok(job) => {
-                self.spawn_write(job);
+                self.spawn_write(job, prepared);
                 true
             }
             Err(error) => {
@@ -281,9 +289,13 @@ impl Workspace {
         }
     }
     fn recovery(&mut self) -> bool {
+        if self.views.io.pending() { self.result(Err("Views write pending; current work retained.".into())); return false; }
+        let prepared = match self.views.prepare_native(&self.session, WriteKind::Recovery, None) {
+            Ok(prepared) => prepared, Err(error) => { self.result(Err(error)); return false; }
+        };
         match self.session.begin_recovery() {
             Ok(job) => {
-                self.spawn_write(job);
+                self.spawn_write(job, prepared);
                 true
             }
             Err(error) => {
@@ -295,6 +307,7 @@ impl Workspace {
     fn finish_writes(&mut self, ctx: &egui::Context) {
         while let Ok(result) = self.completed_writes.try_recv() {
             let kind = result.kind.clone();
+            let ticket = result.ticket.clone();
             let error = result.error().map(ToString::to_string);
             let consumed = self.session.complete(result);
             let current = consumed
@@ -304,20 +317,18 @@ impl Workspace {
                         !self.session.is_dirty()
                             && matches!(self.session.status(), stage1_io::SaveStatus::Saved)
                     }
-                    WriteKind::Recovery => self.session.recovery_current(),
+                    WriteKind::Recovery => self.session.recovery_current() && !matches!(self.session.status(), stage1_io::SaveStatus::Error(_) | stage1_io::SaveStatus::Conflict(_)),
                 };
+            if !consumed {
+                self.result(Err("Stale native receipt ignored; active request and paired capture retained.".into()));
+                continue;
+            }
             if let Some(error) = error {
-                self.result(Err(format!(
-                    "{kind:?} failed: {error}. Current work retained."
-                )));
-                self.pending_continue = None;
-            } else if !consumed {
-                self.result(Err(
-                    "Write receipt did not match the active document; current work retained."
-                        .into(),
-                ));
+                self.views.cancel_native_capture(&ticket, &kind);
+                self.result(Err(format!("{kind:?} failed: {error}. Current work retained.")));
                 self.pending_continue = None;
             } else if !current {
+                self.views.cancel_native_capture(&ticket, &kind);
                 self.result(Ok(format!("Earlier {kind:?} snapshot written. Newer accepted values or drafts remain unsaved; repeat preservation to continue.")));
                 self.pending_continue = None;
             } else {
@@ -334,19 +345,11 @@ impl Workspace {
                     ),
                 }));
                 self.refresh_recoveries();
-                if let Some((action, expected)) = self.pending_continue.take() {
-                    if expected == kind {
-                        self.pending = None;
-                        match action {
-                            Load::Quit => {
-                                self.allow_close = Some(self.session.editor.snapshot.digest());
-                                self.close_intent = true;
-                                ctx.request_repaint();
-                            }
-                            action => self.load(action),
-                        }
-                    }
+                if let Err(error) = self.views.after_native(&self.session, &ticket, &kind) {
+                    self.result(Err(format!("Native preservation succeeded; views remain unsaved: {error}")));
+                    self.pending_continue = None;
                 }
+
             }
         }
     }
@@ -360,11 +363,14 @@ impl Workspace {
             })
     }
     fn request_load(&mut self, action: Load) {
-        if self.session.is_dirty() || self.session.pending() {
+        if self.session.is_dirty() || self.session.pending() || self.views.blocked(&self.session) {
             self.pending = Some(action);
             self.pending_continue = None;
-        } else {
+        } else if self.views.verify_preserved(&self.session, &WriteKind::Save).is_ok() {
             self.load(action);
+        } else {
+            self.pending = Some(action);
+            self.result(Err("Acknowledged view file changed or is unavailable; live layout retained.".into()));
         }
     }
     fn load(&mut self, action: Load) {
@@ -381,6 +387,7 @@ impl Workspace {
         };
         match result {
             Ok(session) => {
+                self.views = crate::views_ui::ViewWorkspace::new(&session);
                 self.session = session;
                 self.creation = None;
                 self.context_creation = None;
@@ -514,18 +521,16 @@ impl Workspace {
         });
     }
     fn history(&mut self, undo: bool, field: Option<RawKey>) {
-        let freshness = self.session.editor.freshness();
-        let result = if let Some(key) = field.as_ref() {
-            if undo {
-                self.session.editor.undo_text(&freshness, key)
-            } else {
-                self.session.editor.redo_text(&freshness, key)
-            }
-        } else if undo {
-            self.session.editor.undo_model(&freshness)
-        } else {
-            self.session.editor.redo_model(&freshness)
+        use mbse_model::native_views::{NativeAction, NativeOutcome};
+        let action = match (undo, field.clone()) {
+            (true, Some(key)) => NativeAction::TextUndo(key), (false, Some(key)) => NativeAction::TextRedo(key),
+            (true, None) => NativeAction::ModelUndo, (false, None) => NativeAction::ModelRedo,
         };
+        let stamp = self.views.views.stamp(&self.session.editor);
+        let result = self.views.views.dispatch(&mut self.session.editor, &stamp, action).and_then(|outcome| match outcome {
+            NativeOutcome::History(changed) => Ok(changed), _ => Err("Unexpected command outcome".into()),
+        });
+        self.views.reconcile();
         if result.as_ref().is_ok_and(|changed| *changed) {
             self.last_edit = Instant::now();
         }
@@ -1168,143 +1173,58 @@ impl Workspace {
     }
     fn canvas(&mut self, root: &mut egui::Ui) {
         egui::CentralPanel::default().show(root, |ui| {
-            ui.horizontal_wrapped(|ui| {
-                ui.heading("System canvas");
-                ui.label("Select to edit · Details opens a popout");
-                ui.add(egui::Slider::new(&mut self.zoom, 0.65..=1.4).text("Scale"));
-            });
-            let records: Vec<_> = self
-                .session
-                .editor
-                .snapshot
-                .records
-                .values()
-                .cloned()
-                .collect();
+            ui.heading("Native views");
+            if let Some(record) = self.views.toolbar(ui, &self.session) { self.select(record); }
+            let records: Vec<_> = self.session.editor.snapshot.records.values().cloned().collect();
             let graph = match stage1_graph::derive_graph(&self.session.editor.snapshot) {
-                Ok(graph) => graph,
-                Err(error) => {
-                    ui.colored_label(ERROR, error);
-                    return;
-                }
+                Ok(graph) => graph, Err(error) => { ui.colored_label(ERROR, error); return; }
             };
-            let ownership_count=graph.edges.iter().filter(|e|e.id.role==stage1_graph::RelationRole::Scope).count();
-            ui.horizontal_wrapped(|ui| {
-                let ownership_label=format!("Show ownership links ({ownership_count}{})",if self.show_ownership {" shown"} else {" hidden"});
-                let response=ui.checkbox(&mut self.show_ownership,ownership_label); self.bound("canvas:ownership",&response);
-                ui.label("Ownership means System scope. Other arrows show authored semantic links.");
-            });
-            ui.label(RichText::new("Select a relation in the complete ledger to highlight its arrow and inspect both endpoints.").small());
-            let fit_width=(ui.available_width()-16.).max(300.);
-            let columns=((fit_width/300.).floor() as usize).clamp(1,3);
-            let card_width=(fit_width-50.-24.*(columns-1) as f32)/columns as f32;
+            ui.checkbox(&mut self.show_ownership, "Show derived ownership links");
+            ui.label("Drag or move an occurrence; hide/remove affects this presentation. Model fields remain in the inspector. Semantic Delete is unavailable.");
+            ui.label("Persisted edges keep exact occurrence endpoints. Other arrows are derived only when both visible endpoints are unique; the complete ledger remains authoritative. Bend-point routing is unavailable.");
+            self.views.reconcile();
+            let Some(view) = self.views.views.document().views.get(&self.views.active) else {
+                ui.colored_label(ERROR, "No valid view available; model retained."); return;
+            };
+            let camera = view.camera.clone();
+            let occurrences: Vec<_> = self.views.views.document().occurrences.values().filter(|o| o.view == self.views.active && o.visible && o.presence.active()).cloned().collect();
+            let attached: Vec<_> = self.views.views.document().edges.values().filter(|e| e.view == self.views.active && e.presence.active()).cloned().collect();
+            let scale = camera.zoom as f32;
             let canvas_height = (ui.available_height() * 0.60).max(260.);
-            egui::ScrollArea::both()
-                .id_salt("primary-canvas")
-                .max_height(canvas_height)
-                .auto_shrink([false, false])
-                .show(ui, |ui| {
-                    let scale = self.zoom;
-                    let size = Vec2::new(
-                        fit_width * scale,
-                        (records.len().div_ceil(columns) as f32 * 155. + 50.).max(350.) * scale,
-                    );
-                    let (area, _) = ui.allocate_exact_size(size, egui::Sense::hover());
-                    let rects: BTreeMap<_, _> = records
-                        .iter()
-                        .enumerate()
-                        .map(|(index, r)| {
-                            let min = area.min
-                                + Vec2::new(
-                                    25. + (index % columns) as f32 * (card_width+24.),
-                                    24. + (index / columns) as f32 * 155.,
-                                ) * scale;
-                            (
-                                r.id,
-                                Rect::from_min_size(min, Vec2::new(card_width, 112.) * scale),
-                            )
-                        })
-                        .collect();
-                    let mut visible_edges:Vec<_>=graph.edges.iter().enumerate().filter(|(_,edge)|self.show_ownership || edge.id.role!=stage1_graph::RelationRole::Scope).collect();
-                    visible_edges.sort_by_key(|(_,edge)|self.relation==Some(edge.id));
-                    for (index, edge) in visible_edges {
-                        let (Some(source), Some(target)) =
-                            (rects.get(&edge.id.source), rects.get(&edge.id.target))
-                        else {
-                            continue;
-                        };
-                        let a = source.center_bottom();
-                        let b = target.center_top();
-                        let bend = Pos2::new(a.x + (index % 5) as f32 * 8., a.y + 14. * scale);
-                        let selected=self.relation==Some(edge.id);
-                        let color=if self.relation.is_some() && !selected {LINE} else {ACCENT};
-                        let stroke=Stroke::new(if selected {3.} else {1.},color);
-                        ui.painter().line_segment([a,bend],stroke);
-                        ui.painter().arrow(bend,b-bend,stroke);
+            egui::ScrollArea::both().id_salt(("native-view", self.views.active.get())).max_height(canvas_height).auto_shrink([false, false]).show(ui, |ui| {
+                let width = occurrences.iter().map(|o| (o.geometry.x - camera.x + o.geometry.width + 50.) as f32 * scale).fold(ui.available_width().max(400.), f32::max).clamp(400., 32768.);
+                let height = occurrences.iter().map(|o| (o.geometry.y - camera.y + o.geometry.height + 50.) as f32 * scale).fold(350., f32::max).clamp(350., 32768.);
+                let (area, _) = ui.allocate_exact_size(Vec2::new(width, height), egui::Sense::hover());
+                let rects: BTreeMap<_, _> = occurrences.iter().map(|o| (o.id, Rect::from_min_size(area.min + Vec2::new((o.geometry.x - camera.x) as f32, (o.geometry.y - camera.y) as f32) * scale, Vec2::new(o.geometry.width as f32, o.geometry.height as f32) * scale))).collect();
+                let mut by_record = BTreeMap::<RecordId, Vec<mbse_model::native_views::OccurrenceId>>::new();
+                for o in &occurrences { by_record.entry(o.record).or_default().push(o.id); }
+                let mut arrows = Vec::new();
+                for e in &attached { if let (Some(a), Some(b)) = (rects.get(&e.source), rects.get(&e.target)) { arrows.push((*a, *b, self.relation.is_some_and(|r| r.source == e.key.owner && r.target == e.key.target))); } }
+                for edge in &graph.edges {
+                    if edge.id.role == stage1_graph::RelationRole::Scope && !self.show_ownership { continue; }
+                    if attached.iter().any(|e| e.key.owner == edge.id.source && e.key.target == edge.id.target) { continue; }
+                    if let (Some(a), Some(b)) = (by_record.get(&edge.id.source), by_record.get(&edge.id.target)) {
+                        if a.len() == 1 && b.len() == 1 { arrows.push((rects[&a[0]], rects[&b[0]], self.relation == Some(edge.id))); }
                     }
-                    for record in &records {
-                        let rect = rects[&record.id];
-                        let selected = self.session.editor.selected == Some(record.id);
-                        ui.painter().rect(
-                            rect,
-                            7.,
-                            PAPER,
-                            Stroke::new(
-                                if selected { 2.5 } else { 1. },
-                                if selected { ACCENT } else { LINE },
-                            ),
-                            egui::StrokeKind::Inside,
-                        );
-                        ui.painter().text(
-                            rect.min + Vec2::new(14., 13.) * scale,
-                            egui::Align2::LEFT_TOP,
-                            format!("{}  #{}", record.kind.label(), record.id.0),
-                            FontId::proportional(12. * scale),
-                            ACCENT,
-                        );
-                        let name = if record.name.is_empty() {
-                            "Name your system"
-                        } else {
-                            &record.name
-                        };
-                        let galley = ui.painter().layout(
-                            name.into(),
-                            FontId::proportional(17. * scale),
-                            INK,
-                            rect.width() - 28. * scale,
-                        );
-                        ui.painter().with_clip_rect(rect.shrink(5.)).galley(
-                            rect.min + Vec2::new(14., 36.) * scale,
-                            galley,
-                            INK,
-                        );
-                        let select_rect =
-                            Rect::from_min_max(rect.min, rect.max - Vec2::new(0., 28. * scale));
-                        let response = ui.interact(
-                            select_rect,
-                            ui.id().with(("record", record.id.0)),
-                            egui::Sense::click(),
-                        );
-                        self.bound(format!("card:{}", record.id.0), &response);
-                        response.widget_info(|| {
-                            egui::WidgetInfo::labeled(
-                                egui::WidgetType::Button,
-                                true,
-                                format!("{} {} #{}", record.kind.label(), name, record.id.0),
-                            )
-                        });
-                        if response.clicked() {
-                            self.select(record.id);
-                        }
-                        let details = Rect::from_min_size(
-                            rect.left_bottom() + Vec2::new(12. * scale, -27. * scale),
-                            Vec2::new(90., 22.) * scale,
-                        );
-                        if ui.put(details, egui::Button::new("Details…")).clicked() {
-                            self.popout = Some(record.id);
-                        }
-                    }
-                });
+                }
+                for (a, b, selected) in arrows { let start = a.center_bottom(); let end = b.center_top(); ui.painter().arrow(start, end - start, Stroke::new(if selected { 3. } else { 1. }, ACCENT)); }
+                for occurrence in &occurrences {
+                    let Some(record) = self.session.editor.snapshot.records.get(&occurrence.record).cloned() else { continue; };
+                    let rect = rects[&occurrence.id];
+                    let selected = self.views.selected == Some(occurrence.id);
+                    ui.painter().rect(rect, 7., PAPER, Stroke::new(if selected { 2.5 } else { 1. }, if selected { ACCENT } else { LINE }), egui::StrokeKind::Inside);
+                    ui.painter().text(rect.min + Vec2::new(14., 13.) * scale, egui::Align2::LEFT_TOP, format!("{} #{} · occurrence {}", record.kind.label(), record.id.0, occurrence.id.get()), FontId::proportional(12. * scale), ACCENT);
+                    let name = if record.name.is_empty() { "Unnamed" } else { &record.name };
+                    let galley = ui.painter().layout(name.into(), FontId::proportional(17. * scale), INK, (rect.width() - 28. * scale).max(1.));
+                    ui.painter().with_clip_rect(rect.shrink(5.)).galley(rect.min + Vec2::new(14., 36.) * scale, galley, INK);
+                    let response = ui.interact(Rect::from_min_max(rect.min, rect.max - Vec2::new(0., 28. * scale)), ui.id().with(("occurrence", occurrence.id.get())), egui::Sense::click_and_drag());
+                    self.bound(format!("occurrence:{}", occurrence.id.get()), &response);
+                    self.views.drag(&self.session.editor, occurrence.id, &response, scale);
+                    if response.clicked() { self.views.selected = Some(occurrence.id); self.select(record.id); }
+                    let details = Rect::from_min_size(rect.left_bottom() + Vec2::new(12. * scale, -27. * scale), Vec2::new(90., 22.) * scale);
+                    if ui.put(details, egui::Button::new("Details…")).clicked() { self.popout = Some(record.id); }
+                }
+            });
             ui.separator();
             ui.label(
                 RichText::new(format!(
@@ -1517,10 +1437,11 @@ impl Workspace {
         }
         if let Some(action) = self.pending.clone() {
             egui::Window::new("Preserve current work").collapsible(false).resizable(false).show(ctx,|ui|{
-                ui.label("Current accepted values and raw drafts remain in this document.");ui.label("Continue only after a current save or recovery is verified. Cancel keeps this document open.");
+                ui.label("Current model, raw drafts and views remain in this document.");
+                ui.label(&self.views.note);ui.label("Continue only after a current save or recovery is verified. Cancel keeps this document open.");
                 if self.session.pending(){ui.label("A frozen snapshot write is pending. New edits stay separate from its acknowledgment.");}
-                let response=ui.add_enabled(!self.session.pending(),egui::Button::new("Save and continue"));self.bound("preserve:Save and continue",&response);if response.clicked()&&self.save(){self.pending_continue=Some((action.clone(),WriteKind::Save));}
-                let response=ui.add_enabled(!self.session.pending(),egui::Button::new("Keep recovery and continue"));self.bound("preserve:Keep recovery and continue",&response);if response.clicked()&&self.recovery(){self.pending_continue=Some((action.clone(),WriteKind::Recovery));}
+                let response=ui.add_enabled(!self.session.pending() && !self.views.io.pending(),egui::Button::new("Save and continue"));self.bound("preserve:Save and continue",&response);if response.clicked()&&self.save(){self.pending_continue=Some((action.clone(),WriteKind::Save));}
+                let response=ui.add_enabled(!self.session.pending() && !self.views.io.pending(),egui::Button::new("Keep recovery and continue"));self.bound("preserve:Keep recovery and continue",&response);if response.clicked()&&self.recovery(){self.pending_continue=Some((action.clone(),WriteKind::Recovery));}
                 let response=ui.button("Cancel");self.bound("preserve:Cancel",&response);if response.clicked(){self.pending=None;self.pending_continue=None;self.allow_close=None;self.assurance.cancel_close();self.result(Ok("Navigation canceled; current work retained. A snapshot write already in progress may still finish.".into()));}
             });
         }
@@ -1679,7 +1600,25 @@ impl eframe::App for Workspace {
     fn logic(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         self.preferences.poll();
         self.finish_writes(ctx);
+        self.views.poll(&self.session);
+        if let Some((action, kind)) = self.pending_continue.clone() {
+            let native_current = match kind { WriteKind::Save => !self.session.is_dirty() && matches!(self.session.status(), stage1_io::SaveStatus::Saved), WriteKind::Recovery => self.session.recovery_current() };
+            let preserved = self.views.preserved(&self.session, &kind);
+            let verification = if native_current && preserved { Some(self.views.verify_preserved(&self.session, &kind)) } else { None };
+            if verification.as_ref().is_some_and(|r| r.is_ok()) {
+                self.pending_continue = None; self.pending = None;
+                match action { Load::Quit => { self.allow_close = Some(self.session.editor.snapshot.digest()); self.close_intent = true; ctx.request_repaint(); }, action => self.load(action) }
+            } else if let Some(Err(error)) = verification { self.pending_continue = None; self.result(Err(format!("Preserved artifact unavailable; live work retained: {error}"))); }
+            else if !self.views.io.pending() && self.views.io.last_error.is_some() { self.pending_continue = None; }
+        }
         let hash = self.session.editor.snapshot.digest();
+        if self.allow_close.is_some() && !self.views.io.is_saved(&self.session, &self.views.views)
+            && !self.views.io.recovery_current(&self.session, &self.views.views) { self.allow_close = None; }
+        if self.allow_close.is_some() && (self.close_intent || ctx.input(|i| i.viewport().close_requested())) {
+            let saved = self.views.verify_preserved(&self.session, &WriteKind::Save).is_ok();
+            let recovered = self.session.recovery_current() && self.views.verify_preserved(&self.session, &WriteKind::Recovery).is_ok();
+            if !saved && !recovered { self.allow_close = None; }
+        }
         let requested = self.close_intent || ctx.input(|i| i.viewport().close_requested());
         let app_close = self.close_intent;
         self.close_intent = false;
@@ -1698,10 +1637,17 @@ impl eframe::App for Workspace {
             ctx.request_repaint();
             return;
         }
+        if requested && self.allow_close.is_none() && !self.views.blocked(&self.session)
+            && self.views.verify_preserved(&self.session, &WriteKind::Save).is_err() {
+            ctx.send_viewport_cmd(egui::ViewportCommand::CancelClose);
+            self.pending = Some(Load::Quit);
+            self.result(Err("Saved view artifact could not be reverified; live layout retained.".into()));
+            return;
+        }
         if block_close(
             requested,
-            self.session.is_dirty(),
-            self.session.pending(),
+            self.session.is_dirty() || self.views.blocked(&self.session),
+            self.session.pending() || self.views.io.pending(),
             &hash,
             self.allow_close.as_deref(),
         ) {
@@ -1729,7 +1675,7 @@ impl eframe::App for Workspace {
             self.last_periodic = now;
             self.recovery();
         }
-        if self.preferences.value.periodic_recovery || self.session.pending() {
+        if self.preferences.value.periodic_recovery || self.session.pending() || self.views.io.pending() {
             ctx.request_repaint_after(Duration::from_millis(250));
         }
         craft_quit::on_close_request(ctx);
@@ -1804,6 +1750,7 @@ impl eframe::App for Workspace {
         self.audit.extend(self.assurance.audit());
         self.audit.extend(self.exchange.show(&ctx));
         let audit = serde_json::json!({"profile":"mbse-craft.ui-geometry/1","frame_policy":format!("{:?}",self.frame_choice.frame()),"frame_override":self.frame_choice.overridden(), "pixels_per_point":ctx.pixels_per_point(),
+            "views_revision":self.views.views.document().revision().to_string(),"views_active":self.views.active.get().to_string(),"views_pending":self.views.io.pending(),"views_saved_hint":self.views.io.is_saved(&self.session,&self.views.views),"views_note":self.views.note,
             "model_revision":self.session.editor.snapshot.model_revision,"raw_version":self.session.editor.snapshot.raw_version,
             "snapshot_hash":self.session.editor.snapshot.digest(),"selected":self.session.editor.selected.map(|id|id.0),
             "save_status":format!("{:?}",self.session.status()),"periodic_recovery":self.preferences.value.periodic_recovery,"recovery_interval_seconds":self.preferences.value.recovery_interval_seconds,"preferences_status":self.preferences.status,"write_pending":self.session.pending(),"external_copy_pending":self.exchange.copy_pending(),"source_edit_dirty":self.exchange.source_edit_dirty(),"source_edit_pending":self.exchange.source_edit_pending(),"recovery_path":self.session.last_recovery().map(|p|p.display().to_string()),"recovery_current":self.session.recovery_current(),"feedback":self.feedback,"error":self.error,"widgets":self.audit});

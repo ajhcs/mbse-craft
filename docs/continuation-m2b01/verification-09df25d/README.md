@@ -1,0 +1,9 @@
+# Preservation-fix retest:38 tests and desktop build passed
+
+Exact source09df25de9fdff9e2c68e1c931b2155f08049254c, execution checkout6c398469feeb910ccc9131894dd75b90bd179921,660-file sourcee6cc2113… and unchanged lock475828c2…. Exactly30 model/persistence and8 desktop controller tests passed once. Unrelated filtered suites are not credited.
+
+The initial wave completed both test commands but correctly held before the build when watchdog evidence aged beyond120seconds. Its original HeldOrRefused receipt remains unchanged. A first build continuation refused freshness before creating a child. A refreshed same-job continuation ran only command2 and passed; no tests were replayed and no source repair occurred. PREPARATION-AND-ADMISSION.json distinguishes these admission events from Rust/test failure. Exact command argv/PID/start ticks/start/end/exit and admission evidence are preserved in the two linked raw receipts. Raw stdout/stderr logs are byte-exact gzip archives with hash records.
+
+Compiler released after build. Preserved binary: `/workspace/build/builderbob/mbse-craft/views-origin-paired-save/attempt-20261023T120936367854Z/mbse-desktop`,398406064bytes, SHA256`199226d504ccd1cc066b30bb29e8a8a64f0fb0eeaf2dd63c47b8668bc492a9b4`. It has not been launched. Older source/binary/28-pass evidence and R1-only frozen candidate remain unchanged.
+
+Nonfatal warnings remain explicit: unused patch entries, upstream EPSILON deprecation, AtomicU64::fetch_update deprecation on Rust1.99.1 and desktop unused Pos2/ctx/zoom/existing open. No warning-only source edit, Cargo update or extra build followed success. No process enumeration, substitute resource probe, GUI, upload, provider/service/security change, merge or release occurred. Full-workspace regressions, native behavior, performance, interoperability and engineering acceptance remain unqualified.

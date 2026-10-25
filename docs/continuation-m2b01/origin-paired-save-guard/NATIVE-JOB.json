@@ -1,0 +1,33 @@
+{
+  "profile": "mbse-craft.revised-native-views-job/2",
+  "status": "PreparedNotLaunched",
+  "owner_thread": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+  "source_commit": "09df25de9fdff9e2c68e1c931b2155f08049254c",
+  "source_sha256": "e6cc2113f5283a9b4a86c837a782a12028f1733c83f13cfb2cc70809b18691f4",
+  "cargo_lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+  "binary": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/attempt-20261023T120936367854Z/mbse-desktop",
+  "binary_sha256": "199226d504ccd1cc066b30bb29e8a8a64f0fb0eeaf2dd63c47b8668bc492a9b4",
+  "binary_bytes": 398406064,
+  "argv": [
+    "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/attempt-20261023T120936367854Z/mbse-desktop",
+    "--state-dir",
+    "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/state",
+    "--config-dir",
+    "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/config"
+  ],
+  "DISPLAY": null,
+  "XAUTHORITY": null,
+  "renderer_allocation": "NONE; Kernspan first; explicit owned display/job-bound fresh admission required",
+  "compiler_allocation": "Released; no compilation in native gate",
+  "workspace_output": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate",
+  "workflow": "docs/continuation-m2b01/origin-paired-save-guard/REVISED-NATIVE-GATE.md",
+  "controlled_fixture": "Owned exclusive cooperative sidecar lock; unowned destination separately preflight-refused",
+  "controller_only_unless_observed": [
+    "foreign-origin stale stamps",
+    "deferred native acknowledgment destination freeze",
+    "stale native completion ownership"
+  ],
+  "uploads": false,
+  "new_agent_contexts": false,
+  "services_security_changes": false
+}

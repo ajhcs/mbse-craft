@@ -1,0 +1,105 @@
+{
+  "profile": "mbse-craft.replacement-guard-retest/1",
+  "status": "PreparedHeldNotRun",
+  "owner_thread": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+  "cwd": "/workspace/worktrees/builderbob/mbse-craft/views-replacement-guard",
+  "branch": "fix/views-replacement-guard",
+  "source_commit": "fdae8dfa94bf5bef18944243612a04cbf3047fda",
+  "source_sha256": "b57c7bad8773ec6c68fc1c5b26d139e36e5022398421d42ba60db21c75b5dfb3",
+  "source_manifest": "/workspace/build/builderbob/mbse-craft/views-replacement-guard/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "3ba1f6791c0655db299a4f896c6a4a2f41b93b36a137ac3c1ccf7aa0ddb2574b",
+  "cargo_lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-model",
+      "native_views",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop",
+      "views_ui::tests",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/semantic-v2/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/semantic-v2/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "CARGO_TERM_COLOR": "never",
+    "RUST_TEST_THREADS": "1"
+  },
+  "expected_tests_unrun": {
+    "crates/mbse-model/src/native_views.rs": [
+      "same_element_two_views_move_hide_and_non_reused_ids",
+      "stale_command_and_nonfinite_refuse_without_history_or_allocator_change",
+      "native_undo_detaches_and_only_observed_redo_reactivates",
+      "layout_undo_missing_target_refuses_atomically_and_does_not_discard_native_redo",
+      "reopened_detached_has_no_runtime_redo_authority",
+      "duplicate_occurrence_edge_restores_exact_pair_and_three_keys_are_checked",
+      "model_text_layout_histories_interleave_without_semantic_delete",
+      "canonical_u64_wire_future_unknown_duplicate_and_corrupt_refused",
+      "history_budget_evicts_and_proof_churn_prunes_orphans",
+      "budgets_refuse_without_mutation_and_detached_counts",
+      "detached_occurrences_share_per_view_budget_and_oversized_input_refuses",
+      "native_ids_beyond_js_precision_round_trip_without_expanding_core_range"
+    ],
+    "crates/mbse-model/src/native_views_io.rs": [
+      "bound_save_requires_actual_native_ack_and_round_trips_two_views",
+      "same_snapshot_different_artifact_is_refused_and_original_bytes_retained",
+      "partial_native_success_views_failure_retains_live_layout_and_native_saved",
+      "stale_views_and_recovery_ack_cannot_preserve_new_layout",
+      "acknowledged_saved_and_recovery_delete_truncate_tamper_blocks_continuation",
+      "noncanonical_recovery_tracks_exact_disk_hash_and_canonical_content_separately",
+      "recovered_native_document_id_refuses_old_bound_and_unbound_views",
+      "missing_future_unknown_duplicate_corrupt_inputs_preserve_default_and_original",
+      "failed_native_completion_does_not_mint_checkpoint_and_old_ack_is_historical",
+      "native_checkpoint_detects_on_disk_change_and_open_is_sealed_without_request",
+      "native_and_views_freeze_together_and_old_start_token_cannot_clear_new_job",
+      "replacement_clears_opposite_ack_and_revision_collision_cannot_discard_recovery_edits",
+      "same_revision_different_bound_files_replace_ack_content_not_just_counter",
+      "local_replacement_rechecks_deleted_truncated_and_tampered_bound_or_recovery_artifact",
+      "imported_revision_one_has_no_runtime_pristine_replacement_capability",
+      "recovery_to_bound_replacement_clears_recovery_ack_and_pending_refuses_all_replacement"
+    ],
+    "crates/mbse-desktop/src/views_ui.rs": [
+      "undo_selected_new_view_reconciles_to_primary_without_panicking",
+      "redo_close_selected_view_reconciles_and_keeps_primary",
+      "native_success_alone_and_stale_layout_ack_cannot_authorize_continuation",
+      "tampered_recovery_hint_cannot_authorize_navigation",
+      "injected_worker_start_failure_clears_only_owned_pending_and_keeps_geometry",
+      "refused_sidecar_open_preserves_history_active_selection_and_route_endpoints"
+    ]
+  },
+  "compiler_allocation": "HELD; SysON owns compiler; new explicit slot and fresh job-bound health required",
+  "renderer_allocation": "HELD; Kernspan owns renderer; MBSE queued",
+  "gui": false,
+  "uploads": false,
+  "new_agent_contexts": false,
+  "owned_output_root": "/workspace/build/builderbob/mbse-craft/views-replacement-guard",
+  "prior_epoch_preserved": "5bebe92/source20f9b9aa/binary1b3cb0ab/28 passed; not validation of this fix"
+}

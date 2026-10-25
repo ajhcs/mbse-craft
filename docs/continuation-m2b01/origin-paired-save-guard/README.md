@@ -1,0 +1,23 @@
+# Completed focused retest
+
+[Actual38-pass/build evidence](../verification-09df25d/README.md) qualifies the exact source below. No native workflow ran. The frozen JOB/manifest remain unchanged; their prepared/held fields describe preparation, not current gate outcome.
+
+# Mandatory R1/R2/R3 source fixes: frozen retest HELD
+
+Source commit `09df25de9fdff9e2c68e1c931b2155f08049254c`; complete660-file source SHA256`e6cc2113f5283a9b4a86c837a782a12028f1733c83f13cfb2cc70809b18691f4`; Cargo.lock SHA256`475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a`. Exact job `/workspace/build/builderbob/mbse-craft/views-origin-paired-save/JOB.json`, SHA256`2526d86ff57bde75046b1bd676dba18975ce13f5065fe959f503884593db8e1f`. This candidate supersedes the held R1-only job93a32172 without changing its frozen worktree/manifest. After preparation, exactly30 model/persistence tests,8 controller tests and the scoped desktop build passed under the separately allocated gate. No GUI or upload ran. Rustfmt parsing/formatting and git whitespace checks are source checks only.
+
+## Review closure in source
+
+- R1: `Io::open` verifies the current bound/recovery artifact and canonical state before replacement; only a private untouched runtime default can bypass preservation. Imported revision1 cannot mint that capability. Successful adoption clears opposite acknowledgment ledgers; refusal retains views/history and UI state. Success clears ephemeral drag/route selection.
+- R2: each `Views::new`, decode and restore mints a new private process-local origin. Stamps, captures, destination capabilities, pending tickets and acknowledgments bind that origin. Own layout/model/text history preserves it; wire sidecar_id and revision cannot recreate it. Same-wire-ID/revision variants with different geometry or record targets reject old Move/Remove/Undo/native commands without mutation. Foreign-origin captures/acknowledgments cannot adopt/ack another view instance or clear its pending request.
+- R3: native Save/recovery preflight freezes the view destination, kind and expected prior disk ownership with the layout. The exact active native IoTicket is attached before launch. After acknowledgment, only that owning request can start the sealed view job; current path text is never consulted. Path edits/admission are disabled while a pair is pending; centralized adoption also refuses while Session has a native write pending. Layout edits remain possible and newer revisions remain unsaved after an older acknowledgment. Cancel and stale completion compare the exact owning ticket/kind, and unconsumed stale native results leave newer capture/continuation intact.
+
+The ten new regression functions over the original28-pass epoch passed in the focused gate: six R1 cases plus same-ID/revision cross-origin geometry/target commands, foreign-origin capture/ack, deferred-native-ack destination/Open safety and stale-native-vs-newer-pair ownership. Current expected gate is30 model/persistence tests plus8 desktop controller tests, then desktop build, serial oneCargo job.
+
+## Held execution and preserved evidence
+
+Run the exact JOB.json commands/environment only after an explicit compiler allocation and fresh independent health packet bound to this job SHA. SysON currently owns compiler. No renderer reservation is held; the brief idle allocation was released without a launch. No old binary can prove revised source. Verify source/lock before/after, retain all actual names/logs/times/PIDs/exits, source repair attempts and resulting binary SHA. Existing old launcher hardcoded hashes intentionally do not admit this candidate.
+
+Old eb80c0c/5bebe92 source20f9b9aa, binary1b3cb0ab and28-pass receipts remain unchanged. The R1-only fdae8df/32cd156 candidate, sourceb57c7bad and held job93a32172 remain unchanged and UNRUN. The new focused38-pass/build claim is pinned to09df25d/sourcee6cc2113 and the preserved binary199226d5; no native workflow claim is made. Existing arbitrary bend-routing, full-workspace, recovered-view migration, native-worker start failure and external engineering/platform limits remain.
+
+The separate proposed recovery-presentation-copy contract at branch plan/views-recovery-copy-contract/commit9304395 remains a document-only proposal pinned to R1 source. Review it against this newer origin/pair boundary before any implementation; it does not alter this frozen candidate or grant runtime authority.
