@@ -1,5 +1,26 @@
 # P02 readiness review of draft PR 1
 
+## October 25 execution contract update
+
+The operator asked to complete P02 on BuilderBob and questioned the continued
+observer assumption. The historical observer was a bounded run whose planned
+last sample was October 24; its current Lenovo process state is unknown. Current
+project instructions require isolated worktrees and one Cargo job, without a
+permanent observer requirement. A newly exposed native send also failed with
+`AbsolutePathBuf deserialized without a base path`; coordinator readback stayed
+idle ([exact response](admission/route-recovery/NATIVE_SEND_20261025.json)).
+
+[LOCAL_JOB.json](admission/LOCAL_JOB.json) freezes a new bounded local run under
+the current task authorization. It keeps the original source, commands, offline
+lock, single-job settings and dedicated target. Its
+[runner](../../../scripts/run-p02-local.py) checks the actual Samsung mount,
+disk reserve, current app-server descriptor headroom and conflicting compiler or
+native processes immediately before each child, while holding an exclusive
+target lock. It creates no observer or service and claims no original Lenovo
+admission. Original held jobs, packets, route failures and plans remain intact.
+The following sections retain the original readiness review and historical
+gate; actual new outcomes will be recorded separately.
+
 **Decision: retained evidence is consistent; P02 integrated acceptance remains
 pending.** Reviewed PR head: `5b907c333d423df60de7d539da2a0900941825aa`.
 The review is isolated on `codex/p02-readiness`, stacked on reviewed PR 4 head
