@@ -1,0 +1,37 @@
+{
+  "qualification": "Synthetic QA format input, not live Apply or accepted engineering output",
+  "native_origin": "/workspace/build/builderbob/mbse-craft/milestone1/native-p06-01/reopen/final-blank-authored.kernspan",
+  "source_v1_origin": "/workspace/build/builderbob/mbse-craft/milestone1/native-p06-01/reopen/final-blank-authored.mbse-views.json",
+  "files": [
+    {
+      "path": "docs/parity/p07/fixtures/future-version.mbse-views.json",
+      "bytes": 2499,
+      "sha256": "a2e0f74449dd46b32ddd67f96fc2a7634067732aa4fd3086d40cf7cc4a8b2b06"
+    },
+    {
+      "path": "docs/parity/p07/fixtures/legacy-v1.mbse-views.json",
+      "bytes": 1474,
+      "sha256": "d3e046c92cb84bc124191141758e729343dd3e5166e574cb09dc2f6a10592ec0"
+    },
+    {
+      "path": "docs/parity/p07/fixtures/malformed-mapping.mbse-views.json",
+      "bytes": 2497,
+      "sha256": "f05dd9959bc9442fffdeefc5eb129abcbeb9d537e7b3a2c7bef276b4b0a0dc68"
+    },
+    {
+      "path": "docs/parity/p07/fixtures/native.kernspan",
+      "bytes": 2674,
+      "sha256": "eefc3606af8a0e31bf8a513f942fc9bbe5122fb1417c5c98789af941cbc1c1fd"
+    },
+    {
+      "path": "docs/parity/p07/fixtures/source-v2.mbse-views.json",
+      "bytes": 2497,
+      "sha256": "4d538ac2a9d9e6f0b0c6e60f9dad95159729b0e9707bf2bbff7089b0a736ff8d"
+    },
+    {
+      "path": "docs/parity/p07/fixtures/unknown-provenance.mbse-views.json",
+      "bytes": 2531,
+      "sha256": "c70a4cdc21a819b0338bcdb13d7a5f69a10d7d7757121bc1ed4356234628de04"
+    }
+  ]
+}
