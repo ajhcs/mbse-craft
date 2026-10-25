@@ -69,6 +69,11 @@ The planned two-run smoke is **not completed**; the six mocked regressions
 verify the multi-driver refusal/cleanup changes. Older native product evidence
 retains its original source/binary pins, and all 669 application inputs match.
 No disk cleanup, reserve relaxation or unrelated job mutation was performed.
+A subsequent [fresh retry](native-retry-02/README.md) completed the actual two-run
+controller smoke with zero action errors. Both normal closes, live-second-run
+status and refusal of completion while it remained live were observed. Both
+unchanged reserve checks passed. The original partial receipt remains intact.
+
 No actionable finding remains within this code/evidence review scope.
 
 ## Completed integration

@@ -1,6 +1,6 @@
 {
   "schema": "mbse-craft.milestone1-results/1",
-  "recorded_utc": "2026-10-25T21:46:49.560397+00:00",
+  "recorded_utc": "2026-10-25T22:30:45.549362+00:00",
   "milestone": "M01",
   "state": "merged_into_implementation_native_alpha",
   "prs": [
@@ -93,7 +93,7 @@
   "review_limits": [
     "Requested same-agent follow-up review is complete; one controller finding fixed with six regressions. No new external independent review claim.",
     "Full 319-test workspace run and desktop build passed on unchanged 669-file source closure. Original source-specific native evidence remains separately pinned.",
-    "Extra native controller smoke is partial: one normal run; second held by unchanged 8 GiB disk reserve.",
+    "Extra native controller retry completed two normal app/driver runs with zero action errors; live-second-run completion refusal and final FINISH were observed.",
     "Earlier source-specific reviews and model/controller-only race assertions retain their scopes.",
     "Original six baseline vectors and 56 full-capability declarations remain frozen prospective specifications."
   ],
@@ -131,6 +131,16 @@
     "build_exit": 0,
     "binary_sha256": "90dfe7eb3709d7ca57e174bfdbd06942d140f8c21f823e74d1bf3b58abe7f844",
     "additional_native_smoke": {
+      "state": "passed_on_fresh_retry",
+      "completed_normal_runs": 2,
+      "requested_runs": 2,
+      "action_errors": 0,
+      "receipt": "review-pr4-9/native-retry-02/evidence/RECEIPT.json",
+      "review": "review-pr4-9/native-retry-02/REVIEW.json",
+      "prior_partial": "review-pr4-9/native-partial/RECEIPT.json"
+    },
+    "merge_results": "review-pr4-9/MERGES.json",
+    "previous_additional_native_smoke": {
       "state": "partial_second_run_held_by_resource_preflight",
       "completed_normal_runs": 1,
       "requested_runs": 2,
@@ -138,7 +148,6 @@
       "available_workspace_bytes_at_followup": 7413981184,
       "original_receipt": "native-partial/RECEIPT.json",
       "harness_assertion_correction": "The controller tried the two-run negative assertion after the preflight had refused the second run. The one completed run legitimately satisfies finish_runs. This was an expectation error, not a product defect; original action errors retained."
-    },
-    "merge_results": "review-pr4-9/MERGES.json"
+    }
   }
 }

@@ -67,11 +67,13 @@ build SHA-256 is
 This new result is separate from the older two-epoch counts above.
 
 Six mocked-driver regressions verify the repaired controller's all-run status,
-normal-close proof, FINISH refusal and interrupted cleanup. The optional extra
-actual two-run controller smoke completed one normal app/driver run; the second
-was not launched because the unchanged 8 GiB workspace reserve check refused it.
-That partial result and a subsequent mistaken two-run expectation are retained;
-the extra two-run smoke is not claimed complete. No application source changed.
+normal-close proof, FINISH refusal and interrupted cleanup. The initial extra
+native smoke was disk-held after one normal run; its partial result and later
+mistaken two-run expectation remain retained. The [fresh retry](review-pr4-9/native-retry-02/README.md)
+subsequently completed both actual app/driver runs with zero action errors. The
+controller reported the second run live after the first closed, refused FINISH
+while it was live, then verified both normal closes before completing. The
+unchanged 8 GiB reserve passed before both launches. No application source changed.
 
 [MERGES.json](review-pr4-9/MERGES.json) records the exact #4→#9 merge sequence.
 The final merge `c61d3379a136c56afc531e80936376922f2ea98a` has exactly the
