@@ -16,6 +16,7 @@ Milestone 1, integrate existing feature branches, or qualify application behavio
 | [baseline.json](baseline.json) | Exact implementation/continuation heads, existing draft PRs, assigned paths and target limitations |
 | [sources.json](sources.json) | Versioned source identities and limits on what each source establishes |
 | [craft-apps.json](craft-apps.json) | Twelve apps in the upstream source audit plus separately researched FigCraft |
+| [p02 readiness review](p02/README.md) | Read-only audit of PR 1 evidence, actual coverage gap and prepared unlaunched execution plan |
 | [fixtures](fixtures) | Original synthetic engineering/UI/source inputs; not production or accepted engineering models |
 
 The historical 86-row handoff supplies the CAT identifiers and feature titles.

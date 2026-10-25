@@ -1,0 +1,198 @@
+{
+  "error": false,
+  "external_copy_pending": false,
+  "feedback": "Select a model card to edit its fields. Model values and unfinished text remain separate.",
+  "frame_override": null,
+  "frame_policy": "Desktop",
+  "model_revision": 0,
+  "periodic_recovery": false,
+  "pixels_per_point": 1.0833333730697632,
+  "preferences_status": "Session preferences.",
+  "profile": "mbse-craft.ui-geometry/1",
+  "raw_version": 0,
+  "recovery_current": false,
+  "recovery_interval_seconds": 60,
+  "recovery_path": null,
+  "save_status": "Unsaved",
+  "selected": 1,
+  "snapshot_hash": "5f96b18f77396d51aa1d3e63861d51430bae4e247850cfb04ca842fe2c775254",
+  "source_edit_dirty": false,
+  "source_edit_pending": false,
+  "widgets": {
+    "action:Add Actor": [
+      101.6875,
+      438.34375,
+      167.90625,
+      456.34375
+    ],
+    "action:Add Capability": [
+      95.25,
+      412.34375,
+      186.6875,
+      430.34375
+    ],
+    "action:Add Environment": [
+      8.3125,
+      464.34375,
+      117.28125,
+      482.34375
+    ],
+    "action:Add Expectation": [
+      8.3125,
+      490.34375,
+      112.0,
+      508.34375
+    ],
+    "action:Add Measure": [
+      8.3125,
+      438.34375,
+      92.6875,
+      456.34375
+    ],
+    "action:Add Mission": [
+      8.3125,
+      412.34375,
+      86.25,
+      430.34375
+    ],
+    "action:Add Objective": [
+      195.6875,
+      412.34375,
+      285.4375,
+      430.34375
+    ],
+    "action:Add Organization": [
+      126.28125,
+      464.34375,
+      235.8125,
+      482.34375
+    ],
+    "action:Add Stakeholder": [
+      176.90625,
+      438.34375,
+      280.9375,
+      456.34375
+    ],
+    "action:Browse library folder": [
+      1140.875,
+      3.15625,
+      1270.28125,
+      21.15625
+    ],
+    "action:Import SysML": [
+      390.96875,
+      3.15625,
+      477.46875,
+      21.15625
+    ],
+    "action:New": [
+      234.46875,
+      3.15625,
+      268.875,
+      21.15625
+    ],
+    "action:Open": [
+      277.875,
+      3.15625,
+      318.03125,
+      21.15625
+    ],
+    "action:Open external projection": [
+      800.84375,
+      3.15625,
+      954.15625,
+      21.15625
+    ],
+    "action:Recover": [
+      327.03125,
+      3.15625,
+      381.96875,
+      21.15625
+    ],
+    "action:Recovery copy": [
+      530.15625,
+      3.15625,
+      621.78125,
+      21.15625
+    ],
+    "action:Redo": [
+      201.125,
+      30.3125,
+      245.125,
+      58.3125
+    ],
+    "action:Requirements and evidence": [
+      963.15625,
+      3.15625,
+      1131.875,
+      21.15625
+    ],
+    "action:Save": [
+      486.46875,
+      3.15625,
+      521.15625,
+      21.15625
+    ],
+    "action:Undo": [
+      148.125,
+      30.3125,
+      192.125,
+      58.3125
+    ],
+    "canvas:ownership": [
+      345.3125,
+      178.03125,
+      548.71875,
+      196.03125
+    ],
+    "card:1": [
+      370.21875,
+      246.46875,
+      694.4478759765625,
+      330.46875
+    ],
+    "field:1:name": [
+      8.3125,
+      283.875,
+      328.625,
+      302.84375
+    ],
+    "field:1:purpose": [
+      8.3125,
+      333.625,
+      328.625,
+      367.5625
+    ],
+    "path": [
+      202.6875,
+      66.3125,
+      1432.0,
+      85.28125
+    ],
+    "recovery:Review copies": [
+      630.78125,
+      3.15625,
+      791.84375,
+      21.15625
+    ],
+    "save-path": [
+      137.46875,
+      93.28125,
+      1432.0,
+      112.25
+    ],
+    "settings:Open": [
+      1279.28125,
+      3.15625,
+      1389.84375,
+      21.15625
+    ],
+    "tree:1": [
+      26.3125,
+      198.3125,
+      141.25,
+      216.3125
+    ]
+  },
+  "write_pending": false
+}

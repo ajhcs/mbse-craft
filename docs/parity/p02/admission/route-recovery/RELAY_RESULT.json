@@ -1,0 +1,14 @@
+{
+  "schema": "mbse-craft.p02-existing-integrator-relay-result/1",
+  "observed_via": "codex_app__wait_threads",
+  "thread_id": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+  "host_id": "remote-ssh-codex-managed:b9ef353a-f520-4cf9-a93f-9b767e2d7e07",
+  "turn_id": "01a16fcb-9022-7422-89b6-fe8dbcd7c6ea",
+  "turn_status": "completed",
+  "started_at_epoch_seconds": 1792876974,
+  "completed_at_epoch_seconds": 1792877226,
+  "assistant_message_id": "msg_0a69843f44d516d4016add22a6d374819ea99532e9bebbffe4",
+  "assistant_message": "Admission relay is blocked: this session’s current catalog has thread read/list/wait tools, but no supported send, enqueue, or handoff-dispatch capability to reach coordinator 01a165b9-9828-768d-a69d-bcd556fb1032. No request was delivered. No fresh P02 packet or exclusive target allocation was obtained; admission remains pending. The unrun occurrence job and all receipts remain untouched. No product edits, agents, compilation, GUI launches, substitute monitoring, task mutation, or infrastructure changes occurred.",
+  "new_resource_admission": false,
+  "new_target_allocation": false
+}

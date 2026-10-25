@@ -1,0 +1,14 @@
+{
+  "schema": "mbse-craft.p02-regression-gate-receipt/1",
+  "started_utc": "2026-10-24T21:11:16.953086+00:00",
+  "status": "held_or_refused_before_next_child",
+  "job_sha256": "f74c46e5522493e28e59494b2514ee686f49757d2017ceb41054ea472206a750",
+  "runner_sha256": "97aed460478c3d215f2aaf2daf8984b0c59ee060b2d38dae3ba37f1c7d9f8647",
+  "commands": [],
+  "owned_jobs": [],
+  "gui": false,
+  "new_monitor": false,
+  "source_verified": true,
+  "reason": "No original exact-job admission packet available",
+  "ended_utc": "2026-10-24T21:11:17.006752+00:00"
+}

@@ -1,0 +1,25 @@
+{
+  "schema": "mbse-craft.native-dispatch-attempt/1",
+  "recorded_utc": "2026-10-25T20:18:04.727816+00:00",
+  "call": "mcp__codex_app__send_message_to_thread",
+  "target_host": "durable",
+  "target_thread": "01a165b9-9828-768d-a69d-bcd556fb1032",
+  "purpose": "Authorized admission-only resume with original frozen job/source/runner/target pins",
+  "response": {
+    "content": [
+      {
+        "type": "text",
+        "text": "invalid turn/start params: AbsolutePathBuf deserialized without a base path"
+      }
+    ],
+    "isError": true
+  },
+  "readback": {
+    "status": "idle",
+    "latest_turn_id": "01a16939-322a-71a6-9ad7-04d9b8c69e3d",
+    "latest_turn_status": "completed",
+    "updatedAt": 1792799872
+  },
+  "delivery_verified": false,
+  "original_admission_obtained": false
+}

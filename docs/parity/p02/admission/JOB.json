@@ -1,0 +1,92 @@
+{
+  "schema": "mbse-craft.p02-regression-job/1",
+  "owner_thread_id": "01a16f82-07a1-7cd3-bb10-3ef7b8e83905",
+  "integration_owner_thread_id": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+  "state": "frozen_admission_request_not_dispatched",
+  "reviewed_pr1_head": "5b907c333d423df60de7d539da2a0900941825aa",
+  "prepared_from_pr5_head": "2cd5774ecd8004bc25d117f2e2967a1b788ee3b9",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/p02-readiness",
+  "source_sha256": "fe2c135180c5489306ff46f139c6fad5b5553b72749169bc25edea70b3dfca04",
+  "source_manifest": "docs/continuation-m2/verification/epoch-217c977c-source-edit/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "6f62652a79dd5e0d41765f6b1f3c7f9fb0520e851de15c952b7da4ef46c4e453",
+  "cargo_lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+  "original_execution_plan_sha256": "59bfc50945cd4c3e0167e61bd95ff16deb84b5909a48961510544a792cfb315f",
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-model",
+      "--test",
+      "stage1_completion_foundation",
+      "--test",
+      "stage1_calculation",
+      "--test",
+      "craft_faults",
+      "--test",
+      "craft_recovery",
+      "--test",
+      "context_recovery",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop",
+      "ui::policies",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/p02-readiness/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/p02-readiness/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "resource_request": {
+    "compiler_jobs": 1,
+    "test_threads": 1,
+    "exclusive_target": "/workspace/build/builderbob/mbse-craft/p02-readiness/target",
+    "renderer": false,
+    "new_agents": false,
+    "providers": false,
+    "services": false
+  },
+  "admission_contract": {
+    "packet_schema": "builderbob.job-bound-health/1",
+    "expected_job_manifest_sha256": "SHA-256 of the exact bytes of this JOB.json; this description is not a packet.",
+    "freshness_seconds": 120,
+    "required_resource_admission": "PASS",
+    "required_observer_state": "RUNNING",
+    "required_monitor_status": "OK",
+    "required_watchdog_level": "OK",
+    "hold_new_launches": false,
+    "separately_required": "Explicit exact-job target/compiler allocation with independently checked current app-server identity. Source/lock/job bytes rechecked before each new child. No historical packet or inferred release."
+  },
+  "native_phase": "Separate later reviewed binary/action-script/renderer admission, after this compiler gate; no GUI is included here.",
+  "execution_policy": "This frozen request is not a resource grant or executable launcher. No child may be started without actual fresh original packet plus allocation; preserve partial/held evidence and never replay successful commands just to refresh status.",
+  "runner_path": "scripts/run-p02-regressions.py",
+  "runner_sha256": "97aed460478c3d215f2aaf2daf8984b0c59ee060b2d38dae3ba37f1c7d9f8647",
+  "minimum_free_workspace_bytes_before_launch": 8589934592
+}
