@@ -6,7 +6,7 @@
   "p07": {
     "state": "implemented_draft_pending_review",
     "branch": "codex/m2-p07-copy-format",
-    "pr_url": null,
+    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/10",
     "source_files": 671,
     "source_sha256": "8ecb8f9c36f2b976acf9aaba98235db4371acf0f10685e20e78447977320ba8c",
     "binary_sha256": "b1e8b7f07d5dcf1ad5d9d636510c772d175704a8b498e6696b0e3988f925862d",

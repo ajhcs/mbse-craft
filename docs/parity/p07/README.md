@@ -1,5 +1,7 @@
 # P07: versioned presentation-copy format and provenance
 
+Draft review: [PR #10](https://github.com/ajhcs/mbse-craft/pull/10).
+
 P07 builds on the merged Milestone 1 baseline at
 `bfbe0f1ad361739fd14d728d93db3b9527c76b0a`, in isolated branch
 `codex/m2-p07-copy-format`. It adds strict v2 presentation/recovery profiles,
