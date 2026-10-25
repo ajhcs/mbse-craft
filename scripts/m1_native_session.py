@@ -58,7 +58,7 @@ def main():
     fcntl.flock(lease,fcntl.LOCK_EX|fcntl.LOCK_NB)
     output=Path(job['output']);assert str(output).startswith('/workspace/build/builderbob/mbse-craft/milestone1/');output.mkdir(exist_ok=False)
     check_spec=importlib.util.spec_from_file_location('local_preflight',ROOT/'scripts/run-p02-local.py');check=importlib.util.module_from_spec(check_spec);check_spec.loader.exec_module(check)
-    receipt=dict(schema='mbse-craft.m1-native-session/1',started_utc=base.utc(),job_sha256=base.digest(args.job),status='active',runs=[],preflight=check.local_preflight())
+    receipt=dict(schema='mbse-craft.m1-native-session/1',started_utc=base.utc(),job_sha256=base.digest(args.job),status='active',runs=[],preflight=check.local_preflight(compiler_roots=job.get('compiler_roots')))
     n=NativeM1(exe,output/'run',job['argv_extra'],receipt['runs'])
     context=dict(n=n,output=output,receipt=receipt,Path=Path,json=json,base=base,check=check)
     actions=(output/'CONTROLLER_ACTIONS.py').open('x')
