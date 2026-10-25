@@ -1,0 +1,20 @@
+{
+  "schema": "mbse-craft.p02-native-job/1",
+  "source_sha256": "fe2c135180c5489306ff46f139c6fad5b5553b72749169bc25edea70b3dfca04",
+  "binary": "/workspace/build/builderbob/mbse-craft/p02-readiness/local-attempt-20261025T201845Z/mbse-desktop",
+  "binary_sha256": "75bdb7b6df792d1426259d70039ec021afd942d8667a3c11e74d6b90f277a458",
+  "action_script": "/workspace/repos/builderbob/mbse-craft/work/p02-readiness/scripts/run-p02-native.py",
+  "action_script_sha256": "21ab4138e9e656fde6c6cd4d8db502eb60dd20303bb3ab03f0184fec80257e60",
+  "driver_sha256": "a619709e8d1cd87181ae7948e060470e3b34ccaa309f74e4ea5dc61625140bd2",
+  "output": "/workspace/build/builderbob/mbse-craft/p02-readiness/native-p02-01",
+  "input": "Actual blank Session; no fixture/open at first launch. Reopen uses only the document authored by that run.",
+  "checks": [
+    "5 typed records and authored links",
+    "field and model Undo/Redo",
+    "120 m / 8 s speed and 2500 m to km conversion; actual captured pixels reviewed separately",
+    "accepted criterion 95 beside raw 9e",
+    "owned missing-parent save failure and close Cancel retain snapshot",
+    "normal app exit 0; reopen equality and exact owned process cleanup"
+  ],
+  "preflight": "New bounded BuilderBob-local preflight and dedicated target lock; no observer or historical admission claim."
+}
