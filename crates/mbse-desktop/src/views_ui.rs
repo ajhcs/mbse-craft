@@ -273,6 +273,25 @@ impl ViewWorkspace {
             };
         }
     }
+    pub fn occurrence_navigation_blocked(&self, session: &Session) -> bool {
+        self.layout_gesture_active() || session.pending() || self.io.pending() || self.pair_pending()
+    }
+    pub fn navigate_occurrence(&mut self, session: &Session, location: &mbse_model::native_record_impact::OccurrenceLocation) -> Result<Option<RecordId>, String> {
+        if self.occurrence_navigation_blocked(session) {return Err("VIEWS_OCCURRENCE_NAVIGATION_BUSY: finish the gesture or write first".into());}
+        // Check again at consumption; a previously minted location has no authority
+        // after native/raw/layout/runtime or exact endpoint identity changes.
+        let (view, occurrence, native) = location.resolve(&session.editor, &self.views)?;
+        let row = self.views.document().occurrences.get(&occurrence).ok_or("VIEWS_OCCURRENCE_MISSING")?;
+        let state = if !row.presence.active() {"Detached occurrence inspected; native selection retained"} else if !row.visible {"Hidden occurrence selected; it remains hidden"} else {"Occurrence selected"};
+        let note = format!("{state}: occurrence #{} in view #{}. Camera and layout data unchanged.", occurrence.get(), view.get());
+        // All checks completed before publishing ephemeral state. Existing reconcile
+        // clears route endpoints abandoned by a cross-view selection.
+        self.active = view; self.selected = Some(occurrence); self.reconcile(); self.note = note;
+        Ok(native)
+    }
+    pub fn occurrence_selection_audit(&self) -> serde_json::Value {
+        serde_json::json!({"document_sha256":self.views.document().digest().ok(),"history_usage":self.views.history_usage(),"next_id":self.views.document().next_id().to_string(),"active_view":self.active.get().to_string(),"selected_occurrence":self.selected.map(|id|id.get().to_string()),"occurrence":self.selected.and_then(|id|self.views.document().occurrences.get(&id)).map(|o|serde_json::json!({"id":o.id.get().to_string(),"view":o.view.get().to_string(),"record":o.record.0.to_string(),"visible":o.visible,"active":o.presence.active(),"expected_kind":o.expected_kind.label()}))})
+    }
     pub fn layout_gesture_active(&self) -> bool {
         self.drag.is_some()
     }
@@ -989,6 +1008,24 @@ mod tests {
             .unwrap();
         let session = Session::new(area.path()).unwrap();
         (area, session)
+    }
+    fn occurrence_navigation_state(ui: &ViewWorkspace) -> (ViewId,Option<OccurrenceId>,Option<OccurrenceId>,Option<OccurrenceId>,bool,String,String) {
+        (ui.active,ui.selected,ui.route_source,ui.route_target,ui.drag.is_some(),ui.path.clone(),ui.note.clone())
+    }
+    #[test]
+    fn occurrence_navigation_switches_view_without_show_camera_history_or_route_leak() {
+        let(_area,session)=session();let mut ui=ViewWorkspace::new(&session);let primary=ui.views.document().primary;let second=*ui.views.document().views.keys().find(|id|**id!=primary).unwrap();let first=ui.views.document().occurrences.values().find(|o|o.view==primary).unwrap().id;let target=ui.views.document().occurrences.values().find(|o|o.view==second).unwrap().id;ui.apply(&session.editor,Layout::Visible(target,false));ui.selected=Some(first);ui.route_source=Some(first);ui.route_target=Some(first);
+        let report=mbse_model::native_record_impact::inspect(&session.editor,&ui.views,RecordId(1)).unwrap();let index=report.occurrences().iter().position(|o|o.id==target).unwrap();let location=report.occurrence_location(&session.editor,&ui.views,index).unwrap();let before=(session.editor.snapshot.digest(),session.editor.freshness(),ui.views.document().digest().unwrap(),ui.views.history_usage(),ui.views.document().next_id(),ui.path.clone(),session.path.clone());assert_eq!(ui.navigate_occurrence(&session,&location).unwrap(),Some(RecordId(1)));assert_eq!(ui.active,second);assert_eq!(ui.selected,Some(target));assert!(ui.route_source.is_none()&&ui.route_target.is_none());assert!(!ui.views.document().occurrences[&target].visible);assert!(ui.note.contains("remains hidden"));assert!(report.check(&session.editor,&ui.views).is_ok());assert_eq!((session.editor.snapshot.digest(),session.editor.freshness(),ui.views.document().digest().unwrap(),ui.views.history_usage(),ui.views.document().next_id(),ui.path.clone(),session.path.clone()),before);
+    }
+    #[test]
+    fn occurrence_navigation_busy_and_stale_refusals_publish_no_ephemeral_state() {
+        let(area,mut session)=session();let mut ui=ViewWorkspace::new(&session);let primary=ui.views.document().primary;let first=ui.views.document().occurrences.values().find(|o|o.view==primary).unwrap().clone();let target=ui.views.document().occurrences.values().find(|o|o.view!=primary).unwrap().id;ui.selected=Some(first.id);ui.route_source=Some(first.id);ui.route_target=Some(first.id);let retained=(session.editor.snapshot.digest(),ui.views.document().digest().unwrap(),ui.views.history_usage(),ui.views.document().next_id());let report=mbse_model::native_record_impact::inspect(&session.editor,&ui.views,RecordId(1)).unwrap();let index=report.occurrences().iter().position(|o|o.id==target).unwrap();let location=report.occurrence_location(&session.editor,&ui.views,index).unwrap();
+        ui.drag=Some((first.id,first.geometry.clone(),ui.views.stamp(&session.editor),egui::Pos2::ZERO));let before=occurrence_navigation_state(&ui);assert!(ui.navigate_occurrence(&session,&location).is_err());assert_eq!(occurrence_navigation_state(&ui),before);assert!(ui.drag.is_some());ui.drag=None;
+        let job=session.begin_recovery().unwrap();let before=occurrence_navigation_state(&ui);assert!(session.pending()&&!ui.io.pending()&&!ui.pair_pending());assert!(ui.navigate_occurrence(&session,&location).is_err());assert_eq!(occurrence_navigation_state(&ui),before);assert!(session.pending());assert!(session.failed_start(job.start_token(),"Unstarted native pending fixture cleanup".into()));
+        let path=area.path().join("pending-views.json");let job=ui.io.begin(&session,&ui.views,&path,Kind::Recovery).unwrap();let before=occurrence_navigation_state(&ui);assert!(ui.io.pending()&&!session.pending()&&!ui.pair_pending());assert!(ui.navigate_occurrence(&session,&location).is_err());assert_eq!(occurrence_navigation_state(&ui),before);assert!(ui.io.pending());assert!(ui.io.failed_start(&session,job.start_token(),"Unstarted views fixture cleanup".into()));assert!(!path.exists());
+        let prepared=ui.prepare_native(&session,WriteKind::Recovery,None).unwrap();let job=session.begin_recovery().unwrap();ui.capture_native(&session,&job.ticket,&WriteKind::Recovery,prepared).unwrap();assert!(session.failed_start(job.start_token(),"Decouple unstarted native fixture".into()));let before=occurrence_navigation_state(&ui);assert!(ui.pair_pending()&&!session.pending()&&!ui.io.pending());assert!(ui.navigate_occurrence(&session,&location).is_err());assert_eq!(occurrence_navigation_state(&ui),before);assert!(ui.pair_pending());assert!(ui.cancel_native_capture(&job.ticket,&WriteKind::Recovery));
+        assert_eq!((session.editor.snapshot.digest(),ui.views.document().digest().unwrap(),ui.views.history_usage(),ui.views.document().next_id()),retained);
+        ui.apply(&session.editor,Layout::AddView("New view makes old ticket stale".into()));let before=occurrence_navigation_state(&ui);assert!(ui.navigate_occurrence(&session,&location).is_err());assert_eq!(occurrence_navigation_state(&ui),before);assert!(!session.pending()&&!ui.io.pending()&&!ui.pair_pending());
     }
     #[test]
     fn undo_selected_new_view_reconciles_to_primary_without_panicking() {

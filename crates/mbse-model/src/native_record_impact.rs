@@ -47,6 +47,53 @@ pub struct EdgeRow {
     pub target: OccurrenceId,
     pub presence: String,
 }
+/// Runtime-only navigation proof; callers cannot construct or deserialize it.
+#[derive(Debug)]
+pub struct OccurrenceLocation {
+    stamp: Stamp,
+    views_digest: String,
+    occurrence: OccurrenceId,
+    view: ViewId,
+    record: RecordId,
+    expected_kind: RecordKind,
+    presence: Presence,
+}
+impl OccurrenceLocation {
+    pub fn resolve(
+        &self,
+        editor: &Editor,
+        views: &Views,
+    ) -> Result<(ViewId, OccurrenceId, Option<RecordId>), String> {
+        if views.stamp(editor) != self.stamp || views.document().digest()? != self.views_digest {
+            return Err("NATIVE_OCCURRENCE_LOCATION_STALE".into());
+        }
+        let occurrence = views
+            .document()
+            .occurrences
+            .get(&self.occurrence)
+            .ok_or("NATIVE_OCCURRENCE_LOCATION_MISSING")?;
+        if occurrence.view != self.view
+            || occurrence.record != self.record
+            || occurrence.expected_kind != self.expected_kind
+            || occurrence.presence != self.presence
+            || !views.document().views.contains_key(&self.view)
+        {
+            return Err("NATIVE_OCCURRENCE_LOCATION_IDENTITY".into());
+        }
+        let native = if occurrence.presence.active()
+            && editor
+                .snapshot
+                .records
+                .get(&self.record)
+                .is_some_and(|r| r.kind == self.expected_kind)
+        {
+            Some(self.record)
+        } else {
+            None
+        };
+        Ok((self.view, self.occurrence, native))
+    }
+}
 #[derive(Debug)]
 pub struct Report {
     target: RecordId,
@@ -95,6 +142,35 @@ impl Report {
             );
         }
         Ok(())
+    }
+    pub fn occurrence_location(
+        &self,
+        editor: &Editor,
+        views: &Views,
+        index: usize,
+    ) -> Result<OccurrenceLocation, String> {
+        self.check(editor, views)?;
+        let row = self
+            .occurrences
+            .get(index)
+            .ok_or("NATIVE_OCCURRENCE_LOCATION_INDEX")?;
+        let occurrence = views
+            .document()
+            .occurrences
+            .get(&row.id)
+            .ok_or("NATIVE_OCCURRENCE_LOCATION_MISSING")?;
+        if occurrence.view != row.view || occurrence.record != self.target {
+            return Err("NATIVE_OCCURRENCE_LOCATION_IDENTITY".into());
+        }
+        Ok(OccurrenceLocation {
+            stamp: self.stamp.clone(),
+            views_digest: self.views_digest.clone(),
+            occurrence: row.id,
+            view: row.view,
+            record: self.target,
+            expected_kind: occurrence.expected_kind,
+            presence: occurrence.presence.clone(),
+        })
     }
     pub fn referencing_record(
         &self,
@@ -235,6 +311,112 @@ mod tests {
     }
     fn apply(e: &Editor, v: &mut Views, command: Layout) {
         v.apply(e, &v.stamp(e), command).unwrap();
+    }
+    #[test]
+    fn occurrence_location_is_exact_for_hidden_cross_view_and_selection_preserves_report() {
+        let (mut e, mut v) = fixture();
+        let primary = v.document().primary;
+        let secondary = *v
+            .document()
+            .views
+            .keys()
+            .find(|id| **id != primary)
+            .unwrap();
+        apply(
+            &e,
+            &mut v,
+            Layout::Reuse {
+                view: secondary,
+                record: RecordId(100),
+                geometry: Geometry::at(1., 2.),
+            },
+        );
+        let id = v
+            .document()
+            .occurrences
+            .values()
+            .find(|o| o.view == secondary && o.record == RecordId(100))
+            .unwrap()
+            .id;
+        apply(&e, &mut v, Layout::Visible(id, false));
+        let report = inspect(&e, &v, RecordId(100)).unwrap();
+        let index = report
+            .occurrences()
+            .iter()
+            .position(|o| o.id == id)
+            .unwrap();
+        let ticket = report.occurrence_location(&e, &v, index).unwrap();
+        let before = (
+            e.snapshot.digest(),
+            v.document().digest().unwrap(),
+            v.history_usage(),
+            v.document().next_id(),
+        );
+        assert_eq!(
+            ticket.resolve(&e, &v).unwrap(),
+            (secondary, id, Some(RecordId(100)))
+        );
+        e.select(RecordId(200)).unwrap();
+        assert!(report.check(&e, &v).is_ok());
+        assert!(ticket.resolve(&e, &v).is_ok());
+        assert!(!v.document().occurrences[&id].visible);
+        assert_eq!(
+            (
+                e.snapshot.digest(),
+                v.document().digest().unwrap(),
+                v.history_usage(),
+                v.document().next_id()
+            ),
+            before
+        );
+        assert!(report.occurrence_location(&e, &v, usize::MAX).is_err());
+    }
+    #[test]
+    fn minted_occurrence_location_refuses_intervening_raw_model_layout_or_runtime_change() {
+        let (mut e, mut v) = fixture();
+        let r = inspect(&e, &v, RecordId(100)).unwrap();
+        let t = r.occurrence_location(&e, &v, 0).unwrap();
+        let other = Views::new(&e).unwrap();
+        assert!(t.resolve(&e, &other).is_err());
+        e.snapshot.raw_version += 1;
+        assert!(t.resolve(&e, &v).is_err());
+        let r = inspect(&e, &v, RecordId(100)).unwrap();
+        let t = r.occurrence_location(&e, &v, 0).unwrap();
+        e.snapshot
+            .records
+            .get_mut(&RecordId(100))
+            .unwrap()
+            .name
+            .push('x');
+        assert!(t.resolve(&e, &v).is_err());
+        let r = inspect(&e, &v, RecordId(100)).unwrap();
+        let t = r.occurrence_location(&e, &v, 0).unwrap();
+        apply(&e, &mut v, Layout::Visible(r.occurrences()[0].id, false));
+        assert!(t.resolve(&e, &v).is_err());
+        assert!(r.occurrence_location(&e, &v, 0).is_err());
+    }
+    #[test]
+    fn detached_occurrence_location_never_aliases_current_native_kind() {
+        let (e, v) = fixture();
+        let mut d = v.recovery(&e).unwrap();
+        let row = d
+            .occurrences
+            .values_mut()
+            .find(|o| o.record == RecordId(100))
+            .unwrap();
+        let id = row.id;
+        let view = row.view;
+        row.expected_kind = RecordKind::Capability;
+        row.presence = Presence::Detached {
+            reason: "Retained kind mismatch".into(),
+        };
+        let v = Views::restore(&d.encoded().unwrap(), &e).unwrap();
+        let r = inspect(&e, &v, RecordId(100)).unwrap();
+        let index = r.occurrences().iter().position(|o| o.id == id).unwrap();
+        let ticket = r.occurrence_location(&e, &v, index).unwrap();
+        assert_eq!(ticket.resolve(&e, &v).unwrap(), (view, id, None));
+        assert_eq!(e.snapshot.records[&RecordId(100)].kind, RecordKind::Mission);
+        assert!(r.check(&e, &v).is_ok());
     }
     #[test]
     fn direct_roles_remain_normalized_and_inspection_does_not_mutate_state() {
