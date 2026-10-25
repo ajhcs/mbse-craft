@@ -583,7 +583,7 @@ impl ViewWorkspace {
         let camera = Self::camera_target(old, command)?;
         self.set_camera(editor, camera)
     }
-    fn layout_history(&mut self, editor: &Editor, redo: bool) {
+    pub fn layout_history(&mut self, editor: &Editor, redo: bool) {
         if self.drag.is_some() {
             self.note="VIEWS_CAMERA_GESTURE_ACTIVE: release the occurrence gesture before layout history.".into();
             return;
@@ -614,16 +614,6 @@ impl ViewWorkspace {
                     self.active = id;
                     self.selected = None;
                 }
-            }
-            let response = ui.add_enabled(self.drag.is_none(), egui::Button::new("Layout Undo"));
-            self.toolbar_bound("view:Layout Undo", &response);
-            if response.clicked() {
-                self.layout_history(&session.editor, false);
-            }
-            let response = ui.add_enabled(self.drag.is_none(), egui::Button::new("Layout Redo"));
-            self.toolbar_bound("view:Layout Redo", &response);
-            if response.clicked() {
-                self.layout_history(&session.editor, true);
             }
         });
         self.reconcile();
@@ -719,9 +709,6 @@ impl ViewWorkspace {
                     current.y
                 ));
             });
-        }
-        if ui.button("Inspect presentation source…").clicked() {
-            self.open_inspection();
         }
         ui.horizontal_wrapped(|ui| {
             ui.label("Explicit views path");

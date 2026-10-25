@@ -1,3 +1,5 @@
+#[path = "ui_commands.rs"]
+mod workspace_commands;
 //! App-owned UI over the bounded, provenance-preserving Stage1 contract.
 use crate::preferences::Preferences;
 use craft_ui::{
@@ -83,6 +85,8 @@ pub struct Workspace {
     allow_close: Option<String>,
     audit: BTreeMap<String, [f32; 4]>,
     audit_previous: Vec<u8>,
+    menu_scope: Option<ShortcutTarget>,
+    last_workspace_command: Option<serde_json::Value>,
 }
 impl Workspace {
     pub fn new(
@@ -123,7 +127,7 @@ impl Workspace {
         let views = crate::views_ui::ViewWorkspace::new(&session);
         let periodic_recovery = crate::periodic_recovery::PeriodicRecovery::new(Instant::now(), &session, &views);
         let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,periodic_recovery, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
-            creation: None, relation: None, popout: None, usages: None, impact_open:false,impact_target:None,impact_report:None,impact_note:String::new(), search_open:false, search_query:Default::default(), search_report:None, search_note:String::new(), browser_revealed:None,browser_open_groups:BTreeMap::new(), pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new() };
+            creation: None, relation: None, popout: None, usages: None, impact_open:false,impact_target:None,impact_report:None,impact_note:String::new(), search_open:false, search_query:Default::default(), search_report:None, search_note:String::new(), browser_revealed:None,browser_open_groups:BTreeMap::new(), pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new(), menu_scope:None, last_workspace_command:None };
         app.refresh_recoveries();
         app
     }
@@ -147,62 +151,6 @@ impl Workspace {
             Err(error) => {
                 self.feedback = error;
                 self.error = true;
-            }
-        }
-    }
-    fn handle_shortcuts(&mut self, ctx: &egui::Context) {
-        if ctx.input_mut(|i| i.consume_key(egui::Modifiers::COMMAND, egui::Key::S)) {
-            if self.views.inspection_visible() {
-                self.result(Ok("Read-only source inspection: close it to use the model Save shortcut.".into()));
-            } else if self.assurance.is_visible() {
-                self.assurance.request_save();
-            } else if !self.exchange.is_visible() {
-                self.save();
-            }
-        }
-        let transition = ctx.input(|i| {
-            i.events.iter().any(|e| {
-                matches!(
-                    e,
-                    egui::Event::PointerButton { pressed: true, .. }
-                        | egui::Event::Key {
-                            key: egui::Key::Tab,
-                            pressed: true,
-                            ..
-                        }
-                )
-            })
-        });
-        let target = if self.views.inspection_visible() || self.assurance.is_visible() || self.exchange.is_visible() {
-            ShortcutTarget::Widget
-        } else {
-            shortcut_policy(
-                self.focused_raw(),
-                ctx.text_edit_focused()
-                    || egui::Popup::is_any_open(&ctx)
-                    || self.creation.is_some()
-                    || self.context_creation.is_some()
-                    || self.settings_window
-                    || self.recovery_window
-                    || self.pending.is_some(),
-                transition,
-            )
-        };
-        if !matches!(target, ShortcutTarget::Widget) {
-            let redo = ctx.input_mut(|i| {
-                i.consume_key(
-                    egui::Modifiers::COMMAND | egui::Modifiers::SHIFT,
-                    egui::Key::Z,
-                )
-            });
-            let undo =
-                !redo && ctx.input_mut(|i| i.consume_key(egui::Modifiers::COMMAND, egui::Key::Z));
-            if redo || undo {
-                let field = match target {
-                    ShortcutTarget::Field(key) => Some(key),
-                    _ => None,
-                };
-                self.history(undo, field);
             }
         }
     }
@@ -692,40 +640,15 @@ impl Workspace {
         });
     }
     fn toolbar(&mut self, root: &mut egui::Ui) {
-        let history_field = self.focused_raw();
+        use crate::command_catalog::Id;
+        let scope=self.history_scope();
         egui::Panel::top("workspace_toolbar").show(root, |ui| {
+            self.command_menus(ui);
             ui.horizontal_wrapped(|ui| {
                 ui.heading("MBSE-Craft"); ui.label("Model workspace"); ui.separator();
-                for (label, action) in [("New", Load::New), ("Open", Load::Open(PathBuf::from(self.path.trim()))), ("Recover", Load::Recover(PathBuf::from(self.path.trim()))), ("Import SysML", Load::Import(PathBuf::from(self.path.trim())))] {
-                    let response = ui.button(label); self.bound(format!("action:{label}"),&response);
-                    if response.clicked() { self.request_load(action); }
-                }
-                let save = ui.button("Save"); self.bound("action:Save",&save); if save.clicked() { self.save(); }
-                let recovery = ui.button("Recovery copy"); self.bound("action:Recovery copy",&recovery); if recovery.clicked() { self.recovery(); }
-                let recovery_count=self.recovery_inventory.as_ref().map_or(0,|i|i.entries.len());
-                let response=ui.button(format!("Review recovery copies ({recovery_count})"));self.bound("recovery:Review copies",&response);if response.clicked(){self.refresh_recoveries();self.recovery_window=true;}
-                let response=ui.button("Open external projection");self.bound("action:Open external projection",&response);if response.clicked(){self.exchange.open(&self.path);}
-                let response=ui.button("Requirements and evidence");self.bound("action:Requirements and evidence",&response);if response.clicked(){self.assurance.open_window();}
-                let response=ui.button("Browse library folder");self.bound("action:Browse library folder",&response);if response.clicked(){self.catalog.open(&self.path);}
-                let response=ui.button("Recovery settings");self.bound("settings:Open",&response);if response.clicked(){self.settings_window=true;}
-                if ui.button("Export SysML copy").clicked() {
-                    let result = self.session.begin_export_sysml(&PathBuf::from(self.path.trim())).and_then(|job| self.session.complete_export(stage1_io::execute_export(job))).and_then(|accepted| if accepted { Ok("Exported restricted SysML copy.".into()) } else { Err("Export receipt was not accepted.".into()) });
-                    self.result(result);
-                }
-                ui.separator();
-                // Real ArtCraft IconButton controls with accessible action labels.
-                let visual = ButtonVisuals { fill: Color32::from_rgb(231, 239, 238), stroke: Stroke::new(1., LINE), icon: ACCENT };
-                let style = IconButtonStyle { normal: visual, hovered: visual, pressed: Some(visual), selected: visual,
-                    corner_radius: egui::CornerRadius::same(4), focus_stroke: Stroke::new(2., ACCENT) };
-                for (label, undo, enabled) in [("Undo", true, self.session.editor.can_undo() || self.focused_raw().is_some()), ("Redo", false, self.session.editor.can_redo() || self.focused_raw().is_some())] {
-                    ui.add_enabled_ui(enabled, |ui| {
-                        let response = IconButton::new(label, Vec2::new(44.,28.), &style).show(ui, |ui, rect, tint| {
-                            ui.painter().text(rect.center(), egui::Align2::CENTER_CENTER, if undo { "Undo" } else { "Redo" }, FontId::proportional(12.), tint);
-                        });
-                        self.bound(format!("action:{label}"),&response);
-                        if response.clicked() { self.history(undo,history_field.clone()); }
-                    });
-                }
+                for id in [Id::New,Id::Open,Id::Recover,Id::Import,Id::Save,Id::Recovery,
+                    Id::Recoveries,Id::External,Id::Assurance,Id::Library,Id::Settings,Id::Export,
+                    Id::Undo,Id::Redo] { self.workspace_button(ui,id,&scope); }
             });
             ui.horizontal(|ui| {
                 ui.label("Open / import / recover / export");
@@ -779,7 +702,7 @@ impl Workspace {
         egui::Panel::left("model_navigation").default_size(338.).size_range(290. ..=420.).resizable(true).show(root, |ui| {
             egui::ScrollArea::vertical().show(ui, |ui| {
                 ui.heading("Model");
-                let response=ui.button("Search native records");self.bound("action:Search native records",&response);if response.clicked(){self.open_search();}
+                self.workspace_button(ui,crate::command_catalog::Id::Search,&self.history_scope());
                 let records: Vec<_> = self.session.editor.snapshot.records.values().cloned().collect();
                 let selected = self.session.editor.selected;
                 ui.label(format!("System membership · {} native records",records.len()));
@@ -802,8 +725,8 @@ impl Workspace {
                 ui.separator();
                 if let Some(record) = selected.and_then(|id| records.iter().find(|r| r.id == id)).cloned() {
                     ui.label(RichText::new(format!("{} #{}", record.kind.label(), record.id.0)).color(ACCENT));
-                    let response=ui.button("Find usages");self.bound("action:Find usages",&response);if response.clicked(){self.open_usages(record.id);}
-                    let response=ui.button("Inspect record impact");self.bound("action:Inspect record impact",&response);if response.clicked(){self.open_impact(record.id);}
+                    self.workspace_button(ui,crate::command_catalog::Id::Usages,&self.history_scope());
+                    self.workspace_button(ui,crate::command_catalog::Id::Impact,&self.history_scope());
                     self.inspector(ui, &record, &records);
                 }
                 ui.separator(); ui.label(RichText::new("Add a typed record").strong());
@@ -1425,6 +1348,10 @@ impl Workspace {
     fn canvas(&mut self, root: &mut egui::Ui) {
         egui::CentralPanel::default().show(root, |ui| {
             ui.heading("Native views");
+            let scope=self.history_scope();
+            ui.horizontal_wrapped(|ui| {
+                for id in [crate::command_catalog::Id::LayoutUndo,crate::command_catalog::Id::LayoutRedo,crate::command_catalog::Id::Presentation] {self.workspace_button(ui,id,&scope);}
+            });
             if let Some(record) = self.views.toolbar(ui, &self.session) { self.select(record); }
             let records: Vec<_> = self.session.editor.snapshot.records.values().cloned().collect();
             let graph = match stage1_graph::derive_graph(&self.session.editor.snapshot) {
@@ -2033,6 +1960,7 @@ impl eframe::App for Workspace {
             "native_record_impact":serde_json::json!({"open":self.impact_open,"target":self.impact_target.map(|id|id.0.to_string()),"note":self.impact_note,"report":self.impact_report.as_ref().map(|report|serde_json::json!({"target":report.target().0.to_string(),"counts":report.totals(),"shown":[report.usages().len(),report.occurrences().len(),report.edges().len()],"drafts":report.drafts(),"current":report.check(&self.session.editor,&self.views.views).is_ok()}))}),"native_system_browser":serde_json::json!({"open_groups":self.browser_open_groups}),"native_search":serde_json::json!({"open":self.search_open,"note":self.search_note,"query_mode":format!("{:?}",self.search_query.mode),"report":self.search_report.as_ref().map(|report|serde_json::json!({"total":report.total(),"ids":report.hits().iter().map(|h|h.record.0.to_string()).collect::<Vec<_>>(),"current":report.check(&self.session.editor,&self.views.views).is_ok()}))}),"native_usages":self.usages.as_ref().map(|report|serde_json::json!({"target":report.target().0,"rows":report.usages().len(),"current":report.check(&self.session.editor,&self.views.views).is_ok()})),"snapshot_hash":self.session.editor.snapshot.digest(),"selected":self.session.editor.selected.map(|id|id.0),
             "save_status":format!("{:?}",self.session.status()),"periodic_recovery":self.preferences.value.periodic_recovery,"recovery_interval_seconds":self.preferences.value.recovery_interval_seconds,"preferences_status":self.preferences.status,"write_pending":self.session.pending(),"external_copy_pending":self.exchange.copy_pending(),"source_edit_dirty":self.exchange.source_edit_dirty(),"source_edit_pending":self.exchange.source_edit_pending(),"recovery_path":self.session.last_recovery().map(|p|p.display().to_string()),"native_recovery_status":self.periodic_recovery.status(&self.session,&self.views).0,"layout_recovery_status":self.periodic_recovery.status(&self.session,&self.views).1,"views_recovery_current_hint":self.views.io.recovery_current(&self.session,&self.views.views),"views_pair_pending":self.views.pair_pending(),"views_gesture_active":self.views.layout_gesture_active(),"feedback":self.feedback,"error":self.error,"widgets":self.audit});
         if let Some(fields) = audit.as_object_mut() {
+            fields.insert("command_catalog".into(),self.command_audit());
             fields.insert("views_inspection_profile".into(), serde_json::json!(self.views.inspection_profile()));
             fields.insert("views_inspection_copy_origin".into(), self.views.inspection_copy_origin());
         }

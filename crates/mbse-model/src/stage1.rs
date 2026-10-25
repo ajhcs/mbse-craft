@@ -907,6 +907,14 @@ impl Editor {
     pub fn finish_field(&mut self) {
         self.active_field = None;
     }
+    pub fn can_text_history(&self, key: &RawKey, redo: bool) -> bool {
+        if !self.field_available(key) { return false; }
+        let generation = if key.field.starts_with("calc.") {
+            self.snapshot.calculation_generation(key)
+        } else { None };
+        let history = if redo { &self.text_future } else { &self.text_past };
+        history.get(&(key.clone(), generation)).is_some_and(|entries| !entries.is_empty())
+    }
     pub fn can_undo(&self) -> bool {
         !self.past.is_empty()
     }

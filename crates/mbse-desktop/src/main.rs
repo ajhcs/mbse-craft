@@ -1,3 +1,4 @@
+mod command_catalog;
 mod assurance_ui;
 mod catalog_ui;
 mod exchange_ui;
