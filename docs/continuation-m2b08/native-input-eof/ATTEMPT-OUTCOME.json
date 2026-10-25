@@ -1,0 +1,14 @@
+{
+  "status": "NotQualifiedInputEOF",
+  "recorded_utc": "2026-10-23T19:16:21.176736+00:00",
+  "started_utc": "2026-10-23T19:15:29.060926+00:00",
+  "ended_utc": "2026-10-23T19:15:33.366497+00:00",
+  "reason": "Launch exec omitted tty=True, so driver received stdin EOF immediately after ready. No walkthrough input or captures. Driver finally terminated app with SIGTERM; driver0 is not native acceptance.",
+  "captures": 0,
+  "app_exit_code": -15,
+  "driver_exit_code": 0,
+  "all_six_owned_identities_verified_absent_utc": "2026-10-23T19:15:54.664155+00:00",
+  "xauthority_removed": true,
+  "source_tests_build_replayed": false,
+  "native_acceptance": false
+}

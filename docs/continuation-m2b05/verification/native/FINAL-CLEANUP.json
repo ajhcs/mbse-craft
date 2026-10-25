@@ -1,0 +1,44 @@
+{
+  "checked_utc": "2026-10-23T17:11:56.695579+00:00",
+  "started_utc": "2026-10-23T17:08:50.656007+00:00",
+  "ended_utc": "2026-10-23T17:11:11.086410+00:00",
+  "identities": [
+    {
+      "pid": 1157347,
+      "start_ticks": 14968094,
+      "original_identity_absent": true
+    },
+    {
+      "pid": 1157355,
+      "start_ticks": 14968175,
+      "original_identity_absent": true
+    },
+    {
+      "pid": 1157356,
+      "start_ticks": 14968197,
+      "original_identity_absent": true
+    },
+    {
+      "pid": 1157357,
+      "start_ticks": 14968198,
+      "original_identity_absent": true
+    },
+    {
+      "pid": 1157358,
+      "start_ticks": 14968221,
+      "original_identity_absent": true
+    },
+    {
+      "pid": 1157361,
+      "start_ticks": 14968223,
+      "original_identity_absent": true
+    }
+  ],
+  "owned_jobs": [],
+  "auth_absent": true,
+  "renderer_released": true,
+  "app_exit_code": 0,
+  "driver_exit_code": 0,
+  "source_binary_unchanged": true,
+  "original_pngs": 12
+}

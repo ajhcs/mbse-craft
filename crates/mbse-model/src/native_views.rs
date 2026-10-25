@@ -7,8 +7,8 @@ use crate::{
     stage1_graph::{self, RelationRole},
     stage1_io::NativeCheckpoint,
 };
-type EdgeIndex = BTreeSet<(RecordId, RelationRole, RecordId)>;
-fn edge_index(snapshot: &Snapshot) -> Result<EdgeIndex, String> {
+pub(crate) type EdgeIndex = BTreeSet<(RecordId, RelationRole, RecordId)>;
+pub(crate) fn edge_index(snapshot: &Snapshot) -> Result<EdgeIndex, String> {
     Ok(stage1_graph::derive_graph(snapshot)?
         .edges
         .into_iter()
@@ -25,7 +25,7 @@ use std::{
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub(crate) struct Origin(u64);
 static NEXT_ORIGIN: AtomicU64 = AtomicU64::new(1);
-fn new_origin() -> Result<Origin, String> {
+pub(crate) fn new_origin() -> Result<Origin, String> {
     NEXT_ORIGIN
         .fetch_update(Ordering::Relaxed, Ordering::Relaxed, |n| n.checked_add(1))
         .map(Origin)
@@ -111,6 +111,24 @@ pub struct Camera {
     pub x: f64,
     pub y: f64,
     pub zoom: f64,
+}
+impl Camera {
+    pub const MIN_ZOOM: f64 = 0.05;
+    pub const MAX_ZOOM: f64 = 20.;
+    pub fn checked(x: f64, y: f64, zoom: f64) -> Result<Self, String> {
+        let camera = Self { x, y, zoom };
+        if !camera.valid() {
+            return Err("VIEWS_CAMERA_INVALID".into());
+        }
+        Ok(camera)
+    }
+    fn valid(&self) -> bool {
+        [self.x, self.y]
+            .iter()
+            .all(|n| n.is_finite() && n.abs() <= LIMIT)
+            && self.zoom.is_finite()
+            && (Self::MIN_ZOOM..=Self::MAX_ZOOM).contains(&self.zoom)
+    }
 }
 impl Default for Camera {
     fn default() -> Self {
@@ -219,7 +237,7 @@ impl SemanticKey {
     fn exists(&self, snapshot: &Snapshot) -> Result<bool, String> {
         self.exists_in(snapshot, &edge_index(snapshot)?)
     }
-    fn exists_in(&self, snapshot: &Snapshot, index: &EdgeIndex) -> Result<bool, String> {
+    pub(crate) fn exists_in(&self, snapshot: &Snapshot, index: &EdgeIndex) -> Result<bool, String> {
         let Some(owner) = snapshot.records.get(&self.owner) else {
             return Ok(false);
         };
@@ -298,19 +316,25 @@ impl Document {
     pub fn digest(&self) -> Result<String, String> {
         self.encoded().map(|b| hash(&b))
     }
-    fn validate(&self, snapshot: &Snapshot) -> Result<(), String> {
+    pub(crate) fn validate(&self, snapshot: &Snapshot) -> Result<(), String> {
         let index = edge_index(snapshot)?;
         self.validate_with_index(snapshot, &index)
     }
     fn validate_with_index(&self, snapshot: &Snapshot, index: &EdgeIndex) -> Result<(), String> {
+        self.validate_contents(Some((snapshot, index)))
+    }
+    fn validate_contents(&self, native: Option<(&Snapshot, &EdgeIndex)>) -> Result<(), String> {
         if self.profile != PROFILE && self.profile != RECOVERY_PROFILE {
             return Err("VIEWS_FUTURE_PROFILE".into());
         }
         if !self.sidecar_id.starts_with("views:") || self.sidecar_id.len() > 1024 {
             return Err("VIEWS_SIDECAR_ID".into());
         }
-        if self.document_id != snapshot.document_id {
+        if native.is_some_and(|(snapshot, _)| self.document_id != snapshot.document_id) {
             return Err("VIEWS_DOCUMENT_MISMATCH".into());
+        }
+        if native.is_none() && (self.document_id.0.is_empty() || self.document_id.0.len() > 1024) {
+            return Err("VIEWS_SOURCE_DOCUMENT_ID".into());
         }
         if self.binding.as_ref().is_some_and(|b| {
             b.document_id != self.document_id
@@ -334,11 +358,7 @@ impl Document {
                 || !ids.insert(id.0)
                 || v.title.is_empty()
                 || v.title.len() > 1024
-                || ![v.camera.x, v.camera.y]
-                    .iter()
-                    .all(|n| n.is_finite() && n.abs() <= LIMIT)
-                || !v.camera.zoom.is_finite()
-                || !(0.05..=20.).contains(&v.camera.zoom)
+                || !v.camera.valid()
             {
                 return Err("VIEWS_VIEW_INVALID".into());
             }
@@ -354,7 +374,9 @@ impl Document {
             }
             *counts.entry(o.view).or_default() += 1;
             if o.presence.active()
-                && snapshot.records.get(&o.record).map(|r| r.kind) != Some(o.expected_kind)
+                && native.is_some_and(|(snapshot, _)| {
+                    snapshot.records.get(&o.record).map(|r| r.kind) != Some(o.expected_kind)
+                })
             {
                 return Err("VIEWS_ACTIVE_TARGET_MISSING_OR_KIND".into());
             }
@@ -383,12 +405,15 @@ impl Document {
             {
                 return Err("VIEWS_EDGE_ENDPOINT_BINDING".into());
             }
-            if edge.presence.active()
-                && (!a.presence.active()
-                    || !b.presence.active()
-                    || !edge.key.exists_in(snapshot, index)?)
-            {
-                return Err("VIEWS_ACTIVE_EDGE_UNRESOLVED".into());
+            if edge.presence.active() {
+                if !a.presence.active() || !b.presence.active() {
+                    return Err("VIEWS_ACTIVE_EDGE_UNRESOLVED".into());
+                }
+                if let Some((snapshot, index)) = native {
+                    if !edge.key.exists_in(snapshot, index)? {
+                        return Err("VIEWS_ACTIVE_EDGE_UNRESOLVED".into());
+                    }
+                }
             }
             check_presence(&edge.presence)?;
         }
@@ -1018,6 +1043,19 @@ fn decode_document(bytes: &[u8]) -> Result<Document, String> {
     serde_json::from_value(unique.0).map_err(|e| format!("VIEWS_SCHEMA: {e}"))
 }
 
+/// Structural source inspection only: returns a declared DTO, never a Views
+/// runtime, native checkpoint, replacement authority or semantic admission.
+pub(crate) fn inspect_document(bytes: &[u8]) -> Result<Document, String> {
+    let document = decode_document(bytes)?;
+    document.validate_contents(None)?;
+    if (document.profile == PROFILE && document.binding.is_none())
+        || (document.profile == RECOVERY_PROFILE && document.binding.is_some())
+    {
+        return Err("VIEWS_SOURCE_PROFILE_BINDING".into());
+    }
+    Ok(document)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -1068,6 +1106,61 @@ mod tests {
             },
         );
         *v.document.occurrences.keys().last().unwrap()
+    }
+    #[test]
+    fn checked_camera_uses_the_existing_finite_wire_limits() {
+        for (x, y, z) in [
+            (0., 0., Camera::MIN_ZOOM),
+            (LIMIT, -LIMIT, Camera::MAX_ZOOM),
+        ] {
+            assert!(Camera::checked(x, y, z).is_ok());
+        }
+        for (x, y, z) in [
+            (f64::NAN, 0., 1.),
+            (0., f64::INFINITY, 1.),
+            (LIMIT + 1., 0., 1.),
+            (0., 0., 0.),
+            (0., 0., Camera::MAX_ZOOM + 0.01),
+            (0., 0., f64::NAN),
+        ] {
+            assert!(Camera::checked(x, y, z).is_err());
+        }
+    }
+    #[test]
+    fn invalid_camera_refuses_layout_and_source_restore_without_mutation() {
+        let e = editor();
+        let mut views = Views::new(&e).unwrap();
+        let before = (
+            views.document().digest().unwrap(),
+            views.history_usage(),
+            views.document().next_id(),
+        );
+        let bad = Camera {
+            x: 0.,
+            y: 0.,
+            zoom: 21.,
+        };
+        let stamp = views.stamp(&e);
+        assert!(views
+            .apply(
+                &e,
+                &stamp,
+                Layout::Camera(views.document().primary, bad.clone())
+            )
+            .is_err());
+        assert_eq!(
+            (
+                views.document().digest().unwrap(),
+                views.history_usage(),
+                views.document().next_id()
+            ),
+            before
+        );
+        let mut d = views.recovery(&e).unwrap();
+        d.views.get_mut(&d.primary).unwrap().camera = bad;
+        let bytes = d.encoded().unwrap();
+        assert!(Views::restore(&bytes, &e).is_err());
+        assert!(inspect_document(&bytes).is_err());
     }
     #[test]
     fn same_element_two_views_move_hide_and_non_reused_ids() {

@@ -1,0 +1,122 @@
+{
+  "status": "ObservedFindUsagesWorkflowCompletedPendingIndependentPixelReview",
+  "source_commit": "16aa9adcfda5f69aea2336209829744922aa6509",
+  "source_sha256": "3e42753480893ec64477fabf97a8c383fb274f1d2f2972967d776a8ae032acd8",
+  "binary_sha256": "0f066bc91d50998e74f8a92e83f57334a19ccf661459d0353dfce8e405a6b414",
+  "job_sha256": "aa960ba014d9ec253a84cc628ab451e79e50f2bac839685a43735e867a02c1ff",
+  "actual": [
+    "TypedMission creation#1000",
+    "System#1 hasMissionScopeusage; actualselection1\u21921000withoutmodel/layoutmutation",
+    "Missionrename causesstale report; disablednavigation inputleavesstateunchanged",
+    "ExplicitRefreshrestorescurrentreport; real1\u21921000selectiontransition",
+    "Mission#1000 haszero usages amongsupportedroles",
+    "ExactlastSavefilehashes unchangedthroughallqueryinteractions beforeintentionalfinalSave",
+    "Finalnativepairbinding/native schema2/views v1unchanged; normalclose0/exactcleanup"
+  ],
+  "baseline_snapshot": "06c969eca37fbbe8c97d5ce43dfa8bf0d4b24426331f28f06a21898ea886209d",
+  "after_intentional_edit_snapshot": "b4fa753b9d2a9dd2a4d6295a9fd847f5dcf481c9640a4d2158d7e3cc62c0db89",
+  "final_native_sha256": "706a5a10aebcb7b57c58d4bfd45240f3bee76633c0de9b935d3b8925bd1def6e",
+  "final_views_sha256": "ddca04c5ca7fa58bdb418b1432e3578b4753212633b904cf04eaee7ee531facf",
+  "presave_physical_hash_check_sha256": "4adf66110a73ee4b5874795e7556bf5fcd47646b990eeeb8c7abef54e68de147",
+  "audits": [
+    {
+      "capture": "00-clean-initial-pair.ui",
+      "sha256": "8ee1be09adae4593c6525968842ed628cb494f260e079608960684940fa95775"
+    },
+    {
+      "capture": "01-typed-mission-created.ui",
+      "sha256": "5fb411737cab544775bb9b2a68823649aa0d73bd63a76ef8576134d2c0c54ccd"
+    },
+    {
+      "capture": "02-system-scope-usages.ui",
+      "sha256": "1c19652ed846289c3305859aca44e85587ee71e9e887d4707052203cdd9e58e6"
+    },
+    {
+      "capture": "03-navigate-to-referencing-mission.ui",
+      "sha256": "cc2ce44b4ec1e3345b654436a0cc247e73637c942bdb2892785abfb788b7c4a0"
+    },
+    {
+      "capture": "04-stale-report-navigation-disabled.ui",
+      "sha256": "92cdee3b7b0e35dfce8c95561c592a64a851625112397b931cc6a92ba885d402"
+    },
+    {
+      "capture": "05-disabled-navigation-retains-state.ui",
+      "sha256": "92cdee3b7b0e35dfce8c95561c592a64a851625112397b931cc6a92ba885d402"
+    },
+    {
+      "capture": "06-explicit-refresh-current.ui",
+      "sha256": "3e0b98cd5a8bd86c178bcbc165a064c78386c6e6435d969a35f4ccedd33df783"
+    },
+    {
+      "capture": "07-refreshed-navigation.ui",
+      "sha256": "3e0b98cd5a8bd86c178bcbc165a064c78386c6e6435d969a35f4ccedd33df783"
+    },
+    {
+      "capture": "08-system-before-refreshed-navigation.ui",
+      "sha256": "1e4ecf734988f1fd77235a2b9f90d92aff55a4a72293206d84920dccb0cfab74"
+    },
+    {
+      "capture": "09-refreshed-real-selection-transition.ui",
+      "sha256": "781af95235001ac1498214595e148d5e20e158632411e0665b1bda0b1b8e7e77"
+    },
+    {
+      "capture": "10-mission-no-supported-usages.ui",
+      "sha256": "765a0410f8cbd51d1889adcd20e6c7e7a88420c3339ceda0ab5b3c2b63b34b29"
+    },
+    {
+      "capture": "11-final-native-pair-preserved.ui",
+      "sha256": "2567b14714e6f0065113a43cad4bfe475dd2ea9e30756a1d55dc3ecf02d3b88d"
+    }
+  ],
+  "cleanup": {
+    "checked_utc": "2026-10-23T17:11:56.695579+00:00",
+    "started_utc": "2026-10-23T17:08:50.656007+00:00",
+    "ended_utc": "2026-10-23T17:11:11.086410+00:00",
+    "identities": [
+      {
+        "pid": 1157347,
+        "start_ticks": 14968094,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1157355,
+        "start_ticks": 14968175,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1157356,
+        "start_ticks": 14968197,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1157357,
+        "start_ticks": 14968198,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1157358,
+        "start_ticks": 14968221,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1157361,
+        "start_ticks": 14968223,
+        "original_identity_absent": true
+      }
+    ],
+    "owned_jobs": [],
+    "auth_absent": true,
+    "renderer_released": true,
+    "app_exit_code": 0,
+    "driver_exit_code": 0,
+    "source_binary_unchanged": true,
+    "original_pngs": 12
+  },
+  "limits": [
+    "Scope reference GUI only; otherroles/calculationdirections arefocusedtests",
+    "Historical stale rows maydisplaycurrentnames; not frozenlabeldata",
+    "No generalallreferences/sourceimport/edit/delete/history/schema migration/fullparityacceptance"
+  ],
+  "owned_jobs": [],
+  "uploads": false
+}

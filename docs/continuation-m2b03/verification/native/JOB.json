@@ -1,0 +1,42 @@
+{
+  "profile": "mbse-craft.presentation-inspection-native-job/1",
+  "status": "PreparedNotLaunched",
+  "owner_thread": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+  "source_commit": "f0a3247a784e5f93076faef0e4353887afbefec8",
+  "source_sha256": "0649d70e6295e352929206a0a1cad72797216e88c090a4f36444cb349cf21de7",
+  "source_manifest": "/workspace/build/builderbob/mbse-craft/recovery-layout-preview-shortcut-fix/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "6296032268efce718ab08613f20c6b1c0096bcf9a4b1470d714ac62640f52380",
+  "cargo_lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+  "binary": "/workspace/build/builderbob/mbse-craft/recovery-layout-preview-shortcut-fix/attempt-20261023T162013269302Z/mbse-desktop",
+  "binary_sha256": "6f6d7d3a41b2e1deb57975b97215240bc05b6f690cb2c170dda1942f75db0733",
+  "binary_bytes": 398558048,
+  "executable_copy": "/workspace/build/builderbob/mbse-craft/recovery-layout-preview-shortcut-fix/native-gate/bin/mbse-desktop",
+  "build_receipt": "/workspace/build/builderbob/mbse-craft/recovery-layout-preview-shortcut-fix/attempt-20261023T162013269302Z/RECEIPT.json",
+  "build_receipt_sha256": "9190a47511819d12d5bd682cdf39dd2818aa6f7e1d580b234b09b420fb2b195d",
+  "run_dir": "/workspace/build/builderbob/mbse-craft/recovery-layout-preview-shortcut-fix/native-gate/run-inspection",
+  "state_dir": "/workspace/build/builderbob/mbse-craft/recovery-layout-preview-shortcut-fix/native-gate/state",
+  "config_dir": "/workspace/build/builderbob/mbse-craft/recovery-layout-preview-shortcut-fix/native-gate/config",
+  "workflow": [
+    "actual clean target Save; make native/layout dirty",
+    "separate Inspect presentation source window: read foreign source claims; no target admission",
+    "recheck exact bytes, controlled fixture whitespace change and corrupt-read refusal retain old preview",
+    "actual CtrlZ/CtrlS within source window do not undo/save target",
+    "close inspector, preserve target pair, normal close, exact cleanup"
+  ],
+  "runtime_budget_seconds": 1200,
+  "isolation": "Existing reviewed aa-exec builderbob-codex/bwrap unshare-net/private tmp, exclusive fresh run directory, Xvfb displayfd, ephemeral0600Xauthority. r09 simultaneous isolated renderer scope; no global slot reservation.",
+  "native_admission": "Fresh exact-job packet and explicit action allocation pin current independent host identity before Xvfb/app launch",
+  "compiler": false,
+  "uploads": false,
+  "new_agent_contexts": false,
+  "qualified_unique_tests": 83,
+  "qualification_chain": "/workspace/build/builderbob/mbse-craft/recovery-layout-preview-shortcut-fix/QUALIFICATION-CHAIN.json",
+  "source_fixture": {
+    "path": "/workspace/build/builderbob/mbse-craft/recovery-layout-preview-shortcut-fix/native-gate/source-fixture.mbse-views.json",
+    "initial_sha256": "ae54f7e19b833877f9df909f6102c5c706dbb15fcb26faa71c26773a37f22aff",
+    "bytes": 1241,
+    "copied_from": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery-r02/native-gate/state/views-recovery-session-stage1-session-Mb0wrr-1.mbse-views.json",
+    "original_unchanged": true,
+    "controlled_mutations": "Only this new owned fixture may receive appended whitespace then corrupt JSON, with recorded inode/hash checks. Preserve each version; never change original source."
+  }
+}

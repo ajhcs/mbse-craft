@@ -1,0 +1,57 @@
+{
+  "native_snapshot": "4af0fbd7d3cfc03f64a4585ed33b6d9e3c0bef89af81a2a555ad9b6f129f18d9",
+  "model_revision": 0,
+  "raw_version": 0,
+  "baseline_card_width": 270.0,
+  "zoom125_card_width": 337.5,
+  "native_sha256": "bf0d121c264b7c45e66decce3433116264dc6fd843c08c088007d0d0ea34d77c",
+  "views_sha256": "d6e4fe179030b8b1f74471d542cb8f02a34c4bdcc674052408b7da24ec85dbdb",
+  "stored_cameras": {
+    "1": {
+      "x": 51.2,
+      "y": 0.0,
+      "zoom": 1.25
+    },
+    "2": {
+      "x": 0.0,
+      "y": 0.0,
+      "zoom": 0.8
+    }
+  },
+  "stored_occurrences": {
+    "3": {
+      "id": "3",
+      "view": "1",
+      "record": "1",
+      "expected_kind": "System",
+      "geometry": {
+        "x": 25.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "4": {
+      "id": "4",
+      "view": "2",
+      "record": "1",
+      "expected_kind": "System",
+      "geometry": {
+        "x": 25.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "status": "StaticNativeExecutorReadyNotExecutionAdmission",
+  "reviewer": "/root/periodic_actual_review",
+  "recorded_utc": "2026-10-23T19:46:48.219124+00:00",
+  "source_commit": "88d813e19d5eb18fab1b8962aab030a1731ea39d",
+  "source_files_verified": 668,
+  "native_job_sha256": "f87333dbede00916f1ede86f02674dc9218fa8862a51630b7d0540986505cd22",
+  "launcher_sha256": "256e0f81301b1497e2a372e659030f490255c02010e395cb2dedb527cb8750fe",
+  "route_sha256": "9bd51f7dcf0c15bcc6e01cf8a100ae9038e8e6fe70966e75f4c3c6f8d808b279",
+  "stager_sha256": "b277db2f20c5cf9261f1eabefe96a7547f65d5ea90d1344acff632f6b5f2682d",
+  "verified": [
+    "7model+8policy tests/build receipt and logs hash-match",
+    "Qualification chain and binary exact",
+    "Retained public synthetic browser fixture with twoSystems and incomplete12e- matches provenance",
+    "Driver differs from qualified private driver only by paths",
+    "Terminal guard precedes child/import and stdin inheritance is intact",
+    "Workflow chooses both fresh destinations beforeSave; detached and unsupported impactclaims bounded"
+  ],
+  "first_attempt_started": false,
+  "owned_jobs": [],
+  "reviewer_execution": false,
+  "reviewer_changes": false
+}

@@ -1,0 +1,28 @@
+{
+  "source_commit": "88d813e19d5eb18fab1b8962aab030a1731ea39d",
+  "source_sha256": "a5665174565063635f3390584da8006b826da6fec876e6b9739981e6584a7874",
+  "receipts": [
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-record-impact/attempt-20261023T194239648895Z/RECEIPT.json",
+      "sha256": "cad83e79f8b37805f6c597d6f078adc9718e075013809a026369932d7d19fab4"
+    }
+  ],
+  "unique_passed_tests": [
+    "native_record_impact::tests::all_views_hidden_and_detached_occurrences_and_exact_touching_edges",
+    "native_record_impact::tests::calculation_output_usage_retains_consumer_direction_and_named_bindings",
+    "native_record_impact::tests::counts_all_stored_owner_drafts_and_pending_creation_drafts_without_text_copy",
+    "native_record_impact::tests::direct_roles_remain_normalized_and_inspection_does_not_mutate_state",
+    "native_record_impact::tests::label_limits_high_ids_and_truncated_rows_keep_exact_totals",
+    "native_record_impact::tests::mismatched_document_and_record_key_fail_explicitly",
+    "native_record_impact::tests::stale_native_raw_layout_and_runtime_refuse_but_selection_is_navigation",
+    "ui::policies::browser_reveal_tracks_explicit_selection_and_runtime_without_model_edits",
+    "ui::policies::close_requires_current_preservation_even_while_hidden",
+    "ui::policies::impact_navigation_and_original_target_refresh_preserve_live_state_and_clear_failed_rows",
+    "ui::policies::native_search_draft_changes_clear_results_and_navigation_preserves_dirty_target",
+    "ui::policies::native_usages_navigation_preserves_dirty_target_and_refuses_stale_rows",
+    "ui::policies::native_worker_start_failure_clears_only_own_pair_and_retains_live_state",
+    "ui::policies::ordinary_text_and_focus_transitions_do_not_undo_model",
+    "ui::policies::source_inspection_shortcuts_never_undo_or_save_the_live_target"
+  ],
+  "qualification": "15 focused tests and desktop build passed; native impact workflow not run"
+}

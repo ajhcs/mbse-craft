@@ -9,6 +9,7 @@ use mbse_model::{
     stage1_io::{IoTicket, Session, WriteKind},
 };
 use std::{
+    collections::BTreeMap,
     path::PathBuf,
     sync::mpsc::{self, Receiver, Sender},
 };
@@ -23,6 +24,17 @@ pub struct PreparedPair {
 struct NativePair {
     ticket: IoTicket,
     prepared: PreparedPair,
+}
+#[derive(Clone, Copy)]
+enum CameraCommand {
+    ZoomIn,
+    ZoomOut,
+    HundredPercent,
+    PanLeft,
+    PanRight,
+    PanUp,
+    PanDown,
+    Reset,
 }
 pub struct ViewWorkspace {
     pub views: Views,
@@ -40,6 +52,15 @@ pub struct ViewWorkspace {
     drag: Option<(OccurrenceId, Geometry, v::Stamp, egui::Pos2)>,
     route_source: Option<OccurrenceId>,
     route_target: Option<OccurrenceId>,
+    inspection: Option<mbse_model::native_views_inspect::Inspection>,
+    inspection_path: String,
+    inspection_open: bool,
+    inspection_view: Option<ViewId>,
+    inspection_note: String,
+    mapping: Option<mbse_model::native_views_plan::Plan>,
+    mapping_preview: Option<mbse_model::native_views_plan::Preview>,
+    mapping_note: String,
+    toolbar_bounds: BTreeMap<String, [f32; 4]>,
 }
 impl ViewWorkspace {
     pub fn new(session: &Session) -> Self {
@@ -68,7 +89,152 @@ impl ViewWorkspace {
             drag: None,
             route_source: None,
             route_target: None,
+            mapping: None,
+            mapping_preview: None,
+            mapping_note: String::new(),
+            toolbar_bounds: BTreeMap::new(),
+            inspection: None,
+            inspection_path: String::new(),
+            inspection_open: false,
+            inspection_view: None,
+            inspection_note: "Choose an explicit local presentation source to inspect read only."
+                .into(),
         }
+    }
+    pub fn open_inspection(&mut self) {
+        self.inspection_open = true;
+    }
+    pub fn inspection_visible(&self) -> bool {
+        self.inspection_open
+    }
+    pub fn inspection_source_sha256(&self) -> Option<&str> {
+        self.inspection.as_ref().map(|p| p.source_sha256())
+    }
+    pub fn inspection_note(&self) -> &str {
+        &self.inspection_note
+    }
+    pub fn mapping_audit(&self, editor: &Editor) -> serde_json::Value {
+        use mbse_model::native_views_plan::Choice;
+        let current = self
+            .mapping
+            .as_ref()
+            .zip(self.inspection.as_ref())
+            .is_some_and(|(plan, source)| plan.check(source, editor, &self.views).is_ok());
+        serde_json::json!({"note":self.mapping_note,"target_current":current,"choices":self.mapping.as_ref().map(|p|p.choices().values().map(|c|match c {Choice::Unselected=>"unselected",Choice::Target(_)=>"target",Choice::Skip(_)=>"skip"}).collect::<Vec<_>>()),"checked_preview_retained":self.mapping_preview.is_some()})
+    }
+    fn inspect_source(&mut self) {
+        match mbse_model::native_views_inspect::Inspection::open(std::path::Path::new(
+            self.inspection_path.trim(),
+        )) {
+            Ok(source) => {
+                self.inspection_view = Some(source.declared().primary);
+                self.inspection = Some(source);
+                self.mapping = None;
+                self.mapping_preview = None;
+                self.mapping_note.clear();
+                self.inspection_note="Read-only source snapshot captured. Native references and file bindings are unverified source claims.".into();
+            }
+            Err(error) => {
+                self.mapping_preview = None;
+                self.mapping_note =
+                    "Read refused. Retained mapping choices have not been rechecked.".into();
+                self.inspection_note =
+                    format!("Source inspection refused: {error}. Previous preview retained.")
+            }
+        }
+    }
+    pub fn show_inspection(&mut self, ctx: &egui::Context, editor: &Editor) {
+        if !self.inspection_open {
+            return;
+        }
+        let mut open = true;
+        egui::Window::new("Read-only presentation source").id(egui::Id::new("presentation-source-inspection")).open(&mut open).default_width(760.).show(ctx,|ui|{
+            ui.label("Inspect one explicit local source. Source identifiers and bindings remain declarations; this operation does not import content.");
+            ui.horizontal(|ui|{
+                ui.label("Source file");
+                ui.add(egui::TextEdit::singleline(&mut self.inspection_path).desired_width(500.).hint_text("/workspace/…/source.mbse-views.json"));
+                if ui.button("Read source").clicked() { self.inspect_source(); }
+            });
+            ui.label(&self.inspection_note);
+            if let Some(source)=self.inspection.as_ref() {
+                ui.label(format!("Snapshot: {} · {} bytes",source.path().display(),source.source_bytes()));
+                ui.label(format!("Exact source SHA256: {}",source.source_sha256()));
+                if ui.button("Recheck source bytes").clicked() {
+                    self.mapping_preview=None;
+                    self.mapping_note="Mapping preview cleared. Check the mapping again after a successful source recheck.".into();
+                    self.inspection_note=match source.verify_unchanged() {Ok(())=>"Source bytes match the retained snapshot at this check.".into(),Err(error)=>format!("{error}. Retained preview remains read only.")};
+                }
+                let doc=source.declared();
+                ui.label(format!("Declared profile: {} · document: {}",doc.profile,doc.document_id.0));
+                ui.label(if doc.binding.is_some() {"Source declares a native-file binding (unverified)."} else {"Source is an unbound presentation recovery."});
+                if let Some(binding)=&doc.binding { ui.label(format!("Declared native artifact SHA256: {}",binding.artifact_sha256)); }
+                let old_view=self.inspection_view;
+                egui::ComboBox::from_id_salt("inspection-view").selected_text(self.inspection_view.and_then(|id|doc.views.get(&id)).map(|v|v.title.as_str()).unwrap_or("Choose source view")).show_ui(ui,|ui|{
+                    for (id,view) in &doc.views {ui.selectable_value(&mut self.inspection_view,Some(*id),format!("{} · source view {}",view.title,id.get()));}
+                });
+                if self.inspection_view!=old_view {self.mapping=None;self.mapping_preview=None;self.mapping_note.clear();}
+                if let Some(view)=self.inspection_view {
+                    if ui.button("Start mapping rehearsal").clicked() {
+                        match mbse_model::native_views_plan::Plan::new(source,view,editor,&self.views) {
+                            Ok(plan)=>{self.mapping=Some(plan);self.mapping_preview=None;self.mapping_note="Every source occurrence starts unselected. Choose target identities explicitly.".into();}
+                            Err(error)=>{self.mapping_note=error;self.mapping_preview=None;}
+                        }
+                    }
+                    ui.label("Mapping rehearsal only. No target view is created; no presentation IDs or history are reserved.");
+                    let stale=self.mapping.as_ref().and_then(|p|p.check(source,editor,&self.views).err());
+                    if let Some(error)=&stale {self.mapping_preview=None;self.mapping_note=error.clone();ui.label(error);}
+                    if self.mapping.is_some() && ui.add_enabled(stale.is_none(),egui::Button::new("Check mapping preview")).clicked() {
+                        self.mapping_preview=None;
+                        match self.mapping.as_ref().unwrap().preview(source,editor,&self.views) {
+                            Ok(preview)=>{self.mapping_note=format!("Checked point-in-time preview: {} mapped, {} skipped/unselected, {} proposed edges, {} skipped edges. Capacity, SaveAs and live Apply remain deferred.",preview.occurrences.iter().filter(|o|o.target.is_some()).count(),preview.occurrences.iter().filter(|o|o.target.is_none()).count(),preview.edges.iter().filter(|e|e.key.is_some()).count(),preview.edges.iter().filter(|e|e.key.is_none()).count());self.mapping_preview=Some(preview);}
+                            Err(error)=>self.mapping_note=error,
+                        }
+                    }
+                    ui.label(&self.mapping_note);
+                    let items:Vec<_>=doc.occurrences.values().filter(|o|o.view==view).collect();
+                    let edges=doc.edges.values().filter(|e|e.view==view).count();
+                    ui.label(format!("{} source occurrences · {} declared edges · geometry and presence only",items.len(),edges));
+                    egui::ScrollArea::vertical().max_height(440.).show(ui,|ui|{
+                        for o in items {
+                            ui.group(|ui|{
+                                ui.label(format!("Source occurrence {} · declared {:?} #{}",o.id.get(),o.expected_kind,o.record.0));
+                                ui.label(format!("x={} y={} width={} height={} · visible={} pinned={}",o.geometry.x,o.geometry.y,o.geometry.width,o.geometry.height,o.visible,o.pinned));
+                                if let Some(plan)=&mut self.mapping {
+                                    use mbse_model::native_views_plan::Choice;
+                                    if let Some(old)=plan.choices().get(&o.id).cloned() {
+                                        let mut choice=old.clone();
+                                        ui.add_enabled_ui(stale.is_none(),|ui|{
+                                            egui::ComboBox::from_id_salt(("map-occurrence",o.id.get())).selected_text(match &choice {Choice::Unselected=>"Unselected".into(),Choice::Target(id)=>format!("Target #{}",id.0),Choice::Skip(_)=>"Skip occurrence".into()}).show_ui(ui,|ui|{
+                                                ui.selectable_value(&mut choice,Choice::Unselected,"Unselected");
+                                                ui.selectable_value(&mut choice,Choice::Skip("Skipped by operator".into()),"Skip occurrence");
+                                                for record in editor.snapshot.records.values().filter(|r|r.kind==o.expected_kind) {
+                                                    ui.selectable_value(&mut choice,Choice::Target(record.id),format!("Target {:?} #{} · {}",record.kind,record.id.0,record.name));
+                                                }
+                                            });
+                                            if let Choice::Skip(reason)=&mut choice {ui.add(egui::TextEdit::singleline(reason).char_limit(1024).hint_text("Why skip this occurrence?"));}
+                                        });
+                                        if choice!=old {
+                                            self.mapping_preview=None;
+                                            self.mapping_note=match plan.choose(source,editor,&self.views,o.id,choice){Ok(())=>"Choices changed. Check the mapping preview again.".into(),Err(error)=>error};
+                                        }
+                                    }
+                                }
+                                ui.label(match &o.presence {v::Presence::Active=>"Source declares Active; target identity has not been matched.".into(),v::Presence::Detached{reason}=>format!("Detached source: {reason}")});
+                            });
+                        }
+                    });
+                    if stale.is_none() {
+                        if let Some(preview)=&self.mapping_preview {
+                            egui::ScrollArea::vertical().id_salt("mapping-proposal").max_height(160.).show(ui,|ui|{
+                                for o in &preview.occurrences {ui.label(format!("Provisional source occurrence {} → {} · x={} y={} · visible={} pinned={}",o.source.get(),o.target.map(|id|format!("target #{}",id.0)).unwrap_or_else(||o.reason.clone().unwrap()),o.geometry.x,o.geometry.y,o.visible,o.pinned));}
+                                for e in &preview.edges {ui.label(format!("Source edge {} · exact source occurrences {} → {} · {}",e.source.get(),e.source_occurrence.get(),e.target_occurrence.get(),e.key.as_ref().map(|k|format!("authored {:?} #{} → #{}",k.role,k.owner.0,k.target.0)).unwrap_or_else(||e.reason.clone().unwrap())));}
+                            });
+                        }
+                    }
+                }
+            }
+        });
+        self.inspection_open = open;
     }
     pub fn blocked(&self, session: &Session) -> bool {
         self.io.pending() || !self.io.is_saved(session, &self.views)
@@ -325,13 +491,79 @@ impl ViewWorkspace {
             self.drag = None;
         }
     }
+    pub fn toolbar_bounds(&self) -> impl Iterator<Item = (String, [f32; 4])> + '_ {
+        self.toolbar_bounds.iter().map(|(k, v)| (k.clone(), *v))
+    }
+    pub fn camera_audit(&self) -> serde_json::Value {
+        self.views.document().views.get(&self.active).map(|view|serde_json::json!({"view":self.active.get().to_string(),"x":view.camera.x,"y":view.camera.y,"zoom":view.camera.zoom})).unwrap_or(serde_json::Value::Null)
+    }
+    fn toolbar_bound(&mut self, key: impl Into<String>, response: &egui::Response) {
+        let rect = response.rect.intersect(response.interact_rect);
+        self.toolbar_bounds
+            .insert(key.into(), [rect.min.x, rect.min.y, rect.max.x, rect.max.y]);
+    }
+    fn set_camera(&mut self, editor: &Editor, camera: v::Camera) -> Result<bool, String> {
+        if self.drag.is_some() {
+            return Err("VIEWS_CAMERA_GESTURE_ACTIVE: release the occurrence gesture first".into());
+        }
+        let camera = v::Camera::checked(camera.x, camera.y, camera.zoom)?;
+        let view = self.active;
+        let old = &self
+            .views
+            .document()
+            .views
+            .get(&view)
+            .ok_or("VIEWS_NO_VIEW")?
+            .camera;
+        if *old == camera {
+            return Ok(false);
+        }
+        let stamp = self.views.stamp(editor);
+        self.views
+            .apply(editor, &stamp, Layout::Camera(view, camera))?;
+        Ok(true)
+    }
+    fn camera_target(old: &v::Camera, command: CameraCommand) -> Result<v::Camera, String> {
+        let mut next = old.clone();
+        let step = 64. / old.zoom;
+        match command {
+            CameraCommand::ZoomIn => next.zoom = (old.zoom * 1.25).min(v::Camera::MAX_ZOOM),
+            CameraCommand::ZoomOut => next.zoom = (old.zoom / 1.25).max(v::Camera::MIN_ZOOM),
+            CameraCommand::HundredPercent => next.zoom = 1.,
+            CameraCommand::PanLeft => next.x -= step,
+            CameraCommand::PanRight => next.x += step,
+            CameraCommand::PanUp => next.y -= step,
+            CameraCommand::PanDown => next.y += step,
+            CameraCommand::Reset => next = v::Camera::default(),
+        }
+        v::Camera::checked(next.x, next.y, next.zoom)
+    }
+    fn camera_command(&mut self, editor: &Editor, command: CameraCommand) -> Result<bool, String> {
+        if self.drag.is_some() {
+            return Err("VIEWS_CAMERA_GESTURE_ACTIVE: release the occurrence gesture first".into());
+        }
+        let old = &self
+            .views
+            .document()
+            .views
+            .get(&self.active)
+            .ok_or("VIEWS_NO_VIEW")?
+            .camera;
+        let camera = Self::camera_target(old, command)?;
+        self.set_camera(editor, camera)
+    }
     fn layout_history(&mut self, editor: &Editor, redo: bool) {
+        if self.drag.is_some() {
+            self.note="VIEWS_CAMERA_GESTURE_ACTIVE: release the occurrence gesture before layout history.".into();
+            return;
+        }
         let stamp = self.views.stamp(editor);
         self.note = format!("{:?}", self.views.undo(editor, &stamp, redo));
         self.reconcile();
     }
     /// Returns a selected native ID; selection itself is not a semantic edit.
     pub fn toolbar(&mut self, ui: &mut egui::Ui, session: &Session) -> Option<RecordId> {
+        self.toolbar_bounds.clear();
         let mut select = None;
         let tabs: Vec<_> = self
             .views
@@ -342,15 +574,24 @@ impl ViewWorkspace {
             .collect();
         ui.horizontal_wrapped(|ui| {
             for (id, title) in tabs {
-                if ui.selectable_label(self.active == id, title).clicked() {
+                let response = ui.add_enabled(
+                    self.drag.is_none(),
+                    egui::Button::selectable(self.active == id, title),
+                );
+                self.toolbar_bound(format!("view:tab:{}", id.get()), &response);
+                if response.clicked() {
                     self.active = id;
                     self.selected = None;
                 }
             }
-            if ui.button("Layout Undo").clicked() {
+            let response = ui.add_enabled(self.drag.is_none(), egui::Button::new("Layout Undo"));
+            self.toolbar_bound("view:Layout Undo", &response);
+            if response.clicked() {
                 self.layout_history(&session.editor, false);
             }
-            if ui.button("Layout Redo").clicked() {
+            let response = ui.add_enabled(self.drag.is_none(), egui::Button::new("Layout Redo"));
+            self.toolbar_bound("view:Layout Redo", &response);
+            if response.clicked() {
                 self.layout_history(&session.editor, true);
             }
         });
@@ -376,7 +617,9 @@ impl ViewWorkspace {
             {
                 self.apply(&session.editor, Layout::CloseView(self.active));
             }
-            if ui.button("Fit").clicked() {
+            let response = ui.add_enabled(self.drag.is_none(), egui::Button::new("Fit"));
+            self.toolbar_bound("camera:Fit", &response);
+            if response.clicked() {
                 let items: Vec<_> = self
                     .views
                     .document()
@@ -397,12 +640,58 @@ impl ViewWorkspace {
                 let zoom = ((ui.available_width().max(300.) as f64 / (right - x + 50.))
                     .min(400. / (bottom - y + 50.)))
                 .clamp(0.05, 20.);
-                self.apply(
-                    &session.editor,
-                    Layout::Camera(self.active, v::Camera { x, y, zoom }),
+                self.note = format!(
+                    "{:?}",
+                    self.set_camera(&session.editor, v::Camera { x, y, zoom })
                 );
             }
         });
+        if let Some(camera) = self
+            .views
+            .document()
+            .views
+            .get(&self.active)
+            .map(|view| view.camera.clone())
+        {
+            ui.horizontal_wrapped(|ui| {
+                ui.label("Camera");
+                for (label, command) in [
+                    ("Zoom out", CameraCommand::ZoomOut),
+                    ("100%", CameraCommand::HundredPercent),
+                    ("Zoom in", CameraCommand::ZoomIn),
+                    ("Pan left", CameraCommand::PanLeft),
+                    ("Pan right", CameraCommand::PanRight),
+                    ("Pan up", CameraCommand::PanUp),
+                    ("Pan down", CameraCommand::PanDown),
+                    ("Reset camera", CameraCommand::Reset),
+                ] {
+                    let enabled = self.drag.is_none()
+                        && Self::camera_target(&camera, command).is_ok_and(|next| next != camera);
+                    let response = ui.add_enabled(enabled, egui::Button::new(label));
+                    self.toolbar_bound(format!("camera:{label}"), &response);
+                    if response.clicked() {
+                        self.note = match self.camera_command(&session.editor, command) {
+                            Ok(true) => {
+                                "Camera updated. Native model and occurrence geometry retained."
+                                    .into()
+                            }
+                            Ok(false) => "Camera unchanged.".into(),
+                            Err(error) => error,
+                        };
+                    }
+                }
+                let current = &self.views.document().views[&self.active].camera;
+                ui.label(format!(
+                    "{:.0}% · origin ({:.2}, {:.2})",
+                    current.zoom * 100.,
+                    current.x,
+                    current.y
+                ));
+            });
+        }
+        if ui.button("Inspect presentation source…").clicked() {
+            self.open_inspection();
+        }
         ui.horizontal_wrapped(|ui| {
             ui.label("Explicit views path");
             let path_enabled = !self.pair_pending() && !self.io.pending() && !session.pending();
@@ -410,10 +699,9 @@ impl ViewWorkspace {
             // Admission is checked on click by Io::open; no disk reads in a
             // per-frame status hint, and no wire revision grants permission.
             let may_open = !self.io.pending() && !session.pending() && !self.pair_pending();
-            if ui
-                .add_enabled(may_open, egui::Button::new("Open views"))
-                .clicked()
-            {
+            let response = ui.add_enabled(may_open, egui::Button::new("Open views"));
+            self.toolbar_bound("views:Open views", &response);
+            if response.clicked() {
                 self.open(session, false);
             }
             if ui
@@ -1393,5 +1681,382 @@ mod tests {
         let retry = paired_native(&mut ui, &mut session, WriteKind::Recovery, area.path());
         finish_pair(&mut ui, &mut session, retry);
         ui.verify_preserved(&session, &WriteKind::Recovery).unwrap();
+    }
+    #[test]
+    fn read_only_source_inspection_is_disjoint_from_dirty_target_and_destination() {
+        let (area, session) = session();
+        let mut ui = ViewWorkspace::new(&session);
+        let mut source = ui.views.recovery(&session.editor).unwrap();
+        source.document_id.0 = "foreign-source-document".into();
+        let path = area.path().join("source.mbse-views.json");
+        std::fs::write(&path, source.encoded().unwrap()).unwrap();
+        ui.active = *ui.views.document().views.keys().last().unwrap();
+        ui.selected = ui
+            .views
+            .document()
+            .occurrences
+            .values()
+            .find(|o| o.view == ui.active)
+            .map(|o| o.id);
+        ui.route_source = ui.selected;
+        ui.route_target = ui.selected;
+        let ephemeral = (ui.active, ui.selected, ui.route_source, ui.route_target);
+        layout_edit(&mut ui, &session, "Dirty target");
+        ui.path = "retained-target-destination.mbse-views.json".into();
+        let before = (
+            session.editor.snapshot.digest(),
+            ui.views.document().digest().unwrap(),
+            ui.views.history_usage(),
+            ui.path.clone(),
+        );
+        ui.inspection_path = path.display().to_string();
+        ui.inspect_source();
+        assert!(ui.inspection.is_some());
+        assert_eq!(
+            ui.inspection.as_ref().unwrap().declared().document_id.0,
+            "foreign-source-document"
+        );
+        let hash = ui.inspection_source_sha256().unwrap().to_owned();
+        let source_view = ui.inspection_view;
+        std::fs::write(&path, b"{").unwrap();
+        ui.inspect_source();
+        assert!(ui.inspection_note.contains("refused"));
+        assert_eq!(ui.inspection_source_sha256(), Some(hash.as_str()));
+        assert_eq!(
+            (
+                session.editor.snapshot.digest(),
+                ui.views.document().digest().unwrap(),
+                ui.views.history_usage(),
+                ui.path.clone()
+            ),
+            before
+        );
+        assert_eq!(
+            (ui.active, ui.selected, ui.route_source, ui.route_target),
+            ephemeral
+        );
+        assert_eq!(ui.inspection_view, source_view);
+        assert!(!ui.io.pending());
+        assert!(!ui.pair_pending());
+        assert!(ui.blocked(&session));
+        assert_eq!(std::fs::read(&path).unwrap(), b"{");
+    }
+    #[test]
+    fn mapping_rehearsal_preserves_pending_pair_destination_selection_and_histories() {
+        use mbse_model::native_views_plan::{Choice, Plan};
+        let (area, mut session) = session();
+        let mut ui = saved_pair(&area, &mut session);
+        layout_edit(&mut ui, &session, "Dirty layout retained");
+        let source_path = area.path().join("foreign-source.json");
+        let mut doc = ui.views.recovery(&session.editor).unwrap();
+        doc.document_id.0 = "foreign".into();
+        std::fs::write(&source_path, doc.encoded().unwrap()).unwrap();
+        ui.inspection_path = source_path.display().to_string();
+        ui.inspect_source();
+        let native = paired_native(&mut ui, &mut session, WriteKind::Recovery, area.path());
+        let before = (
+            ui.path.clone(),
+            ui.active,
+            ui.selected,
+            ui.route_source,
+            ui.route_target,
+            ui.views.document().digest().unwrap(),
+            ui.views.history_usage(),
+            session.editor.snapshot.digest(),
+            native.ticket.destination.clone(),
+        );
+        let source = ui.inspection.as_ref().unwrap();
+        let mut p = Plan::new(
+            source,
+            source.declared().primary,
+            &session.editor,
+            &ui.views,
+        )
+        .unwrap();
+        let id = *p.choices().keys().next().unwrap();
+        p.choose(
+            source,
+            &session.editor,
+            &ui.views,
+            id,
+            Choice::Target(RecordId(1)),
+        )
+        .unwrap();
+        assert!(p.preview(source, &session.editor, &ui.views).is_ok());
+        assert!(ui.pair_pending());
+        assert_eq!(
+            (
+                ui.path.clone(),
+                ui.active,
+                ui.selected,
+                ui.route_source,
+                ui.route_target,
+                ui.views.document().digest().unwrap(),
+                ui.views.history_usage(),
+                session.editor.snapshot.digest(),
+                native.ticket.destination.clone()
+            ),
+            before
+        );
+        finish_pair(&mut ui, &mut session, native);
+        ui.verify_preserved(&session, &WriteKind::Recovery).unwrap();
+    }
+    #[test]
+    fn camera_commands_are_per_view_and_preserve_native_meaning_and_geometry() {
+        let (_area, session) = session();
+        let mut ui = ViewWorkspace::new(&session);
+        let primary = ui.active;
+        let other = *ui
+            .views
+            .document()
+            .views
+            .keys()
+            .find(|id| **id != primary)
+            .unwrap();
+        let before = (
+            session.editor.snapshot.digest(),
+            session.editor.freshness(),
+            session.editor.calculation_stamp(),
+            ui.views.document().occurrences.clone(),
+            ui.views.document().next_id(),
+        );
+        assert!(ui
+            .camera_command(&session.editor, CameraCommand::ZoomIn)
+            .unwrap());
+        assert!(ui
+            .camera_command(&session.editor, CameraCommand::PanRight)
+            .unwrap());
+        let first = ui.views.document().views[&primary].camera.clone();
+        assert_eq!(first.zoom, 1.25);
+        assert_eq!(first.x, 64. / 1.25);
+        ui.active = other;
+        assert_eq!(
+            ui.views.document().views[&other].camera,
+            v::Camera::default()
+        );
+        ui.camera_command(&session.editor, CameraCommand::ZoomOut)
+            .unwrap();
+        assert_eq!(ui.views.document().views[&other].camera.zoom, 0.8);
+        assert_eq!(ui.views.document().views[&primary].camera, first);
+        assert_eq!(
+            (
+                session.editor.snapshot.digest(),
+                session.editor.freshness(),
+                session.editor.calculation_stamp(),
+                ui.views.document().occurrences.clone(),
+                ui.views.document().next_id()
+            ),
+            before
+        );
+    }
+    #[test]
+    fn camera_noops_and_rejected_bounds_preserve_revision_history_and_redo() {
+        let (_area, session) = session();
+        let mut ui = ViewWorkspace::new(&session);
+        ui.camera_command(&session.editor, CameraCommand::ZoomIn)
+            .unwrap();
+        ui.layout_history(&session.editor, false);
+        let before = (
+            ui.views.document().digest().unwrap(),
+            ui.views.history_usage(),
+        );
+        assert!(!ui
+            .camera_command(&session.editor, CameraCommand::HundredPercent)
+            .unwrap());
+        assert!(!ui
+            .camera_command(&session.editor, CameraCommand::Reset)
+            .unwrap());
+        assert_eq!(
+            (
+                ui.views.document().digest().unwrap(),
+                ui.views.history_usage()
+            ),
+            before
+        );
+        ui.layout_history(&session.editor, true);
+        assert_eq!(ui.views.document().views[&ui.active].camera.zoom, 1.25);
+        ui.set_camera(
+            &session.editor,
+            v::Camera::checked(10., 20., v::Camera::MAX_ZOOM).unwrap(),
+        )
+        .unwrap();
+        let before = ui.views.document().digest().unwrap();
+        assert!(!ui
+            .camera_command(&session.editor, CameraCommand::ZoomIn)
+            .unwrap());
+        assert_eq!(ui.views.document().digest().unwrap(), before);
+        ui.camera_command(&session.editor, CameraCommand::HundredPercent)
+            .unwrap();
+        assert_eq!(
+            ui.views.document().views[&ui.active].camera,
+            v::Camera::checked(10., 20., 1.).unwrap()
+        );
+        ui.set_camera(
+            &session.editor,
+            v::Camera::checked(1_000_000., 0., v::Camera::MIN_ZOOM).unwrap(),
+        )
+        .unwrap();
+        let before = (
+            ui.views.document().digest().unwrap(),
+            ui.views.history_usage(),
+        );
+        assert!(!ui
+            .camera_command(&session.editor, CameraCommand::ZoomOut)
+            .unwrap());
+        assert!(ui
+            .camera_command(&session.editor, CameraCommand::PanRight)
+            .is_err());
+        assert!(ui
+            .set_camera(
+                &session.editor,
+                v::Camera {
+                    x: f64::NAN,
+                    y: 0.,
+                    zoom: 1.
+                }
+            )
+            .is_err());
+        assert_eq!(
+            (
+                ui.views.document().digest().unwrap(),
+                ui.views.history_usage()
+            ),
+            before
+        );
+    }
+    #[test]
+    fn camera_and_layout_history_refuse_during_an_occurrence_gesture() {
+        let (_area, session) = session();
+        let mut ui = ViewWorkspace::new(&session);
+        let o = ui
+            .views
+            .document()
+            .occurrences
+            .values()
+            .next()
+            .unwrap()
+            .clone();
+        ui.drag = Some((
+            o.id,
+            o.geometry.clone(),
+            ui.views.stamp(&session.editor),
+            egui::Pos2::ZERO,
+        ));
+        let before = (
+            ui.views.document().digest().unwrap(),
+            ui.views.history_usage(),
+        );
+        assert!(ui
+            .camera_command(&session.editor, CameraCommand::ZoomIn)
+            .unwrap_err()
+            .contains("GESTURE_ACTIVE"));
+        assert!(ui
+            .set_camera(&session.editor, v::Camera::checked(5., 6., 0.5).unwrap())
+            .is_err());
+        ui.layout_history(&session.editor, false);
+        assert!(ui.note.contains("GESTURE_ACTIVE"));
+        assert_eq!(
+            (
+                ui.views.document().digest().unwrap(),
+                ui.views.history_usage()
+            ),
+            before
+        );
+        ui.drag = None;
+        assert!(ui
+            .camera_command(&session.editor, CameraCommand::ZoomIn)
+            .unwrap());
+    }
+    #[test]
+    fn two_view_cameras_round_trip_only_after_explicit_bound_sidecar_open() {
+        let (area, mut session) = session();
+        let mut ui = saved_pair(&area, &mut session);
+        let primary = ui.active;
+        let other = *ui
+            .views
+            .document()
+            .views
+            .keys()
+            .find(|id| **id != primary)
+            .unwrap();
+        let geometry = ui.views.document().occurrences.clone();
+        let native_hash = session.editor.snapshot.digest();
+        ui.set_camera(
+            &session.editor,
+            v::Camera::checked(51.2, -16., 1.25).unwrap(),
+        )
+        .unwrap();
+        ui.active = other;
+        ui.set_camera(&session.editor, v::Camera::checked(-32., 64., 0.8).unwrap())
+            .unwrap();
+        let expected: Vec<_> = ui
+            .views
+            .document()
+            .views
+            .iter()
+            .map(|(id, v)| (*id, v.camera.clone()))
+            .collect();
+        let native = paired_native(
+            &mut ui,
+            &mut session,
+            WriteKind::Save,
+            &area.path().join("model.kernspan"),
+        );
+        finish_pair(&mut ui, &mut session, native);
+        ui.verify_preserved(&session, &WriteKind::Save).unwrap();
+        let reopened = Session::open(area.path(), &area.path().join("model.kernspan")).unwrap();
+        let mut fresh = ViewWorkspace::new(&reopened);
+        assert!(fresh
+            .views
+            .document()
+            .views
+            .values()
+            .all(|v| v.camera == v::Camera::default()));
+        fresh.open(&reopened, false);
+        assert_eq!(
+            fresh
+                .views
+                .document()
+                .views
+                .iter()
+                .map(|(id, v)| (*id, v.camera.clone()))
+                .collect::<Vec<_>>(),
+            expected
+        );
+        assert_eq!(fresh.views.document().occurrences, geometry);
+        assert_eq!(reopened.editor.snapshot.digest(), native_hash);
+        assert_eq!(fresh.views.document().profile, v::PROFILE);
+    }
+    #[test]
+    fn camera_edit_during_save_is_not_acknowledged_by_an_older_frozen_pair() {
+        let (area, mut session) = session();
+        let mut ui = saved_pair(&area, &mut session);
+        ui.camera_command(&session.editor, CameraCommand::ZoomIn)
+            .unwrap();
+        let native = paired_native(
+            &mut ui,
+            &mut session,
+            WriteKind::Save,
+            &area.path().join("model.kernspan"),
+        );
+        ui.camera_command(&session.editor, CameraCommand::PanRight)
+            .unwrap();
+        let current = ui.views.document().views[&ui.active].camera.clone();
+        finish_pair(&mut ui, &mut session, native);
+        assert!(ui.verify_preserved(&session, &WriteKind::Save).is_err());
+        assert_eq!(ui.views.document().views[&ui.active].camera, current);
+        let saved: serde_json::Value = serde_json::from_slice(
+            &std::fs::read(area.path().join("model.mbse-views.json")).unwrap(),
+        )
+        .unwrap();
+        assert_eq!(saved["views"]["1"]["camera"]["x"], 0.);
+        let retry = paired_native(
+            &mut ui,
+            &mut session,
+            WriteKind::Save,
+            &area.path().join("model.kernspan"),
+        );
+        finish_pair(&mut ui, &mut session, retry);
+        ui.verify_preserved(&session, &WriteKind::Save).unwrap();
     }
 }

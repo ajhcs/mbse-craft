@@ -1,0 +1,249 @@
+{
+  "audit": {
+    "error": false,
+    "external_copy_pending": false,
+    "feedback": "Model updated. Save includes accepted values and retained drafts.",
+    "frame_override": null,
+    "frame_policy": "Desktop",
+    "layout_recovery_status": "awaiting timer check",
+    "model_revision": 1,
+    "native_recovery_status": "awaiting timer check",
+    "native_usages": {
+      "current": true,
+      "rows": 1,
+      "target": 1
+    },
+    "periodic_recovery": false,
+    "pixels_per_point": 1.0,
+    "preferences_status": "Preferences loaded.",
+    "profile": "mbse-craft.ui-geometry/1",
+    "raw_version": 1,
+    "recovery_interval_seconds": 60,
+    "recovery_path": null,
+    "save_status": "Unsaved",
+    "selected": 1,
+    "snapshot_hash": "06c969eca37fbbe8c97d5ce43dfa8bf0d4b24426331f28f06a21898ea886209d",
+    "source_edit_dirty": false,
+    "source_edit_pending": false,
+    "views_active": "1",
+    "views_gesture_active": false,
+    "views_inspection_note": "Choose an explicit local presentation source to inspect read only.",
+    "views_inspection_sha256": null,
+    "views_inspection_visible": false,
+    "views_mapping_rehearsal": {
+      "checked_preview_retained": false,
+      "choices": null,
+      "note": "",
+      "target_current": false
+    },
+    "views_note": "Native saved \u00b7 views saved. Separate acknowledgments verified.",
+    "views_pair_pending": false,
+    "views_pending": false,
+    "views_recovery_current_hint": false,
+    "views_revision": "1",
+    "views_saved_hint": false,
+    "widgets": {
+      "action:Add Actor": [
+        101.375,
+        462.9375,
+        167.59375,
+        480.9375
+      ],
+      "action:Add Capability": [
+        94.9375,
+        436.9375,
+        186.375,
+        454.9375
+      ],
+      "action:Add Environment": [
+        8.0,
+        488.9375,
+        116.96875,
+        506.9375
+      ],
+      "action:Add Expectation": [
+        8.0,
+        514.9375,
+        111.6875,
+        532.9375
+      ],
+      "action:Add Measure": [
+        8.0,
+        462.9375,
+        92.375,
+        480.9375
+      ],
+      "action:Add Mission": [
+        8.0,
+        436.9375,
+        85.9375,
+        454.9375
+      ],
+      "action:Add Objective": [
+        195.375,
+        436.9375,
+        285.125,
+        454.9375
+      ],
+      "action:Add Organization": [
+        125.96875,
+        488.9375,
+        235.5,
+        506.9375
+      ],
+      "action:Add Stakeholder": [
+        176.59375,
+        462.9375,
+        280.625,
+        480.9375
+      ],
+      "action:Browse library folder": [
+        1140.875,
+        3.5,
+        1270.28125,
+        21.5
+      ],
+      "action:Find usages": [
+        8.0,
+        259.0,
+        83.5,
+        277.0
+      ],
+      "action:Import SysML": [
+        390.96875,
+        3.5,
+        477.46875,
+        21.5
+      ],
+      "action:New": [
+        234.46875,
+        3.5,
+        268.875,
+        21.5
+      ],
+      "action:Open": [
+        277.875,
+        3.5,
+        318.03125,
+        21.5
+      ],
+      "action:Open external projection": [
+        800.84375,
+        3.5,
+        954.15625,
+        21.5
+      ],
+      "action:Recover": [
+        327.03125,
+        3.5,
+        381.96875,
+        21.5
+      ],
+      "action:Recovery copy": [
+        530.15625,
+        3.5,
+        621.78125,
+        21.5
+      ],
+      "action:Redo": [
+        1591.96875,
+        2.0,
+        1635.96875,
+        30.0
+      ],
+      "action:Requirements and evidence": [
+        963.15625,
+        3.5,
+        1131.875,
+        21.5
+      ],
+      "action:Save": [
+        486.46875,
+        3.5,
+        521.15625,
+        21.5
+      ],
+      "action:Undo": [
+        1538.96875,
+        2.0,
+        1582.96875,
+        30.0
+      ],
+      "field:1:name": [
+        8.0,
+        308.0,
+        329.0,
+        327.0
+      ],
+      "field:1:purpose": [
+        8.0,
+        358.0,
+        329.0,
+        391.9375
+      ],
+      "occurrence:3": [
+        371.0,
+        480.0,
+        641.0,
+        564.0
+      ],
+      "path": [
+        202.6875,
+        38.0,
+        2192.0,
+        57.0
+      ],
+      "recovery:Review copies": [
+        630.78125,
+        3.5,
+        791.84375,
+        21.5
+      ],
+      "relation:Scope:1:1000": [
+        346.0,
+        1171.0,
+        713.375,
+        1189.0
+      ],
+      "save-path": [
+        137.46875,
+        65.0,
+        2192.0,
+        84.0
+      ],
+      "settings:Open": [
+        1279.28125,
+        3.5,
+        1389.84375,
+        21.5
+      ],
+      "tree:1": [
+        26.0,
+        170.0,
+        140.9375,
+        188.0
+      ],
+      "tree:1000": [
+        26.0,
+        196.0,
+        207.5,
+        214.0
+      ],
+      "usages:refresh": [
+        23.0,
+        147.0,
+        118.6875,
+        165.0
+      ],
+      "usages:select:0": [
+        30.0,
+        226.0,
+        184.46875,
+        244.0
+      ]
+    },
+    "write_pending": false
+  },
+  "native_sha256": "3f8810d18b21dea3fe2dae87b80fc3e1d06e790f3f5f54b456f4782edc8f9e9e",
+  "views_sha256": "1b1e90bd6a1b7cc367b29859eb67acfac99e6d90c0a94a6ca3661be32e8ad799"
+}

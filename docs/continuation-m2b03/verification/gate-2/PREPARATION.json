@@ -1,0 +1,16 @@
+{
+  "status": "PreparedNotLaunched",
+  "job_sha256": "ca4d7ed0857db41789416eea58f9236c5ddb90f1fb8790b787067ecf147f8791",
+  "launcher_sha256": "0dea9405218132196764f525567441359c37dc1c45ee1eba85f34e6261db2fff",
+  "staging_helper_sha256": "ce8fab635583be80f509019801496f19aec9f2b6542704a64fb9dcc4cfe9f401",
+  "source_commit": "c2013a604aa025cd2d28677eb15a8a336389d530",
+  "source_sha256": "173d55d658869759ebcbd6b316e007f2f1dbeae172f502f3c9a1d0e9915a7085",
+  "changed_paths": [
+    "crates/mbse-desktop/src/ui.rs"
+  ],
+  "model_source_unchanged": true,
+  "prior_model_tests_passed": 55,
+  "remaining_desktop_tests_expected": 28,
+  "build": "Unrun",
+  "owned_jobs": []
+}

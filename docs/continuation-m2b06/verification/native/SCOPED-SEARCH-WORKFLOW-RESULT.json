@@ -1,0 +1,166 @@
+{
+  "status": "ObservedScopedSearchWorkflowCompletedPendingIndependentPixelReview",
+  "source_commit": "83f000139379789b15a4855940edff02e7af7ae6",
+  "source_sha256": "b08746df59ca882937b0438ba10ce026a37a355be742fbad9d958c4adf7a29eb",
+  "binary_sha256": "b0c1ae6d64bd3489f7a1ef50329d9b99636251cce4275b3aec45a6f159143ee7",
+  "job_sha256": "c2cf240a69d8cdd90b62f708d4fa7f886e98468255e7728b4ac2940dd98ccd7a",
+  "baseline_snapshot": "398dfe1c6c38ce5bc0834bd2035dd4761c8eccc0b30afe3855e0f373ca3e84d0",
+  "after_intentional_edit_snapshot": "3de954c3419abea9df0fa2df8fa57d134bd24724d7a36586b1db8a26246811c2",
+  "actual": [
+    "TypedtwoMissionnamesidenticalIDs1000/1001",
+    "EmptyNameSystemscopequery3records; Missiontypefilter2; literalName2distinctIDs",
+    "Type/text/mode/Systemdraftchangesclearresults/oldnote",
+    "ExplicitcanonicalExactID1001returnsone; leadingzero01001refusesnooldresults",
+    "Real1\u21921001selectionwithoutnative/layoutchange; nativeeditstalesreport/disabledclickunchanged",
+    "ExplicitRunrefreshmatchesonly1000; real1001\u21921000selection; explicitemptyresult",
+    "PhysicalhashlastSavefilesunchangedthroughallinteractionsbeforeintentionalSave",
+    "Final3recordnativeSchema2/sidecarv1rev1next5exactbinding; normalclose/exactcleanup"
+  ],
+  "final_native_sha256": "3101dc3fa70f4f262a6e0fc83ce2267faa3a17902fa1f3ff36cef7003bf1c5d8",
+  "final_views_sha256": "8ccf0f25abef5b113048c34ecef0e5e4d747538e8eacdf34f61b9b2f7805ae83",
+  "presave_physical_hash_check_sha256": "103cb5773859ab152898aae38e699bdb3aa3d90dadf564b5096fabf165207af7",
+  "audits": [
+    {
+      "capture": "00-clean-initial-pair.ui",
+      "sha256": "634b04bdf614639400986554deef77fe2367f72c0e4c4c2372582be95ce42343"
+    },
+    {
+      "capture": "01-two-distinct-missions-same-name.ui",
+      "sha256": "d5d69a7e93a8467b34aff5bd0abeaf4ecdddf8a3eaa01a870d0fb3f87fdfd6c4"
+    },
+    {
+      "capture": "02-empty-name-scoped-list.ui",
+      "sha256": "0b1e1815bc6dde182af1219f0d5e1cd3bab5c5b28de49b4ef9429e3971240684"
+    },
+    {
+      "capture": "03-type-filter-options.ui",
+      "sha256": "0b1e1815bc6dde182af1219f0d5e1cd3bab5c5b28de49b4ef9429e3971240684"
+    },
+    {
+      "capture": "04-type-draft-clears-results.ui",
+      "sha256": "4616359519fb8aaf082b59f7c12f2b662137a0f4316e796de6d817f3b665f3ec"
+    },
+    {
+      "capture": "05-mission-type-filter-results.ui",
+      "sha256": "f4ee12ddca60613def628568a7a2ac599b0a4bc56a165ab69555d5457a768a13"
+    },
+    {
+      "capture": "06-name-draft-clears-results.ui",
+      "sha256": "4616359519fb8aaf082b59f7c12f2b662137a0f4316e796de6d817f3b665f3ec"
+    },
+    {
+      "capture": "07-duplicate-name-distinct-IDs.ui",
+      "sha256": "f4ee12ddca60613def628568a7a2ac599b0a4bc56a165ab69555d5457a768a13"
+    },
+    {
+      "capture": "08-select-second-duplicate-native-ID.ui",
+      "sha256": "23df238847436f94697794fb343d8a8199882e83df40af45d942556969aac339"
+    },
+    {
+      "capture": "09-explicit-mode-options.ui",
+      "sha256": "23df238847436f94697794fb343d8a8199882e83df40af45d942556969aac339"
+    },
+    {
+      "capture": "10-mode-change-clears-results.ui",
+      "sha256": "b731405c1ad142006edbd9a59f9464243ffaf0e73584e87283aa92915b2488f5"
+    },
+    {
+      "capture": "11-canonical-exact-ID-one-result.ui",
+      "sha256": "e257c8628577cf251d4d222daebdbeb121890e1e0e9e12b60be910712ebc2554"
+    },
+    {
+      "capture": "12-invalid-ID-draft-clears-results.ui",
+      "sha256": "b731405c1ad142006edbd9a59f9464243ffaf0e73584e87283aa92915b2488f5"
+    },
+    {
+      "capture": "13-leading-zero-ID-refusal.ui",
+      "sha256": "c9bdff149b8420386fa8dcbacb44f0464336d4cedbcc1733e1d4d2c50b95840a"
+    },
+    {
+      "capture": "14-explicit-System-scope-options.ui",
+      "sha256": "c9bdff149b8420386fa8dcbacb44f0464336d4cedbcc1733e1d4d2c50b95840a"
+    },
+    {
+      "capture": "15-scope-change-clears-prior-error.ui",
+      "sha256": "b731405c1ad142006edbd9a59f9464243ffaf0e73584e87283aa92915b2488f5"
+    },
+    {
+      "capture": "16-name-query-all-Systems-two-IDs.ui",
+      "sha256": "23df238847436f94697794fb343d8a8199882e83df40af45d942556969aac339"
+    },
+    {
+      "capture": "17-native-edit-stales-search.ui",
+      "sha256": "3f04cb4276b4f1eeb73fcaeafd23251c90d6e47a94fac3019c76318c45f21407"
+    },
+    {
+      "capture": "18-disabled-stale-selection-retains-target.ui",
+      "sha256": "3f04cb4276b4f1eeb73fcaeafd23251c90d6e47a94fac3019c76318c45f21407"
+    },
+    {
+      "capture": "19-explicit-search-refresh-one-match.ui",
+      "sha256": "8754529e77522150ef2dddcd8ce866f5b441ea746d3f7cf89b0108f609209198"
+    },
+    {
+      "capture": "20-refreshed-native-selection-transition.ui",
+      "sha256": "6655d60d60e085b592d31e51926c9bd7b85845ddfcbdc384855d7ff30035d629"
+    },
+    {
+      "capture": "21-explicit-empty-result.ui",
+      "sha256": "60548ac79809ffe5e18d38efd23321f3105821f6d5540093eeec9769ad3afcfd"
+    },
+    {
+      "capture": "22-final-native-pair-preserved.ui",
+      "sha256": "3634b64e098ab906e4c35f0a57249dd9975537b4fb2cd6cb123154c0ec4f7395"
+    }
+  ],
+  "cleanup": {
+    "checked_utc": "2026-10-23T17:36:22.028667+00:00",
+    "started_utc": "2026-10-23T17:31:48.848167+00:00",
+    "ended_utc": "2026-10-23T17:35:22.446562+00:00",
+    "identities": [
+      {
+        "pid": 1171074,
+        "start_ticks": 15105913,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1171108,
+        "start_ticks": 15105994,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1171109,
+        "start_ticks": 15106016,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1171110,
+        "start_ticks": 15106017,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1171111,
+        "start_ticks": 15106039,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1171114,
+        "start_ticks": 15106041,
+        "original_identity_absent": true
+      }
+    ],
+    "owned_jobs": [],
+    "auth_absent": true,
+    "renderer_released": true,
+    "app_exit_code": 0,
+    "driver_exit_code": 0,
+    "source_binary_unchanged": true,
+    "original_pngs": 23
+  },
+  "limits": [
+    "SingleactualSystemGUI; crossSystem/caseadverse/highID/256limit/Unicodeprefixcases focusedtests only",
+    "No fullcontainment tree/opaque/draftreference search/schema migration/platformaccessibility/full86feature acceptance"
+  ],
+  "owned_jobs": [],
+  "uploads": false
+}

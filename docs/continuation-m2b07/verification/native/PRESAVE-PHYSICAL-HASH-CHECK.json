@@ -1,0 +1,7 @@
+{
+  "checked_utc": "2026-10-23T18:11:39.141535+00:00",
+  "native_sha256": "bf0d121c264b7c45e66decce3433116264dc6fd843c08c088007d0d0ea34d77c",
+  "views_sha256": "d6e4fe179030b8b1f74471d542cb8f02a34c4bdcc674052408b7da24ec85dbdb",
+  "matches_saved08": true,
+  "qualification": "Matching sampled bytes after all subsequent reopen/camera/history/gesture actions, not continuous monitoring"
+}

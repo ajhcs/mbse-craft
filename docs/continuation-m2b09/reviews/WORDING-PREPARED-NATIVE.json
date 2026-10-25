@@ -1,0 +1,21 @@
+{
+  "status": "StaticShortNativeReadyNotExecutionAdmission",
+  "recorded_utc": "2026-10-23T20:03:18.917900+00:00",
+  "reviewer": "/root/periodic_actual_review",
+  "source_commit": "f1b6c71681b221aba446f4b308d847fe08aef2eb",
+  "job_sha256": "8f1087d53e4a9229b2d8e61b42c3dfbe0f0a8531871d1121191af418f75f1215",
+  "launcher_sha256": "39ec5695320a449645e2fc4edbbeec00764b3ccc85bd8bb0a7d21425b099d705",
+  "route_sha256": "49397d949c59f9e23a91fe7928f8db4171d0d47d34c050a8e17f387dc6ab6cc2",
+  "stager_sha256": "c1383e561aa964f7c0133f1be70283a435e24d4061f02dbc01286f3866c071eb",
+  "verified": [
+    "Actualwordingbuildreceipt/log/binary match",
+    "0newtests honest, prior15tests/28frames remain88d813e",
+    "Fixture/provenanceandroutepins match",
+    "Launcherexactliteralproof, TTYguard and240secondtimeout",
+    "Open/select,3captures,inspectionclose/normalclose only; noSave/native/layoutedit"
+  ],
+  "first_attempt_started": false,
+  "owned_jobs": [],
+  "reviewer_execution": false,
+  "reviewer_changes": false
+}

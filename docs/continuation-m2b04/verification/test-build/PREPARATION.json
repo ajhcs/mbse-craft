@@ -1,0 +1,19 @@
+{
+  "status": "PreparedNotLaunched",
+  "job_sha256": "b45d92a0731d308cf1706a188d1c8fcc525a9fd8ba7ad3d591715e7efbb13fdb",
+  "source_sha256": "9789f0d4a2963a1fbf9892cfe6ed9861c27e81042a5dab0ed5e484dda8e2865c",
+  "source_commit": "0c89780e9e5591b2d02ff0e5b6c288d7921584f8",
+  "source_files": 663,
+  "launcher_sha256": "37552ff086805cdb98ccfa6af2fa580e24b407c68b2892b05c03216025edf2ce",
+  "stage_sha256": "9d5d3cffaf4d0c80eb5935e7a9f7ad59c6069bb08ca3b57543aae3461be9c22a",
+  "independently_observed_identity": {
+    "pid": 1072280,
+    "start_ticks": 14235850,
+    "uid": 1000,
+    "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+    "pid_namespace": "pid:[4026531836]",
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+  },
+  "owned_jobs": [],
+  "review": "Actual-source review: endpoint/budget issues fixed; final summary UX clarification committed; no jobs launched."
+}

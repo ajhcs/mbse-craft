@@ -1,0 +1,181 @@
+{
+  "profile": "mbse-craft.native-camera-controls-native-receipt/1",
+  "status": "BoundedCameraControlsWorkflowCompletedAndIndependentlyReviewed",
+  "source_commit": "2425208da6758b734193fdbdc93642b4482df325",
+  "source_sha256": "9a1b92eca6d06f8dc25bcd542c0b70cf69428b44d9e4211c140d6b235b4211bd",
+  "binary_sha256": "156c52d40502b8fccfc6b1be78a09903bc344d19131da4bfbaf9363fe9f7725c",
+  "job_sha256": "2c762f89a3cbe9946ff3bd6f369037e7001680d1e0c702f27b849d9fc6e5255d",
+  "launcher_sha256": "e76fd88ca6c3a56ea0a9e58a8b80ec4237257adaec978b8c3ad50e765c2b1aba",
+  "driver_sha256": "0a3aa6f6a83ab7cf969665c588e7ff71966b0c0adedbc9ad9b0a504bd770d8cb",
+  "qualified_unique_tests": 85,
+  "new_tests_passed": 7,
+  "qualification_chain_sha256": "454ae1a179ce51c0dbb0008008d11aafb9f4c2d28e46aad0dfda499d1e85914e",
+  "started_utc": "2026-10-23T18:09:18.494858+00:00",
+  "ended_utc": "2026-10-23T18:11:43.179202+00:00",
+  "workflow_result_sha256": "f672d837a0b41366c8c08e9831c38d0785c75be2b59e005fd461f39d633b3c84",
+  "review_sha256": "936cab184bc5c1321dba27b50b1cf6760967d5eec94c5a529db032e8c2cdad82",
+  "cleanup": {
+    "checked_utc": "2026-10-23T18:13:01.953354+00:00",
+    "started_utc": "2026-10-23T18:09:18.494858+00:00",
+    "ended_utc": "2026-10-23T18:11:43.179202+00:00",
+    "identities": [
+      {
+        "pid": 1190789,
+        "start_ticks": 15330877,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1190797,
+        "start_ticks": 15330959,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1190798,
+        "start_ticks": 15330982,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1190799,
+        "start_ticks": 15330982,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1190801,
+        "start_ticks": 15331006,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1190804,
+        "start_ticks": 15331008,
+        "original_identity_absent": true
+      }
+    ],
+    "owned_jobs": [],
+    "auth_absent": true,
+    "renderer_released": true,
+    "app_exit_code": 0,
+    "driver_exit_code": 0,
+    "source_binary_unchanged": true,
+    "original_pngs": 20
+  },
+  "actual": [
+    "125%scaling/Undo/no-op-preservedRedo/pan64-divided-byzoom",
+    "Independentperviewcamera/Save/nativeOpendefault/explicitOpenviewsrestore",
+    "100%keepsorigin;Reset/Undo;heldgesturedisabledstates/release/Undo geometry",
+    "Unchangednative snapshot/geometry aftercontrolledUndo, exactfinalpairbinding/normalclose"
+  ],
+  "limits": [
+    "Boundary/nonfinite/frozenpendingSavecases testsonly",
+    "DisabledUIstatesobserved; no forceddisabledtab/Fitclickwhileheld",
+    "Matchingphysicalsamples, not continuous monitoring",
+    "Linux96DPIoneSystem/twoviewworkflow only; no generalplatform/accessibility/performance/fullparity qualification"
+  ],
+  "pngs": [
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-camera-controls/native-gate/run-camera/00-clean-default-camera-pair.png",
+      "bytes": 212943,
+      "sha256": "36ed140a1ab0a15861e01910d8422c81fe5ce647a25c9e15c26fcc09d385ef1e"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-camera-controls/native-gate/run-camera/01-primary-125-percent.png",
+      "bytes": 213751,
+      "sha256": "62d2a22bb32d3f95ffd108131d634ad39954e0b16d348059cd58c7b40832700f"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-camera-controls/native-gate/run-camera/02-layout-undo-camera-100.png",
+      "bytes": 208825,
+      "sha256": "4db97106131bf88f31725a6a94690625fb4c3f38468a3595d019ef272f8c51f6"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-camera-controls/native-gate/run-camera/03-noop-100-retains-redo.png",
+      "bytes": 208365,
+      "sha256": "28ad9cfb7427b406bef2cb41dd3cfa030065c4c1b34da655fc54fbaaaa4331d2"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-camera-controls/native-gate/run-camera/04-layout-redo-camera-125.png",
+      "bytes": 210344,
+      "sha256": "a90340cfa304984f94780d8fbef5cc4a779b40b592438be7c86f78ad513b0f9d"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-camera-controls/native-gate/run-camera/05-primary-pan-right.png",
+      "bytes": 226843,
+      "sha256": "b39f6d9a9597051ced4ddef4e349e5c98818ac5771867d8df65b2d8a76f17cc1"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-camera-controls/native-gate/run-camera/06-review-camera-default-100.png",
+      "bytes": 211329,
+      "sha256": "c6b7dd3aaffa56fcab725021870cdb8befadc269d2ac1f29961862c689f737f7"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-camera-controls/native-gate/run-camera/07-review-camera-80.png",
+      "bytes": 210404,
+      "sha256": "3dba0e8d8eafda7a7373115241f0e397485c38ab421d2f76cfb0cc315bd38b3b"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-camera-controls/native-gate/run-camera/08-save-independent-view-cameras.png",
+      "bytes": 211130,
+      "sha256": "cb7980d80f16a06abbdebbd8a1211e1732d9f55fcc5bb11aa6c0b3f6a68a92b1"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-camera-controls/native-gate/run-camera/09-native-open-default-primary-camera.png",
+      "bytes": 217857,
+      "sha256": "f897a66f61b3019635bb43349528c3ae3b02f667f3f754495dd869ffd0a61e32"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-camera-controls/native-gate/run-camera/10-explicit-sidecar-open-primary-125.png",
+      "bytes": 235677,
+      "sha256": "b079bfa3332b43de6548a0bc505d89e08a38ffba0cc1ee301730b0541df29e25"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-camera-controls/native-gate/run-camera/11-100-percent-retains-pan-origin.png",
+      "bytes": 227720,
+      "sha256": "a91cac36b1c6654fcf0df6a5f7aa0888efcab9ba3b4a2d6d2bf7c4768df8cd5e"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-camera-controls/native-gate/run-camera/12-undo-restores-primary-125.png",
+      "bytes": 230130,
+      "sha256": "56bc2f7f86097dc6cb8db762185616566bbbfac5d4af7c43fe509c9a848c1661"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-camera-controls/native-gate/run-camera/13-review-restored-80.png",
+      "bytes": 213128,
+      "sha256": "90f94d8d937c38314205e22f0187c539145754460b5867fa1aaabc6b5d87fde7"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-camera-controls/native-gate/run-camera/14-reset-review-default-camera.png",
+      "bytes": 216968,
+      "sha256": "446ef38d838ab72b2ba2d1ab689576ad3971708ab89d0d9a706c253e148051ed"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-camera-controls/native-gate/run-camera/15-undo-restores-review-80.png",
+      "bytes": 213444,
+      "sha256": "18ae8dda3b25c6c8c224d5ec8e7980d0a4bff3428fd6a9d1ccc35bd8e51004ee"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-camera-controls/native-gate/run-camera/16-held-gesture-camera-controls-disabled.png",
+      "bytes": 212573,
+      "sha256": "cffca350c13db769feeb406987b5043854fb931059595cb136d6cdea28ef6c9d"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-camera-controls/native-gate/run-camera/17-released-occurrence-gesture.png",
+      "bytes": 212728,
+      "sha256": "eeb52ab4849cb0b20fbd1d50ed81ed2d16d11aacc1170c0533990c9c1e54a317"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-camera-controls/native-gate/run-camera/18-layout-undo-restores-occurrence.png",
+      "bytes": 213444,
+      "sha256": "18ae8dda3b25c6c8c224d5ec8e7980d0a4bff3428fd6a9d1ccc35bd8e51004ee"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-camera-controls/native-gate/run-camera/19-final-camera-pair-preserved.png",
+      "bytes": 215677,
+      "sha256": "39f89b549a99dd4148a2b1b4a8b3a61bc7d5f48bf70a998a1937c672fc1ff7e4"
+    }
+  ],
+  "preserved_holds": [
+    "79passingtests followedbyheartbeat freshnesshold;6policy+build remainderpassedwithnoreplay",
+    "Stale-watchdognativepreflightheldbeforeanychild/run; laterfreshpacketexecutedtheonlyrenderer epoch"
+  ],
+  "owned_jobs": [],
+  "uploads": false
+}

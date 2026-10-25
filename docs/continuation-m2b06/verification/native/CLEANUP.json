@@ -1,0 +1,30 @@
+{
+  "ended_utc": "2026-10-23T17:35:22.407476+00:00",
+  "children": [
+    {
+      "owned": {
+        "pid": 1171111,
+        "start_ticks": 15106039,
+        "uid": 1000,
+        "exe": "/workspace/cache/builderbob/global-tools/releases/blender/5.2.2/xvfb/usr/bin/Xvfb",
+        "pid_namespace": "pid:[4026531836]",
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+      },
+      "original_identity_absent": true
+    },
+    {
+      "owned": {
+        "pid": 1171114,
+        "start_ticks": 15106041,
+        "uid": 1000,
+        "exe": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/bin/mbse-desktop",
+        "pid_namespace": "pid:[4026531836]",
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+      },
+      "original_identity_absent": true
+    }
+  ],
+  "app_exit_code": 0,
+  "server_exit_code": 0,
+  "xauthority_removed": true
+}

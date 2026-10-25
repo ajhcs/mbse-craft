@@ -1,0 +1,19 @@
+{
+  "status": "PreparedNotLaunched",
+  "job_sha256": "1a58d2082e9f661326fcb5b3fdb3f8861bdb1ec4b0dc971f989a94415854966c",
+  "source_sha256": "9a1b92eca6d06f8dc25bcd542c0b70cf69428b44d9e4211c140d6b235b4211bd",
+  "source_commit": "2425208da6758b734193fdbdc93642b4482df325",
+  "source_files": 665,
+  "launcher_sha256": "a53be8ba224ad5e32b613f3996ae6bbe4396149e5a73b21b665df8b54d4f8eba",
+  "stage_sha256": "eb8e229ddb95b9d623ff595a6e91286e848588583988ed0ad76d86b8100ea594",
+  "independently_observed_identity": {
+    "pid": 1072280,
+    "start_ticks": 14235850,
+    "uid": 1000,
+    "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+    "pid_namespace": "pid:[4026531836]",
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+  },
+  "owned_jobs": [],
+  "review": "Same reviewed source2425208/closure9a1 unchanged; only remaining6policytests+build,79passes preserved afterresourcehold."
+}

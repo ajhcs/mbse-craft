@@ -1,0 +1,9 @@
+# Proposed native scoped search workflow
+
+UNRUN. Source review closed;11focusedtests/build passed. Native jobc2cf240a69d8cdd90b62f708d4fa7f886e98468255e7728b4ac2940dd98ccd7a frozen; freshhealth/scopedallocation remain pending. No native launch occurred.
+
+1. Privatefreshnative state; Saveinitialpair. Addtwo nativeMissions withsameacceptedname usingtypedcreation; startSearchfromSystemscope. Freeze targetaudits/filehashes.
+2. EmptyNamequerylistsmatchingSystem+twoMissions; typenamefilterMissionlistsboth exactdistinctIDs. Namecase-sensitivequeryfindsboth; explicitSelectone resultchangesonlyselection.
+3. ChangeExactIDmodeandenteroneexistingMissionID: results clearondraftchange thenexactqueryreturnsone exactID; invalidleading-zeroIDrefusesandretainsno oldresults.
+4. EntervalidNamequeryandsearch; makeordinarynativefieldedit outsidewindow, reportstalesandnavigationdisabled. ExplicitRunsearchrefreshes; unmatchedqueryshowsexplicitemptyresult. Type/Systemfiltercontrols visible; actualcrossSystem/fullwidthID/256limit/Unicodeprefixcases arefocusedtests only.
+5. PhysicalhashlastSavefilesunchangedafterallqueries beforefinalintentionalSave. FinalSavepreservesall3native records andsamewire; normalclose/all6ownedidentities/authremoved/sourcebinaryunchanged. Captureoriginalfullframes/audits/events forindependentreview; noupload/publication.

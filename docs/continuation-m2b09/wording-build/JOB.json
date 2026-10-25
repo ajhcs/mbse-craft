@@ -1,0 +1,56 @@
+{
+  "profile": "mbse-craft.native-record-impact-wording-build-job/1",
+  "status": "PreparedNotLaunched",
+  "owner_thread": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+  "cwd": "/workspace/worktrees/builderbob/mbse-craft/native-record-impact",
+  "branch": "feature/native-record-impact",
+  "source_commit": "f1b6c71681b221aba446f4b308d847fe08aef2eb",
+  "source_sha256": "00ef25c2e92305c2d1d1e386dc778c3582324f5b278f9330a2ad82831611e9e4",
+  "source_manifest": "/workspace/build/builderbob/mbse-craft/native-record-impact-wording/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "fbbcad30e18f1675e18cca0c59e7969c616ea6c200d3e840eb52a8281e2da2e8",
+  "cargo_lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/semantic-v2/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/semantic-v2/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "CARGO_TERM_COLOR": "never",
+    "RUST_TEST_THREADS": "1"
+  },
+  "binary_source": "/workspace/build/builderbob/mbse-craft/semantic-v2/target/debug/mbse-desktop",
+  "disk_budget": {
+    "target_apparent_bytes_before": 5805647217,
+    "workspace_available_bytes_at_preparation": 56617291776,
+    "planned_additional_bytes": 1073741824,
+    "minimum_free_bytes_before_launch": 2147483648,
+    "preserved_binary_max_bytes": 536870912,
+    "prior_native_binary_bytes": 402045200,
+    "notes": "Existing single-writer target plus one bounded preserved binary for wording-only source; zero tests/fixture emissions; no prior15tests/nativeworkflow replay. No global reservation or target duplication."
+  },
+  "admission": "Fresh exact-job packet plus explicit same-target sole-writer action allocation required. Allocation must independently pin current host appserver identity; no stale993990 assumption or substitute resource probe.",
+  "target_isolation": "This integrator is sole candidate/target writer; historical exact-owned jobs checked absent in current executor namespace. New host visibility/restart health must be reconciled by coordinator. No idle global mutex.",
+  "gui": false,
+  "uploads": false,
+  "new_agent_contexts": false,
+  "independent_review": "Same existing reviewer to review exact one-literal UI wording delta; no launch until closed.",
+  "timeout": "No hard timeout in prior reviewed wait-based wrapper; expected bounded incremental work, do not assert estimate as timeout.",
+  "scope": "Single-literal copy correction for actual review finding: stored creation journals do not prove pending creation. No report algorithm/API/history/model/view/schema change. Separate build only; prior15tests and28frame workflow remain at88d813e and are not replayed.",
+  "expected_tests_unrun": {
+    "total": 0
+  },
+  "new_tests_authored": 0,
+  "wording_delta": "/workspace/build/builderbob/mbse-craft/native-record-impact-wording/WORDING-DELTA.json",
+  "wording_delta_sha256": "fdc91a6e2e6193ff1ccddf00d62d87feea1d858f4c0665b2884ffe5310103e72"
+}

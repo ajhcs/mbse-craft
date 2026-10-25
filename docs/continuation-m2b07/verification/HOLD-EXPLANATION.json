@@ -1,0 +1,16 @@
+{
+  "status": "FreshnessHoldAfter79PassingTests",
+  "original_receipt_sha256": "c40027ff4f1af9c60a43f8d24acb431a13a7c91efbb38dcd899ccb2bd96b3ca3",
+  "source_commit": "2425208da6758b734193fdbdc93642b4482df325",
+  "passed_counts": [
+    49,
+    30
+  ],
+  "remaining_unlaunched": [
+    "ui::policies six tests",
+    "desktop build"
+  ],
+  "cause": "Actual heartbeat age plus elapsed time exceeded120seconds at admission before command index2; launcher stopped before starting that child. Original AssertionError reason string is empty; tool traceback identifies heartbeat guard. Not a test failure.",
+  "owned_jobs": [],
+  "replay_authorized": false
+}

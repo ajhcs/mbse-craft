@@ -1,0 +1,540 @@
+{
+  "profile": "mbse-craft.native-system-browser-native-receipt/1",
+  "status": "ObservedWorkflowCompletePendingIndependentReview",
+  "job_sha256": "99f3411b06b348eb23aec45c3bdc81dd1d6b8a9060847e819a0e28f14f0757c7",
+  "source_commit": "ee12a79f2f644def4d8a565f6ad1890e3f1d9a11",
+  "source_sha256": "9b2fab814a4a2ed49d285a810dc3e903f1fc3b1b0174e8aa6fc7c9dafa3c3cf2",
+  "binary_sha256": "4871d770f416a059774a0f0389e3984cc4aecbf66130416a61d09f910614729b",
+  "launch_started_utc": "2026-10-23T19:18:40.488941+00:00",
+  "native_ready_utc": "2026-10-23T19:18:44.603384+00:00",
+  "last_normal_close_utc": "2026-10-23T19:22:50.715857+00:00",
+  "launch_ended_utc": "2026-10-23T19:22:50.739622+00:00",
+  "cleanup_verified_utc": "2026-10-23T19:23:53.726430+00:00",
+  "app_exit_code": 0,
+  "driver_exit_code": 0,
+  "xauthority_removed": true,
+  "owned_process_checks": [
+    {
+      "owned": {
+        "pid": 1224390,
+        "start_ticks": 15747063,
+        "uid": 1000,
+        "exe": "/usr/bin/python3.12",
+        "pid_namespace": "pid:[4026531836]",
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+      },
+      "original_identity_absent": true
+    },
+    {
+      "owned": {
+        "pid": 1224398,
+        "start_ticks": 15747160,
+        "uid": 1000,
+        "exe": "/usr/bin/python3.12",
+        "pid_namespace": "pid:[4026531836]",
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+      },
+      "original_identity_absent": true
+    },
+    {
+      "owned": {
+        "pid": 1224399,
+        "start_ticks": 15747186,
+        "uid": 1000,
+        "exe": "/usr/bin/aa-exec",
+        "pid_namespace": "pid:[4026531836]",
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+      },
+      "original_identity_absent": true
+    },
+    {
+      "owned": {
+        "pid": 1224400,
+        "start_ticks": 15747187,
+        "uid": 1000,
+        "exe": "/usr/bin/python3.12",
+        "pid_namespace": "pid:[4026531836]",
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+      },
+      "original_identity_absent": true
+    },
+    {
+      "owned": {
+        "pid": 1224401,
+        "start_ticks": 15747212,
+        "uid": 1000,
+        "exe": "/workspace/cache/builderbob/global-tools/releases/blender/5.2.2/xvfb/usr/bin/Xvfb",
+        "pid_namespace": "pid:[4026531836]",
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+      },
+      "original_identity_absent": true
+    },
+    {
+      "owned": {
+        "pid": 1224404,
+        "start_ticks": 15747215,
+        "uid": 1000,
+        "exe": "/workspace/build/builderbob/mbse-craft/native-system-browser/native-gate-interactive/bin/mbse-desktop",
+        "pid_namespace": "pid:[4026531836]",
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+      },
+      "original_identity_absent": true
+    }
+  ],
+  "owned_jobs": [],
+  "original_png_count": 27,
+  "source_files_verified": 667,
+  "fixture_sha256_after": "e449ee6a15b9586c4e6e09c8cca68b6700da101d7568b3e6f32d9d4f1580ad17",
+  "final_native_sha256": "a80f93ee8fe07f3c82d8dd9d272666e011d8a1bcfa76e03f097706b97d7e9de2",
+  "final_views_sha256": "6411651b716939d3f7364d52bc3509b212ca38613828e1e0a85ea30c73f69f94",
+  "final_snapshot_sha256": "1e8d599f12c7b27155806d712f7b8aae2790c4e479948713797bb0a2e4bec99f",
+  "final_model_revision": 2,
+  "final_raw_version": 3,
+  "final_views_revision": "2",
+  "final_camera": {
+    "x": 0.0,
+    "y": 0.0,
+    "zoom": 1.25
+  },
+  "observed": [
+    "Two actual self-scoped Systems, distinct exact-ID duplicate Mission selections",
+    "Independent collapse states, including selected group remaining collapsed",
+    "Same-ID native Search navigation reveals collapsed System group",
+    "Focused incomplete numeric draft retained on tree navigation and Search reveal",
+    "Native/raw snapshot remains unchanged during navigation; view-only zoom retained separately",
+    "Ordinary native Open resets camera and collapse groups; explicit Open views restores saved zoom",
+    "Final native schema2 and views v1 binding exact, invalid criterion remains absent with incomplete raw draft saved",
+    "Normal WM close and all6owned identities absent"
+  ],
+  "retained_failure": {
+    "capture": "01-baseline-saved",
+    "native": "Save succeeded",
+    "views": "VIEWS_BUSY: Read-only file system (os error 30) at initial explicit path beside read-only fixture; geometry retained",
+    "resolution": "Later ordinary UI selected fresh explicit sidecar destination inside already-authorized private run directory; no sandbox/permission change. Subsequent Save21 and finalSave26 independently acknowledged and exactbinding verified",
+    "initial_paired_save_passed": false
+  },
+  "limits": [
+    "Name search GUI used actual selected System#2 filter; cross-System/name limits remain focused tests",
+    "Runtime identity key proved by focused policy; GUI observed ordinaryOpen reset, not direct serializedruntimeIDaudit",
+    "Saved native file hash sampled equal initial fixture at19:21:26UTC after dirty navigation, not continuously monitored",
+    "Helper archive copy from read-only tool sandbox failed before any destination creation; no archived SAVED21 files claimed",
+    "No broad platform/performance/hierarchy or full86feature acceptance"
+  ],
+  "independent_review": "Pending",
+  "files": [
+    {
+      "path": "00-two-systems-open.png",
+      "bytes": 266634,
+      "sha256": "29a27e97c3f2d4819feea04da4351edbfca0d04985e6fa60d83e2cc79fc5ffde",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "00-two-systems-open.ui.json",
+      "bytes": 6464,
+      "sha256": "54e0ed7d13b4ad6f6c19de842db3a1b1d19e38a61032c1e5808fabef9c392ee9"
+    },
+    {
+      "path": "01-baseline-saved.png",
+      "bytes": 271712,
+      "sha256": "ebad04a7f5085feb5c18ee6a31a9854ea66e48c927ac9f3c2675dab1af163dd1",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "01-baseline-saved.ui.json",
+      "bytes": 6488,
+      "sha256": "9b4a78defdedaba7c3a9a0db3d2b6f60326e2b4b7416fdb34305c9b230477404"
+    },
+    {
+      "path": "02-system1-collapsed.png",
+      "bytes": 266917,
+      "sha256": "49d3ae0a19b6b71c0a31c170f5f11d59c99779a296aed19dd9fb28da5423fbda",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "02-system1-collapsed.ui.json",
+      "bytes": 6333,
+      "sha256": "1ea647d46bf4bf077b65a32be35cf577ba57338b899a2c086b964338e090700f"
+    },
+    {
+      "path": "03-both-collapsed.png",
+      "bytes": 263031,
+      "sha256": "3246e38eb9b4317a872cd90115249fd92e7126456ba31ff770755316ee8279a6",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "03-both-collapsed.ui.json",
+      "bytes": 6178,
+      "sha256": "7ccf151c9ac8fe4752d4f7fea52451a57fe2b35373153c06585be31a46251e84"
+    },
+    {
+      "path": "04-exact-mission1000.png",
+      "bytes": 268693,
+      "sha256": "809b6c153fce59871adb92b01da7cd25d9cfa1262ccf45c1b17f5306869dab57",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "04-exact-mission1000.ui.json",
+      "bytes": 6338,
+      "sha256": "bdf6fbd2000408ed377619ebec9248ebb8c54eb3f00d02432631aad30625fe08"
+    },
+    {
+      "path": "05-exact-mission1001.png",
+      "bytes": 273061,
+      "sha256": "e6d64fab2efd45b9c9808b68c6f82c0b75bdce04c8ff38d89584f84887f5a7d4",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "05-exact-mission1001.ui.json",
+      "bytes": 6493,
+      "sha256": "9d549891fa790e18f2491bdfcf4e4272738ebd4f202cd67355b27789ee454b9a"
+    },
+    {
+      "path": "06-selected-group-collapsed.png",
+      "bytes": 268169,
+      "sha256": "68b807c531fb420460a1088ba2121fefb008649172ffec701fc406d2758fd3e8",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "06-selected-group-collapsed.ui.json",
+      "bytes": 6338,
+      "sha256": "41dae30d772a3c85e88db3c47827568d8e9d1cafa7e28f067dc9b86780957614"
+    },
+    {
+      "path": "07-search-open.png",
+      "bytes": 253064,
+      "sha256": "500697a5e7a8e10f46c42c66eef39fdcd9e82922ff044c81fda0c5d4bddc2c84",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "07-search-open.ui.json",
+      "bytes": 6792,
+      "sha256": "f603a79aa8414c8e2aba9e48ad14aa035390412713f00010978f4098462eed4e"
+    },
+    {
+      "path": "08-duplicate-search-results.png",
+      "bytes": 244010,
+      "sha256": "f4c618adb854968444bd8f64475aa0c4912e8c65c52cb2b438f07a02ace53dd9",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "08-duplicate-search-results.ui.json",
+      "bytes": 6998,
+      "sha256": "bcc05b5e531c09e2d9483a3928d6b9821352e2069f0cadfdd7a2cc694d427ba4"
+    },
+    {
+      "path": "09-same-id-search-reveals-system2.png",
+      "bytes": 249479,
+      "sha256": "3b63a3d682d959e42f9fba34929bea4322b2640a08db5a610dfe0bdd46787bb8",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "09-same-id-search-reveals-system2.ui.json",
+      "bytes": 7153,
+      "sha256": "bf8f794b26df51c1f1a5d681efe9370bea38348056e8e3995490c87147b1afe7"
+    },
+    {
+      "path": "10-search-closed.png",
+      "bytes": 273087,
+      "sha256": "2a9a03d4c04f149ccac821ca8c5424a1466e2747ac79303fad40eb5a00a68166",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "10-search-closed.ui.json",
+      "bytes": 6571,
+      "sha256": "4fa5b03c0078a02a58d3700768d85f36c3ccd58d0bd055e6f8f0459316035c13"
+    },
+    {
+      "path": "11-objective-creation.png",
+      "bytes": 273004,
+      "sha256": "146a9ad9b9b569b97f9344600de820c800c5acd8bf235a6b56241366ead7f285",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "11-objective-creation.ui.json",
+      "bytes": 6736,
+      "sha256": "60c4e10931675abaea7f0ae1bc6dc2c28f129649cd50a3186dd84f9b31ce8283"
+    },
+    {
+      "path": "12-measure-creation.png",
+      "bytes": 281828,
+      "sha256": "be889c14c951b03c50444f093ac76a4b60e32122d14eb52f515ee18e266029cf",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "12-measure-creation.ui.json",
+      "bytes": 7146,
+      "sha256": "458c582b02d75f1e41a5a83e31aecfe21ff5d3c175a1f4819e4dd260266a2f80"
+    },
+    {
+      "path": "13-measure-selected.png",
+      "bytes": 318191,
+      "sha256": "9f5184fdb37d679831eec93f6a329af43693de23819d2664af63415083770db6",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "13-measure-selected.ui.json",
+      "bytes": 7292,
+      "sha256": "bd94d6cffb701fe72a67275234bdddcb00e48d80f405aafb45bf48705dc114c2"
+    },
+    {
+      "path": "14-invalid-criterion-focused.png",
+      "bytes": 320875,
+      "sha256": "ed8e472c0a8ca41b7d1a2087d07de42807683ac2a4e85ab878774ceec86a8e8f",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "14-invalid-criterion-focused.ui.json",
+      "bytes": 7289,
+      "sha256": "e14f64525e76048241f62fe62301e40d21508ae69c922082be6c1cd6ad619400"
+    },
+    {
+      "path": "15-navigate-retains-invalid-draft.png",
+      "bytes": 299238,
+      "sha256": "3807cda4b15b2f54a85535a0c74375b65619de4b3d709642cb1f8f22beaa6805",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "15-navigate-retains-invalid-draft.ui.json",
+      "bytes": 7024,
+      "sha256": "54b27660a33ce1c0ed525294ba781ad88fcde566131f27fb4c347eea6f03a9bf"
+    },
+    {
+      "path": "16-invalid-criterion-returned.png",
+      "bytes": 320904,
+      "sha256": "140d35095d1107bb4aabd2237faef8ed8c500abec1ad7077147387a8559b9117",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "16-invalid-criterion-returned.ui.json",
+      "bytes": 7289,
+      "sha256": "e14f64525e76048241f62fe62301e40d21508ae69c922082be6c1cd6ad619400"
+    },
+    {
+      "path": "17-dirty-model-layout-group-collapsed.png",
+      "bytes": 312578,
+      "sha256": "e9d463fb804d6e9eb70400781577c1fe4a911b2422c5d59972e2f5e136c870ff",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "17-dirty-model-layout-group-collapsed.ui.json",
+      "bytes": 6913,
+      "sha256": "e7abdaaafdb3d34d8053d3895072742265c43ce790a8aeba576757b45278dcae"
+    },
+    {
+      "path": "18-dirty-search-reveal-retains-draft.png",
+      "bytes": 301035,
+      "sha256": "7d4fabc7cbe77f766c57b5a3aaf6e2383b016b3bd7f85fe4a15d2fd71ca568b7",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "18-dirty-search-reveal-retains-draft.ui.json",
+      "bytes": 7818,
+      "sha256": "ff9f39891c258f1c18c81cbb362f069aedf7e0837fef162e17f3c13e58539ea4"
+    },
+    {
+      "path": "19-invalid-draft-before-save.png",
+      "bytes": 323051,
+      "sha256": "cee544f78dce5a621742ee74c8b93cad2ae0ce6171d6d9b6a6425c4c72a81f01",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "19-invalid-draft-before-save.ui.json",
+      "bytes": 7236,
+      "sha256": "3163c052b601e5c27ce115189b41105b315ddc977c04d9a6af53ffd334c9340f"
+    },
+    {
+      "path": "20-explicit-owned-sidecar-destination.png",
+      "bytes": 322693,
+      "sha256": "6259c5a748d13f3978e72802fe6d9a1617e1460cb6ed24b6d4ec9eebce1edf98",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "20-explicit-owned-sidecar-destination.ui.json",
+      "bytes": 7236,
+      "sha256": "3163c052b601e5c27ce115189b41105b315ddc977c04d9a6af53ffd334c9340f"
+    },
+    {
+      "path": "21-explicit-save-draft-and-layout.png",
+      "bytes": 321880,
+      "sha256": "daa50dc3434ca0a629949f6f6c35819ef2d25d83438c3a19784532e23d6bd9bf",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "21-explicit-save-draft-and-layout.ui.json",
+      "bytes": 7236,
+      "sha256": "d1c93eb6e0b0e8ac791e1dbbc436defea6de8e716aa427f30a92caeb299e847a"
+    },
+    {
+      "path": "22-before-open-instance-collapse.png",
+      "bytes": 311211,
+      "sha256": "ba3ab59c006cca3c816f6778ef01d495537dbc638e1e5052200905176a0f127b",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "22-before-open-instance-collapse.ui.json",
+      "bytes": 6913,
+      "sha256": "b063f2a57c9b03654fd72c4efbed3c58f3d15aa33c4d4c195f98e6b693310419"
+    },
+    {
+      "path": "23-native-reopen-new-runtime.png",
+      "bytes": 305346,
+      "sha256": "c59d317323e7e3a34f873f9a18bbd6777ffa9efc37320d911f73d0b6c799087f",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "23-native-reopen-new-runtime.ui.json",
+      "bytes": 7059,
+      "sha256": "fcbd6e362ba050fca9d10af76461c39e6927a562f7fbeda0f6dd8bba3e303c82"
+    },
+    {
+      "path": "24-explicit-views-reopen.png",
+      "bytes": 301072,
+      "sha256": "40a87e0db69e5b577ac4822a2aabe0db34882661b4e59d1f74aa5912dbac0f33",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "24-explicit-views-reopen.ui.json",
+      "bytes": 6926,
+      "sha256": "a387801c9422eabdf4fa4e38464eb618ac981934d180c57d4a0bf2a823449f01"
+    },
+    {
+      "path": "25-invalid-draft-after-reopen.png",
+      "bytes": 324790,
+      "sha256": "2f88e89e6a83ff7fac10d42c8091cd697f99af5e24d73cd2cbd33faae726024b",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "25-invalid-draft-after-reopen.ui.json",
+      "bytes": 7196,
+      "sha256": "798b2051642753b7ad4efdabb0c8db23e259d54bc9eeb12c9813e9398345b04a"
+    },
+    {
+      "path": "26-final-save.png",
+      "bytes": 322837,
+      "sha256": "0a9bf576e9cecedbabfec5a9a8bc1b4b5130d49122e9898267ad9c168d06132c",
+      "pixels": [
+        2200,
+        1600
+      ]
+    },
+    {
+      "path": "26-final-save.ui.json",
+      "bytes": 7158,
+      "sha256": "ea18a240c9f02e1ceb6428a67b3de03e9b408b67b1246b2c08a27f9e5a3858f4"
+    },
+    {
+      "path": "CLEANUP.json",
+      "bytes": 889,
+      "sha256": "fce1920d48a7c35e073524e87aee3e24bbc6e1f195e8395c973e552135d20c00"
+    },
+    {
+      "path": "OUTER-RECEIPT.json",
+      "bytes": 3098,
+      "sha256": "bdfff76034263d6c08da96fb685073b33a20c0e98cd3bb6d8962e6664bac736c"
+    },
+    {
+      "path": "app.log",
+      "bytes": 48,
+      "sha256": "0cce862dc4913be2cce3fd531146652899fa528e6bef4c0cc05a1632efdac18e"
+    },
+    {
+      "path": "events.jsonl",
+      "bytes": 18317,
+      "sha256": "cbaea020e6db067e9f5f4649ee1133489fcafe6df791d645bbaa841547897094"
+    },
+    {
+      "path": "target.kernspan",
+      "bytes": 1467,
+      "sha256": "a80f93ee8fe07f3c82d8dd9d272666e011d8a1bcfa76e03f097706b97d7e9de2"
+    },
+    {
+      "path": "target.mbse-views.json",
+      "bytes": 2455,
+      "sha256": "6411651b716939d3f7364d52bc3509b212ca38613828e1e0a85ea30c73f69f94"
+    },
+    {
+      "path": "xvfb.log",
+      "bytes": 1321,
+      "sha256": "00971f516769b092bd50063ca4a82f63a4395d9ed9ff57eab62626162f51b9ed"
+    }
+  ],
+  "uploads": false
+}
