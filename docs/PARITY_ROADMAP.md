@@ -37,7 +37,7 @@ The dependency graph uses conservative serial integration order. It does not res
 
 ## Milestone 2: Presentation recovery
 
-P07 is merged in [PR #10](https://github.com/ajhcs/mbse-craft/pull/10). P08 [live Apply/Undo evidence](parity/p08/README.md) covers the bounded milestone workflow; PR review and milestone engineering acceptance remain open.
+P07 and P08 are merged in [PR #10](https://github.com/ajhcs/mbse-craft/pull/10) and [PR #11](https://github.com/ajhcs/mbse-craft/pull/11). P08 [live Apply/Undo evidence](parity/p08/README.md) covers the bounded milestone workflow; independent engineering acceptance remains separate.
 
 7. **Version the presentation-copy format and provenance.** Acceptance: Old files remain readable; future and unknown versions stay preserved; malformed source-to-target mappings refuse without target mutation.
 
@@ -46,6 +46,8 @@ P07 is merged in [PR #10](https://github.com/ajhcs/mbse-craft/pull/10). P08 [liv
 **Milestone exit:** Recover an independent native document, inspect old presentation, map selected occurrences, Apply once, save/reopen, and retain originals.
 
 ## Milestone 3: Craft workspace behavior
+
+P09 [command catalog and native evidence](parity/p09/README.md) is implemented in an isolated draft. P10–P13 and the milestone exit remain open.
 
 9. **Introduce a stable command catalog and consistent menus.** Acceptance: Menu, toolbar and keyboard paths use identical command checks and outcomes; disabled commands explain their prerequisites.
 

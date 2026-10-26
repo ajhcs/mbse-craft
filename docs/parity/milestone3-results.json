@@ -1,0 +1,33 @@
+{
+  "schema": "mbse-craft.milestone3-results/1",
+  "recorded_utc": "2026-10-26T00:05:59.563904+00:00",
+  "state": "in_progress",
+  "base_commit": "d7cca1c17002368f58264e7686e8c71a9b73b6dd",
+  "p09": {
+    "state": "implemented_draft_pending_review",
+    "branch": "codex/m3-p09-command-catalog",
+    "source_commit": "b24c902b932347e38ac1df7ada74837dd7268fa2",
+    "source_files": 674,
+    "source_sha256": "ef0af52c552a2b741adb3031b56de42afee2ed82b6b420dd67b9f8e767b4232a",
+    "binary_sha256": "7f2da91ac484bda93d2726c54226a90ee2008ed6e2e7324baf16ec6559620339",
+    "workspace_tests_passed": 352,
+    "new_p09_tests": 9,
+    "catalog_commands": 21,
+    "native_runs": 2,
+    "native_action_errors": 1,
+    "acceptance": "p09/README.md",
+    "contract": "p09/CONTRACT.md",
+    "compiler_receipt": "p09/verification/COMPILER_RECEIPT.json",
+    "native_receipt": "p09/verification/native/RECEIPT.json",
+    "same_agent_review": "p09/verification/NATIVE_REVIEW.json",
+    "preservation": "p09/PRESERVATION_AFTER.json"
+  },
+  "milestone_exit_accepted": false,
+  "full_parity_accepted": false,
+  "remaining_prs": [
+    "P10",
+    "P11",
+    "P12",
+    "P13"
+  ]
+}

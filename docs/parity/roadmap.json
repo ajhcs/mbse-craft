@@ -189,11 +189,12 @@
       "acceptance": [
         "Only selected occurrences copy; skipped mappings remain visible; stale source or target refuses; one layout Undo reverses the copy."
       ],
-      "state": "implemented_draft_pending_review",
+      "state": "merged",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "execution_results": "docs/parity/p08/README.md",
-      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/11"
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/11",
+      "merge_commit": "d7cca1c17002368f58264e7686e8c71a9b73b6dd"
     },
     {
       "id": "P09",
@@ -205,9 +206,10 @@
       "acceptance": [
         "Menu, toolbar and keyboard paths use identical command checks and outcomes; disabled commands explain their prerequisites."
       ],
-      "state": "planned",
+      "state": "implemented_draft_pending_review",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/p09/README.md"
     },
     {
       "id": "P10",
