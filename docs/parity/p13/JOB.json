@@ -1,11 +1,11 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m3-p13-dialogs-progress",
+  "id": "m3-p13-corrected-lock",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m3-p13-dialogs-progress",
   "source_manifest": "docs/parity/p13/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "6e67d8ed2571adf697159e7c7626bbb1060a31dff99884f4a3578d0585553b84",
-  "source_sha256": "8b426a6646bfd616d4d6bc7d883361d667ecb650d5a957ccaaab33f97c733126",
-  "cargo_lock_sha256": "c19283d0dcbdc94b56af511673ac38298679f442fc9df31cfc56c0ba338a2465",
+  "source_manifest_sha256": "a2e2c329be16a8eb8729feea5ffada2cd2f29ade3a5aca10a1b6dee7ebe2f782",
+  "source_sha256": "54fce092c645209cf13a1508db67d75ef3bba38393bedc0123583e1264e62d63",
+  "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
   "env": {

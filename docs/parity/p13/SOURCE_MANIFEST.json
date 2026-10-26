@@ -1,11 +1,11 @@
 {
-  "source_sha256": "8b426a6646bfd616d4d6bc7d883361d667ecb650d5a957ccaaab33f97c733126",
+  "source_sha256": "54fce092c645209cf13a1508db67d75ef3bba38393bedc0123583e1264e62d63",
   "closure_digest_format": "SHA256 compact sorted-key JSON files array",
   "files": [
     {
       "path": "Cargo.lock",
-      "bytes": 98728,
-      "sha256": "c19283d0dcbdc94b56af511673ac38298679f442fc9df31cfc56c0ba338a2465"
+      "bytes": 98709,
+      "sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0"
     },
     {
       "path": "Cargo.toml",
