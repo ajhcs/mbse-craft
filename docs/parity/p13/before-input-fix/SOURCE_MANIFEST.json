@@ -1,0 +1,3406 @@
+{
+  "source_sha256": "54fce092c645209cf13a1508db67d75ef3bba38393bedc0123583e1264e62d63",
+  "closure_digest_format": "SHA256 compact sorted-key JSON files array",
+  "files": [
+    {
+      "path": "Cargo.lock",
+      "bytes": 98709,
+      "sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0"
+    },
+    {
+      "path": "Cargo.toml",
+      "bytes": 1841,
+      "sha256": "7f82b35269d4019b926ec40e76d4768561367fcb0a844898f705757e8f2ebfca"
+    },
+    {
+      "path": "crates/mbse-assurance/Cargo.toml",
+      "bytes": 320,
+      "sha256": "607657e441688802e5c5c2bb03550e7949a131f2efe41ff41623300317dc2877"
+    },
+    {
+      "path": "crates/mbse-assurance/src/lib.rs",
+      "bytes": 42922,
+      "sha256": "deebb49fcacda2cbc587183175c0bd4a03f1f8beef5ad714bfc75c45c0b0479d"
+    },
+    {
+      "path": "crates/mbse-assurance/tests/assurance.rs",
+      "bytes": 28816,
+      "sha256": "e9566009f3f5b8e1565efb471f76134c2f9aa268e9f9d6c69213bb12a50e8bc1"
+    },
+    {
+      "path": "crates/mbse-catalog/Cargo.toml",
+      "bytes": 283,
+      "sha256": "74e87680794d307b6fc8fc0cf6ca872986e10a2c41793e9b071f5bee039e5c47"
+    },
+    {
+      "path": "crates/mbse-catalog/src/lib.rs",
+      "bytes": 11652,
+      "sha256": "9359820cbf8a27c22e65e890940e0aa89b24163225458b16a268e78dcf3565d9"
+    },
+    {
+      "path": "crates/mbse-catalog/tests/admission.rs",
+      "bytes": 4077,
+      "sha256": "66c8d6442722ca452e5dd3613404dff8ab00ea10b9d7fee0b244f96f31a70135"
+    },
+    {
+      "path": "crates/mbse-desktop/Cargo.toml",
+      "bytes": 1039,
+      "sha256": "5da7e61990bdd176fd344461435a4bbb41e92ee2f507ddedec6542ed5e2a1ac9"
+    },
+    {
+      "path": "crates/mbse-desktop/src/assurance_ui.rs",
+      "bytes": 46554,
+      "sha256": "f9965d9689d93fe20d4ffd8f2c512208b2ed87c375c663678d9784cb107ac455"
+    },
+    {
+      "path": "crates/mbse-desktop/src/catalog_ui.rs",
+      "bytes": 5210,
+      "sha256": "a5e0f13b6fc7a4aa801c685735135b9e3068d6608b6eba20909783b12dc64c6f"
+    },
+    {
+      "path": "crates/mbse-desktop/src/command_catalog.rs",
+      "bytes": 4506,
+      "sha256": "bd3fb55e08481d089a73dac7f030d7b1c6c6420e8855bda4cd0bed2519197ab0"
+    },
+    {
+      "path": "crates/mbse-desktop/src/docking.rs",
+      "bytes": 7630,
+      "sha256": "c3d7f9eafd1ecacacff8abfb83b6ffbd86cf091ab2a14c21634e6c5847015c82"
+    },
+    {
+      "path": "crates/mbse-desktop/src/exchange_ui.rs",
+      "bytes": 23723,
+      "sha256": "b25095f8c276092c880699d385d18a60eb37c8021419c8f113f7ca8a49403e33"
+    },
+    {
+      "path": "crates/mbse-desktop/src/main.rs",
+      "bytes": 5523,
+      "sha256": "5e0f4a97f92be339660c43449f5b9fe8425ee0682a50556712c65eda0e9208ce"
+    },
+    {
+      "path": "crates/mbse-desktop/src/periodic_recovery.rs",
+      "bytes": 3332,
+      "sha256": "de4b73095674e16277c684051ee065ab404a53369c7b47e2266bfa56b696206e"
+    },
+    {
+      "path": "crates/mbse-desktop/src/perspectives.rs",
+      "bytes": 4513,
+      "sha256": "31bc7b38d7365e46c830ad05266c992a15695a80e256d815ebeb2f95227f7e95"
+    },
+    {
+      "path": "crates/mbse-desktop/src/preferences.rs",
+      "bytes": 22268,
+      "sha256": "f46b02bd94f026d50e6fd028d6898a11d869b0bc5992e630d8488c255862369a"
+    },
+    {
+      "path": "crates/mbse-desktop/src/semantic_ui.rs",
+      "bytes": 32190,
+      "sha256": "757fea40ec1a478d9b8c3177a528bfb04324cdd6e27d97dd4fa15dbda58dcd65"
+    },
+    {
+      "path": "crates/mbse-desktop/src/shortcuts.rs",
+      "bytes": 10285,
+      "sha256": "cdfdf441d0a974f10078e63072c1ac6019888884f85a3f96775c2adb6505a8e5"
+    },
+    {
+      "path": "crates/mbse-desktop/src/source_edit_ui.rs",
+      "bytes": 24262,
+      "sha256": "9484fb06b71bb0335d36c0b6c7cbaaa11708cecdab4e3050e20549d82fbbc290"
+    },
+    {
+      "path": "crates/mbse-desktop/src/ui.rs",
+      "bytes": 123694,
+      "sha256": "becaf46a58422baee4096dd75f28b4503e2c5547e18eee6a77d9ed098143fe2d"
+    },
+    {
+      "path": "crates/mbse-desktop/src/ui_commands.rs",
+      "bytes": 33864,
+      "sha256": "96acc8fde1ca52c0375d53e7378f64d7f3ef7bdf2e75b6dc14eb4a96f06bb571"
+    },
+    {
+      "path": "crates/mbse-desktop/src/ui_docking.rs",
+      "bytes": 23314,
+      "sha256": "b59393fd4a012db0c92acab1e2349f4f5c573e4e433c95c3bb728ebfe768ea9b"
+    },
+    {
+      "path": "crates/mbse-desktop/src/ui_fileops.rs",
+      "bytes": 25168,
+      "sha256": "c32e05019bc87dd1e0e1533a39c124347623793834b2fd47c7938a82698d70f8"
+    },
+    {
+      "path": "crates/mbse-desktop/src/ui_shortcuts.rs",
+      "bytes": 14898,
+      "sha256": "57606257d56d00901e18d1342424d5434f96942ee77b54b2d76a6c46e069a9c3"
+    },
+    {
+      "path": "crates/mbse-desktop/src/views_ui.rs",
+      "bytes": 102533,
+      "sha256": "aa7fd2564cdfa84f0de864db514911ffc9b00f50019aebff39337861c87cdfc0"
+    },
+    {
+      "path": "crates/mbse-exchange/Cargo.toml",
+      "bytes": 486,
+      "sha256": "bcf088b26a37f8db647b7e8e73c60c8a74e011c7cafc84688121ea4c05ecc853"
+    },
+    {
+      "path": "crates/mbse-exchange/examples/inspect.rs",
+      "bytes": 1227,
+      "sha256": "d466efa32fa48e40fd998fac03efde27a8af12d6584e8d2177746484c08c5656"
+    },
+    {
+      "path": "crates/mbse-exchange/src/lib.rs",
+      "bytes": 30611,
+      "sha256": "e5dfa36cee6b29f2852d60323dae9fd57f2a54639f1c39d7c1d1fd1649f6d582"
+    },
+    {
+      "path": "crates/mbse-exchange/src/new_copy.rs",
+      "bytes": 4961,
+      "sha256": "b4956527f10cebf5d6e67c6badba32498b417f7b049aff32a83be8d0e42f55de"
+    },
+    {
+      "path": "crates/mbse-exchange/src/source_edit.rs",
+      "bytes": 13611,
+      "sha256": "0529fcd82750cb5b405c04d93ea76a956a520d170966851db14e17c0b1b4b742"
+    },
+    {
+      "path": "crates/mbse-exchange/src/v2.rs",
+      "bytes": 27222,
+      "sha256": "a7763daf475c4001ecfe13fa4167e16e0403cd2d9bb7dfee3e2ffe879e6a7e3b"
+    },
+    {
+      "path": "crates/mbse-exchange/src/v2/xml.rs",
+      "bytes": 40261,
+      "sha256": "17b157c39e1dc15207844c966bac028e136c201c830f6322119ad29f53c5bc1f"
+    },
+    {
+      "path": "crates/mbse-exchange/tests/fixtures/v2/LICENSE",
+      "bytes": 1080,
+      "sha256": "6c835358364a1215f87b683050862c81e8c19995797cd5ac1fa0b18050ee2b16"
+    },
+    {
+      "path": "crates/mbse-exchange/tests/fixtures/v2/capella-semantic-fragment.xml",
+      "bytes": 2990,
+      "sha256": "c2281dfd54b28b5d3cd38fa451aaa55715100626bf23b0adfc2910c52e29b890"
+    },
+    {
+      "path": "crates/mbse-exchange/tests/fixtures/v2/profile-layering.xmi",
+      "bytes": 780,
+      "sha256": "5bb6b8ee1e153dc5f4c7dc1eb99b5d4df8a9c788b8c48c19cf835c0476c2d73d"
+    },
+    {
+      "path": "crates/mbse-exchange/tests/projection.rs",
+      "bytes": 9102,
+      "sha256": "5ee3b0d39f7e2cd5144c92c807600d5b3a2495eacdfa26295d2cc79d181a9202"
+    },
+    {
+      "path": "crates/mbse-exchange/tests/semantic_v2.rs",
+      "bytes": 22733,
+      "sha256": "200c283a2f91d857e199492f1b085f7b0d3ff893abfa2d00979b3186517f6598"
+    },
+    {
+      "path": "crates/mbse-exchange/tests/source_edit.rs",
+      "bytes": 11756,
+      "sha256": "2bd05279b2b6e40c0dcedbd63145f36ed2335df33e9828514ea23798c1948f49"
+    },
+    {
+      "path": "crates/mbse-model/Cargo.toml",
+      "bytes": 383,
+      "sha256": "5cd32b1e5fc02acff6b657b4de5d137fabca025a79989fb7dedc0ade246963d9"
+    },
+    {
+      "path": "crates/mbse-model/LICENSE",
+      "bytes": 1084,
+      "sha256": "ea9ce658a75c5b3bc2ca4bb374e425ff9725932058042d66dad8ed6f072237f6"
+    },
+    {
+      "path": "crates/mbse-model/examples/m1_occurrence_fixture.rs",
+      "bytes": 3165,
+      "sha256": "ee7540bc179a75c3a35ce704ecde77c39d3bea5c78c0ee838feaf1d01f51e65a"
+    },
+    {
+      "path": "crates/mbse-model/examples/system_browser_fixture.rs",
+      "bytes": 3533,
+      "sha256": "be60027ee9d4991cf77287f15e544c03430a3b5f6552577e77bdf8d206478b12"
+    },
+    {
+      "path": "crates/mbse-model/fixtures/stage1-interchange/README.md",
+      "bytes": 868,
+      "sha256": "611d79d71d2d15f26c500ddc74ee477dc1b331c58c220b29545c1ae5f62ff46f"
+    },
+    {
+      "path": "crates/mbse-model/fixtures/stage1-interchange/supported-minimal.sysml",
+      "bytes": 2997,
+      "sha256": "82b349edcfbc59517c0a2e5cf4f151b940c23c8899e877fe82d9c09e777ee870"
+    },
+    {
+      "path": "crates/mbse-model/fixtures/stage1-interchange/unsupported-behavior.sysml",
+      "bytes": 3024,
+      "sha256": "2f77eeaf7617f06a139565a42b4cb1fc5955a45e487a648e8db5315d4bffc612"
+    },
+    {
+      "path": "crates/mbse-model/fixtures/stage1-interchange/unsupported-standard-requirement.sysml",
+      "bytes": 3033,
+      "sha256": "37140e704579674687499c130192e0118ef2e7106346705014fcd166a4a3e54d"
+    },
+    {
+      "path": "crates/mbse-model/fixtures/stage1/inspection.json",
+      "bytes": 3145,
+      "sha256": "feddb1b85b3a120937dff452501053408d39a8e139355e70a505d39013a337ca"
+    },
+    {
+      "path": "crates/mbse-model/src/boundary.rs",
+      "bytes": 3096,
+      "sha256": "2b91941a2b8cbd620381aa2333b6bd426a78c9a911e63ed9d5db076d22c7496a"
+    },
+    {
+      "path": "crates/mbse-model/src/lib.rs",
+      "bytes": 551,
+      "sha256": "c962bf8e37cdeeb02103200a9b89c0e9a952829887f82767c9950860c08212f4"
+    },
+    {
+      "path": "crates/mbse-model/src/local_input.rs",
+      "bytes": 13059,
+      "sha256": "e13a8482bfa851d7240a884c00d9b25ca07627a1dcdf3c7172e5163bc41dc617"
+    },
+    {
+      "path": "crates/mbse-model/src/native_navigation.rs",
+      "bytes": 8986,
+      "sha256": "9c734bdad141879cfc516dd38061ae2be8dc6f648a5797d143d791f36f5ba480"
+    },
+    {
+      "path": "crates/mbse-model/src/native_record_impact.rs",
+      "bytes": 24803,
+      "sha256": "d39b56e4355e6cbca862b0766a87d254d86dc3a4268f0728f92837be1d4be1ac"
+    },
+    {
+      "path": "crates/mbse-model/src/native_search.rs",
+      "bytes": 10547,
+      "sha256": "c60f0431b09e4137afcbfd3517b2d602798e668c0b3d5a6dfa6165b3091ee6f0"
+    },
+    {
+      "path": "crates/mbse-model/src/native_system_browser.rs",
+      "bytes": 6011,
+      "sha256": "8573b801d1a268beedab359f51d3cf06eb511646d96628affd6fbd7a9955b4f8"
+    },
+    {
+      "path": "crates/mbse-model/src/native_views.rs",
+      "bytes": 63083,
+      "sha256": "a15e546b5da5bab4cace413dfc6e21c2278f5f069058af2516686895e71742e1"
+    },
+    {
+      "path": "crates/mbse-model/src/native_views_copy.rs",
+      "bytes": 10963,
+      "sha256": "b5ae21514178d4c111e947700fc6382588b77a7ef77d7f700cde9f146d6679e4"
+    },
+    {
+      "path": "crates/mbse-model/src/native_views_inspect.rs",
+      "bytes": 13181,
+      "sha256": "dc3539f90ccfff3c07da3a73be59f95cac53fa85a950d6e13b7998e048432a98"
+    },
+    {
+      "path": "crates/mbse-model/src/native_views_io.rs",
+      "bytes": 48231,
+      "sha256": "283568891c295da71db68ec0c3eb940b09aaa044188edcab33f559e92feaa282"
+    },
+    {
+      "path": "crates/mbse-model/src/native_views_plan.rs",
+      "bytes": 22040,
+      "sha256": "80f0e29b298df5d9bc621063af2bbbda75442484f99613691c46436d1982523b"
+    },
+    {
+      "path": "crates/mbse-model/src/recovery.rs",
+      "bytes": 6832,
+      "sha256": "65b84050efb6d3392a1bbf73d991467e4700f1c23e90b4e2879e73657e2a1a86"
+    },
+    {
+      "path": "crates/mbse-model/src/stage1.rs",
+      "bytes": 121870,
+      "sha256": "5b8b247c59f2474b9246a8e24e1dff47c0b42a85051a00492e1408c296974bef"
+    },
+    {
+      "path": "crates/mbse-model/src/stage1_calc.rs",
+      "bytes": 65525,
+      "sha256": "42c9f5c8f17afc7e2412041c621b1c90734d7f9800c63737f2ad2cd31e7abd9f"
+    },
+    {
+      "path": "crates/mbse-model/src/stage1_graph.rs",
+      "bytes": 11643,
+      "sha256": "91c37ec014ffa8b811b74242a52348334f064cfcacf47c6f849234f3261abc5c"
+    },
+    {
+      "path": "crates/mbse-model/src/stage1_io.rs",
+      "bytes": 71339,
+      "sha256": "d3493f811a5f9b304f3a92243e7e027caf5225044e2393d707500ebb448980f0"
+    },
+    {
+      "path": "crates/mbse-model/src/stage1_sysml.rs",
+      "bytes": 119800,
+      "sha256": "a4eaf1ea0f6305b0d7a824fb55881b4ce43a1e1a79bd7336fa85d1c128f821f3"
+    },
+    {
+      "path": "crates/mbse-model/tests/context_recovery.rs",
+      "bytes": 12835,
+      "sha256": "7b7c9eca28ea5670a9a2d57eda3a3c15f8a2acac47f6d8d193da8044fc91117c"
+    },
+    {
+      "path": "crates/mbse-model/tests/craft_faults.rs",
+      "bytes": 2591,
+      "sha256": "d4d4f981a3897eabca39497f427b6c891f813ed5d08c3bc25cca5d5b40fe0bac"
+    },
+    {
+      "path": "crates/mbse-model/tests/craft_recovery.rs",
+      "bytes": 2038,
+      "sha256": "e0cb5fb8bc7f794c623682de075271dfb3e93e378ca1ca061548956289263a6f"
+    },
+    {
+      "path": "crates/mbse-model/tests/p07_copy_format.rs",
+      "bytes": 19432,
+      "sha256": "723fc51ea8032dee395b2d80195faf07f010acea9b59b944f7b2095876cfb299"
+    },
+    {
+      "path": "crates/mbse-model/tests/p08_live_copy.rs",
+      "bytes": 23834,
+      "sha256": "b5d1e0c47d0d716fad1febe1549e99a1495a5bf8ad8ebd6493014ad4354460aa"
+    },
+    {
+      "path": "crates/mbse-model/tests/stage1_calculation.rs",
+      "bytes": 33286,
+      "sha256": "c238e09cd485e3e1887ca5fa758201b84cf711dd831b49ef84d718866f7afc65"
+    },
+    {
+      "path": "crates/mbse-model/tests/stage1_completion_foundation.rs",
+      "bytes": 49820,
+      "sha256": "a338aafadbbc3f608106216aa5b048548d32316986061e7721f0ad70659cccee"
+    },
+    {
+      "path": "crates/mbse-model/tests/stage1_interchange.rs",
+      "bytes": 25216,
+      "sha256": "0a4c83382ed7b5d9cf59753261a82996b7fee4c3a376f05493e91af0ae2326e7"
+    },
+    {
+      "path": "crates/mbse-model/tests/support/source_identity.rs",
+      "bytes": 2054,
+      "sha256": "dc1d6e3930f068f7e8d0060932a774652eac15859067993963358754960e7bf1"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/Cargo.toml",
+      "bytes": 381,
+      "sha256": "6da97423c2d4ab64e8ffef36a685b068e94562996fd1c5247c9867f235ce0a34"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/LICENSE",
+      "bytes": 11350,
+      "sha256": "c741fcb705b7f3f80058e69560b8ec5a8ba4b1ab9fab255044ddf2b48ae6b800"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/src/ast.rs",
+      "bytes": 36241,
+      "sha256": "a116c9416ebab9735b1a7bb8f96e7ad92798bc7c1d4a326c5eb7a5a8f926e2d8"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/src/check.rs",
+      "bytes": 48970,
+      "sha256": "80dda42883f8cbaa5a2f2e69f5080cb5a15ad8b0c0a5fcb8c2353fc43c84b50f"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/src/diag.rs",
+      "bytes": 4584,
+      "sha256": "cfe3667db603aa5f913b278ae5576e368009c89487a8fec6a6397bdcb29ff9f6"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/src/lexer.rs",
+      "bytes": 13353,
+      "sha256": "15c778003b360759b95a491a8eb195b37eb85bfdb4d626d86ee7bfec9a044244"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/src/lib.rs",
+      "bytes": 523,
+      "sha256": "a0e673da5051d3e3eee2247238d6495f98184440f747d073630bbe1792f04bf3"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/src/name.rs",
+      "bytes": 11472,
+      "sha256": "e0b6ed2c3e0b2058b3e5a1219fad048f9e6334dd0536640042619a095f36f8df"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/src/parser.rs",
+      "bytes": 207967,
+      "sha256": "c99e341ff258b0b28c29b7e63c83d3c228a58dee6813d2c3a6b73f544ed5645b"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/src/print.rs",
+      "bytes": 92395,
+      "sha256": "dae05bbb5712de65d4c9e3251b71ff6d41b7393eb966c28711001ff2ce0f60db"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/src/span.rs",
+      "bytes": 2708,
+      "sha256": "4d2ef475e4a6d7bb01ea7e31396e036c352b3e11e3aaabe37c00523e67d4d9d8"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/src/token.rs",
+      "bytes": 3593,
+      "sha256": "bb41612d3233bae8d6d0f172a7be8c920a94738690a0a626a8a65eaea2cfc426"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/src/visit.rs",
+      "bytes": 14746,
+      "sha256": "d31ab84d77e0e6c6cdd8a1ec4fdc929746ac1e2062bbe089e56bb84f3508a420"
+    },
+    {
+      "path": "vendor/craft-libs/ATTRIBUTION.md",
+      "bytes": 10303,
+      "sha256": "683f9f3df33476bc51fe80bf83608f490b745582708bb8da00f29ed85defeadb"
+    },
+    {
+      "path": "vendor/craft-libs/Cargo.toml",
+      "bytes": 618,
+      "sha256": "6d02630d527569626b862d9e33dc908286b7490e3412949b731d5aa48dc67cba"
+    },
+    {
+      "path": "vendor/craft-libs/LICENSE-APACHE",
+      "bytes": 10174,
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+    },
+    {
+      "path": "vendor/craft-libs/LICENSE-MIT",
+      "bytes": 1102,
+      "sha256": "2f42c0cafc8ad394d91373fe1f342aee5453850b151a51405c68cae9ada86d26"
+    },
+    {
+      "path": "vendor/craft-libs/NOTICE",
+      "bytes": 7863,
+      "sha256": "8b1fbe6211dada33e1e3536c3218d97767905101b9ce863a255e21937664fbcf"
+    },
+    {
+      "path": "vendor/craft-libs/README.mbse-craft.md",
+      "bytes": 1513,
+      "sha256": "74756b4ad72b5d77fd88dd3358a8507416098fe2db080b59de6a8b5e42c22a91"
+    },
+    {
+      "path": "vendor/craft-libs/SOURCE.json",
+      "bytes": 13884,
+      "sha256": "797abb604c87b672f19676f59f00fe12338801f5a17db7088dd408ca078b77d9"
+    },
+    {
+      "path": "vendor/craft-libs/crates/atomic/Cargo.toml",
+      "bytes": 409,
+      "sha256": "132c06636b8592118aa304f07c3dec0aaf65dd604c68f6d8f76b9561dbc7e1fe"
+    },
+    {
+      "path": "vendor/craft-libs/crates/atomic/README.md",
+      "bytes": 8576,
+      "sha256": "d64e0b37e3c57166669ea0293009a3bf6f97d148bd5230bd329102e3f20cbca5"
+    },
+    {
+      "path": "vendor/craft-libs/crates/atomic/src/lib.rs",
+      "bytes": 52329,
+      "sha256": "a2dce3d4125cc26dfbe26a387f2d033264ccc3ea25e64b39b63a7cd1805f431a"
+    },
+    {
+      "path": "vendor/craft-libs/crates/atomic/tests/atomic_tests.rs",
+      "bytes": 8986,
+      "sha256": "883a61d02af5d5f358f40158d0563babf0b95d1b9c5d471f85167316c9938ed6"
+    },
+    {
+      "path": "vendor/craft-libs/crates/atomic/tests/permissions.rs",
+      "bytes": 6309,
+      "sha256": "71cfcf79669b3acba2bdac6292ad0aa86437fc2be89fcc85cfdf333f134743fc"
+    },
+    {
+      "path": "vendor/craft-libs/crates/docpath/Cargo.toml",
+      "bytes": 292,
+      "sha256": "6928b72b2f95d51c52869d1834b844321f0a6ab8b7e4db1d7eecbe60a867e598"
+    },
+    {
+      "path": "vendor/craft-libs/crates/docpath/src/lib.rs",
+      "bytes": 25931,
+      "sha256": "88c58c4e1e8447805913d190315cb152c6c7853ca64e3b7c573df157c7a773a1"
+    },
+    {
+      "path": "vendor/craft-libs/crates/docpath/tests/docpath.rs",
+      "bytes": 14317,
+      "sha256": "bc4bd7324b2bfb4d500ee1362991ebdba81b337a736f53d5071927b434f24d0b"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/Cargo.toml",
+      "bytes": 1366,
+      "sha256": "cb7d148dc3d382196b020b5728abab69cea33aa636c87df779c3313a3dc3deeb"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/LICENSE-APACHE",
+      "bytes": 10174,
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/LICENSE-MIT",
+      "bytes": 1102,
+      "sha256": "2f42c0cafc8ad394d91373fe1f342aee5453850b151a51405c68cae9ada86d26"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/NOTICE",
+      "bytes": 1164,
+      "sha256": "b4628bbe7b9d307ba985d59d73b715df38d5d2319159034c996f38045075343a"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/README.md",
+      "bytes": 5744,
+      "sha256": "5885a09b89f106cda13a5249150ba2d33b746e2788e70213c4850419c1c78675"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/src/appearance.rs",
+      "bytes": 29717,
+      "sha256": "34795f485d28d1495cbbe7975d8f8841e7d24a80563a0fadda9b4d78f11e7c68"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/src/appearance/portal/appearance_bus_tests.rs",
+      "bytes": 7492,
+      "sha256": "2502c7e3b9b9d7e2295634e0c76ffc5e68dae3e0ea25acd6dcac5ea3b40fbe89"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/src/browser.rs",
+      "bytes": 4381,
+      "sha256": "bef1329378d5ac05100bc3b8d1ec1e8ff0ed5796c9a469c6ea891a0acb743349"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/src/dialog_outcome.rs",
+      "bytes": 4110,
+      "sha256": "48acc3e0b427f269ea3a2770e55edb7ee83ec29f490aa087d1c103c77900faca"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/src/dialogs.rs",
+      "bytes": 11913,
+      "sha256": "2ead6e6bbe97e9181c47d220ec67a7ee6738ef48254b4799f74b7348bb1c58f7"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/src/lib.rs",
+      "bytes": 558,
+      "sha256": "7f5c36b7342cf7e5b16c6234e36e17183c1ac4bbfe8f841cf6b4713adb8c8a74"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/src/process.rs",
+      "bytes": 2148,
+      "sha256": "d527a2c10d0ae332ccb69ceebb676b65fb678f94c16946c017978aa81ced3ace"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/tests/browser_downloads.rs",
+      "bytes": 3281,
+      "sha256": "a3c9897633c467b3f73da0bd7875820f01e71e903f7d59f43ea43a42140175ef"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/tests/browser_harness.js",
+      "bytes": 2432,
+      "sha256": "34fda5aca406dd4aca9152de999456f05e65e163aa94fae32439e54d7d73890f"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/tests/dialog_lifecycle.rs",
+      "bytes": 10281,
+      "sha256": "ac8fac7b860006c4ffd92dd848ee58279878bf959c7427d0531f40391ffa5684"
+    },
+    {
+      "path": "vendor/craft-libs/crates/quit/Cargo.toml",
+      "bytes": 1110,
+      "sha256": "2b9c029e50de4bc207f386a565d2b3b03bb5638d6638f9ea1f0595f325ca9ebc"
+    },
+    {
+      "path": "vendor/craft-libs/crates/quit/src/close.rs",
+      "bytes": 8909,
+      "sha256": "f45dbce1e4f90778ef9e642ee75a412088a0d160527e4f522b373b2fb0b3eba5"
+    },
+    {
+      "path": "vendor/craft-libs/crates/quit/src/lib.rs",
+      "bytes": 4990,
+      "sha256": "62d291344e1200ab6717cb94c5d665ef3a00b144ef57148c310792511ab0ddd9"
+    },
+    {
+      "path": "vendor/craft-libs/crates/quit/src/macos.rs",
+      "bytes": 901,
+      "sha256": "2ec2092cf2a91db04d2a5b5a8d5207eea5e569bb050a9e240bcb7019d9a6b898"
+    },
+    {
+      "path": "vendor/craft-libs/crates/quit/src/menu.rs",
+      "bytes": 2061,
+      "sha256": "27ca52c8d16431d1409b517fdb3fdea3653ca87b481a42a29ec497dfa3b1e33f"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/Cargo.toml",
+      "bytes": 582,
+      "sha256": "5a7f36cc4df7cb90f4940e616481792db0c00d58dba6fc8183e54414431bec5d"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/README.md",
+      "bytes": 8465,
+      "sha256": "81bcff31dc5a79cffaa3611bcd7d1a9f90af8eebdd5ef79993fecfb39299b8a8"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/src/document.rs",
+      "bytes": 4216,
+      "sha256": "a436b5617cdc78cc6ba17820e28488506c57db101345982c92df8a2c81baf06b"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/src/error.rs",
+      "bytes": 5344,
+      "sha256": "761e2d9ef4b3e7f2d70ac89d7295421db664023849e1949f912e23fdceda237b"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/src/lib.rs",
+      "bytes": 3557,
+      "sha256": "91859aa5dd89e8b1199dda6bb70ca49baaa9a8bddf084dce74f5409b4047374c"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/src/migrate.rs",
+      "bytes": 2484,
+      "sha256": "953e10443235b86bcef1bf9fc8c372803a2be20c3da69cd4dad3b67302729e5e"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/src/paths.rs",
+      "bytes": 6664,
+      "sha256": "51f6344d55456667a38a25ff2357f338e1922ac0729963c583e32cb137f97e5b"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/src/recovery.rs",
+      "bytes": 3170,
+      "sha256": "d0c0d7a73623cc283b981bc56826941672e60c31e88de8c02ed286875de41789"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/src/store.rs",
+      "bytes": 16215,
+      "sha256": "cc81307cab697590a60a520e5e15bbb84cda4a15eccce042e9ef1366c8882c70"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/tests/common/mod.rs",
+      "bytes": 2881,
+      "sha256": "4d0e4c4a8b42121f6e3885b791592e1e045513868baf3bf84b492f1e827f7171"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/tests/memory.rs",
+      "bytes": 3240,
+      "sha256": "1b1f9e0db6b6506876ab09eda776e512f6c28c6202e0c2f2de95f9b5eb1c8111"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/tests/migrate.rs",
+      "bytes": 4501,
+      "sha256": "31d475f3f5f57e68ffc31be636fe2a5fb6938dfb7318f3f3e8c49a5ee7f48fcb"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/tests/paths.rs",
+      "bytes": 6320,
+      "sha256": "dc05b7452834ebe7dd1f006a56d5f08dcfd2fb5f409f7ec6f7bb503b1021bbf1"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/tests/recovery.rs",
+      "bytes": 8254,
+      "sha256": "3426b1c0f7ad7431094253ae37bf9ba83baafd456634994e95438ba9909b24f0"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/tests/store.rs",
+      "bytes": 11607,
+      "sha256": "ce69b5c19b6867b3f4d7edce028221c1c7bdd94b3401329cf0c2437a2af28a63"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/Cargo.toml",
+      "bytes": 716,
+      "sha256": "88159b4eaacfa21ca796d419fe1acad81c2780db8ac033303de6ff46083be90d"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/README.md",
+      "bytes": 14380,
+      "sha256": "6d0895339dda68982cf5ba371b5f82a414bf3e21a21a03f2f9126f1a1a2ceae5"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/buttons/mod.rs",
+      "bytes": 5082,
+      "sha256": "31c5b78e75fc9aacbf1c9b01e728dbf301ff5eceab02215bcf997d2de66c6c3a"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/buttons/tests.rs",
+      "bytes": 10525,
+      "sha256": "4407d99340493d3b216e3a8b0c72a303e88ddd8e17c9934ac1bf18fc2a7dd201"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/docking/mod.rs",
+      "bytes": 850,
+      "sha256": "a375ec1fc9363deaaca9154930cdba4948a70d5fe61a7e408b410d24fc372187"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/docking/model.rs",
+      "bytes": 32718,
+      "sha256": "1184fe72595ea4d7d820fb900e6105cdf25bc8f4921116a84250ebe68f90d344"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/docking/surface.rs",
+      "bytes": 45381,
+      "sha256": "6d94cebcbd053f527c9da8c98f8d522b0343a58a88e322482cbd926a1f750f38"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/docking/targets.rs",
+      "bytes": 4465,
+      "sha256": "223eeb50894d42a13a2b3fd8dfae5f21dd74a0688344623b317c04c740171cd6"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/docking/tests.rs",
+      "bytes": 46356,
+      "sha256": "217d4fe02d0e8298eb0e64049ce723247fd80f1c838b93f4d56c477f2c3e318c"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/icons/mod.rs",
+      "bytes": 3730,
+      "sha256": "389872630f1668d48c29a09d15e3100a663d04fabf98b5d8ca02c00712d7f0f0"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/icons/tests.rs",
+      "bytes": 3874,
+      "sha256": "c2c35b8aa6448826fc140493001d25b4f6e3d586e52c917f89d179621726f609"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/layout/geometry.rs",
+      "bytes": 5265,
+      "sha256": "e5b35a34d89ca1d9e54364a7e2c1b2d0cd0ffabf7314339da3f9e912be72e4e4"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/layout/mod.rs",
+      "bytes": 562,
+      "sha256": "31f0f2afde706a85b1b2f863bcd5d63a190715017421c94dc28feefaa0c43d97"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/layout/resize.rs",
+      "bytes": 8127,
+      "sha256": "278d221cd08aa1f860747dd66df7e49504da5d8b711b9a787a527e461ecd2fd3"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/layout/tests.rs",
+      "bytes": 11395,
+      "sha256": "42f4b5b1d14e42980b91883e1b8e4a294b37d3c2d1d09d70aa448c33ade1655d"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/layout/toolbar.rs",
+      "bytes": 7176,
+      "sha256": "5b3f3f81d135f9d2b09c595c2ffe517ae90cd763e8574964b5c11c1e5a180d83"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/lib.rs",
+      "bytes": 493,
+      "sha256": "1fc10e08f50038f178860c4ce9960115ec736fda9090e3f56383b02ae93d05e6"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/printing.rs",
+      "bytes": 9728,
+      "sha256": "adc75056dd67c9e502f6c42896a16248023eb20632e1de218f246e6ea292dbb1"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/printing/tests.rs",
+      "bytes": 8571,
+      "sha256": "01fad8055b7624133d95dccc197ea98ae10353ec86a43e44747ff1ce3ad4e1fc"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/tabs/mod.rs",
+      "bytes": 7874,
+      "sha256": "8cdf333b38f6b6f2a7f48f5517328dd070500443f8a69cf08a5ce0e654b71e44"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/tabs/tests.rs",
+      "bytes": 9283,
+      "sha256": "43bd4e6b131850361b7d4db78ca361e733180bb20d31cf1da8e46076448b9aad"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/theme/mod.rs",
+      "bytes": 4267,
+      "sha256": "48ba3e6f55415f0d4392208d51bb8f9223c8fb90ea56a6c04d0cad606a5e797a"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/tests/docking_workflows.rs",
+      "bytes": 11682,
+      "sha256": "60347371e463a7156e7a05be4e4c3221c777e41222edc219646970ede0562a43"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/tests/visual/fixtures.rs",
+      "bytes": 12179,
+      "sha256": "c3bda942e405b9513d7318e4902aa9f6538568532d524562cc72582946b5e077"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/tests/visual_regression.rs",
+      "bytes": 19441,
+      "sha256": "ec80a3cb5a64b3baf6dae59230b77742059ad2ee3f8b5a96ea7f79929ce47008"
+    },
+    {
+      "path": "vendor/craft-libs/crates/window/Cargo.toml",
+      "bytes": 787,
+      "sha256": "a563245aa835e13cf608613124f418353c59700bf78028dd273be4ed8e485595"
+    },
+    {
+      "path": "vendor/craft-libs/crates/window/README.md",
+      "bytes": 3077,
+      "sha256": "2a95730934a301e3ca3606ef4daf7bc362665dd85059f464ef734ae9dd94a52f"
+    },
+    {
+      "path": "vendor/craft-libs/crates/window/src/lib.rs",
+      "bytes": 19546,
+      "sha256": "40fedba0ae22fd97b4694323425e0fdef1ddceaec7795fa0e96b9f9ad8741e8e"
+    },
+    {
+      "path": "vendor/egui-fork/CHANGELOG.md",
+      "bytes": 183177,
+      "sha256": "f46096e352751d63e05cd2462556a33ba1bc5f774b4656b080c0cd4dd4833d4e"
+    },
+    {
+      "path": "vendor/egui-fork/Cargo.toml",
+      "bytes": 13916,
+      "sha256": "4440ecc01ef30d27f223030c83e19f179145d190cd7f259b78be06d78786e1c5"
+    },
+    {
+      "path": "vendor/egui-fork/LICENSE-APACHE",
+      "bytes": 10850,
+      "sha256": "8173d5c29b4f956d532781d2b86e4e30f83e6b7878dce18c919451d6ba707c90"
+    },
+    {
+      "path": "vendor/egui-fork/LICENSE-MIT",
+      "bytes": 1092,
+      "sha256": "95ca92f5f8ea5231f1580b3a2a799e8260af3114b900e1def5355a7f44bcf60c"
+    },
+    {
+      "path": "vendor/egui-fork/PATCHES.md",
+      "bytes": 1418,
+      "sha256": "ec6d408e5c99fc6dd97c807c1afe6ae242ff8f2b2bb24a89a04383f8e28c762d"
+    },
+    {
+      "path": "vendor/egui-fork/README.md",
+      "bytes": 25259,
+      "sha256": "60f8ac6d5102ae83d83b2e5651aa37352d262db095c1bc46dc8ff2a1755c5e9a"
+    },
+    {
+      "path": "vendor/egui-fork/SOURCE.json",
+      "bytes": 64405,
+      "sha256": "b70754de0176987de02df8eab580718da2ab19d45d6507929cbcbc8a11eb04e2"
+    },
+    {
+      "path": "vendor/egui-fork/clippy.toml",
+      "bytes": 2937,
+      "sha256": "26d1228483e8a4b789ff0fb0e6573bfc96fefb8523d77017bb1f51623e7a18cf"
+    },
+    {
+      "path": "vendor/egui-fork/crates/ecolor/CHANGELOG.md",
+      "bytes": 3828,
+      "sha256": "a7dc048decbadfc19a74f0f9fc52c2aaa980098585d1678afab6d18033834b08"
+    },
+    {
+      "path": "vendor/egui-fork/crates/ecolor/Cargo.toml",
+      "bytes": 1396,
+      "sha256": "bee5fdb0424d91fea20147e5798d2524c4296f7deb9ac64afd5a81f7ff91f598"
+    },
+    {
+      "path": "vendor/egui-fork/crates/ecolor/README.md",
+      "bytes": 695,
+      "sha256": "f8f28cbcdf449616757669e7bfd1fc7622013abe7184e3268b142d7b31148c14"
+    },
+    {
+      "path": "vendor/egui-fork/crates/ecolor/src/cint_impl.rs",
+      "bytes": 3936,
+      "sha256": "b6f89b6f4283c7bebcb49c05de5a0038f4ee861d575135b568fd9a4593f2726c"
+    },
+    {
+      "path": "vendor/egui-fork/crates/ecolor/src/color32.rs",
+      "bytes": 17079,
+      "sha256": "d1e7315446cbd715927a84e729084c264f2c2adb391c594bb7fe02a4fcbc6fa1"
+    },
+    {
+      "path": "vendor/egui-fork/crates/ecolor/src/hex_color_macro.rs",
+      "bytes": 2341,
+      "sha256": "5a4275ed16d28510720d975eb8169d016ded9f8811c144ebc11e2cdc479de187"
+    },
+    {
+      "path": "vendor/egui-fork/crates/ecolor/src/hex_color_runtime.rs",
+      "bytes": 8063,
+      "sha256": "5eece8c59b37e73af89749340c3eeea02cd12fc11b77f881aeb19991dcb631f8"
+    },
+    {
+      "path": "vendor/egui-fork/crates/ecolor/src/hsva.rs",
+      "bytes": 6431,
+      "sha256": "27a77496a0665c119c342bbd3cebbd28a5812392406765df049774b763e0e080"
+    },
+    {
+      "path": "vendor/egui-fork/crates/ecolor/src/hsva_gamma.rs",
+      "bytes": 1424,
+      "sha256": "af3764f1f47379d0fe351bf0d2334cd24a1d068c1dc7ba119541b62bebed818a"
+    },
+    {
+      "path": "vendor/egui-fork/crates/ecolor/src/lib.rs",
+      "bytes": 5916,
+      "sha256": "8cd5e5d6b6b1764c6ad1a5297215fd1d1054252ba5165c1965155b8e44b0c6f1"
+    },
+    {
+      "path": "vendor/egui-fork/crates/ecolor/src/rgba.rs",
+      "bytes": 8798,
+      "sha256": "8242b5c342f5f539eac26a421cda876471e9a64036d8848ba023157861d3c4df"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/CHANGELOG.md",
+      "bytes": 54141,
+      "sha256": "86dd7f0fec1e1326952179d3c2004fbf43376fc3a79d23933ea37565e42c8bee"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/Cargo.toml",
+      "bytes": 8836,
+      "sha256": "b188c9a0c645d1614e33539e97ec2849459a322a98d4bd9acaff644569d5d442"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/README.md",
+      "bytes": 4455,
+      "sha256": "ffd6e92a4ceb337bcb72ad70a13d614fb43984556b58f6c997635db98660a9a4"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/data/icon.png",
+      "bytes": 12052,
+      "sha256": "9e076c34e32a0b0ef35c62ebf6be8b5594a4601e7bcd478b681e9eff1f327973"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/epi.rs",
+      "bytes": 37726,
+      "sha256": "8e20f78a53d6183dd117357d5a6c1c20ebac961d693840dc3855d0b294c2cb54"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/icon_data.rs",
+      "bytes": 1738,
+      "sha256": "73f4e8c114c45e5da3906446a3018caad6bdf2fbc2a02b823f6df135eaf1f8e9"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/lib.rs",
+      "bytes": 20677,
+      "sha256": "8cc251327f101860cd253b7cea00521130c663fbebb0cd5973464eeb30f5cb32"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/native/app_icon.rs",
+      "bytes": 11566,
+      "sha256": "d76215e82d50052569c0b48c6a4ad38c5051c08c77846637a2ec9c321311e989"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/native/epi_integration.rs",
+      "bytes": 15890,
+      "sha256": "47b8e0dd6debed3f3ed0eb2395f966335d43e8d536dd29eaac29900272e108d5"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/native/event_loop_context.rs",
+      "bytes": 1796,
+      "sha256": "6530a614da665b4b2c147c36b2ba86df80dc2450fc8581b2959c49a979fba005"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/native/file_storage.rs",
+      "bytes": 8921,
+      "sha256": "6bab3eabf013b42121d2e0ea4940e0e3c11d9820781aa4dbba0fa7bde8e13ffc"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/native/glow_integration.rs",
+      "bytes": 66377,
+      "sha256": "8572f723e869b8785dea6a430171ec88fe6788bb4d51f3a282221d128387ed09"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/native/macos.rs",
+      "bytes": 2691,
+      "sha256": "c8b100d27402d152e4a1bdfd235f73328ec9b99b9c67155707de9a4c5bf451cc"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/native/mod.rs",
+      "bytes": 409,
+      "sha256": "a1de36b35e7bb09bd00e6bddd20fcb245f494d61443ee58e5beed72eab19a9f3"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/native/run.rs",
+      "bytes": 22357,
+      "sha256": "aab136690a2e946cf51e1a8c7d9306ea30cff5337ecfc8ff16a2ac5cc70eae0a"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/native/viewport_hooks.rs",
+      "bytes": 1839,
+      "sha256": "5fadcbc66420f65f193b4b41e6d1dddc7a48ed4d9f323148cbae8c7ba0325d1f"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/native/wgpu_integration.rs",
+      "bytes": 48424,
+      "sha256": "48a6cd07119f2986045a05efd24a43973a1585f3f6a38aa81741f78512615b26"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/native/winit_integration.rs",
+      "bytes": 6821,
+      "sha256": "2ce1030b6f4e7ee934893809ba00a74a591d203dec02505c8bb130083e8ec63e"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/stopwatch.rs",
+      "bytes": 1220,
+      "sha256": "aacdfb9a90e7198cf669a317fde5e0136629a3ad6aa3b5b75afec71d512607f7"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/web/app_runner.rs",
+      "bytes": 16004,
+      "sha256": "4af77733d252e8125171753e9d9d70cc3713c140b614586be051623859df54d7"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/web/backend.rs",
+      "bytes": 7338,
+      "sha256": "9d395480f8b7e9b00748aeee699d5dc123329f561eaa561776b787cb1452e512"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/web/dropped_file.rs",
+      "bytes": 1241,
+      "sha256": "21b53cc3ee2b0cfe611a9a58526d69dd853e51fd1370ba15e0156a9b9627dabf"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/web/events.rs",
+      "bytes": 44656,
+      "sha256": "f039187041bd03f3eb35426f0873e5ad4b1e0bfcf735b2408e58978e50c6b428"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/web/input.rs",
+      "bytes": 6283,
+      "sha256": "0a3bdba76d807ed0e67a2205b775353326dea4f82f50102f1a02a2baf232d0e0"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/web/mod.rs",
+      "bytes": 12597,
+      "sha256": "64e6542704b1749fe2d993e4cc5bfe68ccb598e8a9588056efdb03867e8a3467"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/web/panic_handler.rs",
+      "bytes": 2539,
+      "sha256": "757c56a43c2cfd9fcc0231bc7452b2296e65266e6e0031efad08c92212c6429a"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/web/screen_reader.rs",
+      "bytes": 644,
+      "sha256": "898d6110b4ddb1a72cbd13404257ee1788f577ffa2a3872ebb37ca660ad93946"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/web/storage.rs",
+      "bytes": 2121,
+      "sha256": "d010a855cc24830fca07fa44666d9912d65cf5f80fde4ec1bb819dd3f772fa33"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/web/text_agent.rs",
+      "bytes": 17079,
+      "sha256": "7285c6f9184c68831a9e8197b5db8e1cbbc25302182ce3d571ba494c731c76d8"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/web/web_logger.rs",
+      "bytes": 4516,
+      "sha256": "6371a94f55feb7d4d112c5ad3302d82a14b3e835b1e4af8d7f33c81839afd5e0"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/web/web_painter.rs",
+      "bytes": 1295,
+      "sha256": "a8b66c2117e8c141d80ef7219c3d02ad5fd33eb70936a07ca20fddfa48bcf048"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/web/web_painter_glow.rs",
+      "bytes": 6590,
+      "sha256": "42236856b47e0dd48a27a3fe8574f0b2d5cbf58d050081cf65f63f14d9917218"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/web/web_painter_wgpu.rs",
+      "bytes": 16606,
+      "sha256": "da350605640c7c9c64d41bd377e4db6841140b8b1acceaf36a607aedc7442be6"
+    },
+    {
+      "path": "vendor/egui-fork/crates/eframe/src/web/web_runner.rs",
+      "bytes": 13423,
+      "sha256": "38ea5334250dcdd5f7480dd4bf30fbe060ac34d41fa21399c4528dff3d561f5c"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui-wgpu/CHANGELOG.md",
+      "bytes": 13149,
+      "sha256": "1f4f3b2f3453347d3adbbf3488c1c698b01702b05393a02ed69fed8deabfabb2"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui-wgpu/Cargo.toml",
+      "bytes": 2750,
+      "sha256": "70b8dc7ec418a004997cb3c039c707a430c00942952ec143cd093a49146c2146"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui-wgpu/README.md",
+      "bytes": 522,
+      "sha256": "e7a1c61629bffc2b4ebc0fe9531d2c8fe511ce40b43f77e91546af9aede3e6dd"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui-wgpu/src/capture.rs",
+      "bytes": 10280,
+      "sha256": "c16f0548435842ce212b4aa5d8ec84b9b6ef9868e95c7cf285bf85ac3ab952fb"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui-wgpu/src/egui.wgsl",
+      "bytes": 6064,
+      "sha256": "3f29892e50fa5363a1945d0d969f130ab5b61add4280d9d711d7902499857a9f"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui-wgpu/src/lib.rs",
+      "bytes": 20573,
+      "sha256": "0f3ce4dc19c7067963fff40b08c09baccf88bb584df178d4381bcd24cb35e8b5"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui-wgpu/src/renderer.rs",
+      "bytes": 46702,
+      "sha256": "f12f5b914c3fe042d025f9ec11e6890607bf774125772b0ae900677cb63465f4"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui-wgpu/src/setup.rs",
+      "bytes": 14144,
+      "sha256": "c438389fc2b4e8a4d5dfe2eef57c76caed3cb2c199f9f15d7f80b105cf4246bf"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui-wgpu/src/texture_copy.wgsl",
+      "bytes": 1071,
+      "sha256": "b5f7873cceca89e13932ce8d32e487feed2124f414e9959fc7dbe4a5d33939c6"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui-wgpu/src/winit.rs",
+      "bytes": 38859,
+      "sha256": "f5ae7ff790ebd0dc6394e3bd57187a9cc2162e9366bb68c905a3771c9878f6f1"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui-winit/CHANGELOG.md",
+      "bytes": 13501,
+      "sha256": "4a608c088e81c87c2588da6c0ac590ab5e775b8890eba5ea7ab889c532bbacc2"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui-winit/Cargo.toml",
+      "bytes": 3953,
+      "sha256": "32c8381166bc165d53f67a6f7a58aec719d1d7cf6f41cc12459673912bc3c8a2"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui-winit/README.md",
+      "bytes": 571,
+      "sha256": "7a8ccbb9fbddf24243446291b8e5a4e6bddcb6b565602c9561581926d5ae362b"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui-winit/src/clipboard.rs",
+      "bytes": 9943,
+      "sha256": "29ab04a4882680ea5decab40b535702d07239e0d388ef9c6b30aa947cd8e7faf"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui-winit/src/dropped_file.rs",
+      "bytes": 425,
+      "sha256": "8c5b2e67f09233bea2b515d94215d9f699f787d94461576422fd8356420804c9"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui-winit/src/lib.rs",
+      "bytes": 95194,
+      "sha256": "c7adae2eca7b6e874db0af8776c8c87bc3a5b62e128eddc95a94802cb3eee9e4"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui-winit/src/safe_area.rs",
+      "bytes": 2394,
+      "sha256": "7d6efc7d283814d6dcb5e0938225bea19a479a452aa85377092b33e8bd11bb8b"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui-winit/src/window_settings.rs",
+      "bytes": 7753,
+      "sha256": "de2848526dfba7655ead1de4860e59199dd11148376062adf3d3edd0d1bf3cfc"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/Cargo.toml",
+      "bytes": 3218,
+      "sha256": "a5173fa59f387b619749b7893abed9d240175102d230375315a95876d3807c48"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/README.md",
+      "bytes": 221,
+      "sha256": "85732e1b68f3ef11292276d45ecc6c393365f5376f7d2046a3a0c933d8553115"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/animation_manager.rs",
+      "bytes": 3942,
+      "sha256": "5ce3e00160e1c1588f343711f27bd26ab1bd708d6161ba937771a607fa097d04"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/atomics/atom.rs",
+      "bytes": 5058,
+      "sha256": "38ca5e1ee7317dd9744a07e43953faf855b5ec073156682b61728e86b13b61dc"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/atomics/atom_ext.rs",
+      "bytes": 4310,
+      "sha256": "64f32cf37f896bc18af55e5fc70a338a1bcbfe5e18d75cfae746df513d578003"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/atomics/atom_kind.rs",
+      "bytes": 7089,
+      "sha256": "d8285387c0fcd1054f7099270da6b9b792ff0d70c3f0dcd0045f7a90dc4d13de"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/atomics/atom_layout.rs",
+      "bytes": 26536,
+      "sha256": "c183fd082373e3fd3f9958445308de054ab538e296b45fbeecf1b7e6d822b2b4"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/atomics/atoms.rs",
+      "bytes": 8227,
+      "sha256": "696711a4e459cf95b4f5e604cf29beca2524ebc6c944a27af341de4be013043e"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/atomics/mod.rs",
+      "bytes": 258,
+      "sha256": "c1c9660798dac1830d72bb319b7b47af4c03b81f7ba239e1c7d6485649df55b5"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/atomics/sized_atom.rs",
+      "bytes": 751,
+      "sha256": "d93b66b3f28c41d4b8b6010c7957ec8f3af9da7282e213bb958e6aa2bb3d3a59"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/atomics/sized_atom_kind.rs",
+      "bytes": 816,
+      "sha256": "3199088299794f10522710419f7f6267e6efbf6ac88376ef7e12562311b4b360"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/cache/cache_storage.rs",
+      "bytes": 2015,
+      "sha256": "e0eeed6c22e5f97a812c327f9e5b0abcaacf84e496aeebd37723080630d0cb0b"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/cache/cache_trait.rs",
+      "bytes": 310,
+      "sha256": "77678ef855c8ed9ca8d142c7964eb5115ab8ce23c27a0a82eaf683bba6d57ba1"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/cache/frame_cache.rs",
+      "bytes": 2407,
+      "sha256": "83d2890569d0bf42b8cfc9e28ef5c07b306f97f3368faf6b839bca16179fa06b"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/cache/frame_publisher.rs",
+      "bytes": 1572,
+      "sha256": "213343980fbd6abec842285fa517208cd9078d3f6c2d6c425be00b4f7f62ed8f"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/cache/mod.rs",
+      "bytes": 788,
+      "sha256": "405a558bc37e85653f20cae7cfb6c10e8eed2394f65d2b3ecbc630e10333a849"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/callstack.rs",
+      "bytes": 7572,
+      "sha256": "ea61c7e17914b90af608ae6449b5ac8e7e1d215157a7c207195dbc333b700710"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/containers/area.rs",
+      "bytes": 24063,
+      "sha256": "54cea74d29b067652ee0d5e9cf004000a79e7686683fc502a54f53649061ed77"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/containers/close_tag.rs",
+      "bytes": 836,
+      "sha256": "5d394c529af4ccd523fc53f985d86375012caf366720c115bca941837f0ca6fe"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/containers/collapsing_header.rs",
+      "bytes": 23059,
+      "sha256": "d529d946721a7b9d18cf2e0c1e5720acadc615aa66f03f4fd544198ac44d9f6f"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/containers/combo_box.rs",
+      "bytes": 15893,
+      "sha256": "5a15ac228ab3dae5a8951deae66a3bad30137ff4fbfa24635666a0c62bad1acb"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/containers/frame.rs",
+      "bytes": 16696,
+      "sha256": "90ce97e785eb686f96d283e0b535eb6d6e99a3025258ca4e19dc9f293ac609c2"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/containers/menu.rs",
+      "bytes": 20498,
+      "sha256": "8825df19fb6ca95ef061b4a8c53bde7388a5180b06ecea1ea5a89c4a248e08ae"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/containers/mod.rs",
+      "bytes": 855,
+      "sha256": "aa74bc100efb9096ccfb4177baa8836691c274387c3546349773204c928fc4c4"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/containers/modal.rs",
+      "bytes": 5083,
+      "sha256": "63f33d914cc1f0a3fbcbc63b9e894ebca633bf2499110a842bdb3f0d4c02f7ff"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/containers/panel.rs",
+      "bytes": 51060,
+      "sha256": "de1ad3d131ff4002d705e4f9ab0cb703ca8d26c5c480fa7d2612c64feb16c031"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/containers/popup.rs",
+      "bytes": 22199,
+      "sha256": "1c966bda090d778d2ce7dd6a4794b2c51e8f2b999850fb300e1e42da922203df"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/containers/resize.rs",
+      "bytes": 15269,
+      "sha256": "a639aafe8d7fd71810443d699e79c66c4d9b6880946949f466b325f83465b8ab"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/containers/scene.rs",
+      "bytes": 9825,
+      "sha256": "43c36418bee654e21ebe88222a500ad1865ec7c9274a8713cd00a517846ff885"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/containers/scroll_area.rs",
+      "bytes": 61005,
+      "sha256": "46494f517e708f38dbcd76d32d6c7b11a56596ca447ddb6159bad6c54ea3f321"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/containers/sides.rs",
+      "bytes": 8335,
+      "sha256": "fb34fb1f2dedaf0ce5352594fcd185a65509cf26efad5139d628b17d73ada992"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/containers/tooltip.rs",
+      "bytes": 14152,
+      "sha256": "dab3dea3aa2b660a6e37b0d2c6454b91cbfd470a8400fe1f6ad044a2de5838bc"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/containers/window.rs",
+      "bytes": 51067,
+      "sha256": "66a650f3a0ce7ab13276af9c279230522bf604aef0d02b61533f543a44a3aeef"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/context.rs",
+      "bytes": 172125,
+      "sha256": "c1152788996a49f6ebfb45d817d4e9541d731334c12817ee075d448c0e55eea3"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/data/input/dropped_file.rs",
+      "bytes": 1772,
+      "sha256": "8b61855f163e3c80deffdb7451a5e0311414cfeb5c67298ac694228024641a89"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/data/input/event.rs",
+      "bytes": 7173,
+      "sha256": "f2d802df6cf308d457c888742152848e3394e6d86df462c06caeec1d18f3d147"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/data/input/event_filter.rs",
+      "bytes": 1958,
+      "sha256": "79958a7fe1cf0674352c2a3787df28ab2b6ca3f5ef336b38875725e8e52b45fd"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/data/input/hovered_file.rs",
+      "bytes": 396,
+      "sha256": "c2d39852d8f403f199b3c7a70c6342eb745b1548679aaeacff23476961ae41e0"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/data/input/ime_event.rs",
+      "bytes": 1192,
+      "sha256": "8ec44f0bc90c68e3d932b96193a5f1145358fb94ce113448fb789aae294a812a"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/data/input/keyboard_shortcut.rs",
+      "bytes": 1468,
+      "sha256": "e7e8a552f973940a2b019d791ecedbd55708200f8094b555f4c198381a8fc346"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/data/input/mod.rs",
+      "bytes": 815,
+      "sha256": "6f515ca28abdab5495c785f98d0c4bc7f2ebbe45ffc3f068940c0a5dc64d57ef"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/data/input/modifier_names.rs",
+      "bytes": 1778,
+      "sha256": "c1db3060f1c8ebeb8d6c2ad6a1d38cd0a933914c7ee49129128b617f0bf88916"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/data/input/modifiers.rs",
+      "bytes": 13165,
+      "sha256": "7d0496ac90ab75f6af31f53048cf1c8b6080a6a889ee6fd453369a2394947924"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/data/input/mouse_wheel_unit.rs",
+      "bytes": 346,
+      "sha256": "46f048860d83d884a47f9b69e2a37a14c386997c7bea45880d2c95fd5ae54377"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/data/input/pointer_button.rs",
+      "bytes": 946,
+      "sha256": "6447fcf5394e8751bce2726dbc41571269fbe485746813ff478f7e79d19f0559"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/data/input/raw_input.rs",
+      "bytes": 8340,
+      "sha256": "6e8360693e021412ed5a4eea93f6edad2e35c6d2ee92963ae8770b68f946f4bc"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/data/input/safe_area_insets.rs",
+      "bytes": 565,
+      "sha256": "1e309270cac6589de6da3fbf9c9b1496014107636b385a853e99c7efe5584d05"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/data/input/touch.rs",
+      "bytes": 1606,
+      "sha256": "7ba9cb0508ba25fa3e9e931294805565947b1f6f111e6f98c6431c9c59bb1829"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/data/input/viewport_info.rs",
+      "bytes": 7133,
+      "sha256": "3694b4ab0f2333d211284cf1f3cdef79a3416c02461e76370a35728cc7e66344"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/data/key.rs",
+      "bytes": 18988,
+      "sha256": "236cb071555329d7b28e9706e0afab1b400d844040d7e463745a93913fcbb642"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/data/mod.rs",
+      "bytes": 155,
+      "sha256": "8b87b93ed90eee9ef30fed8155538b2b04e54eb9f976c84aad29cb0373e74bcb"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/data/output.rs",
+      "bytes": 25525,
+      "sha256": "87a7ab7e0381cd38def0604c3a63582536e1c37f7038318124f7d73ca102f16d"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/data/user_data.rs",
+      "bytes": 2000,
+      "sha256": "be82e9fd93c7aa565a281c10976308292c085dda5ef9bbae1ec78a64fb176561"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/debug_text.rs",
+      "bytes": 3885,
+      "sha256": "5f8e95de7387219cfc8e8df60f14f05399fd5eb71c49b21962169c338955a636"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/drag_and_drop.rs",
+      "bytes": 4720,
+      "sha256": "c042ff34043a57ae3dbf53ed462a963d9842fa546f959d1fce6ecb1078e67e1d"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/grid.rs",
+      "bytes": 17246,
+      "sha256": "1e66f4ad8e5518ba48b8b5ca6493b72a783622ddce27721e807ae2bab0a94842"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/gui_zoom.rs",
+      "bytes": 3851,
+      "sha256": "be6d30dc78816dad5b6822d25bd2f33b72a5f4a4b0e0a7ef162dea88fd21adc7"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/hit_test.rs",
+      "bytes": 20625,
+      "sha256": "56d65d84b504f8b86eb2bfc6a69ec0447f09537efb49e309aa58ca23bc805bda"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/id.rs",
+      "bytes": 9016,
+      "sha256": "8a5a2bdc74231a47f83da0ff3d3cb861f638c12226b80fb13b3139fcca66fd0d"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/id_salt.rs",
+      "bytes": 4214,
+      "sha256": "66935013a7709b2954516ea5b24bc6d7afa5d3c079071dd23de521d727e228d9"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/input_state/mod.rs",
+      "bytes": 61590,
+      "sha256": "86e244febe8b99ba2f462439aef2a3f7334a119e1e48c5bb1a8c2f4f82ef76d0"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/input_state/touch_state.rs",
+      "bytes": 13866,
+      "sha256": "2e6f689bdd629ebd1261a4cf3bc98900fa928ec0eb42db3679b8ab1d28ad6184"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/input_state/wheel_state.rs",
+      "bytes": 8797,
+      "sha256": "bc036517beebd5754456c8667cfd5f6e1576ea2e0541a774a27e7677bf3aac70"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/interaction.rs",
+      "bytes": 11092,
+      "sha256": "869cd3a52b70b128338e398007cb6cc7bb198a657462c80f51a57ede41a2b201"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/introspection.rs",
+      "bytes": 8608,
+      "sha256": "ecccc7160b6424fe711ea31a34c6663a8d5e77ae7f765f8928f94fe23ff26a68"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/layers.rs",
+      "bytes": 8290,
+      "sha256": "157222559ea4ff564a888eba09f91aa0e66c5eebd7661d3ff5a46ba23889ff2e"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/layout.rs",
+      "bytes": 30707,
+      "sha256": "ab5cce08c6da790f2fba34d5e5b1090c8bbe4d57e9d8d8cd30da9e673f94e2ae"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/lib.rs",
+      "bytes": 23732,
+      "sha256": "159e4831e7345351c0ce430e31e64a1d7641d9cf4d2d832deb7606b618c94cbe"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/load.rs",
+      "bytes": 22209,
+      "sha256": "d5f531fa3451998c032956f64edd121abbf33781bf1df1991a1d981798f13495"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/load/bytes_loader.rs",
+      "bytes": 1934,
+      "sha256": "65e7deeffe9b19be191524f0cf64788249db7d369748c51a5660781b40be5fcd"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/load/texture_loader.rs",
+      "bytes": 4983,
+      "sha256": "6ae3e7b9f67b67c1b63f9177c2870778d7430665efd2d8c96b4c2648fa86282b"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/memory/mod.rs",
+      "bytes": 53465,
+      "sha256": "109626f5b5fea7c2debd014c7c94c3b1585cfd957d8d7097f2a4d6c6dcbad899"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/memory/theme.rs",
+      "bytes": 3687,
+      "sha256": "76d58c4c43a0d3a2e8a033e19f734b987f15cdd6763b725a1c23a1d95d823d91"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/os.rs",
+      "bytes": 2242,
+      "sha256": "442839a9bf52059e5eb7119a935d7092abc36ab2dc5c509e8e4d065594ec8683"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/painter.rs",
+      "bytes": 18120,
+      "sha256": "2f5a7698a5dc334d8675c012a2c17884028a7184309949c6aad9a7c0cb07606f"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/pass_state.rs",
+      "bytes": 8513,
+      "sha256": "25079cf84dd3d14f8cb8dcdcdcef4ab65ce132091b9dd0ea5ea30a41f867697b"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/placer.rs",
+      "bytes": 9932,
+      "sha256": "a89069db47c5fbd6b79184e888d2b78cb658c7fa3e8789d9c496dee653d7ec33"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/plugin.rs",
+      "bytes": 7627,
+      "sha256": "8a17362c21fccb03e775a2721cfed736dfb6ee0d42b82bf24cc1f195519def26"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/response.rs",
+      "bytes": 44342,
+      "sha256": "b7f7e2eec76850bb504446162b5af476abf910e09de32738a6930faa9bc97ad1"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/sense.rs",
+      "bytes": 2980,
+      "sha256": "b1e30541693ab2502ea372bd79af27aff9c31ac754105a350c9bbebab39c7420"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/style.rs",
+      "bytes": 107208,
+      "sha256": "bcdd522585dfd4ede7136bc1b6aec8e1d9149c0579fcccd54f68e7aa79eb8725"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/text_selection/accesskit_text.rs",
+      "bytes": 8725,
+      "sha256": "eaf1372240eb7d952b0b1f99dd887c2002e106cf10ebe38c97cb89d44ae992a3"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/text_selection/cursor_range.rs",
+      "bytes": 11083,
+      "sha256": "213d256aaf861f1beb1564bf0d8870ecb1cd0e857d8d80568f8344417061bf28"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/text_selection/label_text_selection.rs",
+      "bytes": 28997,
+      "sha256": "ab90cbb6f15f70a2356fce5277e1800444752056e7721393549471bbcd8a552e"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/text_selection/mod.rs",
+      "bytes": 309,
+      "sha256": "09d2771a59ed56a0070ed26799d07ce7ddca05de5603f9092dfcf9bfd781e502"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/text_selection/text_cursor_state.rs",
+      "bytes": 18832,
+      "sha256": "b0747ca3e7153ce2db87564eace25bb308a4359141ba3ac7cfe9d56ae5f65a8e"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/text_selection/visuals.rs",
+      "bytes": 10253,
+      "sha256": "cc953477e129f311c3e63f6ae770a2668a5aa9f2b3df5e00ff49918915bbc83e"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/ui.rs",
+      "bytes": 106335,
+      "sha256": "a5d33efd46dadebf973cb9bbcdab25808281c48ee5c02f2f84db6f849314fc85"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/ui_builder.rs",
+      "bytes": 6541,
+      "sha256": "3e967e7999453e23a1382e09dac7db31e0aeeebe86a5408f7c33661cd249814e"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/ui_stack.rs",
+      "bytes": 8367,
+      "sha256": "0bfaf75ac9dd5e0a374326ac50b7d06bf9639250aa5483457e9b57e069211b3b"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/util/fixed_cache.rs",
+      "bytes": 1066,
+      "sha256": "9d65ba6a98679119d9e819653d1612be0e98e1eed5ee9ddc2450696273775a3c"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/util/id_type_map.rs",
+      "bytes": 35396,
+      "sha256": "7ff8315e0ae23e8efc37be69c805a311f8e429e80a19b31b134cdb95e2dce726"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/util/mod.rs",
+      "bytes": 223,
+      "sha256": "0924f2f34fc438defc207939c8cec3cc89e4600baf1e4a69ea6b826aa828e5b9"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/util/undoer.rs",
+      "bytes": 7505,
+      "sha256": "f24ea74faba2f2345f434f621ccd2de75956609f2a605f78b71f08b6bb66b3b1"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/viewport.rs",
+      "bytes": 46141,
+      "sha256": "3f6b8b8d0e25871829d09e0653604146463c69cf87632938b0dafcb9c7a69b5a"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/widget_rect.rs",
+      "bytes": 7577,
+      "sha256": "842969b8cbe0574612aa2d195fed4f40771f661ab0f64bb6dc64732cd84b919d"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/widget_style.rs",
+      "bytes": 9325,
+      "sha256": "3537a23e32a2f790fb3705a3632fce788f24f1a491fd84bcf2c70f8c3ffcb54e"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/widget_text.rs",
+      "bytes": 25706,
+      "sha256": "73cb348e20fc1681800e8c4ccc124d2f337140dcdb0fbff9ad487bac2518c684"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/widgets/button.rs",
+      "bytes": 13355,
+      "sha256": "dd720416906683daee31b112ff03782be924a3146aa6c0d8bbca56e31c10d84f"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/widgets/checkbox.rs",
+      "bytes": 5714,
+      "sha256": "6f8d8ea44baa9ee808ed0c92439597b3dc8bef53f7a3956f39a1fbf34b317217"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/widgets/color_picker.rs",
+      "bytes": 20907,
+      "sha256": "947e20009493575143a9bd560e9714a0cb5743e68a3430eda8aeb59e08e869df"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/widgets/drag_value.rs",
+      "bytes": 33915,
+      "sha256": "ab2f7cd2d6ab4ba6158be1e80dd514a6322c2eade97005348eb0e8d104c1b935"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/widgets/hyperlink.rs",
+      "bytes": 4192,
+      "sha256": "65ff4e99f186de67531c11bd048466c0f3146878b297377cb1053107b82698e2"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/widgets/image.rs",
+      "bytes": 31194,
+      "sha256": "bd54609db51879128f005889653211fa817582902a245a39a27019b2d50cfb6a"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/widgets/label.rs",
+      "bytes": 11830,
+      "sha256": "f6a5965fc3c908cb02a0eed35edd70b2fa327e613bcd884d312522e90d865743"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/widgets/mod.rs",
+      "bytes": 4954,
+      "sha256": "3faac525203431b9bfe29b9f39b1d4fbb3375d721500e98e196e4c9957e6a549"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/widgets/progress_bar.rs",
+      "bytes": 7350,
+      "sha256": "eb6a854ffab4b4d009e9f502a92d2c6cfb1716be723289c06f8f4636466e6997"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/widgets/radio_button.rs",
+      "bytes": 3692,
+      "sha256": "f603c54e8b6b75f88e5fd0981d44d22cdb0234d620a81565f13664f578e0fbc9"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/widgets/separator.rs",
+      "bytes": 4510,
+      "sha256": "ed58f41919f1e4f27bae9e9e9d4bc4aeb85757f9af58748205123687a1fbf30a"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/widgets/slider.rs",
+      "bytes": 45302,
+      "sha256": "fd608c1f889d5989ac7ce4126b90708bf2a96a3dfb94a17cb71f4db3854cbd55"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/widgets/spinner.rs",
+      "bytes": 2585,
+      "sha256": "6739070a8c7c42ca1088538446c1f0d42e259210c21d88a1cb181d2141eaf491"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/widgets/text_edit/builder.rs",
+      "bytes": 55498,
+      "sha256": "4a29b8b86966c00534ee115ada965664903a0cae85e952581045f1dbbf4b0408"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/widgets/text_edit/mod.rs",
+      "bytes": 205,
+      "sha256": "479367022ff10befbfeb56618dc6fced02cdd5bbd2869e6edba338f0407553f8"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/widgets/text_edit/output.rs",
+      "bytes": 750,
+      "sha256": "f1960e60d4c4f76c31dd4fddd6c9e648ff9e5057425775786bf41475be673705"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/widgets/text_edit/state.rs",
+      "bytes": 3265,
+      "sha256": "f8bb974af87487bbdf38a9987c75b0f6c0d272562d61659aca48dc3b20eed590"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui/src/widgets/text_edit/text_buffer.rs",
+      "bytes": 15226,
+      "sha256": "d5a3651491854d9008aa7fe8aca3dff61bf0eca0f13250238ee752b7a65cdf11"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_extras/CHANGELOG.md",
+      "bytes": 14876,
+      "sha256": "3919188b56fa44951adbd4dd2eed0feed8b0d44ed396ccbf2db823e999f102d4"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_extras/Cargo.toml",
+      "bytes": 2829,
+      "sha256": "6fdc87496bbf8c12178cec6f119cd25f33fd543e4d1d9d52ca669efb6f4333c8"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_extras/README.md",
+      "bytes": 993,
+      "sha256": "f5ed5bfccdb6bc2024548aef70bbf1daecad3c7be28c2e2c1fc43d1d6c670469"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_extras/src/datepicker/button.rs",
+      "bytes": 7680,
+      "sha256": "b5e86b21ecc8aa84c0adee95dd8ab4421a9a9d22d3ed23997482a0a0ee65556f"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_extras/src/datepicker/mod.rs",
+      "bytes": 949,
+      "sha256": "10ca1f7aeaedcf8b01b34b243117e299f17e48c98a70cd0d9c1dbbc411896d18"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_extras/src/datepicker/popup.rs",
+      "bytes": 24302,
+      "sha256": "7c369191c52db6bafffad85d7d7e80d0ce1dcb6b2d023c895a0ba3277a97b321"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_extras/src/image.rs",
+      "bytes": 4412,
+      "sha256": "b2a427730c84d071396d1d3b0b4a262de60baa6838ccf21e0f1aaa130673d543"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_extras/src/layout.rs",
+      "bytes": 7836,
+      "sha256": "299848343f57565f41aeff1df363f0856a6f7c860330511a7a1d7017e533be36"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_extras/src/lib.rs",
+      "bytes": 1225,
+      "sha256": "caf060631609319114ce43ad650c1b5adee05062368c13348245c5aae7afbabf"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_extras/src/loaders.rs",
+      "bytes": 5395,
+      "sha256": "fbf12254ccc3dfdf2fd25944f8eeb4f29dc23ad845d88e3eba63e251355e63b7"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_extras/src/loaders/file_loader.rs",
+      "bytes": 8114,
+      "sha256": "fc9eb107b1cf2b212218c5510f51a2bd7d19131a99cf2e8ad46b12d4b4bd6a01"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_extras/src/loaders/gif_loader.rs",
+      "bytes": 4480,
+      "sha256": "0c26381bd9399eb43a679c2df5f37e53399089f4bb5d32f41f4c3f22dc6ef919"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_extras/src/loaders/http_loader.rs",
+      "bytes": 5620,
+      "sha256": "b4978432fdfd8e51efec4852079ca331fa112cb4cbd7bf37216846cb37835d02"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_extras/src/loaders/image_loader.rs",
+      "bytes": 8261,
+      "sha256": "ff8d2adbef9992c85d2c78a479fd41a8ae9661cb2d205061c5f89bbbb1ffa87a"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_extras/src/loaders/svg_loader.rs",
+      "bytes": 4579,
+      "sha256": "e3ac92db043668e206bf47f5286119e480986b18175dc175d508ee0271d19ffd"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_extras/src/loaders/webp_loader.rs",
+      "bytes": 6450,
+      "sha256": "30529f19b37426b1dfd74534fcff012f78ac425327c0ea6e160ad9e7cfab6320"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_extras/src/sizing.rs",
+      "bytes": 6133,
+      "sha256": "4b82778686bac0452c930ca25f7f969af88280b924e4d33c2c17c2ee77b74eea"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_extras/src/strip.rs",
+      "bytes": 6919,
+      "sha256": "a75ad097fef3a3f808331aa8f1478f803a277863562b782ea2fd31d58697c57b"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_extras/src/syntax_highlighting.rs",
+      "bytes": 28109,
+      "sha256": "a89cdff9b9f74fcebb8b302514c2302f906c46933ea8ed57db2c60b52a42c474"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_extras/src/table.rs",
+      "bytes": 47293,
+      "sha256": "55b3bb343731f92cceb0323a377af4bfb38040d700ec4d6045e8ae7757e4f939"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_glow/CHANGELOG.md",
+      "bytes": 7713,
+      "sha256": "6f5e489a8418ac5f9794bb669b2186a7a13173455d130a89cf95fb37fa47c67d"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_glow/Cargo.toml",
+      "bytes": 2044,
+      "sha256": "564dd3bbcea2305f4a7ef538c82da0b22e230d658a34637e6179ac4cfca565a8"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_glow/README.md",
+      "bytes": 1097,
+      "sha256": "f404b997cbf605877145ec14ff733173f43ba6841b8051374483900af736a72e"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_glow/src/lib.rs",
+      "bytes": 5192,
+      "sha256": "74ebbb81b9e0edf8b1e1f76b1f8b8cfe1cfc1d5fb8b3a4cd4393dc7b6483f839"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_glow/src/misc_util.rs",
+      "bytes": 993,
+      "sha256": "e11c70e50f84468875805394b640381ccaf8f9fac152f59785e0d36781c1e7d9"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_glow/src/painter.rs",
+      "bytes": 27515,
+      "sha256": "fbebbfb983c2100993a2351a8513c675fe3ec6a099067993a192bedc5030140d"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_glow/src/shader/fragment.glsl",
+      "bytes": 1956,
+      "sha256": "3251956e1f1510d7f4131e95f7741dafb6cd0d31ac3332020fc654e04b56ac97"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_glow/src/shader/vertex.glsl",
+      "bytes": 917,
+      "sha256": "3cb1b2595e55858acf4aca1179ab20c192d571c46a1498e3206c73887dc9b0c7"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_glow/src/shader_version.rs",
+      "bytes": 2846,
+      "sha256": "450c2cc0cd3efd8aad788ad2f047409973101916998631dec72d53ce721e6d0a"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_glow/src/vao.rs",
+      "bytes": 5769,
+      "sha256": "132716ca5268b66caf76f1767de00b31380abf8ff054dd26c790747284ccccf1"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_glow/src/winit.rs",
+      "bytes": 4447,
+      "sha256": "3bed8a69e267cf1dec015770f8c00a5d07425ac204477470946652ce2a96b197"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_inspection/CHANGELOG.md",
+      "bytes": 580,
+      "sha256": "ab404d2c8671dc0c7ec57a7a36a7e45309e7d91b281ff1faf23b874b8e3f1aa4"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_inspection/Cargo.toml",
+      "bytes": 1548,
+      "sha256": "a377ba6af7802ef481e7009f731f6675e39545e6e6dc20157ac6213730515b11"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_inspection/README.md",
+      "bytes": 2948,
+      "sha256": "301020191dbcdbb65d9fe5029022ef62b75a760964aae3267915df2f215e6174"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_inspection/src/lib.rs",
+      "bytes": 1818,
+      "sha256": "34c4e4d86d55559e38a719b11f53f1b231e9a05bd451fe09be89562078b5e337"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_inspection/src/plugin.rs",
+      "bytes": 17675,
+      "sha256": "91f5e94646abd9861797ad42ed9f7bb2365ddb4d2281d8cd00c7743740182822"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_inspection/src/png.rs",
+      "bytes": 2310,
+      "sha256": "e634056809ef6fa1e9474937e9e8c245b9b61d60d1f88e1c5658816b20a8c31e"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_inspection/src/protocol.rs",
+      "bytes": 10408,
+      "sha256": "99ea72bce1962d282fc4b111dd7e9ecea7069b16e6a86d378a2f95a877bebca6"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_kittest/CHANGELOG.md",
+      "bytes": 7397,
+      "sha256": "99325ad6715ba4e1f351428f9c3c04c2f1ec7a4592e66f40a8aed4f9b3464713"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_kittest/Cargo.toml",
+      "bytes": 2332,
+      "sha256": "9c84f03029ccdc38df495e50f5cc57a6d29755d7f90d1697648cc52545b9780e"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_kittest/README.md",
+      "bytes": 7509,
+      "sha256": "6d4b7db734c7f2997e63d9da6fd5fde87601062179b5ba80a3c10642e19de367"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_kittest/src/app_kind.rs",
+      "bytes": 2721,
+      "sha256": "0b1a6077e72dc408aa8a5cc881e9fb758adbe910effb10351c97cef449b49f52"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_kittest/src/builder.rs",
+      "bytes": 8535,
+      "sha256": "564ccefd846bdae22449fc7cac343b731becff65ead6bdcccc4115f423c1a69f"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_kittest/src/config.rs",
+      "bytes": 6837,
+      "sha256": "a5af914150c52883778a36ea153f86cb2a2b306128be65a3c4868a604fee8a9a"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_kittest/src/lib.rs",
+      "bytes": 31815,
+      "sha256": "7077b73112ee771617b7173ea1dfb6eb27362a478d92fbef55a9893dfc826920"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_kittest/src/node.rs",
+      "bytes": 6299,
+      "sha256": "bbcbf5b50028c57c672fc6ad2fd0b1722a0556645fb9be83d65765f010ea9a31"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_kittest/src/renderer.rs",
+      "bytes": 3342,
+      "sha256": "44fc339f98e02ec86b0d06d13594b574b3e6883bf203bf1515ddced42a0b81c2"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_kittest/src/snapshot.rs",
+      "bytes": 35028,
+      "sha256": "d42e97c50b68176d758c893d593ad50b521a39a025fc27cac2c2791754665562"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_kittest/src/texture_to_image.rs",
+      "bytes": 3308,
+      "sha256": "3448f358e4aef8cb5ec8c6e2fc337f679dc3c2d55efaa5b22b1b2af365ae8799"
+    },
+    {
+      "path": "vendor/egui-fork/crates/egui_kittest/src/wgpu.rs",
+      "bytes": 8722,
+      "sha256": "08e43d42a91795c6478de381d55364d8864abd6ec94d982119747a5671aa4907"
+    },
+    {
+      "path": "vendor/egui-fork/crates/emath/CHANGELOG.md",
+      "bytes": 1316,
+      "sha256": "1a1b44353499760ac6f92f7c0486336aaf7259e5f469be74b35e5995ea4f3de8"
+    },
+    {
+      "path": "vendor/egui-fork/crates/emath/Cargo.toml",
+      "bytes": 1323,
+      "sha256": "f3313d8da517d91b5546b8a00198da70f5533601bd14a3498ec3c4be129f36f0"
+    },
+    {
+      "path": "vendor/egui-fork/crates/emath/README.md",
+      "bytes": 585,
+      "sha256": "53b152ecddf9c891912c40ae6ab94da630e71137c4ae23cb15adc9b9fc73fe70"
+    },
+    {
+      "path": "vendor/egui-fork/crates/emath/src/align.rs",
+      "bytes": 11170,
+      "sha256": "748c3566054047ea6b09db47badd90d8583a9b7032a5047b54f8c6d7e0fc6f98"
+    },
+    {
+      "path": "vendor/egui-fork/crates/emath/src/easing.rs",
+      "bytes": 4944,
+      "sha256": "a571f0d30f1d73d3495f4479ea6e0da7f5d44f57e1a35ae48ab39c6f21d6210d"
+    },
+    {
+      "path": "vendor/egui-fork/crates/emath/src/gui_rounding.rs",
+      "bytes": 6875,
+      "sha256": "ca9bc358706eb3b15147f23ad003361a76d14bd4ba788edcbb45898c4769a523"
+    },
+    {
+      "path": "vendor/egui-fork/crates/emath/src/history.rs",
+      "bytes": 6756,
+      "sha256": "814f34d0e826c859347dff38359d69ef0e9c77add449afea3276e18f14b29afb"
+    },
+    {
+      "path": "vendor/egui-fork/crates/emath/src/lib.rs",
+      "bytes": 13396,
+      "sha256": "5357889b44f5e2547d08303512f40d07cc65d0c1b835288b3204c998b092fe90"
+    },
+    {
+      "path": "vendor/egui-fork/crates/emath/src/numeric.rs",
+      "bytes": 2668,
+      "sha256": "16121d8cb9831c6e02f199a3e17fe11927d9aa02aec66ffad9ee2c6e3e9672eb"
+    },
+    {
+      "path": "vendor/egui-fork/crates/emath/src/ordered_float.rs",
+      "bytes": 3864,
+      "sha256": "da17c199073e2afc8116e5331e802728bb733aa101b22df7bb9efe523e1bd038"
+    },
+    {
+      "path": "vendor/egui-fork/crates/emath/src/pos2.rs",
+      "bytes": 8216,
+      "sha256": "13d546378488f7f7b8f915dab6ced7658455c4fd6a1cb49f303b565366c9a0e6"
+    },
+    {
+      "path": "vendor/egui-fork/crates/emath/src/range.rs",
+      "bytes": 5987,
+      "sha256": "22bfd5fa8c093dc0b2861bfc0ea59fe70a8375e4f4cd25256a3b9264b9ea7d6f"
+    },
+    {
+      "path": "vendor/egui-fork/crates/emath/src/rect.rs",
+      "bytes": 25992,
+      "sha256": "79d1f7a1f97a8c1deb4219fe822ca50f7ed17705b19520b27c41395ff9c0dde7"
+    },
+    {
+      "path": "vendor/egui-fork/crates/emath/src/rect_align.rs",
+      "bytes": 9177,
+      "sha256": "529d96e95f55e0741ae2abd7ef3760c20f6996fa3fa17fef7e2c66110e8d8860"
+    },
+    {
+      "path": "vendor/egui-fork/crates/emath/src/rect_transform.rs",
+      "bytes": 2280,
+      "sha256": "c9c5f8ebef147ea01b948996ffdd81678d875d1a92cee1ff4dab23a555d8a540"
+    },
+    {
+      "path": "vendor/egui-fork/crates/emath/src/rot2.rs",
+      "bytes": 5141,
+      "sha256": "911a0b5659ab19c4f5c1c2d0d9084c839fabf9150e7044e0e0e7ce6d3cbe60af"
+    },
+    {
+      "path": "vendor/egui-fork/crates/emath/src/smart_aim.rs",
+      "bytes": 8583,
+      "sha256": "aba185cd3a8f60e8d9aa61e8f6cab63b0afa710ad7032f52e2352fc0fed3489d"
+    },
+    {
+      "path": "vendor/egui-fork/crates/emath/src/ts_transform.rs",
+      "bytes": 4196,
+      "sha256": "a8623fb33070f3d2eab5e6327c974eea7ac7cc94198ca382bfb664cf9191c6b7"
+    },
+    {
+      "path": "vendor/egui-fork/crates/emath/src/vec2.rs",
+      "bytes": 13751,
+      "sha256": "4d9d17595ccc8e59b212652fdc7b9161dc00e122f96591ec3dac3985e7d7bf85"
+    },
+    {
+      "path": "vendor/egui-fork/crates/emath/src/vec2b.rs",
+      "bytes": 2257,
+      "sha256": "ac22f8622e7cf840751d4808ce5edd3cd3b58c5742aaf4402ccc01b02cf61fdd"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/CHANGELOG.md",
+      "bytes": 22437,
+      "sha256": "f2cae47bb935de9b609f77e649a9811386c3359cf8ab07268b08a4dd742a2874"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/Cargo.toml",
+      "bytes": 3076,
+      "sha256": "7f65e4cb08405d3b3da0f107fb2fe3936552cbe16c340ac9a73a2c6a8f623691"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/README.md",
+      "bytes": 608,
+      "sha256": "46d81296b496ae6323c5ec65e71689152139fa8515841fb34b4e09447a6d66c0"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/brush.rs",
+      "bytes": 675,
+      "sha256": "cfefc5f28bd387c822e4be248495dbbe093f918691eb4aad8a0a22392a75e1db"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/color.rs",
+      "bytes": 1531,
+      "sha256": "572519077dfb856d574cb11fcb24a2824c10a59f8cf430cac5cf9c14e27422b0"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/corner_radius.rs",
+      "bytes": 6680,
+      "sha256": "5ee87d4b0142cfeb02b7a80e9e9494ee5a634988b922bcae8a47fe2055479a9d"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/corner_radius_f32.rs",
+      "bytes": 5510,
+      "sha256": "c7189c17b8e9722e2735ac10a77c7cae85ac36b2436e447c8d34ba18f536a797"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/direction.rs",
+      "bytes": 832,
+      "sha256": "ffa0aa03693216f5e0b4876168c3abd7c6f9923124d8df76d13f3eeb3a4a299d"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/image.rs",
+      "bytes": 16463,
+      "sha256": "cfc3f543acd155530c6a18b291666615083c345abcf09edfc038351f08337246"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/lib.rs",
+      "bytes": 5005,
+      "sha256": "10d0b5f1ff7c5c3191c7a53d6e3f9c48b9561cf7df4b1970f0f4546719d70b8c"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/margin.rs",
+      "bytes": 6270,
+      "sha256": "290022f90bb8bf1e9ad0a757877ee243170b14010ae48cc1533b24982a37258d"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/margin_f32.rs",
+      "bytes": 6244,
+      "sha256": "9f68a013e53568bc328ab08bbfa30902e8623a1b844e161f9382df6b3df1d686"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/mesh.rs",
+      "bytes": 11552,
+      "sha256": "c2d6f86a759bd2157b5b787ab03e8eae981b243988ecf4e19c45312c8d9ee3ef"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/mutex.rs",
+      "bytes": 8079,
+      "sha256": "8296a2a9528fa0ab5025786087bfdbcccc86b9a35af2bf1781a2d5ff5c0fe1b8"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/shadow.rs",
+      "bytes": 2576,
+      "sha256": "9714671013efb49eb17e8de77f186f2a796f3410080859e0977f65786ec6d63c"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/shape_transform.rs",
+      "bytes": 3649,
+      "sha256": "c64a2ac4e631acb36619c5cdc33c3444161ca352ee89c1f050ec1e99b8797d9c"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/shapes/bezier_shape.rs",
+      "bytes": 39228,
+      "sha256": "639ddfc66d58f0df16f0e3841a5bbb0cdabcbddab63c97ceee4692aa9b314a14"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/shapes/circle_shape.rs",
+      "bytes": 1357,
+      "sha256": "e227a8c5830667373aa524e4752682ca40b901f2376215a88a3657e89a8f6269"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/shapes/ellipse_shape.rs",
+      "bytes": 2257,
+      "sha256": "c5714b9fbab50012c23c0590a10826367e6c5a52c8e0a6648d36834d2b892043"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/shapes/mod.rs",
+      "bytes": 433,
+      "sha256": "40b509a459066d8a4390af1302b51fa4bc2147feda3ee822b5a448d1dce7077c"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/shapes/paint_callback.rs",
+      "bytes": 3603,
+      "sha256": "cb0e2706a76cf92e41e9602b3bba5b78aeb2323a6a66bf4d0f1961bbf8c32920"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/shapes/path_shape.rs",
+      "bytes": 2332,
+      "sha256": "d64aacb029b4abf6e016be3c7de0a3d79d03f30c787dea69111e1cd363cda856"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/shapes/rect_shape.rs",
+      "bytes": 7115,
+      "sha256": "13534055eff7e24b68aae1352a86048ab798f4fb48a671a55c83827c49b30ceb"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/shapes/shape.rs",
+      "bytes": 18527,
+      "sha256": "b77423748445686c8921940c3a0990a6b83f8e085d2521bb18df621ebe1bf958"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/shapes/text_shape.rs",
+      "bytes": 6369,
+      "sha256": "fe342c549db9a589c0ddd9446ffd24b63a23377798b312bd8ef88e0972151047"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/stats.rs",
+      "bytes": 7383,
+      "sha256": "f025e8486c14432bff804de5f023f3740649ad05b4297114919543932dccdd74"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/stroke.rs",
+      "bytes": 7131,
+      "sha256": "1381f056e252f4ecdef7378a155d82b719819a67da3ee2c54f75c8856f810b58"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/tessellator.rs",
+      "bytes": 87423,
+      "sha256": "4f3b5809df42f2de7574ea41d6e1f0df3296908597cf1197c871dc0c08f10488"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/text/cursor.rs",
+      "bytes": 3069,
+      "sha256": "67e6493c382cde5657cec4d4f9b93971d9ea410a50a4e74cdc0d7c0f8d9b2a2c"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/text/font.rs",
+      "bytes": 31044,
+      "sha256": "3854d03eef3f10406c0f092658972686993d350af2600980af8ddf3eee3bd92f"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/text/fonts.rs",
+      "bytes": 54289,
+      "sha256": "8789e9093b52ac6fd8bd4171adec01802b32ec148ed302057396bd4659ff03d5"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/text/index.rs",
+      "bytes": 5571,
+      "sha256": "7328065322c01027f46d307ed8c92772985faccc9ecddb1118ab0e098119d1bb"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/text/mod.rs",
+      "bytes": 2033,
+      "sha256": "0e0fcac681cb744db8330d4c027f9114ff39d6ae3b6dc26bebde37c5bcbfecb9"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/text/text_layout.rs",
+      "bytes": 67842,
+      "sha256": "4bce784f039399fec7a72ad5838573a6746db2ac2847851acbc83faf635b08ca"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/text/text_layout_types.rs",
+      "bytes": 47405,
+      "sha256": "13324361149a2bf9a876f57e302f78a8233dc870b13afdc73a94d12ffde0fb1b"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/texture_atlas.rs",
+      "bytes": 8770,
+      "sha256": "25d90783fc1b217b9e43a8077443956c4101facdca7009c6a0dd45d0228e603e"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/texture_handle.rs",
+      "bytes": 3566,
+      "sha256": "24594a572ba4b72d303d9c9860cc5a1bd5d2b63642b9803112821dc6187e3c71"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/textures.rs",
+      "bytes": 12758,
+      "sha256": "ef2ccc4ceb221c49e65f702a11efb0980a55d2073ddb4d89d1e3f9bb637f9e62"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/util/mod.rs",
+      "bytes": 381,
+      "sha256": "4d24b78f50b3f089276071cc58b4affdf28722e12cb469b8269203749f9bb28f"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint/src/viewport.rs",
+      "bytes": 1893,
+      "sha256": "e9aa21f945ff4982934565edbb8bdb47b0c6ca3a0ede9068525b7402dcb6b47f"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint_default_fonts/CHANGELOG.md",
+      "bytes": 1479,
+      "sha256": "36fe9bc3971b99e86f032f5fb1b195d484bcea08e7bb5207345565d1123bc879"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint_default_fonts/Cargo.toml",
+      "bytes": 891,
+      "sha256": "9fe94d6195b72ba92b22f425bb00ed9134f51a4042ecd6fb9e9fc0159248284a"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint_default_fonts/README.md",
+      "bytes": 690,
+      "sha256": "cbbde4b50d03559de053d65651e127fa28aa61906c2af24fdf5971d60166edcf"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint_default_fonts/fonts/Hack-Regular.ttf",
+      "bytes": 309408,
+      "sha256": "15f55cc0c85a2988d2b4b3a8cdb5d77fdfbaf319e1bb5309d725db9818fb7125"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint_default_fonts/fonts/Hack-Regular.txt",
+      "bytes": 3734,
+      "sha256": "47c0cccbeec7e8614548cc485588b28149e7874188df5f41b36efebcee285c87"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint_default_fonts/fonts/NotoEmoji-Regular.ttf",
+      "bytes": 418804,
+      "sha256": "415dc6290378574135b64c808dc640c1df7531973290c4970c51fdeb849cb0c5"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint_default_fonts/fonts/OFL.txt",
+      "bytes": 4301,
+      "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint_default_fonts/fonts/UFL.txt",
+      "bytes": 4673,
+      "sha256": "2f0015108d68627bd788d313f529c21ff4da2c2c42a5e1f3883acc83480f9002"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint_default_fonts/fonts/Ubuntu-Light.ttf",
+      "bytes": 361676,
+      "sha256": "80307b8da7649aa4ee4d484b232140e3ce1ec0ca093073d3c53c8f5a5ced7a70"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint_default_fonts/fonts/emoji-icon-font-mit-license.txt",
+      "bytes": 1069,
+      "sha256": "b9d2c1d909aa149996fd4c91dcb92b2362a04431640c1d200959da94caf8cde1"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint_default_fonts/fonts/emoji-icon-font.ttf",
+      "bytes": 324132,
+      "sha256": "f426bec371f484646d002717e2c555a95cd5145e635d83a48bbef83f3abf18ca"
+    },
+    {
+      "path": "vendor/egui-fork/crates/epaint_default_fonts/src/lib.rs",
+      "bytes": 2297,
+      "sha256": "da81ac92c840666bab7f8fcc223c8e474b642db95b14ee5e5b7e01a1fa9c43b6"
+    },
+    {
+      "path": "vendor/winit-fork/Cargo.toml",
+      "bytes": 9951,
+      "sha256": "ffad3e216fdd5f94ae000c01f09c6e5db3d3d83af4713550adcd00cfbc86f328"
+    },
+    {
+      "path": "vendor/winit-fork/FEATURES.md",
+      "bytes": 15334,
+      "sha256": "0e7a315f1016e07b0e1045511b6072ce13b3fc372c4fe097d0a8eea3d35ec2e1"
+    },
+    {
+      "path": "vendor/winit-fork/LICENSE",
+      "bytes": 11323,
+      "sha256": "6dc0e068dcf3a5bc8e054205b85b7720e1d49265bbc64bf515d2cf79197df69a"
+    },
+    {
+      "path": "vendor/winit-fork/PATCHES.md",
+      "bytes": 3397,
+      "sha256": "9c892d1bc8f4d03a728047e295e99181072006a28108bbecb568254e9e803ee0"
+    },
+    {
+      "path": "vendor/winit-fork/README.md",
+      "bytes": 2887,
+      "sha256": "c21ecf8dc8b5cab43c5a8ecf0c043ad4eae6663b962ae6e9d10b7a6e3fb13039"
+    },
+    {
+      "path": "vendor/winit-fork/SOURCE.json",
+      "bytes": 42820,
+      "sha256": "ac2f35b17a421c3fcfa57069a83da654d02e1a143a833f16ebc665fbc5e713b9"
+    },
+    {
+      "path": "vendor/winit-fork/build.rs",
+      "bytes": 1004,
+      "sha256": "eda62c3ebf765708bf1608b51ccf77501b4aa0253214c419f813c6d08d640b1a"
+    },
+    {
+      "path": "vendor/winit-fork/src/application.rs",
+      "bytes": 14135,
+      "sha256": "993ddc2bbffca969224b2045dfd6cefd6cadd923df83f8ba24da8da8e5ab3fb4"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/mod.rs",
+      "bytes": 1648,
+      "sha256": "55a97a82a15c4006dca76e46bbd7ade72e103f54bbcc111bc55341207dff5140"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/unreleased.md",
+      "bytes": 1578,
+      "sha256": "29d7da3cf6b3b71a953daab209705e850cb0edfc53798ca82a7caaa07bbf1725"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/v0.10.md",
+      "bytes": 1130,
+      "sha256": "3ed4a49e068409208aa2d1640693bcf835b5b0a5367fc19a03f458edb366a7cb"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/v0.11.md",
+      "bytes": 1631,
+      "sha256": "81110653eea2a68ff69b19cd540c1461cff1d9a4353fec08dc3a4e26ff44db07"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/v0.12.md",
+      "bytes": 711,
+      "sha256": "41250756388ef71a6889f076a4ee87f63c6c70bf75597ce3dc5bd812d36d2f82"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/v0.13.md",
+      "bytes": 1911,
+      "sha256": "021eb96e41f10de60fc33c0463df68194571ecd6169e17cc8c5c938f7f64e5ce"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/v0.14.md",
+      "bytes": 2821,
+      "sha256": "8ed872d3e8abdd2c18ae1d65976734442ab41194195b31888c155b2bcba21c98"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/v0.15.md",
+      "bytes": 3935,
+      "sha256": "3c96f73e28f85926440b9db7b445a1786f30bb7ec2844c3f3f57e7849db32b07"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/v0.16.md",
+      "bytes": 3673,
+      "sha256": "5c8333b5bf024a2f39d91f93846ffe469d141c7b11e5ce501daa720ba64a9196"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/v0.17.md",
+      "bytes": 1336,
+      "sha256": "2598e37dbb7e495bec60cafe693041fa5d58335a1a38b37a0779edae24e6942a"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/v0.18.md",
+      "bytes": 4366,
+      "sha256": "f61eab5f6eace3ff07f66d4340c21926172332c748ba3e3fc4b7e07bdfa92ecf"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/v0.19.md",
+      "bytes": 2130,
+      "sha256": "ea5ca936d53274e8a4f8bd385ba59fff5df866d889a4a69ca329791a664a3aee"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/v0.20.md",
+      "bytes": 13979,
+      "sha256": "b04bf3e79ee11fd5f9646ccdc076a50c5a7e9749dc872adcc1f392fa1f1b1723"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/v0.21.md",
+      "bytes": 1346,
+      "sha256": "ebc856323df17decd003fba57fc5e3f5b8c7ae8eaa763048b4d6dbef8ae09b01"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/v0.22.md",
+      "bytes": 2046,
+      "sha256": "bd56cb152ac452ee4b354ace3976d3abda73d7db3a81afafee25c84cfdf08705"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/v0.23.md",
+      "bytes": 5137,
+      "sha256": "6570ab734b9201360f5ca592343114bb3de9a608051333a4601c087dff234d5c"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/v0.24.md",
+      "bytes": 1970,
+      "sha256": "a7bea6cd9d087c0a6ecddbbe5472dd3fa87735f088614c052db808c5742b57a8"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/v0.25.md",
+      "bytes": 2697,
+      "sha256": "38d2cd8e8b067779b4c86c0b1d7d81a3b5f4101b2868eb316f41bd55e8bff71e"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/v0.26.md",
+      "bytes": 2745,
+      "sha256": "b7a52b06cdddeff78c1c3e845ab42f5d41a268ef409c5237ddf3e15c1bbb7772"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/v0.27.md",
+      "bytes": 8901,
+      "sha256": "51765d0114217504dc17c65894194ceb6928601eade2949fa72fcb6c00051528"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/v0.28.md",
+      "bytes": 7132,
+      "sha256": "12829235afb1ae4481cc74bfff80997d404c987fda69c81bb657d7b709ead394"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/v0.29.md",
+      "bytes": 18622,
+      "sha256": "04f9f09219695380622359e3ef74ebda5a89549cf8175b7aa965743a9e6d48b0"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/v0.30.md",
+      "bytes": 16977,
+      "sha256": "5e436376fe1234cf94b08c4cb1dcd6d2e6e7684e4a33b71e17217a8fd0c18721"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/v0.8.md",
+      "bytes": 1464,
+      "sha256": "c936e8b8ef369180ab9cf8fc24891d398dca5f238cb39467fe79a2f0b19539a1"
+    },
+    {
+      "path": "vendor/winit-fork/src/changelog/v0.9.md",
+      "bytes": 1369,
+      "sha256": "fe9f9f731d585e83c2d35d7c2c560fa892c424d3e7ea1d13050ffdb467d50383"
+    },
+    {
+      "path": "vendor/winit-fork/src/cursor.rs",
+      "bytes": 8117,
+      "sha256": "479eb73a7a23a58b718ce7255345f3f65ed2cf46d2e4e7d1716deb469dd9099b"
+    },
+    {
+      "path": "vendor/winit-fork/src/error.rs",
+      "bytes": 3675,
+      "sha256": "549f95a2afff4435eed400c580b7d512229c7958df19258c0ce2ac30474f121d"
+    },
+    {
+      "path": "vendor/winit-fork/src/event.rs",
+      "bytes": 46250,
+      "sha256": "ff5c577343a725173a539c797e243fa8f6150c02181d904bddb9d82581a7a61e"
+    },
+    {
+      "path": "vendor/winit-fork/src/event_loop.rs",
+      "bytes": 24272,
+      "sha256": "f84209476849188122139926697f1fe97e17409a41ef0e8dfadf9bd4718108c7"
+    },
+    {
+      "path": "vendor/winit-fork/src/icon.rs",
+      "bytes": 4082,
+      "sha256": "42780fcdb3dfe001fa24c51e21d326df2961e4232e0b09b0e8d9c3518161e73b"
+    },
+    {
+      "path": "vendor/winit-fork/src/keyboard.rs",
+      "bytes": 67598,
+      "sha256": "fb1400750fb0c6d376415e642c837e0e8ded95f55ba03a8889d336d180620394"
+    },
+    {
+      "path": "vendor/winit-fork/src/lib.rs",
+      "bytes": 9548,
+      "sha256": "924aead3c0bd3e446e8ee51193c636916f8b0b9d2cbb964e81e160db0f07a2ec"
+    },
+    {
+      "path": "vendor/winit-fork/src/monitor.rs",
+      "bytes": 5460,
+      "sha256": "60d8887910f1d3836544f12d000146d95790f8af54476d7288f73f822377083b"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform/android.rs",
+      "bytes": 8150,
+      "sha256": "7a576387937d93c03654067a7197ec65da6c9f3e39b145a32182fe43f93609bc"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform/ios.rs",
+      "bytes": 17288,
+      "sha256": "bfb43e3067cd74067ce6019048141f86c1524b5a7859756f7b938310e9d9984b"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform/macos.rs",
+      "bytes": 20138,
+      "sha256": "c87a34494fb943233f9fa438794b4af700db341914d0c8f5946260a93938b835"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform/mod.rs",
+      "bytes": 1216,
+      "sha256": "371ae3adce64ba6353c03cc5f7251325b50f0516bed4eca50496f1e42b5f6dfc"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform/modifier_supplement.rs",
+      "bytes": 1312,
+      "sha256": "e23c4a667aec84232ce072b7066a2aa2c912a1a7d5c0b7d9b5b648f877fb642d"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform/orbital.rs",
+      "bytes": 201,
+      "sha256": "e511445fa2d06fc7210a88abbc760395710c60a4c0376d1a4a0ee29e522bf2ac"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform/pump_events.rs",
+      "bytes": 6272,
+      "sha256": "bbdc0f490758f91609f1b46998976e071775bf9f17a7c4a3a12bd6781b0c6b3c"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform/run_on_demand.rs",
+      "bytes": 4676,
+      "sha256": "007047afc1e916f1bc01c5ee1bc959dd865049f17be97dc517abb7bacda66262"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform/scancode.rs",
+      "bytes": 1820,
+      "sha256": "2ce520012ee3ab6b5884d2f74e84380811b6e50c7139eee176fb233d75b25df2"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform/startup_notify.rs",
+      "bytes": 3673,
+      "sha256": "c2b3ba714649268109ab48ef5cc7dddd7dab0198518987f8735c174fe6b2c5b8"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform/wayland.rs",
+      "bytes": 6929,
+      "sha256": "bb3983aa2b850790a0964560888f47a150ff6979c353981ee1bc03f145afd7ab"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform/web.rs",
+      "bytes": 16678,
+      "sha256": "4dac8e96213a4ca4ec586946f18d16dfbad3666ce1e60b34c4e28eac6e213c5e"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform/windows.rs",
+      "bytes": 27788,
+      "sha256": "1a480966b317ac2f3117b26d379954b2d9af1740472a9ae07e055598862a24eb"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform/x11.rs",
+      "bytes": 9358,
+      "sha256": "a64f13d1e3e77c4cb3b21faafe87d74e8063bd901e5cb38af98738dbdd0fa911"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/android/keycodes.rs",
+      "bytes": 27966,
+      "sha256": "ee8674acc597a71665bedd05e7ac79b8efb76570fcefe616e5eeb81474822475"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/android/mod.rs",
+      "bytes": 38104,
+      "sha256": "17e982ffa857b36166b38a89c99bd4c19e199d847dfb3d43f289ca8d4e3bd066"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/ios/app_state.rs",
+      "bytes": 34620,
+      "sha256": "f2ff4a1093ccd4d52f3db86458ea8fbd18805876082c3a4ccc127e8d8e614a6a"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/ios/event_loop.rs",
+      "bytes": 18404,
+      "sha256": "df8f0d5e25b799b63edba57168ccfd736283c10149d596aab146019fc770a5aa"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/ios/mod.rs",
+      "bytes": 1493,
+      "sha256": "0707a46215de8a0c7692ae04ade45de27de19988fd3cb54fd4c5553e7c3aea7c"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/ios/monitor.rs",
+      "bytes": 9359,
+      "sha256": "76abeeafdab29e5dd46426a3f0eb173931b392dcff356bdc1c218e00adefec37"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/ios/notification_center.rs",
+      "bytes": 886,
+      "sha256": "cdcee390403dc4518402248022ad7d7fcd61ac42a041633f3de684d6533bddd3"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/ios/view.rs",
+      "bytes": 25388,
+      "sha256": "95f8cb9caf86ef10174c687eb017d110567d8ad3adba89c25c37f41fb6359cc6"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/ios/view_controller.rs",
+      "bytes": 6728,
+      "sha256": "fe4d8403c4e8f8bba6cb5f45191532649c6e28886536173dc3f546a3c9c9ff69"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/ios/window.rs",
+      "bytes": 26290,
+      "sha256": "731b07469178cf763d44f43e6dc31a2b1dce89788ac4b5a9e8adf641237ea7f4"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/common/mod.rs",
+      "bytes": 13,
+      "sha256": "697b29a56eeebe70eed5e9549b53d15c474d8c7f54a7476f992646f8603aeb25"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/common/xkb/compose.rs",
+      "bytes": 3424,
+      "sha256": "d4f11c74f1e1ffd93ecc75d7fa2afdba25212925f0589d7a9c26b9784a43e344"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/common/xkb/keymap.rs",
+      "bytes": 40223,
+      "sha256": "e08d41edd547e57df87b6c8da271f7c956a0d4dcead1cf2b17ab2c67652e0c82"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/common/xkb/mod.rs",
+      "bytes": 14275,
+      "sha256": "4ae8efa819657fa6cd8c38543f8638d7c7c67af18ff3a8b871919252d87c2400"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/common/xkb/state.rs",
+      "bytes": 5925,
+      "sha256": "c7a940941b2d1c679a2da163b244d6ec131c2d5d24f75e5265921cdb938c3cb5"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/mod.rs",
+      "bytes": 32702,
+      "sha256": "ee825f75ba79a7a12932640e8b085fdc897a35d3ec8105a37987ffd166d1c9f2"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/wayland/clipboard.rs",
+      "bytes": 11459,
+      "sha256": "b3024ff001fe71f02a620a0ce78f5ff0d68c8dc1184ba43c62aa7f86e0757d19"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/wayland/event_loop/mod.rs",
+      "bytes": 30297,
+      "sha256": "ddd44ac944bcd61a90e1f54b2e996ae47d551911b0b7909026ae66138ad5d27e"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/wayland/event_loop/proxy.rs",
+      "bytes": 791,
+      "sha256": "090756d810c1cdf56832c8b283044f93965f0149db601f40625bb977a05468de"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/wayland/event_loop/sink.rs",
+      "bytes": 1526,
+      "sha256": "3f92a12b7d786f12edfe69925c2ba17194974c427614d4c449335aa843f9d2c2"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/wayland/mod.rs",
+      "bytes": 2425,
+      "sha256": "97835a07f120387191c233de81ced1bdaba2788b03df06c4181fbdedb6fbf74d"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/wayland/output.rs",
+      "bytes": 4658,
+      "sha256": "14982bc1e6ba130eb2c3d0da790905d28075cd1cec215b6f74e560fa449f5421"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/wayland/seat/dnd.rs",
+      "bytes": 14714,
+      "sha256": "e62e7aaf32f5354a266f23eeac52c95a471e9468eab48d0376ea6830ae5be8f5"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/wayland/seat/keyboard/mod.rs",
+      "bytes": 14617,
+      "sha256": "9870d3c0cc99397583f160b32d2897edbeca9af90de2e9f951d27d640aa79bc0"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/wayland/seat/mod.rs",
+      "bytes": 9151,
+      "sha256": "f1038a227bb049bbb15fdbd4c38feef97930f146691134ce7efd479ef5c120ad"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/wayland/seat/pointer/mod.rs",
+      "bytes": 17410,
+      "sha256": "4cc9a27912b1a397888ecbaba4390901d661aee555b50a4266823747bd822906"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/wayland/seat/pointer/relative_pointer.rs",
+      "bytes": 2747,
+      "sha256": "c1e9a253d23827036950ec58fb78f4d3b326b2f57cdff7381f0c0cef8015bea9"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/wayland/seat/pointer/scroll.rs",
+      "bytes": 952,
+      "sha256": "cb3296433078d9109539bf91b8930db47ae7d4f706aa0f0d36e4c8a9fe951bb5"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/wayland/seat/text_input/mod.rs",
+      "bytes": 7211,
+      "sha256": "197f1b241915f4d579649e187b653efb7f1bfac9405821f2a2e0eef88e5375c2"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/wayland/seat/touch/mod.rs",
+      "bytes": 6635,
+      "sha256": "dd16a75607cab3ba5723ad6b7a2ad6dd09fa2a63fffa57622367f137ea5d3987"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/wayland/state.rs",
+      "bytes": 16222,
+      "sha256": "ebacd6bdb464e2818c22a156cb9b42e08504a5fb4e51bdf23804dbfb6aed6483"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/wayland/types/cursor.rs",
+      "bytes": 1640,
+      "sha256": "b513bb85d34e3df1d5bc765e2f88a468e80f43d50464336d5dbaf54332fdf8e7"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/wayland/types/kwin_blur.rs",
+      "bytes": 2068,
+      "sha256": "6cbb4ce3e2484a01bacfa24a55ea3c1659503b18fc48e8f41f341d437f291ea4"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/wayland/types/mod.rs",
+      "bytes": 163,
+      "sha256": "84e32b36a90e15747ce5beae9318f1475d15925a45248147a5b7e9920e74f4c8"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/wayland/types/wp_fractional_scaling.rs",
+      "bytes": 2611,
+      "sha256": "c0897ffeee6f631aac024e9a737b90c18b807a775cf898e64b45fcca84ca97c7"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/wayland/types/wp_viewporter.rs",
+      "bytes": 1931,
+      "sha256": "77b67951f7bdd959555e8b39a8830d4547b28f73a921a4f347a647a9758d156a"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/wayland/types/xdg_activation.rs",
+      "bytes": 3506,
+      "sha256": "8d0fd39c97c6eb19b8231df20624777feca1aa45bb38692ab498e37e42aa5bab"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/wayland/window/mod.rs",
+      "bytes": 25452,
+      "sha256": "30b6c00aa143046e4b1d7277e5fd08ae7ef7f7f084b0c0e62c89e0dda8a5c6c2"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/wayland/window/state.rs",
+      "bytes": 43519,
+      "sha256": "d09f9c19235a36d0a0068eb82428a27e3a4f318f31925368e573310ae791030a"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/activation.rs",
+      "bytes": 6250,
+      "sha256": "e30310151a7277aa8467adb0890b16482913efa6aea1e518a0b1d5ac83e3ec95"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/atoms.rs",
+      "bytes": 2699,
+      "sha256": "409f77f94faa03e9ae3ab09d62a01e044aaeb5bbde9c9ee5e55ad6994374138b"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/dnd.rs",
+      "bytes": 5512,
+      "sha256": "89b186416d72fb36ecfaa350cae884949b1445d7a7b99a926eadba861d550243"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/event_processor.rs",
+      "bytes": 74361,
+      "sha256": "6eff6e5ab03efc0e546c61d98373d6c6091e8f023ff42842d531740685d2c69e"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/ffi.rs",
+      "bytes": 144,
+      "sha256": "a311e1e922ce9dab1d1761854bcff0b64ff50d7c34848a869ef70820cbcbdd79"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/ime/callbacks.rs",
+      "bytes": 7184,
+      "sha256": "82fe96afa6d46514b54d3c1a35bc9ea8ef44e91750976c17aada99f521f33325"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/ime/context.rs",
+      "bytes": 12481,
+      "sha256": "c4cbbdd20f6eb46e26521c1e877456363a2752e962ea4c4d27ee0f8e98e545f9"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/ime/inner.rs",
+      "bytes": 2361,
+      "sha256": "0f8e8070b1590cff566db06d8fd4e849ebfd4066817f60a455cb020dff81ba2d"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/ime/input_method.rs",
+      "bytes": 12098,
+      "sha256": "b301d72119cd3c87109540a760a7c0cac5cec58ced425a4bf2a91ff1c7dfb700"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/ime/mod.rs",
+      "bytes": 7487,
+      "sha256": "a5865d98d57b132a0c1ca6a39c78c792347743487fa49a9c41ea60f27d4daeff"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/mod.rs",
+      "bytes": 34785,
+      "sha256": "811861508c9e34923fc77ff9aa610b1b977b641fd72a919e634ce0d38f788d45"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/monitor.rs",
+      "bytes": 10772,
+      "sha256": "5c49263f0ae5355cf56f379544f28301ebe63f4130e3b5744bfb5e1ae5d16fa0"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/tests/xsettings.dat",
+      "bytes": 6840,
+      "sha256": "26968fe327bd1b9617766cc73128812a582c6254eb9ed1d222bc0d0faea43aac"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/util/client_msg.rs",
+      "bytes": 967,
+      "sha256": "76c0c08831829fc010be1150e8f9aa9cc366b25dd344dba381ce7f7d3d3373af"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/util/cookie.rs",
+      "bytes": 1516,
+      "sha256": "d53987a8d3bb8e0b4462ed3bf670ff35f1f9c8315f622ad199990cd7629adaef"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/util/cursor.rs",
+      "bytes": 5062,
+      "sha256": "e3d229d3f27ed087c8916ba9b7e9ec6f08af11a5064e659f45aeb364ca703d22"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/util/geometry.rs",
+      "bytes": 10455,
+      "sha256": "fd2054b2e1c086011cb639830038737654fb9ecbd7fd090f5bcc0cc1567a1803"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/util/hint.rs",
+      "bytes": 4886,
+      "sha256": "f5f4744d090bbe6280e09ce2d6ea2da76d0d899d87762059a99d1174b39e47f8"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/util/icon.rs",
+      "bytes": 1159,
+      "sha256": "598a457838fff1e3eccc4274a13bdd140419ce303684347604712b127d57c6d6"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/util/input.rs",
+      "bytes": 3467,
+      "sha256": "a1db43e9940a20581cc4308f9be5b749d9912208c5bfd5fa6ce7d2aac71daaef"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/util/keys.rs",
+      "bytes": 1636,
+      "sha256": "5d6af7d9c91107ad5d9d8451bc3f85922bc5dcb87deb9e215956d03d2a69acba"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/util/memory.rs",
+      "bytes": 907,
+      "sha256": "b88e9bb56f20582c85bf07d176011dce4c6357c1de877c6241f2496ad4d27c42"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/util/mod.rs",
+      "bytes": 2310,
+      "sha256": "180f12c887da4c10904de7cf2934543784c917338b49d182aba7d098b183a899"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/util/modifiers.rs",
+      "bytes": 5563,
+      "sha256": "1f99aa3c76936f76eccc1eab18d39aa38916b97c4429e40818279650a09df78b"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/util/mouse.rs",
+      "bytes": 1064,
+      "sha256": "5eb02a1b1206dc05d056da762c210e4828158758d10f547277e7e08d8cead38b"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/util/randr.rs",
+      "bytes": 9080,
+      "sha256": "a18b9cffd8088028fd17e6f0856e1d2a9b35ec7720ab2a3bd085408229f56b72"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/util/window_property.rs",
+      "bytes": 5946,
+      "sha256": "a079a7c6a7ed75e39b35cc76e4f55aff54b1cb6887711d1323fd60bc36ab4e4a"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/util/wm.rs",
+      "bytes": 5226,
+      "sha256": "09ec80c212ce2110022c8d2d81731e1f7c90438722cff8fae8dbbcc5e92ae220"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/util/xmodmap.rs",
+      "bytes": 1609,
+      "sha256": "1bd99ff1891b79ff59f38773a1ab5ad3fb9a60fc55643a3787dd3c02b6afb48d"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/window.rs",
+      "bytes": 74470,
+      "sha256": "caa0e303e2d1956020b1c27ead24dbe9c45fa73559ab38fea9a71d5e111ba8c7"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/xdisplay.rs",
+      "bytes": 11135,
+      "sha256": "ddfa5f2140c8cded23e14247011a5fdcc6c2a83d2523584f50d2da49b8a094d6"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/linux/x11/xsettings.rs",
+      "bytes": 9014,
+      "sha256": "3429aea240688c0faaab7f9725b586b6cd2f3332d6f9b19ac8da7689605713b0"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/macos/app.rs",
+      "bytes": 7656,
+      "sha256": "14ba9f49d955a906a115c34fd12fdbbda13ac9b75740606e9fe0daeffa903c5b"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/macos/app_state.rs",
+      "bytes": 20451,
+      "sha256": "b57dc7cdb5aaf9b7dbadd32ab3c887fa9d0d02203fa77cbf137794406d3e4cc8"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/macos/cursor.rs",
+      "bytes": 8808,
+      "sha256": "537ee43a90cba74cc73801a45b67ef2356d99c7af12489865d0ff78273c6a9c9"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/macos/event.rs",
+      "bytes": 23632,
+      "sha256": "dd073f82f85c5950eebb45256521da675e216ec56eaacadb7b413b96f1e894d4"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/macos/event_handler.rs",
+      "bytes": 5303,
+      "sha256": "05b01ef0413ef0eb1004decf7def1131aa0ac6ce445bbcc03606c9c8b3a862c5"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/macos/event_loop.rs",
+      "bytes": 18579,
+      "sha256": "3ece9963336da6ba99ddfbaf77b61c96d349b0fc178a6c205272a7bc8182e987"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/macos/ffi.rs",
+      "bytes": 9114,
+      "sha256": "ae4aed628db11c332c8de422bb181bec15b22e44712b50d0a8eabb98d25f417d"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/macos/ime_startup.rs",
+      "bytes": 5306,
+      "sha256": "3b0c8bfabdd1ddfa9f30e5b130e7e8db1cc576c92c1ae8daf5fa0e7a6d8d5b10"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/macos/menu.rs",
+      "bytes": 3426,
+      "sha256": "b0bcc89693df6c2f5ff5cbfadaad83cff7fd5815483e2aaeea07b55e61a32ceb"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/macos/mod.rs",
+      "bytes": 1672,
+      "sha256": "d183cc83359309dd62f5f11eeba88f965a2c68f3aaa84daf501005ea90034a6f"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/macos/monitor.rs",
+      "bytes": 14690,
+      "sha256": "456ae20157b0c40f98cf2d7b6850fc07aacb510f5cfda27891c0ffcc2ee47e68"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/macos/observer.rs",
+      "bytes": 12203,
+      "sha256": "c4b1a7e129237924d6f2f20eed2e66d1d9c111b267d2bf1556bec85accc509b4"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/macos/util.rs",
+      "bytes": 679,
+      "sha256": "9c938d322c89cee11fb041ebd43ef77355fb1a38fc77151ce730133929e32955"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/macos/view.rs",
+      "bytes": 53626,
+      "sha256": "cb209d907b2bc604283e397bec90901dfd3ec8822a5d6404475946787170928a"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/macos/window.rs",
+      "bytes": 3543,
+      "sha256": "981b8acb0e46f9b153c143b939c8e39a63b994b5d3f8f0c0f24c56b2993bd1f8"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/macos/window_delegate.rs",
+      "bytes": 76230,
+      "sha256": "5dcd1973c322b701e5882da0cb334a947d3302210eb0d806d51e20d6889c7b14"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/mod.rs",
+      "bytes": 2155,
+      "sha256": "32e11e828a4cee9ad1dcb649beab6b6842f9b5bff4c1e070c67e78c7c1e3d6c6"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/orbital/event_loop.rs",
+      "bytes": 33392,
+      "sha256": "20865c2ee7405e5dec577bc5aa6c62ca043ae4c3ff0cbd17f6d029ee27b1726d"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/orbital/mod.rs",
+      "bytes": 6598,
+      "sha256": "6b078d029061621f88dca6b1b88eba78671304779352281a9ee8d84e6c5829ca"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/orbital/window.rs",
+      "bytes": 15331,
+      "sha256": "a804344a32c90e8ff43a2640f99a63f3a3894a52137dd07a4503a435e7552279"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/async/abortable.rs",
+      "bytes": 2100,
+      "sha256": "9a6e1ca49d3cc19cd808dc5d0a94a1da16f7049021449aed05073703f1410f1e"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/async/atomic_waker.rs",
+      "bytes": 846,
+      "sha256": "d06e582da4c06722419566040cf2b9b131139072825d3c6da94183fa42d760ba"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/async/channel.rs",
+      "bytes": 3200,
+      "sha256": "32c90e56e0c975168e6f1cb05dbec119112f5c34925ebdae02ac3ff933ee66ad"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/async/concurrent_queue.rs",
+      "bytes": 1198,
+      "sha256": "b2db7edc5ae541bab5157cc057a5c5594aa4083acd6c564f615387799520c1b4"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/async/dispatcher.rs",
+      "bytes": 3828,
+      "sha256": "8e9f12f85ff04ef43af769eb968208076c47bd8135e31af78e65defe972e58e1"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/async/mod.rs",
+      "bytes": 580,
+      "sha256": "3d67f5c7205a9c506bf0273d97b786901225c015058eca4408f9aa09de4b5fa4"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/async/notifier.rs",
+      "bytes": 1971,
+      "sha256": "a13b0d9e0517da28716b86c5155fcce06294e3386f4267a20eac043e97b7fa90"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/async/waker.rs",
+      "bytes": 3784,
+      "sha256": "c6cde0c84e315972bc1735762961e29ff5cfdb4990a16c6e4196705a32305852"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/async/wrapper.rs",
+      "bytes": 2842,
+      "sha256": "03aa2bcbf2a4af964f023d34d89344268ecd6851ee14ed62ec80735f7633894e"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/cursor.rs",
+      "bytes": 24430,
+      "sha256": "4c44bb489893ffa0ce6f72e3949d4f6ec208ef0848ab76e2f2491d49227dd63b"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/device.rs",
+      "bytes": 174,
+      "sha256": "b01dba26e4eaaa488e25637428d766d64e0ba3985645f9dd4f7a6c999d77243a"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/error.rs",
+      "bytes": 200,
+      "sha256": "aa81b02160abb8707f5420d373ce9fd664f3255fedb49982f8539caf3a5e6083"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/event_loop/mod.rs",
+      "bytes": 4203,
+      "sha256": "6352287ae6a0afb3ebcf3919d12c2dfb3821901f790dd31cdd4bf4a3846069a0"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/event_loop/proxy.rs",
+      "bytes": 810,
+      "sha256": "03062c47460e5c53007bbccb233484435e081c515d7b59edd66bf808b40b3d62"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/event_loop/runner.rs",
+      "bytes": 31583,
+      "sha256": "e8ecd77ef8c4550ded308827e3975fdc54065ab58413a80b48e2f2bd1325bc8a"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/event_loop/state.rs",
+      "bytes": 343,
+      "sha256": "989601ab5a56c7eb6ba495d027f6093a64a8fb32facd31ad9e2f0da24697c98a"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/event_loop/window_target.rs",
+      "bytes": 26317,
+      "sha256": "8c47586f4fba7a77d8ce339289893040287b6c78e6d98dc7f12522522ace337e"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/keyboard.rs",
+      "bytes": 24028,
+      "sha256": "b15c5d89b2989b516ad87dbdc97b0b41aea6d09f929404894a0a907e4c4a2f6d"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/main_thread.rs",
+      "bytes": 2595,
+      "sha256": "9658c9a69410784162c983144a5c37638eef4cd6967d24eaedd25f01567ab00c"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/mod.rs",
+      "bytes": 2230,
+      "sha256": "2208e8c703370f19caa7c545badae78fce6f4bd5c569399dfa5497399212c98e"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/monitor.rs",
+      "bytes": 1073,
+      "sha256": "a746440b15fd8affbef1cc7bec63bbb40e548494a01b67bfc061fb0e4da77d38"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/web_sys/animation_frame.rs",
+      "bytes": 1640,
+      "sha256": "6aee3f5a4ed6c2d6b8d5f570da552a618773e4e513c76746efcdd8c316f94043"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/web_sys/canvas.rs",
+      "bytes": 19378,
+      "sha256": "f2272f16a45b2245bd2e7dfc9458899d1fd248a9615ab49d5976bd1584d9af56"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/web_sys/event.rs",
+      "bytes": 8846,
+      "sha256": "f73d5c0509b1e4a430ac238712e5963d21d378e0701e9c2b67cf839d890e3fb1"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/web_sys/event_handle.rs",
+      "bytes": 1137,
+      "sha256": "3e81317e037627fa4874d28ff6d43dff4cc3f2970f33496ed345910f33eed108"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/web_sys/fullscreen.rs",
+      "bytes": 3135,
+      "sha256": "6cf26354391839b55f8d9f1426f842349bb159384a79598a47628da64ae5dc1d"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/web_sys/intersection_handle.rs",
+      "bytes": 1002,
+      "sha256": "af2024c3fea10a70fa9fdbb6cca474730fecc9ccdcf1d3bb7cec6305fdb7346b"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/web_sys/media_query_handle.rs",
+      "bytes": 1473,
+      "sha256": "0c6dde21f28ee2f47db2cf10f859e158e156549dd1c10141be02d9496ea720ab"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/web_sys/mod.rs",
+      "bytes": 7321,
+      "sha256": "60c26a5a11e998a7ebaa0432fdc11aa1458a9b6676ca6c398487f7d9dbbdffc9"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/web_sys/pointer.rs",
+      "bytes": 9605,
+      "sha256": "e6277ddcc06acf6d3e09ba95ea54e618c3d355a82f92fa8ee56463bd30c6f643"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/web_sys/resize_scaling.rs",
+      "bytes": 10212,
+      "sha256": "fe98de29d14f60d10447ddd87ffec46bd24bfdf90095b608143f8d253627e06e"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/web_sys/schedule.rs",
+      "bytes": 11056,
+      "sha256": "351aa8dc3019b4efd8af1457129faafc35ea8ce0581b39b9ac95d141753f2c09"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/web_sys/worker.js",
+      "bytes": 244,
+      "sha256": "13d7ad44fd0ad212cb3691cda3b94c0350b8f553447ec3395647472ed8e008cf"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/web_sys/worker.min.js",
+      "bytes": 127,
+      "sha256": "1781ca3da664be395164092322711dd677283d98753c6b4bfe448586e9fcc8fd"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/web/window.rs",
+      "bytes": 13810,
+      "sha256": "fc6a7844845ec3b9d84188b59c9ef4bc8f5357a922f34bcb62d7a1dd3ec29424"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/windows/dark_mode.rs",
+      "bytes": 5826,
+      "sha256": "653e4162571d02e8c1c39e67bdc2ca5f11b2955bf299aa39e494db0b5bfb4ac3"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/windows/definitions.rs",
+      "bytes": 4494,
+      "sha256": "d3eb11a33c6daf98682796f7c019238fdc8bd2d389119699a20c1ed7d9dbddaf"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/windows/dpi.rs",
+      "bytes": 4356,
+      "sha256": "de57490ede1509fadd0b92404450bb1044aa42fb59a14619e32497618e1dac46"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/windows/drop_handler.rs",
+      "bytes": 8361,
+      "sha256": "47abcad8770ba1d5ec8c877c8e725aa330c472ef07ec4ffcb60c1e7ae33c41c8"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/windows/event_loop.rs",
+      "bytes": 110045,
+      "sha256": "8c4acaee2fcdfa6cf8d59888cabf986aa41898070ab31a10651bc1cd14dddbec"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/windows/event_loop/runner.rs",
+      "bytes": 14879,
+      "sha256": "dfa68a445d4218098e39c731d27abfb172d55a2580c8e5bd16e209409f315f5b"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/windows/icon.rs",
+      "bytes": 7503,
+      "sha256": "89dd2f1e567852327cdc20adfb78ce12404f9ecc6786178d4caffe425a8d96c5"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/windows/ime.rs",
+      "bytes": 6037,
+      "sha256": "999b2d0869632d4d00928a35033fbdd303eef3d28fc7cdf5bd360d195793aee3"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/windows/keyboard.rs",
+      "bytes": 51671,
+      "sha256": "93188bdea60bce1014d624f289d25063b59a14985a318ca736bf62d8ba3e5d16"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/windows/keyboard_layout.rs",
+      "bytes": 42736,
+      "sha256": "d324796eaf474c35905f1b539cafaedaa3ee639e8ad7ad9ec559aeb2c56cf722"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/windows/minimal_ime.rs",
+      "bytes": 2118,
+      "sha256": "f400011bf7f57b50dd6f47066b6b1f354339217887938c26cbd22a062594805c"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/windows/mod.rs",
+      "bytes": 5208,
+      "sha256": "c739237f4903d6be9aaa3e913e50ae01575a689a4678486a3b82e214adf7020d"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/windows/monitor.rs",
+      "bytes": 8274,
+      "sha256": "fb177904e37746a41ff7607b60863282c505a885180dc9e069904f379b66f206"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/windows/raw_input.rs",
+      "bytes": 11228,
+      "sha256": "d36ff2c05cecc97b8b4e293a0a7dff4046a033b128101b07cc04812cbcc24b7a"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/windows/util.rs",
+      "bytes": 10488,
+      "sha256": "beed128bdedfb31daaa28da786bc6bdae037cbb41e5bf4db4d10678a44c72a68"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/windows/window.rs",
+      "bytes": 58448,
+      "sha256": "337a9fe3162e6ec2c4075b0a483fcdb9f424d57ac4c758bffc17adf712845bd7"
+    },
+    {
+      "path": "vendor/winit-fork/src/platform_impl/windows/window_state.rs",
+      "bytes": 20070,
+      "sha256": "915b62177311626be88cbd6ca51f28b265946e692394f26e6d26eb879acac746"
+    },
+    {
+      "path": "vendor/winit-fork/src/utils.rs",
+      "bytes": 623,
+      "sha256": "a6b2a21ab09102d288d9c9bfdd4c9173ae24cd50b18f3b11c6d9842c69ea3fc9"
+    },
+    {
+      "path": "vendor/winit-fork/src/window.rs",
+      "bytes": 71910,
+      "sha256": "977153e4a39ae156c0dcbfcbd7270915fbc12c3459591535b351875a226aff97"
+    },
+    {
+      "path": "vendor/winit-fork/tests/macos_termination.rs",
+      "bytes": 8381,
+      "sha256": "43c73cefe81367e44352eba3f8e6de9287ed4037d847a0420f62fcb39b89ef7f"
+    },
+    {
+      "path": "vendor/winit-fork/tests/send_objects.rs",
+      "bytes": 881,
+      "sha256": "dd13b75fa0584cb03f928de109afd08859cffe9fd7828529ea3f4f1041b5085d"
+    },
+    {
+      "path": "vendor/winit-fork/tests/serde_objects.rs",
+      "bytes": 1086,
+      "sha256": "25ba1c2321a77a5b67196dd694eea65f7101f59c78d0a64f511ea02457937396"
+    },
+    {
+      "path": "vendor/winit-fork/tests/sync_object.rs",
+      "bytes": 652,
+      "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
+    }
+  ]
+}

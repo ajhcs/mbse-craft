@@ -1,6 +1,6 @@
 {
   "schema": "mbse-craft.milestone3-results/1",
-  "recorded_utc": "2026-10-26T16:53:17.477113+00:00",
+  "recorded_utc": "2026-10-26T17:10:14.738170+00:00",
   "state": "in_progress",
   "base_commit": "d7cca1c17002368f58264e7686e8c71a9b73b6dd",
   "p09": {
@@ -28,9 +28,7 @@
   },
   "milestone_exit_accepted": false,
   "full_parity_accepted": false,
-  "remaining_prs": [
-    "P13"
-  ],
+  "remaining_prs": [],
   "p10": {
     "state": "merged",
     "branch": "codex/m3-p10-scoped-shortcuts",
@@ -84,7 +82,7 @@
     "review_followup": "p11/REVIEW_FOLLOWUP.md"
   },
   "p12": {
-    "state": "implemented_draft_pending_review",
+    "state": "merged",
     "branch": "codex/m3-p12-workspace-perspectives",
     "base_commit": "b531d40e66dc436d447abaf29c9b2f3117974018",
     "source_files": 679,
@@ -100,6 +98,32 @@
     "native_receipt": "p12/verification/native/RECEIPT.json",
     "same_agent_review": "p12/verification/NATIVE_REVIEW.json",
     "preservation": "p12/PRESERVATION_AFTER.json",
-    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/15"
+    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/15",
+    "reviewed_head": "b17e58ee15046f26964f36b49a6bea507039bc36",
+    "merge_commit": "422780873eee22b4170acdbeb5b4d77e3f6bad9b",
+    "review_followup": "p12/REVIEW_FOLLOWUP.md"
+  },
+  "p13": {
+    "state": "implemented_draft_pending_review",
+    "branch": "codex/m3-p13-dialogs-progress",
+    "base_commit": "422780873eee22b4170acdbeb5b4d77e3f6bad9b",
+    "source_files": 680,
+    "source_sha256": "04bd96ddfbdc1cbf05cf4917797d649530db8639e860835b8cf24ca5b7366969",
+    "binary_sha256": "e7a8dea73fbe560bd5cba17369c44076df270b62317b13e9b495690954178c18",
+    "workspace_tests_passed": 391,
+    "new_p13_tests": 9,
+    "native_runs": 1,
+    "native_action_errors": 0,
+    "acceptance": "p13/README.md",
+    "contract": "p13/CONTRACT.md",
+    "compiler_receipt": "p13/final-verification/COMPILER_RECEIPT.json",
+    "native_receipt": "p13/final-verification/native/RECEIPT.json",
+    "same_agent_review": "p13/final-verification/NATIVE_REVIEW.json",
+    "preservation": "p13/REVIEW_PRESERVATION.json",
+    "picker_scope": "application-owned; no installed OS backend",
+    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/16",
+    "native_runs_before_review_fix": 1,
+    "native_action_errors_before_review_fix": 1,
+    "review_followup": "p13/REVIEW_FOLLOWUP.md"
   }
 }

@@ -1,0 +1,31 @@
+{
+  "schema": "mbse-craft.p13-native-review/1",
+  "reviewer": "Codex, same implementing agent",
+  "independent_review": false,
+  "result": "bounded_P13_scenarios_passed",
+  "raw_receipt_status": "actions_completed_review_pending",
+  "native_runs": 1,
+  "retained_action_errors": 1,
+  "error_explanation": "Initial n.fill(path,empty string) selected old text without deleting it. Existing preservation guard retained work. Cancelled that guard; explicit Backspace then Use path produced actual indeterminate outcome. No product change or app replay.",
+  "pixels_reviewed": [
+    "run/02-directory-chooser.png",
+    "run/04-empty-selection-indeterminate.png",
+    "run/08-background-open-failure-retains-native.png",
+    "run/11-reopened-native-draft-and-views.png"
+  ],
+  "observations": [
+    "Actual directory listing displays original.kernspan; explicit Cancel retains native snapshot/selected1003/views",
+    "Actual empty path gives distinct indeterminate message; failed directory gives failed result with work retained",
+    "Chooser Save writes exact original native snapshot plus views; separate acknowledgments verified",
+    "Missing native file fails asynchronously with unchanged native snapshot/selection/views",
+    "Chooser Open accepts saved native through background worker; saved views opens with exact persisted file digest and empty history; raw9e,95metre,2.5km visible",
+    "Normal app/display exit, owned process cleanup and authentication files absent; input unchanged"
+  ],
+  "limits": [
+    "Application-owned chooser, no OS backend or full platform/native-picker acceptance",
+    "Delayed completion/cancellation/stale draft/views ownership uses actual controller tests with controlled channels; native file reads finish too quickly for a claimed manual timing race",
+    "One retained empty-fill helper assertion, followed by actual Backspace correction without app replay",
+    "Same-agent Linux private display only; no independent/domain/full Craft acceptance",
+    "Initial lock refusal executed zero tests and is retained separately; actual successful suite has389 distinct tests"
+  ]
+}

@@ -255,7 +255,7 @@
       "acceptance": [
         "Restart restores arrangements; Reset restores defaults; off-screen panels become reachable; corrupt settings preserve model state."
       ],
-      "state": "implemented_draft_pending_review",
+      "state": "merged",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "execution_results": "docs/parity/p12/README.md",
@@ -271,9 +271,11 @@
       "acceptance": [
         "Cancel, failure and indeterminate outcomes differ; stale replies cannot replace work; background completion cannot discard edits."
       ],
-      "state": "planned",
+      "state": "implemented_draft_pending_review",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/p13/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/16"
     },
     {
       "id": "P14",

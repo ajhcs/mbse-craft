@@ -5,6 +5,8 @@ mod workspace_commands;
 mod shortcut_editor;
 #[path = "ui_docking.rs"]
 mod panel_docking;
+#[path="ui_fileops.rs"]
+mod file_operations;
 use crate::preferences::Preferences;
 use craft_ui::{
     buttons::{ButtonVisuals, IconButton, IconButtonStyle},
@@ -62,6 +64,7 @@ pub struct Workspace {
     shortcuts: crate::shortcuts::Editor,
     docking: crate::docking::WorkspaceDock,
     perspective_name: String,
+    files:file_operations::FileOps,
     docking_focus: Option<(egui::Id,RawKey,mbse_model::stage1::Freshness,u8)>,
     periodic_recovery: crate::periodic_recovery::PeriodicRecovery,
     feedback: String,
@@ -137,7 +140,7 @@ impl Workspace {
         let periodic_recovery = crate::periodic_recovery::PeriodicRecovery::new(Instant::now(), &session, &views);
         let mut docking=crate::docking::WorkspaceDock::default();
         match crate::perspectives::decode(&preferences.value.workspace_layout){Ok(layout)=>docking.layout=layout,Err(e)=>{preferences.load_warning=true;preferences.report.push_str(&format!("; {e}"));docking.note=e}}
-        let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,shortcuts,docking,perspective_name:String::new(),docking_focus:None,periodic_recovery, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
+        let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,shortcuts,docking,perspective_name:String::new(),files:Default::default(),docking_focus:None,periodic_recovery, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
             creation: None, relation: None, popout: None, usages: None, impact_open:false,impact_target:None,impact_report:None,impact_note:String::new(), search_open:false, search_query:Default::default(), search_report:None, search_note:String::new(), browser_revealed:None,browser_open_groups:BTreeMap::new(), pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new(), menu_scope:None, last_workspace_command:None };
         app.refresh_recoveries();
         app
@@ -545,6 +548,7 @@ impl Workspace {
             })
     }
     fn request_load(&mut self, action: Load) {
+        if self.files.pending(){self.result(Err("A model read is pending; current work retained.".into()));return;}
         if self.session.is_dirty() || self.session.pending() || self.views.blocked(&self.session) {
             self.pending = Some(action);
             self.pending_continue = None;
@@ -555,20 +559,8 @@ impl Workspace {
             self.result(Err("Acknowledged view file changed or is unavailable; live layout retained.".into()));
         }
     }
-    fn load(&mut self, action: Load) {
-        if matches!(action, Load::Quit) {
-            return;
-        }
-        let root = self.session.state_root.clone();
-        let result = match action {
-            Load::New => Session::new(&root),
-            Load::Open(path) => Session::open(&root, &path),
-            Load::Recover(path) => Session::restore(&root, &path),
-            Load::Import(path) => Session::import_sysml(&root, &path),
-            Load::Quit => unreachable!(),
-        };
-        match result {
-            Ok(session) => {
+    fn load(&mut self,action:Load){self.start_background_load(action);}
+    fn install_loaded(&mut self,session:Session){
                 self.views = crate::views_ui::ViewWorkspace::new(&session);
                 self.session = session;
                 self.creation = None;
@@ -591,9 +583,6 @@ impl Workspace {
                 self.result(Ok(
                     "Model opened. Imported and recovered documents are independent drafts.".into(),
                 ));
-            }
-            Err(error) => self.result(Err(error)),
-        }
     }
     fn frame_button(&mut self, ui: &mut egui::Ui, button: craft_window::Button) {
         let (glyph, label) = match button {
@@ -657,7 +646,7 @@ impl Workspace {
             self.command_menus(ui);
             ui.horizontal_wrapped(|ui| {
                 ui.heading("MBSE-Craft"); ui.label("Model workspace"); ui.separator();
-                for id in [Id::New,Id::Open,Id::Recover,Id::Import,Id::Save,Id::Recovery,
+                for id in [Id::Files,Id::New,Id::Open,Id::Recover,Id::Import,Id::Save,Id::Recovery,
                     Id::Recoveries,Id::External,Id::Assurance,Id::Library,Id::Settings,Id::Export,
                     Id::Undo,Id::Redo] { self.workspace_button(ui,id,&scope); }
             });
@@ -1867,6 +1856,7 @@ fn relation_label(edge: &GraphEdge, records: &[Record]) -> String {
 impl eframe::App for Workspace {
     fn logic(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         self.preferences.poll();
+        self.poll_file_ops();
         self.finish_writes(ctx);
         self.views.poll(&self.session);
         if let Some((action, kind)) = self.pending_continue.clone() {
@@ -1890,6 +1880,11 @@ impl eframe::App for Workspace {
         let requested = self.close_intent || ctx.input(|i| i.viewport().close_requested());
         let app_close = self.close_intent;
         self.close_intent = false;
+        if requested && (self.files.pending()||self.files.open){
+            ctx.send_viewport_cmd(egui::ViewportCommand::CancelClose);
+            self.result(Err("Finish or cancel the file operation before closing; current work retained.".into()));
+            ctx.request_repaint_after(Duration::from_millis(100));return;
+        }
         if requested && self.exchange.close_blocked() {
             ctx.send_viewport_cmd(egui::ViewportCommand::CancelClose);
             ctx.send_viewport_cmd(egui::ViewportCommand::Visible(true));
@@ -1942,7 +1937,7 @@ impl eframe::App for Workspace {
         ) {
             self.recovery();
         }
-        if self.preferences.value.periodic_recovery || self.session.pending() || self.views.io.pending() {
+        if self.preferences.value.periodic_recovery || self.session.pending() || self.views.io.pending() || self.files.pending() {
             ctx.request_repaint_after(Duration::from_millis(250));
         }
         craft_quit::on_close_request(ctx);
@@ -1953,6 +1948,7 @@ impl eframe::App for Workspace {
         self.audit.clear();
         self.handle_shortcuts(&ctx);
         egui::Panel::bottom("feedback").show(root, |ui| {
+            if self.session.pending()||self.views.io.pending()||self.files.pending(){ui.horizontal(|ui|{ui.spinner();ui.label("Operation pending; current accepted work remains visible.");});}
             ui.colored_label(if self.error { ERROR } else { INK }, &self.feedback);
         });
         self.frame_header(root);
@@ -1965,6 +1961,7 @@ impl eframe::App for Workspace {
         self.views.show_inspection(&ctx, &self.session);
         self.shortcut_dialog(&ctx);
         self.docking_dialog(&ctx);
+        self.file_operations_ui(&ctx);
         self.audit.extend(self.views.toolbar_bounds());
         self.capture(&ctx);
         self.catalog.show(&ctx);
@@ -1980,6 +1977,7 @@ impl eframe::App for Workspace {
             fields.insert("command_catalog".into(),self.command_audit());
             fields.insert("shortcut_configuration".into(),self.shortcut_audit());
             fields.insert("workspace_docking".into(),self.docking.audit());
+            fields.insert("file_operations".into(),self.file_audit());
             fields.insert("views_inspection_profile".into(), serde_json::json!(self.views.inspection_profile()));
             fields.insert("views_inspection_copy_origin".into(), self.views.inspection_copy_origin());
         }
