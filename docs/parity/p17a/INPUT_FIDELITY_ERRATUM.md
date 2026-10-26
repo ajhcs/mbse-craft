@@ -18,5 +18,6 @@ history or Save/reopen claim. It does not relabel the earlier receipts as PASS.
 
 P16's original invalid native usage-text claim is qualified by this correction in
 a reviewed descendant binary; the original P16 closure is not retroactively
-claimed to have received the missing input. P17a remains unpublished until the
-corrective execution and exact byte/pixel review are complete.
+claimed to have received the missing input. P17a publication was held until the
+corrective execution and exact byte/pixel review completed; PR20 records both
+the original limitation and fresh corrected evidence.

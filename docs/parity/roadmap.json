@@ -349,8 +349,9 @@
           "acceptance": [
             "Incompatible interface assignments refuse atomically; port/interface identities, raw forms and accepted data survive model history and native cold reopen."
           ],
-          "state": "implemented_draft_pending_review",
-          "evidence": "docs/parity/p17a/README.md"
+          "state": "reviewed_ready_to_merge",
+          "evidence": "docs/parity/p17a/README.md",
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/20"
         },
         {
           "id": "P17b",
