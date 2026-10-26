@@ -1,0 +1,2091 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-25T23:59:11.938046+00:00",
+  "job_sha256": "402d00a31dc4d652ea42989669313f6af4b075b7b3657dd7cea32f98c3b0860d",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p09-01/run",
+      "started_utc": "2026-10-25T23:59:11.958801+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 2484931,
+          "start_ticks": 34710290
+        },
+        "server_pid": {
+          "pid": 2484928,
+          "start_ticks": 34710287
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/repos/builderbob/mbse-craft/work/m3-p09-command-catalog/docs/parity/p09/fixtures/original.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 2484931,
+        "server_pid": 2484928,
+        "window": 4194307,
+        "binary_sha256": "7f2da91ac484bda93d2726c54226a90ee2008ed6e2e7324baf16ec6559620339"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-26T00:02:06.845091+00:00",
+      "owned_processes_absent": true
+    },
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p09-01/reopen",
+      "started_utc": "2026-10-26T00:03:10.912860+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 2488052,
+          "start_ticks": 34734185
+        },
+        "server_pid": {
+          "pid": 2488049,
+          "start_ticks": 34734183
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/build/builderbob/mbse-craft/milestone1/native-p09-01/run/final-catalog.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 2488052,
+        "server_pid": 2488049,
+        "window": 4194307,
+        "binary_sha256": "7f2da91ac484bda93d2726c54226a90ee2008ed6e2e7324baf16ec6559620339"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-26T00:03:17.129825+00:00",
+      "exit_via_catalog": "file.quit keyboard",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-25T23:59:11.958538+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 249844178944,
+    "available_memory_bytes": 20272492544,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 564
+      },
+      {
+        "pid": 2331709,
+        "start_ticks": 34320283,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "baseline_snapshot": {
+    "document_id": "document:session:stage1-session-sL9Mtp",
+    "records": {
+      "1": {
+        "id": 1,
+        "kind": "System",
+        "name": "Final M1 authored system",
+        "scope": 1,
+        "fields": {
+          "purpose": "Preserve typed engineering decisions"
+        }
+      },
+      "1000": {
+        "id": 1000,
+        "kind": "Mission",
+        "name": "Assess mission outcomes",
+        "scope": 1,
+        "fields": {}
+      },
+      "1001": {
+        "id": 1001,
+        "kind": "Capability",
+        "name": "Measure operational capability",
+        "scope": 1,
+        "fields": {
+          "contributesTo": [
+            1000
+          ]
+        }
+      },
+      "1002": {
+        "id": 1002,
+        "kind": "Objective",
+        "name": "Keep engineering evidence reviewable",
+        "scope": 1,
+        "fields": {
+          "subject": {
+            "id": 1001,
+            "kind": "Capability"
+          }
+        }
+      },
+      "1003": {
+        "id": 1003,
+        "kind": "Measure",
+        "name": "Final M1 distance and speed",
+        "scope": 1,
+        "fields": {
+          "_kernspanCalculationRawOwners": {
+            "expression": 9,
+            "inputs": {
+              "x": 9,
+              "x1": 11
+            }
+          },
+          "assessmentMethod": "",
+          "calculation": {
+            "bindings": {
+              "x": {
+                "Literal": {
+                  "decimal": "2500",
+                  "quantity": {
+                    "kind": "Length",
+                    "unit": "Metre"
+                  }
+                }
+              },
+              "x1": {
+                "Literal": {
+                  "decimal": "8",
+                  "quantity": {
+                    "kind": "Duration",
+                    "unit": "Second"
+                  }
+                }
+              }
+            },
+            "expression": {
+              "Binding": "x"
+            },
+            "id": 1003,
+            "output": {
+              "kind": "Length",
+              "unit": "Kilometre"
+            },
+            "owner": 1003
+          },
+          "comparator": "GreaterOrEqual",
+          "criterion": 95.0,
+          "forObjective": 1002,
+          "observations": [],
+          "quantity": "length",
+          "unit": "metre"
+        }
+      }
+    },
+    "drafts": [
+      {
+        "key": {
+          "record": 1,
+          "field": "name",
+          "item": null
+        },
+        "text": "Final M1 authored system",
+        "version": 1,
+        "validity": "Valid",
+        "unit_context": null
+      },
+      {
+        "key": {
+          "record": 1,
+          "field": "purpose",
+          "item": null
+        },
+        "text": "Preserve typed engineering decisions",
+        "version": 2,
+        "validity": "Valid",
+        "unit_context": null
+      },
+      {
+        "key": {
+          "record": 1003,
+          "field": "criterion",
+          "item": null
+        },
+        "text": "9e",
+        "version": 16,
+        "validity": "Incomplete",
+        "unit_context": "metre"
+      },
+      {
+        "key": {
+          "record": 1003,
+          "field": "calc.input.x",
+          "item": null
+        },
+        "text": "2500",
+        "version": 18,
+        "validity": "Valid",
+        "unit_context": "Metre",
+        "owner_generation": 9
+      },
+      {
+        "key": {
+          "record": 1003,
+          "field": "calc.input.x1",
+          "item": null
+        },
+        "text": "8",
+        "version": 12,
+        "validity": "Valid",
+        "unit_context": "Second",
+        "owner_generation": 11
+      },
+      {
+        "key": {
+          "record": 1003,
+          "field": "calc.expression",
+          "item": null
+        },
+        "text": "x",
+        "version": 17,
+        "validity": "Valid",
+        "unit_context": null,
+        "owner_generation": 9
+      }
+    ],
+    "creation_drafts": {
+      "mbse-ui-add-Capability-1": {
+        "owner": 1,
+        "kind": "Capability",
+        "fields": {
+          "name": "Measure operational capability"
+        }
+      },
+      "mbse-ui-add-Measure-1002": {
+        "owner": 1002,
+        "kind": "Measure",
+        "fields": {
+          "name": "Final M1 distance and speed"
+        }
+      },
+      "mbse-ui-add-Mission-1": {
+        "owner": 1,
+        "kind": "Mission",
+        "fields": {
+          "name": "Assess mission outcomes"
+        }
+      },
+      "mbse-ui-add-Objective-1": {
+        "owner": 1,
+        "kind": "Objective",
+        "fields": {
+          "name": "Keep engineering evidence reviewable"
+        }
+      }
+    },
+    "next_id": 1004,
+    "model_revision": 23,
+    "raw_version": 19
+  },
+  "action_errors": [
+    {
+      "action": "n.click('tree:1'); n.fill('field:1:name','P09 command catalog edit'); n.click('view:tab:1'); n.click('menu:Edit'); n.capture('03-edit-menu-model-history'); n.click('command:menu:edit.undo'); assert n.audit()['command_catalog']['last']=={'id':'edit.undo','surface':'menu','scope':'model','refused':False,'reason':None}; n.capture('04-menu-model-undo'); n.clear_adjacent_views_path(); menu_path=n.run/'menu-undo.kernspan'; n.fill('save-path',str(menu_path)); n.click('menu:File'); n.capture('05-file-menu-shared-save'); n.click('command:menu:file.save'); n.send(op='wait',pause=1); assert n.audit()['views_saved_hint']; menu_saved=json.loads(menu_path.read_text())['snapshot']; assert menu_saved['records']==baseline['records'] and menu_saved['drafts']==baseline['drafts']; assert n.audit()['command_catalog']['last']['surface']=='menu'; n.capture('06-menu-save-restores-exact-records'); receipt['menu_undo_snapshot']=menu_saved",
+      "error": "AssertionError()"
+    }
+  ],
+  "model_undo_oracle_correction": "Initial assertion incorrectly expected Model Undo to rewind raw drafts; native records correctly restore while separately retained latest raw name remains. Corrected to exact records and every unedited draft, explicitly checking edited raw name. Original action error retained.",
+  "menu_undo_snapshot": {
+    "document_id": "document:session:stage1-session-sL9Mtp",
+    "records": {
+      "1": {
+        "id": 1,
+        "kind": "System",
+        "name": "Final M1 authored system",
+        "scope": 1,
+        "fields": {
+          "purpose": "Preserve typed engineering decisions"
+        }
+      },
+      "1000": {
+        "id": 1000,
+        "kind": "Mission",
+        "name": "Assess mission outcomes",
+        "scope": 1,
+        "fields": {}
+      },
+      "1001": {
+        "id": 1001,
+        "kind": "Capability",
+        "name": "Measure operational capability",
+        "scope": 1,
+        "fields": {
+          "contributesTo": [
+            1000
+          ]
+        }
+      },
+      "1002": {
+        "id": 1002,
+        "kind": "Objective",
+        "name": "Keep engineering evidence reviewable",
+        "scope": 1,
+        "fields": {
+          "subject": {
+            "id": 1001,
+            "kind": "Capability"
+          }
+        }
+      },
+      "1003": {
+        "id": 1003,
+        "kind": "Measure",
+        "name": "Final M1 distance and speed",
+        "scope": 1,
+        "fields": {
+          "_kernspanCalculationRawOwners": {
+            "expression": 9,
+            "inputs": {
+              "x": 9,
+              "x1": 11
+            }
+          },
+          "assessmentMethod": "",
+          "calculation": {
+            "bindings": {
+              "x": {
+                "Literal": {
+                  "decimal": "2500",
+                  "quantity": {
+                    "kind": "Length",
+                    "unit": "Metre"
+                  }
+                }
+              },
+              "x1": {
+                "Literal": {
+                  "decimal": "8",
+                  "quantity": {
+                    "kind": "Duration",
+                    "unit": "Second"
+                  }
+                }
+              }
+            },
+            "expression": {
+              "Binding": "x"
+            },
+            "id": 1003,
+            "output": {
+              "kind": "Length",
+              "unit": "Kilometre"
+            },
+            "owner": 1003
+          },
+          "comparator": "GreaterOrEqual",
+          "criterion": 95.0,
+          "forObjective": 1002,
+          "observations": [],
+          "quantity": "length",
+          "unit": "metre"
+        }
+      }
+    },
+    "drafts": [
+      {
+        "key": {
+          "record": 1,
+          "field": "name",
+          "item": null
+        },
+        "text": "P09 command catalog edit",
+        "version": 20,
+        "validity": "Valid",
+        "unit_context": null
+      },
+      {
+        "key": {
+          "record": 1,
+          "field": "purpose",
+          "item": null
+        },
+        "text": "Preserve typed engineering decisions",
+        "version": 2,
+        "validity": "Valid",
+        "unit_context": null
+      },
+      {
+        "key": {
+          "record": 1003,
+          "field": "criterion",
+          "item": null
+        },
+        "text": "9e",
+        "version": 16,
+        "validity": "Incomplete",
+        "unit_context": "metre"
+      },
+      {
+        "key": {
+          "record": 1003,
+          "field": "calc.input.x",
+          "item": null
+        },
+        "text": "2500",
+        "version": 18,
+        "validity": "Valid",
+        "unit_context": "Metre",
+        "owner_generation": 9
+      },
+      {
+        "key": {
+          "record": 1003,
+          "field": "calc.input.x1",
+          "item": null
+        },
+        "text": "8",
+        "version": 12,
+        "validity": "Valid",
+        "unit_context": "Second",
+        "owner_generation": 11
+      },
+      {
+        "key": {
+          "record": 1003,
+          "field": "calc.expression",
+          "item": null
+        },
+        "text": "x",
+        "version": 17,
+        "validity": "Valid",
+        "unit_context": null,
+        "owner_generation": 9
+      }
+    ],
+    "creation_drafts": {
+      "mbse-ui-add-Capability-1": {
+        "owner": 1,
+        "kind": "Capability",
+        "fields": {
+          "name": "Measure operational capability"
+        }
+      },
+      "mbse-ui-add-Measure-1002": {
+        "owner": 1002,
+        "kind": "Measure",
+        "fields": {
+          "name": "Final M1 distance and speed"
+        }
+      },
+      "mbse-ui-add-Mission-1": {
+        "owner": 1,
+        "kind": "Mission",
+        "fields": {
+          "name": "Assess mission outcomes"
+        }
+      },
+      "mbse-ui-add-Objective-1": {
+        "owner": 1,
+        "kind": "Objective",
+        "fields": {
+          "name": "Keep engineering evidence reviewable"
+        }
+      }
+    },
+    "next_id": 1004,
+    "model_revision": 25,
+    "raw_version": 20
+  },
+  "keyboard_redo_snapshot": {
+    "document_id": "document:session:stage1-session-sL9Mtp",
+    "records": {
+      "1": {
+        "id": 1,
+        "kind": "System",
+        "name": "P09 command catalog edit",
+        "scope": 1,
+        "fields": {
+          "purpose": "Preserve typed engineering decisions"
+        }
+      },
+      "1000": {
+        "id": 1000,
+        "kind": "Mission",
+        "name": "Assess mission outcomes",
+        "scope": 1,
+        "fields": {}
+      },
+      "1001": {
+        "id": 1001,
+        "kind": "Capability",
+        "name": "Measure operational capability",
+        "scope": 1,
+        "fields": {
+          "contributesTo": [
+            1000
+          ]
+        }
+      },
+      "1002": {
+        "id": 1002,
+        "kind": "Objective",
+        "name": "Keep engineering evidence reviewable",
+        "scope": 1,
+        "fields": {
+          "subject": {
+            "id": 1001,
+            "kind": "Capability"
+          }
+        }
+      },
+      "1003": {
+        "id": 1003,
+        "kind": "Measure",
+        "name": "Final M1 distance and speed",
+        "scope": 1,
+        "fields": {
+          "_kernspanCalculationRawOwners": {
+            "expression": 9,
+            "inputs": {
+              "x": 9,
+              "x1": 11
+            }
+          },
+          "assessmentMethod": "",
+          "calculation": {
+            "bindings": {
+              "x": {
+                "Literal": {
+                  "decimal": "2500",
+                  "quantity": {
+                    "kind": "Length",
+                    "unit": "Metre"
+                  }
+                }
+              },
+              "x1": {
+                "Literal": {
+                  "decimal": "8",
+                  "quantity": {
+                    "kind": "Duration",
+                    "unit": "Second"
+                  }
+                }
+              }
+            },
+            "expression": {
+              "Binding": "x"
+            },
+            "id": 1003,
+            "output": {
+              "kind": "Length",
+              "unit": "Kilometre"
+            },
+            "owner": 1003
+          },
+          "comparator": "GreaterOrEqual",
+          "criterion": 95.0,
+          "forObjective": 1002,
+          "observations": [],
+          "quantity": "length",
+          "unit": "metre"
+        }
+      }
+    },
+    "drafts": [
+      {
+        "key": {
+          "record": 1,
+          "field": "name",
+          "item": null
+        },
+        "text": "P09 command catalog edit",
+        "version": 20,
+        "validity": "Valid",
+        "unit_context": null
+      },
+      {
+        "key": {
+          "record": 1,
+          "field": "purpose",
+          "item": null
+        },
+        "text": "Preserve typed engineering decisions",
+        "version": 2,
+        "validity": "Valid",
+        "unit_context": null
+      },
+      {
+        "key": {
+          "record": 1003,
+          "field": "criterion",
+          "item": null
+        },
+        "text": "9e",
+        "version": 16,
+        "validity": "Incomplete",
+        "unit_context": "metre"
+      },
+      {
+        "key": {
+          "record": 1003,
+          "field": "calc.input.x",
+          "item": null
+        },
+        "text": "2500",
+        "version": 18,
+        "validity": "Valid",
+        "unit_context": "Metre",
+        "owner_generation": 9
+      },
+      {
+        "key": {
+          "record": 1003,
+          "field": "calc.input.x1",
+          "item": null
+        },
+        "text": "8",
+        "version": 12,
+        "validity": "Valid",
+        "unit_context": "Second",
+        "owner_generation": 11
+      },
+      {
+        "key": {
+          "record": 1003,
+          "field": "calc.expression",
+          "item": null
+        },
+        "text": "x",
+        "version": 17,
+        "validity": "Valid",
+        "unit_context": null,
+        "owner_generation": 9
+      }
+    ],
+    "creation_drafts": {
+      "mbse-ui-add-Capability-1": {
+        "owner": 1,
+        "kind": "Capability",
+        "fields": {
+          "name": "Measure operational capability"
+        }
+      },
+      "mbse-ui-add-Measure-1002": {
+        "owner": 1002,
+        "kind": "Measure",
+        "fields": {
+          "name": "Final M1 distance and speed"
+        }
+      },
+      "mbse-ui-add-Mission-1": {
+        "owner": 1,
+        "kind": "Mission",
+        "fields": {
+          "name": "Assess mission outcomes"
+        }
+      },
+      "mbse-ui-add-Objective-1": {
+        "owner": 1,
+        "kind": "Objective",
+        "fields": {
+          "name": "Keep engineering evidence reviewable"
+        }
+      }
+    },
+    "next_id": 1004,
+    "model_revision": 26,
+    "raw_version": 20
+  },
+  "field_undo_snapshot": {
+    "document_id": "document:session:stage1-session-sL9Mtp",
+    "records": {
+      "1": {
+        "id": 1,
+        "kind": "System",
+        "name": "P09 command catalog edit",
+        "scope": 1,
+        "fields": {
+          "purpose": "Preserve typed engineering decisions"
+        }
+      },
+      "1000": {
+        "id": 1000,
+        "kind": "Mission",
+        "name": "Assess mission outcomes",
+        "scope": 1,
+        "fields": {}
+      },
+      "1001": {
+        "id": 1001,
+        "kind": "Capability",
+        "name": "Measure operational capability",
+        "scope": 1,
+        "fields": {
+          "contributesTo": [
+            1000
+          ]
+        }
+      },
+      "1002": {
+        "id": 1002,
+        "kind": "Objective",
+        "name": "Keep engineering evidence reviewable",
+        "scope": 1,
+        "fields": {
+          "subject": {
+            "id": 1001,
+            "kind": "Capability"
+          }
+        }
+      },
+      "1003": {
+        "id": 1003,
+        "kind": "Measure",
+        "name": "Final M1 distance and speed",
+        "scope": 1,
+        "fields": {
+          "_kernspanCalculationRawOwners": {
+            "expression": 9,
+            "inputs": {
+              "x": 9,
+              "x1": 11
+            }
+          },
+          "assessmentMethod": "",
+          "calculation": {
+            "bindings": {
+              "x": {
+                "Literal": {
+                  "decimal": "2500",
+                  "quantity": {
+                    "kind": "Length",
+                    "unit": "Metre"
+                  }
+                }
+              },
+              "x1": {
+                "Literal": {
+                  "decimal": "8",
+                  "quantity": {
+                    "kind": "Duration",
+                    "unit": "Second"
+                  }
+                }
+              }
+            },
+            "expression": {
+              "Binding": "x"
+            },
+            "id": 1003,
+            "output": {
+              "kind": "Length",
+              "unit": "Kilometre"
+            },
+            "owner": 1003
+          },
+          "comparator": "GreaterOrEqual",
+          "criterion": 95.0,
+          "forObjective": 1002,
+          "observations": [],
+          "quantity": "length",
+          "unit": "metre"
+        }
+      }
+    },
+    "drafts": [
+      {
+        "key": {
+          "record": 1,
+          "field": "name",
+          "item": null
+        },
+        "text": "P09 command catalog edit",
+        "version": 24,
+        "validity": "Valid",
+        "unit_context": null
+      },
+      {
+        "key": {
+          "record": 1,
+          "field": "purpose",
+          "item": null
+        },
+        "text": "Preserve typed engineering decisions",
+        "version": 2,
+        "validity": "Valid",
+        "unit_context": null
+      },
+      {
+        "key": {
+          "record": 1003,
+          "field": "criterion",
+          "item": null
+        },
+        "text": "9e",
+        "version": 16,
+        "validity": "Incomplete",
+        "unit_context": "metre"
+      },
+      {
+        "key": {
+          "record": 1003,
+          "field": "calc.input.x",
+          "item": null
+        },
+        "text": "2500",
+        "version": 18,
+        "validity": "Valid",
+        "unit_context": "Metre",
+        "owner_generation": 9
+      },
+      {
+        "key": {
+          "record": 1003,
+          "field": "calc.input.x1",
+          "item": null
+        },
+        "text": "8",
+        "version": 12,
+        "validity": "Valid",
+        "unit_context": "Second",
+        "owner_generation": 11
+      },
+      {
+        "key": {
+          "record": 1003,
+          "field": "calc.expression",
+          "item": null
+        },
+        "text": "x",
+        "version": 17,
+        "validity": "Valid",
+        "unit_context": null,
+        "owner_generation": 9
+      }
+    ],
+    "creation_drafts": {
+      "mbse-ui-add-Capability-1": {
+        "owner": 1,
+        "kind": "Capability",
+        "fields": {
+          "name": "Measure operational capability"
+        }
+      },
+      "mbse-ui-add-Measure-1002": {
+        "owner": 1002,
+        "kind": "Measure",
+        "fields": {
+          "name": "Final M1 distance and speed"
+        }
+      },
+      "mbse-ui-add-Mission-1": {
+        "owner": 1,
+        "kind": "Mission",
+        "fields": {
+          "name": "Assess mission outcomes"
+        }
+      },
+      "mbse-ui-add-Objective-1": {
+        "owner": 1,
+        "kind": "Objective",
+        "fields": {
+          "name": "Keep engineering evidence reviewable"
+        }
+      }
+    },
+    "next_id": 1004,
+    "model_revision": 32,
+    "raw_version": 24
+  },
+  "surfaces_verified": [
+    "Menu ModelUndo and Save",
+    "Keyboard ModelRedo and Save",
+    "Toolbar ModelUndo/Redo and Save",
+    "Native-field menu retains captured field scope; keyboard field Redo/Undo"
+  ],
+  "final_saved": {
+    "snapshot": {
+      "document_id": "document:session:stage1-session-sL9Mtp",
+      "records": {
+        "1": {
+          "id": 1,
+          "kind": "System",
+          "name": "P09 pending navigation retained",
+          "scope": 1,
+          "fields": {
+            "purpose": "Preserve typed engineering decisions"
+          }
+        },
+        "1000": {
+          "id": 1000,
+          "kind": "Mission",
+          "name": "Assess mission outcomes",
+          "scope": 1,
+          "fields": {}
+        },
+        "1001": {
+          "id": 1001,
+          "kind": "Capability",
+          "name": "Measure operational capability",
+          "scope": 1,
+          "fields": {
+            "contributesTo": [
+              1000
+            ]
+          }
+        },
+        "1002": {
+          "id": 1002,
+          "kind": "Objective",
+          "name": "Keep engineering evidence reviewable",
+          "scope": 1,
+          "fields": {
+            "subject": {
+              "id": 1001,
+              "kind": "Capability"
+            }
+          }
+        },
+        "1003": {
+          "id": 1003,
+          "kind": "Measure",
+          "name": "Final M1 distance and speed",
+          "scope": 1,
+          "fields": {
+            "_kernspanCalculationRawOwners": {
+              "expression": 9,
+              "inputs": {
+                "x": 9,
+                "x1": 11
+              }
+            },
+            "assessmentMethod": "",
+            "calculation": {
+              "bindings": {
+                "x": {
+                  "Literal": {
+                    "decimal": "2500",
+                    "quantity": {
+                      "kind": "Length",
+                      "unit": "Metre"
+                    }
+                  }
+                },
+                "x1": {
+                  "Literal": {
+                    "decimal": "8",
+                    "quantity": {
+                      "kind": "Duration",
+                      "unit": "Second"
+                    }
+                  }
+                }
+              },
+              "expression": {
+                "Binding": "x"
+              },
+              "id": 1003,
+              "output": {
+                "kind": "Length",
+                "unit": "Kilometre"
+              },
+              "owner": 1003
+            },
+            "comparator": "GreaterOrEqual",
+            "criterion": 95.0,
+            "forObjective": 1002,
+            "observations": [],
+            "quantity": "length",
+            "unit": "metre"
+          }
+        }
+      },
+      "drafts": [
+        {
+          "key": {
+            "record": 1,
+            "field": "name",
+            "item": null
+          },
+          "text": "P09 pending navigation retained",
+          "version": 25,
+          "validity": "Valid",
+          "unit_context": null
+        },
+        {
+          "key": {
+            "record": 1,
+            "field": "purpose",
+            "item": null
+          },
+          "text": "Preserve typed engineering decisions",
+          "version": 2,
+          "validity": "Valid",
+          "unit_context": null
+        },
+        {
+          "key": {
+            "record": 1003,
+            "field": "criterion",
+            "item": null
+          },
+          "text": "9e",
+          "version": 16,
+          "validity": "Incomplete",
+          "unit_context": "metre"
+        },
+        {
+          "key": {
+            "record": 1003,
+            "field": "calc.input.x",
+            "item": null
+          },
+          "text": "2500",
+          "version": 18,
+          "validity": "Valid",
+          "unit_context": "Metre",
+          "owner_generation": 9
+        },
+        {
+          "key": {
+            "record": 1003,
+            "field": "calc.input.x1",
+            "item": null
+          },
+          "text": "8",
+          "version": 12,
+          "validity": "Valid",
+          "unit_context": "Second",
+          "owner_generation": 11
+        },
+        {
+          "key": {
+            "record": 1003,
+            "field": "calc.expression",
+            "item": null
+          },
+          "text": "x",
+          "version": 17,
+          "validity": "Valid",
+          "unit_context": null,
+          "owner_generation": 9
+        }
+      ],
+      "creation_drafts": {
+        "mbse-ui-add-Capability-1": {
+          "owner": 1,
+          "kind": "Capability",
+          "fields": {
+            "name": "Measure operational capability"
+          }
+        },
+        "mbse-ui-add-Measure-1002": {
+          "owner": 1002,
+          "kind": "Measure",
+          "fields": {
+            "name": "Final M1 distance and speed"
+          }
+        },
+        "mbse-ui-add-Mission-1": {
+          "owner": 1,
+          "kind": "Mission",
+          "fields": {
+            "name": "Assess mission outcomes"
+          }
+        },
+        "mbse-ui-add-Objective-1": {
+          "owner": 1,
+          "kind": "Objective",
+          "fields": {
+            "name": "Keep engineering evidence reviewable"
+          }
+        }
+      },
+      "next_id": 1004,
+      "model_revision": 33,
+      "raw_version": 25
+    },
+    "native": "/workspace/build/builderbob/mbse-craft/milestone1/native-p09-01/run/final-catalog.kernspan",
+    "native_sha256": "f9a72dfa56d76c24732e08e4d8045f9d2f199617bb237340939bb06db8a59130",
+    "views": "/workspace/build/builderbob/mbse-craft/milestone1/native-p09-01/run/final-catalog.mbse-views.json",
+    "views_sha256": "9b0aa9fc4455800d0832eeda12097f861069d2d7146487f58225585372c1c118"
+  },
+  "layout_and_navigation": {
+    "layout_native_snapshot_unchanged": true,
+    "exact_modifiers_route_layout_history": true,
+    "keyboard_and_menu_new_cancel_retain_exact_native_layout": true
+  },
+  "reopen_preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-26T00:03:10.912547+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 248388243456,
+    "available_memory_bytes": 28749602816,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 564
+      },
+      {
+        "pid": 2331709,
+        "start_ticks": 34320283,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "reopen_observation": {
+    "command_catalog": {
+      "items": [
+        {
+          "enabled": true,
+          "id": "file.new",
+          "label": "New",
+          "menu": "File",
+          "reason": null,
+          "shortcut": "Ctrl+N"
+        },
+        {
+          "enabled": true,
+          "id": "file.open",
+          "label": "Open",
+          "menu": "File",
+          "reason": null,
+          "shortcut": "Ctrl+O"
+        },
+        {
+          "enabled": true,
+          "id": "file.recover",
+          "label": "Recover",
+          "menu": "File",
+          "reason": null,
+          "shortcut": "Ctrl+Shift+O"
+        },
+        {
+          "enabled": true,
+          "id": "file.import_sysml",
+          "label": "Import SysML",
+          "menu": "File",
+          "reason": null,
+          "shortcut": "Ctrl+I"
+        },
+        {
+          "enabled": true,
+          "id": "file.save",
+          "label": "Save",
+          "menu": "File",
+          "reason": null,
+          "shortcut": "Ctrl+S"
+        },
+        {
+          "enabled": true,
+          "id": "file.recovery_copy",
+          "label": "Recovery copy",
+          "menu": "File",
+          "reason": null,
+          "shortcut": "Ctrl+Shift+S"
+        },
+        {
+          "enabled": true,
+          "id": "file.export_sysml",
+          "label": "Export SysML copy",
+          "menu": "File",
+          "reason": null,
+          "shortcut": "Ctrl+E"
+        },
+        {
+          "enabled": true,
+          "id": "file.review_recoveries",
+          "label": "Review recovery copies",
+          "menu": "File",
+          "reason": null,
+          "shortcut": "Ctrl+Shift+R"
+        },
+        {
+          "enabled": true,
+          "id": "file.quit",
+          "label": "Quit",
+          "menu": "File",
+          "reason": null,
+          "shortcut": "Ctrl+Q"
+        },
+        {
+          "enabled": false,
+          "id": "edit.undo",
+          "label": "Undo",
+          "menu": "Edit",
+          "reason": "No model history available.",
+          "shortcut": "Ctrl+Z"
+        },
+        {
+          "enabled": false,
+          "id": "edit.redo",
+          "label": "Redo",
+          "menu": "Edit",
+          "reason": "No model history available.",
+          "shortcut": "Ctrl+Shift+Z"
+        },
+        {
+          "enabled": false,
+          "id": "view.layout_undo",
+          "label": "Layout Undo",
+          "menu": "View",
+          "reason": "No layout history available in this direction.",
+          "shortcut": "Ctrl+Alt+Z"
+        },
+        {
+          "enabled": false,
+          "id": "view.layout_redo",
+          "label": "Layout Redo",
+          "menu": "View",
+          "reason": "No layout history available in this direction.",
+          "shortcut": "Ctrl+Alt+Shift+Z"
+        },
+        {
+          "enabled": true,
+          "id": "edit.search",
+          "label": "Search native records",
+          "menu": "Edit",
+          "reason": null,
+          "shortcut": "Ctrl+F"
+        },
+        {
+          "enabled": true,
+          "id": "edit.usages",
+          "label": "Find usages",
+          "menu": "Edit",
+          "reason": null,
+          "shortcut": "Ctrl+Shift+U"
+        },
+        {
+          "enabled": true,
+          "id": "edit.impact",
+          "label": "Inspect record impact",
+          "menu": "Edit",
+          "reason": null,
+          "shortcut": "Ctrl+Shift+I"
+        },
+        {
+          "enabled": true,
+          "id": "view.presentation_source",
+          "label": "Inspect presentation source\u2026",
+          "menu": "View",
+          "reason": null,
+          "shortcut": "Ctrl+Shift+P"
+        },
+        {
+          "enabled": true,
+          "id": "tools.external_projection",
+          "label": "Open external projection",
+          "menu": "Tools",
+          "reason": null,
+          "shortcut": "Ctrl+Shift+E"
+        },
+        {
+          "enabled": true,
+          "id": "tools.assurance",
+          "label": "Requirements and evidence",
+          "menu": "Tools",
+          "reason": null,
+          "shortcut": "Ctrl+Shift+A"
+        },
+        {
+          "enabled": true,
+          "id": "tools.library",
+          "label": "Browse library folder",
+          "menu": "Tools",
+          "reason": null,
+          "shortcut": "Ctrl+Shift+L"
+        },
+        {
+          "enabled": true,
+          "id": "tools.recovery_settings",
+          "label": "Recovery settings",
+          "menu": "Tools",
+          "reason": null,
+          "shortcut": "Ctrl+Comma"
+        }
+      ],
+      "last": null,
+      "schema": "mbse-craft.command-catalog/1"
+    },
+    "error": false,
+    "external_copy_pending": false,
+    "feedback": "Select a model card to edit its fields. Model values and unfinished text remain separate.",
+    "frame_override": null,
+    "frame_policy": "Desktop",
+    "layout_recovery_status": "awaiting timer check",
+    "model_revision": 33,
+    "native_record_impact": {
+      "note": "",
+      "open": false,
+      "report": null,
+      "target": null
+    },
+    "native_recovery_status": "awaiting timer check",
+    "native_search": {
+      "note": "",
+      "open": false,
+      "query_mode": "NameContains",
+      "report": null
+    },
+    "native_system_browser": {
+      "open_groups": {
+        "1": true
+      }
+    },
+    "native_usages": null,
+    "periodic_recovery": false,
+    "pixels_per_point": 1.0,
+    "preferences_status": "Session preferences.",
+    "profile": "mbse-craft.ui-geometry/1",
+    "raw_version": 25,
+    "recovery_interval_seconds": 60,
+    "recovery_path": null,
+    "save_status": "Saved",
+    "selected": 1003,
+    "snapshot_hash": "d7d62bfb0aa8e86d1915b08a210d3b820475c480611ffd2a6639c37c296aa060",
+    "source_edit_dirty": false,
+    "source_edit_pending": false,
+    "views_active": "1",
+    "views_camera": {
+      "view": "1",
+      "x": 64.0,
+      "y": 0.0,
+      "zoom": 1.0
+    },
+    "views_gesture_active": false,
+    "views_inspection_copy_origin": null,
+    "views_inspection_note": "Choose an explicit local presentation source to inspect read only.",
+    "views_inspection_profile": null,
+    "views_inspection_sha256": null,
+    "views_inspection_visible": false,
+    "views_mapping_rehearsal": {
+      "checked_preview_retained": false,
+      "choices": null,
+      "copy_note": "",
+      "copy_title": "Recovered presentation",
+      "last_applied_view": null,
+      "note": "",
+      "target_current": false
+    },
+    "views_note": "Views opened with checked identity. Detached runtime history authority was not restored.",
+    "views_occurrence_navigation": {
+      "active_view": "1",
+      "document_sha256": "9b0aa9fc4455800d0832eeda12097f861069d2d7146487f58225585372c1c118",
+      "history_usage": [
+        0,
+        0
+      ],
+      "next_id": "9",
+      "occurrence": null,
+      "selected_occurrence": null
+    },
+    "views_pair_pending": false,
+    "views_pending": false,
+    "views_recovery_current_hint": false,
+    "views_revision": "4",
+    "views_saved_hint": true,
+    "widgets": {
+      "action:Add Actor": [
+        101.375,
+        1287.0,
+        167.59375,
+        1305.0
+      ],
+      "action:Add Capability": [
+        94.9375,
+        1261.0,
+        186.375,
+        1279.0
+      ],
+      "action:Add Environment": [
+        8.0,
+        1313.0,
+        116.96875,
+        1331.0
+      ],
+      "action:Add Expectation": [
+        244.5,
+        1313.0,
+        348.1875,
+        1331.0
+      ],
+      "action:Add Measure": [
+        8.0,
+        1287.0,
+        92.375,
+        1305.0
+      ],
+      "action:Add Mission": [
+        8.0,
+        1261.0,
+        85.9375,
+        1279.0
+      ],
+      "action:Add Objective": [
+        195.375,
+        1261.0,
+        285.125,
+        1279.0
+      ],
+      "action:Add Organization": [
+        125.96875,
+        1313.0,
+        235.5,
+        1331.0
+      ],
+      "action:Add Stakeholder": [
+        176.59375,
+        1287.0,
+        280.625,
+        1305.0
+      ],
+      "action:Browse library folder": [
+        1122.5,
+        29.5,
+        1251.90625,
+        47.5
+      ],
+      "action:Export SysML copy": [
+        1380.46875,
+        29.5,
+        1496.59375,
+        47.5
+      ],
+      "action:Find usages": [
+        8.0,
+        430.0,
+        83.5,
+        448.0
+      ],
+      "action:Import SysML": [
+        390.96875,
+        29.5,
+        477.46875,
+        47.5
+      ],
+      "action:Inspect presentation source\u2026": [
+        559.21875,
+        176.0,
+        740.875,
+        194.0
+      ],
+      "action:Inspect record impact": [
+        8.0,
+        456.0,
+        141.3125,
+        474.0
+      ],
+      "action:New": [
+        234.46875,
+        29.5,
+        268.875,
+        47.5
+      ],
+      "action:Open": [
+        277.875,
+        29.5,
+        318.03125,
+        47.5
+      ],
+      "action:Open external projection": [
+        782.46875,
+        29.5,
+        935.78125,
+        47.5
+      ],
+      "action:Recover": [
+        327.03125,
+        29.5,
+        381.96875,
+        47.5
+      ],
+      "action:Recovery copy": [
+        530.15625,
+        29.5,
+        621.78125,
+        47.5
+      ],
+      "action:Redo": [
+        1558.59375,
+        28.0,
+        1602.59375,
+        56.0
+      ],
+      "action:Requirements and evidence": [
+        944.78125,
+        29.5,
+        1113.5,
+        47.5
+      ],
+      "action:Save": [
+        486.46875,
+        29.5,
+        521.15625,
+        47.5
+      ],
+      "action:Search native records": [
+        8.0,
+        170.0,
+        139.65625,
+        188.0
+      ],
+      "action:Undo": [
+        1505.59375,
+        28.0,
+        1549.59375,
+        56.0
+      ],
+      "calc:Add count input": [
+        8.0,
+        1128.0,
+        109.28125,
+        1146.0
+      ],
+      "calc:Add duration input": [
+        232.46875,
+        1102.0,
+        349.90625,
+        1120.0
+      ],
+      "calc:Add length input": [
+        117.84375,
+        1102.0,
+        223.46875,
+        1120.0
+      ],
+      "calc:Add scalar input": [
+        8.0,
+        1102.0,
+        108.84375,
+        1120.0
+      ],
+      "camera:100%": [
+        505.8125,
+        255.0,
+        546.625,
+        273.0
+      ],
+      "camera:Fit": [
+        976.8125,
+        228.5,
+        999.6875,
+        246.5
+      ],
+      "camera:Pan down": [
+        807.4375,
+        255.0,
+        872.625,
+        273.0
+      ],
+      "camera:Pan left": [
+        619.59375,
+        255.0,
+        672.53125,
+        273.0
+      ],
+      "camera:Pan right": [
+        681.53125,
+        255.0,
+        741.90625,
+        273.0
+      ],
+      "camera:Pan up": [
+        750.90625,
+        255.0,
+        798.4375,
+        273.0
+      ],
+      "camera:Reset camera": [
+        881.625,
+        255.0,
+        967.875,
+        273.0
+      ],
+      "camera:Zoom in": [
+        555.625,
+        255.0,
+        610.59375,
+        273.0
+      ],
+      "camera:Zoom out": [
+        432.34375,
+        255.0,
+        496.8125,
+        273.0
+      ],
+      "command:toolbar:edit.impact": [
+        8.0,
+        456.0,
+        141.3125,
+        474.0
+      ],
+      "command:toolbar:edit.redo": [
+        1558.59375,
+        28.0,
+        1602.59375,
+        56.0
+      ],
+      "command:toolbar:edit.search": [
+        8.0,
+        170.0,
+        139.65625,
+        188.0
+      ],
+      "command:toolbar:edit.undo": [
+        1505.59375,
+        28.0,
+        1549.59375,
+        56.0
+      ],
+      "command:toolbar:edit.usages": [
+        8.0,
+        430.0,
+        83.5,
+        448.0
+      ],
+      "command:toolbar:file.export_sysml": [
+        1380.46875,
+        29.5,
+        1496.59375,
+        47.5
+      ],
+      "command:toolbar:file.import_sysml": [
+        390.96875,
+        29.5,
+        477.46875,
+        47.5
+      ],
+      "command:toolbar:file.new": [
+        234.46875,
+        29.5,
+        268.875,
+        47.5
+      ],
+      "command:toolbar:file.open": [
+        277.875,
+        29.5,
+        318.03125,
+        47.5
+      ],
+      "command:toolbar:file.recover": [
+        327.03125,
+        29.5,
+        381.96875,
+        47.5
+      ],
+      "command:toolbar:file.recovery_copy": [
+        530.15625,
+        29.5,
+        621.78125,
+        47.5
+      ],
+      "command:toolbar:file.review_recoveries": [
+        630.78125,
+        29.5,
+        773.46875,
+        47.5
+      ],
+      "command:toolbar:file.save": [
+        486.46875,
+        29.5,
+        521.15625,
+        47.5
+      ],
+      "command:toolbar:tools.assurance": [
+        944.78125,
+        29.5,
+        1113.5,
+        47.5
+      ],
+      "command:toolbar:tools.external_projection": [
+        782.46875,
+        29.5,
+        935.78125,
+        47.5
+      ],
+      "command:toolbar:tools.library": [
+        1122.5,
+        29.5,
+        1251.90625,
+        47.5
+      ],
+      "command:toolbar:tools.recovery_settings": [
+        1260.90625,
+        29.5,
+        1371.46875,
+        47.5
+      ],
+      "command:toolbar:view.layout_redo": [
+        469.65625,
+        176.0,
+        550.21875,
+        194.0
+      ],
+      "command:toolbar:view.layout_undo": [
+        379.0,
+        176.0,
+        460.65625,
+        194.0
+      ],
+      "command:toolbar:view.presentation_source": [
+        559.21875,
+        176.0,
+        740.875,
+        194.0
+      ],
+      "field:1003:calc.expression": [
+        8.0,
+        874.0,
+        362.0,
+        893.0
+      ],
+      "field:1003:calc.input.x": [
+        8.0,
+        947.0,
+        362.0,
+        966.0
+      ],
+      "field:1003:calc.input.x1": [
+        8.0,
+        1023.0,
+        362.0,
+        1042.0
+      ],
+      "field:1003:criterion": [
+        8.0,
+        630.0,
+        362.0,
+        649.0
+      ],
+      "field:1003:name": [
+        8.0,
+        505.0,
+        362.0,
+        524.0
+      ],
+      "input-unit:1003:x": [
+        8.0,
+        974.0,
+        108.0,
+        992.0
+      ],
+      "input-unit:1003:x1": [
+        8.0,
+        1050.0,
+        108.0,
+        1068.0
+      ],
+      "measure-unit:1003": [
+        8.0,
+        581.0,
+        116.1875,
+        599.0
+      ],
+      "menu:Edit": [
+        41.28125,
+        2.0,
+        68.0625,
+        20.0
+      ],
+      "menu:File": [
+        8.0,
+        2.0,
+        32.28125,
+        20.0
+      ],
+      "menu:Tools": [
+        118.46875,
+        2.0,
+        153.03125,
+        20.0
+      ],
+      "menu:View": [
+        77.0625,
+        2.0,
+        109.46875,
+        20.0
+      ],
+      "occurrence:3": [
+        379.0,
+        532.0,
+        610.0,
+        616.0
+      ],
+      "occurrence:4": [
+        634.0,
+        532.0,
+        904.0,
+        616.0
+      ],
+      "occurrence:5": [
+        928.0,
+        532.0,
+        1198.0,
+        616.0
+      ],
+      "occurrence:6": [
+        379.0,
+        687.0,
+        610.0,
+        771.0
+      ],
+      "occurrence:7": [
+        634.0,
+        687.0,
+        904.0,
+        771.0
+      ],
+      "output-unit:1003": [
+        8.0,
+        1076.0,
+        108.0,
+        1094.0
+      ],
+      "path": [
+        202.6875,
+        64.0,
+        2192.0,
+        83.0
+      ],
+      "recovery:Review copies": [
+        630.78125,
+        29.5,
+        773.46875,
+        47.5
+      ],
+      "relation:ContributesTo:1001:1000": [
+        379.0,
+        1295.0,
+        1033.59375,
+        1313.0
+      ],
+      "relation:ForObjective:1003:1002": [
+        379.0,
+        1347.0,
+        1092.0625,
+        1365.0
+      ],
+      "relation:Scope:1:1000": [
+        379.0,
+        1191.40625,
+        958.375,
+        1209.0
+      ],
+      "relation:Scope:1:1001": [
+        379.0,
+        1217.0,
+        1004.8125,
+        1235.0
+      ],
+      "relation:Scope:1:1002": [
+        379.0,
+        1243.0,
+        1048.125,
+        1261.0
+      ],
+      "relation:Scope:1:1003": [
+        379.0,
+        1269.0,
+        982.625,
+        1287.0
+      ],
+      "relation:Subject:1002:1001": [
+        379.0,
+        1321.0,
+        1082.875,
+        1339.0
+      ],
+      "save-path": [
+        137.46875,
+        91.0,
+        2192.0,
+        110.0
+      ],
+      "scope:1003": [
+        8.0,
+        532.0,
+        113.21875,
+        550.0
+      ],
+      "settings:Open": [
+        1260.90625,
+        29.5,
+        1371.46875,
+        47.5
+      ],
+      "tree:1": [
+        26.0,
+        263.0,
+        132.6875,
+        281.0
+      ],
+      "tree:1000": [
+        26.0,
+        289.0,
+        272.125,
+        307.0
+      ],
+      "tree:1001": [
+        26.0,
+        315.0,
+        318.53125,
+        333.0
+      ],
+      "tree:1002": [
+        26.0,
+        341.0,
+        361.875,
+        359.0
+      ],
+      "tree:1003": [
+        26.0,
+        367.0,
+        296.375,
+        385.0
+      ],
+      "tree:system:1:header": [
+        8.0,
+        237.0,
+        361.8125,
+        255.0
+      ],
+      "view:Layout Redo": [
+        469.65625,
+        176.0,
+        550.21875,
+        194.0
+      ],
+      "view:Layout Undo": [
+        379.0,
+        176.0,
+        460.65625,
+        194.0
+      ],
+      "view:tab:1": [
+        379.0,
+        202.0,
+        473.15625,
+        220.0
+      ],
+      "view:tab:2": [
+        482.15625,
+        202.0,
+        561.3125,
+        220.0
+      ],
+      "views:Open views": [
+        783.53125,
+        281.5,
+        858.75,
+        299.5
+      ]
+    },
+    "write_pending": false
+  },
+  "catalog_quit_normal_exit": true,
+  "original_inputs_unchanged": true,
+  "authentication_files_absent": true,
+  "completed_native_scenarios": [
+    "21stable command IDs and shortcuts; View menu disabled history reasons and File/Edit/Tools menus rendered",
+    "Menu ModelUndo restores native records and retains separate raw draft; keyboard ModelRedo; toolbar ModelUndo/Redo",
+    "Save native/views pair via toolbar, menu and keyboard; records/unedited drafts agree across saved artifacts",
+    "Menu captures field history scope; keyboard field Redo/Undo never invokes model history",
+    "CtrlAltZ and CtrlAltShiftZ route layout history, preserving native snapshot and invalid raw9e",
+    "Keyboard and menu New open preservation dialog; each Cancel retains exact native/layout state",
+    "Normal fresh pair reopen verifies snapshot/views digest, empty history and raw9e; catalog CtrlQ exits normally"
+  ],
+  "ended_utc": "2026-10-26T00:03:42.291787+00:00"
+}

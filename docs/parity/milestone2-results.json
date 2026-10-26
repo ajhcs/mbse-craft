@@ -1,6 +1,6 @@
 {
   "schema": "mbse-craft.milestone2-results/1",
-  "recorded_utc": "2026-10-25T23:40:05.048559+00:00",
+  "recorded_utc": "2026-10-26T00:05:59.563904+00:00",
   "state": "in_progress",
   "base_commit": "bfbe0f1ad361739fd14d728d93db3b9527c76b0a",
   "p07": {
@@ -26,9 +26,9 @@
     "review_followup": "p07/REVIEW_FOLLOWUP.md"
   },
   "p08": {
-    "state": "implemented_draft_pending_review",
+    "state": "merged",
     "title": "Apply a reviewed presentation copy transaction",
-    "requires": "P07 merged; P08 PR and independent engineering acceptance pending",
+    "requires": "P07 and P08 merged; independent engineering acceptance remains separate",
     "exit": "Fresh explicit mappings Apply once; one layout Undo; save/reopen; preserve originals",
     "branch": "codex/m2-p08-live-copy",
     "base_commit": "7244b562cf0e2de6462feeb70f24c69225c829e2",
@@ -46,9 +46,12 @@
     "native_receipt": "p08/verification/native/RECEIPT.json",
     "same_agent_review": "p08/verification/NATIVE_REVIEW.json",
     "preservation": "p08/PRESERVATION_AFTER.json",
-    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/11"
+    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/11",
+    "reviewed_head": "85c9098c5f2e3f98713da10fe53926a42ffe0020",
+    "merge_commit": "d7cca1c17002368f58264e7686e8c71a9b73b6dd",
+    "review_followup": "p08/REVIEW_FOLLOWUP.md"
   },
   "milestone_exit_accepted": false,
   "full_parity_accepted": false,
-  "milestone_exit_execution": "Bounded independent-native-recovery, mapping, Apply, Undo/Redo, save/reopen workflow completed on final P08 candidate; same-agent review. PR and engineering acceptance remain pending."
+  "milestone_exit_execution": "Bounded independent-native-recovery, mapping, Apply, Undo/Redo, save/reopen workflow completed on P08 candidate and PR #11 reviewed/merged. Independent engineering acceptance remains separate."
 }

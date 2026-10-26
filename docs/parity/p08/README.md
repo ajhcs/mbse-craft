@@ -1,6 +1,6 @@
 # P08: live reviewed presentation Apply and Undo
 
-Draft review: [PR #11](https://github.com/ajhcs/mbse-craft/pull/11).
+Merged [PR #11](https://github.com/ajhcs/mbse-craft/pull/11) at `d7cca1c17002368f58264e7686e8c71a9b73b6dd`; see the [requested follow-up review](REVIEW_FOLLOWUP.md). This original execution record remains source-specific.
 
 P07 [PR #10](https://github.com/ajhcs/mbse-craft/pull/10) was reviewed in isolated
 `codex/review-p07`, with no additional actionable format finding, and merged as
@@ -50,7 +50,7 @@ digest are verified there, and the copied canvas is rendered after Redo in the
 first run. The raw receipt retains `actions_completed_review_pending`; the
 separate [same-agent pixel/byte review](verification/NATIVE_REVIEW.json) records
 subsequent review without changing the receipt. This is bounded execution
-coverage for the Milestone 2 workflow, pending PR and engineering acceptance.
+coverage for the Milestone 2 workflow, with PR review/merge complete; independent engineering acceptance remains separate.
 
 ## Retained failures and corrections
 
@@ -79,4 +79,4 @@ including original P07 and its review checkout. Dependencies, external projects,
 shared skills, services, provider, signing and release workflows are unchanged.
 This is same-agent Linux/software-rendered verification, not independent native
 review, domain acceptance or full No Magic/Craft parity. The 56 prospective full
-capability acceptance specifications remain NOT_RUN. P09 remains planned.
+capability acceptance specifications remain NOT_RUN. [P09](../p09/README.md) now implements the workspace command catalog in a separate draft.

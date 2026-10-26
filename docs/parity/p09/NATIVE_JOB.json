@@ -1,0 +1,35 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "id": "p09-native-command-surfaces",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m3-p09-input_fixed-20261025T235733Z/mbse-desktop",
+  "binary_sha256": "7f2da91ac484bda93d2726c54226a90ee2008ed6e2e7324baf16ec6559620339",
+  "source_sha256": "ef0af52c552a2b741adb3031b56de42afee2ed82b6b420dd67b9f8e767b4232a",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "3b7f668763ac85a195af7cac3c61425518c7a28008a13779823dcc464cb14b91",
+    "scripts/verify-m1-native.py": "e0e14f8c37f0fa5686ba2bae7fb71adfc068d7ca11a748ffb123e49aac058aba",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "inputs": {
+    "/workspace/repos/builderbob/mbse-craft/work/m3-p09-command-catalog/docs/parity/p09/fixtures/original.kernspan": "eefc3606af8a0e31bf8a513f942fc9bbe5122fb1417c5c98789af941cbc1c1fd"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p09-01",
+  "argv_extra": [
+    "--open",
+    "/workspace/repos/builderbob/mbse-craft/work/m3-p09-command-catalog/docs/parity/p09/fixtures/original.kernspan",
+    "--select",
+    "1003"
+  ],
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "scenarios": [
+    "Menu disabled reasons and21stable workspace IDs/default shortcuts",
+    "Native menu/toolbar/keyboard model history and field Undo scope",
+    "Exact layout shortcuts keep native/raw content; native Save through all3surfaces",
+    "Dirty New preservation Cancel retains work; saved pair normal reopen"
+  ],
+  "claim_policy": "P09 bounded Linux workspace commands only; exact source/binary, immutable synthetic input and all epochs preserved. No configured shortcut, full Craft accessibility/platform or engineering acceptance claim."
+}

@@ -685,6 +685,9 @@ impl Views {
         }
         Ok(())
     }
+    pub fn can_layout_history(&self, redo: bool) -> bool {
+        if redo { !self.future.is_empty() } else { !self.past.is_empty() }
+    }
     pub fn history_usage(&self) -> (usize, usize) {
         (
             self.past.len() + self.future.len(),

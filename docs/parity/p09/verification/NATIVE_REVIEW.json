@@ -1,0 +1,34 @@
+{
+  "schema": "mbse-craft.p09-native-review/1",
+  "reviewer": "Codex, same implementing agent",
+  "independent_review": false,
+  "result": "bounded_catalog_scenarios_passed_with_retained_oracle_correction",
+  "raw_receipt_status": "actions_completed_review_pending",
+  "native_runs": 2,
+  "retained_action_errors": 1,
+  "pixels_reviewed": [
+    "run/01-view-menu-disabled-history-reasons.png",
+    "run/05-file-menu-shared-save.png",
+    "run/11-edit-menu-retains-field-scope.png",
+    "run/14-keyboard-layout-undo-native-raw-retained.png",
+    "run/16-keyboard-new-preservation-dialog.png",
+    "reopen/19-fresh-normal-reopen.png",
+    "reopen/20-tools-catalog-menu.png"
+  ],
+  "observations": [
+    "All4menus render with default accelerators; disabled layout/history reason remains visible",
+    "Actual popup captures native-field scope; menu Undo and keyboard field Redo/Undo return intended raw name",
+    "Menu/toolbar/keyboard histories route via stable IDs and saved native records match; ModelUndo deliberately keeps separately retained raw name",
+    "All3Save surfaces produce actual paired saves; unrelated raw9e/accepted95metre/calculation2.5km retained",
+    "Exact CtrlAltZ / CtrlAltShiftZ undo/redo camera layout while native snapshot remains exact",
+    "Native keyboard/menu New preservation dialog Cancel keeps exact native/layout",
+    "Fresh reopen has exact native/views digest and empty runtime history; CtrlQ catalog path exits app0; both drivers/displays closed and auth absent"
+  ],
+  "oracle_correction": "Initial assertion incorrectly expected Model Undo to rewind raw drafts; native records correctly restore while separately retained latest raw name remains. Corrected to exact records and every unedited draft, explicitly checking edited raw name. Original action error retained.",
+  "limits": [
+    "Same-agent Linux private Xvfb/software-rendered review only",
+    "Per-command file/provider/domain behavior not exhaustively replayed; representative native routes plus9catalog unit/controller tests and full352workspace regression",
+    "No persisted shortcut overrides, docking, full platform/accessibility/keyboard-only or domain engineering acceptance",
+    "Raw receipts and failed compile/input-fixture epochs retained; not summed"
+  ]
+}
