@@ -29,7 +29,6 @@
     "review_followup": "p14/REVIEW_FOLLOWUP.md"
   },
   "remaining_prs": [
-    "P16",
     "P17",
     "P18",
     "P19",
@@ -61,5 +60,25 @@
     "review_followup": "p15/REVIEW_FOLLOWUP.md",
     "reviewed_head": "4ff8d31fd8e64ad343ab2b01bd63018a76c2e324",
     "merge_commit": "19cb6516350d180fa3f693034c9acc9dbd2b1821"
+  },
+  "p16": {
+    "state": "implemented_draft_pending_review",
+    "branch": "codex/m4-p16-parts-references",
+    "base_commit": "19cb6516350d180fa3f693034c9acc9dbd2b1821",
+    "source_files": 684,
+    "source_sha256": "fc0bc968cd4df7e19f4bef2fae59edfecb0bb018645ac79879201481e25ed434",
+    "binary_sha256": "4e9e71efa56f86a92995b9cf975a25d974c5b1c47160781977132eac6c12d0bd",
+    "workspace_tests_passed": 414,
+    "new_p16_tests": 7,
+    "native_runs": 3,
+    "native_action_errors": 0,
+    "acceptance": "p16/README.md",
+    "contract": "p16/CONTRACT.md",
+    "compiler_receipt": "p16/verification/COMPILER_RECEIPT.json",
+    "native_receipt": "p16/verification/native/RECEIPT.json",
+    "same_agent_review": "p16/verification/NATIVE_REVIEW.json",
+    "preservation": "p16/verification/PRESERVATION_AFTER.json",
+    "preexisting_checkouts_verified_unchanged": 27,
+    "user_removed_historical_directories": 18
   }
 }

@@ -1,0 +1,54 @@
+# P16: parts, references and identity-preserving decomposition moves
+
+Built on merged P15 PR #18 (`19cb6516350d180fa3f693034c9acc9dbd2b1821`)
+in isolated `codex/m4-p16-parts-references`. Tools / Types and properties now
+creates Component-owned Part and Reference usages. Parts form an acyclic type
+decomposition; References reuse types without implying containment. The browser
+labels System membership separately from owned Part and Reference rows.
+
+| Acceptance | Exact evidence |
+| --- | --- |
+| Containment cycles refuse | API direct/indirect cycle cases refuse atomically. Native converting reverse Reference1011 to Part displays TYPE_CONTAINMENT_CYCLE/disabled Apply while accepted usages and model revision stay unchanged |
+| Reuse does not duplicate type identity | Actual native Parts1009/1010 have distinct usage IDs and both target Device1007. Reference1011 points from Device1007 back to Subsystem1004 without a containment cycle |
+| Moves preserve identity | Native owner change moves Part1009 from Component1004 to1008 with same ID and target1007. Undo/Redo restore ownership while retaining newer invalid target text1007? |
+| Wrong targets refuse | Native primitive value1005 as usage target refuses without accepted mutation. API covers wrong owner/target kinds and cross-System refusal |
+| Invalid drafts persist | Native Save/cold app retains invalid usage1009 form, existing P15 pending property text/upper1.. and accepted property1006. Original core records/document ID/raw9e/creation journals/95metre/2.5km remain exact |
+| Browser distinguishes membership/containment | Actual scrolled browser pixels show member of System1, Part containment and Reference not containment. A third run completed the lower-row visual check clipped in the first capture; it did not repeat authoring checks |
+| P15 data compatibility | Regression parses actual P15 native fixture and serializes type store/journal to equal JSON without inserting empty P16 fields. No dependency/vendor change |
+
+The684-file closure
+`fc0bc968cd4df7e19f4bef2fae59edfecb0bb018645ac79879201481e25ed434`
+passed **414 distinct workspace tests**, including **seven new P16 cases**, and
+desktop build exit0 at checkout `2d2f786`. Binary SHA-256:
+`4e9e71efa56f86a92995b9cf975a25d974c5b1c47160781977132eac6c12d0bd`.
+[Compiler receipt](verification/COMPILER_RECEIPT.json), [test pairs](verification/TEST_RESULTS.json),
+[source manifest](SOURCE_MANIFEST.json), [job](JOB.json) and [contract](CONTRACT.md)
+record exact source/execution/input boundaries. Runtime source remains exact.
+
+Three private Linux app/display runs had zero action errors, normal app/driver
+exits, exact owned-process cleanup and absent authentication files. Native/views
+Save and cold reopen use actual file bytes and checked views hash; reopened view
+history is empty. The [raw native receipt](verification/native/RECEIPT.json) retains
+`actions_completed_review_pending`; [same-agent pixel/byte review](verification/NATIVE_REVIEW.json)
+is separate. All44 original/stored/lossless artifact hashes are indexed in
+[ARCHIVES.json](verification/ARCHIVES.json). Fixture bytes remain exact.
+
+The first413-test/build pass remains separately in `before-form-review`. Review
+split pending property and usage edits into independent slots, preventing same-frame
+replacement by another form action. It also replaced repeated reachability scans
+with topological cycle admission and added P15 serialization compatibility coverage.
+No test counts are summed. There were no P16 compile/test failures.
+
+[Preservation](verification/PRESERVATION_AFTER.json) verifies27 pre-existing
+available checkouts unchanged. The18 user-removed historical directories still
+have their registered branch/commit heads retained; their contents cannot currently
+be verified. No recreation, pruning, reset or cleanup was performed.
+
+This is bounded same-agent Linux structural evidence. Part usages are definitions
+owned by a Component, with same-System Component targets; configured instance
+values, ports, exchanges, inherited features and typed occurrence diagrams remain
+later work. One current usage form is retained; explicit New/Edit replaces it.
+Existing per-property and definition journals remain independent. The Linux font
+shows an arrow separator placeholder, while relation words and exact IDs remain
+visible. Independent/platform/font/domain/full NoMagic/Craft acceptance and the
+Milestone4 exit remain open; all56 broad parity specifications remain NOT_RUN.
