@@ -1,0 +1,243 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-26T20:18:51.087717+00:00",
+  "job_sha256": "68e901c44c32c30d9dc01e228d72662faac85bc72a86d62a65dfac8fc53af99f",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-final-01/run",
+      "started_utc": "2026-10-26T20:18:51.108449+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 3960101,
+          "start_ticks": 42028204
+        },
+        "server_pid": {
+          "pid": 3960098,
+          "start_ticks": 42028202
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/repos/builderbob/mbse-craft/work/m4-p17b-port-occurrences/docs/parity/p17b/pointer-diagnostic/native/run/captured-v3-prepared.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 3960101,
+        "server_pid": 3960098,
+        "window": 4194307,
+        "binary_sha256": "cf7319aceb4a3a0dbcf2d1b077e04a4aef959d3db3cbdf136c7ba0a2c2305571"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-26T20:23:57.642977+00:00",
+      "owned_processes_absent": true
+    },
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-final-01/reopen",
+      "started_utc": "2026-10-26T20:23:57.665315+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 3967290,
+          "start_ticks": 42058860
+        },
+        "server_pid": {
+          "pid": 3967287,
+          "start_ticks": 42058858
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-final-01/run/typed-ports-final.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 3967290,
+        "server_pid": 3967287,
+        "window": 4194307,
+        "binary_sha256": "cf7319aceb4a3a0dbcf2d1b077e04a4aef959d3db3cbdf136c7ba0a2c2305571"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-26T20:24:04.604913+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-26T20:18:51.108140+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1432770490368,
+    "available_memory_bytes": 28068749312,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 563
+      },
+      {
+        "pid": 2912202,
+        "start_ticks": 40560687,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "actual_drag_midpoint": {
+    "gesture_active": true,
+    "response": {
+      "button_down_on": true,
+      "contains_pointer": true,
+      "dock_blocked": true,
+      "drag_started": false,
+      "drag_stopped": false,
+      "dragged": true,
+      "enabled": true,
+      "hovered": true,
+      "layer": "LayerId { Background Id::new(\"background\") }",
+      "pointer": [
+        542.0,
+        851.0
+      ],
+      "pointer_down": true,
+      "response_id": "Id::new(\"mbse-owned-workspace-docking\").with((\"body\", Canvas)).with(IdSalt::new(\"child\")).with(IdSalt::new(\"child\")).with((\"port-occurrence\", 10))",
+      "ui_id": "Id::new(\"mbse-owned-workspace-docking\").with((\"body\", Canvas)).with(IdSalt::new(\"child\")).with(IdSalt::new(\"child\"))"
+    }
+  },
+  "actual_drag_geometry": {
+    "before": {
+      "height": 112.0,
+      "width": 270.0,
+      "x": 45.0,
+      "y": 160.0
+    },
+    "after": {
+      "height": 112.0,
+      "width": 270.0,
+      "x": 85.0,
+      "y": 180.0
+    },
+    "other_occurrence_unchanged": true,
+    "model_hash_unchanged": true
+  },
+  "pin_hide_remove_layout_undo_fit_passed": true,
+  "model_hash_unchanged_through_all_layout_operations": true,
+  "preflight_reopen": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-26T20:23:57.665059+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1432752304128,
+    "available_memory_bytes": 28062507008,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 560
+      },
+      {
+        "pid": 2912202,
+        "start_ticks": 40560687,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "original_inputs_unchanged": true,
+  "actual_captured_v3_pair_save_and_cold_reopen_exact": true,
+  "same_port_two_views_distinct_occurrences_and_geometry": true,
+  "native_snapshot_and_all_raw_journals_unchanged": true,
+  "authentication_files_absent": true,
+  "ended_utc": "2026-10-26T20:25:16.017589+00:00"
+}
