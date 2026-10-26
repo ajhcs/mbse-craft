@@ -385,7 +385,7 @@
       "acceptance": [
         "Wrong endpoints and item types refuse; views update consistently; removing a visual edge does not delete the semantic connector."
       ],
-      "state": "reviewed_ready_to_merge",
+      "state": "merged",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "children": [
@@ -405,7 +405,7 @@
         {
           "id": "P18b",
           "title": "Qualified port occurrences and semantic connector visual routes",
-          "state": "reviewed_ready_to_merge",
+          "state": "merged",
           "depends_on": [
             "P18a"
           ],
@@ -414,11 +414,14 @@
           ],
           "branch": "codex/m4-p18b-connector-routes",
           "evidence": "docs/parity/p18b/README.md",
-          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/23"
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/23",
+          "merge_commit": "239d21d1728d51e4ccad70d413e8dffc971f6783",
+          "reviewed_head": "10dda0a6bbe9e6b9c11c8a0076ebb114c7dde53d"
         }
       ],
       "decomposition_reason": "Separate part-qualified semantic endpoint/type rules from presentation context/routing so each identity boundary is reviewable. P18 stays open until both children pass.",
-      "evidence": "docs/parity/p18b/README.md"
+      "evidence": "docs/parity/p18b/README.md",
+      "merge_commit": "239d21d1728d51e4ccad70d413e8dffc971f6783"
     },
     {
       "id": "P19",
@@ -430,9 +433,10 @@
       "acceptance": [
         "Default changes affect inheriting instances only; overrides remain explicit; results never overwrite authored values."
       ],
-      "state": "planned",
+      "state": "in_progress",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "branch": "codex/m4-p19-values"
     },
     {
       "id": "P20",
