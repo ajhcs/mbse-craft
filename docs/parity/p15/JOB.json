@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m4-p15-types-properties",
+  "id": "m4-p15-history-widget-fix",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m4-p15-types-properties",
   "source_manifest": "docs/parity/p15/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "60e90f2aa0fb4541c66bb0f6da2a981546b0a3357230ba8679ba533ebe9c4965",
-  "source_sha256": "63082077db4162abb9cc085e8a1c64959646a65857d23749c8fc37a10b1af0f2",
+  "source_manifest_sha256": "40571c94446992e88bb46371657aaaf1f8d1057ea33d0d87b0bbf48b1e2fab6f",
+  "source_sha256": "a32221c6327ee15ece02d86b6705386261030b42eae3f5bca416a69e76510589",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -38,7 +38,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "P15 exact candidate: typed definitions/properties, wrong-kind and multiplicity refusal, separate durable raw journals and combined model history preserving drafts/allocator. Full workspace/build.",
+  "rationale": "Correct combined history PartialEq compile refusal; add stable instance/property/field widget IDs and actual renderer focus test. Full workspace/build.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",
