@@ -13,12 +13,14 @@ use std::{
 pub struct RecoveryPreferences {
     pub periodic_recovery: bool,
     pub recovery_interval_seconds: u64,
+    pub shortcut_overrides: crate::shortcuts::Overrides,
 }
 impl Default for RecoveryPreferences {
     fn default() -> Self {
         Self {
             periodic_recovery: false,
             recovery_interval_seconds: 60,
+            shortcut_overrides: Default::default(),
         }
     }
 }
@@ -384,5 +386,35 @@ mod worker_adapter_tests {
         assert!(std::fs::read_to_string(config.join("config.toml"))
             .unwrap()
             .contains("recovery_interval_seconds = 42"));
+    }
+}
+
+#[cfg(test)]
+mod shortcut_persistence_tests {
+    use super::*;
+    #[test]
+    fn additive_overrides_round_trip_with_existing_recovery_values_comments_and_unknown_keys(){
+        let area=tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap();let path=area.path().join("config.toml");std::fs::write(&path,"schema_version = 1\n# retained comment\nperiodic_recovery = true\nrecovery_interval_seconds = 42\nfuture_key = 'retained'\n[shortcut_overrides]\n'future.command' = 'future syntax retained'\n").unwrap();
+        let(mut store,report)=SettingsStore::<RecoveryPreferences>::open(Location::Dir(area.path().into()));assert!(!report.has_problems());store.update(|p|{p.shortcut_overrides.insert("edit.undo".into(),"Primary+Alt+U".into());});store.flush().unwrap();
+        let text=std::fs::read_to_string(&path).unwrap();assert!(text.contains("# retained comment")&&text.contains("future_key = 'retained'")&&text.contains("future syntax retained"));
+        let(reopened,report)=SettingsStore::<RecoveryPreferences>::open(Location::Dir(area.path().into()));assert!(!report.has_problems());assert!(reopened.get().periodic_recovery);assert_eq!(reopened.get().recovery_interval_seconds,42);assert_eq!(reopened.get().shortcut_overrides["edit.undo"],"Primary+Alt+U");assert_eq!(reopened.get().shortcut_overrides["future.command"],"future syntax retained");
+    }
+    #[test]
+    fn actual_worker_shortcut_failure_remains_pending_and_retries_same_generation(){
+        let area=tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap();let config=area.path().join("config");std::fs::create_dir(&config).unwrap();let mut p=Preferences::open(Some(config.clone()),eframe::egui::Context::default());
+        fn until(p:&mut Preferences,check:impl Fn(&Preferences)->bool)->bool{let end=Instant::now()+Duration::from_secs(8);while Instant::now()<end{p.poll();if check(p){return true;}std::thread::sleep(Duration::from_millis(20));}false}
+        p.value.shortcut_overrides.insert("edit.undo".into(),"Primary+Alt+U".into());p.changed();assert!(until(&mut p,|p|!p.pending()));
+        let held=area.path().join("held-config");std::fs::rename(&config,&held).unwrap();std::fs::write(&config,b"owned P10 failure fixture").unwrap();p.value.shortcut_overrides.insert("view.layout_undo".into(),"Primary+Alt+L".into());p.changed();let generation=p.generation;let failure=until(&mut p,|p|p.status.contains("save failed"));let pending=p.pending();std::fs::remove_file(&config).unwrap();std::fs::rename(&held,&config).unwrap();assert!(failure&&pending);assert!(until(&mut p,|p|!p.pending()));assert_eq!(p.generation,generation);assert_eq!(p.acknowledged,generation);let text=std::fs::read_to_string(config.join("config.toml")).unwrap();assert!(text.contains("Primary+Alt+L")&&text.contains("Primary+Alt+U"));
+    }
+}
+
+#[cfg(test)]
+mod shortcut_reset_test {
+    use super::*;
+    #[test]
+    fn explicit_default_marker_survives_merge_save_and_restart_without_resurrecting_old_override(){
+        let area=tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap();let path=area.path().join("config.toml");std::fs::write(&path,"schema_version = 1\n# keep reset note\n[shortcut_overrides]\n'edit.undo' = 'Primary+Alt+U'\n'future.command' = 'keep'\n").unwrap();
+        let(mut store,_)=SettingsStore::<RecoveryPreferences>::open(Location::Dir(area.path().into()));let mut draft=crate::shortcuts::Editor::new(&store.get().shortcut_overrides);draft.reset_known();store.update(|p|p.shortcut_overrides=draft.draft);store.flush().unwrap();
+        let(store,_)=SettingsStore::<RecoveryPreferences>::open(Location::Dir(area.path().into()));assert_eq!(store.get().shortcut_overrides["edit.undo"],"Default");assert_eq!(store.get().shortcut_overrides["future.command"],"keep");let active=crate::shortcuts::Bindings::resolve(&store.get().shortcut_overrides).unwrap_or_else(|e|panic!("{e:?}"));assert_eq!(active.get(crate::command_catalog::Id::Undo),Some(crate::command_catalog::Id::Undo.spec().shortcut));let text=std::fs::read_to_string(path).unwrap();assert!(text.contains("# keep reset note")&&!text.contains("Primary+Alt+U"));
     }
 }

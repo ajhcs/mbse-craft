@@ -7,6 +7,7 @@ impl Workspace {
         if self.views.inspection_visible()
             || self.assurance.is_visible()
             || self.exchange.is_visible()
+            || self.shortcuts.open
         {
             return ShortcutTarget::Widget;
         }
@@ -17,6 +18,7 @@ impl Workspace {
                 || self.context_creation.is_some()
                 || self.settings_window
                 || self.recovery_window
+                || self.shortcuts.open
                 || self.pending.is_some(),
             false,
         )
@@ -25,6 +27,22 @@ impl Workspace {
     /// Handlers still validate paths, files, revisions and pending tickets on use.
     pub(super) fn command_reason(&self, id: Id, scope: &ShortcutTarget) -> Option<String> {
         let editing = id.is_history() || id.is_layout_history();
+        if self.shortcuts.open
+            && (editing
+                || matches!(
+                    id,
+                    Id::New
+                        | Id::Open
+                        | Id::Recover
+                        | Id::Import
+                        | Id::Save
+                        | Id::Recovery
+                        | Id::Export
+                        | Id::Quit
+                ))
+        {
+            return Some("Keyboard shortcuts: close the editor to use native file/history commands. Unapplied shortcut text is retained.".into());
+        }
         if self.views.inspection_visible()
             && matches!(
                 id,
@@ -191,6 +209,9 @@ impl Workspace {
             Id::External => self.exchange.open(&self.path),
             Id::Assurance => self.assurance.open_window(),
             Id::Library => self.catalog.open(&self.path),
+            Id::Shortcuts => {
+                self.shortcuts.open = true;
+            }
             Id::Settings => {
                 self.settings_window = true;
             }
@@ -242,7 +263,7 @@ impl Workspace {
             .on_hover_text(format!(
                 "{} · {}",
                 id.spec().label,
-                ui.ctx().format_shortcut(&id.spec().shortcut)
+                self.shortcut_label(id, scope, ui.ctx())
             ))
             .on_disabled_hover_text(reason.unwrap_or_default());
         self.bound(Self::command_alias(id), &response);
@@ -268,8 +289,11 @@ impl Workspace {
                         let reason = self.command_reason(spec.id, &scope);
                         let r = ui.add_enabled(
                             reason.is_none(),
-                            egui::Button::new(spec.label)
-                                .shortcut_text(ui.ctx().format_shortcut(&spec.shortcut)),
+                            egui::Button::new(spec.label).shortcut_text(self.shortcut_label(
+                                spec.id,
+                                &scope,
+                                ui.ctx(),
+                            )),
                         );
                         let r = r.on_disabled_hover_text(reason.clone().unwrap_or_default());
                         self.bound(format!("command:menu:{}", spec.key), &r);
@@ -295,7 +319,7 @@ impl Workspace {
     }
     pub(super) fn handle_shortcuts(&mut self, ctx: &egui::Context) {
         // The assurance editor owns its Save shortcut. This is not native Save.
-        if self.assurance.is_visible() && ctx.input(|i|i.events.iter().any(|e|matches!(e,egui::Event::Key{key:egui::Key::S,pressed:true,repeat:false,modifiers,..} if modifiers.matches_exact(egui::Modifiers::COMMAND)))) {
+        if !self.shortcuts.open && self.assurance.is_visible() && ctx.input(|i|i.events.iter().any(|e|matches!(e,egui::Event::Key{key:egui::Key::S,pressed:true,repeat:false,modifiers,..} if modifiers.matches_exact(egui::Modifiers::COMMAND)))) {
             ctx.input_mut(|i|i.consume_key(egui::Modifiers::COMMAND,egui::Key::S));self.assurance.request_save();return;
         }
         if egui::Popup::is_any_open(ctx) {
@@ -331,28 +355,52 @@ impl Workspace {
                     ..
                 } = e
                 {
-                    catalog::ALL
-                        .iter()
-                        .find(|s| {
-                            s.shortcut.logical_key == *key
-                                && modifiers.matches_exact(s.shortcut.modifiers)
-                                && !(s.id.is_history() && matches!(scope, ShortcutTarget::Widget))
-                        })
-                        .map(|s| s.id)
+                    catalog::ALL.iter().find_map(|spec| {
+                        let chord = self.keyboard_binding(spec.id, &scope)?;
+                        (chord.logical_key == *key && modifiers.matches_exact(chord.modifiers))
+                            .then_some((spec.id, chord))
+                    })
                 } else {
                     None
                 }
             })
         });
-        if let Some(id) = pressed {
-            if id.is_history() && matches!(scope, ShortcutTarget::Widget) {
-                return;
-            }
-            ctx.input_mut(|i| {
-                i.consume_key(id.spec().shortcut.modifiers, id.spec().shortcut.logical_key)
-            });
+        if let Some((id, chord)) = pressed {
+            ctx.input_mut(|i| i.consume_key(chord.modifiers, chord.logical_key));
             self.dispatch_workspace(id, Surface::Keyboard, scope);
         }
+    }
+    pub(super) fn keyboard_binding(
+        &self,
+        id: Id,
+        scope: &ShortcutTarget,
+    ) -> Option<egui::KeyboardShortcut> {
+        if id.is_history() {
+            return match scope {
+                ShortcutTarget::Field(_) => Some(id.spec().shortcut),
+                ShortcutTarget::Widget => None,
+                ShortcutTarget::Model => self.shortcuts.active.get(id),
+            };
+        }
+        if id.is_layout_history() && !matches!(scope, ShortcutTarget::Model) {
+            return None;
+        }
+        self.shortcuts.active.get(id)
+    }
+    pub(super) fn shortcut_label(
+        &self,
+        id: Id,
+        scope: &ShortcutTarget,
+        ctx: &egui::Context,
+    ) -> String {
+        let chord = if id.is_history() && matches!(scope, ShortcutTarget::Field(_)) {
+            Some(id.spec().shortcut)
+        } else {
+            self.shortcuts.active.get(id)
+        };
+        chord
+            .map(|c| ctx.format_shortcut(&c))
+            .unwrap_or_else(|| "Unbound".into())
     }
     pub(super) fn command_audit(&self) -> serde_json::Value {
         let scope = self
@@ -361,7 +409,7 @@ impl Workspace {
             .unwrap_or_else(|| self.history_scope());
         serde_json::json!({"schema":"mbse-craft.command-catalog/1","last":self.last_workspace_command,"items":catalog::ALL.iter().map(|s|{
             let reason=self.command_reason(s.id,&scope);
-            serde_json::json!({"id":s.key,"label":s.label,"menu":s.menu,"shortcut":self.context.format_shortcut(&s.shortcut),"enabled":reason.is_none(),"reason":reason})
+            serde_json::json!({"id":s.key,"label":s.label,"menu":s.menu,"shortcut":self.shortcut_label(s.id,&scope,&self.context),"default_shortcut":self.context.format_shortcut(&s.shortcut),"keyboard_scope":crate::shortcuts::scope(s.id),"enabled":reason.is_none(),"reason":reason})
         }).collect::<Vec<_>>()})
     }
 }
@@ -424,14 +472,14 @@ mod tests {
     #[test]
     fn command_ids_defaults_and_menu_groups_are_unique_and_complete() {
         use std::collections::BTreeSet;
-        assert_eq!(catalog::ALL.len(), 21);
+        assert_eq!(catalog::ALL.len(), 22);
         assert_eq!(
             catalog::ALL
                 .iter()
                 .map(|s| s.key)
                 .collect::<BTreeSet<_>>()
                 .len(),
-            21
+            22
         );
         assert_eq!(
             catalog::ALL
@@ -439,7 +487,7 @@ mod tests {
                 .map(|s| s.id)
                 .collect::<BTreeSet<_>>()
                 .len(),
-            21
+            22
         );
         for (i, s) in catalog::ALL.iter().enumerate() {
             assert!(catalog::MENUS.contains(&s.menu));
@@ -762,7 +810,7 @@ mod tests {
                 assert!(!app.session.pending());
             }
             assert!(!dest.exists());
-            assert_eq!(app.command_audit()["items"].as_array().unwrap().len(), 21);
+            assert_eq!(app.command_audit()["items"].as_array().unwrap().len(), 22);
         }
     }
 }
