@@ -96,7 +96,7 @@
     "corrective_exact_invalid_native_review": "p17a/exact-draft-verification/REVIEW.json"
   },
   "p17a": {
-    "state": "reviewed_ready_to_merge",
+    "state": "merged",
     "parent_position": "P17",
     "position_complete": false,
     "branch": "codex/m4-p17a-ports-interfaces",
@@ -121,6 +121,34 @@
     "pr_url": "https://github.com/ajhcs/mbse-craft/pull/20",
     "review_followup": "p17a/REVIEW_FOLLOWUP.md",
     "review_preservation": "p17a/REVIEW_PRESERVATION.json",
-    "review_available_preexisting_checkouts_unchanged": 30
+    "review_available_preexisting_checkouts_unchanged": 30,
+    "reviewed_head": "fe594f15c8bac4b30af2e2dab6fad8b81fac9881",
+    "merge_commit": "c6b36918062bfb894df27b88ae9a32357d539bb5"
+  },
+  "p17b": {
+    "state": "reviewed_ready_to_merge",
+    "parent_position": "P17",
+    "position_complete": false,
+    "branch": "codex/m4-p17b-port-occurrences",
+    "base_commit": "c6b36918062bfb894df27b88ae9a32357d539bb5",
+    "source_files": 690,
+    "source_sha256": "86979cebf62dd472dc38cc5a342123a8606690699e25751418e8e4e87a0f6803",
+    "binary_sha256": "cf7319aceb4a3a0dbcf2d1b077e04a4aef959d3db3cbdf136c7ba0a2c2305571",
+    "workspace_tests_passed": 432,
+    "new_p17b_tests": 10,
+    "final_native_runs": 2,
+    "final_native_action_errors": 0,
+    "acceptance": "p17b/README.md",
+    "contract": "p17b/CONTRACT.md",
+    "compiler_receipt": "p17b/verification/COMPILER_RECEIPT.json",
+    "native_receipt": "p17b/verification/native/RECEIPT.json",
+    "same_agent_review": "p17b/verification/NATIVE_REVIEW.json",
+    "preservation": "p17b/verification/PRESERVATION_AFTER.json",
+    "preexisting_checkouts_verified_unchanged": 31,
+    "user_removed_historical_directories": 18,
+    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/21",
+    "review_followup": "p17b/REVIEW_FOLLOWUP.md",
+    "review_preservation": "p17b/REVIEW_PRESERVATION.json",
+    "review_available_preexisting_checkouts_unchanged": 32
   }
 }

@@ -1,0 +1,36 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "796c1ba9dfd08b9ce913113bfc5f434fcb11dc7f592ad6114674b46c429db59d",
+    "scripts/verify-m1-native.py": "ef4e7c2308323b9023f83a15ddb3b9214d27368fd9a34a42b4245ad44f574a39",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "id": "p17b-pointer-response-diagnostic-and-capture-fix",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p17b-captured-write-and-pointer-diagnostic-20261026T200649Z/mbse-desktop",
+  "binary_sha256": "ebe0f6da6e6ec3d25824c84e080342e6b5cb7b9e772f8c0d0603a86397b85050",
+  "source_sha256": "583f689578095b061acf48ebc2d72713cad53e12ad748376354d0893a0a5c088",
+  "inputs": {
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-01/run/prepared-port-pair.kernspan": "39ced001ccc805049b18439d3ca264cae32b6069a08ae5cf690c92390ac42110",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p17b-port-occurrences/work/diagnostic-unbound-v3.mbse-views.json": "83f7d614329385c5e485991317468158a51120ff5e9db70e9e5b1ab6e0e71795",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p17b-port-occurrences/work/diagnostic-input-provenance.json": "84c874d295fd49bb659a6fd5ad0d38b2157198520aa4efeb7a8add62a1c3d896"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-pointer-diagnostic-01",
+  "argv_extra": [
+    "--open",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-01/run/prepared-port-pair.kernspan",
+    "--select",
+    "1003"
+  ],
+  "scenarios": [
+    "Import explicitly unbound diagnostic recovery derived from proven live document hash; no saved sidecar authority claimed",
+    "Observe actual pointer response/down/hover/drag flags without repeating passed authoring/model history",
+    "Verify repaired captured Save writes native plus typed views/3 and close normally"
+  ],
+  "claim_policy": "Diagnostic continuation of failed pointer and captured-save checks only. Prepared native file is actual preserved output; recovery DTO derivation is recorded and hash-equal to live layout before clearing historical binding. No previous failed native status relabeled."
+}

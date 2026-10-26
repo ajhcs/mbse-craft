@@ -1,0 +1,93 @@
+[
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-pointer-diagnostic-01/CONTROLLER_ACTIONS.py",
+    "path": "native/CONTROLLER_ACTIONS.py",
+    "bytes": 3492,
+    "sha256": "bf74765fee688c72a68b0da7bdfd792bfbe09242c91217aa201f0eec44958e8a",
+    "stored_sha256": "bf74765fee688c72a68b0da7bdfd792bfbe09242c91217aa201f0eec44958e8a"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-pointer-diagnostic-01/RECEIPT.json",
+    "path": "native/RECEIPT.json",
+    "bytes": 5335,
+    "sha256": "6bcef49851d5a119a0829d335c8be64990456482c2f75de0cb18b67ae491582e",
+    "stored_sha256": "6bcef49851d5a119a0829d335c8be64990456482c2f75de0cb18b67ae491582e"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-pointer-diagnostic-01/run/01-port-pointer-response-diagnostic.png",
+    "path": "native/run/01-port-pointer-response-diagnostic.png",
+    "bytes": 373649,
+    "sha256": "898f8aba6cbcc199624c280f17eb0bc5a595813882c0221c648e5c9043c4350f",
+    "stored_sha256": "898f8aba6cbcc199624c280f17eb0bc5a595813882c0221c648e5c9043c4350f"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-pointer-diagnostic-01/run/01-port-pointer-response-diagnostic.ui.json",
+    "path": "native/run/01-port-pointer-response-diagnostic.ui.json",
+    "bytes": 34403,
+    "sha256": "d3b59bd7a33faa8e83e8321f2fa5d0d8a7c752dff0e465731916abb45673c1d6",
+    "stored_sha256": "d3b59bd7a33faa8e83e8321f2fa5d0d8a7c752dff0e465731916abb45673c1d6"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-pointer-diagnostic-01/run/02-captured-v3-write-fixed-prepared-scene.png",
+    "path": "native/run/02-captured-v3-write-fixed-prepared-scene.png",
+    "bytes": 369777,
+    "sha256": "ad6bb2cedee59cd0a2ab394c8e6e808a5ea583cd05ec3b05285a676045feb68b",
+    "stored_sha256": "ad6bb2cedee59cd0a2ab394c8e6e808a5ea583cd05ec3b05285a676045feb68b"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-pointer-diagnostic-01/run/02-captured-v3-write-fixed-prepared-scene.ui.json",
+    "path": "native/run/02-captured-v3-write-fixed-prepared-scene.ui.json",
+    "bytes": 34475,
+    "sha256": "e3485fbb38dbf4a596f8c17b5bf59c027cd1d05fc5f6c4d1ab79b4ea9c2dd484",
+    "stored_sha256": "e3485fbb38dbf4a596f8c17b5bf59c027cd1d05fc5f6c4d1ab79b4ea9c2dd484"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-pointer-diagnostic-01/run/app.log",
+    "path": "native/run/app.log.gz",
+    "bytes": 48,
+    "sha256": "0cce862dc4913be2cce3fd531146652899fa528e6bef4c0cc05a1632efdac18e",
+    "stored_sha256": "94e4dd023a62bec4d641e8996e9d854e58601c954020cf040c1f0e0191cf7866"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-pointer-diagnostic-01/run/captured-v3-prepared.kernspan",
+    "path": "native/run/captured-v3-prepared.kernspan",
+    "bytes": 5120,
+    "sha256": "39ced001ccc805049b18439d3ca264cae32b6069a08ae5cf690c92390ac42110",
+    "stored_sha256": "39ced001ccc805049b18439d3ca264cae32b6069a08ae5cf690c92390ac42110"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-pointer-diagnostic-01/run/captured-v3-prepared.mbse-views.json",
+    "path": "native/run/captured-v3-prepared.mbse-views.json",
+    "bytes": 3402,
+    "sha256": "84e91e893a283268f82e82d352295e77eea6a14b44fd9ce17b54f26402d616a4",
+    "stored_sha256": "84e91e893a283268f82e82d352295e77eea6a14b44fd9ce17b54f26402d616a4"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-pointer-diagnostic-01/run/events.jsonl",
+    "path": "native/run/events.jsonl.gz",
+    "bytes": 1977,
+    "sha256": "453b742e2547ff21386b304337d12e18cdf16faeb2c37bcf2cf76801cf44f461",
+    "stored_sha256": "ebbeccb42d97687fd19a72618b6000f3d9b82edffa49cb333f7315b8c25b7dc3"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-pointer-diagnostic-01/run/state/ui-geometry.json",
+    "path": "native/run/state/ui-geometry.json",
+    "bytes": 34458,
+    "sha256": "f713f45d54884bddbfa1e8b97f1014d84b148a1c1daec41132f6f0926b0fce0b",
+    "stored_sha256": "f713f45d54884bddbfa1e8b97f1014d84b148a1c1daec41132f6f0926b0fce0b"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-pointer-diagnostic-01/run/xvfb.log",
+    "path": "native/run/xvfb.log.gz",
+    "bytes": 1321,
+    "sha256": "00971f516769b092bd50063ca4a82f63a4395d9ed9ff57eab62626162f51b9ed",
+    "stored_sha256": "fdda054423b6f7162c79062d661ff1e7c458c6fd848bc9913bbe480d6a657d81"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-pointer-diagnostic-01/run-driver.log",
+    "path": "native/run-driver.log.gz",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+  }
+]

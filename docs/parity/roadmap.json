@@ -339,7 +339,7 @@
       "acceptance": [
         "Incompatible assignments refuse; port identities survive cross-view reuse, save and reopen."
       ],
-      "state": "in_progress",
+      "state": "reviewed_ready_to_merge",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "children": [
@@ -349,9 +349,11 @@
           "acceptance": [
             "Incompatible interface assignments refuse atomically; port/interface identities, raw forms and accepted data survive model history and native cold reopen."
           ],
-          "state": "reviewed_ready_to_merge",
+          "state": "merged",
           "evidence": "docs/parity/p17a/README.md",
-          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/20"
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/20",
+          "reviewed_head": "fe594f15c8bac4b30af2e2dab6fad8b81fac9881",
+          "merge_commit": "c6b36918062bfb894df27b88ae9a32357d539bb5"
         },
         {
           "id": "P17b",
@@ -362,10 +364,13 @@
           "acceptance": [
             "Distinct presentation occurrences in two actual views reuse one semantic port ID; save/reopen/layout undo/hide retain semantic identity; existing core views and copy/recovery paths preserve or explicitly refuse unsupported typed content."
           ],
-          "state": "planned"
+          "state": "reviewed_ready_to_merge",
+          "evidence": "docs/parity/p17b/README.md",
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/21"
         }
       ],
-      "decomposition_reason": "Existing native occurrences require core RecordKind; semantic ports and typed presentation need separately reviewable storage/history adapters. P17 remains open until both children pass."
+      "decomposition_reason": "Existing native occurrences require core RecordKind; semantic ports and typed presentation need separately reviewable storage/history adapters. P17 remains open until both children pass.",
+      "evidence": "docs/parity/p17b/README.md"
     },
     {
       "id": "P18",

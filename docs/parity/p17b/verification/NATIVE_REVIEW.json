@@ -1,0 +1,35 @@
+{
+  "schema": "mbse-craft.p17b-native-review/1",
+  "reviewer": "Codex, same implementing agent",
+  "independent_review": false,
+  "result": "bounded_final_P17b_layout_capture_and_cold_reopen_passed",
+  "raw_receipt_status": "actions_completed_review_pending",
+  "native_runs": 2,
+  "action_errors": 0,
+  "pixels_reviewed": [
+    "native/run/01-fixed-real-port-drag-independent-geometry.png",
+    "native/reopen/07-cold-second-view-same-port-independent-geometry.png"
+  ],
+  "observations": [
+    "Actual preserved native/views3 input pair opens; semantic Port1016 remains in occurrences9/10 across views1/2",
+    "First real drag after editor close starts, survives controller reconciliation and moves occurrence10 x45y160 to85y180; occurrence9 and native model hash remain exact",
+    "Pin refuses movement; unpin, Hide/LayoutUndo, move-right20, Remove/LayoutUndo preserve semantic identity; Fit applies only to current view camera",
+    "Actual captured native/views Save and cold app restore exact port IDs/geometry in both views, core occurrences, complete native snapshot and all interface/port/property/usage/definition raw journals; layout history empty after reopen",
+    "Two normal app/display exits, original source inputs unchanged and exact owned-process/authentication cleanup"
+  ],
+  "prior_qualified_slices": [
+    "Initial native attempt proves authoring Port1016 and two occurrences plus model Undo detachment/Redo with current invalid unapplied form; initial whole native workflow failed drag and capture. Immutable tagged-state captures checked correctly after a retained helper schema error",
+    "Pointer diagnostic proves response delivery and corrected actual captured views3 Save; explicit unbound diagnostic layout reconstruction matched recorded live document hash before clearing historical binding. No saved authority inferred",
+    "Final binary/source differs by diagnosed typed drag reconciliation fix and regression; final432 tests include all model/history/capture and gesture cases"
+  ],
+  "retained_failures": [
+    "Initial317-pass/one-failed fixture mismatch; checkpoint guard remained intact",
+    "First native attempt retained extension/helper schema/drag assertions and captured-write refusal; FINISH guard refused open app, interrupted cleanup verified without normal-exit claim",
+    "Two intermediate431-test passes and pointer diagnostic remain separate; no counts summed"
+  ],
+  "limits": [
+    "Same-agent synthetic Linux bounded port-card evidence; no independent/full-platform/domain/full NoMagic/Craft acceptance",
+    "Port cards are separate occurrences; no nested port-on-owner glyph, connector/conveyed-item presentation or configured instance claim",
+    "Typed copy/source-inspection paths explicitly refuse in API regressions; current native-bound and unbound recovery paths retain port data"
+  ]
+}
