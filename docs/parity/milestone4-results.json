@@ -29,7 +29,6 @@
     "review_followup": "p14/REVIEW_FOLLOWUP.md"
   },
   "remaining_prs": [
-    "P18",
     "P19",
     "P20",
     "P21",
@@ -175,8 +174,8 @@
     "reviewed_head": "61cdef9016b4ca844292a8c69fe61bed92d44dfb"
   },
   "p18b": {
-    "state": "reviewed_ready_to_merge",
-    "position_complete": false,
+    "state": "merged",
+    "position_complete": true,
     "base_commit": "8fec6d83108e35dedc018fe5fe7bc0714d4310e9",
     "source_files": 696,
     "full_suite_tests_passed": 448,
@@ -195,6 +194,27 @@
     "preservation": "p18b/verification/PRESERVATION_AFTER.json",
     "pr_url": "https://github.com/ajhcs/mbse-craft/pull/23",
     "review_preservation": "p18b/REVIEW_PRESERVATION.json",
-    "review_available_preexisting_checkouts_unchanged": 36
+    "review_available_preexisting_checkouts_unchanged": 36,
+    "merge_commit": "239d21d1728d51e4ccad70d413e8dffc971f6783",
+    "reviewed_head": "10dda0a6bbe9e6b9c11c8a0076ebb114c7dde53d"
+  },
+  "p19": {
+    "state": "reviewed_ready_to_merge",
+    "position_complete": false,
+    "base_commit": "239d21d1728d51e4ccad70d413e8dffc971f6783",
+    "source_files": 699,
+    "workspace_tests_passed": 457,
+    "new_tests": 8,
+    "native_runs": 2,
+    "native_action_errors": 0,
+    "source_sha256": "221998a7de512aaed17a0832a8823c843250470c5352d053554c27607e260d6b",
+    "binary_sha256": "240f0f44d423773dcf010a76713f68859353ee0c28d78de5a3195e9915771166",
+    "acceptance": "p19/README.md",
+    "contract": "p19/CONTRACT.md",
+    "same_agent_review": "p19/verification/NATIVE_REVIEW.json",
+    "preservation": "p19/verification/PRESERVATION_AFTER.json",
+    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/24",
+    "review_preservation": "p19/REVIEW_PRESERVATION.json",
+    "review_available_preexisting_checkouts_unchanged": 38
   }
 }

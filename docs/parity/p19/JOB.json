@@ -1,0 +1,53 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m4-p19-defaults-instance-values-initial",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m4-p19-values",
+  "source_manifest": "docs/parity/p19/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "6ea7115b0f0c00f23fe93ae2cb6094f094c0790cc1e3e3cc466d4e8e4c6d3f1f",
+  "source_sha256": "221998a7de512aaed17a0832a8823c843250470c5352d053554c27607e260d6b",
+  "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "--workspace",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "Separate scalar definition defaults, exact Part overrides and pure calculator-derived previews with native freshness/durable raw forms. Seven model regressions plus actual egui read-only calculation/focus regression. Unchanged pinned dependencies/licenses/build scripts inspected in preceding slices.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p19-values/docs/parity/p19/fixtures/connectors.mbse-views.json": "81cca32f049a3126c94513f926975b2cd8b6fa3ef706990af44a8d824bddad1a",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p19-values/docs/parity/p19/fixtures/connectors.kernspan": "69337eafb28ddeaa38df039741efe6223e2ebe095fdf026ff1c9b394f463c156"
+  }
+}

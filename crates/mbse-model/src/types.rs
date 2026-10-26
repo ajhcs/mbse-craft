@@ -8,6 +8,7 @@ use serde_json::Value;
 use std::collections::{BTreeMap, BTreeSet};
 pub mod connectors;
 pub mod ports;
+pub mod values;
 pub const NAMESPACE: &str = "mbse-craft.types/1";
 pub const DRAFTS: &str = "mbse-craft.type-drafts/1";
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
@@ -95,6 +96,10 @@ pub struct Store {
     pub ports: BTreeMap<Id, ports::Port>,
     #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
     pub connectors: BTreeMap<Id, connectors::Connector>,
+    #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
+    pub defaults:BTreeMap<Id,values::Literal>,
+    #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
+    pub overrides:BTreeMap<Id,BTreeMap<Id,values::Literal>>,
 }
 impl Default for Store {
     fn default() -> Self {
@@ -107,6 +112,7 @@ impl Default for Store {
             interfaces: BTreeMap::new(),
             ports: BTreeMap::new(),
             connectors: BTreeMap::new(),
+            defaults:BTreeMap::new(),overrides:BTreeMap::new(),
         }
     }
 }
@@ -143,6 +149,8 @@ struct Journal {
     ports: BTreeMap<Id, ports::PortForm>,
     #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
     connectors: BTreeMap<Id, connectors::Form>,
+    #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
+    values:BTreeMap<String,values::Form>,
 }
 impl Default for Journal {
     fn default() -> Self {
@@ -155,6 +163,7 @@ impl Default for Journal {
             interface: None,
             ports: BTreeMap::new(),
             connectors: BTreeMap::new(),
+            values:BTreeMap::new(),
         }
     }
 }
@@ -173,6 +182,7 @@ fn canonical(value: &Value, field: &str) -> Result<(), String> {
     Ok(())
 }
 fn parse(value: &Value) -> Result<Store, String> {
+    values::canonical_maps(value)?;
     canonical(value, "definitions")?;
     canonical(value, "properties")?;
     if value.get("usages").is_some() {
@@ -226,6 +236,7 @@ fn parse_journal(value: &Value) -> Result<Journal, String> {
     }
     ports::validate_journal(&j)?;
     connectors::validate_journal(&j)?;
+    values::validate_journal(&j)?;
     Ok(j)
 }
 pub fn validate_namespace(name: &str, value: &Value) -> Result<(), String> {
@@ -396,6 +407,7 @@ impl Store {
         }
         ports::validate_store(self, &mut ids)?;
         connectors::validate_store(self, &mut ids)?;
+        values::validate_store(self)?;
         // Topological admission bounds work to definitions plus Part edges;
         // reused targets never expand into every possible occurrence path.
         let mut incoming: BTreeMap<Id, usize> =
@@ -476,6 +488,7 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
     }
     if e.required_namespaces.iter().any(|n| n == DRAFTS) {
         let j = journal(snapshot)?;
+        high=high.max(values::draft_high(&j));
         if let Some(form) = j.interface {
             high = high.max(form.system.0);
         }
@@ -548,6 +561,7 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
 }
 #[derive(Clone, Debug)]
 pub enum Action {
+    Value(values::Action),
     Connector(connectors::Action),
     Port(ports::Action),
     SetUsageForm {
@@ -593,6 +607,7 @@ pub fn apply(snapshot: &mut Snapshot, action: Action) -> Result<Change, String> 
 fn apply_inner(snapshot: &mut Snapshot, action: Action) -> Result<Change, String> {
     let mut store = load(snapshot)?;
     match action {
+        Action::Value(action)=>values::apply_inner(snapshot,action),
         Action::Connector(action) => connectors::apply_inner(snapshot, action),
         Action::Port(action) => ports::apply_inner(snapshot, action),
         Action::SetUsageForm { form } => {
@@ -1252,3 +1267,6 @@ mod ports_tests;
 
 #[cfg(test)]
 mod connectors_tests;
+
+#[cfg(test)]
+mod values_tests;
