@@ -193,7 +193,8 @@ fn actual_bound_native_save_and_views_cold_decode_preserve_both_port_occurrences
     };
     let area = tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap();
     let mut session = Session::new(area.path()).unwrap();
-    session.editor = editor();
+    let instance = session.editor.freshness().instance_id;
+    session.editor = Editor::new(editor().snapshot, instance).unwrap();
     let mut v = Views::new(&session.editor).unwrap();
     let core = v.document.occurrences.clone();
     let view_ids: Vec<_> = v.document.views.keys().copied().collect();

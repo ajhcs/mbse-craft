@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m4-p17b-port-occurrences-initial",
+  "id": "m4-p17b-session-camera-drag-corrected",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m4-p17b-port-occurrences",
   "source_manifest": "docs/parity/p17b/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "bc985fcceaf25bf432c911f194e5ec8e3032d7d844e5912cbc3f8869dde35dd1",
-  "source_sha256": "e591725c16b813bb2dd1657bbb740b25a03a1bb9cf1269e1ef773eb325e7deba",
+  "source_manifest_sha256": "f614d078503c912d11e9149ccfe8223916d810d00957705bdba070b9ca36e2f9",
+  "source_sha256": "bbc971481cd9adb2db85658dc74646cd80bbac3056937aa669c5a96a43c9073b",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -38,7 +38,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "P17b separate typed port occurrences, explicit views/3 wire admission, same-semantic-ID cross-view reuse, layout history and proof-gated model detachment/Redo, native save/recovery, safe copy refusals and actual canvas/controls. Eight new model regressions; existing422 baseline included.",
+  "rationale": "Correct native/views test fixture to retain Session editor instance identity; checkpoint guard remains intact. Static review adds typed geometry to Fit and shared checked drag path; ninth regression checks visible/hidden typed Fit without semantic changes. Failed317-pass/one-failed receipt retained separately.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",

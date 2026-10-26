@@ -128,8 +128,8 @@
     },
     {
       "path": "crates/mbse-desktop/src/ui_port_views.rs",
-      "bytes": 6229,
-      "sha256": "d1d2f5be4b16940f1680005e0b9e2ee12c19f0f9f206a75a923f82199e2c40a1"
+      "bytes": 6400,
+      "sha256": "7a4c75a7a0a018c7a3657015a3029a28bc45d14e6553bb0c0208c4198d85ac86"
     },
     {
       "path": "crates/mbse-desktop/src/ui_ports.rs",
@@ -148,8 +148,8 @@
     },
     {
       "path": "crates/mbse-desktop/src/views_ui.rs",
-      "bytes": 102533,
-      "sha256": "aa7fd2564cdfa84f0de864db514911ffc9b00f50019aebff39337861c87cdfc0"
+      "bytes": 103986,
+      "sha256": "9f477d887885993cb7b70b5dc2ef8b7da2e333745d16fd3db62fdcb8d2d562cc"
     },
     {
       "path": "crates/mbse-exchange/Cargo.toml",
@@ -333,8 +333,8 @@
     },
     {
       "path": "crates/mbse-model/src/native_views_ports_tests.rs",
-      "bytes": 12403,
-      "sha256": "20e8513d1729633d66a26725fd47e59f2547ac2df511ce058dcb4a01ff4f4b42"
+      "bytes": 12503,
+      "sha256": "f68b873fbef81632c9477b7a2633d17e2ed93611ecd963715bf9a9d0014d91b4"
     },
     {
       "path": "crates/mbse-model/src/recovery.rs",
@@ -3452,5 +3452,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "e591725c16b813bb2dd1657bbb740b25a03a1bb9cf1269e1ef773eb325e7deba"
+  "source_sha256": "bbc971481cd9adb2db85658dc74646cd80bbac3056937aa669c5a96a43c9073b"
 }

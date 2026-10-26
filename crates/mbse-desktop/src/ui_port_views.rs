@@ -113,9 +113,12 @@ impl Workspace {
             let r = ui.interact(
                 rect,
                 ui.id().with(("port-occurrence", o.id.get())),
-                egui::Sense::click(),
+                egui::Sense::click_and_drag(),
             );
             self.bound(format!("port-occurrence:{}", o.id.get()), &r);
+            if !self.dock_blocked() || self.views.layout_gesture_active() {
+                self.views.drag(&self.session.editor, o.id, &r, scale);
+            }
             if r.clicked() && !self.dock_blocked() {
                 self.open_port_editor(o.port);
             }

@@ -555,6 +555,10 @@ impl ViewWorkspace {
             .apply(editor, &stamp, Layout::Camera(view, camera))?;
         Ok(true)
     }
+    fn fit_camera(&self,width:f64)->Result<v::Camera,String>{
+        let doc=self.views.document();let items:Vec<_>=doc.occurrences.values().filter(|o|o.view==self.active&&o.visible&&o.presence.active()).map(|o|&o.geometry).chain(doc.typed_ports.values().filter(|o|o.view==self.active&&o.visible&&o.presence.active()).map(|o|&o.geometry)).collect();
+        let x=items.iter().map(|o|o.x).fold(0.,f64::min);let y=items.iter().map(|o|o.y).fold(0.,f64::min);let right=items.iter().map(|o|o.x+o.width).fold(800.,f64::max);let bottom=items.iter().map(|o|o.y+o.height).fold(400.,f64::max);let zoom=(width.max(300.)/(right-x+50.)).min(400./(bottom-y+50.)).clamp(v::Camera::MIN_ZOOM,v::Camera::MAX_ZOOM);v::Camera::checked(x,y,zoom)
+    }
     fn camera_target(old: &v::Camera, command: CameraCommand) -> Result<v::Camera, String> {
         let mut next = old.clone();
         let step = 64. / old.zoom;
@@ -642,29 +646,10 @@ impl ViewWorkspace {
             let response = ui.add_enabled(self.drag.is_none(), egui::Button::new("Fit"));
             self.toolbar_bound("camera:Fit", &response);
             if response.clicked() {
-                let items: Vec<_> = self
-                    .views
-                    .document()
-                    .occurrences
-                    .values()
-                    .filter(|o| o.view == self.active && o.visible && o.presence.active())
-                    .collect();
-                let x = items.iter().map(|o| o.geometry.x).fold(0., f64::min);
-                let y = items.iter().map(|o| o.geometry.y).fold(0., f64::min);
-                let right = items
-                    .iter()
-                    .map(|o| o.geometry.x + o.geometry.width)
-                    .fold(800., f64::max);
-                let bottom = items
-                    .iter()
-                    .map(|o| o.geometry.y + o.geometry.height)
-                    .fold(400., f64::max);
-                let zoom = ((ui.available_width().max(300.) as f64 / (right - x + 50.))
-                    .min(400. / (bottom - y + 50.)))
-                .clamp(0.05, 20.);
+                let camera=self.fit_camera(ui.available_width().max(300.)as f64);
                 self.note = format!(
                     "{:?}",
-                    self.set_camera(&session.editor, v::Camera { x, y, zoom })
+                    camera.and_then(|camera|self.set_camera(&session.editor,camera))
                 );
             }
         });
@@ -927,17 +912,8 @@ impl ViewWorkspace {
         scale: f32,
     ) {
         if response.drag_started() {
-            if let Some(o) = self
-                .views
-                .document()
-                .occurrences
-                .get(&id)
-                .filter(|o| !o.pinned)
-            {
-                if let Some(pointer) = response.interact_pointer_pos() {
-                    self.drag = Some((id, o.geometry.clone(), self.views.stamp(editor), pointer));
-                }
-            }
+            let doc=self.views.document();let geometry=doc.occurrences.get(&id).filter(|o|!o.pinned).map(|o|o.geometry.clone()).or_else(||doc.typed_ports.get(&id).filter(|o|!o.pinned).map(|o|o.geometry.clone()));
+            if let (Some(geometry),Some(pointer))=(geometry,response.interact_pointer_pos()){self.drag=Some((id,geometry,self.views.stamp(editor),pointer));}
         }
         if response.drag_stopped() {
             if let Some((owner, mut geometry, stamp, start)) = self.drag.take() {
@@ -952,7 +928,7 @@ impl ViewWorkspace {
                     geometry.y += delta.y as f64;
                     self.note = format!(
                         "{:?}",
-                        self.views.apply(editor, &stamp, Layout::Move(id, geometry))
+                        self.views.apply(editor, &stamp, if self.views.document().typed_ports.contains_key(&id){Layout::Port(v::ports::Layout::Move(id,geometry))}else{Layout::Move(id, geometry)})
                     );
                 }
             }
@@ -2115,4 +2091,13 @@ mod tests {
         finish_pair(&mut ui, &mut session, retry);
         ui.verify_preserved(&session, &WriteKind::Save).unwrap();
     }
+}
+
+#[cfg(test)]
+mod typed_port_camera_tests{
+ use super::*;
+ #[test]
+ fn fit_includes_visible_typed_port_geometry_and_excludes_hidden_ports_without_model_changes(){
+  let area=tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap();let mut session=Session::new(area.path()).unwrap();let instance=session.editor.freshness().instance_id;let raw:serde_json::Value=serde_json::from_str(include_str!("../../../docs/parity/p17b/fixtures/ports.kernspan")).unwrap();session.editor=Editor::new(serde_json::from_value(raw["snapshot"].clone()).unwrap(),instance).unwrap();let before=session.editor.snapshot.clone();let mut ui=ViewWorkspace::new(&session);let original=ui.fit_camera(1000.).unwrap();let id:OccurrenceId=serde_json::from_str(&format!("\"{}\"",ui.views.document().next_id())).unwrap();let stamp=ui.views.stamp(&session.editor);ui.views.apply(&session.editor,&stamp,Layout::Port(v::ports::Layout::Reuse{view:ui.active,port:mbse_model::types::Id(1015),geometry:Geometry::at(5000.,4000.)})).unwrap();let fit=ui.fit_camera(1000.).unwrap();assert!(fit.zoom<original.zoom);let port=&ui.views.document().typed_ports[&id];assert!((port.geometry.x+port.geometry.width-fit.x)*fit.zoom<=1000.);assert!((port.geometry.y+port.geometry.height-fit.y)*fit.zoom<=400.);let stamp=ui.views.stamp(&session.editor);ui.views.apply(&session.editor,&stamp,Layout::Port(v::ports::Layout::Visible(id,false))).unwrap();assert_eq!(ui.fit_camera(1000.).unwrap(),original);assert_eq!(session.editor.snapshot,before);
+ }
 }
