@@ -6,6 +6,7 @@ use crate::{
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use std::collections::{BTreeMap, BTreeSet};
+pub mod ports;
 pub const NAMESPACE: &str = "mbse-craft.types/1";
 pub const DRAFTS: &str = "mbse-craft.type-drafts/1";
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
@@ -87,6 +88,10 @@ pub struct Store {
     pub properties: BTreeMap<Id, Property>,
     #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
     pub usages: BTreeMap<Id, Usage>,
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    pub interfaces: BTreeMap<Id, ports::Interface>,
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    pub ports: BTreeMap<Id, ports::Port>,
 }
 impl Default for Store {
     fn default() -> Self {
@@ -96,6 +101,8 @@ impl Default for Store {
             definitions: BTreeMap::new(),
             properties: BTreeMap::new(),
             usages: BTreeMap::new(),
+            interfaces: BTreeMap::new(),
+            ports: BTreeMap::new(),
         }
     }
 }
@@ -126,6 +133,10 @@ struct Journal {
     definition: Option<DefinitionForm>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     usage: Option<UsageForm>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    interface: Option<ports::InterfaceForm>,
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    ports: BTreeMap<Id, ports::PortForm>,
 }
 impl Default for Journal {
     fn default() -> Self {
@@ -135,6 +146,8 @@ impl Default for Journal {
             forms: BTreeMap::new(),
             definition: None,
             usage: None,
+            interface: None,
+            ports: BTreeMap::new(),
         }
     }
 }
@@ -158,6 +171,11 @@ fn parse(value: &Value) -> Result<Store, String> {
     if value.get("usages").is_some() {
         canonical(value, "usages")?;
     }
+    for field in ["interfaces", "ports"] {
+        if value.get(field).is_some() {
+            canonical(value, field)?;
+        }
+    }
     let store: Store =
         serde_json::from_value(value.clone()).map_err(|e| format!("TYPE_SCHEMA: {e}"))?;
     store.validate()?;
@@ -165,6 +183,9 @@ fn parse(value: &Value) -> Result<Store, String> {
 }
 fn parse_journal(value: &Value) -> Result<Journal, String> {
     canonical(value, "forms")?;
+    if value.get("ports").is_some() {
+        canonical(value, "ports")?;
+    }
     let j: Journal =
         serde_json::from_value(value.clone()).map_err(|e| format!("TYPE_DRAFT_SCHEMA: {e}"))?;
     if j.profile != DRAFTS || j.schema_version != 1 || j.forms.len() > 512 {
@@ -193,6 +214,7 @@ fn parse_journal(value: &Value) -> Result<Journal, String> {
             return Err("TYPE_DRAFT_SHAPE_OR_LIMIT".into());
         }
     }
+    ports::validate_journal(&j)?;
     Ok(j)
 }
 pub fn validate_namespace(name: &str, value: &Value) -> Result<(), String> {
@@ -303,7 +325,12 @@ impl Store {
     pub fn validate(&self) -> Result<(), String> {
         if self.profile != NAMESPACE
             || self.schema_version != 1
-            || self.definitions.len() + self.properties.len() + self.usages.len() > 512
+            || self.definitions.len()
+                + self.properties.len()
+                + self.usages.len()
+                + self.interfaces.len()
+                + self.ports.len()
+                > 512
         {
             return Err("TYPE_VERSION_OR_LIMIT".into());
         }
@@ -355,6 +382,7 @@ impl Store {
                 return Err("TYPE_USAGE_CROSS_SYSTEM_UNSUPPORTED".into());
             }
         }
+        ports::validate_store(self, &mut ids)?;
         // Topological admission bounds work to definitions plus Part edges;
         // reused targets never expand into every possible occurrence path.
         let mut incoming: BTreeMap<Id, usize> =
@@ -424,6 +452,8 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
         .keys()
         .chain(store.properties.keys())
         .chain(store.usages.keys())
+        .chain(store.interfaces.keys())
+        .chain(store.ports.keys())
     {
         if !ids.insert(id.0) {
             return Err("TYPE_NATIVE_ID_COLLISION".into());
@@ -431,6 +461,23 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
         high = high.max(id.0)
     }
     if e.required_namespaces.iter().any(|n| n == DRAFTS) {
+        let j = journal(snapshot)?;
+        if let Some(form) = j.interface {
+            high = high.max(form.system.0);
+        }
+        for (id, form) in j.ports {
+            if store.definitions.contains_key(&id)
+                || store.properties.contains_key(&id)
+                || store.usages.contains_key(&id)
+                || store.interfaces.contains_key(&id)
+                || native_reserved.contains(&id.0)
+                || forms(snapshot)?.contains_key(&id)
+                || usage_form(snapshot)?.is_some_and(|f| f.id == Some(id))
+            {
+                return Err("PORT_DRAFT_ID_COLLISION".into());
+            }
+            high = high.max(id.0).max(form.owner.0);
+        }
         if let Some(definition) = definition_form(snapshot)? {
             high = high.max(definition.system.0);
         }
@@ -438,6 +485,9 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
             if let Some(id) = form.id {
                 if store.definitions.contains_key(&id)
                     || store.properties.contains_key(&id)
+                    || store.interfaces.contains_key(&id)
+                    || store.ports.contains_key(&id)
+                    || ports::forms(snapshot)?.contains_key(&id)
                     || native_reserved.contains(&id.0)
                 {
                     return Err("TYPE_USAGE_DRAFT_ID_COLLISION".into());
@@ -448,6 +498,9 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
         for (id, f) in forms(snapshot)? {
             if store.definitions.contains_key(&id)
                 || store.usages.contains_key(&id)
+                || store.ports.contains_key(&id)
+                || store.interfaces.contains_key(&id)
+                || ports::forms(snapshot)?.contains_key(&id)
                 || usage_form(snapshot)?.is_some_and(|f| f.id == Some(id))
                 || native_reserved.contains(&id.0)
             {
@@ -460,6 +513,7 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
 }
 #[derive(Clone, Debug)]
 pub enum Action {
+    Port(ports::Action),
     SetUsageForm {
         form: UsageForm,
     },
@@ -503,6 +557,7 @@ pub fn apply(snapshot: &mut Snapshot, action: Action) -> Result<Change, String> 
 fn apply_inner(snapshot: &mut Snapshot, action: Action) -> Result<Change, String> {
     let mut store = load(snapshot)?;
     match action {
+        Action::Port(action) => ports::apply_inner(snapshot, action),
         Action::SetUsageForm { form } => {
             let mut j = journal(snapshot)?;
             j.usage = Some(form);
@@ -1154,3 +1209,6 @@ mod tests {
 
 #[cfg(test)]
 mod p16_tests;
+
+#[cfg(test)]
+mod ports_tests;

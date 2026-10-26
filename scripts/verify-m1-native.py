@@ -35,6 +35,29 @@ def prepare_config_seed(run, seed, app_args):
         stream.write(data)
     return dict(source=str(seed),destination=str(destination),bytes=len(data),sha256=hashlib.sha256(data).hexdigest())
 
+def text_keys(text):
+    """Prevalidate US printable ASCII; never silently drop an unsupported symbol."""
+    punctuation = {
+        ' ': 'space', '/': 'slash', '.': 'period', '-': 'minus', ':': 'colon',
+        '_': 'underscore', '+': 'plus', '[': 'bracketleft', ']': 'bracketright',
+        '*': 'asterisk', '=': 'equal', '?': 'question', '#': 'numbersign',
+        '!': 'exclam', '@': 'at', '$': 'dollar', '%': 'percent', '^': 'asciicircum',
+        '&': 'ampersand', '(': 'parenleft', ')': 'parenright', '{': 'braceleft',
+        '}': 'braceright', '<': 'less', '>': 'greater', ';': 'semicolon',
+        "'": 'apostrophe', '"': 'quotedbl', chr(92): 'backslash', '|': 'bar',
+        '`': 'grave', '~': 'asciitilde', ',': 'comma',
+    }
+    shifted = ':_+*?!@#$%^&(){}<>"|~'
+    result = []
+    for char in text:
+        if char in punctuation:
+            result.append((punctuation[char], char in shifted))
+        elif char.isascii() and char.isalnum():
+            result.append((char.lower(), char.isupper()))
+        else:
+            raise ValueError('NATIVE_TEXT_UNSUPPORTED: use admitted printable ASCII')
+    return result
+
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--exe',type=pathlib.Path,required=True);ap.add_argument('--run-dir',type=pathlib.Path,required=True);ap.add_argument('--config-seed',type=pathlib.Path);ap.add_argument('app_args',nargs=argparse.REMAINDER);a=ap.parse_args()
     assert str(a.run_dir).startswith('/workspace/') and a.exe.is_absolute()
@@ -107,9 +130,7 @@ def main():
                 key(cmd['key'],1);key(cmd['key'],0)
                 for mod in reversed(cmd.get('mods',[])):key(mod,0)
             elif op=='text':
-                punctuation={' ':'space','/':'slash','.':'period','-':'minus',':':'colon','_':'underscore','+':'plus','[':'bracketleft',']':'bracketright','*':'asterisk','=':'equal'}
-                for char in cmd['text']:
-                    shift=char.isupper() or char in ':_+*';name=punctuation.get(char,char.lower());
+                for name,shift in text_keys(cmd['text']):
                     if shift:key('Shift_L',1)
                     key(name,1);key(name,0)
                     if shift:key('Shift_L',0)

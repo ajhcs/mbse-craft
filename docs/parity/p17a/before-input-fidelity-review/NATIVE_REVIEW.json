@@ -1,0 +1,26 @@
+{
+  "schema": "mbse-craft.p17a-native-review/1",
+  "reviewer": "Codex, same implementing agent",
+  "independent_review": false,
+  "result": "bounded_P17a_semantic_scenarios_passed_after_helper_assertion_correction",
+  "raw_receipt_status": "actions_completed_review_pending",
+  "native_runs": 2,
+  "action_errors": 1,
+  "helper_error": "Undo omits empty ports map; original direct dict access KeyError retained, corrected absence-as-empty assertion passes.",
+  "pixels_reviewed": [
+    "native/run/02-incompatible-direction-refused.png",
+    "native/reopen/07-cold-reopen-port-identity-and-both-invalid-forms.png"
+  ],
+  "observations": [
+    "Interfaces1012/1013 share payload1005 and In direction; Port1015 owner1007 accepts different-ID assignment1013 against contract1012",
+    "Out interface1014 and Component1004 as assignment visibly refuse with unchanged accepted port/model revision",
+    "Undo removes accepted port with newer invalid assignment1013? and pending interface payload1005?/InOut retained; Redo restores same accepted identities without replacing forms",
+    "Actual native/views Save and cold app retain exact port/interface accepted data and both raw forms, prior P15/P16 definitions/properties/usages/journals, core records/raw9e/95metre/2.5km/creation journal and exact views hash",
+    "Two normal app/driver exits and exact owned-process/authentication cleanup"
+  ],
+  "limits": [
+    "Same-agent Linux synthetic semantic contract evidence; cross-view reuse and typed occurrence presentation explicitly P17b, so P17 remains incomplete",
+    "One-payload exact Value identity/direction/System interface rule; no SysML conformance or full NoMagic/Craft/domain/platform claim",
+    "One harness KeyError correction retained; not relabeled zero errors"
+  ]
+}

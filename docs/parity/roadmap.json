@@ -321,11 +321,13 @@
       "acceptance": [
         "Containment cycles refuse; moves preserve identity; the browser distinguishes actual containment from System membership."
       ],
-      "state": "reviewed_ready_to_merge",
+      "state": "merged",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "evidence": "docs/parity/p16/README.md",
-      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/19"
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/19",
+      "reviewed_head": "0a364869a135fe1dcd623e1ed19c07258111e7ed",
+      "merge_commit": "4370e879411479aa79b3d5aabbba5f2ff80d47ce"
     },
     {
       "id": "P17",
@@ -337,9 +339,33 @@
       "acceptance": [
         "Incompatible assignments refuse; port identities survive cross-view reuse, save and reopen."
       ],
-      "state": "planned",
+      "state": "in_progress",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "children": [
+        {
+          "id": "P17a",
+          "title": "Port and interface semantic contracts and durable authoring",
+          "acceptance": [
+            "Incompatible interface assignments refuse atomically; port/interface identities, raw forms and accepted data survive model history and native cold reopen."
+          ],
+          "state": "reviewed_ready_to_merge",
+          "evidence": "docs/parity/p17a/README.md",
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/20"
+        },
+        {
+          "id": "P17b",
+          "title": "Typed port occurrences and cross-view reuse",
+          "depends_on": [
+            "P17a"
+          ],
+          "acceptance": [
+            "Distinct presentation occurrences in two actual views reuse one semantic port ID; save/reopen/layout undo/hide retain semantic identity; existing core views and copy/recovery paths preserve or explicitly refuse unsupported typed content."
+          ],
+          "state": "planned"
+        }
+      ],
+      "decomposition_reason": "Existing native occurrences require core RecordKind; semantic ports and typed presentation need separately reviewable storage/history adapters. P17 remains open until both children pass."
     },
     {
       "id": "P18",

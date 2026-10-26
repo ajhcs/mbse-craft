@@ -10,9 +10,9 @@ labels System membership separately from owned Part and Reference rows.
 | --- | --- |
 | Containment cycles refuse | API direct/indirect cycle cases refuse atomically. Native converting reverse Reference1011 to Part displays TYPE_CONTAINMENT_CYCLE/disabled Apply while accepted usages and model revision stay unchanged |
 | Reuse does not duplicate type identity | Actual native Parts1009/1010 have distinct usage IDs and both target Device1007. Reference1011 points from Device1007 back to Subsystem1004 without a containment cycle |
-| Moves preserve identity | Native owner change moves Part1009 from Component1004 to1008 with same ID and target1007. Undo/Redo restore ownership while retaining newer invalid target text1007? |
+| Moves preserve identity | Native owner change moves Part1009 from Component1004 to1008 with same ID and target1007. Undo/Redo restore ownership; original intended trailing-question-mark input was not delivered. Exact invalid target incomplete is verified separately in the corrective descendant run below |
 | Wrong targets refuse | Native primitive value1005 as usage target refuses without accepted mutation. API covers wrong owner/target kinds and cross-System refusal |
-| Invalid drafts persist | Native Save/cold app retains invalid usage1009 form, existing P15 pending property text/upper1.. and accepted property1006. Original core records/document ID/raw9e/creation journals/95metre/2.5km remain exact |
+| Invalid drafts persist | Native Save/cold app retains the usage1009 form, existing P15 pending property text/upper1.. and accepted property1006. Original invalid usage-text claim is withdrawn; corrective exact native evidence is below. Original core records/document ID/raw9e/creation journals/95metre/2.5km remain exact |
 | Browser distinguishes membership/containment | Actual scrolled browser pixels show member of System1, Part containment and Reference not containment. A third run completed the lower-row visual check clipped in the first capture; it did not repeat authoring checks |
 | P15 data compatibility | Regression parses actual P15 native fixture and serializes type store/journal to equal JSON without inserting empty P16 fields. No dependency/vendor change |
 
@@ -68,3 +68,16 @@ functional acceptance. No new test-suite execution is claimed on the label-only
 source. [Final preservation](final-label-verification/PRESERVATION_AFTER.json)
 verifies28 available prior checkouts unchanged, including the original P16 candidate;
 the18 user-removed historical directories remain absent with commit heads retained.
+
+
+Input fidelity erratum recorded during P17a review: the old native driver omitted
+trailing ? and the helper did not assert requested text immediately. Thus the
+original1007? native invalid usage-form claim was unsupported; actual saved/audit
+text is1007. Raw receipts/events/pixels remain exact. The original review is
+preserved in before-input-fidelity-review and annotated with this qualification.
+[Correction](../p17a/INPUT_FIDELITY_ERRATUM.md) repairs the driver; [fresh exact
+native acceptance](../p17a/exact-draft-verification/REVIEW.json) on the P17a reviewed
+descendant binary verifies immediate incomplete target input, real move Undo/Redo,
+Save and cold reopen, preserving accepted IDs and prior journals. It does not claim
+the original P16 binary received that missing input. Existing API/native-IO invalid
+text tests, actual cycle/wrong-kind refusals and move identity checks remain valid.

@@ -24,5 +24,7 @@
     "Component-definition-owned usages with same-System targets; no instance configuration, ports, connectors or typed occurrence diagram claim",
     "One current usage form; New/Edit explicitly replaces it. Existing per-property and definition journals remain separate",
     "Linux font renders the arrow separator as a placeholder; relation words and exact owner/target IDs remain visible; full font/platform acceptance remains open"
-  ]
+  ],
+  "input_fidelity_erratum": "../../p17a/INPUT_FIDELITY_ERRATUM.md",
+  "invalid_question_mark_native_claims_withdrawn": "Actual old driver input omitted trailing question mark. Original audits/events/saved files unchanged. Exact invalid-form native evidence is qualified separately in p17a/exact-draft-verification/REVIEW.json on a reviewed descendant binary. Other refusal/identity/core-data checks retain original scope."
 }
