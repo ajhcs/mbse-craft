@@ -56,6 +56,7 @@
     "readonly_native_receipt": "p10/verification/native-readonly/RECEIPT.json",
     "same_agent_review": "p10/verification/NATIVE_REVIEW.json",
     "preservation": "p10/PRESERVATION_AFTER.json",
-    "cold_reload_scope": "Exact copies of prior actual persisted config bytes into each new owned run; no same-physical-path native restart claim"
+    "cold_reload_scope": "Exact copies of prior actual persisted config bytes into each new owned run; no same-physical-path native restart claim",
+    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/13"
   }
 }

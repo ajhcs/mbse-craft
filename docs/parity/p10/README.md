@@ -1,5 +1,7 @@
 # P10: scoped, persistent shortcut configuration
 
+Draft review: [PR #13](https://github.com/ajhcs/mbse-craft/pull/13).
+
 P09 [PR #12](https://github.com/ajhcs/mbse-craft/pull/12) was reviewed in isolated
 `codex/review-p09` with no additional actionable finding, then merged at
 `55322e62e1ea60973c71c56503e1c5f0c474e747`. The
@@ -86,3 +88,8 @@ independent PR/native review, full platform/input-method/accessibility and domai
 engineering acceptance remain pending. Unapplied shortcut draft text is retained
 only within the current app session. All 56 prospective full-parity specifications
 remain NOT_RUN. P11–P13 and the Milestone 3 exit remain open.
+
+Static package validation passed with local historical Git objects verified:
+58 PR positions, 56 capabilities, 56 NOT_RUN specifications and 18 rejected
+negative cases. `git diff --check` passed. These are consistency checks, separate
+from the actual Cargo/harness/native results above.
