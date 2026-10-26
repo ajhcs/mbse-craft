@@ -452,12 +452,14 @@
       "acceptance": [
         "Preview identifies internal and external reference treatment; moves retain IDs; clones allocate fresh IDs; Cancel and Undo restore state."
       ],
-      "state": "reviewed_ready_to_merge",
+      "state": "merged",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "branch": "codex/m4-p20-clone-move",
       "evidence": "docs/parity/p20/README.md",
-      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/25"
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/25",
+      "merge_commit": "4db52a28edb7851725fb5ce697c5d649ba27caa8",
+      "reviewed_head": "245093aaa814d1f0175baecc4889d893a194e899"
     },
     {
       "id": "P21",
@@ -469,9 +471,35 @@
       "acceptance": [
         "Every supported incoming reference is handled; unknown impact prevents an exhaustive verdict; stale previews refuse; Undo restores records and occurrences."
       ],
-      "state": "planned",
+      "state": "in_progress",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "decomposition_reason": "Review typed dependency/value-entry cascade and inverse presentation-history proof separately from native-core record/calculation references. P21 remains open until both children pass.",
+      "children": [
+        {
+          "id": "P21a",
+          "title": "Typed deletion impact preview, unknown-impact refusal and exact Undo restoration",
+          "state": "reviewed_ready_to_merge",
+          "branch": "codex/m4-p21a-typed-deletion",
+          "acceptance": [
+            "Enumerate typed dependencies/value effects; unknown impact blocks Apply; stale/foreign plans refuse; native Undo restores typed records and qualified occurrences/routes; recovery retains drafts."
+          ],
+          "execution_results": "docs/parity/p21a/README.md",
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/26",
+          "review_preservation": "docs/parity/p21a/REVIEW_PRESERVATION.json"
+        },
+        {
+          "id": "P21b",
+          "title": "Native-core deletion and incoming-reference treatment",
+          "state": "planned",
+          "depends_on": [
+            "P21a"
+          ],
+          "acceptance": [
+            "Handle supported native-core ownership/links/calculation references in preview and transaction; unknown impact blocks exhaustive verdict; Undo restores native records and presentation; native persistence keeps exact remaining meaning."
+          ]
+        }
+      ]
     },
     {
       "id": "P22",

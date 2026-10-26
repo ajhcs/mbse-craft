@@ -4,7 +4,7 @@ use crate::command_catalog::{self as catalog, Id, Surface};
 
 impl Workspace {
     pub(super) fn history_scope(&self) -> ShortcutTarget {
-        if self.refactor_panel.open || self.value_panel.open || self.connector_panel.open || self.port_panel.open || self.type_panel.open || self.files.open || self.files.pending() || self.views.inspection_visible()
+        if self.deletion_panel.open || self.refactor_panel.open || self.value_panel.open || self.connector_panel.open || self.port_panel.open || self.type_panel.open || self.files.open || self.files.pending() || self.views.inspection_visible()
             || self.assurance.is_visible()
             || self.exchange.is_visible()
             || self.shortcuts.open
@@ -29,6 +29,8 @@ impl Workspace {
     /// Handlers still validate paths, files, revisions and pending tickets on use.
     pub(super) fn command_reason(&self, id: Id, scope: &ShortcutTarget) -> Option<String> {
         let editing = id.is_history() || id.is_layout_history();
+        if self.deletion_panel.open && id!=Id::DeleteModel{return Some("Deletion: close the preview before other commands; unfinished form retained.".into());}
+        if id==Id::DeleteModel && self.views.occurrence_navigation_blocked(&self.session){return Some("Finish pending writes and gestures before deletion review.".into());}
         if self.refactor_panel.open && id!=Id::Refactor{return Some("Clone/move: close the editor before other commands; unfinished form retained.".into());}
         if id==Id::Refactor && self.views.occurrence_navigation_blocked(&self.session){return Some("Finish pending writes and gestures before cloning or moving.".into());}
         if self.value_panel.open && id!=Id::Values{return Some("Values: close the editor before other commands; unfinished value text retained.".into());}
@@ -170,6 +172,7 @@ impl Workspace {
             return;
         }
         match id {
+            Id::DeleteModel=>{self.deletion_panel.open=true;},
             Id::Refactor=>{self.refactor_panel.open=true;},
             Id::Values=>{self.value_panel.open=true;},
             Id::Connectors=>{self.connector_panel.open=true;},
@@ -492,14 +495,14 @@ mod tests {
     #[test]
     fn command_ids_defaults_and_menu_groups_are_unique_and_complete() {
         use std::collections::BTreeSet;
-        assert_eq!(catalog::ALL.len(), 29);
+        assert_eq!(catalog::ALL.len(), 30);
         assert_eq!(
             catalog::ALL
                 .iter()
                 .map(|s| s.key)
                 .collect::<BTreeSet<_>>()
                 .len(),
-            29
+            30
         );
         assert_eq!(
             catalog::ALL
@@ -507,7 +510,7 @@ mod tests {
                 .map(|s| s.id)
                 .collect::<BTreeSet<_>>()
                 .len(),
-            29
+            30
         );
         for (i, s) in catalog::ALL.iter().enumerate() {
             assert!(catalog::MENUS.contains(&s.menu));
@@ -830,7 +833,7 @@ mod tests {
                 assert!(!app.session.pending());
             }
             assert!(!dest.exists());
-            assert_eq!(app.command_audit()["items"].as_array().unwrap().len(), 29);
+            assert_eq!(app.command_audit()["items"].as_array().unwrap().len(), 30);
         }
     }
 }

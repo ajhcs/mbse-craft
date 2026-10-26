@@ -33,6 +33,7 @@ pub enum Id {
     Connectors,
     Values,
     Refactor,
+    DeleteModel,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Surface {
@@ -73,6 +74,7 @@ macro_rules! spec {
 }
 pub const MENUS: &[&str] = &["File", "Edit", "View", "Tools"];
 pub const ALL: &[Spec] = &[
+    spec!(DeleteModel,"tools.semantic_delete","Delete typed model records with impact preview","Tools",ALT,G),
     spec!(Refactor,"tools.clone_move","Clone and move with reference preview","Tools",ALT,B),
     spec!(Values,"tools.values","Defaults and instance values","Tools",ALT,Y),
     spec!(Connectors,"tools.connectors","Connectors and conveyed items","Tools",ALT,K),

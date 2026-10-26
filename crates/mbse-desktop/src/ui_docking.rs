@@ -10,7 +10,7 @@ impl Workspace {
         DockArea::new(Self::dock_id()).chrome_has_focus(&self.context, &self.docking.layout)
     }
     pub(super) fn dock_blocked(&self) -> bool {
-        self.refactor_panel.open || self.value_panel.open || self.connector_panel.open || self.port_panel.open || self.type_panel.open || self.files.open || self.files.pending() || self.views.occurrence_navigation_blocked(&self.session)
+        self.deletion_panel.open || self.refactor_panel.open || self.value_panel.open || self.connector_panel.open || self.port_panel.open || self.type_panel.open || self.files.open || self.files.pending() || self.views.occurrence_navigation_blocked(&self.session)
             || self.pending.is_some()
             || self.creation.is_some()
             || self.context_creation.is_some()

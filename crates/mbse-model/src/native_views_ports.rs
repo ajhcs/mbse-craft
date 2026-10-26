@@ -237,13 +237,13 @@ pub(super) fn reconcile(
             o.presence = Presence::Detached {
                 reason: "Semantic port removed by model history".into(),
             };
-            if undo {
+            if proof.before!=proof.after {
                 proofs.insert(o.id.0, proof.clone());
             }
         } else if !o.presence.active()
             && resolves
-            && redo
-            && matches_redo(proofs.get(&o.id.0), proof)
+            && (undo||redo)
+            && matches_inverse(proofs.get(&o.id.0), proof)
         {
             o.presence = Presence::Active;
             proofs.remove(&o.id.0);

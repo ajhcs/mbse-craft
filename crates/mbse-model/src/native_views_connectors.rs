@@ -194,10 +194,10 @@ pub(super) fn reconcile(
             e.presence = Presence::Detached {
                 reason: "Semantic connector or qualified endpoint removed or changed".into(),
             };
-            if undo {
+            if proof.before!=proof.after {
                 proofs.insert(id.0, proof.clone());
             }
-        } else if !e.presence.active() && resolves && redo && matches_redo(proofs.get(&id.0), proof)
+        } else if !e.presence.active() && resolves && (undo||redo) && matches_inverse(proofs.get(&id.0), proof)
         {
             e.presence = Presence::Active;
             proofs.remove(&id.0);

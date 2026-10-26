@@ -21,6 +21,8 @@ mod connector_editor;
 mod value_editor;
 #[path="ui_refactor.rs"]
 mod refactor_editor;
+#[path="ui_deletion.rs"]
+mod deletion_editor;
 use crate::preferences::Preferences;
 use craft_ui::{
     buttons::{ButtonVisuals, IconButton, IconButtonStyle},
@@ -84,6 +86,7 @@ pub struct Workspace {
     connector_panel:connector_editor::ConnectorPanel,
     value_panel:value_editor::ValuePanel,
     refactor_panel:refactor_editor::RefactorPanel,
+    deletion_panel:deletion_editor::DeletionPanel,
     docking_focus: Option<(egui::Id,RawKey,mbse_model::stage1::Freshness,u8)>,
     periodic_recovery: crate::periodic_recovery::PeriodicRecovery,
     feedback: String,
@@ -159,7 +162,7 @@ impl Workspace {
         let periodic_recovery = crate::periodic_recovery::PeriodicRecovery::new(Instant::now(), &session, &views);
         let mut docking=crate::docking::WorkspaceDock::default();
         match crate::perspectives::decode(&preferences.value.workspace_layout){Ok(layout)=>docking.layout=layout,Err(e)=>{preferences.load_warning=true;preferences.report.push_str(&format!("; {e}"));docking.note=e}}
-        let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,shortcuts,docking,perspective_name:String::new(),files:Default::default(),type_panel:Default::default(),port_panel:Default::default(),connector_panel:Default::default(),value_panel:Default::default(),refactor_panel:Default::default(),docking_focus:None,periodic_recovery, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
+        let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,shortcuts,docking,perspective_name:String::new(),files:Default::default(),type_panel:Default::default(),port_panel:Default::default(),connector_panel:Default::default(),value_panel:Default::default(),refactor_panel:Default::default(),deletion_panel:Default::default(),docking_focus:None,periodic_recovery, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
             creation: None, relation: None, popout: None, usages: None, impact_open:false,impact_target:None,impact_report:None,impact_note:String::new(), search_open:false, search_query:Default::default(), search_report:None, search_note:String::new(), browser_revealed:None,browser_open_groups:BTreeMap::new(), pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new(), menu_scope:None, last_workspace_command:None };
         app.refresh_recoveries();
         app
@@ -1992,6 +1995,7 @@ impl eframe::App for Workspace {
         self.connector_dialog(&ctx);
         self.values_dialog(&ctx);
         self.refactor_dialog(&ctx);
+        self.deletion_dialog(&ctx);
         self.audit.extend(self.views.toolbar_bounds());
         self.capture(&ctx);
         self.catalog.show(&ctx);
@@ -2016,6 +2020,7 @@ impl eframe::App for Workspace {
             fields.insert("connectors".into(),self.connectors_audit());
             fields.insert("typed_values".into(),self.values_audit());
             fields.insert("refactor".into(),self.refactor_audit());
+            fields.insert("deletion".into(),self.deletion_audit());
             fields.insert("views_inspection_profile".into(), serde_json::json!(self.views.inspection_profile()));
             fields.insert("views_inspection_copy_origin".into(), self.views.inspection_copy_origin());
         }
