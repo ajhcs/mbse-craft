@@ -10,16 +10,17 @@ core/nested/retained journal collisions and noncanonical serialized keys refuse.
 Multiplicity is a canonical unsigned32-bit lower/upper or unbounded upper *, with
 lower <= upper. No assignment/default/derived-value, inheritance or SysML claim.
 
-Types and properties opens from Tools/menu/keyboard. Property forms are durable
+Types and properties opens from Tools/menu/keyboard. Definition and property forms are durable
 raw journals, independent of accepted property data. Invalid/unfinished type-ID,
 name and multiplicity text is saved/reopened intact. Apply stages and validates
 atomically; wrong-kind reference or invalid multiplicity leaves accepted state
 and the retained raw form unchanged. Model history now includes accepted extension
-state alongside Stage1 records, retaining newer property forms and monotonic IDs
+state alongside Stage1 records, retaining newer definition and property forms and monotonic IDs
 through Undo/Redo. Native text and views histories retain their existing ownership.
 
-Unapplied definition-name UI text is retained in-session; Add commits a definition.
-Property form text has durable native journal scope. Opening an unmigrated document
+Definition name, System membership and value/scalar choices have durable native
+journal scope. Add clears only the matching consumed name; unrelated/newer draft
+work survives. Invalid definition names remain saved even when Add refuses. Opening an unmigrated document
 requires the explicit P14 new-copy migration workflow before authoring types.
 Unknown required namespaces and future schema refuse; nonempty extensions retain
 the explicit exchange refusal until an adapter exists. Synthetic bounded Linux

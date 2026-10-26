@@ -1,0 +1,1268 @@
+{
+  "command_catalog": {
+    "items": [
+      {
+        "default_shortcut": "Ctrl+Alt+T",
+        "enabled": true,
+        "id": "tools.types",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Types and properties",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+T"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+D",
+        "enabled": false,
+        "id": "file.choose",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Choose model file\u2026",
+        "menu": "File",
+        "reason": "Types and properties: close the editor to use native file/history commands; unfinished property text is retained.",
+        "shortcut": "Ctrl+Alt+D"
+      },
+      {
+        "default_shortcut": "Ctrl+N",
+        "enabled": false,
+        "id": "file.new",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "New",
+        "menu": "File",
+        "reason": "Types and properties: close the editor to use native file/history commands; unfinished property text is retained.",
+        "shortcut": "Ctrl+N"
+      },
+      {
+        "default_shortcut": "Ctrl+O",
+        "enabled": false,
+        "id": "file.open",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Open",
+        "menu": "File",
+        "reason": "Types and properties: close the editor to use native file/history commands; unfinished property text is retained.",
+        "shortcut": "Ctrl+O"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+O",
+        "enabled": false,
+        "id": "file.recover",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Recover",
+        "menu": "File",
+        "reason": "Types and properties: close the editor to use native file/history commands; unfinished property text is retained.",
+        "shortcut": "Ctrl+Shift+O"
+      },
+      {
+        "default_shortcut": "Ctrl+I",
+        "enabled": false,
+        "id": "file.import_sysml",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Import SysML",
+        "menu": "File",
+        "reason": "Types and properties: close the editor to use native file/history commands; unfinished property text is retained.",
+        "shortcut": "Ctrl+I"
+      },
+      {
+        "default_shortcut": "Ctrl+S",
+        "enabled": false,
+        "id": "file.save",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Save",
+        "menu": "File",
+        "reason": "Types and properties: close the editor to use native file/history commands; unfinished property text is retained.",
+        "shortcut": "Ctrl+S"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+S",
+        "enabled": false,
+        "id": "file.recovery_copy",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Recovery copy",
+        "menu": "File",
+        "reason": "Types and properties: close the editor to use native file/history commands; unfinished property text is retained.",
+        "shortcut": "Ctrl+Shift+S"
+      },
+      {
+        "default_shortcut": "Ctrl+E",
+        "enabled": false,
+        "id": "file.export_sysml",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Export SysML copy",
+        "menu": "File",
+        "reason": "Types and properties: close the editor to use native file/history commands; unfinished property text is retained.",
+        "shortcut": "Ctrl+E"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+R",
+        "enabled": false,
+        "id": "file.review_recoveries",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Review recovery copies",
+        "menu": "File",
+        "reason": "Types and properties: close the editor to use native file/history commands; unfinished property text is retained.",
+        "shortcut": "Ctrl+Shift+R"
+      },
+      {
+        "default_shortcut": "Ctrl+Q",
+        "enabled": false,
+        "id": "file.quit",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Quit",
+        "menu": "File",
+        "reason": "Types and properties: close the editor to use native file/history commands; unfinished property text is retained.",
+        "shortcut": "Ctrl+Q"
+      },
+      {
+        "default_shortcut": "Ctrl+Z",
+        "enabled": false,
+        "id": "edit.undo",
+        "keyboard_scope": "model; fixed native-field Ctrl/Cmd+Z and Ctrl/Cmd+Shift+Z",
+        "label": "Undo",
+        "menu": "Edit",
+        "reason": "Types and properties: close the editor to use native file/history commands; unfinished property text is retained.",
+        "shortcut": "Ctrl+Z"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+Z",
+        "enabled": false,
+        "id": "edit.redo",
+        "keyboard_scope": "model; fixed native-field Ctrl/Cmd+Z and Ctrl/Cmd+Shift+Z",
+        "label": "Redo",
+        "menu": "Edit",
+        "reason": "Types and properties: close the editor to use native file/history commands; unfinished property text is retained.",
+        "shortcut": "Ctrl+Shift+Z"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+Z",
+        "enabled": false,
+        "id": "view.layout_undo",
+        "keyboard_scope": "canvas; inactive while editing text or an auxiliary window",
+        "label": "Layout Undo",
+        "menu": "View",
+        "reason": "Types and properties: close the editor to use native file/history commands; unfinished property text is retained.",
+        "shortcut": "Ctrl+Alt+Z"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+Shift+Z",
+        "enabled": false,
+        "id": "view.layout_redo",
+        "keyboard_scope": "canvas; inactive while editing text or an auxiliary window",
+        "label": "Layout Redo",
+        "menu": "View",
+        "reason": "Types and properties: close the editor to use native file/history commands; unfinished property text is retained.",
+        "shortcut": "Ctrl+Alt+Shift+Z"
+      },
+      {
+        "default_shortcut": "Ctrl+F",
+        "enabled": false,
+        "id": "edit.search",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Search native records",
+        "menu": "Edit",
+        "reason": "Types and properties: close the editor to use native file/history commands; unfinished property text is retained.",
+        "shortcut": "Ctrl+F"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+U",
+        "enabled": false,
+        "id": "edit.usages",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Find usages",
+        "menu": "Edit",
+        "reason": "Types and properties: close the editor to use native file/history commands; unfinished property text is retained.",
+        "shortcut": "Ctrl+Shift+U"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+I",
+        "enabled": false,
+        "id": "edit.impact",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Inspect record impact",
+        "menu": "Edit",
+        "reason": "Types and properties: close the editor to use native file/history commands; unfinished property text is retained.",
+        "shortcut": "Ctrl+Shift+I"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+P",
+        "enabled": false,
+        "id": "view.presentation_source",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Inspect presentation source\u2026",
+        "menu": "View",
+        "reason": "Types and properties: close the editor to use native file/history commands; unfinished property text is retained.",
+        "shortcut": "Ctrl+Shift+P"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+E",
+        "enabled": false,
+        "id": "tools.external_projection",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Open external projection",
+        "menu": "Tools",
+        "reason": "Types and properties: close the editor to use native file/history commands; unfinished property text is retained.",
+        "shortcut": "Ctrl+Shift+E"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+A",
+        "enabled": false,
+        "id": "tools.assurance",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Requirements and evidence",
+        "menu": "Tools",
+        "reason": "Types and properties: close the editor to use native file/history commands; unfinished property text is retained.",
+        "shortcut": "Ctrl+Shift+A"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+L",
+        "enabled": false,
+        "id": "tools.library",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Browse library folder",
+        "menu": "Tools",
+        "reason": "Types and properties: close the editor to use native file/history commands; unfinished property text is retained.",
+        "shortcut": "Ctrl+Shift+L"
+      },
+      {
+        "default_shortcut": "Ctrl+Comma",
+        "enabled": false,
+        "id": "tools.recovery_settings",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Recovery settings",
+        "menu": "Tools",
+        "reason": "Types and properties: close the editor to use native file/history commands; unfinished property text is retained.",
+        "shortcut": "Ctrl+Comma"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+Comma",
+        "enabled": false,
+        "id": "tools.shortcuts",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Keyboard shortcuts",
+        "menu": "Tools",
+        "reason": "Types and properties: close the editor to use native file/history commands; unfinished property text is retained.",
+        "shortcut": "Ctrl+Alt+Comma"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+P",
+        "enabled": false,
+        "id": "view.panels",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Panel layout",
+        "menu": "View",
+        "reason": "Types and properties: close the editor to use native file/history commands; unfinished property text is retained.",
+        "shortcut": "Ctrl+Alt+P"
+      }
+    ],
+    "last": {
+      "id": "tools.types",
+      "reason": null,
+      "refused": false,
+      "scope": "model",
+      "surface": "keyboard"
+    },
+    "schema": "mbse-craft.command-catalog/1"
+  },
+  "error": false,
+  "external_copy_pending": false,
+  "feedback": "Select a model card to edit its fields. Model values and unfinished text remain separate.",
+  "file_operations": {
+    "backend": "application-owned chooser; no OS-picker claim",
+    "listing_pending": false,
+    "note": "",
+    "open": false,
+    "outcome": "idle",
+    "pending": false,
+    "schema": "mbse-craft.file-operations/1"
+  },
+  "frame_override": null,
+  "frame_policy": "Desktop",
+  "layout_recovery_status": "awaiting timer check",
+  "model_revision": 26,
+  "native_extensions": {
+    "namespaces": {
+      "mbse-craft.type-drafts/1": {
+        "definition": {
+          "name": "Unsubmitted quantity",
+          "scalar": "Integer",
+          "system": 1,
+          "value": true
+        },
+        "forms": {
+          "1006": {
+            "lower": "1",
+            "name": "length",
+            "owner": 1004,
+            "upper": "1",
+            "value_type": "1004"
+          }
+        },
+        "profile": "mbse-craft.type-drafts/1",
+        "schema_version": 1
+      },
+      "mbse-craft.types/1": {
+        "definitions": {
+          "1004": {
+            "id": 1004,
+            "kind": "Component",
+            "name": "Subsystem",
+            "system": 1
+          },
+          "1005": {
+            "id": 1005,
+            "kind": {
+              "Value": "Real"
+            },
+            "name": "Distance",
+            "system": 1
+          }
+        },
+        "profile": "mbse-craft.types/1",
+        "properties": {
+          "1006": {
+            "id": 1006,
+            "multiplicity": {
+              "lower": 1,
+              "upper": 1
+            },
+            "name": "length",
+            "owner": 1004,
+            "value_type": 1005
+          }
+        },
+        "schema_version": 1
+      }
+    },
+    "profile": "mbse-craft.extensions/1",
+    "required_namespaces": [
+      "mbse-craft.type-drafts/1",
+      "mbse-craft.types/1"
+    ],
+    "schema_version": 1
+  },
+  "native_record_impact": {
+    "note": "",
+    "open": false,
+    "report": null,
+    "target": null
+  },
+  "native_recovery_status": "awaiting timer check",
+  "native_search": {
+    "note": "",
+    "open": false,
+    "query_mode": "NameContains",
+    "report": null
+  },
+  "native_system_browser": {
+    "open_groups": {
+      "1": true
+    }
+  },
+  "native_usages": null,
+  "periodic_recovery": false,
+  "pixels_per_point": 1.0,
+  "preferences_status": "Session preferences.",
+  "profile": "mbse-craft.ui-geometry/1",
+  "raw_version": 30,
+  "recovery_interval_seconds": 60,
+  "recovery_path": null,
+  "save_status": "Unsaved",
+  "selected": 1003,
+  "shortcut_configuration": {
+    "draft": {},
+    "draft_errors": [],
+    "load_errors": [],
+    "note": "",
+    "open": false,
+    "pending": false,
+    "persistent": false,
+    "read_only": false,
+    "schema": "mbse-craft.shortcut-configuration/1",
+    "status": "Session preferences.",
+    "stored_overrides": {}
+  },
+  "snapshot_hash": "d65b1e7d5bf8b6379473da4bec61aa4037cd3e48e4b3ddcbafdcbdf94959d2dd",
+  "source_edit_dirty": false,
+  "source_edit_pending": false,
+  "typed_properties": {
+    "definition_form": {
+      "name": "Unsubmitted quantity",
+      "scalar": "Integer",
+      "system": 1,
+      "value": true
+    },
+    "form": 1006,
+    "forms": {
+      "1006": {
+        "lower": "1",
+        "name": "length",
+        "owner": 1004,
+        "upper": "1",
+        "value_type": "1004"
+      }
+    },
+    "note": "Typed change retained in native workspace; Save keeps accepted data and unfinished forms.",
+    "open": true,
+    "schema": "mbse-craft.types-ui/1",
+    "selected": 1004,
+    "store": {
+      "definitions": {
+        "1004": {
+          "id": 1004,
+          "kind": "Component",
+          "name": "Subsystem",
+          "system": 1
+        },
+        "1005": {
+          "id": 1005,
+          "kind": {
+            "Value": "Real"
+          },
+          "name": "Distance",
+          "system": 1
+        }
+      },
+      "profile": "mbse-craft.types/1",
+      "properties": {
+        "1006": {
+          "id": 1006,
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          },
+          "name": "length",
+          "owner": 1004,
+          "value_type": 1005
+        }
+      },
+      "schema_version": 1
+    }
+  },
+  "views_active": "1",
+  "views_camera": {
+    "view": "1",
+    "x": 0.0,
+    "y": 0.0,
+    "zoom": 1.0
+  },
+  "views_gesture_active": false,
+  "views_inspection_copy_origin": null,
+  "views_inspection_note": "Choose an explicit local presentation source to inspect read only.",
+  "views_inspection_profile": null,
+  "views_inspection_sha256": null,
+  "views_inspection_visible": false,
+  "views_mapping_rehearsal": {
+    "checked_preview_retained": false,
+    "choices": null,
+    "copy_note": "",
+    "copy_title": "Recovered presentation",
+    "last_applied_view": null,
+    "note": "",
+    "target_current": false
+  },
+  "views_note": "Views are unsaved. Native model, text and layout histories are separate.",
+  "views_occurrence_navigation": {
+    "active_view": "1",
+    "document_sha256": "9d421a2eda24430ce284f56d3d787195bf3b58749795ca5527437c5f0e13bc39",
+    "history_usage": [
+      0,
+      0
+    ],
+    "next_id": "9",
+    "occurrence": null,
+    "selected_occurrence": null
+  },
+  "views_pair_pending": false,
+  "views_pending": false,
+  "views_recovery_current_hint": false,
+  "views_revision": "1",
+  "views_saved_hint": false,
+  "widgets": {
+    "action:Add Actor": [
+      101.375,
+      1471.0,
+      167.59375,
+      1489.0
+    ],
+    "action:Add Capability": [
+      94.9375,
+      1445.0,
+      186.375,
+      1463.0
+    ],
+    "action:Add Environment": [
+      8.0,
+      1497.0,
+      116.96875,
+      1515.0
+    ],
+    "action:Add Expectation": [
+      8.0,
+      1523.0,
+      111.6875,
+      1541.0
+    ],
+    "action:Add Measure": [
+      8.0,
+      1471.0,
+      92.375,
+      1489.0
+    ],
+    "action:Add Mission": [
+      8.0,
+      1445.0,
+      85.9375,
+      1463.0
+    ],
+    "action:Add Objective": [
+      195.375,
+      1445.0,
+      285.125,
+      1463.0
+    ],
+    "action:Add Organization": [
+      125.96875,
+      1497.0,
+      235.5,
+      1515.0
+    ],
+    "action:Add Stakeholder": [
+      176.59375,
+      1471.0,
+      280.625,
+      1489.0
+    ],
+    "action:Browse library folder": [
+      1256.71875,
+      29.5,
+      1386.125,
+      47.5
+    ],
+    "action:Choose model file\u2026": [
+      234.46875,
+      29.5,
+      359.6875,
+      47.5
+    ],
+    "action:Export SysML copy": [
+      1514.6875,
+      29.5,
+      1630.8125,
+      47.5
+    ],
+    "action:Find usages": [
+      8.0,
+      614.0,
+      83.5,
+      632.0
+    ],
+    "action:Import SysML": [
+      525.1875,
+      29.5,
+      611.6875,
+      47.5
+    ],
+    "action:Inspect presentation source\u2026": [
+      532.21875,
+      202.0,
+      713.875,
+      220.0
+    ],
+    "action:Inspect record impact": [
+      8.0,
+      640.0,
+      141.3125,
+      658.0
+    ],
+    "action:New": [
+      368.6875,
+      29.5,
+      403.09375,
+      47.5
+    ],
+    "action:Open": [
+      412.09375,
+      29.5,
+      452.25,
+      47.5
+    ],
+    "action:Open external projection": [
+      916.6875,
+      29.5,
+      1070.0,
+      47.5
+    ],
+    "action:Recover": [
+      461.25,
+      29.5,
+      516.1875,
+      47.5
+    ],
+    "action:Recovery copy": [
+      664.375,
+      29.5,
+      756.0,
+      47.5
+    ],
+    "action:Redo": [
+      1692.8125,
+      28.0,
+      1736.8125,
+      56.0
+    ],
+    "action:Requirements and evidence": [
+      1079.0,
+      29.5,
+      1247.71875,
+      47.5
+    ],
+    "action:Save": [
+      620.6875,
+      29.5,
+      655.375,
+      47.5
+    ],
+    "action:Search native records": [
+      8.0,
+      202.0,
+      139.65625,
+      220.0
+    ],
+    "action:Undo": [
+      1639.8125,
+      28.0,
+      1683.8125,
+      56.0
+    ],
+    "calc:Add count input": [
+      134.4375,
+      1312.0,
+      235.71875,
+      1330.0
+    ],
+    "calc:Add duration input": [
+      8.0,
+      1312.0,
+      125.4375,
+      1330.0
+    ],
+    "calc:Add length input": [
+      117.84375,
+      1286.0,
+      223.46875,
+      1304.0
+    ],
+    "calc:Add scalar input": [
+      8.0,
+      1286.0,
+      108.84375,
+      1304.0
+    ],
+    "camera:100%": [
+      478.8125,
+      281.0,
+      519.625,
+      299.0
+    ],
+    "camera:Fit": [
+      949.8125,
+      254.5,
+      972.6875,
+      272.5
+    ],
+    "camera:Pan down": [
+      780.4375,
+      281.0,
+      845.625,
+      299.0
+    ],
+    "camera:Pan left": [
+      592.59375,
+      281.0,
+      645.53125,
+      299.0
+    ],
+    "camera:Pan right": [
+      654.53125,
+      281.0,
+      714.90625,
+      299.0
+    ],
+    "camera:Pan up": [
+      723.90625,
+      281.0,
+      771.4375,
+      299.0
+    ],
+    "camera:Reset camera": [
+      854.625,
+      281.0,
+      940.875,
+      299.0
+    ],
+    "camera:Zoom in": [
+      528.625,
+      281.0,
+      583.59375,
+      299.0
+    ],
+    "camera:Zoom out": [
+      405.34375,
+      281.0,
+      469.8125,
+      299.0
+    ],
+    "command:toolbar:edit.impact": [
+      8.0,
+      640.0,
+      141.3125,
+      658.0
+    ],
+    "command:toolbar:edit.redo": [
+      1692.8125,
+      28.0,
+      1736.8125,
+      56.0
+    ],
+    "command:toolbar:edit.search": [
+      8.0,
+      202.0,
+      139.65625,
+      220.0
+    ],
+    "command:toolbar:edit.undo": [
+      1639.8125,
+      28.0,
+      1683.8125,
+      56.0
+    ],
+    "command:toolbar:edit.usages": [
+      8.0,
+      614.0,
+      83.5,
+      632.0
+    ],
+    "command:toolbar:file.choose": [
+      234.46875,
+      29.5,
+      359.6875,
+      47.5
+    ],
+    "command:toolbar:file.export_sysml": [
+      1514.6875,
+      29.5,
+      1630.8125,
+      47.5
+    ],
+    "command:toolbar:file.import_sysml": [
+      525.1875,
+      29.5,
+      611.6875,
+      47.5
+    ],
+    "command:toolbar:file.new": [
+      368.6875,
+      29.5,
+      403.09375,
+      47.5
+    ],
+    "command:toolbar:file.open": [
+      412.09375,
+      29.5,
+      452.25,
+      47.5
+    ],
+    "command:toolbar:file.recover": [
+      461.25,
+      29.5,
+      516.1875,
+      47.5
+    ],
+    "command:toolbar:file.recovery_copy": [
+      664.375,
+      29.5,
+      756.0,
+      47.5
+    ],
+    "command:toolbar:file.review_recoveries": [
+      765.0,
+      29.5,
+      907.6875,
+      47.5
+    ],
+    "command:toolbar:file.save": [
+      620.6875,
+      29.5,
+      655.375,
+      47.5
+    ],
+    "command:toolbar:tools.assurance": [
+      1079.0,
+      29.5,
+      1247.71875,
+      47.5
+    ],
+    "command:toolbar:tools.external_projection": [
+      916.6875,
+      29.5,
+      1070.0,
+      47.5
+    ],
+    "command:toolbar:tools.library": [
+      1256.71875,
+      29.5,
+      1386.125,
+      47.5
+    ],
+    "command:toolbar:tools.recovery_settings": [
+      1395.125,
+      29.5,
+      1505.6875,
+      47.5
+    ],
+    "command:toolbar:view.layout_redo": [
+      442.65625,
+      202.0,
+      523.21875,
+      220.0
+    ],
+    "command:toolbar:view.layout_undo": [
+      352.0,
+      202.0,
+      433.65625,
+      220.0
+    ],
+    "command:toolbar:view.presentation_source": [
+      532.21875,
+      202.0,
+      713.875,
+      220.0
+    ],
+    "dock:body:browser": [
+      8.0,
+      173.0,
+      348.0,
+      547.0
+    ],
+    "dock:body:canvas": [
+      352.0,
+      173.0,
+      2192.0,
+      1572.0
+    ],
+    "dock:body:inspector": [
+      8.0,
+      577.0,
+      348.0,
+      1572.0
+    ],
+    "dock:tab:browser": [
+      8.0,
+      147.0,
+      112.6875,
+      173.0
+    ],
+    "dock:tab:canvas": [
+      352.0,
+      147.0,
+      442.78125,
+      173.0
+    ],
+    "dock:tab:inspector": [
+      8.0,
+      551.0,
+      87.84375,
+      577.0
+    ],
+    "field:1003:calc.expression": [
+      8.0,
+      1058.0,
+      348.0,
+      1077.0
+    ],
+    "field:1003:calc.input.x": [
+      8.0,
+      1131.0,
+      348.0,
+      1150.0
+    ],
+    "field:1003:calc.input.x1": [
+      8.0,
+      1207.0,
+      348.0,
+      1226.0
+    ],
+    "field:1003:criterion": [
+      8.0,
+      814.0,
+      348.0,
+      833.0
+    ],
+    "field:1003:name": [
+      8.0,
+      689.0,
+      348.0,
+      708.0
+    ],
+    "input-unit:1003:x": [
+      8.0,
+      1158.0,
+      108.0,
+      1176.0
+    ],
+    "input-unit:1003:x1": [
+      8.0,
+      1234.0,
+      108.0,
+      1252.0
+    ],
+    "measure-unit:1003": [
+      8.0,
+      765.0,
+      116.1875,
+      783.0
+    ],
+    "menu:Edit": [
+      41.28125,
+      2.0,
+      68.0625,
+      20.0
+    ],
+    "menu:File": [
+      8.0,
+      2.0,
+      32.28125,
+      20.0
+    ],
+    "menu:Tools": [
+      118.46875,
+      2.0,
+      153.03125,
+      20.0
+    ],
+    "menu:View": [
+      77.0625,
+      2.0,
+      109.46875,
+      20.0
+    ],
+    "occurrence:3": [
+      377.0,
+      558.0,
+      647.0,
+      642.0
+    ],
+    "occurrence:4": [
+      671.0,
+      558.0,
+      941.0,
+      642.0
+    ],
+    "occurrence:5": [
+      965.0,
+      558.0,
+      1235.0,
+      642.0
+    ],
+    "occurrence:6": [
+      377.0,
+      713.0,
+      647.0,
+      797.0
+    ],
+    "occurrence:7": [
+      671.0,
+      713.0,
+      941.0,
+      797.0
+    ],
+    "output-unit:1003": [
+      8.0,
+      1260.0,
+      108.0,
+      1278.0
+    ],
+    "path": [
+      202.6875,
+      64.0,
+      2192.0,
+      83.0
+    ],
+    "recovery:Review copies": [
+      765.0,
+      29.5,
+      907.6875,
+      47.5
+    ],
+    "relation:ContributesTo:1001:1000": [
+      352.0,
+      1306.0,
+      1006.59375,
+      1324.0
+    ],
+    "relation:ForObjective:1003:1002": [
+      352.0,
+      1358.0,
+      1065.0625,
+      1376.0
+    ],
+    "relation:Scope:1:1000": [
+      352.0,
+      1202.0,
+      892.125,
+      1220.0
+    ],
+    "relation:Scope:1:1001": [
+      352.0,
+      1228.0,
+      938.53125,
+      1246.0
+    ],
+    "relation:Scope:1:1002": [
+      352.0,
+      1254.0,
+      981.84375,
+      1272.0
+    ],
+    "relation:Scope:1:1003": [
+      352.0,
+      1280.0,
+      916.375,
+      1298.0
+    ],
+    "relation:Subject:1002:1001": [
+      352.0,
+      1332.0,
+      1055.875,
+      1350.0
+    ],
+    "save-path": [
+      137.46875,
+      91.0,
+      2192.0,
+      110.0
+    ],
+    "scope:1003": [
+      8.0,
+      716.0,
+      113.21875,
+      734.0
+    ],
+    "settings:Open": [
+      1395.125,
+      29.5,
+      1505.6875,
+      47.5
+    ],
+    "tree:1": [
+      26.0,
+      295.0,
+      132.6875,
+      313.0
+    ],
+    "tree:1000": [
+      26.0,
+      321.0,
+      272.125,
+      339.0
+    ],
+    "tree:1001": [
+      26.0,
+      347.0,
+      318.53125,
+      365.0
+    ],
+    "tree:1002": [
+      26.0,
+      373.0,
+      297.96875,
+      405.0
+    ],
+    "tree:1003": [
+      26.0,
+      413.0,
+      296.375,
+      431.0
+    ],
+    "tree:system:1:header": [
+      8.0,
+      269.0,
+      322.5625,
+      287.0
+    ],
+    "types:add-definition": [
+      23.0,
+      214.0,
+      113.6875,
+      232.0
+    ],
+    "types:apply-property": [
+      23.0,
+      561.0,
+      117.6875,
+      579.0
+    ],
+    "types:close": [
+      23.0,
+      610.0,
+      96.90625,
+      628.0
+    ],
+    "types:definition-name": [
+      125.09375,
+      161.0,
+      405.09375,
+      180.0
+    ],
+    "types:definition:1004": [
+      23.0,
+      240.0,
+      281.625,
+      258.0
+    ],
+    "types:definition:1005": [
+      23.0,
+      266.0,
+      265.9375,
+      284.0
+    ],
+    "types:edit-property:1006": [
+      23.0,
+      341.0,
+      148.3125,
+      359.0
+    ],
+    "types:form:1006": [
+      23.0,
+      367.0,
+      342.78125,
+      385.0
+    ],
+    "types:new-property": [
+      23.0,
+      292.0,
+      143.09375,
+      310.0
+    ],
+    "types:property:lower": [
+      135.375,
+      484.0,
+      415.375,
+      503.0
+    ],
+    "types:property:name": [
+      118.1875,
+      430.0,
+      398.1875,
+      449.0
+    ],
+    "types:property:upper": [
+      159.71875,
+      511.0,
+      439.71875,
+      530.0
+    ],
+    "types:property:value-type": [
+      108.5625,
+      457.0,
+      388.5625,
+      476.0
+    ],
+    "types:redo-model": [
+      111.15625,
+      95.0,
+      189.21875,
+      113.0
+    ],
+    "types:scalar:Boolean": [
+      23.0,
+      188.0,
+      78.78125,
+      206.0
+    ],
+    "types:scalar:Integer": [
+      87.78125,
+      188.0,
+      138.0,
+      206.0
+    ],
+    "types:scalar:Real": [
+      147.0,
+      188.0,
+      180.09375,
+      206.0
+    ],
+    "types:scalar:Text": [
+      189.09375,
+      188.0,
+      222.28125,
+      206.0
+    ],
+    "types:system:1": [
+      129.21875,
+      135.0,
+      304.875,
+      153.0
+    ],
+    "types:undo-model": [
+      23.0,
+      95.0,
+      102.15625,
+      113.0
+    ],
+    "types:value-definition": [
+      414.09375,
+      161.5,
+      523.65625,
+      179.5
+    ],
+    "view:Layout Redo": [
+      442.65625,
+      202.0,
+      523.21875,
+      220.0
+    ],
+    "view:Layout Undo": [
+      352.0,
+      202.0,
+      433.65625,
+      220.0
+    ],
+    "view:tab:1": [
+      352.0,
+      228.0,
+      446.15625,
+      246.0
+    ],
+    "view:tab:2": [
+      455.15625,
+      228.0,
+      534.3125,
+      246.0
+    ],
+    "views:Open views": [
+      756.53125,
+      307.5,
+      831.75,
+      325.5
+    ]
+  },
+  "workspace_docking": {
+    "body_ids": {
+      "browser": "Id::new(\"mbse-owned-workspace-docking\").with((\"body\", Browser))",
+      "canvas": "Id::new(\"mbse-owned-workspace-docking\").with((\"body\", Canvas))",
+      "inspector": "Id::new(\"mbse-owned-workspace-docking\").with((\"body\", Inspector))"
+    },
+    "controls_open": false,
+    "floating": [],
+    "last_actions": [],
+    "layout": "Layout { root: Some(Split { axis: Horizontal, size: FixedFirst(340.0), first: Split { axis: Vertical, size: FixedFirst(400.0), first: Tabs { panels: [Browser], active: 0 }, second: Tabs { panels: [Inspector], active: 0 } }, second: Tabs { panels: [Canvas], active: 0 } }), floating: [] }",
+    "note": "",
+    "panels": [
+      "browser",
+      "inspector",
+      "canvas"
+    ],
+    "revision": 0,
+    "schema": "mbse-craft.workspace-docking/1"
+  },
+  "write_pending": false
+}
