@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m4-p15-definition-journal-review-final",
+  "id": "m4-p15-definition-journal-corrected",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/review-p15",
   "source_manifest": "docs/parity/p15/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "1bf3c34fe7262ba621e7fdf995ccbeb0af344ceff8d0267ed2bf5d450e1b7618",
-  "source_sha256": "53dd2fee7179cf9a593ae8607bf2ec84b83b51a77c3cd162f46b0f713b9a7ceb",
+  "source_manifest_sha256": "fe14c308b68fc1a8a3ff4df02d4436282e45d249ea7c273fdb7c2603daf5b11a",
+  "source_sha256": "e4576fb1b0a1477c602cde2fed9bdd0f7557e580cc4a465d98814154af4b42dd",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
