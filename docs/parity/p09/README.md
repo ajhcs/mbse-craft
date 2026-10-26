@@ -1,6 +1,6 @@
 # P09: stable workspace command catalog and menus
 
-Draft review: [PR #12](https://github.com/ajhcs/mbse-craft/pull/12).
+Merged [PR #12](https://github.com/ajhcs/mbse-craft/pull/12) at `55322e62e1ea60973c71c56503e1c5f0c474e747`; see the [requested follow-up review](REVIEW_FOLLOWUP.md). This original execution record remains source-specific.
 
 P08 [PR #11](https://github.com/ajhcs/mbse-craft/pull/11) was reviewed without
 additional actionable findings in isolated `codex/review-p08`, then merged at
@@ -80,8 +80,7 @@ original P08 and its review checkout; see [preservation](PRESERVATION_AFTER.json
 There are no new dependencies or changes to external projects, shared skills,
 services, providers, signing or release workflows. Source/pixel review is by the
 implementing agent. This is bounded Linux/software-rendered command acceptance;
-per-command file/domain behavior is not exhaustively replayed. P10 configured
-shortcuts, docking, full keyboard/accessibility/platform coverage and engineering
+per-command file/domain behavior is not exhaustively replayed. [P10](../p10/README.md) now implements scoped shortcut configuration in a separate draft; docking, full keyboard/accessibility/platform coverage and engineering
 acceptance remain open. All 56 prospective full-parity specifications remain NOT_RUN.
 
 Static parity validation passed: 58 PR positions, 56 capabilities, 56 NOT_RUN

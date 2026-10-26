@@ -31,7 +31,7 @@ Acceptance:
    persistence. A failed write remains pending and retries the same generation;
    stale acknowledgments cannot save newer settings. Without `--config-dir`, or
    with a future read-only schema, changes are explicitly session-only.
-4. Loaded invalid/conflicting overrides remain preserved in the file and editor
+4. Loaded invalid/conflicting override strings remain preserved in the file and editor
    draft, with a visible warning and safe active defaults. No automatic repair
    or rewrite occurs. Newer schemas remain read-only and byte exact.
 5. Native fields always retain fixed Primary+Z / Primary+Shift+Z field Undo/Redo,
@@ -52,3 +52,10 @@ blocks native file/history shortcuts while it owns editing. No key sequence,
 macro, executable script, external provider or service is introduced. Full Craft
 shortcut equivalence, platform/input-method/accessibility and engineering
 acceptance remain separate from the bounded Linux candidate evidence.
+
+Cold native checks copy the exact previous persisted config bytes into each new
+owned run directory. This preserves the driver's existing read-only root and
+writable-run boundary; it does not claim a restart at the same physical config
+path. Unapplied shortcut draft text is session state, retained when closing the
+editor; it is not persisted across application exit. Malformed TOML/types retain
+the shared store's load-report/preservation policy rather than becoming chords.

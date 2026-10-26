@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.milestone3-results/1",
-  "recorded_utc": "2026-10-26T00:05:59.563904+00:00",
+  "recorded_utc": "2026-10-26T16:05:50.195357+00:00",
   "state": "in_progress",
   "base_commit": "d7cca1c17002368f58264e7686e8c71a9b73b6dd",
   "p09": {
-    "state": "implemented_draft_pending_review",
+    "state": "merged",
     "branch": "codex/m3-p09-command-catalog",
     "source_commit": "b24c902b932347e38ac1df7ada74837dd7268fa2",
     "source_files": 674,
@@ -21,14 +21,41 @@
     "native_receipt": "p09/verification/native/RECEIPT.json",
     "same_agent_review": "p09/verification/NATIVE_REVIEW.json",
     "preservation": "p09/PRESERVATION_AFTER.json",
-    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/12"
+    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/12",
+    "reviewed_head": "5b661f8ff87ce708c9b313266c68d51dba7e282d",
+    "merge_commit": "55322e62e1ea60973c71c56503e1c5f0c474e747",
+    "review_followup": "p09/REVIEW_FOLLOWUP.md"
   },
   "milestone_exit_accepted": false,
   "full_parity_accepted": false,
   "remaining_prs": [
-    "P10",
     "P11",
     "P12",
     "P13"
-  ]
+  ],
+  "p10": {
+    "state": "implemented_draft_pending_review",
+    "branch": "codex/m3-p10-scoped-shortcuts",
+    "base_commit": "55322e62e1ea60973c71c56503e1c5f0c474e747",
+    "source_commit": "07e92158456767defa783bed3351aedd4311cb2d",
+    "source_files": 676,
+    "source_sha256": "d66ca8adc39b0e64c7055c15d07b58236bbc3a2d49bbfdf959b0657f17cfe46c",
+    "binary_sha256": "4133267cef9eaf94d2404571983e37a706277f5467cb1444e23bce8d87272a89",
+    "workspace_tests_passed": 366,
+    "new_p10_tests": 14,
+    "harness_tests_passed": 12,
+    "new_seed_harness_tests": 6,
+    "catalog_commands": 22,
+    "positive_native_runs": 3,
+    "readonly_native_runs": 1,
+    "native_action_errors": 0,
+    "acceptance": "p10/README.md",
+    "contract": "p10/CONTRACT.md",
+    "compiler_receipt": "p10/verification/COMPILER_RECEIPT.json",
+    "native_receipt": "p10/verification/native/RECEIPT.json",
+    "readonly_native_receipt": "p10/verification/native-readonly/RECEIPT.json",
+    "same_agent_review": "p10/verification/NATIVE_REVIEW.json",
+    "preservation": "p10/PRESERVATION_AFTER.json",
+    "cold_reload_scope": "Exact copies of prior actual persisted config bytes into each new owned run; no same-physical-path native restart claim"
+  }
 }
