@@ -1,5 +1,5 @@
 {
-  "source_sha256": "d9e628460cba38429c23c97f6d10b58cc46f9b0a0a914547703939daedf17f5b",
+  "source_sha256": "7507442f0023c7311fe49459d5c89367829cdfd11869836572018b81f4d7c1a9",
   "closure_digest_format": "SHA256 compact sorted-key JSON files array",
   "files": [
     {
@@ -134,8 +134,8 @@
     },
     {
       "path": "crates/mbse-desktop/src/ui_types.rs",
-      "bytes": 11727,
-      "sha256": "64647a1c995714d8db91cba0109e5d5d1a1ee3d670f669e60d0b62f0cdb95f32"
+      "bytes": 11900,
+      "sha256": "bc4c8f3c9a71bb851be856e558e07e9ea2a8b1f4b647dee9534028d690e8cbec"
     },
     {
       "path": "crates/mbse-desktop/src/views_ui.rs",

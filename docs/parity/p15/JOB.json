@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m4-p15-visible-form-fix",
+  "id": "m4-p15-renderer-qualified-final",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m4-p15-types-properties",
   "source_manifest": "docs/parity/p15/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "1f2d687d88c2d04ba7afe403209d95bf86aace88b2912556005682c2bd8bab4c",
-  "source_sha256": "d9e628460cba38429c23c97f6d10b58cc46f9b0a0a914547703939daedf17f5b",
+  "source_manifest_sha256": "10010fcdb6257a2eddbb9f8ba449866d511ce4fc8618f8f78d1222b09264c04c",
+  "source_sha256": "7507442f0023c7311fe49459d5c89367829cdfd11869836572018b81f4d7c1a9",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -38,7 +38,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "Retain clipped-field failure; give typed dialog a usable initial height with bounded viewport scrolling. Original actual renderer/focus assertion remains. Full workspace/build.",
+  "rationale": "Focused actual AreaState trace proved three-frame window/TextEdit startup. Final steady-state focus assertion remains; full workspace/build including new typed model/history/store cases. Earlier failures and focused diagnostic retained separately.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",
