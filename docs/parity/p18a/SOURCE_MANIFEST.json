@@ -383,8 +383,8 @@
     },
     {
       "path": "crates/mbse-model/src/types/connectors_tests.rs",
-      "bytes": 12090,
-      "sha256": "c04350cf7fe9940156dcee9665645f663a809b50a379e65f1866940eb449986f"
+      "bytes": 12100,
+      "sha256": "da4fe50afa29763c485bacc1999c56b047580e8b17c837b7688dc122d692d92a"
     },
     {
       "path": "crates/mbse-model/src/types/p16_tests.rs",
@@ -3467,5 +3467,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "d3921c49df501ec6f097dd67ebf1f7474d8cc15131164c34a05fcec0d10360d4"
+  "source_sha256": "2eedba64db84bcb8252ce274f74e96cf6bf10a55316f7672c8dabd55b585b599"
 }

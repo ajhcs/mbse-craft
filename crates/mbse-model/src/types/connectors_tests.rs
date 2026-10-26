@@ -282,7 +282,7 @@ fn captured_native_save_cold_reopen_retains_connector_raw_forms_prior_semantics_
     .unwrap();
     let expected = session.editor.snapshot.clone();
     let mut v = Views::new(&session.editor).unwrap();
-    let view = *v.document.views.keys().next().unwrap();
+    let view = *v.document().views.keys().next().unwrap();
     v.apply(
         &session.editor,
         &v.stamp(&session.editor),
@@ -293,8 +293,8 @@ fn captured_native_save_cold_reopen_retains_connector_raw_forms_prior_semantics_
         }),
     )
     .unwrap();
-    let core = v.document.occurrences.clone();
-    let ports = v.document.typed_ports.clone();
+    let core = v.document().occurrences.clone();
+    let ports = v.document().typed_ports.clone();
     let path = area.path().join("connectors.kernspan");
     let side = area.path().join("connectors.mbse-views.json");
     let mut io = Io::default();
@@ -328,8 +328,8 @@ fn captured_native_save_cold_reopen_retains_connector_raw_forms_prior_semantics_
         &accepted_native(&cold).unwrap(),
     )
     .unwrap();
-    assert_eq!(views.document.occurrences, core);
-    assert_eq!(views.document.typed_ports, ports);
+    assert_eq!(views.document().occurrences, core);
+    assert_eq!(views.document().typed_ports, ports);
 }
 #[test]
 fn old_type_store_and_journal_wire_values_do_not_gain_empty_connector_fields() {
