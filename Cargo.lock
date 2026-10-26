@@ -1627,7 +1627,6 @@ name = "mbse-catalog"
 version = "0.1.0"
 dependencies = [
  "craft-docpath",
- "craft-platform",
  "mbse-model",
  "serde",
  "serde_json",
