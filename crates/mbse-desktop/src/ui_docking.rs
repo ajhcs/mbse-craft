@@ -1,6 +1,6 @@
 //! Dock bodies borrow the one live workspace; moves never reconstruct content.
 use super::*;
-use crate::docking::{Panel, WorkspaceDock};
+use crate::docking::Panel;
 use craft_ui::docking::{Action, DockArea, DockStyle, Placement, Zone};
 impl Workspace {
     fn dock_id() -> egui::Id {
@@ -34,9 +34,31 @@ impl Workspace {
         if self.dock_blocked() {
             return Err("DOCK_BUSY: finish the gesture/write or close the auxiliary editor first; all panels retained.".into());
         }
-        self.docking.apply(expected, actions)
+        let focus = self.focused_raw().and_then(|key| {
+            self.context
+                .memory(|m| m.focused())
+                .map(|id| (id, key, self.session.editor.freshness(), 3))
+        });
+        self.docking.apply(expected, actions)?;
+        self.docking_focus = focus;
+        Ok(())
     }
     pub(super) fn dock_surface(&mut self, root: &mut egui::Ui) {
+        if root.ctx().input(|i| {
+            i.events.iter().any(|e| {
+                matches!(
+                    e,
+                    egui::Event::PointerButton { pressed: true, .. }
+                        | egui::Event::Key {
+                            key: egui::Key::Tab,
+                            pressed: true,
+                            ..
+                        }
+                )
+            })
+        }) {
+            self.docking_focus = None;
+        }
         self.views.clear_toolbar_bounds();
         self.docking.body_ids.clear();
         let layout = self.docking.layout.clone();
@@ -80,6 +102,33 @@ impl Workspace {
                 }
             }
         });
+        self.restore_dock_focus(root.ctx());
+    }
+    pub(super) fn restore_dock_focus(&mut self, ctx: &egui::Context) {
+        let Some((id, key, stamp, remaining)) = self.docking_focus.take() else {
+            return;
+        };
+        if self.session.editor.freshness() != stamp
+            || self.session.editor.selected != Some(key.record)
+            || !self.session.editor.field_available(&key)
+        {
+            return;
+        }
+        if !self.docking.body_ids.contains_key("inspector") {
+            return;
+        }
+        if remaining == 3 {
+            self.docking_focus = Some((id, key, stamp, 2));
+            return;
+        }
+        if ctx
+            .read_response(id)
+            .is_some_and(|r| r.enabled() && r.rect.intersects(r.interact_rect))
+        {
+            ctx.memory_mut(|m| m.request_focus(id));
+        } else if remaining > 1 {
+            self.docking_focus = Some((id, key, stamp, remaining - 1));
+        }
     }
     pub(super) fn docking_dialog(&mut self, ctx: &egui::Context) {
         if !self.docking.window {
@@ -221,6 +270,7 @@ mod tests {
         )
         .unwrap();
         render(&mut a, &ctx);
+        render(&mut a, &ctx); // Newly floated egui areas have one disabled measuring pass.
         assert_eq!(a.docking.body_ids["inspector"], body);
         assert_eq!(a.model_fields[&field], key);
         assert_eq!(ctx.memory(|m| m.focused()), Some(field));
