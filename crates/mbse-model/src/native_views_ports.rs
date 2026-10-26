@@ -3,15 +3,40 @@ use super::*;
 pub const PROFILE: &str = "mbse-craft.native-views/3";
 pub const RECOVERY_PROFILE: &str = "mbse-craft.native-views-recovery/3";
 pub fn typed_profile(profile: &str) -> bool {
-    matches!(profile, PROFILE | RECOVERY_PROFILE)
+    matches!(profile, PROFILE | RECOVERY_PROFILE) || connectors::qualified_profile(profile)
 }
-mod port_id {
+pub(super) mod port_id {
     use super::*;
     pub fn serialize<S: Serializer>(id: &crate::types::Id, s: S) -> Result<S::Ok, S::Error> {
         s.serialize_str(&id.0.to_string())
     }
     pub fn deserialize<'de, D: Deserializer<'de>>(d: D) -> Result<crate::types::Id, D::Error> {
         decimal(d).map(crate::types::Id)
+    }
+}
+mod usage_id {
+    use super::*;
+    pub fn serialize<S: Serializer>(
+        id: &Option<crate::types::Id>,
+        s: S,
+    ) -> Result<S::Ok, S::Error> {
+        match id {
+            Some(id) => s.serialize_some(&id.0.to_string()),
+            None => s.serialize_none(),
+        }
+    }
+    pub fn deserialize<'de, D: Deserializer<'de>>(
+        d: D,
+    ) -> Result<Option<crate::types::Id>, D::Error> {
+        let id = Option::<String>::deserialize(d)?;
+        id.map(|text| {
+            let n = text.parse::<u64>().map_err(serde::de::Error::custom)?;
+            if n == 0 || n.to_string() != text {
+                return Err(serde::de::Error::custom("noncanonical usage ID"));
+            }
+            Ok(crate::types::Id(n))
+        })
+        .transpose()
     }
 }
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
@@ -21,6 +46,8 @@ pub struct PortOccurrence {
     pub view: ViewId,
     #[serde(with = "port_id")]
     pub port: crate::types::Id,
+    #[serde(default, skip_serializing_if = "Option::is_none", with = "usage_id")]
+    pub usage: Option<crate::types::Id>,
     pub geometry: Geometry,
     pub visible: bool,
     pub pinned: bool,
@@ -31,6 +58,12 @@ pub enum Layout {
     Reuse {
         view: ViewId,
         port: crate::types::Id,
+        geometry: Geometry,
+    },
+    ReuseInUsage {
+        view: ViewId,
+        port: crate::types::Id,
+        usage: crate::types::Id,
         geometry: Geometry,
     },
     Move(OccurrenceId, Geometry),
@@ -61,14 +94,17 @@ pub(super) fn validate(
             || !ids.insert(id.0)
             || !doc.views.contains_key(&o.view)
             || o.port.0 == 0
+            || o.usage.is_some_and(|u| u.0 == 0)
             || !o.geometry.valid()
         {
             return Err("VIEWS_TYPED_PORT_OCCURRENCE_INVALID".into());
         }
         if o.presence.active()
-            && store
-                .as_ref()
-                .is_some_and(|s| !s.ports.contains_key(&o.port))
+            && store.as_ref().is_some_and(|s| {
+                !s.ports.contains_key(&o.port)
+                    || o.usage
+                        .is_some_and(|u| !connectors::port_context(s, o.port, u))
+            })
         {
             return Err("VIEWS_TYPED_PORT_TARGET_MISSING_OR_KIND".into());
         }
@@ -94,7 +130,13 @@ pub(super) fn apply(doc: &mut Document, snapshot: &Snapshot, action: Layout) -> 
             {
                 return Err("VIEWS_OCCURRENCE_BUDGET".into());
             }
-            doc.profile = if bound_profile(&doc.profile) {
+            doc.profile = if connectors::qualified_profile(&doc.profile) {
+                if bound_profile(&doc.profile) {
+                    connectors::PROFILE
+                } else {
+                    connectors::RECOVERY_PROFILE
+                }
+            } else if bound_profile(&doc.profile) {
                 PROFILE
             } else {
                 RECOVERY_PROFILE
@@ -107,12 +149,35 @@ pub(super) fn apply(doc: &mut Document, snapshot: &Snapshot, action: Layout) -> 
                     id,
                     view,
                     port,
+                    usage: None,
                     geometry,
                     visible: true,
                     pinned: false,
                     presence: Presence::Active,
                 },
             );
+        }
+        Layout::ReuseInUsage {
+            view,
+            port,
+            usage,
+            geometry,
+        } => {
+            if !connectors::port_context(&crate::types::load(snapshot)?, port, usage) {
+                return Err("VIEWS_PORT_PART_CONTEXT".into());
+            }
+            apply(
+                doc,
+                snapshot,
+                Layout::Reuse {
+                    view,
+                    port,
+                    geometry,
+                },
+            )?;
+            let id = OccurrenceId(doc.next_id.0 - 1);
+            doc.typed_ports.get_mut(&id).unwrap().usage = Some(usage);
+            connectors::upgrade(doc);
         }
         Layout::Move(id, geometry) => {
             let o = doc
@@ -137,6 +202,8 @@ pub(super) fn apply(doc: &mut Document, snapshot: &Snapshot, action: Layout) -> 
                 .pinned = pinned
         }
         Layout::Remove(id) => {
+            doc.connector_edges
+                .retain(|_, e| e.source != id && e.target != id);
             doc.typed_ports
                 .remove(&id)
                 .ok_or("VIEWS_NO_PORT_OCCURRENCE")?;
@@ -163,7 +230,9 @@ pub(super) fn reconcile(
         Err(error) => return Err(error),
     };
     for o in doc.typed_ports.values_mut() {
-        let resolves = store.ports.contains_key(&o.port);
+        let resolves = store.ports.contains_key(&o.port)
+            && o.usage
+                .is_none_or(|u| connectors::port_context(&store, o.port, u));
         if o.presence.active() && !resolves {
             o.presence = Presence::Detached {
                 reason: "Semantic port removed by model history".into(),
