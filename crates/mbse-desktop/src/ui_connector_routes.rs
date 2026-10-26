@@ -4,6 +4,28 @@ use mbse_model::{
     native_views::{Geometry, Layout, connectors as vc, ports as vp},
     types::connectors::Endpoint,
 };
+fn clear_route_label(desired: Rect, area: Rect, obstacles: &[Rect], labels: &[Rect]) -> Rect {
+    let stride = desired.height() + 6.;
+    for step in 0..33 {
+        let row = if step == 0 {
+            0.
+        } else if step % 2 == 1 {
+            -((step + 1) / 2) as f32
+        } else {
+            (step / 2) as f32
+        };
+        let candidate = desired.translate(Vec2::new(0., row * stride));
+        if area.contains_rect(candidate)
+            && !obstacles
+                .iter()
+                .chain(labels)
+                .any(|o| o.expand(3.).intersects(candidate))
+        {
+            return candidate;
+        }
+    }
+    desired
+}
 impl Workspace {
     pub(super) fn qualified_port_controls(
         &mut self,
@@ -11,7 +33,7 @@ impl Workspace {
         store: &mbse_model::types::Store,
     ) {
         let ready = !self.dock_blocked();
-        let active=self.views.active;
+        let active = self.views.active;
         let mut action = None;
         let mut reuse_choices = 0;
         let mut route_choices = 0;
@@ -38,7 +60,30 @@ impl Workspace {
         camera: &mbse_model::native_views::Camera,
         scale: f32,
     ) {
+        let key = egui::Id::new("connector-route-label-probe");
+        self.context
+            .data_mut(|d| d.insert_temp(key, serde_json::json!({})));
         let doc = self.views.views.document();
+        let rect_of = |g: &Geometry| {
+            Rect::from_min_size(
+                area.min + Vec2::new((g.x - camera.x) as f32, (g.y - camera.y) as f32) * scale,
+                Vec2::new(g.width as f32, g.height as f32) * scale,
+            )
+        };
+        let obstacles: Vec<_> = doc
+            .occurrences
+            .values()
+            .filter(|o| o.view == self.views.active && o.visible && o.presence.active())
+            .map(|o| rect_of(&o.geometry))
+            .chain(
+                doc.typed_ports
+                    .values()
+                    .filter(|o| o.view == self.views.active && o.visible && o.presence.active())
+                    .map(|o| rect_of(&o.geometry)),
+            )
+            .collect();
+        let mut labels = Vec::new();
+        let mut probes = serde_json::json!({});
         let Ok(store) = mbse_model::types::load(&self.session.editor.snapshot) else {
             return;
         };
@@ -92,19 +137,42 @@ impl Workspace {
             let galley =
                 ui.painter()
                     .layout_no_wrap(label, FontId::proportional(12. * scale), ACCENT);
-            let rect = Rect::from_center_size(center, galley.size() + Vec2::new(10., 6.));
+            let desired = Rect::from_center_size(center, galley.size() + Vec2::new(10., 6.));
+            if labels.len() >= 128 {
+                continue;
+            }
+            let rect = clear_route_label(desired, area, &obstacles, &labels);
+            labels.push(rect);
+            probes[edge.id.get().to_string()] = serde_json::json!({"text":format!("{} · Value#{}",c.name,c.conveyed.0),"rect":[rect.min.x,rect.min.y,rect.max.x,rect.max.y],"avoids_cards":!obstacles.iter().any(|o|o.intersects(rect)),"separate_from_prior_labels":!labels[..labels.len()-1].iter().any(|o|o.intersects(rect))});
             ui.painter().rect_filled(rect, 3., PAPER);
             ui.painter()
                 .galley(rect.min + Vec2::new(5., 3.), galley, ACCENT);
         }
+        self.context.data_mut(|d| d.insert_temp(key, probes));
     }
     pub(super) fn connector_routes_audit(&self) -> serde_json::Value {
-        serde_json::json!({"schema":"mbse-craft.connector-routes-ui/1","profile":self.views.views.document().profile,"edges":self.views.views.document().connector_edges})
+        serde_json::json!({"schema":"mbse-craft.connector-routes-ui/1","profile":self.views.views.document().profile,"edges":self.views.views.document().connector_edges,"labels":self.context.data(|d|d.get_temp::<serde_json::Value>(egui::Id::new("connector-route-label-probe")))})
     }
 }
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn long_parallel_route_labels_avoid_both_endpoint_cards_and_each_other() {
+        let area = Rect::from_min_size(egui::Pos2::ZERO, Vec2::new(1200., 800.));
+        let cards = [
+            Rect::from_min_size(egui::pos2(25., 315.), Vec2::new(270., 112.)),
+            Rect::from_min_size(egui::pos2(375., 315.), Vec2::new(270., 112.)),
+        ];
+        let desired = Rect::from_center_size(egui::pos2(335., 371.), Vec2::new(250., 24.));
+        let a = clear_route_label(desired, area, &cards, &[]);
+        let b = clear_route_label(desired, area, &cards, &[a]);
+        assert!(area.contains_rect(a) && area.contains_rect(b));
+        for card in cards {
+            assert!(!a.intersects(card) && !b.intersects(card))
+        }
+        assert!(!a.intersects(b));
+    }
     #[test]
     fn actual_route_controls_disambiguate_two_parts_of_one_type_and_remove_only_presentation() {
         let area = tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap();

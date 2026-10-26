@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m4-p18b-routes-capture-test-fix",
+  "id": "m4-p18b-routes-label-visibility-fix",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes",
   "source_manifest": "docs/parity/p18b/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "ef1119bf80726ad17109226b0cd4cd174ea76f40a38bd8262d766b0525136ef4",
-  "source_sha256": "34eccea2ac1af8501753905105232037b9e2b936e84420cd193b405894a9fadb",
+  "source_manifest_sha256": "ca9a8ad99e06e6526328cd127eac4036605953ad967710ea15140497e81f99a7",
+  "source_sha256": "d3407e48b98e58639cef48dcc2c88178622a0780e6fecb064d0c4f1033d36a9a",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -24,7 +24,9 @@
       "test",
       "--locked",
       "--offline",
-      "--workspace",
+      "-p",
+      "mbse-desktop",
+      "ui::connector_routes::tests",
       "--",
       "--test-threads=1"
     ],
@@ -38,7 +40,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "Qualified Part/Port presentation contexts, semantic connector straight routes and shared IDs/budgets, explicit views4 capture/persistence, exact history proof and legacy wire preservation. Eight new regressions; pinned upstream dependencies/licenses/build scripts unchanged and inspected in parent workflow.",
+  "rationale": "Native screenshots exposed long/parallel connector labels hidden by cards. Avoid card and prior label rectangles, paint after cards, bounded128 labels/33 placements and private per-label audit. New regression plus actual route-button renderer regression; semantic/history/schema source remains identical to448-test closure. Native remainder from actual saved bound views4 checkpoint.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",

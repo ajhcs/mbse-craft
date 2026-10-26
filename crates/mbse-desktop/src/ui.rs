@@ -1423,8 +1423,8 @@ impl Workspace {
                     let details = Rect::from_min_size(rect.left_bottom() + Vec2::new(12. * scale, -27. * scale), Vec2::new(90., 22.) * scale);
                     if ui.put(details, egui::Button::new("Details…")).clicked() { self.popout = Some(record.id); }
                 }
-                self.paint_connector_routes(ui,area,&camera,scale);
                 self.paint_port_occurrences(ui,area,&camera,scale,&port_occurrences);
+                self.paint_connector_routes(ui,area,&camera,scale);
             });
             ui.separator();
             ui.label(
