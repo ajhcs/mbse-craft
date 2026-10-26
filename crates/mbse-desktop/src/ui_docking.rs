@@ -9,8 +9,8 @@ impl Workspace {
     pub(super) fn docking_chrome_focused(&self) -> bool {
         DockArea::new(Self::dock_id()).chrome_has_focus(&self.context, &self.docking.layout)
     }
-    fn dock_blocked(&self) -> bool {
-        self.views.occurrence_navigation_blocked(&self.session)
+    pub(super) fn dock_blocked(&self) -> bool {
+        self.files.open || self.files.pending() || self.views.occurrence_navigation_blocked(&self.session)
             || self.pending.is_some()
             || self.creation.is_some()
             || self.context_creation.is_some()

@@ -1,0 +1,200 @@
+{
+  "recorded_utc": "2026-10-26T16:57:09.880685+00:00",
+  "worktrees": [
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft",
+      "head": "53133f6ac228fac885767a5d9f1165a8db5d139b",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m1-p03-views",
+      "head": "486a95b156ed4619123633703a6d25833cb865b5",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m1-p04-recovery",
+      "head": "73b2c8df938a7fdda65fc056aa8ad727a83bc1ee",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m1-p05-navigation",
+      "head": "c815d0a364e120c5f97bb70bddf597be7820403d",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m1-p06-occurrence",
+      "head": "6b1288ee3c5d267fb7c46bad58d36525bfd95c0d",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m2-p07-copy-format",
+      "head": "c4a9e3945ab16db108de73b42af4def87b9e19de",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m2-p08-live-copy",
+      "head": "d64c9c9690208dcc3dc1f1de73b05a6a04f22b67",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m3-p09-command-catalog",
+      "head": "0926aed84ab18d13196b0d9ea87ff8d4f7a33521",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m3-p10-scoped-shortcuts",
+      "head": "b300919dc7de3774a9809a133910d1c74f6b97a0",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m3-p11-transactional-docking",
+      "head": "e1aefde4a1222ae4dcd50072b39e9fcade39e347",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m3-p12-workspace-perspectives",
+      "head": "943f15327dd65b7dc9da7288847b75d1f436b21d",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/p02-readiness",
+      "head": "7f3cbfb8fb8976fcf563eae5ffd10d02f5b2f910",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/parity-matrix",
+      "head": "725e28c1c852429449a5f7303ba981db66f775fc",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/review-m1-pr4-9",
+      "head": "42f710db71080d4ef640451eb9134c531b1a36a0",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/review-native-retry",
+      "head": "bfbe0f1ad361739fd14d728d93db3b9527c76b0a",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/review-p07",
+      "head": "7c69915d441cb3a507cf169bae7c46088037b913",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/review-p08",
+      "head": "85c9098c5f2e3f98713da10fe53926a42ffe0020",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/review-p09",
+      "head": "5b661f8ff87ce708c9b313266c68d51dba7e282d",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/review-p10",
+      "head": "95aaedca0ec5f50a881e4c1e43c320d2ad3f02c2",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/review-p11",
+      "head": "e778caee4f8e1a5e10fe6ac11fdeaa23855ec681",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/review-p12",
+      "head": "b17e58ee15046f26964f36b49a6bea507039bc36",
+      "status": ""
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/integration-m1",
+      "head": "5b907c333d423df60de7d539da2a0900941825aa",
+      "status": ""
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/layout-periodic-recovery",
+      "head": "a0079d5232996e9e6350f5bae71138a9b2d276ed",
+      "status": ""
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/model",
+      "head": "b9769021512b7e35a6d2b467dc8b9e4e4a03912b",
+      "status": ""
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/native-camera-controls",
+      "head": "b5e7d2c437748a2334fd4f0c3881ee1c501ba076",
+      "status": ""
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/native-find-usages",
+      "head": "9196d702e8a3ac6cea668621903614a211a0dbca",
+      "status": ""
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/native-occurrence-navigation",
+      "head": "7cb7876ee182872d1a2bf41f5b7707c9a04e04a0",
+      "status": ""
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/native-record-impact",
+      "head": "a985205ca8a77c5f051dadc71ae2d83c1470a4ee",
+      "status": ""
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/native-scoped-search",
+      "head": "643f97bb6e84325d77fb924543784a8733eb7b22",
+      "status": ""
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/native-system-browser",
+      "head": "cb58e13881231139f493eb5f0415427d02bf91d1",
+      "status": ""
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/native-views-m2b01",
+      "head": "eb80c0caa2ef40ea3c4798b0c97df7c69f655049",
+      "status": ""
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/recovery-layout-mapping",
+      "head": "7308d2ba00a98f2ed5f0a830e13b58b2420a50fe",
+      "status": ""
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/recovery-layout-preview",
+      "head": "358443099827c854b023194383add51c520ea01e",
+      "status": ""
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/research",
+      "head": "43801badee4cd6524d516f65121e64a26c958c21",
+      "status": ""
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/ui",
+      "head": "7df3b76800e0ab0eec1f407202875957fd684617",
+      "status": ""
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/verification",
+      "head": "2bb258a5ba610ea9b03b2ed770224b08e354283e",
+      "status": ""
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/views-origin-paired-save",
+      "head": "557ee47e0bb7237a5064c8e51718506431f8f825",
+      "status": ""
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/views-recovery-copy-contract",
+      "head": "57ba816c9c0cb0f5be331107f5f011117f645823",
+      "status": ""
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/views-replacement-guard",
+      "head": "32cd156f34d9496acf931b5543f4b40c42c8e240",
+      "status": ""
+    }
+  ]
+}

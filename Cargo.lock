@@ -672,6 +672,10 @@ name = "craft-docpath"
 version = "0.1.0"
 
 [[package]]
+name = "craft-platform"
+version = "0.1.0"
+
+[[package]]
 name = "craft-quit"
 version = "0.1.0"
 dependencies = [
@@ -1623,6 +1627,7 @@ name = "mbse-catalog"
 version = "0.1.0"
 dependencies = [
  "craft-docpath",
+ "craft-platform",
  "mbse-model",
  "serde",
  "serde_json",
@@ -1635,6 +1640,7 @@ name = "mbse-desktop"
 version = "0.1.0"
 dependencies = [
  "craft-docpath",
+ "craft-platform",
  "craft-quit",
  "craft-settings",
  "craft-ui",
