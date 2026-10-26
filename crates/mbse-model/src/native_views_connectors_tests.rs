@@ -296,7 +296,7 @@ fn captured_v4_native_views_save_and_cold_reopen_preserve_contexts_routes_forms_
         .unwrap();
     let capture = v.capture(&session.editor);
     assert_eq!(
-        capture.document(&session.editor, None).unwrap().profile,
+        v.capture(&session.editor).document(&session.editor, None).unwrap().profile,
         connectors::RECOVERY_PROFILE
     );
     let native = area.path().join("connectors.kernspan");
