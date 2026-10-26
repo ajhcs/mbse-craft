@@ -92,5 +92,51 @@ class SessionOwnership(unittest.TestCase):
         self.assertEqual(self.receipt['status'], 'active')
 
 
+class OwnedConfigSeed(unittest.TestCase):
+    def setUp(self):
+        import tempfile, os
+        self.area = tempfile.TemporaryDirectory(prefix='p10-driver-', dir=os.environ['TMPDIR'])
+        self.root = Path(self.area.name)
+        self.run = self.root/'run'
+        self.run.mkdir()
+        self.seed = self.root/'original.toml'
+        self.seed.write_bytes(b'schema_version = 1\n# preserved seed\n')
+        spec = importlib.util.spec_from_file_location('owned_driver', Path(__file__).with_name('verify-m1-native.py'))
+        self.driver = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(self.driver)
+    def tearDown(self):
+        self.area.cleanup()
+    def args(self):
+        return ['--', '--config-dir', str(self.run/'config')]
+    def test_seed_copies_exact_bytes_and_private_modes(self):
+        import hashlib
+        result = self.driver.prepare_config_seed(self.run,self.seed,self.args())
+        self.assertEqual((self.run/'config/config.toml').read_bytes(),self.seed.read_bytes())
+        self.assertEqual(result['sha256'],hashlib.sha256(self.seed.read_bytes()).hexdigest())
+        self.assertEqual((self.run/'config').stat().st_mode & 0o777,0o700)
+        self.assertEqual((self.run/'config/config.toml').stat().st_mode & 0o777,0o600)
+    def test_seed_refuses_outside_owned_config_without_writing(self):
+        with self.assertRaisesRegex(AssertionError,'inside this owned run'):
+            self.driver.prepare_config_seed(self.run,self.seed,['--config-dir',str(self.root/'outside')])
+        self.assertFalse((self.root/'outside').exists())
+    def test_seed_refuses_symlinks(self):
+        link = self.root/'link.toml';link.symlink_to(self.seed)
+        with self.assertRaises(OSError):self.driver.prepare_config_seed(self.run,link,self.args())
+        self.assertFalse((self.run/'config').exists())
+    def test_seed_refuses_oversized_input(self):
+        self.seed.write_bytes(b'x'*(1024*1024+1))
+        with self.assertRaisesRegex(AssertionError,'bounded regular'):
+            self.driver.prepare_config_seed(self.run,self.seed,self.args())
+        self.assertFalse((self.run/'config').exists())
+    def test_seed_never_replaces_existing_config(self):
+        (self.run/'config').mkdir();p=self.run/'config/config.toml';p.write_bytes(b'original')
+        with self.assertRaises(FileExistsError):self.driver.prepare_config_seed(self.run,self.seed,self.args())
+        self.assertEqual(p.read_bytes(),b'original')
+    def test_seed_requires_one_explicit_destination(self):
+        for args in [[],self.args()+['--config-dir',str(self.run/'config')]]:
+            with self.assertRaisesRegex(AssertionError,'one explicit'):
+                self.driver.prepare_config_seed(self.run,self.seed,args)
+
+
 if __name__ == '__main__':
     unittest.main()

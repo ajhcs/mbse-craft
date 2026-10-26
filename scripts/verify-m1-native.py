@@ -10,12 +10,40 @@ class Event(C.Union):
     _fields_=[('client',Client),('pad',C.c_long*24)]
 class Image(C.Structure):
     _fields_=[('width',C.c_int),('height',C.c_int),('xoffset',C.c_int),('format',C.c_int),('data',P),('byte_order',C.c_int),('bitmap_unit',C.c_int),('bitmap_bit_order',C.c_int),('bitmap_pad',C.c_int),('depth',C.c_int),('bytes_per_line',C.c_int),('bits_per_pixel',C.c_int),('red_mask',U),('green_mask',U),('blue_mask',U),('obdata',P),('functions',P*6)]
+def prepare_config_seed(run, seed, app_args):
+    """Copy bounded regular QA settings into the existing owned writable run.
+
+    Never adds a writable bind or touches an existing config. Each cold app run
+    may use exact persisted bytes from an earlier run as its read-only seed.
+    """
+    import stat
+    assert run.is_absolute() and str(run).startswith('/workspace/')
+    args = app_args[1:] if app_args[:1] == ['--'] else app_args
+    assert args.count('--config-dir') == 1, 'A seed requires one explicit owned config dir'
+    index = args.index('--config-dir')
+    target = run/'config'
+    assert index+1 < len(args) and args[index+1] == str(target), 'Seed config must be inside this owned run'
+    with os.fdopen(os.open(seed, os.O_RDONLY | getattr(os, 'O_NOFOLLOW', 0)), 'rb') as stream:
+        info = os.fstat(stream.fileno())
+        assert stat.S_ISREG(info.st_mode) and info.st_size <= 1024*1024, 'Seed must be a bounded regular file'
+        data = stream.read(1024*1024+1)
+        assert len(data) <= 1024*1024, 'Seed grew beyond budget'
+    target.mkdir(mode=0o700)
+    destination = target/'config.toml'
+    with destination.open('xb') as stream:
+        os.chmod(destination, 0o600)
+        stream.write(data)
+    return dict(source=str(seed),destination=str(destination),bytes=len(data),sha256=hashlib.sha256(data).hexdigest())
+
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--exe',type=pathlib.Path,required=True);ap.add_argument('--run-dir',type=pathlib.Path,required=True);ap.add_argument('app_args',nargs=argparse.REMAINDER);a=ap.parse_args()
+    ap=argparse.ArgumentParser();ap.add_argument('--exe',type=pathlib.Path,required=True);ap.add_argument('--run-dir',type=pathlib.Path,required=True);ap.add_argument('--config-seed',type=pathlib.Path);ap.add_argument('app_args',nargs=argparse.REMAINDER);a=ap.parse_args()
     assert str(a.run_dir).startswith('/workspace/') and a.exe.is_absolute()
     if not os.environ.get('MBSE_NATIVE_INNER'):
         a.run_dir.mkdir(parents=True,exist_ok=False);os.chmod(a.run_dir,0o700)
         (a.run_dir/'tmp').mkdir();(a.run_dir/'xkb').mkdir()
+        if a.config_seed is not None:
+            record=prepare_config_seed(a.run_dir,a.config_seed,a.app_args)
+            (a.run_dir/'CONFIG_SEED.json').write_text(__import__('json').dumps(record,indent=2)+'\n')
         runtime=pathlib.Path('/workspace/cache/builderbob/global-tools/releases/blender/5.2.2/xvfb')
         env=os.environ.copy();env['MBSE_NATIVE_INNER']='1'
         command=['/usr/bin/aa-exec','-p','builderbob-codex','--',str(runtime/'usr/bin/bwrap'),'--die-with-parent','--unshare-net','--ro-bind','/','/','--bind',str(a.run_dir),str(a.run_dir),'--bind',str(a.run_dir/'tmp'),'/tmp','--tmpfs','/usr/bin','--ro-bind','/usr/bin/dash','/usr/bin/sh','--ro-bind',str(runtime/'usr/bin/xkbcomp'),'/usr/bin/xkbcomp','--ro-bind',str(pathlib.Path(__import__('sys').executable).resolve()),str(pathlib.Path(__import__('sys').executable).resolve()),'--dev-bind','/dev','/dev','--tmpfs','/var','--bind',str(a.run_dir/'xkb'),'/var/lib/xkb','--',str(pathlib.Path(__import__('sys').executable).resolve()),str(pathlib.Path(__file__).resolve()),*__import__('sys').argv[1:]]

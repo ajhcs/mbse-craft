@@ -21,14 +21,16 @@ base=importlib.util.module_from_spec(spec);spec.loader.exec_module(base)
 class NativeM1(base.Native):
     instances = []
 
-    def __init__(self,exe,run,extra,evidence):
+    def __init__(self,exe,run,extra,evidence,config_seed=None):
         self.run,self.evidence=run,evidence
         self.stderr=run.parent/(run.name+'-driver.log')
+        seed_args=['--config-seed',str(config_seed)] if config_seed is not None else []
         self.child=subprocess.Popen([sys.executable,str(ROOT/'scripts/verify-m1-native.py'),
-            '--exe',str(exe),'--run-dir',str(run),'--',*extra],stdin=subprocess.PIPE,
+            '--exe',str(exe),'--run-dir',str(run),*seed_args,'--',*extra],stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,stderr=self.stderr.open('x'),text=True,bufsize=1)
         self.identities={}
         self.record=dict(run=str(run),started_utc=base.utc(),identities=self.identities,argv_extra=extra)
+        if config_seed is not None:self.record['config_seed']=dict(path=str(config_seed),sha256=base.digest(Path(config_seed)))
         evidence.append(self.record)
         self.instances.append(self)
         self.ready=self.read();assert self.ready.get('ready'),self.ready
@@ -106,7 +108,7 @@ def main():
     receipt=dict(schema='mbse-craft.m1-native-session/1',started_utc=base.utc(),job_sha256=base.digest(args.job),status='active',runs=[],preflight=check.local_preflight(compiler_roots=job.get('compiler_roots')))
     actions=None
     try:
-        n=NativeM1(exe,output/'run',job['argv_extra'],receipt['runs'])
+        n=NativeM1(exe,output/'run',job['argv_extra'],receipt['runs'],job.get('config_seed'))
         context=dict(n=n,output=output,receipt=receipt,Path=Path,json=json,base=base,check=check)
         actions=(output/'CONTROLLER_ACTIONS.py').open('x')
         print(json.dumps(dict(ready=True,output=str(output),selected=n.audit()['selected'],widget_count=len(n.audit()['widgets']))),flush=True)
