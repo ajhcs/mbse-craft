@@ -1,0 +1,35 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "796c1ba9dfd08b9ce913113bfc5f434fcb11dc7f592ad6114674b46c429db59d",
+    "scripts/verify-m1-native.py": "4e477f78eacdcc32af36c45799d4d50d355b40c0af0636ce5fb8ad9f2f91fb60",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "id": "p17a-native-interface-port-contract-roundtrip",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p17a-ports-interfaces-initial-20261026T191020Z/mbse-desktop",
+  "binary_sha256": "2aea49ae4c98925c0a43d34a4f18b748de9123491e87c5dc365a4855dd5843a7",
+  "source_sha256": "2b017a65ef5e2bb4f3e39a0a7026184732bcfbef7b7360736d527b6ca6681982",
+  "inputs": {
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p17a-ports-interfaces/docs/parity/p17a/fixtures/structure.kernspan": "65eca61ce0faa1efc75cb9ee8d91736bb2a1bf66a66fdcf857c28a29cb711236"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17a-01",
+  "argv_extra": [
+    "--open",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p17a-ports-interfaces/docs/parity/p17a/fixtures/structure.kernspan",
+    "--select",
+    "1003"
+  ],
+  "scenarios": [
+    "Author In contract and compatible different-ID interface plus Out incompatible interface",
+    "Author Component-owned port, Apply compatible assignment; refuse wrong direction/kind without accepted mutation",
+    "Model Undo/Redo keeps newer invalid interface and port draft text",
+    "Native/views Save and cold app reopen exact semantic IDs/contracts and invalid raw forms beside original P15/P16 data"
+  ],
+  "claim_policy": "P17a bounded semantic contracts only; typed view occurrences and cross-view reuse explicitly P17b, so P17 is not complete. Same-agent Linux synthetic evidence; no independent/domain/platform/full NoMagic/Craft acceptance."
+}

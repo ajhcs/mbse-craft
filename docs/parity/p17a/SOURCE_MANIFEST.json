@@ -128,8 +128,8 @@
     },
     {
       "path": "crates/mbse-desktop/src/ui_ports.rs",
-      "bytes": 12084,
-      "sha256": "bfdfcd7e0e8f68e7c21b114b9528e152e45210df8b1ff808b77f47c1e6977bec"
+      "bytes": 12098,
+      "sha256": "832d425a2cbf0da89f2ffe5df31803bd7f520cd9004c7150812e1f5965c82a18"
     },
     {
       "path": "crates/mbse-desktop/src/ui_shortcuts.rs",
@@ -3437,5 +3437,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "2b017a65ef5e2bb4f3e39a0a7026184732bcfbef7b7360736d527b6ca6681982"
+  "source_sha256": "1b71881d2890bdbec4de39059fd549b3adb936be5d7b4eefae0a5d52adac60fd"
 }

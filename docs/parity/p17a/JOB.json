@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m4-p17a-ports-interfaces-initial",
+  "id": "m4-p17a-product-wording-review-build",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m4-p17a-ports-interfaces",
   "source_manifest": "docs/parity/p17a/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "10e3e462b4b47969e52e8d0341a6f89cda3b0714cc368942f1765ea2a56bede0",
-  "source_sha256": "2b017a65ef5e2bb4f3e39a0a7026184732bcfbef7b7360736d527b6ca6681982",
+  "source_manifest_sha256": "7c8a5d09a57e2bf91675ffdaafa76d8be0a7a05b43f2ef66dbf8e7397984cd89",
+  "source_sha256": "1b71881d2890bdbec4de39059fd549b3adb936be5d7b4eefae0a5d52adac60fd",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -21,16 +21,6 @@
     [
       "bash",
       "scripts/dev.sh",
-      "test",
-      "--locked",
-      "--offline",
-      "--workspace",
-      "--",
-      "--test-threads=1"
-    ],
-    [
-      "bash",
-      "scripts/dev.sh",
       "build",
       "--locked",
       "--offline",
@@ -38,7 +28,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "P17a interface/port contracts, compatible/incompatible assignments, durable raw forms, native history/persistence and actual field focus. Eight new regressions; no dependency/vendor changes. Cross-view presentation explicitly separate P17b.",
+  "rationale": "Product wording review removes internal PR identifier from UI and states current visual placement limit in user terms. One display string only; model/test files exact to earlier422-test source. Changed desktop build and targeted wording pixel check only; original semantic checks separately retained.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",
