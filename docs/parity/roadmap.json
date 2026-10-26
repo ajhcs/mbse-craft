@@ -522,11 +522,13 @@
       "acceptance": [
         "Namespace/version mismatches stay unknown or refuse; tags round-trip; custom domain records are not silently reclassified."
       ],
-      "state": "draft_ready",
+      "state": "reviewed_ready_to_merge",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "branch": "codex/m4-p22-profile-tags",
-      "execution_results": "docs/parity/p22/README.md"
+      "execution_results": "docs/parity/p22/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/28",
+      "review_preservation": "docs/parity/p22/REVIEW_PRESERVATION.json"
     },
     {
       "id": "P23",

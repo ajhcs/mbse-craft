@@ -1,6 +1,6 @@
 {
   "schema": "mbse-craft.milestone4-results/1",
-  "recorded_utc": "2026-10-26T18:31:18.159067+00:00",
+  "recorded_utc": "2026-10-26T23:41:40.726758+00:00",
   "state": "in_progress",
   "milestone_exit_accepted": false,
   "full_parity_accepted": false,
@@ -293,7 +293,7 @@
     "reviewed_head": "9ec83dd483610fcdbe43c78d62cd809b50fc9c26"
   },
   "p22": {
-    "state": "draft_ready",
+    "state": "reviewed_ready_to_merge",
     "position_complete": false,
     "base_commit": "e8475982d3586a15b47425c4ba34dffb5c4a5afd",
     "source_files": 709,
@@ -310,6 +310,9 @@
     "acceptance": "p22/README.md",
     "contract": "p22/CONTRACT.md",
     "same_agent_review": "p22/verification/NATIVE_REVIEW.json",
-    "preservation": "p22/verification/PRESERVATION_AFTER.json"
+    "preservation": "p22/verification/PRESERVATION_AFTER.json",
+    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/28",
+    "review_preservation": "p22/REVIEW_PRESERVATION.json",
+    "review_available_preexisting_checkouts_unchanged": 46
   }
 }
