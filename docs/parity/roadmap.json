@@ -479,12 +479,14 @@
         {
           "id": "P21a",
           "title": "Typed deletion impact preview, unknown-impact refusal and exact Undo restoration",
-          "state": "draft_ready",
+          "state": "reviewed_ready_to_merge",
           "branch": "codex/m4-p21a-typed-deletion",
           "acceptance": [
             "Enumerate typed dependencies/value effects; unknown impact blocks Apply; stale/foreign plans refuse; native Undo restores typed records and qualified occurrences/routes; recovery retains drafts."
           ],
-          "execution_results": "docs/parity/p21a/README.md"
+          "execution_results": "docs/parity/p21a/README.md",
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/26",
+          "review_preservation": "docs/parity/p21a/REVIEW_PRESERVATION.json"
         },
         {
           "id": "P21b",

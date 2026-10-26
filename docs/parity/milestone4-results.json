@@ -247,7 +247,7 @@
     "reviewed_head": "245093aaa814d1f0175baecc4889d893a194e899"
   },
   "p21a": {
-    "state": "draft_ready",
+    "state": "reviewed_ready_to_merge",
     "position_complete": false,
     "parent": "P21",
     "base_commit": "4db52a28edb7851725fb5ce697c5d649ba27caa8",
@@ -261,6 +261,9 @@
     "acceptance": "p21a/README.md",
     "contract": "p21a/CONTRACT.md",
     "same_agent_review": "p21a/verification/NATIVE_REVIEW.json",
-    "preservation": "p21a/verification/PRESERVATION_AFTER.json"
+    "preservation": "p21a/verification/PRESERVATION_AFTER.json",
+    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/26",
+    "review_preservation": "p21a/REVIEW_PRESERVATION.json",
+    "review_available_preexisting_checkouts_unchanged": 42
   }
 }
