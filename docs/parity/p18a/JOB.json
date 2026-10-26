@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m4-p18a-connectors-initial",
+  "id": "m4-p18a-connectors-compile-fix",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors",
   "source_manifest": "docs/parity/p18a/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "4b2587e4d97264d07a92453cda2e11934e0cb0fc88babedc3153da0c0c2acc39",
-  "source_sha256": "1a4f54fbaa81e10998563176833a4a45c7e912a7915560fe4157156ae4727a3e",
+  "source_manifest_sha256": "6963f1e01e4f0071981f641ee0416f7aa295e2ff5681462caf75c777fb8f1263",
+  "source_sha256": "d3921c49df501ec6f097dd67ebf1f7474d8cc15131164c34a05fcec0d10360d4",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",

@@ -66,7 +66,7 @@ pub fn endpoint_interface<'a>(
     store
         .interfaces
         .get(&port.assignment.unwrap_or(port.contract))
-        .ok_or("CONNECTOR_INTERFACE_MISSING")
+        .ok_or("CONNECTOR_INTERFACE_MISSING".into())
 }
 pub(super) fn validate_store(store: &Store, ids: &mut BTreeSet<Id>) -> Result<(), String> {
     for (id, c) in &store.connectors {
