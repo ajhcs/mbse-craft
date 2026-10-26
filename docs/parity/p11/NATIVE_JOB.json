@@ -1,0 +1,34 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "796c1ba9dfd08b9ce913113bfc5f434fcb11dc7f592ad6114674b46c429db59d",
+    "scripts/verify-m1-native.py": "4e477f78eacdcc32af36c45799d4d50d355b40c0af0636ce5fb8ad9f2f91fb60",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "id": "p11-transactional-docking",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m3-p11-focus-fix-20261026T163307Z/mbse-desktop",
+  "binary_sha256": "e17f9d4fe4d8024fe706eb4c039e682dd51fd3d3e962b0a5d88a7d9bf2b6d6e4",
+  "source_sha256": "ef17e95b5f5f2e25ef0ac03bb9cdaf432adda9f866369b22d46629dfbb4f3c7a",
+  "inputs": {
+    "/workspace/repos/builderbob/mbse-craft/work/m3-p11-transactional-docking/docs/parity/p11/fixtures/original.kernspan": "eefc3606af8a0e31bf8a513f942fc9bbe5122fb1417c5c98789af941cbc1c1fd"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p11-01",
+  "argv_extra": [
+    "--open",
+    "/workspace/repos/builderbob/mbse-craft/work/m3-p11-transactional-docking/docs/parity/p11/fixtures/original.kernspan",
+    "--select",
+    "1003"
+  ],
+  "scenarios": [
+    "Float Properties with incomplete raw 9e; preserve model, views and stable body IDs",
+    "Live tab drag/drop and Escape cancel preserve all panel/content identities",
+    "Split back; save and reopen native/views pair with original draft and presentation"
+  ],
+  "claim_policy": "Bounded same-agent Linux XTest native acceptance; floating areas inside one viewport. No P12 persistence or independent/platform/engineering acceptance."
+}

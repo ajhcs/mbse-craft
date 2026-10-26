@@ -223,7 +223,7 @@
       "acceptance": [
         "Conflicts are visible; overrides persist; field Undo stays in the field; model and layout histories remain separately addressable."
       ],
-      "state": "implemented_draft_pending_review",
+      "state": "merged",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "execution_results": "docs/parity/p10/README.md",
@@ -239,9 +239,10 @@
       "acceptance": [
         "Moving, tabbing and floating preserve panel identity, selection and incomplete text; invalid drops lose no panel or model data."
       ],
-      "state": "planned",
+      "state": "implemented_draft_pending_review",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/p11/README.md"
     },
     {
       "id": "P12",
