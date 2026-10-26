@@ -1,0 +1,34 @@
+{
+  "result": "bounded_exact_profiles_literal_tags_clone_delete_and_cold_persistence_passed",
+  "reviewer": "Codex, same implementing agent",
+  "independent_review": false,
+  "source_files": 709,
+  "source_sha256": "60490bd237df79089654450f3b09fe60bc95a3207b21bceb421df8c27fc71f6f",
+  "binary_sha256": "ee7f1dbcc4a0b904f31b338d7bc6b95191923a2f5d75fa4221c2a1bb74fc597f",
+  "initial_partial_passes": 139,
+  "corrected_catalog": 1,
+  "model_exchange_remainder": 344,
+  "syntax_remainder": 10,
+  "counts_not_summed": true,
+  "new_cases": 11,
+  "native_runs": 2,
+  "action_errors": 0,
+  "pixels_reviewed": [
+    "native/run/03-conflicting-exact-profile-definition-refuses.png",
+    "native/reopen/09-cold-exact-identities-and-invalid-form-no-history.png"
+  ],
+  "observations": [
+    "Exact urn:mbse-craft:qa version1.0 Valve profile registered; literal label prototype applied to Measure1003, ComponentDefinition1021 and Part1023 without native reclassification.",
+    "Version1.0.0, uppercase namespaceURN, Mission1000 wrong applicability and changed same-key label Integer registry definition disable mutation; accepted profiles/applications preserved.",
+    "Model Undo/Redo removes/restores Part1023 application while keeping newer raw namespaceurn:unknown target1023? valuesJSON incomplete.",
+    "Actual Clone1021 allocates1027..1032 and copies only owned applications to1027/1029; original3 applications and shared profile exact. Deletion lists/removes both new applications with six cloned records; Undo restores whole cloned typed Store, Redo removes them; newer deletion1027? and profile form stay exact.",
+    "Captured native/views4 and cold second Save equal whole final Snapshot. Original native records/calculation9e+2.5km, typed meaning/defaults/overrides and all four presentation maps exact. Allocator stays1033 after six fresh IDs/delete. Older forms exact except explicitly edited refactor form plus new deletion/profile forms.",
+    "Cold model history absent; exact registry/applications and malformed profile form retained. All inputs unchanged; two normal app/display exits and owned process/auth cleanup."
+  ],
+  "retained_failure": "Initial workspace attempt failed catalog uniqueness assertions still30 after addition31.139 successes retained; fixed counts plus clarified deletion-cap message. Ran failed catalog and only unexecuted groups; syntax10 found by exact inventory reconciliation. No passed group replay or summed final-source full-suite-run claim.",
+  "limits": [
+    "Local exact profile identity/literal metadata only; no external URI resolution, dynamic domains, custom native-kind reclassification, schema language or full SysML/NoMagic/Craft/platform/independent engineering acceptance.",
+    "Registry16 profiles,32 stereotypes/32 keys each,256 applications; existing extension bytes and raw-form limits. Unknown optional namespaces stay opaque; arbitrary required/future schemas refuse.",
+    "M04 integrated milestone exit and all56 broad parity specifications remain unaccepted."
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "schema": "mbse-craft.milestone4-results/1",
-  "recorded_utc": "2026-10-26T18:31:18.159067+00:00",
+  "recorded_utc": "2026-10-26T23:41:40.726758+00:00",
   "state": "in_progress",
   "milestone_exit_accepted": false,
   "full_parity_accepted": false,
@@ -29,7 +29,6 @@
     "review_followup": "p14/REVIEW_FOLLOWUP.md"
   },
   "remaining_prs": [
-    "P21",
     "P22"
   ],
   "p15": {
@@ -269,8 +268,8 @@
     "reviewed_head": "cab716dcd5e67c090fc31a25fab0bee0b4e935d7"
   },
   "p21b": {
-    "state": "reviewed_ready_to_merge",
-    "position_complete": false,
+    "state": "merged",
+    "position_complete": true,
     "base_commit": "66a56b04410403ed7c775f02a4256f4eecc11922",
     "source_files": 706,
     "full_suite_tests_passed": 483,
@@ -289,6 +288,31 @@
     "review_available_preexisting_checkouts_unchanged": 44,
     "pr_url": "https://github.com/ajhcs/mbse-craft/pull/27",
     "review_evidence": "p21b/original-hold-verification/REVIEW.json",
-    "review_preservation": "p21b/REVIEW_PRESERVATION.json"
+    "review_preservation": "p21b/REVIEW_PRESERVATION.json",
+    "merge_commit": "e8475982d3586a15b47425c4ba34dffb5c4a5afd",
+    "reviewed_head": "9ec83dd483610fcdbe43c78d62cd809b50fc9c26"
+  },
+  "p22": {
+    "state": "reviewed_ready_to_merge",
+    "position_complete": false,
+    "base_commit": "e8475982d3586a15b47425c4ba34dffb5c4a5afd",
+    "source_files": 709,
+    "source_sha256": "60490bd237df79089654450f3b09fe60bc95a3207b21bceb421df8c27fc71f6f",
+    "binary_sha256": "ee7f1dbcc4a0b904f31b338d7bc6b95191923a2f5d75fa4221c2a1bb74fc597f",
+    "initial_partial_tests_passed": 139,
+    "corrected_catalog_tests_passed": 1,
+    "model_exchange_remainder_tests_passed": 344,
+    "syntax_remainder_tests_passed": 10,
+    "new_cases": 11,
+    "counts_not_summed": true,
+    "native_runs": 2,
+    "native_action_errors": 0,
+    "acceptance": "p22/README.md",
+    "contract": "p22/CONTRACT.md",
+    "same_agent_review": "p22/verification/NATIVE_REVIEW.json",
+    "preservation": "p22/verification/PRESERVATION_AFTER.json",
+    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/28",
+    "review_preservation": "p22/REVIEW_PRESERVATION.json",
+    "review_available_preexisting_checkouts_unchanged": 46
   }
 }

@@ -1,0 +1,18 @@
+{
+  "identity": {
+    "namespace": "urn:mbse-craft:qa",
+    "version": "1.0"
+  },
+  "stereotypes": {
+    "Valve": {
+      "applies_to": [
+        "Measure",
+        "ComponentDefinition",
+        "Part"
+      ],
+      "tags": {
+        "label": "Text"
+      }
+    }
+  }
+}

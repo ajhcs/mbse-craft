@@ -471,7 +471,7 @@
       "acceptance": [
         "Every supported incoming reference is handled; unknown impact prevents an exhaustive verdict; stale previews refuse; Undo restores records and occurrences."
       ],
-      "state": "in_progress",
+      "state": "merged",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "decomposition_reason": "Review typed dependency/value-entry cascade and inverse presentation-history proof separately from native-core record/calculation references. P21 remains open until both children pass.",
@@ -493,7 +493,7 @@
         {
           "id": "P21b",
           "title": "Native-core deletion and incoming-reference treatment",
-          "state": "reviewed_ready_to_merge",
+          "state": "merged",
           "depends_on": [
             "P21a"
           ],
@@ -503,9 +503,14 @@
           "branch": "codex/m4-p21b-native-deletion",
           "execution_results": "docs/parity/p21b/README.md",
           "pr_url": "https://github.com/ajhcs/mbse-craft/pull/27",
-          "review_preservation": "docs/parity/p21b/REVIEW_PRESERVATION.json"
+          "review_preservation": "docs/parity/p21b/REVIEW_PRESERVATION.json",
+          "merge_commit": "e8475982d3586a15b47425c4ba34dffb5c4a5afd",
+          "reviewed_head": "9ec83dd483610fcdbe43c78d62cd809b50fc9c26"
         }
-      ]
+      ],
+      "merge_commit": "e8475982d3586a15b47425c4ba34dffb5c4a5afd",
+      "reviewed_head": "9ec83dd483610fcdbe43c78d62cd809b50fc9c26",
+      "evidence": "docs/parity/p21b/README.md"
     },
     {
       "id": "P22",
@@ -517,9 +522,13 @@
       "acceptance": [
         "Namespace/version mismatches stay unknown or refuse; tags round-trip; custom domain records are not silently reclassified."
       ],
-      "state": "planned",
+      "state": "reviewed_ready_to_merge",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "branch": "codex/m4-p22-profile-tags",
+      "execution_results": "docs/parity/p22/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/28",
+      "review_preservation": "docs/parity/p22/REVIEW_PRESERVATION.json"
     },
     {
       "id": "P23",

@@ -1,0 +1,38 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "796c1ba9dfd08b9ce913113bfc5f434fcb11dc7f592ad6114674b46c429db59d",
+    "scripts/verify-m1-native.py": "ef4e7c2308323b9023f83a15ddb3b9214d27368fd9a34a42b4245ad44f574a39",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "id": "p22-exact-profile-tags-clone-delete-cold",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p22-profile-tags-remainder-02-20261026T232547Z/mbse-desktop",
+  "binary_sha256": "ee7f1dbcc4a0b904f31b338d7bc6b95191923a2f5d75fa4221c2a1bb74fc597f",
+  "source_sha256": "60490bd237df79089654450f3b09fe60bc95a3207b21bceb421df8c27fc71f6f",
+  "inputs": {
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p22-profile-tags/docs/parity/p22/fixtures/native-typed.kernspan": "31f79134057415fc3847e2cab2795c94cff90aa3dbb62d9a84471fbf214a7bca",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p22-profile-tags/docs/parity/p22/fixtures/native-typed.mbse-views.json": "5594282b0f9928ccb1eae92f92e2c22cf2ebe62cf0be3bed239cb6bd9ac8385c",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p22-profile-tags/docs/parity/p22/fixtures/qa-profile.json": "3a384b32e071262a4bf97269ccc731182228c28bbd1fd4b0484ec76cdf9d0735",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p22-profile-tags/docs/parity/p22/fixtures/qa-values.json": "8d127d335060b2a802c7877da363d8c0270dcf4133df47ae48a180bf9791db4c"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p22-01",
+  "argv_extra": [
+    "--open",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p22-profile-tags/docs/parity/p22/fixtures/native-typed.kernspan",
+    "--select",
+    "1003"
+  ],
+  "scenarios": [
+    "Open actual saved native/views4 with exact sidecar hash; register exact local profile and apply literal tags to Measure1003, ComponentDefinition1021 and Part1023 without native reclassification",
+    "Unknown version/namespace/target kind and conflicting same-identity registry definition disable mutation; model Undo/Redo keeps newer invalid raw profile form",
+    "Actual clone1021 maps owned profile targets to fresh1027/1029 with shared registry and unchanged source applications; native deletion of fresh clone lists/removes applications, exact Undo/Redo restores metadata and keeps newer invalid profile/deletion forms",
+    "Actual captured native/views4 Save/cold whole-Snapshot equality preserves original native calculation9e/2.5km, typed model/values and all source presentation maps; invalid profile raw form remains unapplied, source input hashes and owned cleanup verified"
+  ],
+  "claim_policy": "Same-agent bounded Linux exact profile identity/literal metadata only, no external profile resolution or domain execution/reclassification. Regression evidence is split: initial139 successful tests before one catalog-count failure, corrected catalog1/model-exchange344/docs-build, remaining syntax10; do not sum as one final full-suite run. Only catalog test assertions and deletion-cap string changed between source slices. All56 broad specs and M04 integrated exit remain unaccepted."
+}
