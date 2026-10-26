@@ -433,11 +433,12 @@
       "acceptance": [
         "Default changes affect inheriting instances only; overrides remain explicit; results never overwrite authored values."
       ],
-      "state": "implemented_awaiting_review",
+      "state": "reviewed_ready_to_merge",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "branch": "codex/m4-p19-values",
-      "evidence": "docs/parity/p19/README.md"
+      "evidence": "docs/parity/p19/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/24"
     },
     {
       "id": "P20",

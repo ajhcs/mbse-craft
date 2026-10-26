@@ -199,7 +199,7 @@
     "reviewed_head": "10dda0a6bbe9e6b9c11c8a0076ebb114c7dde53d"
   },
   "p19": {
-    "state": "implemented_awaiting_review",
+    "state": "reviewed_ready_to_merge",
     "position_complete": false,
     "base_commit": "239d21d1728d51e4ccad70d413e8dffc971f6783",
     "source_files": 699,
@@ -212,6 +212,9 @@
     "acceptance": "p19/README.md",
     "contract": "p19/CONTRACT.md",
     "same_agent_review": "p19/verification/NATIVE_REVIEW.json",
-    "preservation": "p19/verification/PRESERVATION_AFTER.json"
+    "preservation": "p19/verification/PRESERVATION_AFTER.json",
+    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/24",
+    "review_preservation": "p19/REVIEW_PRESERVATION.json",
+    "review_available_preexisting_checkouts_unchanged": 38
   }
 }
