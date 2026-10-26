@@ -22,7 +22,8 @@
     "cli_receipt": "p14/verification/cli/RECEIPT.json",
     "native_receipt": "p14/verification/native/RECEIPT.json",
     "same_agent_review": "p14/verification/NATIVE_REVIEW.json",
-    "preservation": "p14/PRESERVATION_AFTER.json"
+    "preservation": "p14/PRESERVATION_AFTER.json",
+    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/17"
   },
   "remaining_prs": [
     "P15",
