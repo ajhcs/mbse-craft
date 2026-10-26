@@ -29,7 +29,6 @@
     "review_followup": "p14/REVIEW_FOLLOWUP.md"
   },
   "remaining_prs": [
-    "P16",
     "P17",
     "P18",
     "P19",
@@ -38,7 +37,7 @@
     "P22"
   ],
   "p15": {
-    "state": "reviewed_ready_to_merge",
+    "state": "merged",
     "branch": "codex/m4-p15-types-properties",
     "base_commit": "46d18c4509bd1dce8c51bd1f41ab55638c889e96",
     "source_files": 683,
@@ -58,6 +57,38 @@
     "user_removed_historical_directories": 18,
     "native_helper_error": "Erroneous expected System1000 corrected against original fixture and actualSystem1; original assertion retained.",
     "pr_url": "https://github.com/ajhcs/mbse-craft/pull/18",
-    "review_followup": "p15/REVIEW_FOLLOWUP.md"
+    "review_followup": "p15/REVIEW_FOLLOWUP.md",
+    "reviewed_head": "4ff8d31fd8e64ad343ab2b01bd63018a76c2e324",
+    "merge_commit": "19cb6516350d180fa3f693034c9acc9dbd2b1821"
+  },
+  "p16": {
+    "state": "reviewed_ready_to_merge",
+    "branch": "codex/m4-p16-parts-references",
+    "base_commit": "19cb6516350d180fa3f693034c9acc9dbd2b1821",
+    "source_files": 684,
+    "source_sha256": "fc0bc968cd4df7e19f4bef2fae59edfecb0bb018645ac79879201481e25ed434",
+    "binary_sha256": "4e9e71efa56f86a92995b9cf975a25d974c5b1c47160781977132eac6c12d0bd",
+    "workspace_tests_passed": 414,
+    "new_p16_tests": 7,
+    "native_runs": 3,
+    "native_action_errors": 0,
+    "acceptance": "p16/README.md",
+    "contract": "p16/CONTRACT.md",
+    "compiler_receipt": "p16/verification/COMPILER_RECEIPT.json",
+    "native_receipt": "p16/verification/native/RECEIPT.json",
+    "same_agent_review": "p16/verification/NATIVE_REVIEW.json",
+    "preservation": "p16/verification/PRESERVATION_AFTER.json",
+    "preexisting_checkouts_verified_unchanged": 27,
+    "user_removed_historical_directories": 18,
+    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/19",
+    "review_followup": "p16/REVIEW_FOLLOWUP.md",
+    "final_source_sha256": "c93573db4ea8a2c519462565505961892b0ec1258277d70ac91046658bc817e4",
+    "final_binary_sha256": "7c03dba24fdaffbf72ee7da0aa7701330911c3876b37a3669cfb45f6e8ff340a",
+    "final_label_build": "p16/final-label-verification/BUILD_RECEIPT.json",
+    "final_label_review": "p16/final-label-verification/REVIEW.json",
+    "final_label_native_runs": 1,
+    "final_label_native_action_errors": 0,
+    "final_preservation": "p16/final-label-verification/PRESERVATION_AFTER.json",
+    "final_available_preexisting_checkouts_unchanged": 28
   }
 }

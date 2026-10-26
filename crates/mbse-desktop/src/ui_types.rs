@@ -47,6 +47,9 @@ impl Workspace {
         let mut open = true;
         let mut action = None;
         let mut definition_change = None;
+        let mut property_change = None;
+        let mut usage_change = None;
+        let mut usage_choice = None;
         let mut select = None;
         let mut choose_form = None;
         let mut close = false;
@@ -74,9 +77,20 @@ impl Workspace {
    if let Some((id,mut form))=self.type_panel.form.and_then(|id|forms.get(&id).cloned().map(|form|(id,form))){
     ui.separator();ui.label(format!("Property form #{}; text is retained independently of accepted property data.",id.0));let before=form.clone();
     for(label,key,text)in [("Property name","name",&mut form.name),("Value type ID","value-type",&mut form.value_type),("Lower multiplicity","lower",&mut form.lower),("Upper multiplicity or *","upper",&mut form.upper)]{ui.horizontal(|ui|{ui.label(label);let r=ui.add(egui::TextEdit::singleline(text).id(egui::Id::new(("mbse-typed-property",&native_instance,id.0,key))));self.bound(format!("types:property:{key}"),&r);});}
-    let edited=form!=before;if edited{action=Some(Action::SetForm{id,form});}
+    let edited=form!=before;if edited{property_change=Some(Action::SetForm{id,form});}
     let checked=types::preview(&self.session.editor.snapshot,id);if let Err(error)=&checked{ui.colored_label(ERROR,format!("Unapplied form retained: {error}"));}
     let r=ui.add_enabled(checked.is_ok()&&!edited,egui::Button::new("Apply property"));self.bound("types:apply-property",&r);if r.clicked(){action=Some(Action::ApplyProperty{id});}
+   }
+   ui.separator();ui.label("Parts and references · owner and target use Component definition IDs");
+   let r=ui.button("New usage form (replace current form)");self.bound("types:usage:new",&r);if r.clicked(){usage_choice=Some(Action::SetUsageForm{form:types::UsageForm{id:None,name:String::new(),owner:self.type_panel.selected.map_or(String::new(),|id|id.0.to_string()),target:String::new(),kind:types::UsageKind::Part}});}
+   for usage in store.usages.values(){let r=ui.button(format!("Edit {:?} #{} · {} · owner#{} uses type#{}",usage.kind,usage.id.0,usage.name,usage.owner.0,usage.target.0));self.bound(format!("types:usage:edit:{}",usage.id.0),&r);if r.clicked(){usage_choice=Some(Action::SetUsageForm{form:types::UsageForm{id:Some(usage.id),name:usage.name.clone(),owner:usage.owner.0.to_string(),target:usage.target.0.to_string(),kind:usage.kind}});}}
+   if let Ok(Some(mut form))=types::usage_form(&self.session.editor.snapshot){
+    let before=form.clone();ui.label(form.id.map_or("New usage (unallocated)".into(),|id|format!("Usage #{}; editing owner moves this same identity",id.0)));
+    for(label,key,text)in [("Usage name","name",&mut form.name),("Owner definition ID","owner",&mut form.owner),("Target definition ID","target",&mut form.target)]{ui.horizontal(|ui|{ui.label(label);let r=ui.add(egui::TextEdit::singleline(text).id(egui::Id::new(("mbse-usage",&native_instance,key))));self.bound(format!("types:usage:{key}"),&r);});}
+    ui.horizontal(|ui|{for kind in [types::UsageKind::Part,types::UsageKind::Reference]{let r=ui.selectable_value(&mut form.kind,kind,format!("{kind:?}"));self.bound(format!("types:usage:kind:{kind:?}"),&r);}});
+    let edited=form!=before;if edited{usage_change=Some(Action::SetUsageForm{form});}
+    let checked=types::preview_usage(&self.session.editor.snapshot);if let Err(error)=&checked{ui.colored_label(ERROR,format!("Unapplied usage retained: {error}"));}
+    let r=ui.add_enabled(checked.is_ok()&&!edited,egui::Button::new("Apply usage / move"));self.bound("types:usage:apply",&r);if r.clicked(){action=Some(Action::ApplyUsage);}
    }
    ui.label(&self.type_panel.note);let r=ui.button("Close types");self.bound("types:close",&r);close=r.clicked();
   });
@@ -88,6 +102,12 @@ impl Workspace {
             self.type_panel.form = Some(id);
         }
         if let Some(change) = definition_change {
+            self.typed_action(change);
+        }
+        for change in [property_change, usage_change, usage_choice]
+            .into_iter()
+            .flatten()
+        {
             self.typed_action(change);
         }
         if let Some(action) = action {
@@ -120,8 +140,54 @@ impl Workspace {
             };
         }
     }
+    pub(super) fn typed_structure_browser(&mut self, ui: &mut egui::Ui) {
+        if self.session.editor.snapshot.extensions.is_none() {
+            return;
+        }
+        let store = match types::load(&self.session.editor.snapshot) {
+            Ok(store) => store,
+            Err(error) => {
+                ui.colored_label(ERROR, error);
+                return;
+            }
+        };
+        if store.definitions.is_empty() {
+            return;
+        }
+        ui.separator();
+        ui.label("Typed definitions · System membership (not containment)");
+        for definition in store.definitions.values() {
+            let r = ui.selectable_label(
+                self.type_panel.selected == Some(definition.id),
+                format!(
+                    "{} #{} · {:?} · member of System #{}",
+                    definition.name, definition.id.0, definition.kind, definition.system.0
+                ),
+            );
+            self.bound(format!("tree:definition:{}", definition.id.0), &r);
+            if r.clicked() {
+                self.type_panel.selected = Some(definition.id);
+                self.type_panel.open = true;
+            }
+            ui.indent(("owned-usages", definition.id.0), |ui| {
+                for usage in store.usages.values().filter(|u| u.owner == definition.id) {
+                    let relation = if usage.kind == types::UsageKind::Part {
+                        "Part containment"
+                    } else {
+                        "Reference (not containment)"
+                    };
+                    let target = &store.definitions[&usage.target];
+                    let r = ui.label(format!(
+                        "{relation} #{} · {} uses type {} #{}",
+                        usage.id.0, usage.name, target.name, target.id.0
+                    ));
+                    self.bound(format!("tree:usage:{}", usage.id.0), &r);
+                }
+            });
+        }
+    }
     pub(super) fn typed_audit(&self) -> serde_json::Value {
-        serde_json::json!({"schema":"mbse-craft.types-ui/1","open":self.type_panel.open,"selected":self.type_panel.selected,"form":self.type_panel.form,"store":types::load(&self.session.editor.snapshot).ok(),"forms":types::forms(&self.session.editor.snapshot).ok(),"definition_form":types::definition_form(&self.session.editor.snapshot).ok().flatten(),"note":self.type_panel.note})
+        serde_json::json!({"schema":"mbse-craft.types-ui/1","open":self.type_panel.open,"selected":self.type_panel.selected,"form":self.type_panel.form,"store":types::load(&self.session.editor.snapshot).ok(),"forms":types::forms(&self.session.editor.snapshot).ok(),"definition_form":types::definition_form(&self.session.editor.snapshot).ok().flatten(),"usage_form":types::usage_form(&self.session.editor.snapshot).ok().flatten(),"note":self.type_panel.note})
     }
 }
 

@@ -726,6 +726,7 @@ impl Workspace {
                     },
                     Err(error)=>{ui.colored_label(ERROR,format!("Native membership unavailable: {error}. Model retained."));}
                 }
+                self.typed_structure_browser(ui);
         });
     }
     fn inspector_body(&mut self, ui:&mut egui::Ui) {

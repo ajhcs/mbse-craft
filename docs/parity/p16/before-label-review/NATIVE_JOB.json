@@ -1,0 +1,36 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "796c1ba9dfd08b9ce913113bfc5f434fcb11dc7f592ad6114674b46c429db59d",
+    "scripts/verify-m1-native.py": "4e477f78eacdcc32af36c45799d4d50d355b40c0af0636ce5fb8ad9f2f91fb60",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "id": "p16-native-parts-references-move-roundtrip",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p16-form-review-final-20261026T185543Z/mbse-desktop",
+  "binary_sha256": "4e9e71efa56f86a92995b9cf975a25d974c5b1c47160781977132eac6c12d0bd",
+  "source_sha256": "fc0bc968cd4df7e19f4bef2fae59edfecb0bb018645ac79879201481e25ed434",
+  "inputs": {
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p16-parts-references/docs/parity/p16/fixtures/typed.kernspan": "8506fa2bb9ce04d3e76d74d5e9a3f0e61349bb6ea89572f19dad18076ca74b8f"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p16-01",
+  "argv_extra": [
+    "--open",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p16-parts-references/docs/parity/p16/fixtures/typed.kernspan",
+    "--select",
+    "1003"
+  ],
+  "scenarios": [
+    "Create two Parts reusing one target Component and a non-containing Reference",
+    "Move Part owner preserving ID, Undo/Redo with newer raw usage text retained",
+    "Reject direct/indirect containment cycle and primitive value target atomically",
+    "Browser shows System membership separately from Part containment and References",
+    "Save/cold native reopen exact usages, invalid usage form and existing P15 raw/property data"
+  ],
+  "claim_policy": "Bounded same-agent Linux app-owned structural usages; no configured instances, ports, connectors, typed occurrence views, domain/full NoMagic/Craft acceptance."
+}

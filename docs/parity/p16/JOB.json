@@ -1,0 +1,42 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m4-p16-reviewed-label-build",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/review-p16",
+  "source_manifest": "docs/parity/p16/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "f978b88984061b37ce16f38a5bf73848ed0293eb7ac58cfe428b513c8f92a7a1",
+  "source_sha256": "c93573db4ea8a2c519462565505961892b0ec1258277d70ac91046658bc817e4",
+  "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "PR19 pixel review: replace two unsupported arrow separators with plain uses type wording. Label-only UI correction; model and test code unchanged. Earlier414 distinct workspace tests and three native behavioral runs remain separately qualified on before-label-review source. Build changed desktop and verify actual browser labels only.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/review-p16/docs/parity/p16/fixtures/typed.kernspan": "8506fa2bb9ce04d3e76d74d5e9a3f0e61349bb6ea89572f19dad18076ca74b8f"
+  }
+}
