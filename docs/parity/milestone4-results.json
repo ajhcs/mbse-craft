@@ -126,7 +126,7 @@
     "merge_commit": "c6b36918062bfb894df27b88ae9a32357d539bb5"
   },
   "p17b": {
-    "state": "implemented_draft_pending_review",
+    "state": "reviewed_ready_to_merge",
     "parent_position": "P17",
     "position_complete": false,
     "branch": "codex/m4-p17b-port-occurrences",
@@ -145,6 +145,10 @@
     "same_agent_review": "p17b/verification/NATIVE_REVIEW.json",
     "preservation": "p17b/verification/PRESERVATION_AFTER.json",
     "preexisting_checkouts_verified_unchanged": 31,
-    "user_removed_historical_directories": 18
+    "user_removed_historical_directories": 18,
+    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/21",
+    "review_followup": "p17b/REVIEW_FOLLOWUP.md",
+    "review_preservation": "p17b/REVIEW_PRESERVATION.json",
+    "review_available_preexisting_checkouts_unchanged": 32
   }
 }
