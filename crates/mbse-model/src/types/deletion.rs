@@ -1,4 +1,4 @@
-//! Typed semantic deletion with sealed native+presentation impact and unknown-impact holds.
+//! Native and typed semantic deletion with sealed native+presentation impact and unknown-impact holds.
 use super::*;
 use crate::{
     native_views::{Stamp, Views},
@@ -48,6 +48,9 @@ pub struct Summary {
     pub retained_raw_forms: usize,
     pub unknown: UnknownImpact,
     pub complete_supported_reference_inventory: bool,
+    pub native_occurrences: Vec<String>,
+    pub native_edges: Vec<String>,
+    pub owned_contexts: Vec<super::deletion_native::OwnedContext>,
     pub port_occurrences: Vec<String>,
     pub connector_routes: Vec<String>,
     pub refusal: Option<String>,
@@ -347,13 +350,41 @@ pub fn prepare(e: &Editor, v: &Views) -> Result<Prepared, String> {
         return Err("DELETION_ROOT_SELECTION_LIMIT_OR_DUPLICATE".into());
     }
     let before = load(&e.snapshot)?;
-    let all = members(&before);
+    let mut all = members(&before);
+    for r in e.snapshot.records.values() {
+        all.insert(
+            Id(r.id.0),
+            Removed {
+                id: Id(r.id.0),
+                kind: format!("Native {}", r.kind.label()),
+                name: r.name.clone(),
+            },
+        );
+    }
+    let native_refs = super::deletion_native::references(&e.snapshot)?;
     if roots.iter().any(|id| !all.contains_key(id)) {
-        return Err("DELETION_TYPED_TARGET_MISSING_OR_KIND".into());
+        return Err("DELETION_TARGET_MISSING_OR_KIND".into());
     }
     let mut removed = roots.clone();
     loop {
         let old = removed.len();
+        // Explicit policy: delete referencing native owners, including calculation consumers.
+        // Typed property overrides are value entries, so they do not delete their Parts.
+        for r in &native_refs {
+            if removed.contains(&r.target) {
+                removed.insert(r.owner);
+            }
+        }
+        for d in before.definitions.values() {
+            if removed.contains(&Id(d.system.0)) {
+                removed.insert(d.id);
+            }
+        }
+        for i in before.interfaces.values() {
+            if removed.contains(&Id(i.system.0)) {
+                removed.insert(i.id);
+            }
+        }
         for p in before.properties.values() {
             if removed.contains(&p.owner) || removed.contains(&p.value_type) {
                 removed.insert(p.id);
@@ -438,12 +469,30 @@ pub fn prepare(e: &Editor, v: &Views) -> Result<Prepared, String> {
         removed: removed.iter().map(|id| all[id].clone()).collect(),
         incoming: refactor::references(&before)
             .into_iter()
+            .chain(native_refs)
             .filter(|r| removed.contains(&r.target))
             .collect(),
         removed_values: values,
         retained_raw_forms: retained,
         complete_supported_reference_inventory: unknown.count == 0,
         unknown,
+        owned_contexts: super::deletion_native::contexts(&e.snapshot, &removed),
+        native_occurrences: v
+            .document()
+            .occurrences
+            .values()
+            .filter(|o| removed.contains(&Id(o.record.0)))
+            .map(|o| o.id.get().to_string())
+            .collect(),
+        native_edges: v
+            .document()
+            .edges
+            .values()
+            .filter(|edge| {
+                removed.contains(&Id(edge.key.owner.0)) || removed.contains(&Id(edge.key.target.0))
+            })
+            .map(|edge| edge.id.get().to_string())
+            .collect(),
         port_occurrences: affected_ports
             .iter()
             .map(|id| id.get().to_string())
@@ -463,7 +512,7 @@ pub fn prepare(e: &Editor, v: &Views) -> Result<Prepared, String> {
     };
     if summary.unknown.count > 0 {
         summary.refusal=Some("Unknown impact prevents a complete verdict. Delete is unavailable; original data is retained.".into());
-    } else if removed.len() > 128
+    } else if removed.len() + summary.owned_contexts.len() > 128
         || summary.removed_values.len() > 128
         || summary.incoming.len() > 512
     {
@@ -477,6 +526,9 @@ pub fn prepare(e: &Editor, v: &Views) -> Result<Prepared, String> {
     }
     let mut candidate = e.snapshot.clone();
     if summary.refusal.is_none() {
+        candidate
+            .records
+            .retain(|id, _| !removed.contains(&Id(id.0)));
         let mut s = before;
         s.definitions.retain(|id, _| !removed.contains(id));
         s.properties.retain(|id, _| !removed.contains(id));

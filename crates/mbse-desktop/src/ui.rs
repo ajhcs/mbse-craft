@@ -1387,7 +1387,7 @@ impl Workspace {
                 Ok(graph) => graph, Err(error) => { ui.colored_label(ERROR, error); return; }
             };
             ui.checkbox(&mut self.show_ownership, "Show derived ownership links");
-            ui.label("Drag or move an occurrence; hide/remove affects this presentation. Model fields remain in the inspector. Semantic Delete is unavailable.");
+            ui.label("Drag or move an occurrence; hide/remove affects this presentation. Model fields remain in the inspector. Tools > Delete model records opens a separate impact preview.");
             ui.label("Persisted edges keep exact occurrence endpoints. Other arrows are derived only when both visible endpoints are unique; the complete ledger remains authoritative. Bend-point routing is unavailable.");
             self.views.reconcile();
             let Some(view) = self.views.views.document().views.get(&self.views.active) else {

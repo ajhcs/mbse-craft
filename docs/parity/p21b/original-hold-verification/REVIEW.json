@@ -1,0 +1,23 @@
+{
+  "result": "original_native_root_opaque_impact_refusal_and_preservation_passed",
+  "reviewer": "Codex, same implementing agent",
+  "independent_review": false,
+  "native_runs": 1,
+  "action_errors": 0,
+  "frozen_source_sha256": "493603c43b849e0eb99e4d9af09e3d6e26cf0e0d2bfb66cd77d6908774a85eb5",
+  "binary_sha256": "199dd24d3e8048a84de75b724ec0d67c8e303b542069318ff99ebe45c54e5f26",
+  "fresh_host_default_admission_passed": true,
+  "earlier_held_attempts_preserved": true,
+  "previous_positive_checks_replayed": false,
+  "pixels_reviewed": [
+    "run/00-native-root-opaque-impact-blocks-delete.png"
+  ],
+  "observations": [
+    "Original native/views4 pair opened with sidecar hash verified. Native root1003 includes one Measure/calculation/occurrence; opaque.p14.future blocks completeness and Delete.",
+    "Disabled click and Cancel retain live snapshot hash. Actual captured Save preserves original accepted native records, typedStore and all occurrence/edge/port/route maps; input bytes unchanged.",
+    "Normal app/display exit, owned process absence and auth cleanup verified."
+  ],
+  "limits": [
+    "Current admitted reference schemas only; opaque data remains uninterpreted; all56 broad parity specs NOT_RUN."
+  ]
+}

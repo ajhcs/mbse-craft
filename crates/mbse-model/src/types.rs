@@ -11,6 +11,7 @@ pub mod ports;
 pub mod values;
 pub mod refactor;
 pub mod deletion;
+mod deletion_native;
 pub const NAMESPACE: &str = "mbse-craft.types/1";
 pub const DRAFTS: &str = "mbse-craft.type-drafts/1";
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]

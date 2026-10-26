@@ -1,0 +1,58 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m4-p21b-canvas-message-04",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m4-p21b-native-deletion",
+  "source_manifest": "docs/parity/p21b/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "6160509a4d329c8be158810803fa21ef54e4d7e854bbcbe98e658b811a917c8d",
+  "source_sha256": "493603c43b849e0eb99e4d9af09e3d6e26cf0e0d2bfb66cd77d6908774a85eb5",
+  "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop",
+      "ui::deletion_editor::tests",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "483 workspace tests and desktop build passed on native/typed deletion engine. Rendered inspection found stale canvas footer claiming semantic Delete unavailable; only that ui.rs string changes. One existing deletion renderer regression plus build, then unexecuted native acceptance. Do not replay full suite or sum counts. An edit-path assertion failed and shell continued into unchanged job03; verified owned mistaken replay stopped, partial receipt retained and not counted.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p21b-native-deletion/docs/parity/p21b/fixtures/PROVENANCE.json": "60f5745717621ea75b856ac80790f5035c76b138057442baaf0194fcfd8e0bcf",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p21b-native-deletion/docs/parity/p21b/fixtures/controlled.kernspan": "31f79134057415fc3847e2cab2795c94cff90aa3dbb62d9a84471fbf214a7bca",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p21b-native-deletion/docs/parity/p21b/fixtures/controlled.mbse-views.json": "a3316c41da763c5f9b18fadd8e150fc2c167781051f1b91e5af20bf4afe77e3e",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p21b-native-deletion/docs/parity/p21a/fixtures/refactored.kernspan": "e834399ddebc22c392af17f01e761bb8d591f69f5cbe0852608877e10635bd7b",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p21b-native-deletion/docs/parity/p21a/fixtures/refactored.mbse-views.json": "799d826e4ae8179762298673dcea9fffd96b843f124827b316432517c2811b03"
+  }
+}

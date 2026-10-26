@@ -207,7 +207,7 @@ fn policy_noncanonical_duplicate_missing_native_and_review_budget_refuse_atomica
     let mut v = Views::new(&e).unwrap();
     form(&mut v, &mut e, "1021", false);
     assert!(deletion::prepare(&e, &v).unwrap().plan().is_none());
-    for ids in ["1021,1021", "01021", "1021,", "0", "9999", "1003"] {
+    for ids in ["1021,1021", "01021", "1021,", "0", "9999"] {
         form(&mut v, &mut e, ids, true);
         let before = e.snapshot.clone();
         assert!(deletion::prepare(&e, &v).is_err(), "{ids}");
@@ -456,4 +456,327 @@ fn old_journal_keeps_absent_deletion_field_and_round_trips_raw_detached_forms() 
     let wire = serde_json::to_value(&j).unwrap();
     assert!(wire.get("deletion").is_none());
     assert_eq!(serde_json::from_value::<Journal>(wire).unwrap(), j);
+}
+
+#[test]
+fn native_mission_contribution_subject_and_measure_ownership_cascade_keeps_typed_store_and_all_journals()
+ {
+    let mut e = editor(true);
+    let mut v = Views::new(&e).unwrap();
+    let p = prepared(&mut v, &mut e, "1000");
+    assert_eq!(
+        p.summary()
+            .removed
+            .iter()
+            .map(|r| r.id.0)
+            .collect::<Vec<_>>(),
+        vec![1000, 1001, 1002, 1003]
+    );
+    assert!(
+        p.summary()
+            .incoming
+            .iter()
+            .any(|r| r.owner == Id(1001) && r.target == Id(1000))
+    );
+    let old = e.snapshot.clone();
+    apply(&mut v, &mut e, &p).unwrap();
+    assert_eq!(
+        e.snapshot.records.keys().map(|id| id.0).collect::<Vec<_>>(),
+        vec![1]
+    );
+    assert_eq!(load(&e.snapshot).unwrap(), load(&old).unwrap());
+    assert_eq!(e.snapshot.drafts, old.drafts);
+    assert_eq!(e.snapshot.creation_drafts, old.creation_drafts);
+    command(&mut v, &mut e, NativeAction::ModelUndo).unwrap();
+    assert_eq!(e.snapshot.records, old.records);
+}
+fn consumers() -> Editor {
+    use crate::stage1_calc::{CalculationId, Expr, Input};
+    let mut e = editor(true);
+    for (id, dependency) in [(1027, 1003), (1028, 1027)] {
+        let mut r = e.snapshot.records[&RecordId(1003)].clone();
+        r.id = RecordId(id);
+        r.name = format!("consumer{id}");
+        let mut d = e.snapshot.calculations().unwrap()[&CalculationId(1003)].clone();
+        d.id = CalculationId(id);
+        d.owner = r.id;
+        d.bindings = BTreeMap::from([("x".into(), Input::Output(CalculationId(dependency)))]);
+        d.expression = Expr::Binding("x".into());
+        r.fields
+            .insert("calculation".into(), serde_json::to_value(d).unwrap());
+        r.fields.remove("_kernspanCalculationRawOwners");
+        e.snapshot.records.insert(r.id, r);
+    }
+    e.snapshot.next_id = 1029;
+    e.snapshot.validate().unwrap();
+    e
+}
+#[test]
+fn deleting_calculation_producer_cascades_transitive_consumers_and_undo_keeps_exact_definition_meaning()
+ {
+    let mut e = consumers();
+    let mut v = Views::new(&e).unwrap();
+    let p = prepared(&mut v, &mut e, "1003");
+    assert_eq!(
+        p.summary()
+            .removed
+            .iter()
+            .map(|r| r.id.0)
+            .collect::<Vec<_>>(),
+        vec![1003, 1027, 1028]
+    );
+    assert!(
+        p.summary()
+            .incoming
+            .iter()
+            .any(|r| r.owner == Id(1028) && r.target == Id(1027) && r.role.ends_with("binding x"))
+    );
+    let old = e.snapshot.clone();
+    apply(&mut v, &mut e, &p).unwrap();
+    assert!(e.snapshot.calculations().unwrap().is_empty());
+    assert!(e.snapshot.records.contains_key(&RecordId(1002)));
+    assert_eq!(load(&e.snapshot).unwrap(), load(&old).unwrap());
+    command(&mut v, &mut e, NativeAction::ModelUndo).unwrap();
+    assert_eq!(
+        e.snapshot.calculations().unwrap(),
+        old.calculations().unwrap()
+    );
+    assert_eq!(e.snapshot.drafts, old.drafts);
+}
+fn inspection() -> Editor {
+    let s = Snapshot::from_fixture(
+        crate::stage1::DocumentId("deletion:inspection".into()),
+        &serde_json::from_str(include_str!("../../fixtures/stage1/inspection.json")).unwrap(),
+    )
+    .unwrap();
+    Editor::new(
+        crate::extensions::migrate(&s).unwrap(),
+        "deletion:inspection".into(),
+    )
+    .unwrap()
+}
+#[test]
+fn organization_actor_membership_and_expectation_dependencies_are_explicit_not_unlinked() {
+    use crate::stage1::{Record, RecordKind};
+    for actor in [false, true] {
+        let mut e = inspection();
+        let root = if actor {
+            e.snapshot.records.insert(
+                RecordId(950),
+                Record {
+                    id: RecordId(950),
+                    kind: RecordKind::Actor,
+                    name: "owned actor".into(),
+                    scope: RecordId(1),
+                    fields: BTreeMap::new(),
+                },
+            );
+            e.snapshot
+                .records
+                .get_mut(&RecordId(401))
+                .unwrap()
+                .fields
+                .insert("actors".into(), serde_json::json!([950]));
+            "950"
+        } else {
+            "900"
+        };
+        e.snapshot.validate().unwrap();
+        let mut v = Views::new(&e).unwrap();
+        let p = prepared(&mut v, &mut e, root);
+        assert!(p.plan().is_some(), "{:?}", p.summary());
+        assert!(p.summary().removed.iter().any(|r| r.id == Id(401)));
+        assert!(p.summary().removed.iter().any(|r| r.id == Id(500)));
+        apply(&mut v, &mut e, &p).unwrap();
+        assert!(!e.snapshot.records.contains_key(&RecordId(401)));
+        assert!(!e.snapshot.records.contains_key(&RecordId(500)));
+        assert!(e.snapshot.records.contains_key(&RecordId(400)));
+    }
+}
+#[test]
+fn owned_contexts_are_listed_deleted_with_environment_and_restored_with_raw_forms() {
+    let mut e = inspection();
+    let mut v = Views::new(&e).unwrap();
+    let p = prepared(&mut v, &mut e, "600");
+    assert_eq!(p.summary().removed.len(), 1);
+    assert_eq!(
+        p.summary()
+            .owned_contexts
+            .iter()
+            .map(|c| c.id.0)
+            .collect::<Vec<_>>(),
+        vec![601, 602]
+    );
+    let old = e.snapshot.clone();
+    apply(&mut v, &mut e, &p).unwrap();
+    assert!(!e.snapshot.records.contains_key(&RecordId(600)));
+    assert_eq!(e.snapshot.drafts, old.drafts);
+    command(&mut v, &mut e, NativeAction::ModelUndo).unwrap();
+    assert_eq!(e.snapshot.records, old.records);
+}
+#[test]
+fn last_system_refuses_and_other_system_allows_scope_and_typed_membership_cascade_without_id_reuse()
+{
+    let mut e = editor(true);
+    let mut v = Views::new(&e).unwrap();
+    let p = prepared(&mut v, &mut e, "1");
+    assert!(p.plan().is_none());
+    assert!(
+        p.summary().refusal.as_ref().unwrap().contains("System")
+            || p.summary().refusal.as_ref().unwrap().contains("identity")
+    );
+    let mut r = e.snapshot.records[&RecordId(1)].clone();
+    r.id = RecordId(1027);
+    r.scope = r.id;
+    r.name = "Remaining System".into();
+    e.snapshot.records.insert(r.id, r);
+    e.snapshot.next_id = 1028;
+    let mut v = Views::new(&e).unwrap();
+    let p = prepared(&mut v, &mut e, "1");
+    assert!(p.plan().is_some(), "{:?}", p.summary());
+    let old = e.snapshot.clone();
+    apply(&mut v, &mut e, &p).unwrap();
+    assert_eq!(
+        e.snapshot.records.keys().map(|id| id.0).collect::<Vec<_>>(),
+        vec![1027]
+    );
+    assert_eq!(load(&e.snapshot).unwrap(), Store::default());
+    assert_eq!(e.snapshot.next_id, 1028);
+    assert_eq!(e.snapshot.drafts, old.drafts);
+    assert_eq!(e.snapshot.creation_drafts, old.creation_drafts);
+    command(&mut v, &mut e, NativeAction::ModelUndo).unwrap();
+    assert_eq!(e.snapshot.records, old.records);
+    assert_eq!(load(&e.snapshot).unwrap(), load(&old).unwrap());
+}
+fn native_routes(e: &Editor) -> Views {
+    use crate::native_views::{SemanticKey, SemanticRole};
+    let mut v = Views::new(e).unwrap();
+    let views: Vec<_> = v.document().views.keys().copied().collect();
+    for view in views {
+        let mut pair = Vec::new();
+        for (id, x) in [(1003, 10.), (1002, 350.)] {
+            let existing = v
+                .document()
+                .occurrences
+                .values()
+                .find(|o| o.view == view && o.record == RecordId(id))
+                .map(|o| o.id);
+            let occurrence = existing.unwrap_or_else(|| {
+                let next =
+                    serde_json::from_value(serde_json::json!(v.document().next_id().to_string()))
+                        .unwrap();
+                v.apply(
+                    e,
+                    &v.stamp(e),
+                    Layout::Reuse {
+                        view,
+                        record: RecordId(id),
+                        geometry: Geometry::at(x, 80.),
+                    },
+                )
+                .unwrap();
+                next
+            });
+            pair.push(occurrence);
+        }
+        let key = SemanticKey::checked(
+            &e.snapshot,
+            RecordId(1003),
+            SemanticRole::MeasureForObjective,
+            RecordId(1002),
+        )
+        .unwrap();
+        v.apply(
+            e,
+            &v.stamp(e),
+            Layout::Route {
+                view,
+                key,
+                source: pair[0],
+                target: pair[1],
+            },
+        )
+        .unwrap();
+    }
+    v
+}
+#[test]
+fn native_deletion_inverse_proof_restores_two_view_occurrences_edges_and_newer_invalid_raw() {
+    let mut e = editor(true);
+    e.select(RecordId(1003)).unwrap();
+    let mut v = native_routes(&e);
+    let p = prepared(&mut v, &mut e, "1003");
+    assert_eq!(p.summary().native_occurrences.len(), 2);
+    assert_eq!(p.summary().native_edges.len(), 2);
+    let occurrences = v.document().occurrences.clone();
+    let edges = v.document().edges.clone();
+    apply(&mut v, &mut e, &p).unwrap();
+    assert!(!e.selection_resolved());
+    assert!(
+        v.document()
+            .occurrences
+            .values()
+            .filter(|o| o.record == RecordId(1003))
+            .all(|o| !o.presence.active())
+    );
+    assert!(v.document().edges.values().all(|o| !o.presence.active()));
+    form(&mut v, &mut e, "1003?", true);
+    for _ in 0..2 {
+        command(&mut v, &mut e, NativeAction::ModelUndo).unwrap();
+        assert!(e.selection_resolved());
+        assert_eq!(v.document().occurrences, occurrences);
+        assert_eq!(v.document().edges, edges);
+        assert_eq!(deletion::form(&e.snapshot).unwrap().unwrap().ids, "1003?");
+        command(&mut v, &mut e, NativeAction::ModelRedo).unwrap();
+        assert!(!e.selection_resolved());
+        assert!(v.document().edges.values().all(|o| !o.presence.active()));
+    }
+}
+#[test]
+fn native_deleted_calculation_and_detached_views_captured_cold_save_keep_original_typed_meaning_and_drafts()
+ {
+    let area = tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap();
+    let input = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("../../docs/parity/p21b/fixtures/controlled.kernspan");
+    let bytes = std::fs::read(&input).unwrap();
+    let side = std::fs::read(input.with_extension("mbse-views.json")).unwrap();
+    let mut s = Session::open(area.path(), &input).unwrap();
+    let mut v = Views::decode(&side, &s.editor, &accepted_native(&s).unwrap()).unwrap();
+    let old = s.editor.snapshot.clone();
+    let ports = v.document().typed_ports.clone();
+    let routes = v.document().connector_edges.clone();
+    let p = prepared(&mut v, &mut s.editor, "1003");
+    apply(&mut v, &mut s.editor, &p).unwrap();
+    form(&mut v, &mut s.editor, "1003?", true);
+    let expected = s.editor.snapshot.clone();
+    let native = area.path().join("native-deleted.kernspan");
+    save(&mut s, &v, &native);
+    let cold = Session::open(area.path(), &native).unwrap();
+    assert_eq!(cold.editor.snapshot, expected);
+    assert!(!cold.editor.can_undo());
+    assert!(!cold.editor.snapshot.records.contains_key(&RecordId(1003)));
+    assert!(cold.editor.snapshot.calculations().unwrap().is_empty());
+    assert_eq!(load(&cold.editor.snapshot).unwrap(), load(&old).unwrap());
+    assert_eq!(cold.editor.snapshot.drafts, old.drafts);
+    let views = Views::decode(
+        &std::fs::read(native.with_extension("mbse-views.json")).unwrap(),
+        &cold.editor,
+        &accepted_native(&cold).unwrap(),
+    )
+    .unwrap();
+    assert_eq!(views.document().typed_ports, ports);
+    assert_eq!(views.document().connector_edges, routes);
+    assert!(
+        views
+            .document()
+            .occurrences
+            .values()
+            .filter(|o| o.record == RecordId(1003))
+            .all(|o| !o.presence.active())
+    );
+    assert_eq!(std::fs::read(&input).unwrap(), bytes);
+    assert_eq!(
+        std::fs::read(input.with_extension("mbse-views.json")).unwrap(),
+        side
+    );
 }

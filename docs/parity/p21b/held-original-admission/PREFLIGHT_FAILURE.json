@@ -1,0 +1,16 @@
+{
+  "recorded_utc": "2026-10-26T23:05:44.965420+00:00",
+  "job_sha256": "2c8e786a63c9fbf82bce10bc16d9f9f6b93187dac1ffe07c962fcbd8fc237920",
+  "command": [
+    "python3",
+    "scripts/m1_native_session.py",
+    "--job",
+    "docs/parity/p21b/HOLD_NATIVE_JOB.json"
+  ],
+  "exit_code": 1,
+  "phase": "initial default local_preflight before native launch",
+  "error": "Existing compiler/native process requires coordination: [{\"pid\": 113463, \"comm\": \"cargo\", \"cwd\": \"/workspace/worktrees/builderbob/kernspan/b06-keyboard-coverage\", \"output_dirs\": []}, {\"pid\": 113480, \"comm\": \"rustc\", \"cwd\": \"/workspace/worktrees/builderbob/kernspan/b06-keyboard-coverage\", \"output_dirs\": [\"/workspace/repos/builderbob/kernspan/work/b06-keyboard-coverage/build/target/debug/deps\"]}]",
+  "output_directory_created_but_no_receipt": true,
+  "native_runs": 0,
+  "limits": "Failure transcribed exactly from exec tool output; runner initial preflight precedes receipt try/finally. Empty output directory retained; no native acceptance or admission claimed."
+}
