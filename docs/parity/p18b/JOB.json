@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m4-p18b-routes-renderer-borrow-fix",
+  "id": "m4-p18b-routes-active-view-staging",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes",
   "source_manifest": "docs/parity/p18b/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "26c314fead0db81f0c733265d4a75ab89aaf7d313dc534c85eeaea36bfac55e4",
-  "source_sha256": "161b77f3aff80105569270a90ce6d456de31fc8cb2895df1d9452550f4b83451",
+  "source_manifest_sha256": "041ef89e145f33565a0cb08bd52621fe3a15a668714577a4108aebaa7dc6384a",
+  "source_sha256": "673988b31565bb5fff1055425881cef6628ee3078aec34c69f0d087cddac22c8",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
