@@ -1,6 +1,6 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m4-p22-profile-tags-remainder-02",
+  "id": "m4-p22-vendored-syntax-remainder-03",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m4-p22-profile-tags",
   "source_manifest": "docs/parity/p22/SOURCE_MANIFEST.json",
   "source_manifest_sha256": "8ee4950adcb7a8ec4a282284627c92dd6b72eb52ca02218e79360a7e11b14fba",
@@ -25,49 +25,12 @@
       "--locked",
       "--offline",
       "-p",
-      "mbse-desktop",
-      "ui::workspace_commands::tests::command_ids_defaults_and_menu_groups_are_unique_and_complete",
+      "sysmlv2-syntax",
       "--",
       "--test-threads=1"
-    ],
-    [
-      "bash",
-      "scripts/dev.sh",
-      "test",
-      "--locked",
-      "--offline",
-      "-p",
-      "mbse-exchange",
-      "-p",
-      "mbse-model",
-      "--",
-      "--test-threads=1"
-    ],
-    [
-      "bash",
-      "scripts/dev.sh",
-      "test",
-      "--locked",
-      "--offline",
-      "--doc",
-      "-p",
-      "mbse-assurance",
-      "-p",
-      "mbse-catalog",
-      "--",
-      "--test-threads=1"
-    ],
-    [
-      "bash",
-      "scripts/dev.sh",
-      "build",
-      "--locked",
-      "--offline",
-      "-p",
-      "mbse-desktop"
     ]
   ],
-  "rationale": "Initial workspace run passed139 tests including new profile renderer, but failed catalog uniqueness assertions still expecting30 instead of31; exchange/model/doc groups unexecuted. Fix only two test counts plus clarify deletion review-cap message. Run failed catalog case and unexecuted exchange/model/assurance-catalog doc groups, then build. Preserve initial139 passes/failure without replay or a summed full-suite qualification claim.",
+  "rationale": "Initial139 passes, corrected catalog1 and unexecuted model/exchange344 plus doc/build completed on recorded slices. Exact test-name reconciliation to previous workspace inventory found10 vendored sysmlv2-syntax checks unexecuted by package-limited remainder. Run only that remaining package, no other test/build replay; preserve existing final built binary unchanged. No summed full-suite qualification claim.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",
