@@ -5,26 +5,53 @@ use mbse_model::{
     types::connectors::Endpoint,
 };
 fn clear_route_label(desired: Rect, area: Rect, obstacles: &[Rect], labels: &[Rect]) -> Rect {
-    let stride = desired.height() + 6.;
-    for step in 0..33 {
-        let row = if step == 0 {
-            0.
-        } else if step % 2 == 1 {
-            -((step + 1) / 2) as f32
-        } else {
-            (step / 2) as f32
-        };
-        let candidate = desired.translate(Vec2::new(0., row * stride));
-        if area.contains_rect(candidate)
-            && !obstacles
-                .iter()
-                .chain(labels)
-                .any(|o| o.expand(3.).intersects(candidate))
-        {
-            return candidate;
+    let half = desired.height() * 0.5;
+    let low = area.top() + half;
+    let high = area.bottom() - half;
+    if low > high || desired.width() > area.width() {
+        return desired;
+    }
+    let x = desired.center().x.clamp(
+        area.left() + desired.width() * 0.5,
+        area.right() - desired.width() * 0.5,
+    );
+    let horizontal = Rect::from_center_size(egui::pos2(x, desired.center().y), desired.size());
+    let mut blocked: Vec<_> = obstacles
+        .iter()
+        .chain(labels)
+        .map(|o| o.expand(3.))
+        .filter(|o| o.left() < horizontal.right() && o.right() > horizontal.left())
+        .map(|o| (o.top() - half, o.bottom() + half))
+        .filter(|(start, end)| *end >= low && *start <= high)
+        .collect();
+    blocked.sort_by(|a, b| a.0.total_cmp(&b.0).then(a.1.total_cmp(&b.1)));
+    let mut cursor = low;
+    let mut best: Option<f32> = None;
+    let mut offer = |start: f32, end: f32| {
+        if start <= end {
+            let y = desired.center().y.clamp(start, end);
+            if best.is_none_or(|prior| {
+                (y - desired.center().y).abs() < (prior - desired.center().y).abs()
+            }) {
+                best = Some(y);
+            }
+        }
+    };
+    for (start, end) in blocked {
+        if start > cursor {
+            offer(cursor, (start - 0.25).min(high));
+        }
+        cursor = cursor.max(end + 0.25);
+        if cursor > high {
+            break;
         }
     }
-    desired
+    if cursor <= high {
+        offer(cursor, high)
+    }
+    best.map_or(desired, |y| {
+        Rect::from_center_size(egui::pos2(x, y), desired.size())
+    })
 }
 impl Workspace {
     pub(super) fn qualified_port_controls(
@@ -172,6 +199,18 @@ mod tests {
             assert!(!a.intersects(card) && !b.intersects(card))
         }
         assert!(!a.intersects(b));
+        // A fixed26px search skips this real22px free interval after margins.
+        let tight = Rect::from_min_size(egui::Pos2::ZERO, Vec2::new(200., 130.));
+        let barriers = [
+            Rect::from_min_max(egui::pos2(0., 0.), egui::pos2(200., 30.)),
+            Rect::from_min_max(egui::pos2(0., 58.), egui::pos2(200., 130.)),
+        ];
+        let wanted = Rect::from_center_size(egui::pos2(100., 80.), Vec2::new(100., 20.));
+        let placed = clear_route_label(wanted, tight, &barriers, &[]);
+        assert!(tight.contains_rect(placed));
+        for barrier in barriers {
+            assert!(!barrier.expand(3.).intersects(placed));
+        }
     }
     #[test]
     fn actual_route_controls_disambiguate_two_parts_of_one_type_and_remove_only_presentation() {

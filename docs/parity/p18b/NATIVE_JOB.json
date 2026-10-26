@@ -11,26 +11,25 @@
     "/workspace/worktrees/builderbob/mbse-craft",
     "/workspace/build/builderbob/mbse-craft/milestone1"
   ],
-  "id": "p18b-qualified-connector-routes-native",
-  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p18b-routes-capture-test-fix-20261026T210757Z/mbse-desktop",
-  "binary_sha256": "f99c91b5fc406094d6d5d606cad0c5de968b97cc2d4a84c2f48f3447c57a760d",
-  "source_sha256": "34eccea2ac1af8501753905105232037b9e2b936e84420cd193b405894a9fadb",
+  "id": "p18b-final-label-pointer-cold-remainder",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p18b-routes-label-visibility-fix-20261026T211314Z/mbse-desktop",
+  "binary_sha256": "8e218ee46efe534093f6213df737f90973467b2a93397e41c052e3eb959a0480",
+  "source_sha256": "d3407e48b98e58639cef48dcc2c88178622a0780e6fecb064d0c4f1033d36a9a",
   "inputs": {
-    "/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/docs/parity/p18b/fixtures/connectors.mbse-views.json": "c2f05ee443601de2558cb382cc1b0ca9961d3a331ede7a22b18e28150f427ec3",
-    "/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/docs/parity/p18b/fixtures/connectors.kernspan": "5f0b3b0904da1d5dad20651750c901be913e5576d5602045bccc4b3699bac90f"
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p18b-01/run/prepared-routes.kernspan": "69337eafb28ddeaa38df039741efe6223e2ebe095fdf026ff1c9b394f463c156",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p18b-01/run/prepared-routes.mbse-views.json": "cc2ddd73dbc47f2f57db3ae2eaf91d2dbc3b355c653d0e03bb62bce8ef99e52d"
   },
-  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p18b-01",
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p18b-02",
   "argv_extra": [
     "--open",
-    "/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/docs/parity/p18b/fixtures/connectors.kernspan",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p18b-01/run/prepared-routes.kernspan",
     "--select",
     "1003"
   ],
   "scenarios": [
-    "Open original native/views3 pair and reuse exact Part1009/Port1017 and Part1010/Port1015 in two views; route connector1018 as distinct visual edges",
-    "Actual directed route labels, pointer movement and endpoint show/hide/removal use separate layout history and leave accepted connector unchanged",
-    "Author second connector1019 and newer1005? raw form; model Undo detaches its route, Redo restores exact identity without losing draft",
-    "Actual captured native/views4 Save and cold app reopen preserve every native semantic/form and core/typed/route record"
+    "Continue from actual bound views4 checkpoint; verify complete conveyed labels avoid port cards and parallel labels in two views",
+    "Complete real pointer movement of one qualified endpoint, unchanged connector identities and other-view geometry",
+    "Complete actual captured native/views4 Save and cold app reopen equality of full snapshot/typed contexts/route IDs/core records"
   ],
-  "claim_policy": "Same-agent bounded Linux qualified port-card/straight route evidence. No independent engineering/full NoMagic/Craft/platform acceptance; no nested paths/root delegation/bend editing. Prior compiler refusals retained; no passed job replay."
+  "claim_policy": "Corrected renderer/remainder only; prior448-test semantic closure and original successful native authoring/history/layout checks retained separately. Final2 renderer tests/build on unchanged model source; no full-suite replay or claim on new UI closure. Same-agent bounded Linux evidence only."
 }
