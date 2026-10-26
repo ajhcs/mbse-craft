@@ -1978,6 +1978,7 @@ impl eframe::App for Workspace {
             fields.insert("shortcut_configuration".into(),self.shortcut_audit());
             fields.insert("workspace_docking".into(),self.docking.audit());
             fields.insert("file_operations".into(),self.file_audit());
+            fields.insert("native_extensions".into(),serde_json::json!(self.session.editor.snapshot.extensions));
             fields.insert("views_inspection_profile".into(), serde_json::json!(self.views.inspection_profile()));
             fields.insert("views_inspection_copy_origin".into(), self.views.inspection_copy_origin());
         }

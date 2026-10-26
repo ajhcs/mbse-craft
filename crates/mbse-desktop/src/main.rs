@@ -17,6 +17,8 @@ use std::path::PathBuf;
 fn run() -> Result<(), String> {
     let mut args = std::env::args().skip(1);
     let mut state = None;
+    let mut migrate=None;
+    let mut destination=None;
     let mut config = None;
     let mut open = None;
     let mut fixture = None;
@@ -25,7 +27,7 @@ fn run() -> Result<(), String> {
     let mut selected = None;
     while let Some(flag) = args.next() {
         if flag == "--help" {
-            println!("MBSE-Craft native model editor\nRequired: --state-dir DIR (owned recovery directory)\nOptional: --config-dir DIR (separate owned config directory; otherwise session-only preferences)\n  --open FILE | --fixture JSON | --recover FILE\n  --select ID --capture NEW.png\nNo network or external execution. Restricted SysML copies via the UI.");
+            println!("MBSE-Craft native model editor\nRequired: --state-dir DIR (owned recovery directory)\nOptional: --config-dir DIR (separate owned config directory; otherwise session-only preferences)\n  --open FILE | --fixture JSON | --recover FILE\n  --select ID --capture NEW.png\nHeadless protected extension migration: --migrate-extensions SOURCE.kernspan --destination NEW.kernspan\nNo network or external execution. Restricted SysML copies via the UI.");
             return Ok(());
         }
         let value = args
@@ -33,6 +35,8 @@ fn run() -> Result<(), String> {
             .ok_or_else(|| format!("Missing value after {flag}"))?;
         match flag.as_str() {
             "--state-dir" => state = Some(PathBuf::from(value)),
+            "--migrate-extensions"=>migrate=Some(PathBuf::from(value)),
+            "--destination"=>destination=Some(PathBuf::from(value)),
             "--config-dir" => config = Some(PathBuf::from(value)),
             "--open" => open = Some(PathBuf::from(value)),
             "--fixture" => fixture = Some(PathBuf::from(value)),
@@ -45,6 +49,16 @@ fn run() -> Result<(), String> {
         }
     }
     let state = state.ok_or("Use --state-dir with an owned directory on /workspace")?;
+    if let Some(source)=migrate{
+        if open.is_some()||fixture.is_some()||recover.is_some()||capture.is_some()||config.is_some()||selected.is_some(){return Err("Extension migration is a separate headless operation; omit GUI flags".into());}
+        let destination=destination.ok_or("Extension migration requires --destination with a fresh .kernspan path")?;
+        let mut copy=Session::migrate_extensions(&state,&source)?;
+        let job=copy.begin_save(&destination)?;let result=mbse_model::stage1_io::execute_write(job);
+        let receipt=result.outcome().map_err(|e|e.to_string())?.clone();
+        if !copy.complete(result)||copy.is_dirty()||copy.native_checkpoint()?.is_none(){return Err("Migration copy could not be acknowledged; original source retained".into());}
+        println!("{}",serde_json::json!({"schema":"mbse-craft.extension-migration/1","source":source,"destination":receipt.destination,"destination_sha256":receipt.envelope_hash,"written_bytes":receipt.written_bytes,"stage1_profile":mbse_model::stage1_io::PROFILE,"extension_profile":mbse_model::extensions::PROFILE,"extension_schema_version":mbse_model::extensions::SCHEMA_VERSION,"document_id":copy.editor.snapshot.document_id,"snapshot_sha256":copy.editor.snapshot.digest(),"source_overwrite_allowed":false,"native_parity_claim":false}));return Ok(());
+    }
+    if destination.is_some(){return Err("--destination requires --migrate-extensions".into());}
     if [open.is_some(), fixture.is_some(), recover.is_some()]
         .into_iter()
         .filter(|v| *v)

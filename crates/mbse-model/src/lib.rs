@@ -25,3 +25,5 @@ pub mod native_search;
 pub mod native_system_browser;
 
 pub mod native_record_impact;
+
+pub mod extensions;
