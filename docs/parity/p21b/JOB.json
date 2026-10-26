@@ -1,6 +1,6 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m4-p21b-native-deletion-02",
+  "id": "m4-p21b-canvas-message-03",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m4-p21b-native-deletion",
   "source_manifest": "docs/parity/p21b/SOURCE_MANIFEST.json",
   "source_manifest_sha256": "5cc32a4a687ef090d636b6c1afd6dd7caf24f77a6803fe07c3b75689ca414a2d",
