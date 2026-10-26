@@ -1,64 +1,62 @@
 # P13: preserving file selection and background model reads
 
-Built on merged P12 PR #15 (`422780873eee22b4170acdbeb5b4d77e3f6bad9b`)
-in isolated `codex/m3-p13-dialogs-progress`. File / Choose model file (also
-Ctrl/Cmd+Alt+D and toolbar) opens an application-owned chooser with background
-directory browsing and native Open/Recover, restricted Import and native Save.
-The pinned Craft Outcome type keeps explicit Cancel, failure and indeterminate
-results distinct. This host has no installed OS picker backend; no OS-native
-picker or full-platform claim is made. Existing explicit-path commands remain.
+[PR #16](https://github.com/ajhcs/mbse-craft/pull/16) builds on merged P12 PR #15
+(`422780873eee22b4170acdbeb5b4d77e3f6bad9b`). Implementation used isolated
+`codex/m3-p13-dialogs-progress`; review fixes used `codex/review-p13`, leaving
+the original implementation checkout unchanged.
 
-All workspace New/Open/Recover/Import reads now use one background lane. Current
-work stays visible. The result can publish only while the original native
-freshness, selection, views digest, save path and write/continuation guards remain
-current. Cancellation retains the lane until the reader returns and prevents
-publication. Existing frozen native/paired write receipts and protection remain.
+File / Choose model file (Ctrl/Cmd+Alt+D and toolbar) offers an application-owned
+chooser with asynchronous directory browsing, native Open/Recover, restricted
+Import and native Save. The pinned Craft Outcome type keeps explicit Cancel,
+failure and indeterminate results distinct. No OS-picker backend is installed;
+this is not an OS-native picker claim. Existing explicit-path commands remain.
+All workspace New/Open/Recover/Import reads run on one background lane, retaining
+current work until native freshness, selection, views digest, save path and
+write/continuation guards approve the result. Cancellation prevents publication
+while retaining lane ownership until the reader returns.
 
-| Acceptance | Concrete evidence |
+| Acceptance | Final evidence |
 | --- | --- |
-| Cancel, failure and indeterminate differ | Native explicit Cancel retains exact native/views state; actual empty path displays distinct indeterminate result; directory failure and missing-file background Open display errors without mutation. Controller tests also cover explicit backend failure and worker disconnect |
-| Stale replies cannot replace work | Controlled delayed replies after newer raw9e or a new native view are rejected with exact current snapshot/views retained. Stale picker Save cannot start a write or change the destination. Closed/stale directory replies cannot reopen or populate a new chooser |
-| Background completion retains edits | Controlled cancellation keeps the reader lane occupied until its response returns, then discards the candidate. Current success publishes once; read failure retains originals. Actual worker tests cover missing file and New; native Save/Open round-trip retains the original incomplete draft |
-| Real file workflow works | Native directory list shows original.kernspan; chooser Save writes the exact original native snapshot and paired views. Chooser Open runs in background, accepts that saved native file, and explicit views reopen verifies its exact file digest/empty history with raw9e, accepted95metre and derived2.5km visible |
-| Existing work stays intact | All39 pre-existing worktree heads/statuses unchanged; original fixture unchanged; normal native exit, owned process and authentication-file cleanup |
+| Cancel, failure and indeterminate differ | Final live chooser Cancel retains native state; actual empty path produces indeterminate; missing-file background Open produces failure. Initial live directory listing/failure evidence remains separately retained |
+| Stale replies cannot replace work | Controlled delayed replies after newer raw9e/new view retain exact current snapshot/views. Stale picker Save cannot write/change destination; closed/stale directory replies cannot reopen or populate a new chooser |
+| Completion cannot discard queued edits | Review fixed App::logic-before-ui publication: queued text/pointer/IME/touch/wheel/zoom input reaches the current UI first. Two actual egui-frame tests prove newer text and Cancel-button release win over an already-ready candidate |
+| Cancellation retains ownership | Controlled cancelled read keeps its lane until the worker returns, rejects second reads, then discards the candidate. Worker failure/disconnect retains current work; current success publishes once |
+| Saved native workflow remains exact | Final live chooser Save writes exact native snapshot and paired views; background Open restores it. Explicit views reopen verifies exact persisted file digest, with selected1003/raw9e/accepted95metre/derived2.5km visible |
+| Existing work remains intact | All40 pre-existing worktree heads/statuses verified unchanged during review; original fixture unchanged; final app/display exits normally with exact owned-process and authentication cleanup |
 
-The corrected 680-file source closure
-`54fce092c645209cf13a1508db67d75ef3bba38393bedc0123583e1264e62d63`
-passed **389 distinct workspace tests**, including **seven new P13 cases**, and
-desktop build exit0. Executed checkout is pinned in the
-[compiler receipt](verification/COMPILER_RECEIPT.json); runtime `c7a64f7` plus
-corrected lock `8ce95c9` and frozen job `bf0d7ef`. Executable SHA-256:
-`0025b031aa9d7994ffac69c558f35060df1e1150f73367771b8c6cc1452de512`.
+Final candidate: **391 distinct workspace tests**, **nine new P13 cases**,
+desktop build exit0. Frozen source680-file closure SHA-256:
+`04bd96ddfbdc1cbf05cf4917797d649530db8639e860835b8cf24ca5b7366969`.
+Runtime review fix `a2560a7` and executed checkout `9bc06ad` are pinned by
+[final compiler receipt](final-verification/COMPILER_RECEIPT.json). Executable SHA-256:
+`e7a8dea73fbe560bd5cba17369c44076df270b62317b13e9b495690954178c18`.
 See [manifest](SOURCE_MANIFEST.json), [job](JOB.json),
-[test pairs](verification/TEST_RESULTS.json) and [contract](CONTRACT.md).
-No runtime source changed after the successful job. Build/cache/test outputs
-stayed on Samsung /workspace with fresh local preflight, target lock and one
-Cargo job/thread, using locked/offline inputs.
+[final test pairs](final-verification/TEST_RESULTS.json), [contract](CONTRACT.md)
+and [follow-up review](REVIEW_FOLLOWUP.md). No runtime source changed after this
+passing job. All outputs stayed on verified Samsung /workspace with fresh local
+preflight, target lock and one Cargo job/thread, locked/offline.
 
-One private Linux app/display run completed normally. The
-[raw native receipt](verification/native/RECEIPT.json) retains
-`actions_completed_review_pending`; [same-agent review](verification/NATIVE_REVIEW.json)
-is separate. All34 archived original/stored/lossless hashes are in
-[ARCHIVES.json](verification/ARCHIVES.json). One harness action error remains:
-typing an empty string selected the existing field without deleting it. Existing
-preservation protection retained work; Cancel then explicit Backspace produced
-an actual empty/indeterminate result. No app replay or product change was needed.
+Final binary completed one private Linux native run with zero action errors.
+[Raw receipt](final-verification/native/RECEIPT.json) retains its original
+`actions_completed_review_pending`; [same-agent pixel/byte review](final-verification/NATIVE_REVIEW.json)
+is separate. All24 final/intermediate-log artifacts have stored/original/lossless
+hashes in [final archive index](final-verification/ARCHIVES.json).
 
-The [first locked attempt](failed-lock/RECEIPT.json) stopped before compilation,
-with zero tests. A broad manual lock insertion accidentally listed craft-platform
-under mbse-catalog too. Cargo offline metadata corrected that ownership and then
-stopped on an uncached existing cross-platform redox_users source; --offline
-prevented acquisition. The corrected lock adds only the pinned platform crate to
-desktop; no existing package version changed. The old job/manifest/log remain
-retained. The successful locked Linux regression/build needed no package download.
-Upstream licenses/notices and build scripts were inspected; no vendor edit,
-provider/service/release workflow or external-project/shared-skill mutation.
+Earlier389-test/native candidate remains in [verification](verification/ARCHIVES.json)
+and [before-input-fix](before-input-fix/README.md), with its exact original
+manifest/job. Its one empty-fill harness assertion is retained: selecting existing
+text and typing nothing did not clear the path; Cancel then actual Backspace
+corrected the input without app replay. The390-test intermediate review candidate
+has its own [receipt/manifest/job](input-fix-first/RECEIPT.json) and archived logs.
+These counts belong to separate candidates and are not summed. The initial
+[locked attempt](failed-lock/RECEIPT.json) executed zero tests; Cargo offline
+metadata corrected an unintended mbse-catalog lock entry, then refused an uncached
+existing cross-platform source. The successful locked Linux jobs downloaded no
+package; only the pinned platform dependency was added to desktop.
 
-Slow completion and stale/cancel races have controlled actual controller scope;
-the native file reads finish too quickly to claim a manually timed race. This
-chooser omits non-UTF-8 listing entries and bounds listings at500 rows. Existing
-export, auxiliary editors and platform-native pickers remain outside this slice.
-Independent, full platform/accessibility, domain engineering and full Craft
-acceptance remain pending. P09–P13 each have bounded evidence; no integrated
-Milestone3 exit or full-parity acceptance is inferred, and all56 prospective broad
-specifications remain NOT_RUN.
+Queued completion/cancellation races have actual controller/frame scope, without
+production timing hooks or a claimed manually timed native race. Listings omit
+non-UTF-8 entries and bound visible rows at500. Existing export/auxiliary editors,
+OS-native pickers, independent review, full-platform/accessibility, domain and full
+Craft acceptance remain outside this bounded slice. The integrated Milestone3
+exit remains unaccepted; all56 prospective broad specifications remain NOT_RUN.
