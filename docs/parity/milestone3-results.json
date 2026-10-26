@@ -1,7 +1,7 @@
 {
   "schema": "mbse-craft.milestone3-results/1",
   "recorded_utc": "2026-10-26T17:10:14.738170+00:00",
-  "state": "in_progress",
+  "state": "pr_slices_merged_integrated_exit_unaccepted",
   "base_commit": "d7cca1c17002368f58264e7686e8c71a9b73b6dd",
   "p09": {
     "state": "merged",
@@ -104,7 +104,7 @@
     "review_followup": "p12/REVIEW_FOLLOWUP.md"
   },
   "p13": {
-    "state": "implemented_draft_pending_review",
+    "state": "merged",
     "branch": "codex/m3-p13-dialogs-progress",
     "base_commit": "422780873eee22b4170acdbeb5b4d77e3f6bad9b",
     "source_files": 680,
@@ -124,6 +124,8 @@
     "pr_url": "https://github.com/ajhcs/mbse-craft/pull/16",
     "native_runs_before_review_fix": 1,
     "native_action_errors_before_review_fix": 1,
-    "review_followup": "p13/REVIEW_FOLLOWUP.md"
+    "review_followup": "p13/REVIEW_FOLLOWUP.md",
+    "reviewed_head": "b935162b11bbf18e8844b2091386748965026849",
+    "merge_commit": "5b032f4db6504f3517da54d6f2c691a7d8b2ab81"
   }
 }

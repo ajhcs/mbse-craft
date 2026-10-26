@@ -1,0 +1,35 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "796c1ba9dfd08b9ce913113bfc5f434fcb11dc7f592ad6114674b46c429db59d",
+    "scripts/verify-m1-native.py": "4e477f78eacdcc32af36c45799d4d50d355b40c0af0636ce5fb8ad9f2f91fb60",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "id": "p14-migrated-native-roundtrip",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p14-extension-schema-20261026T172828Z/mbse-desktop",
+  "binary_sha256": "86801ed83fc1106d1d72be0a59eeece1cc482d240acb1e0af2cb9298a00b8b68",
+  "source_sha256": "baaad0a3e9f002c971ec6a3ce57200cf6cd48243d4dea95a1f3645e634ce6c58",
+  "inputs": {
+    "/workspace/build/builderbob/mbse-craft/milestone1/cli-p14-02/migrated.kernspan": "0bbd019c53a06cbdedf1f67259b33096cc0dd7561ad183521e7d923d3f492a43",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p14-extension-schema/docs/parity/p14/fixtures/opaque-drafts-valid.kernspan": "2e5323c8f39b4bf9cec52e73c52b6e22c7a3271e723d210918660c3690c6957f"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p14-01",
+  "argv_extra": [
+    "--open",
+    "/workspace/build/builderbob/mbse-craft/milestone1/cli-p14-02/migrated.kernspan",
+    "--select",
+    "1003"
+  ],
+  "scenarios": [
+    "Open actual CLI migrated copy with separate extension header and raw9e/accepted95metre/derived2.5km",
+    "Save owned native/views pair, exact extension/core/creation/opaque retention",
+    "Cold app opens pair and preserves native document/record IDs and separate extension profile"
+  ],
+  "claim_policy": "Same-agent Linux private-display bounded migration/open/save/reopen evidence; optional header does not prove type/property/decomposition or full engineering/parity acceptance."
+}

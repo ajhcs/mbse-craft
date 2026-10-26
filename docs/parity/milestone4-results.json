@@ -1,0 +1,37 @@
+{
+  "schema": "mbse-craft.milestone4-results/1",
+  "recorded_utc": "2026-10-26T17:37:37.664619+00:00",
+  "state": "in_progress",
+  "milestone_exit_accepted": false,
+  "full_parity_accepted": false,
+  "p14": {
+    "state": "implemented_draft_pending_review",
+    "branch": "codex/m4-p14-extension-schema",
+    "base_commit": "5b032f4db6504f3517da54d6f2c691a7d8b2ab81",
+    "source_files": 681,
+    "source_sha256": "baaad0a3e9f002c971ec6a3ce57200cf6cd48243d4dea95a1f3645e634ce6c58",
+    "binary_sha256": "86801ed83fc1106d1d72be0a59eeece1cc482d240acb1e0af2cb9298a00b8b68",
+    "workspace_tests_passed": 397,
+    "new_p14_tests": 6,
+    "cli_passed_cases": 7,
+    "native_runs": 2,
+    "native_action_errors": 0,
+    "acceptance": "p14/README.md",
+    "contract": "p14/CONTRACT.md",
+    "compiler_receipt": "p14/verification/COMPILER_RECEIPT.json",
+    "cli_receipt": "p14/verification/cli/RECEIPT.json",
+    "native_receipt": "p14/verification/native/RECEIPT.json",
+    "same_agent_review": "p14/verification/NATIVE_REVIEW.json",
+    "preservation": "p14/PRESERVATION_AFTER.json"
+  },
+  "remaining_prs": [
+    "P15",
+    "P16",
+    "P17",
+    "P18",
+    "P19",
+    "P20",
+    "P21",
+    "P22"
+  ]
+}
