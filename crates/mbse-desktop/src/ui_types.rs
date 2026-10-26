@@ -174,8 +174,7 @@ mod tests {
             )
             .drop_without_applying_deltas();
         };
-        render(&mut app);
-        render(&mut app);
+        for pass in 0..8{render(&mut app);eprintln!("P15_DIAGNOSTIC pass={pass} open={} area={:?} field={:?}",app.type_panel.open,egui::AreaState::load(&ctx,egui::Id::new("mbse-types-properties")),ctx.read_response(egui::Id::new(("mbse-typed-property",&app.session.editor.freshness().instance_id,property.0,"upper"))));}
         let field = egui::Id::new((
             "mbse-typed-property",
             &app.session.editor.freshness().instance_id,
