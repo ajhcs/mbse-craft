@@ -392,12 +392,13 @@
         {
           "id": "P18a",
           "title": "Instance-qualified connector endpoints and conveyed-type admission",
-          "state": "implemented_awaiting_review",
+          "state": "reviewed_ready_to_merge",
           "acceptance": [
             "Wrong part/port ownership, direction and conveyed type refuse atomically; exact connector IDs and unfinished forms survive native persistence and model history."
           ],
           "branch": "codex/m4-p18a-connectors",
-          "evidence": "docs/parity/p18a/README.md"
+          "evidence": "docs/parity/p18a/README.md",
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/22"
         },
         {
           "id": "P18b",
