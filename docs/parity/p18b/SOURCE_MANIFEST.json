@@ -118,8 +118,8 @@
     },
     {
       "path": "crates/mbse-desktop/src/ui_connector_routes.rs",
-      "bytes": 16385,
-      "sha256": "610d3c3555530bcdaf2a7f27eadc64aa8c73d48a052b3efa9cbbfa232945aa26"
+      "bytes": 17487,
+      "sha256": "ef437ddd641f455887884180bfa000baf0d4973b0d4ee71e79aafa32a1485b79"
     },
     {
       "path": "crates/mbse-desktop/src/ui_connectors.rs",
@@ -3482,5 +3482,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "fa1e716809006688eda7bf22c28b46322d4796e768308998da97871892a9187e"
+  "source_sha256": "c4244cacfe42b001d02f48352582df1c164424e099f682be6dd05e335c484177"
 }

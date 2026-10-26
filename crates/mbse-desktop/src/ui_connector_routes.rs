@@ -168,9 +168,10 @@ impl Workspace {
             if labels.len() >= 128 {
                 continue;
             }
-            let rect = clear_route_label(desired, area, &obstacles, &labels);
+            let viewport = area.intersect(ui.clip_rect());
+            let rect = clear_route_label(desired, viewport, &obstacles, &labels);
             labels.push(rect);
-            probes[edge.id.get().to_string()] = serde_json::json!({"text":format!("{} · Value#{}",c.name,c.conveyed.0),"rect":[rect.min.x,rect.min.y,rect.max.x,rect.max.y],"avoids_cards":!obstacles.iter().any(|o|o.intersects(rect)),"separate_from_prior_labels":!labels[..labels.len()-1].iter().any(|o|o.intersects(rect))});
+            probes[edge.id.get().to_string()] = serde_json::json!({"text":format!("{} · Value#{}",c.name,c.conveyed.0),"rect":[rect.min.x,rect.min.y,rect.max.x,rect.max.y],"inside_visible_viewport":viewport.contains_rect(rect),"viewport":[viewport.min.x,viewport.min.y,viewport.max.x,viewport.max.y],"avoids_cards":!obstacles.iter().any(|o|o.intersects(rect)),"separate_from_prior_labels":!labels[..labels.len()-1].iter().any(|o|o.intersects(rect))});
             ui.painter().rect_filled(rect, 3., PAPER);
             ui.painter()
                 .galley(rect.min + Vec2::new(5., 3.), galley, ACCENT);
@@ -199,6 +200,21 @@ mod tests {
             assert!(!a.intersects(card) && !b.intersects(card))
         }
         assert!(!a.intersects(b));
+        let visible = Rect::from_min_size(egui::Pos2::ZERO, Vec2::new(1200., 480.));
+        let crowded = [
+            Rect::from_min_size(egui::pos2(25., 24.), Vec2::new(270., 112.)),
+            Rect::from_min_size(egui::pos2(105., 180.), Vec2::new(270., 112.)),
+            Rect::from_min_size(egui::pos2(25., 315.), Vec2::new(270., 112.)),
+            Rect::from_min_size(egui::pos2(455., 355.), Vec2::new(270., 112.)),
+        ];
+        let label = Rect::from_center_size(egui::pos2(375., 391.), Vec2::new(200., 20.));
+        let first = clear_route_label(label, visible, &crowded, &[]);
+        let second = clear_route_label(label, visible, &crowded, &[first]);
+        assert!(visible.contains_rect(first) && visible.contains_rect(second));
+        assert!(!first.intersects(second));
+        for card in crowded {
+            assert!(!first.intersects(card) && !second.intersects(card));
+        }
         // A fixed26px search skips this real22px free interval after margins.
         let tight = Rect::from_min_size(egui::Pos2::ZERO, Vec2::new(200., 130.));
         let barriers = [
