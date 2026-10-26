@@ -93,7 +93,7 @@ impl Workspace {
             ui.painter().text(
                 rect.min + Vec2::new(14., 13.) * scale,
                 egui::Align2::LEFT_TOP,
-                format!("Port #{}{} · occurrence {}", port.id.0, o.usage.map_or(String::new(),|id|format!(" · Part#{}",id.0)),o.id.get()),
+                o.usage.map_or_else(||format!("Port #{} · occurrence {}",port.id.0,o.id.get()),|id|format!("Part #{} · Port #{}",id.0,port.id.0)),
                 FontId::proportional(12. * scale),
                 ACCENT,
             );
