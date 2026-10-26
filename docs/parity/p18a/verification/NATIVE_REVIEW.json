@@ -1,0 +1,25 @@
+{
+  "reviewer": "Codex, same implementing agent",
+  "independent_review": false,
+  "result": "bounded_P18a_semantic_connector_acceptance_passed",
+  "native_final_runs": 2,
+  "native_final_action_errors": 0,
+  "prior_run_normal_exit_with_retained_shortcut_assertion": true,
+  "pixels_reviewed": [
+    "native/run/06-component-conveyed-refused.png",
+    "native/reopen/11-cold-connector-and-draft.png"
+  ],
+  "observations": [
+    "Actual output Port1017 uses declared Out interface1014; connector1018 belongs to Component1004 and names distinct Parts1009 and1010 sharing Device1007",
+    "Accepted endpoints source1009/1017 target1010/1015 conveyed1005; effective assignment of target uses compatible Interface1013",
+    "Actual text inputs1011 reference,1015 input-as-source,1007 component-as-conveyed and1005? malformed retained exactly and disabled Apply keeps accepted identity/revision",
+    "Undo/Redo preserves newer1005? text with original connector ID/endpoints and both port occurrences",
+    "Saved full native snapshot equals cold second saved snapshot, all original accepted semantics and raw forms retained; views3 core and typed occurrence maps exact",
+    "CtrlAltK reaches actual workspace keyboard command after prior CtrlAltC failed to dispatch; prior failed action receipt unchanged"
+  ],
+  "limits": [
+    "Same-agent bounded Linux evidence; no independent engineering/full NoMagic/Craft/platform acceptance",
+    "P18b qualified presentation contexts and visual routing still unimplemented; P18 stays open",
+    "Final693-file runtime differs from440-test closure by catalog shortcut C to K only; final9 command tests/build and native checks qualify this change; counts not summed"
+  ]
+}

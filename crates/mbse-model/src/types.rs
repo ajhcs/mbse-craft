@@ -6,6 +6,7 @@ use crate::{
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use std::collections::{BTreeMap, BTreeSet};
+pub mod connectors;
 pub mod ports;
 pub const NAMESPACE: &str = "mbse-craft.types/1";
 pub const DRAFTS: &str = "mbse-craft.type-drafts/1";
@@ -92,6 +93,8 @@ pub struct Store {
     pub interfaces: BTreeMap<Id, ports::Interface>,
     #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
     pub ports: BTreeMap<Id, ports::Port>,
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    pub connectors: BTreeMap<Id, connectors::Connector>,
 }
 impl Default for Store {
     fn default() -> Self {
@@ -103,6 +106,7 @@ impl Default for Store {
             usages: BTreeMap::new(),
             interfaces: BTreeMap::new(),
             ports: BTreeMap::new(),
+            connectors: BTreeMap::new(),
         }
     }
 }
@@ -137,6 +141,8 @@ struct Journal {
     interface: Option<ports::InterfaceForm>,
     #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
     ports: BTreeMap<Id, ports::PortForm>,
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    connectors: BTreeMap<Id, connectors::Form>,
 }
 impl Default for Journal {
     fn default() -> Self {
@@ -148,6 +154,7 @@ impl Default for Journal {
             usage: None,
             interface: None,
             ports: BTreeMap::new(),
+            connectors: BTreeMap::new(),
         }
     }
 }
@@ -171,7 +178,7 @@ fn parse(value: &Value) -> Result<Store, String> {
     if value.get("usages").is_some() {
         canonical(value, "usages")?;
     }
-    for field in ["interfaces", "ports"] {
+    for field in ["interfaces", "ports", "connectors"] {
         if value.get(field).is_some() {
             canonical(value, field)?;
         }
@@ -185,6 +192,9 @@ fn parse_journal(value: &Value) -> Result<Journal, String> {
     canonical(value, "forms")?;
     if value.get("ports").is_some() {
         canonical(value, "ports")?;
+    }
+    if value.get("connectors").is_some() {
+        canonical(value, "connectors")?;
     }
     let j: Journal =
         serde_json::from_value(value.clone()).map_err(|e| format!("TYPE_DRAFT_SCHEMA: {e}"))?;
@@ -215,6 +225,7 @@ fn parse_journal(value: &Value) -> Result<Journal, String> {
         }
     }
     ports::validate_journal(&j)?;
+    connectors::validate_journal(&j)?;
     Ok(j)
 }
 pub fn validate_namespace(name: &str, value: &Value) -> Result<(), String> {
@@ -330,6 +341,7 @@ impl Store {
                 + self.usages.len()
                 + self.interfaces.len()
                 + self.ports.len()
+                + self.connectors.len()
                 > 512
         {
             return Err("TYPE_VERSION_OR_LIMIT".into());
@@ -383,6 +395,7 @@ impl Store {
             }
         }
         ports::validate_store(self, &mut ids)?;
+        connectors::validate_store(self, &mut ids)?;
         // Topological admission bounds work to definitions plus Part edges;
         // reused targets never expand into every possible occurrence path.
         let mut incoming: BTreeMap<Id, usize> =
@@ -454,6 +467,7 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
         .chain(store.usages.keys())
         .chain(store.interfaces.keys())
         .chain(store.ports.keys())
+        .chain(store.connectors.keys())
     {
         if !ids.insert(id.0) {
             return Err("TYPE_NATIVE_ID_COLLISION".into());
@@ -470,11 +484,28 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
                 || store.properties.contains_key(&id)
                 || store.usages.contains_key(&id)
                 || store.interfaces.contains_key(&id)
+                || store.connectors.contains_key(&id)
+                || connectors::forms(snapshot)?.contains_key(&id)
                 || native_reserved.contains(&id.0)
                 || forms(snapshot)?.contains_key(&id)
                 || usage_form(snapshot)?.is_some_and(|f| f.id == Some(id))
             {
                 return Err("PORT_DRAFT_ID_COLLISION".into());
+            }
+            high = high.max(id.0).max(form.owner.0);
+        }
+        for (id, form) in connectors::forms(snapshot)? {
+            if store.definitions.contains_key(&id)
+                || store.properties.contains_key(&id)
+                || store.usages.contains_key(&id)
+                || store.interfaces.contains_key(&id)
+                || store.ports.contains_key(&id)
+                || native_reserved.contains(&id.0)
+                || forms(snapshot)?.contains_key(&id)
+                || ports::forms(snapshot)?.contains_key(&id)
+                || usage_form(snapshot)?.is_some_and(|f| f.id == Some(id))
+            {
+                return Err("CONNECTOR_DRAFT_ID_COLLISION".into());
             }
             high = high.max(id.0).max(form.owner.0);
         }
@@ -487,6 +518,8 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
                     || store.properties.contains_key(&id)
                     || store.interfaces.contains_key(&id)
                     || store.ports.contains_key(&id)
+                    || store.connectors.contains_key(&id)
+                    || connectors::forms(snapshot)?.contains_key(&id)
                     || ports::forms(snapshot)?.contains_key(&id)
                     || native_reserved.contains(&id.0)
                 {
@@ -500,6 +533,8 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
                 || store.usages.contains_key(&id)
                 || store.ports.contains_key(&id)
                 || store.interfaces.contains_key(&id)
+                || store.connectors.contains_key(&id)
+                || connectors::forms(snapshot)?.contains_key(&id)
                 || ports::forms(snapshot)?.contains_key(&id)
                 || usage_form(snapshot)?.is_some_and(|f| f.id == Some(id))
                 || native_reserved.contains(&id.0)
@@ -513,6 +548,7 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
 }
 #[derive(Clone, Debug)]
 pub enum Action {
+    Connector(connectors::Action),
     Port(ports::Action),
     SetUsageForm {
         form: UsageForm,
@@ -557,6 +593,7 @@ pub fn apply(snapshot: &mut Snapshot, action: Action) -> Result<Change, String> 
 fn apply_inner(snapshot: &mut Snapshot, action: Action) -> Result<Change, String> {
     let mut store = load(snapshot)?;
     match action {
+        Action::Connector(action) => connectors::apply_inner(snapshot, action),
         Action::Port(action) => ports::apply_inner(snapshot, action),
         Action::SetUsageForm { form } => {
             let mut j = journal(snapshot)?;
@@ -1212,3 +1249,6 @@ mod p16_tests;
 
 #[cfg(test)]
 mod ports_tests;
+
+#[cfg(test)]
+mod connectors_tests;

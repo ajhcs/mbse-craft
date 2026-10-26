@@ -1,0 +1,147 @@
+warning: patch `egui_extras v0.36.2 (/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/vendor/egui-fork/crates/egui_extras)` was not used in the crate graph
+warning: patch `egui_inspection v0.36.2 (/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/vendor/egui-fork/crates/egui_inspection)` was not used in the crate graph
+warning: patch `egui_kittest v0.36.2 (/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/vendor/egui-fork/crates/egui_kittest)` was not used in the crate graph
+help: Check that the patched package version and available features are compatible
+      with the dependency requirements. If the patch has a different version from
+      what is locked in the Cargo.lock file, run `cargo update` to use the new
+      version. This may also occur with an optional dependency that is not enabled.
+   Compiling mbse-model v0.1.0 (/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/crates/mbse-model)
+warning: use of deprecated method `std::sync::atomic::Atomic::<u64>::fetch_update`: renamed to `try_update` for consistency
+  --> crates/mbse-model/src/native_views.rs:30:10
+   |
+30 |         .fetch_update(Ordering::Relaxed, Ordering::Relaxed, |n| n.checked_add(1))
+   |          ^^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+help: replace the use of the deprecated method
+   |
+30 -         .fetch_update(Ordering::Relaxed, Ordering::Relaxed, |n| n.checked_add(1))
+30 +         .try_update(Ordering::Relaxed, Ordering::Relaxed, |n| n.checked_add(1))
+   |
+
+warning: `mbse-model` (lib) generated 1 warning (run `cargo fix --lib -p mbse-model` to apply 1 suggestion)
+   Compiling emath v0.36.2 (/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/vendor/egui-fork/crates/emath)
+   Compiling ecolor v0.36.2 (/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/vendor/egui-fork/crates/ecolor)
+   Compiling epaint_default_fonts v0.36.2 (/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/vendor/egui-fork/crates/epaint_default_fonts)
+   Compiling epaint v0.36.2 (/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/vendor/egui-fork/crates/epaint)
+   Compiling egui v0.36.2 (/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/vendor/egui-fork/crates/egui)
+warning: use of deprecated constant `std::f32::EPSILON`: replaced by the `EPSILON` associated constant on `f32`
+  --> vendor/egui-fork/crates/egui/src/containers/scene.rs:79:42
+   |
+79 |             zoom_range: Rangef::new(f32::EPSILON, 1.0),
+   |                                          ^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: `egui` (lib) generated 1 warning
+   Compiling winit v0.30.13 (/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/vendor/winit-fork)
+   Compiling mbse-exchange v0.1.0 (/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/crates/mbse-exchange)
+   Compiling craft-docpath v0.1.0 (/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/vendor/craft-libs/crates/docpath)
+   Compiling accesskit_winit v0.32.2
+   Compiling mbse-catalog v0.1.0 (/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/crates/mbse-catalog)
+   Compiling mbse-assurance v0.1.0 (/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/crates/mbse-assurance)
+   Compiling egui-winit v0.36.2 (/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/vendor/egui-fork/crates/egui-winit)
+   Compiling egui_glow v0.36.2 (/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/vendor/egui-fork/crates/egui_glow)
+   Compiling glutin-winit v0.5.0
+   Compiling craft-settings v0.1.0 (/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/vendor/craft-libs/crates/settings)
+   Compiling eframe v0.36.2 (/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/vendor/egui-fork/crates/eframe)
+   Compiling craft-quit v0.1.0 (/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/vendor/craft-libs/crates/quit)
+   Compiling craft-ui v0.1.0 (/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/vendor/craft-libs/crates/ui)
+   Compiling craft-window v0.1.0 (/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/vendor/craft-libs/crates/window)
+   Compiling craft-platform v0.1.0 (/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/vendor/craft-libs/crates/platform)
+   Compiling mbse-desktop v0.1.0 (/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/crates/mbse-desktop)
+warning: unused import: `Pos2`
+  --> crates/mbse-desktop/src/ui.rs:23:43
+   |
+23 | use eframe::egui::{self, Color32, FontId, Pos2, Rect, RichText, Stroke, Vec2};
+   |                                           ^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `ctx`
+   --> crates/mbse-desktop/src/ui.rs:503:33
+    |
+503 |     fn finish_writes(&mut self, ctx: &egui::Context) {
+    |                                 ^^^ help: if this is intentional, prefix it with an underscore: `_ctx`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: method `open` is never used
+  --> crates/mbse-desktop/src/exchange_ui.rs:80:12
+   |
+50 | impl ExchangeBrowser {
+   | -------------------- method in this implementation
+...
+80 |     pub fn open(&mut self, path: &str) {
+   |            ^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `zoom` is never read
+   --> crates/mbse-desktop/src/ui.rs:105:5
+    |
+ 55 | pub struct Workspace {
+    |            --------- field in this struct
+...
+105 |     zoom: f32,
+    |     ^^^^
+
+warning: `mbse-desktop` (bin "mbse-desktop" test) generated 4 warnings (run `cargo fix --bin "mbse-desktop" -p mbse-desktop --tests` to apply 2 suggestions)
+error[E0616]: field `document` of struct `native_views::Views` is private
+   --> crates/mbse-model/src/types/connectors_tests.rs:285:19
+    |
+285 |     let view = *v.document.views.keys().next().unwrap();
+    |                   ^^^^^^^^ private field
+    |
+help: a method `document` also exists, call it with parentheses
+    |
+285 |     let view = *v.document().views.keys().next().unwrap();
+    |                           ++
+
+error[E0616]: field `document` of struct `native_views::Views` is private
+   --> crates/mbse-model/src/types/connectors_tests.rs:296:18
+    |
+296 |     let core = v.document.occurrences.clone();
+    |                  ^^^^^^^^ private field
+    |
+help: a method `document` also exists, call it with parentheses
+    |
+296 |     let core = v.document().occurrences.clone();
+    |                          ++
+
+error[E0616]: field `document` of struct `native_views::Views` is private
+   --> crates/mbse-model/src/types/connectors_tests.rs:297:19
+    |
+297 |     let ports = v.document.typed_ports.clone();
+    |                   ^^^^^^^^ private field
+    |
+help: a method `document` also exists, call it with parentheses
+    |
+297 |     let ports = v.document().typed_ports.clone();
+    |                           ++
+
+error[E0616]: field `document` of struct `native_views::Views` is private
+   --> crates/mbse-model/src/types/connectors_tests.rs:331:22
+    |
+331 |     assert_eq!(views.document.occurrences, core);
+    |                      ^^^^^^^^ private field
+    |
+help: a method `document` also exists, call it with parentheses
+    |
+331 |     assert_eq!(views.document().occurrences, core);
+    |                              ++
+
+error[E0616]: field `document` of struct `native_views::Views` is private
+   --> crates/mbse-model/src/types/connectors_tests.rs:332:22
+    |
+332 |     assert_eq!(views.document.typed_ports, ports);
+    |                      ^^^^^^^^ private field
+    |
+help: a method `document` also exists, call it with parentheses
+    |
+332 |     assert_eq!(views.document().typed_ports, ports);
+    |                              ++
+
+For more information about this error, try `rustc --explain E0616`.
+warning: `mbse-model` (lib test) generated 1 warning (1 duplicate)
+error: could not compile `mbse-model` (lib test) due to 5 previous errors; 1 warning emitted

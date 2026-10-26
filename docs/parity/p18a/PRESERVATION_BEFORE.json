@@ -1,0 +1,362 @@
+{
+  "recorded_utc": "2026-10-26T20:37:44.184086+00:00",
+  "worktrees": [
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft",
+      "head": "53133f6ac228fac885767a5d9f1165a8db5d139b",
+      "branch": "refs/heads/implementation/native-alpha",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m1-p03-views",
+      "head": "486a95b156ed4619123633703a6d25833cb865b5",
+      "branch": "refs/heads/codex/m1-p03-views",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m1-p04-recovery",
+      "head": "73b2c8df938a7fdda65fc056aa8ad727a83bc1ee",
+      "branch": "refs/heads/codex/m1-p04-recovery",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m1-p05-navigation",
+      "head": "c815d0a364e120c5f97bb70bddf597be7820403d",
+      "branch": "refs/heads/codex/m1-p05-navigation",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m1-p06-occurrence",
+      "head": "6b1288ee3c5d267fb7c46bad58d36525bfd95c0d",
+      "branch": "refs/heads/codex/m1-p06-occurrence",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m2-p07-copy-format",
+      "head": "c4a9e3945ab16db108de73b42af4def87b9e19de",
+      "branch": "refs/heads/codex/m2-p07-copy-format",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m2-p08-live-copy",
+      "head": "d64c9c9690208dcc3dc1f1de73b05a6a04f22b67",
+      "branch": "refs/heads/codex/m2-p08-live-copy",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m3-p09-command-catalog",
+      "head": "0926aed84ab18d13196b0d9ea87ff8d4f7a33521",
+      "branch": "refs/heads/codex/m3-p09-command-catalog",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m3-p10-scoped-shortcuts",
+      "head": "b300919dc7de3774a9809a133910d1c74f6b97a0",
+      "branch": "refs/heads/codex/m3-p10-scoped-shortcuts",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m3-p11-transactional-docking",
+      "head": "e1aefde4a1222ae4dcd50072b39e9fcade39e347",
+      "branch": "refs/heads/codex/m3-p11-transactional-docking",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m3-p12-workspace-perspectives",
+      "head": "943f15327dd65b7dc9da7288847b75d1f436b21d",
+      "branch": "refs/heads/codex/m3-p12-workspace-perspectives",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m3-p13-dialogs-progress",
+      "head": "091b33b13a4d153736c8d0550a8ebbe17fedeb41",
+      "branch": "refs/heads/codex/m3-p13-dialogs-progress",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m4-p14-extension-schema",
+      "head": "a8ab8d64bf455f01587d8dab0778fd9ca7441179",
+      "branch": "refs/heads/codex/m4-p14-extension-schema",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m4-p15-types-properties",
+      "head": "7b37c37e253597bc80c8be2f3e590cc5f49a26ab",
+      "branch": "refs/heads/codex/m4-p15-types-properties",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m4-p16-parts-references",
+      "head": "3fc2087636f55396bbf49f5e17b78dfab2087c89",
+      "branch": "refs/heads/codex/m4-p16-parts-references",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m4-p17a-ports-interfaces",
+      "head": "c6d2dc0a92c541839c8bbedf5b6c895e795d8d97",
+      "branch": "refs/heads/codex/m4-p17a-ports-interfaces",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/m4-p17b-port-occurrences",
+      "head": "2a3d087c95457d8c726567763075e08dabc50f35",
+      "branch": "refs/heads/codex/m4-p17b-port-occurrences",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/p02-readiness",
+      "head": "7f3cbfb8fb8976fcf563eae5ffd10d02f5b2f910",
+      "branch": "refs/heads/codex/p02-readiness",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/parity-matrix",
+      "head": "725e28c1c852429449a5f7303ba981db66f775fc",
+      "branch": "refs/heads/codex/parity-matrix",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/review-m1-pr4-9",
+      "head": "42f710db71080d4ef640451eb9134c531b1a36a0",
+      "branch": "refs/heads/codex/review-m1-pr4-9",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/review-native-retry",
+      "head": "bfbe0f1ad361739fd14d728d93db3b9527c76b0a",
+      "branch": "refs/heads/codex/review-native-retry",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/review-p07",
+      "head": "7c69915d441cb3a507cf169bae7c46088037b913",
+      "branch": "refs/heads/codex/review-p07",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/review-p08",
+      "head": "85c9098c5f2e3f98713da10fe53926a42ffe0020",
+      "branch": "refs/heads/codex/review-p08",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/review-p09",
+      "head": "5b661f8ff87ce708c9b313266c68d51dba7e282d",
+      "branch": "refs/heads/codex/review-p09",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/review-p10",
+      "head": "95aaedca0ec5f50a881e4c1e43c320d2ad3f02c2",
+      "branch": "refs/heads/codex/review-p10",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/review-p11",
+      "head": "e778caee4f8e1a5e10fe6ac11fdeaa23855ec681",
+      "branch": "refs/heads/codex/review-p11",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/review-p12",
+      "head": "b17e58ee15046f26964f36b49a6bea507039bc36",
+      "branch": "refs/heads/codex/review-p12",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/review-p13",
+      "head": "b935162b11bbf18e8844b2091386748965026849",
+      "branch": "refs/heads/codex/review-p13",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/review-p14",
+      "head": "23c19b26dab509ba3c7d9308a1b626452434d47d",
+      "branch": "refs/heads/codex/review-p14",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/review-p15",
+      "head": "4ff8d31fd8e64ad343ab2b01bd63018a76c2e324",
+      "branch": "refs/heads/codex/review-p15",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/review-p16",
+      "head": "0a364869a135fe1dcd623e1ed19c07258111e7ed",
+      "branch": "refs/heads/codex/review-p16",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/review-p17a",
+      "head": "fe594f15c8bac4b30af2e2dab6fad8b81fac9881",
+      "branch": "refs/heads/codex/review-p17a",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/repos/builderbob/mbse-craft/work/review-p17b",
+      "head": "b71f07bcee9ce8f65f1f8f929c095c3aef9baf11",
+      "branch": "refs/heads/codex/review-p17b",
+      "state": "present",
+      "status": ""
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/integration-m1",
+      "head": "5b907c333d423df60de7d539da2a0900941825aa",
+      "branch": "refs/heads/integration/semantic-v2-m2",
+      "state": "user_removed_directory",
+      "status_unverifiable": true
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/layout-periodic-recovery",
+      "head": "a0079d5232996e9e6350f5bae71138a9b2d276ed",
+      "branch": "refs/heads/feature/layout-periodic-recovery",
+      "state": "user_removed_directory",
+      "status_unverifiable": true
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/model",
+      "head": "b9769021512b7e35a6d2b467dc8b9e4e4a03912b",
+      "branch": "refs/heads/lane/model-m2",
+      "state": "user_removed_directory",
+      "status_unverifiable": true
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/native-camera-controls",
+      "head": "b5e7d2c437748a2334fd4f0c3881ee1c501ba076",
+      "branch": "refs/heads/feature/native-camera-controls",
+      "state": "user_removed_directory",
+      "status_unverifiable": true
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/native-find-usages",
+      "head": "9196d702e8a3ac6cea668621903614a211a0dbca",
+      "branch": "refs/heads/feature/native-find-usages",
+      "state": "user_removed_directory",
+      "status_unverifiable": true
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/native-occurrence-navigation",
+      "head": "7cb7876ee182872d1a2bf41f5b7707c9a04e04a0",
+      "branch": "refs/heads/feature/native-occurrence-navigation",
+      "state": "user_removed_directory",
+      "status_unverifiable": true
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/native-record-impact",
+      "head": "a985205ca8a77c5f051dadc71ae2d83c1470a4ee",
+      "branch": "refs/heads/feature/native-record-impact",
+      "state": "user_removed_directory",
+      "status_unverifiable": true
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/native-scoped-search",
+      "head": "643f97bb6e84325d77fb924543784a8733eb7b22",
+      "branch": "refs/heads/feature/native-scoped-search",
+      "state": "user_removed_directory",
+      "status_unverifiable": true
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/native-system-browser",
+      "head": "cb58e13881231139f493eb5f0415427d02bf91d1",
+      "branch": "refs/heads/feature/native-system-browser",
+      "state": "user_removed_directory",
+      "status_unverifiable": true
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/native-views-m2b01",
+      "head": "eb80c0caa2ef40ea3c4798b0c97df7c69f655049",
+      "branch": "refs/heads/feature/native-views-m2b01",
+      "state": "user_removed_directory",
+      "status_unverifiable": true
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/recovery-layout-mapping",
+      "head": "7308d2ba00a98f2ed5f0a830e13b58b2420a50fe",
+      "branch": "refs/heads/feature/recovery-layout-mapping",
+      "state": "user_removed_directory",
+      "status_unverifiable": true
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/recovery-layout-preview",
+      "head": "358443099827c854b023194383add51c520ea01e",
+      "branch": "refs/heads/feature/recovery-layout-preview",
+      "state": "user_removed_directory",
+      "status_unverifiable": true
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/research",
+      "head": "43801badee4cd6524d516f65121e64a26c958c21",
+      "branch": "refs/heads/lane/fork-m2",
+      "state": "user_removed_directory",
+      "status_unverifiable": true
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/ui",
+      "head": "7df3b76800e0ab0eec1f407202875957fd684617",
+      "branch": "refs/heads/lane/ui-source-name",
+      "state": "user_removed_directory",
+      "status_unverifiable": true
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/verification",
+      "head": "2bb258a5ba610ea9b03b2ed770224b08e354283e",
+      "branch": "refs/heads/lane/verification-semantic-v2-r3",
+      "state": "user_removed_directory",
+      "status_unverifiable": true
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/views-origin-paired-save",
+      "head": "557ee47e0bb7237a5064c8e51718506431f8f825",
+      "branch": "refs/heads/fix/views-origin-paired-save",
+      "state": "user_removed_directory",
+      "status_unverifiable": true
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/views-recovery-copy-contract",
+      "head": "57ba816c9c0cb0f5be331107f5f011117f645823",
+      "branch": "refs/heads/plan/views-recovery-copy-contract",
+      "state": "user_removed_directory",
+      "status_unverifiable": true
+    },
+    {
+      "path": "/workspace/worktrees/builderbob/mbse-craft/views-replacement-guard",
+      "head": "32cd156f34d9496acf931b5543f4b40c42c8e240",
+      "branch": "refs/heads/fix/views-replacement-guard",
+      "state": "user_removed_directory",
+      "status_unverifiable": true
+    }
+  ]
+}
