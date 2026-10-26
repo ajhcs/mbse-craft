@@ -1,5 +1,7 @@
 # P09: stable workspace command catalog and menus
 
+Draft review: [PR #12](https://github.com/ajhcs/mbse-craft/pull/12).
+
 P08 [PR #11](https://github.com/ajhcs/mbse-craft/pull/11) was reviewed without
 additional actionable findings in isolated `codex/review-p08`, then merged at
 `d7cca1c17002368f58264e7686e8c71a9b73b6dd`. Its
