@@ -98,6 +98,7 @@ impl Plan {
         target: &Views,
     ) -> Result<Self, String> {
         source.verify_unchanged()?;
+        if !target.document().typed_ports.is_empty(){return Err("VIEWS_TYPED_COPY_UNSUPPORTED: retain original typed presentation".into())}
         if !source.declared().views.contains_key(&view) {
             return Err("VIEWS_PLAN_SOURCE_VIEW".into());
         }

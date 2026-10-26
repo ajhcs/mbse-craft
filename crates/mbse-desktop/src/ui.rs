@@ -11,6 +11,8 @@ mod file_operations;
 mod typed_properties;
 #[path="ui_ports.rs"]
 mod port_editor;
+#[path="ui_port_views.rs"]
+mod port_presentation;
 use crate::preferences::Preferences;
 use craft_ui::{
     buttons::{ButtonVisuals, IconButton, IconButtonStyle},
@@ -1365,6 +1367,7 @@ impl Workspace {
                 for id in [crate::command_catalog::Id::LayoutUndo,crate::command_catalog::Id::LayoutRedo,crate::command_catalog::Id::Presentation] {self.workspace_button(ui,id,&scope);}
             });
             if let Some(record) = self.views.toolbar(ui, &self.session) { self.select(record); }
+            self.port_view_controls(ui);
             let records: Vec<_> = self.session.editor.snapshot.records.values().cloned().collect();
             let graph = match stage1_graph::derive_graph(&self.session.editor.snapshot) {
                 Ok(graph) => graph, Err(error) => { ui.colored_label(ERROR, error); return; }
@@ -1378,12 +1381,13 @@ impl Workspace {
             };
             let camera = view.camera.clone();
             let occurrences: Vec<_> = self.views.views.document().occurrences.values().filter(|o| o.view == self.views.active && o.visible && o.presence.active()).cloned().collect();
+            let port_occurrences:Vec<_>=self.views.views.document().typed_ports.values().filter(|o|o.view==self.views.active&&o.visible&&o.presence.active()).cloned().collect();
             let attached: Vec<_> = self.views.views.document().edges.values().filter(|e| e.view == self.views.active && e.presence.active()).cloned().collect();
             let scale = camera.zoom as f32;
             let canvas_height = (ui.available_height() * 0.60).max(260.);
             egui::ScrollArea::both().id_salt(("native-view", self.views.active.get())).max_height(canvas_height).auto_shrink([false, false]).show(ui, |ui| {
-                let width = occurrences.iter().map(|o| (o.geometry.x - camera.x + o.geometry.width + 50.) as f32 * scale).fold(ui.available_width().max(400.), f32::max).clamp(400., 32768.);
-                let height = occurrences.iter().map(|o| (o.geometry.y - camera.y + o.geometry.height + 50.) as f32 * scale).fold(350., f32::max).clamp(350., 32768.);
+                let width = occurrences.iter().map(|o|&o.geometry).chain(port_occurrences.iter().map(|o|&o.geometry)).map(|o| (o.x - camera.x + o.width + 50.) as f32 * scale).fold(ui.available_width().max(400.), f32::max).clamp(400., 32768.);
+                let height = occurrences.iter().map(|o|&o.geometry).chain(port_occurrences.iter().map(|o|&o.geometry)).map(|o| (o.y - camera.y + o.height + 50.) as f32 * scale).fold(350., f32::max).clamp(350., 32768.);
                 let (area, _) = ui.allocate_exact_size(Vec2::new(width, height), egui::Sense::hover());
                 let rects: BTreeMap<_, _> = occurrences.iter().map(|o| (o.id, Rect::from_min_size(area.min + Vec2::new((o.geometry.x - camera.x) as f32, (o.geometry.y - camera.y) as f32) * scale, Vec2::new(o.geometry.width as f32, o.geometry.height as f32) * scale))).collect();
                 let mut by_record = BTreeMap::<RecordId, Vec<mbse_model::native_views::OccurrenceId>>::new();
@@ -1414,6 +1418,7 @@ impl Workspace {
                     let details = Rect::from_min_size(rect.left_bottom() + Vec2::new(12. * scale, -27. * scale), Vec2::new(90., 22.) * scale);
                     if ui.put(details, egui::Button::new("Details…")).clicked() { self.popout = Some(record.id); }
                 }
+                self.paint_port_occurrences(ui,area,&camera,scale,&port_occurrences);
             });
             ui.separator();
             ui.label(
@@ -1991,6 +1996,7 @@ impl eframe::App for Workspace {
             fields.insert("native_extensions".into(),serde_json::json!(self.session.editor.snapshot.extensions));
             fields.insert("typed_properties".into(),self.typed_audit());
             fields.insert("ports".into(),self.ports_audit());
+            fields.insert("port_presentation".into(),self.port_presentation_audit());
             fields.insert("views_inspection_profile".into(), serde_json::json!(self.views.inspection_profile()));
             fields.insert("views_inspection_copy_origin".into(), self.views.inspection_copy_origin());
         }

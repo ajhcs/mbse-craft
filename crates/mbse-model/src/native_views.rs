@@ -32,18 +32,20 @@ pub(crate) fn new_origin() -> Result<Origin, String> {
         .map_err(|_| "VIEWS_RUNTIME_ORIGIN_EXHAUSTED".into())
 }
 
+#[path="native_views_ports.rs"]
+pub mod ports;
 pub const PROFILE: &str = "mbse-craft.native-views/1";
 pub const RECOVERY_PROFILE: &str = "mbse-craft.native-views-recovery/1";
 pub const COPY_PROFILE: &str = "mbse-craft.native-views/2";
 pub const COPY_RECOVERY_PROFILE: &str = "mbse-craft.native-views-recovery/2";
 pub fn supported_profile(profile: &str) -> bool {
-    matches!(profile, PROFILE | RECOVERY_PROFILE | COPY_PROFILE | COPY_RECOVERY_PROFILE)
+    matches!(profile, PROFILE | RECOVERY_PROFILE | COPY_PROFILE | COPY_RECOVERY_PROFILE) || ports::typed_profile(profile)
 }
 pub fn bound_profile(profile: &str) -> bool {
-    matches!(profile, PROFILE | COPY_PROFILE)
+    matches!(profile, PROFILE | COPY_PROFILE | ports::PROFILE)
 }
 pub fn copy_profile(profile: &str) -> bool {
-    matches!(profile, COPY_PROFILE | COPY_RECOVERY_PROFILE)
+    matches!(profile, COPY_PROFILE | COPY_RECOVERY_PROFILE) || ports::typed_profile(profile)
 }
 pub const MAX_BYTES: usize = 8 * 1024 * 1024;
 pub const MAX_VIEWS: usize = 16;
@@ -290,12 +292,14 @@ pub struct Document {
     pub views: BTreeMap<ViewId, View>,
     pub occurrences: BTreeMap<OccurrenceId, Occurrence>,
     pub edges: BTreeMap<VisualEdgeId, VisualEdge>,
+    #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
+    pub typed_ports:BTreeMap<OccurrenceId,ports::PortOccurrence>,
 }
 fn hash(bytes: &[u8]) -> String {
     format!("{:x}", Sha256::digest(bytes))
 }
 fn records_hash(snapshot: &Snapshot) -> Result<String, String> {
-    serde_json::to_vec(&snapshot.records)
+    serde_json::to_vec(&(&snapshot.records,crate::types::accepted_extensions(&snapshot.extensions)))
         .map(|b| hash(&b))
         .map_err(|e| e.to_string())
 }
@@ -369,7 +373,7 @@ impl Document {
         }
         if self.views.is_empty()
             || self.views.len() > MAX_VIEWS
-            || self.occurrences.len() > MAX_OCCURRENCES
+            || self.occurrences.len()+self.typed_ports.len() > MAX_OCCURRENCES
             || self.edges.len() > MAX_EDGES
             || !self.views.contains_key(&self.primary)
         {
@@ -406,6 +410,7 @@ impl Document {
             }
             check_presence(&o.presence)?;
         }
+        ports::validate(self,&mut ids,&mut counts,native.map(|(snapshot,_)|snapshot))?;
         if counts.values().any(|n| *n > MAX_PER_VIEW) {
             return Err("VIEWS_PER_VIEW_BUDGET".into());
         }
@@ -473,6 +478,7 @@ pub struct Stamp {
 }
 #[derive(Clone, Debug)]
 pub enum Layout {
+    Port(ports::Layout),
     AddView(String),
     RenameView(ViewId, String),
     CloseView(ViewId),
@@ -595,6 +601,7 @@ impl Views {
             .into(),
             occurrences: BTreeMap::new(),
             edges: BTreeMap::new(),
+            typed_ports:BTreeMap::new(),
         };
         for (i, record) in editor.snapshot.records.values().enumerate() {
             if i >= MAX_PER_VIEW {
@@ -716,6 +723,7 @@ impl Views {
             .chain(self.past.iter().chain(&self.future).map(|e| &e.document))
         {
             reachable.extend(doc.occurrences.keys().map(|id| id.0));
+            reachable.extend(doc.typed_ports.keys().map(|id|id.0));
             reachable.extend(doc.edges.keys().map(|id| id.0));
         }
         self.proofs.retain(|id, _| reachable.contains(id));
@@ -726,6 +734,7 @@ impl Views {
         self.document.validate(&editor.snapshot)?;
         let mut next = self.document.clone();
         match action {
+            Layout::Port(action)=>ports::apply(&mut next,&editor.snapshot,action)?,
             Layout::AddView(title) => {
                 if next.views.len() >= MAX_VIEWS || title.is_empty() || title.len() > 1024 {
                     return Err("VIEWS_VIEW_BUDGET_OR_TITLE".into());
@@ -750,6 +759,7 @@ impl Views {
                 }
                 next.views.remove(&id).ok_or("VIEWS_NO_VIEW")?;
                 next.occurrences.retain(|_, o| o.view != id);
+                next.typed_ports.retain(|_,o|o.view!=id);
                 next.edges.retain(|_, e| e.view != id);
             }
             Layout::Camera(id, camera) => {
@@ -760,8 +770,8 @@ impl Views {
                 record,
                 geometry,
             } => {
-                if next.occurrences.len() >= MAX_OCCURRENCES
-                    || next.occurrences.values().filter(|o| o.view == view).count() >= MAX_PER_VIEW
+                if next.occurrences.len()+next.typed_ports.len() >= MAX_OCCURRENCES
+                    || next.occurrences.values().filter(|o| o.view == view).count()+next.typed_ports.values().filter(|o|o.view==view).count() >= MAX_PER_VIEW
                 {
                     return Err("VIEWS_OCCURRENCE_BUDGET".into());
                 }
@@ -864,10 +874,11 @@ impl Views {
             return Err("VIEWS_COPY_CAPACITY".into());
         }
         if title.trim().is_empty() || title.len() > 1024 { return Err("VIEWS_COPY_TITLE".into()); }
+        if !self.document.typed_ports.is_empty(){return Err("VIEWS_TYPED_COPY_UNSUPPORTED: preserve original typed presentation".into())}
         let declared=source.declared();
         let camera=declared.views.get(&source_view).ok_or("VIEWS_COPY_SOURCE_VIEW")?.camera.clone();
         let mut next=self.document.clone();
-        next.profile=if bound_profile(&next.profile) {COPY_PROFILE}else{COPY_RECOVERY_PROFILE}.into();
+        next.profile=if ports::typed_profile(&next.profile){if bound_profile(&next.profile){ports::PROFILE}else{ports::RECOVERY_PROFILE}}else if bound_profile(&next.profile) {COPY_PROFILE}else{COPY_RECOVERY_PROFILE}.into();
         let view=ViewId(next.allocate()?);
         next.views.insert(view,View{id:view,title:title.into(),camera,copy_origin:None});
         let mut origin=CopyOrigin{profile:crate::native_views_copy::PROFILE.into(),source_sha256:source.source_sha256().into(),source_profile:declared.profile.clone(),source_document_id:declared.document_id.clone(),source_sidecar_id:declared.sidecar_id.clone(),source_view,declared_native_binding:declared.binding.clone(),occurrences:BTreeMap::new(),edges:BTreeMap::new()};
@@ -1002,6 +1013,7 @@ impl Views {
                 proofs.remove(&o.id.0);
             }
         }
+        ports::reconcile(&mut next,&candidate.snapshot,undo,redo,&proof,&mut proofs)?;
         for edge in next.edges.values_mut() {
             let resolves = next
                 .occurrences
@@ -1052,7 +1064,7 @@ impl Views {
             return Err("VIEWS_NATIVE_CHECKPOINT_NOT_CURRENT".into());
         }
         let mut frozen = self.document.clone();
-        frozen.profile = if copy_profile(&frozen.profile) { COPY_PROFILE } else { PROFILE }.into();
+        frozen.profile = if ports::typed_profile(&frozen.profile){ports::PROFILE}else if copy_profile(&frozen.profile) { COPY_PROFILE } else { PROFILE }.into();
         frozen.binding = Some(NativeBinding::from_checkpoint(checkpoint));
         frozen.validate(&editor.snapshot)?;
         Ok(frozen)
@@ -1060,7 +1072,7 @@ impl Views {
     pub fn recovery(&self, editor: &Editor) -> Result<Document, String> {
         self.document.validate(&editor.snapshot)?;
         let mut frozen = self.document.clone();
-        frozen.profile = if copy_profile(&frozen.profile) { COPY_RECOVERY_PROFILE } else { RECOVERY_PROFILE }.into();
+        frozen.profile = if ports::typed_profile(&frozen.profile){ports::RECOVERY_PROFILE}else if copy_profile(&frozen.profile) { COPY_RECOVERY_PROFILE } else { RECOVERY_PROFILE }.into();
         frozen.binding = None;
         Ok(frozen)
     }
@@ -1140,6 +1152,7 @@ fn decode_document(bytes: &[u8]) -> Result<Document, String> {
             return Err("VIEWS_COUNT_BUDGET".into());
         }
     }
+    if let Some(ports)=root.get("typed_ports"){if ports.as_object().is_none_or(|p|p.len()>MAX_OCCURRENCES){return Err("VIEWS_TYPED_PORT_COUNT_BUDGET".into())}}
     serde_json::from_value(unique.0).map_err(|e| format!("VIEWS_SCHEMA: {e}"))
 }
 
@@ -1148,6 +1161,7 @@ fn decode_document(bytes: &[u8]) -> Result<Document, String> {
 pub(crate) fn inspect_document(bytes: &[u8]) -> Result<Document, String> {
     let document = decode_document(bytes)?;
     document.validate_contents(None)?;
+    if !document.typed_ports.is_empty(){return Err("VIEWS_TYPED_SOURCE_INSPECTION_UNSUPPORTED: retain original typed presentation".into())}
     if (bound_profile(&document.profile) && document.binding.is_none())
         || (!bound_profile(&document.profile) && document.binding.is_some())
     {
@@ -1663,3 +1677,7 @@ mod tests {
         }
     }
 }
+
+#[cfg(test)]
+#[path="native_views_ports_tests.rs"]
+mod ports_tests;

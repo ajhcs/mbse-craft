@@ -96,7 +96,7 @@
     "corrective_exact_invalid_native_review": "p17a/exact-draft-verification/REVIEW.json"
   },
   "p17a": {
-    "state": "reviewed_ready_to_merge",
+    "state": "merged",
     "parent_position": "P17",
     "position_complete": false,
     "branch": "codex/m4-p17a-ports-interfaces",
@@ -121,6 +121,8 @@
     "pr_url": "https://github.com/ajhcs/mbse-craft/pull/20",
     "review_followup": "p17a/REVIEW_FOLLOWUP.md",
     "review_preservation": "p17a/REVIEW_PRESERVATION.json",
-    "review_available_preexisting_checkouts_unchanged": 30
+    "review_available_preexisting_checkouts_unchanged": 30,
+    "reviewed_head": "fe594f15c8bac4b30af2e2dab6fad8b81fac9881",
+    "merge_commit": "c6b36918062bfb894df27b88ae9a32357d539bb5"
   }
 }

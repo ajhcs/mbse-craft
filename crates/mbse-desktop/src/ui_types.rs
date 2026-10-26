@@ -22,14 +22,15 @@ impl Workspace {
         self.type_panel.selected = None;
         self.type_panel.form = None;
         self.type_panel.open = false;
-        self.port_panel=Default::default();
+        self.port_panel = Default::default();
     }
     fn typed_action(&mut self, action: Action) -> bool {
-        match self
-            .session
-            .editor
-            .command(&self.session.editor.freshness(), Command::Typed(action))
-        {
+        let stamp = self.views.views.stamp(&self.session.editor);
+        match self.views.views.dispatch(
+            &mut self.session.editor,
+            &stamp,
+            mbse_model::native_views::NativeAction::Command(Command::Typed(action)),
+        ) {
             Ok(_) => {
                 self.type_panel.note="Typed change retained in native workspace; Save keeps accepted data and unfinished forms.".into();
                 true
@@ -125,20 +126,29 @@ impl Workspace {
             }
         }
         if let Some(redo) = history {
-            let result = if redo {
-                self.session
-                    .editor
-                    .redo_model(&self.session.editor.freshness())
-            } else {
-                self.session
-                    .editor
-                    .undo_model(&self.session.editor.freshness())
-            };
+            let result = self.typed_model_history(redo);
             self.type_panel.note = match result {
                 Ok(true) => "Model history restored; current property text retained.".into(),
                 Ok(false) => "No model history in this direction.".into(),
                 Err(error) => error,
             };
+        }
+    }
+    pub(super) fn typed_model_history(&mut self, redo: bool) -> Result<bool, String> {
+        use mbse_model::native_views::{NativeAction, NativeOutcome};
+        let stamp = self.views.views.stamp(&self.session.editor);
+        let action = if redo {
+            NativeAction::ModelRedo
+        } else {
+            NativeAction::ModelUndo
+        };
+        match self
+            .views
+            .views
+            .dispatch(&mut self.session.editor, &stamp, action)?
+        {
+            NativeOutcome::History(changed) => Ok(changed),
+            _ => Err("Unexpected model history outcome".into()),
         }
     }
     pub(super) fn typed_structure_browser(&mut self, ui: &mut egui::Ui) {
