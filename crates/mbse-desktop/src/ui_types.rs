@@ -174,7 +174,12 @@ mod tests {
             )
             .drop_without_applying_deltas();
         };
-        for pass in 0..8{render(&mut app);eprintln!("P15_DIAGNOSTIC pass={pass} open={} area={:?} field={:?}",app.type_panel.open,egui::AreaState::load(&ctx,egui::Id::new("mbse-types-properties")),ctx.read_response(egui::Id::new(("mbse-typed-property",&app.session.editor.freshness().instance_id,property.0,"upper"))));}
+        // The real window/scroll renderer publishes a live TextEdit response on
+        // the third startup frame; retain the exact enabled/focus assertions.
+        for _ in 0..3 {
+            render(&mut app);
+        }
+
         let field = egui::Id::new((
             "mbse-typed-property",
             &app.session.editor.freshness().instance_id,
