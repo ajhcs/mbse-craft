@@ -4,7 +4,7 @@ use crate::command_catalog::{self as catalog, Id, Surface};
 
 impl Workspace {
     pub(super) fn history_scope(&self) -> ShortcutTarget {
-        if self.files.open || self.files.pending() || self.views.inspection_visible()
+        if self.type_panel.open || self.files.open || self.files.pending() || self.views.inspection_visible()
             || self.assurance.is_visible()
             || self.exchange.is_visible()
             || self.shortcuts.open
@@ -29,6 +29,7 @@ impl Workspace {
     /// Handlers still validate paths, files, revisions and pending tickets on use.
     pub(super) fn command_reason(&self, id: Id, scope: &ShortcutTarget) -> Option<String> {
         let editing = id.is_history() || id.is_layout_history();
+        if self.type_panel.open && id!=Id::Types{return Some("Types and properties: close the editor to use native file/history commands; unfinished property text is retained.".into());}
         if self.files.open || self.files.pending(){return Some("Finish or cancel the file operation first; native work retained.".into());}
         if id==Id::Files && self.dock_blocked(){return Some("Finish pending writes/gestures or close the auxiliary editor before choosing a file.".into());}
         if self.shortcuts.open
@@ -161,6 +162,7 @@ impl Workspace {
             return;
         }
         match id {
+            Id::Types=>{self.type_panel.open=true;},
             Id::Files => self.open_file_picker(),
             Id::New => self.request_load(Load::New),
             Id::Open => self.request_load(Load::Open(PathBuf::from(self.path.trim()))),
@@ -478,14 +480,14 @@ mod tests {
     #[test]
     fn command_ids_defaults_and_menu_groups_are_unique_and_complete() {
         use std::collections::BTreeSet;
-        assert_eq!(catalog::ALL.len(), 24);
+        assert_eq!(catalog::ALL.len(), 25);
         assert_eq!(
             catalog::ALL
                 .iter()
                 .map(|s| s.key)
                 .collect::<BTreeSet<_>>()
                 .len(),
-            24
+            25
         );
         assert_eq!(
             catalog::ALL
@@ -493,7 +495,7 @@ mod tests {
                 .map(|s| s.id)
                 .collect::<BTreeSet<_>>()
                 .len(),
-            24
+            25
         );
         for (i, s) in catalog::ALL.iter().enumerate() {
             assert!(catalog::MENUS.contains(&s.menu));
@@ -816,7 +818,7 @@ mod tests {
                 assert!(!app.session.pending());
             }
             assert!(!dest.exists());
-            assert_eq!(app.command_audit()["items"].as_array().unwrap().len(), 24);
+            assert_eq!(app.command_audit()["items"].as_array().unwrap().len(), 25);
         }
     }
 }

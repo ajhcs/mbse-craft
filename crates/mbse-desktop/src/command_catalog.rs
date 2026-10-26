@@ -28,6 +28,7 @@ pub enum Id {
     Shortcuts,
     Panels,
     Files,
+    Types,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Surface {
@@ -68,6 +69,7 @@ macro_rules! spec {
 }
 pub const MENUS: &[&str] = &["File", "Edit", "View", "Tools"];
 pub const ALL: &[Spec] = &[
+    spec!(Types,"tools.types","Types and properties","Tools",ALT,T),
     spec!(Files,"file.choose","Choose model file…","File",ALT,D),
     spec!(New, "file.new", "New", "File", CMD, N),
     spec!(Open, "file.open", "Open", "File", CMD, O),

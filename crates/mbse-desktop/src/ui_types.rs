@@ -1,0 +1,122 @@
+//! Types share the native editor, persistence and model history; forms are durable journals.
+use super::*;
+use mbse_model::types::{self, Action, Id, Kind, Scalar};
+pub(super) struct TypePanel {
+    pub open: bool,
+    name: String,
+    value: bool,
+    scalar: Scalar,
+    selected: Option<Id>,
+    form: Option<Id>,
+    note: String,
+}
+impl Default for TypePanel {
+    fn default() -> Self {
+        Self {
+            open: false,
+            name: String::new(),
+            value: false,
+            scalar: Scalar::Real,
+            selected: None,
+            form: None,
+            note: String::new(),
+        }
+    }
+}
+impl Workspace {
+    pub(super) fn reset_type_context(&mut self) {
+        self.type_panel.selected = None;
+        self.type_panel.form = None;
+        self.type_panel.open = false;
+    }
+    fn typed_action(&mut self, action: Action) -> bool {
+        match self
+            .session
+            .editor
+            .command(&self.session.editor.freshness(), Command::Typed(action))
+        {
+            Ok(_) => {
+                self.type_panel.note="Typed change retained in native workspace; Save keeps accepted data and unfinished forms.".into();
+                true
+            }
+            Err(error) => {
+                self.type_panel.note = error;
+                false
+            }
+        }
+    }
+    pub(super) fn type_dialog(&mut self, ctx: &egui::Context) {
+        if !self.type_panel.open {
+            return;
+        }
+        let mut open = true;
+        let mut action = None;
+        let mut select = None;
+        let mut choose_form = None;
+        let mut close = false;
+        let mut history = None;
+        egui::Window::new("Types and properties").id(egui::Id::new("mbse-types-properties")).open(&mut open).default_width(850.).vscroll(true).max_height((ctx.content_rect().height()-80.).max(240.)).show(ctx,|ui|{
+   ui.label("Component definitions own typed properties. Value definitions declare Boolean, Integer, Real or Text types. System scope is membership, not containment.");
+   if self.session.editor.snapshot.extensions.is_none(){ui.label("Open a migrated native copy to enable extensions. Use --migrate-extensions SOURCE --destination NEW with an owned --state-dir; original native files stay protected.");let r=ui.button("Close types");self.bound("types:close",&r);close=r.clicked();return;}
+   let store=match types::load(&self.session.editor.snapshot){Ok(store)=>store,Err(error)=>{ui.colored_label(ERROR,error);return;}};
+   ui.horizontal_wrapped(|ui|{let ready=!self.views.occurrence_navigation_blocked(&self.session);let r=ui.add_enabled(ready&&self.session.editor.can_undo(),egui::Button::new("Undo model"));self.bound("types:undo-model",&r);if r.clicked(){history=Some(false);}let r=ui.add_enabled(ready&&self.session.editor.can_redo(),egui::Button::new("Redo model"));self.bound("types:redo-model",&r);if r.clicked(){history=Some(true);}});
+   ui.separator();ui.horizontal(|ui|{ui.label("Definition name");let r=ui.text_edit_singleline(&mut self.type_panel.name);self.bound("types:definition-name",&r);let r=ui.checkbox(&mut self.type_panel.value,"Value definition");self.bound("types:value-definition",&r);});
+   if self.type_panel.value{ui.horizontal(|ui|{for scalar in [Scalar::Boolean,Scalar::Integer,Scalar::Real,Scalar::Text]{let r=ui.selectable_value(&mut self.type_panel.scalar,scalar,format!("{scalar:?}"));self.bound(format!("types:scalar:{scalar:?}"),&r);}});}
+   let r=ui.button("Add definition");self.bound("types:add-definition",&r);if r.clicked(){let system=self.session.editor.selected.and_then(|id|self.session.editor.snapshot.records.get(&id)).map(|r|r.scope).unwrap_or(RecordId(1));action=Some(Action::AddDefinition{system,name:self.type_panel.name.clone(),kind:if self.type_panel.value{Kind::Value(self.type_panel.scalar)}else{Kind::Component}});}
+   egui::ScrollArea::vertical().id_salt("typed-definition-rows").max_height(160.).show(ui,|ui|{for d in store.definitions.values(){let r=ui.selectable_label(self.type_panel.selected==Some(d.id),format!("{} · {:?} #{} · System #{}",d.name,d.kind,d.id.0,d.system.0));self.bound(format!("types:definition:{}",d.id.0),&r);if r.clicked(){select=Some(d.id);}}});
+   if let Some(owner)=self.type_panel.selected.filter(|id|store.definitions.get(id).is_some_and(|d|d.kind==Kind::Component)){
+    let r=ui.button("New property draft");self.bound("types:new-property",&r);if r.clicked(){action=Some(Action::BeginProperty{owner});}
+    for p in store.properties.values().filter(|p|p.owner==owner){ui.label(format!("Accepted property #{}: {} · value type #{} · {}..{}",p.id.0,p.name,p.value_type.0,p.multiplicity.lower,p.multiplicity.upper.map_or("*".into(),|v|v.to_string())));let r=ui.button(format!("Edit property #{}",p.id.0));self.bound(format!("types:edit-property:{}",p.id.0),&r);if r.clicked(){choose_form=Some(p.id);if !types::forms(&self.session.editor.snapshot).unwrap_or_default().contains_key(&p.id){action=Some(Action::SetForm{id:p.id,form:types::Form{owner:p.owner,name:p.name.clone(),value_type:p.value_type.0.to_string(),lower:p.multiplicity.lower.to_string(),upper:p.multiplicity.upper.map_or("*".into(),|n|n.to_string())}});}}}
+   }
+   let forms=types::forms(&self.session.editor.snapshot).unwrap_or_default();for(id,form)in &forms{let r=ui.selectable_label(self.type_panel.form==Some(*id),format!("Retained property form #{} · owner #{} · {}",id.0,form.owner.0,form.name));self.bound(format!("types:form:{}",id.0),&r);if r.clicked(){choose_form=Some(*id);}}
+   if let Some((id,mut form))=self.type_panel.form.and_then(|id|forms.get(&id).cloned().map(|form|(id,form))){
+    ui.separator();ui.label(format!("Property form #{}; text is retained independently of accepted property data.",id.0));let before=form.clone();
+    for(label,key,text)in [("Property name","name",&mut form.name),("Value type ID","value-type",&mut form.value_type),("Lower multiplicity","lower",&mut form.lower),("Upper multiplicity or *","upper",&mut form.upper)]{ui.horizontal(|ui|{ui.label(label);let r=ui.text_edit_singleline(text);self.bound(format!("types:property:{key}"),&r);});}
+    let edited=form!=before;if edited{action=Some(Action::SetForm{id,form});}
+    let checked=types::preview(&self.session.editor.snapshot,id);if let Err(error)=&checked{ui.colored_label(ERROR,format!("Unapplied form retained: {error}"));}
+    let r=ui.add_enabled(checked.is_ok()&&!edited,egui::Button::new("Apply property"));self.bound("types:apply-property",&r);if r.clicked(){action=Some(Action::ApplyProperty{id});}
+   }
+   ui.label(&self.type_panel.note);let r=ui.button("Close types");self.bound("types:close",&r);close=r.clicked();
+  });
+        self.type_panel.open = open && !close;
+        if let Some(id) = select {
+            self.type_panel.selected = Some(id);
+        }
+        if let Some(id) = choose_form {
+            self.type_panel.form = Some(id);
+        }
+        if let Some(action) = action {
+            let next = Id(self.session.editor.snapshot.next_id);
+            let add = matches!(action, Action::AddDefinition { .. });
+            let draft = matches!(action, Action::BeginProperty { .. });
+            if self.typed_action(action) {
+                if add {
+                    self.type_panel.selected = Some(next);
+                    self.type_panel.name.clear();
+                }
+                if draft {
+                    self.type_panel.form = Some(next);
+                }
+            }
+        }
+        if let Some(redo) = history {
+            let result = if redo {
+                self.session
+                    .editor
+                    .redo_model(&self.session.editor.freshness())
+            } else {
+                self.session
+                    .editor
+                    .undo_model(&self.session.editor.freshness())
+            };
+            self.type_panel.note = match result {
+                Ok(true) => "Model history restored; current property text retained.".into(),
+                Ok(false) => "No model history in this direction.".into(),
+                Err(error) => error,
+            };
+        }
+    }
+    pub(super) fn typed_audit(&self) -> serde_json::Value {
+        serde_json::json!({"schema":"mbse-craft.types-ui/1","open":self.type_panel.open,"selected":self.type_panel.selected,"form":self.type_panel.form,"store":types::load(&self.session.editor.snapshot).ok(),"forms":types::forms(&self.session.editor.snapshot).ok(),"note":self.type_panel.note})
+    }
+}
