@@ -100,7 +100,7 @@ mod tests {
         let area = tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap();
         let mut session = Session::new(area.path()).unwrap();
         let raw: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../docs/parity/p21a/fixtures/deletioned.kernspan"
+            "../../../docs/parity/p21a/fixtures/refactored.kernspan"
         ))
         .unwrap();
         let instance = session.editor.freshness().instance_id;

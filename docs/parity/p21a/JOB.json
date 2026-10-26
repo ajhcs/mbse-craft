@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m4-p21a-typed-deletion-01",
+  "id": "m4-p21a-typed-deletion-02",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m4-p21a-typed-deletion",
   "source_manifest": "docs/parity/p21a/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "763014279a7eebbdb3f9acd15eb26ec00a8fbf44543c110338f726fefd5b676d",
-  "source_sha256": "e7d9c37da2d291911d52d57dc0c2ffe8e48e44268e2e907dbebce9dc50caef47",
+  "source_manifest_sha256": "d0fe6a7da4000229b9356ab2e93ebfa3771c768c97bcbec69c1472303e0c5f67",
+  "source_sha256": "2e01ebe79713a4447f8e39a6753327fc58d3742e6d0f566637d29bac4264939c",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
