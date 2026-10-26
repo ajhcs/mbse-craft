@@ -1,0 +1,13 @@
+diff --git a/crates/mbse-desktop/src/ui_ports.rs b/crates/mbse-desktop/src/ui_ports.rs
+index d451364..e380f53 100644
+--- a/crates/mbse-desktop/src/ui_ports.rs
++++ b/crates/mbse-desktop/src/ui_ports.rs
+@@ -41,7 +41,7 @@ impl Workspace {
+         let mut owner_choice = None;
+         let mut history = None;
+         egui::Window::new("Ports and interfaces").id(egui::Id::new("mbse-ports-interfaces")).open(&mut open).default_width(820.).default_height(900.).max_height((ctx.content_rect().height()-80.).max(240.)).vscroll(true).show(ctx,|ui|{
+-   ui.label("Interfaces declare one exact Value definition payload and flow direction. Compatible assignment requires equal payload identity, direction and System. Port presentation/reuse follows in P17b.");
++   ui.label("Interfaces declare one exact Value definition payload and flow direction. Compatible assignment requires equal payload identity, direction and System. Ports are model data; visual placement is unavailable.");
+    let store=match types::load(&self.session.editor.snapshot){Ok(s)=>s,Err(error)=>{ui.colored_label(ERROR,error);let r=ui.button("Close ports");self.bound("ports:close",&r);close=r.clicked();return;}};
+    ui.horizontal(|ui|{let ready=!self.views.occurrence_navigation_blocked(&self.session);let r=ui.add_enabled(ready&&self.session.editor.can_undo(),egui::Button::new("Undo model"));self.bound("ports:undo-model",&r);if r.clicked(){history=Some(false);}let r=ui.add_enabled(ready&&self.session.editor.can_redo(),egui::Button::new("Redo model"));self.bound("ports:redo-model",&r);if r.clicked(){history=Some(true);}});
+    let system=self.session.editor.selected.and_then(|id|self.session.editor.snapshot.records.get(&id)).map(|r|r.scope).unwrap_or(RecordId(1));

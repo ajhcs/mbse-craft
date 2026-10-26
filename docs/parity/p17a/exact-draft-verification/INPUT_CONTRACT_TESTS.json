@@ -1,0 +1,9 @@
+{
+  "command": "PYTHONDONTWRITEBYTECODE=1 python3 scripts/test-m1-text-keys.py",
+  "observed_exit_code": 0,
+  "tests_passed": 4,
+  "source_sha256": "f61612a2ccf5baf8645462ff6eadf1680710869d08f3f2a1057b5b4c327438e6",
+  "driver_sha256": "ef4e7c2308323b9023f83a15ddb3b9214d27368fd9a34a42b4245ad44f574a39",
+  "evidence_kind": "Tool-observed unittest result; no raw shell-log file claimed",
+  "limits": "All95 printable ASCII mapped in pure helper test; actual ? delivery separately asserted in native UI. No full keyboard/Unicode/platform claim."
+}

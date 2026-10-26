@@ -91,6 +91,32 @@
     "final_preservation": "p16/final-label-verification/PRESERVATION_AFTER.json",
     "final_available_preexisting_checkouts_unchanged": 28,
     "reviewed_head": "0a364869a135fe1dcd623e1ed19c07258111e7ed",
-    "merge_commit": "4370e879411479aa79b3d5aabbba5f2ff80d47ce"
+    "merge_commit": "4370e879411479aa79b3d5aabbba5f2ff80d47ce",
+    "input_fidelity_erratum": "p17a/INPUT_FIDELITY_ERRATUM.md",
+    "corrective_exact_invalid_native_review": "p17a/exact-draft-verification/REVIEW.json"
+  },
+  "p17a": {
+    "state": "implemented_draft_pending_review",
+    "parent_position": "P17",
+    "position_complete": false,
+    "branch": "codex/m4-p17a-ports-interfaces",
+    "base_commit": "4370e879411479aa79b3d5aabbba5f2ff80d47ce",
+    "source_files": 687,
+    "semantic_test_source_sha256": "2b017a65ef5e2bb4f3e39a0a7026184732bcfbef7b7360736d527b6ca6681982",
+    "workspace_tests_passed": 422,
+    "new_p17a_tests": 8,
+    "final_source_sha256": "1b71881d2890bdbec4de39059fd549b3adb936be5d7b4eefae0a5d52adac60fd",
+    "final_binary_sha256": "cdf9a94e0eaf6a148687896bba875a6f5699c57cccb686cde0315fbc57463920",
+    "acceptance": "p17a/README.md",
+    "compiler_receipt": "p17a/verification/COMPILER_RECEIPT.json",
+    "wording_review": "p17a/final-wording-verification/REVIEW.json",
+    "exact_invalid_draft_native_review": "p17a/exact-draft-verification/REVIEW.json",
+    "exact_invalid_draft_native_runs": 2,
+    "exact_invalid_draft_action_errors": 0,
+    "input_fidelity_erratum": "p17a/INPUT_FIDELITY_ERRATUM.md",
+    "native_helper_contract_tests": 4,
+    "preservation": "p17a/exact-draft-verification/PRESERVATION_AFTER.json",
+    "preexisting_checkouts_verified_unchanged": 29,
+    "user_removed_historical_directories": 18
   }
 }

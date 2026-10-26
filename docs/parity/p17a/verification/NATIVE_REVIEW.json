@@ -22,5 +22,7 @@
     "Same-agent Linux synthetic semantic contract evidence; cross-view reuse and typed occurrence presentation explicitly P17b, so P17 remains incomplete",
     "One-payload exact Value identity/direction/System interface rule; no SysML conformance or full NoMagic/Craft/domain/platform claim",
     "One harness KeyError correction retained; not relabeled zero errors"
-  ]
+  ],
+  "input_fidelity_erratum": "../INPUT_FIDELITY_ERRATUM.md",
+  "invalid_question_mark_native_claims_withdrawn": "Actual old driver input omitted trailing question mark. Original audits/events/saved files unchanged. Exact invalid-form native evidence is qualified separately in p17a/exact-draft-verification/REVIEW.json on a reviewed descendant binary. Other refusal/identity/core-data checks retain original scope."
 }

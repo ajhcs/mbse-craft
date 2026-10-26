@@ -349,7 +349,8 @@
           "acceptance": [
             "Incompatible interface assignments refuse atomically; port/interface identities, raw forms and accepted data survive model history and native cold reopen."
           ],
-          "state": "in_progress"
+          "state": "implemented_draft_pending_review",
+          "evidence": "docs/parity/p17a/README.md"
         },
         {
           "id": "P17b",

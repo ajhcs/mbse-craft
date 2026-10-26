@@ -1,0 +1,22 @@
+{
+  "schema": "mbse-craft.p17a-wording-review/1",
+  "reviewer": "Codex, same implementing agent",
+  "independent_review": false,
+  "result": "product_wording_visually_verified",
+  "source_sha256": "1b71881d2890bdbec4de39059fd549b3adb936be5d7b4eefae0a5d52adac60fd",
+  "binary_sha256": "cdf9a94e0eaf6a148687896bba875a6f5699c57cccb686cde0315fbc57463920",
+  "source_changes": [
+    "crates/mbse-desktop/src/ui_ports.rs"
+  ],
+  "scope": "One displayed sentence only; model/test files exact to preceding422-test/two-native-run semantic source. Changed desktop build exit0. No full-suite rerun claimed on wording-only source.",
+  "native_runs": 1,
+  "action_errors": 0,
+  "model_hash_unchanged": true,
+  "inputs_unchanged": true,
+  "pixels_reviewed": [
+    "native/run/01-port-editor-current-placement-limit.png"
+  ],
+  "limits": [
+    "Same-agent Linux label evidence only; prior functional checks retained separately in verification. Full font/platform/domain/NoMagic/Craft acceptance open."
+  ]
+}
