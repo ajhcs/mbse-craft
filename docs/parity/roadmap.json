@@ -522,10 +522,11 @@
       "acceptance": [
         "Namespace/version mismatches stay unknown or refuse; tags round-trip; custom domain records are not silently reclassified."
       ],
-      "state": "in_progress",
+      "state": "draft_ready",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
-      "branch": "codex/m4-p22-profile-tags"
+      "branch": "codex/m4-p22-profile-tags",
+      "execution_results": "docs/parity/p22/README.md"
     },
     {
       "id": "P23",
