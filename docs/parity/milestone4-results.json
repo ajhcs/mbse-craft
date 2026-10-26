@@ -29,7 +29,6 @@
     "review_followup": "p14/REVIEW_FOLLOWUP.md"
   },
   "remaining_prs": [
-    "P19",
     "P20",
     "P21",
     "P22"
@@ -199,8 +198,8 @@
     "reviewed_head": "10dda0a6bbe9e6b9c11c8a0076ebb114c7dde53d"
   },
   "p19": {
-    "state": "reviewed_ready_to_merge",
-    "position_complete": false,
+    "state": "merged",
+    "position_complete": true,
     "base_commit": "239d21d1728d51e4ccad70d413e8dffc971f6783",
     "source_files": 699,
     "workspace_tests_passed": 457,
@@ -215,6 +214,35 @@
     "preservation": "p19/verification/PRESERVATION_AFTER.json",
     "pr_url": "https://github.com/ajhcs/mbse-craft/pull/24",
     "review_preservation": "p19/REVIEW_PRESERVATION.json",
-    "review_available_preexisting_checkouts_unchanged": 38
+    "review_available_preexisting_checkouts_unchanged": 38,
+    "merge_commit": "3c628b2a20ae979a223f06c6029c731cbee33de2",
+    "reviewed_head": "98b3f49b4ac3d3f4310e163befab4513cef8c2f6"
+  },
+  "p20": {
+    "state": "reviewed_ready_to_merge",
+    "position_complete": false,
+    "base_commit": "3c628b2a20ae979a223f06c6029c731cbee33de2",
+    "source_files": 702,
+    "workspace_tests_passed": 465,
+    "new_tests": 8,
+    "native_runs": 2,
+    "native_action_errors": 0,
+    "source_sha256": "e867f19811518d02f8b9359bc0b5336f1fb01f21311f753013785f68f224b613",
+    "binary_sha256": "202a0149e1842aa365d7892e41406220a0e4b52b828c68cbff077d275764a1f3",
+    "acceptance": "p20/README.md",
+    "contract": "p20/CONTRACT.md",
+    "same_agent_review": "p20/verification/NATIVE_REVIEW.json",
+    "preservation": "p20/verification/PRESERVATION_AFTER.json",
+    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/25",
+    "review_preservation": "p20/REVIEW_PRESERVATION.json",
+    "review_available_preexisting_checkouts_unchanged": 40,
+    "review_finding": "Move inventory classified retained internal Part references as external; corrected without candidate/publication changes.",
+    "review_evidence": "p20/reference-review-verification/REVIEW.json",
+    "final_focused_model_tests": 7,
+    "final_focused_renderer_tests": 1,
+    "final_review_native_runs": 1,
+    "final_review_native_action_errors": 0,
+    "final_source_sha256": "b353f555ffd97faf90ec11b24ff13a6c0f5d136928d634a117fccc5b148c15f8",
+    "final_binary_sha256": "f1e10a7ea7b64ef49d310cb140f3208843d23fc723a884e2ad4f2e5409f71679"
   }
 }

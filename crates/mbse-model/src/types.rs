@@ -9,6 +9,7 @@ use std::collections::{BTreeMap, BTreeSet};
 pub mod connectors;
 pub mod ports;
 pub mod values;
+pub mod refactor;
 pub const NAMESPACE: &str = "mbse-craft.types/1";
 pub const DRAFTS: &str = "mbse-craft.type-drafts/1";
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
@@ -151,6 +152,8 @@ struct Journal {
     connectors: BTreeMap<Id, connectors::Form>,
     #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
     values:BTreeMap<String,values::Form>,
+    #[serde(default,skip_serializing_if="Option::is_none")]
+    refactor:Option<refactor::Form>,
 }
 impl Default for Journal {
     fn default() -> Self {
@@ -164,6 +167,7 @@ impl Default for Journal {
             ports: BTreeMap::new(),
             connectors: BTreeMap::new(),
             values:BTreeMap::new(),
+            refactor:None,
         }
     }
 }
@@ -237,6 +241,7 @@ fn parse_journal(value: &Value) -> Result<Journal, String> {
     ports::validate_journal(&j)?;
     connectors::validate_journal(&j)?;
     values::validate_journal(&j)?;
+    refactor::validate_journal(&j)?;
     Ok(j)
 }
 pub fn validate_namespace(name: &str, value: &Value) -> Result<(), String> {
@@ -561,6 +566,7 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
 }
 #[derive(Clone, Debug)]
 pub enum Action {
+    Refactor(refactor::Action),
     Value(values::Action),
     Connector(connectors::Action),
     Port(ports::Action),
@@ -607,6 +613,7 @@ pub fn apply(snapshot: &mut Snapshot, action: Action) -> Result<Change, String> 
 fn apply_inner(snapshot: &mut Snapshot, action: Action) -> Result<Change, String> {
     let mut store = load(snapshot)?;
     match action {
+        Action::Refactor(action)=>refactor::apply_inner(snapshot,action),
         Action::Value(action)=>values::apply_inner(snapshot,action),
         Action::Connector(action) => connectors::apply_inner(snapshot, action),
         Action::Port(action) => ports::apply_inner(snapshot, action),
@@ -1270,3 +1277,6 @@ mod connectors_tests;
 
 #[cfg(test)]
 mod values_tests;
+
+#[cfg(test)]
+mod refactor_tests;

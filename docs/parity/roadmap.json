@@ -433,12 +433,14 @@
       "acceptance": [
         "Default changes affect inheriting instances only; overrides remain explicit; results never overwrite authored values."
       ],
-      "state": "reviewed_ready_to_merge",
+      "state": "merged",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "branch": "codex/m4-p19-values",
       "evidence": "docs/parity/p19/README.md",
-      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/24"
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/24",
+      "merge_commit": "3c628b2a20ae979a223f06c6029c731cbee33de2",
+      "reviewed_head": "98b3f49b4ac3d3f4310e163befab4513cef8c2f6"
     },
     {
       "id": "P20",
@@ -450,9 +452,12 @@
       "acceptance": [
         "Preview identifies internal and external reference treatment; moves retain IDs; clones allocate fresh IDs; Cancel and Undo restore state."
       ],
-      "state": "planned",
+      "state": "reviewed_ready_to_merge",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "branch": "codex/m4-p20-clone-move",
+      "evidence": "docs/parity/p20/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/25"
     },
     {
       "id": "P21",

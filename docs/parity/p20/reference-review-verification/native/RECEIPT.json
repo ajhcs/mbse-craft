@@ -1,0 +1,110 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-26T22:15:30.396206+00:00",
+  "job_sha256": "db4566edde45341280a6e164a54ad1caf19dd63a54cebec819b2ff89f91e25a1",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-reference-review-01/run",
+      "started_utc": "2026-10-26T22:15:30.417154+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 27302,
+          "start_ticks": 42728135
+        },
+        "server_pid": {
+          "pid": 27299,
+          "start_ticks": 42728133
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/repos/builderbob/mbse-craft/work/m4-p20-clone-move/docs/parity/p20/verification/native/run/cloned-moved.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 27302,
+        "server_pid": 27299,
+        "window": 4194307,
+        "binary_sha256": "f1e10a7ea7b64ef49d310cb140f3208843d23fc723a884e2ad4f2e5409f71679"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-26T22:17:02.972157+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-26T22:15:30.416853+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1416333799424,
+    "available_memory_bytes": 27977908224,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 571
+      },
+      {
+        "pid": 2912202,
+        "start_ticks": 40560687,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "moved_part_connector_refs_labeled_internal": true,
+  "ports_values_types_remain_shared_external_targets": true,
+  "preview_cancel_snapshot_unchanged": true,
+  "accepted_clone_move_state_and_views_preserved": true,
+  "original_inputs_unchanged": true,
+  "authentication_files_absent": true,
+  "ended_utc": "2026-10-26T22:18:01.332097+00:00"
+}

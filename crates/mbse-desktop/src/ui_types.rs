@@ -25,6 +25,7 @@ impl Workspace {
         self.port_panel = Default::default();
         self.connector_panel=Default::default();
         self.value_panel=Default::default();
+        self.refactor_panel=Default::default();
     }
     fn typed_action(&mut self, action: Action) -> bool {
         let stamp = self.views.views.stamp(&self.session.editor);

@@ -1,0 +1,317 @@
+[
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m4-p20-clone-move/work/p20-initial.json",
+    "path": "COMPILER_RECEIPT.json",
+    "bytes": 53037,
+    "sha256": "721ec5173d5dad801da1e7e8628ed0cd03f68230d1dda513c9863c43677e12a3",
+    "stored_sha256": "721ec5173d5dad801da1e7e8628ed0cd03f68230d1dda513c9863c43677e12a3"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p20-clone-move-initial-20261026T220154Z/00.log",
+    "path": "compiler/00.log.gz",
+    "bytes": 56718,
+    "sha256": "b99ca784fee994e5d352550f0c33917e09734790eac7fdc86afab6d9285fd695",
+    "stored_sha256": "c43da35f51bcd0c1f55589e8a10ea9857510877d7efa48f377956d92a8aee65a"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p20-clone-move-initial-20261026T220154Z/01.log",
+    "path": "compiler/01.log.gz",
+    "bytes": 3424,
+    "sha256": "a98fe26891b9e8f07e46236db955b634abcfdd6a60ab89156b664e2bd200ae77",
+    "stored_sha256": "31dd59fff6f67acd0250d99db00f9d24fc22795b746767742179fd2cbab8018f"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/CONTROLLER_ACTIONS.py",
+    "path": "native/CONTROLLER_ACTIONS.py",
+    "bytes": 9030,
+    "sha256": "8e805db158c0b9561b0fedd96f6bb491823b5376839fd53d178835a7956e89bd",
+    "stored_sha256": "8e805db158c0b9561b0fedd96f6bb491823b5376839fd53d178835a7956e89bd"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/RECEIPT.json",
+    "path": "native/RECEIPT.json",
+    "bytes": 6808,
+    "sha256": "5a3e71c6da9ca56b0d4b42350a8e39f6a10b245a659c821847992367cf253152",
+    "stored_sha256": "5a3e71c6da9ca56b0d4b42350a8e39f6a10b245a659c821847992367cf253152"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/reopen/12-cold-clone-move-form-without-preview-authority.png",
+    "path": "native/reopen/12-cold-clone-move-form-without-preview-authority.png",
+    "bytes": 249264,
+    "sha256": "f9458e6916e2f4f2831db80ae63ea05e4d03cb6130fb5c1197f08bd89ab4a8d3",
+    "stored_sha256": "f9458e6916e2f4f2831db80ae63ea05e4d03cb6130fb5c1197f08bd89ab4a8d3"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/reopen/12-cold-clone-move-form-without-preview-authority.ui.json",
+    "path": "native/reopen/12-cold-clone-move-form-without-preview-authority.ui.json",
+    "bytes": 61809,
+    "sha256": "226f2facc9eebeffe1763e044705f274c0fc871120b8944ea6352cd7613df726",
+    "stored_sha256": "226f2facc9eebeffe1763e044705f274c0fc871120b8944ea6352cd7613df726"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/reopen/13-cold-original-views-bound-to-moved-semantics.png",
+    "path": "native/reopen/13-cold-original-views-bound-to-moved-semantics.png",
+    "bytes": 472502,
+    "sha256": "94a8e3dd450569cc9925322f27b962f96b45a8499fde3eb472097884a87a2654",
+    "stored_sha256": "94a8e3dd450569cc9925322f27b962f96b45a8499fde3eb472097884a87a2654"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/reopen/13-cold-original-views-bound-to-moved-semantics.ui.json",
+    "path": "native/reopen/13-cold-original-views-bound-to-moved-semantics.ui.json",
+    "bytes": 66726,
+    "sha256": "f16df665f124d5d24d9389da86a11c13f6eb94bf9f22642eae1d5cf33a24df13",
+    "stored_sha256": "f16df665f124d5d24d9389da86a11c13f6eb94bf9f22642eae1d5cf33a24df13"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/reopen/app.log",
+    "path": "native/reopen/app.log.gz",
+    "bytes": 48,
+    "sha256": "0cce862dc4913be2cce3fd531146652899fa528e6bef4c0cc05a1632efdac18e",
+    "stored_sha256": "94e4dd023a62bec4d641e8996e9d854e58601c954020cf040c1f0e0191cf7866"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/reopen/cold-confirm.kernspan",
+    "path": "native/reopen/cold-confirm.kernspan",
+    "bytes": 7284,
+    "sha256": "8e5bd0ad7134654880912c816c9ab91d95fcb5ace4667554d4e49cecf07f4478",
+    "stored_sha256": "8e5bd0ad7134654880912c816c9ab91d95fcb5ace4667554d4e49cecf07f4478"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/reopen/cold-confirm.mbse-views.json",
+    "path": "native/reopen/cold-confirm.mbse-views.json",
+    "bytes": 5328,
+    "sha256": "3e338dce3bab7e692fba39f5b29b400cb38b480afef582229899a6aad3b330e3",
+    "stored_sha256": "3e338dce3bab7e692fba39f5b29b400cb38b480afef582229899a6aad3b330e3"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/reopen/events.jsonl",
+    "path": "native/reopen/events.jsonl.gz",
+    "bytes": 1680,
+    "sha256": "4c4b7eeeecc81e542725326fb38a72bd058557816970528e9f136d1e7005cc2c",
+    "stored_sha256": "6ac0362a975e37cc81215725ebf12eb4844992f20baaf0bd03c3032564d682a9"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/reopen/state/ui-geometry.json",
+    "path": "native/reopen/state/ui-geometry.json",
+    "bytes": 66641,
+    "sha256": "9bf80a8c2084630b2b7a6bd85f45d62bedd1f0db50df8b003be852232669665f",
+    "stored_sha256": "9bf80a8c2084630b2b7a6bd85f45d62bedd1f0db50df8b003be852232669665f"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/reopen/xvfb.log",
+    "path": "native/reopen/xvfb.log.gz",
+    "bytes": 1321,
+    "sha256": "00971f516769b092bd50063ca4a82f63a4395d9ed9ff57eab62626162f51b9ed",
+    "stored_sha256": "fdda054423b6f7162c79062d661ff1e7c458c6fd848bc9913bbe480d6a657d81"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/reopen-driver.log",
+    "path": "native/reopen-driver.log.gz",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/01-reference-preview-fresh-ids-without-allocation.png",
+    "path": "native/run/01-reference-preview-fresh-ids-without-allocation.png",
+    "bytes": 301923,
+    "sha256": "7b96b8922db19d923671c06a12416dbb76cdcb66ee3daf4761be1d69933ed28e",
+    "stored_sha256": "7b96b8922db19d923671c06a12416dbb76cdcb66ee3daf4761be1d69933ed28e"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/01-reference-preview-fresh-ids-without-allocation.ui.json",
+    "path": "native/run/01-reference-preview-fresh-ids-without-allocation.ui.json",
+    "bytes": 65112,
+    "sha256": "a2b9667881eba3f5403033cd737988b33502f557c1c67e8be59719d58d7a2851",
+    "stored_sha256": "a2b9667881eba3f5403033cd737988b33502f557c1c67e8be59719d58d7a2851"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/02-cancel-keeps-live-snapshot-and-form.png",
+    "path": "native/run/02-cancel-keeps-live-snapshot-and-form.png",
+    "bytes": 250948,
+    "sha256": "b3c352aa268d12431fbfc94043117e17d1ea514787823cc3cf8e014bef6564ca",
+    "stored_sha256": "b3c352aa268d12431fbfc94043117e17d1ea514787823cc3cf8e014bef6564ca"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/02-cancel-keeps-live-snapshot-and-form.ui.json",
+    "path": "native/run/02-cancel-keeps-live-snapshot-and-form.ui.json",
+    "bytes": 60991,
+    "sha256": "2ab38ebae43fdf4650f0239f3f034c58c37bc6a9c8c68ab94df36b4d0ce169bc",
+    "stored_sha256": "2ab38ebae43fdf4650f0239f3f034c58c37bc6a9c8c68ab94df36b4d0ce169bc"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/03-stale-preview-refuses-apply.png",
+    "path": "native/run/03-stale-preview-refuses-apply.png",
+    "bytes": 307553,
+    "sha256": "b427da3014432a16d5e92e2653066414247f7783cccb2b9473d7fcf45bfb70a8",
+    "stored_sha256": "b427da3014432a16d5e92e2653066414247f7783cccb2b9473d7fcf45bfb70a8"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/03-stale-preview-refuses-apply.ui.json",
+    "path": "native/run/03-stale-preview-refuses-apply.ui.json",
+    "bytes": 65161,
+    "sha256": "c40de52d1afb387e32aa425d99fe0c7cec31c2dc655a5369b1d6e78dead0a374",
+    "stored_sha256": "c40de52d1afb387e32aa425d99fe0c7cec31c2dc655a5369b1d6e78dead0a374"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/04-clone-fresh-ids-remapped-connectors-shared-targets.png",
+    "path": "native/run/04-clone-fresh-ids-remapped-connectors-shared-targets.png",
+    "bytes": 321834,
+    "sha256": "93407ebd4ea26a9b23285c516e67d05098a2240d71df3d845b973a96b3638d39",
+    "stored_sha256": "93407ebd4ea26a9b23285c516e67d05098a2240d71df3d845b973a96b3638d39"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/04-clone-fresh-ids-remapped-connectors-shared-targets.ui.json",
+    "path": "native/run/04-clone-fresh-ids-remapped-connectors-shared-targets.ui.json",
+    "bytes": 73748,
+    "sha256": "4723383b541a626e1e1c124dd9ca1553d6b4e2e510404dfa6129460f20016d8e",
+    "stored_sha256": "4723383b541a626e1e1c124dd9ca1553d6b4e2e510404dfa6129460f20016d8e"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/05-clone-undo-preserves-newer-form.png",
+    "path": "native/run/05-clone-undo-preserves-newer-form.png",
+    "bytes": 304688,
+    "sha256": "b282e9d33fc4a18c98f22b7ed2a07f5acfe42a8f8e07f585ac747590bd832189",
+    "stored_sha256": "b282e9d33fc4a18c98f22b7ed2a07f5acfe42a8f8e07f585ac747590bd832189"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/05-clone-undo-preserves-newer-form.ui.json",
+    "path": "native/run/05-clone-undo-preserves-newer-form.ui.json",
+    "bytes": 65099,
+    "sha256": "760e6ba22c28ceb43f71bcded97e996ed6a8f39a2e9dd23ca54d20646330e6fd",
+    "stored_sha256": "760e6ba22c28ceb43f71bcded97e996ed6a8f39a2e9dd23ca54d20646330e6fd"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/06-clone-redo-restores-same-identities.png",
+    "path": "native/run/06-clone-redo-restores-same-identities.png",
+    "bytes": 318654,
+    "sha256": "1ffb91d898c4b34e181665f2c8baf93f02970304524131a5c272bfbf560f33ef",
+    "stored_sha256": "1ffb91d898c4b34e181665f2c8baf93f02970304524131a5c272bfbf560f33ef"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/06-clone-redo-restores-same-identities.ui.json",
+    "path": "native/run/06-clone-redo-restores-same-identities.ui.json",
+    "bytes": 73689,
+    "sha256": "999754bc11434df142bbb61a54e9d7c36cf4dc3c9f7eea37bc2d46a4431c73b1",
+    "stored_sha256": "999754bc11434df142bbb61a54e9d7c36cf4dc3c9f7eea37bc2d46a4431c73b1"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/07-partial-move-refuses-connector-boundary.png",
+    "path": "native/run/07-partial-move-refuses-connector-boundary.png",
+    "bytes": 313524,
+    "sha256": "e24e86188f6aafd5ede151bb1d3ca1ed740b8b24430a03c36317223b508c1e4b",
+    "stored_sha256": "e24e86188f6aafd5ede151bb1d3ca1ed740b8b24430a03c36317223b508c1e4b"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/07-partial-move-refuses-connector-boundary.ui.json",
+    "path": "native/run/07-partial-move-refuses-connector-boundary.ui.json",
+    "bytes": 72059,
+    "sha256": "1b873c09006988a58efa43bb980176e1ade559a0abb1ffcb1583d08f05601b84",
+    "stored_sha256": "1b873c09006988a58efa43bb980176e1ade559a0abb1ffcb1583d08f05601b84"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/08-complete-move-preview-includes-enclosed-connectors.png",
+    "path": "native/run/08-complete-move-preview-includes-enclosed-connectors.png",
+    "bytes": 321615,
+    "sha256": "92579ec4de75f9b1067307e107ebe814693a84fc2f7bfcd86c184910462af4b4",
+    "stored_sha256": "92579ec4de75f9b1067307e107ebe814693a84fc2f7bfcd86c184910462af4b4"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/08-complete-move-preview-includes-enclosed-connectors.ui.json",
+    "path": "native/run/08-complete-move-preview-includes-enclosed-connectors.ui.json",
+    "bytes": 73215,
+    "sha256": "28876c0b8ba49126d8321cd5613a6441963ba61bd973c58f788adce69eef8e37",
+    "stored_sha256": "28876c0b8ba49126d8321cd5613a6441963ba61bd973c58f788adce69eef8e37"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/09-move-same-ids-keeps-original-routes-values.png",
+    "path": "native/run/09-move-same-ids-keeps-original-routes-values.png",
+    "bytes": 326349,
+    "sha256": "fe22878fb7c6e6a46bd9db7783371e7d95313ea0501706ddece7c47f5f70cb4b",
+    "stored_sha256": "fe22878fb7c6e6a46bd9db7783371e7d95313ea0501706ddece7c47f5f70cb4b"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/09-move-same-ids-keeps-original-routes-values.ui.json",
+    "path": "native/run/09-move-same-ids-keeps-original-routes-values.ui.json",
+    "bytes": 73248,
+    "sha256": "e179d55f75c64ef1dd953b9ffa7dfdd1d39ddf8adfbfb50dd907a6fba320abcc",
+    "stored_sha256": "e179d55f75c64ef1dd953b9ffa7dfdd1d39ddf8adfbfb50dd907a6fba320abcc"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/10-move-undo-redo-same-ids-newer-form.png",
+    "path": "native/run/10-move-undo-redo-same-ids-newer-form.png",
+    "bytes": 323930,
+    "sha256": "b3e41ec280f750d3277d2edab1959a02e74a55b073e889e20bd7da332872bb56",
+    "stored_sha256": "b3e41ec280f750d3277d2edab1959a02e74a55b073e889e20bd7da332872bb56"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/10-move-undo-redo-same-ids-newer-form.ui.json",
+    "path": "native/run/10-move-undo-redo-same-ids-newer-form.ui.json",
+    "bytes": 73199,
+    "sha256": "f6c322689f8ad54292f2b56e7f8452a012ea0dac26b50df49ed046f4feb2e945",
+    "stored_sha256": "f6c322689f8ad54292f2b56e7f8452a012ea0dac26b50df49ed046f4feb2e945"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/11-captured-save-cloned-moved-identities.png",
+    "path": "native/run/11-captured-save-cloned-moved-identities.png",
+    "bytes": 466697,
+    "sha256": "fefa81f340cb0e3a316c57edfc5baf92425134a281011fdc7b27ddcf611c0b0d",
+    "stored_sha256": "fefa81f340cb0e3a316c57edfc5baf92425134a281011fdc7b27ddcf611c0b0d"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/11-captured-save-cloned-moved-identities.ui.json",
+    "path": "native/run/11-captured-save-cloned-moved-identities.ui.json",
+    "bytes": 70140,
+    "sha256": "41e6625e6e03013da11e3fc79ff0dcdf194ce4f8d1085e5f28f9c3f759a1dcde",
+    "stored_sha256": "41e6625e6e03013da11e3fc79ff0dcdf194ce4f8d1085e5f28f9c3f759a1dcde"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/app.log",
+    "path": "native/run/app.log.gz",
+    "bytes": 48,
+    "sha256": "0cce862dc4913be2cce3fd531146652899fa528e6bef4c0cc05a1632efdac18e",
+    "stored_sha256": "94e4dd023a62bec4d641e8996e9d854e58601c954020cf040c1f0e0191cf7866"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/cloned-moved.kernspan",
+    "path": "native/run/cloned-moved.kernspan",
+    "bytes": 7284,
+    "sha256": "8e5bd0ad7134654880912c816c9ab91d95fcb5ace4667554d4e49cecf07f4478",
+    "stored_sha256": "8e5bd0ad7134654880912c816c9ab91d95fcb5ace4667554d4e49cecf07f4478"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/cloned-moved.mbse-views.json",
+    "path": "native/run/cloned-moved.mbse-views.json",
+    "bytes": 5328,
+    "sha256": "3e338dce3bab7e692fba39f5b29b400cb38b480afef582229899a6aad3b330e3",
+    "stored_sha256": "3e338dce3bab7e692fba39f5b29b400cb38b480afef582229899a6aad3b330e3"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/events.jsonl",
+    "path": "native/run/events.jsonl.gz",
+    "bytes": 6300,
+    "sha256": "b4598bb70d3798f952d27e8ac57a2eb21763b9a8c517314e317a2f6975d6686d",
+    "stored_sha256": "3de30ddda72f3e93c0637685b47142c431a23361da0ec2df4c53eb6f3bb7c656"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/state/ui-geometry.json",
+    "path": "native/run/state/ui-geometry.json",
+    "bytes": 70119,
+    "sha256": "2f25e30678134c92ced1054dcb2d60e3f60f2a724c276c7a0e2053509aadc5f6",
+    "stored_sha256": "2f25e30678134c92ced1054dcb2d60e3f60f2a724c276c7a0e2053509aadc5f6"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run/xvfb.log",
+    "path": "native/run/xvfb.log.gz",
+    "bytes": 1321,
+    "sha256": "00971f516769b092bd50063ca4a82f63a4395d9ed9ff57eab62626162f51b9ed",
+    "stored_sha256": "fdda054423b6f7162c79062d661ff1e7c458c6fd848bc9913bbe480d6a657d81"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p20-01/run-driver.log",
+    "path": "native/run-driver.log.gz",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+  }
+]

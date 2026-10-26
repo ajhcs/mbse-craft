@@ -1,0 +1,28 @@
+{
+  "reviewer": "Codex, same implementing agent",
+  "independent_review": false,
+  "result": "bounded_P20_clone_move_preview_and_native_recovery_passed",
+  "source_files": 702,
+  "workspace_tests": 465,
+  "new_tests": 8,
+  "native_runs": 2,
+  "action_errors": 0,
+  "pixels_reviewed": [
+    "native/run/07-partial-move-refuses-connector-boundary.png",
+    "native/reopen/12-cold-clone-move-form-without-preview-authority.png"
+  ],
+  "observations": [
+    "Clone preview maps1004/1006/1009/1010/1018/1019 to fresh1021..1026; Prepare/Cancel keep entire source snapshot hash and allocator unchanged; name edit stales old preview and Apply refuses",
+    "Actual clone remaps owned property/usages/connectors and copied override to new identities, shares Device1007/interfaces/Value1005 as explicit external targets and leaves incomingReference1011 on originalSubsystem1004",
+    "ModelUndo removes clone; Redo restores exact IDs and accepted name while preserving newer Future clone name raw text; allocation remains monotonic",
+    "SinglePart1009 move toowner1008 blocks on boundary connectors1018/1019 without accepted mutation. Moving1009 and1010 together atomically changes both usage and connector owners, retaining all IDs, explicit values, cloned fragment and original qualified routes",
+    "Actual captured native/views4 Save and cold second Save reproduce complete native snapshot with next_id1027; source core records,9e draft,2.5km calculation, every preexisting raw form and all source occurrence/port/route maps stay exact",
+    "Cold form persists but preview authority is absent; old native API plans refuse foreign instance; two normal app/display exits, input hashes unchanged and owned process/auth cleanup verified"
+  ],
+  "limits": [
+    "Same-agent bounded Linux typed definition/member clone and usage/enclosed-connector move only; no native-core/System-membership-as-containment or full SysML/NoMagic/Craft/platform/independent engineering claim",
+    "Raw source forms retained, not copied to new identities; presentation retained, not automatically cloned or retargeted",
+    "Native fields outside typed reference scope and opaque namespaces retained without reinterpretation; no exhaustive global reference verdict",
+    "Clone128-member/move64-usage limits plus existing native/extension count/byte budgets; all56 broad parity specifications remain NOT_RUN"
+  ]
+}
