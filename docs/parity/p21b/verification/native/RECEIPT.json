@@ -1,0 +1,238 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-26T22:59:52.154284+00:00",
+  "job_sha256": "61270f88bd01fb3d64d8bd6ac357d92e39317bbaf36968a94d699b7fad8eb87d",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p21b-02/run",
+      "started_utc": "2026-10-26T22:59:52.175192+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 100403,
+          "start_ticks": 42994311
+        },
+        "server_pid": {
+          "pid": 100400,
+          "start_ticks": 42994309
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/repos/builderbob/mbse-craft/work/m4-p21b-native-deletion/docs/parity/p21b/fixtures/controlled.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 100403,
+        "server_pid": 100400,
+        "window": 4194307,
+        "binary_sha256": "199dd24d3e8048a84de75b724ec0d67c8e303b542069318ff99ebe45c54e5f26"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-26T23:03:14.270342+00:00",
+      "owned_processes_absent": true
+    },
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p21b-02/reopen",
+      "started_utc": "2026-10-26T23:03:14.291628+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 112262,
+          "start_ticks": 43014523
+        },
+        "server_pid": {
+          "pid": 112259,
+          "start_ticks": 43014521
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/build/builderbob/mbse-craft/milestone1/native-p21b-02/run/native-deleted.kernspan",
+        "--select",
+        "1002"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 112262,
+        "server_pid": 112259,
+        "window": 4194307,
+        "binary_sha256": "199dd24d3e8048a84de75b724ec0d67c8e303b542069318ff99ebe45c54e5f26"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-26T23:03:48.148747+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-26T22:59:52.174944+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1409921527808,
+    "available_memory_bytes": 26965082112,
+    "conflicting_processes": [],
+    "other_project_compilers": [
+      {
+        "pid": 94698,
+        "comm": "cargo",
+        "cwd": "/workspace/worktrees/builderbob/kernspan/b06-keyboard-coverage",
+        "output_dirs": []
+      },
+      {
+        "pid": 100388,
+        "comm": "rustc",
+        "cwd": "/workspace/worktrees/builderbob/kernspan/b06-keyboard-coverage",
+        "output_dirs": [
+          "/workspace/repos/builderbob/kernspan/work/b06-keyboard-coverage/build/target/debug/deps"
+        ]
+      }
+    ],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 584
+      },
+      {
+        "pid": 2912202,
+        "start_ticks": 40560687,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "native_bound_sidecar_explicitly_hash_loaded": true,
+  "two_view_native_owner_edges_authored_and_saved": true,
+  "prepare_cancel_keeps_model_and_views_exact": true,
+  "last_system_delete_refused": true,
+  "native_calculation_owner_delete_keeps_typed_meaning_and_raw_forms": true,
+  "undo_exact_native_record_calculation_occurrence_edge_restoration": true,
+  "redo_detaches_exact_presentations_and_keeps_invalid_form": true,
+  "preflight_cold": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-26T23:03:14.291307+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1409745022976,
+    "available_memory_bytes": 27836297216,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 583
+      },
+      {
+        "pid": 2912202,
+        "start_ticks": 40560687,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "captured_native_views4_cold_whole_snapshot_equal": true,
+  "cold_detached_native_and_typed_views_exact": true,
+  "cold_preview_and_history_absent": true,
+  "action_errors": [
+    {
+      "action": "r=n2.audit()['widgets']['views:Open views']; n2.send(op='click',x=int(r[0]-100),y=int((r[1]+r[3])/2)); n2.send(op='key',key='a',mods=['Control_L']); n2.send(op='text',text=str(final_path.with_suffix('.mbse-views.json'))); n2.click('views:Open views'); assert n2.audit()['views_occurrence_navigation']['document_sha256']==base.digest(final_path.with_suffix('.mbse-views.json')); n2.send(op='key',key='g',mods=['Control_L','Alt_L']); assert n2.audit()['deletion']['form']=={'ids':'1003?','cascade':True} and n2.audit()['deletion']['summary'] is None and not n2.audit()['deletion']['applicable']; n2.capture('11-cold-native-invalid-form-no-preview'); n2.click('delete:undo-model'); n2.click('delete:close'); n2.clear_adjacent_views_path(); cold=n2.save('cold-native-deleted.kernspan'); cv=json.loads((n2.run/'cold-native-deleted.mbse-views.json').read_text()); assert cold==final and all(cv[k]==fv[k]for k in ['occurrences','edges','typed_ports','connector_edges']); receipt.update(captured_native_views4_cold_whole_snapshot_equal=True,cold_detached_native_and_typed_views_exact=True,cold_preview_and_history_absent=True); n2.close(); receipt['preflight_original_hold']=check.local_preflight(); original_path=Path.cwd()/'docs/parity/p21a/fixtures/refactored.kernspan'; n3=type(n)(Path(j['binary']),output/'original-hold',['--open',str(original_path),'--select','1003'],receipt['runs'])",
+      "error": "ValueError('Existing compiler/native process requires coordination: [{\"pid\": 112424, \"comm\": \"cargo\", \"cwd\": \"/workspace/worktrees/builderbob/kernspan/b06-keyboard-coverage\", \"output_dirs\": []}, {\"pid\": 112439, \"comm\": \"rustc\", \"cwd\": \"/workspace/worktrees/builderbob/kernspan/b06-keyboard-coverage\", \"output_dirs\": [\"/workspace/repos/builderbob/kernspan/work/b06-keyboard-coverage/build/target/debug/deps\"]}]')"
+    },
+    {
+      "action": "r=n3.audit()['widgets']['views:Open views']; n3.send(op='click',x=int(r[0]-100),y=int((r[1]+r[3])/2)); n3.send(op='key',key='a',mods=['Control_L']); n3.send(op='text',text=str(original_path.with_suffix('.mbse-views.json'))); n3.click('views:Open views'); assert n3.audit()['views_occurrence_navigation']['document_sha256']==base.digest(original_path.with_suffix('.mbse-views.json')); original=json.loads(original_path.read_text())['snapshot']; ov=json.loads(original_path.with_suffix('.mbse-views.json').read_text()); n3.send(op='key',key='g',mods=['Control_L','Alt_L']); n3.fill('delete:field:ids','1003'); assert n3.audit()['deletion']['form']['ids']=='1003'; n3.click('delete:cascade'); held=n3.audit()['snapshot_hash']; n3.click('delete:prepare'); a=n3.audit()['deletion']; assert not a['applicable'] and not a['summary']['complete_supported_reference_inventory'] and any('opaque.p14.future'in s for s in a['summary']['unknown']['locations']); n3.click('delete:apply'); assert n3.audit()['snapshot_hash']==held; n3.capture('12-native-root-unknown-impact-hold'); n3.click('delete:cancel'); assert n3.audit()['snapshot_hash']==held; n3.click('delete:close'); n3.clear_adjacent_views_path(); kept=n3.save('original-native-held.kernspan'); kept_views=json.loads((n3.run/'original-native-held.mbse-views.json').read_text()); assert kept['records']==original['records'] and kept['extensions']['namespaces']['mbse-craft.types/1']==original['extensions']['namespaces']['mbse-craft.types/1'] and all(kept_views[k]==ov[k]for k in ['occurrences','edges','typed_ports','connector_edges']); assert all(base.digest(Path(p))==h for p,h in j['inputs'].items()); receipt.update(original_native_unknown_metadata_blocks_delete=True,original_cancel_and_captured_save_preserve_accepted_data_and_all_views=True,all_frozen_inputs_unchanged=True); n3.close(); receipt['authentication_files_absent']=not any(output.rglob('*.Xauthority'))",
+      "error": "NameError(\"name 'n3' is not defined\")"
+    }
+  ],
+  "all_frozen_inputs_unchanged": true,
+  "original_hold_not_run_due_fresh_preflight": true,
+  "held_remainder": "Original native-root opaque-impact check not launched: fresh default preflight observed kernspan cargo112424/rustc112439. Subsequent queued action had no n3 instance and failed NameError; both errors retained, no application interruption or acceptance claim for this remainder.",
+  "authentication_files_absent": true,
+  "ended_utc": "2026-10-26T23:04:57.975188+00:00"
+}

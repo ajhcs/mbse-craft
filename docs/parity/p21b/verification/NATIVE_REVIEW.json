@@ -1,0 +1,40 @@
+{
+  "reviewer": "Codex, same implementing agent",
+  "independent_review": false,
+  "result": "partial_positive_native_delete_passed_original_source_hold_remainder_pending",
+  "source_files": 706,
+  "full_suite_tests": 483,
+  "new_model_tests": 7,
+  "final_renderer_passes": 1,
+  "counts_not_summed": true,
+  "native_runs": 3,
+  "final_positive_runs": 2,
+  "final_original_hold_runs": 0,
+  "original_source_remainder_pending": true,
+  "raw_positive_controller_errors": 2,
+  "observations": [
+    "Full engine closure passed483 tests/build. Only ui.rs footer string changed afterward; final renderer test/build passed and final native binary used.",
+    "Original-source native-root opaque-impact remainder NOT_RUN: fresh default host admission currently holds on unrelated kernspan Cargo jobs; no original-source P21b native acceptance claimed.",
+    "Actual UI attaches Measure1003 ->Objective1002 owner edge18 occurrence7->6 view1; reusesMeasure occurrence19 andObjective20 inview2 and attachesedge21. Actual native Save before deletion equals entire source Snapshot.",
+    "Native Prepare1003 lists one accepted record/calculation owner and occurrences7/19/edges18/21; Cancel exact model/views. Last System deletion refuses.",
+    "Apply detaches exact native occurrence/edge records while all prior typed ports/routes/values/members and native/creation journals remain exact; next_id1027. Undo actual Save restores source native records/calculation and entire original active occurrence/edge/typed maps. Redo actual Save retains exact detached state and newer1003? form.",
+    "Actual captured native/views4 and cold second Save equal entire final Snapshot and all presentation maps. Cold preview/history absent. Original frozen inputs unchanged; three normal app/display exits and process/auth cleanup."
+  ],
+  "retained_attempts": [
+    "One zero-test renderer compile failure fixed by retaining cloned form.",
+    "Initial rendered controls inspection identified old Semantic Delete unavailable footer. Corrected actual ui.rs text; no engine change.",
+    "First attempted footer edit targeted wrong file and asserted; shell continued with unchanged full-suite job03. Stopped only verified owned Cargo/test PIDs96765/97712.244 partial duplicate passes retained but never counted as acceptance. Committed erratum and fail-fast correction.",
+    "Native pixel clicks initially toggled an Objective pin and later missed Attach; layout Undo restored pin before authoring correct edges. Actual saved source occurrences verified below; recorded actions retained, no semantic work lost.",
+    "After positive/cold acceptance, fresh default admission held original-source remainder on unrelated kernspan compiler; queued n3 action NameError occurred because no instance launched. Both errors retained. Two further default admissions held before launch, empty output directories and transcribed tool failures retained; sandbox /proc observation was insufficient, host admission authoritative."
+  ],
+  "pixels_reviewed": [
+    "initial-inspection/run/00-native-bound-presentation-controls.png",
+    "native/run/03-view1-native-owner-edge.png"
+  ],
+  "limits": [
+    "Same-agent bounded native/typed dependency deletion; no full SysML/NoMagic/Craft/platform/independent engineering acceptance. All56 broad specs NOT_RUN.",
+    "Calculation-consumer chains, stakeholder/expectation/actor/organization links, owned Context and multi-System cascade qualified by model tests; native rendered workflow deletes existing calculation owner.",
+    "Fixed explicit dependent deletion policy, not unlinking or arbitrary opaque-reference interpretation. Last System and unknown impact block. Existing review/count/byte budgets apply.",
+    "P21a/P21b completion qualifies P21 position only; M04 integrated milestone exit remains unaccepted."
+  ]
+}

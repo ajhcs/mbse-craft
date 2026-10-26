@@ -11,10 +11,10 @@
     "/workspace/worktrees/builderbob/mbse-craft",
     "/workspace/build/builderbob/mbse-craft/milestone1"
   ],
-  "id": "p21b-native-core-delete-undo-cold",
-  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p21b-native-deletion-02-20261026T225609Z/mbse-desktop",
-  "binary_sha256": "f26f77b4a184515b6db1169074813f3ecaf2df7c056dabeda7a58e6e9951c169",
-  "source_sha256": "67f79f2c9c76aea39fd5cfbe59a5fb2207a13aa27e87fea5a255ed2574ca0e7c",
+  "id": "p21b-native-core-delete-after-canvas-correction",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p21b-canvas-message-04-20261026T225928Z/mbse-desktop",
+  "binary_sha256": "199dd24d3e8048a84de75b724ec0d67c8e303b542069318ff99ebe45c54e5f26",
+  "source_sha256": "493603c43b849e0eb99e4d9af09e3d6e26cf0e0d2bfb66cd77d6908774a85eb5",
   "inputs": {
     "/workspace/repos/builderbob/mbse-craft/work/m4-p21b-native-deletion/docs/parity/p21b/fixtures/PROVENANCE.json": "60f5745717621ea75b856ac80790f5035c76b138057442baaf0194fcfd8e0bcf",
     "/workspace/repos/builderbob/mbse-craft/work/m4-p21b-native-deletion/docs/parity/p21b/fixtures/controlled.kernspan": "31f79134057415fc3847e2cab2795c94cff90aa3dbb62d9a84471fbf214a7bca",
@@ -22,7 +22,7 @@
     "/workspace/repos/builderbob/mbse-craft/work/m4-p21b-native-deletion/docs/parity/p21a/fixtures/refactored.kernspan": "e834399ddebc22c392af17f01e761bb8d591f69f5cbe0852608877e10635bd7b",
     "/workspace/repos/builderbob/mbse-craft/work/m4-p21b-native-deletion/docs/parity/p21a/fixtures/refactored.mbse-views.json": "799d826e4ae8179762298673dcea9fffd96b843f124827b316432517c2811b03"
   },
-  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p21b-01",
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p21b-02",
   "argv_extra": [
     "--open",
     "/workspace/repos/builderbob/mbse-craft/work/m4-p21b-native-deletion/docs/parity/p21b/fixtures/controlled.kernspan",
