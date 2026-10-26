@@ -109,7 +109,7 @@ fn reference(text: &str) -> Result<Id, String> {
     }
     Ok(Id(id))
 }
-fn references(s: &Store) -> Vec<Reference> {
+pub(super) fn references(s: &Store) -> Vec<Reference> {
     let mut rows = Vec::new();
     let mut add = |owner, role: &str, target| {
         rows.push(Reference {

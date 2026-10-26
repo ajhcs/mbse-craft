@@ -978,6 +978,8 @@ impl Views {
     ) -> Result<NativeOutcome, String> {
         self.check(editor, stamp)?;
         self.document.validate(&editor.snapshot)?;
+        let mut action=action;
+        if let NativeAction::Command(Command::Typed(crate::types::Action::Deletion(crate::types::deletion::Action::Apply(plan))))=&mut action{plan.admit_views(editor,self)?;}
         let mut candidate = editor.clone();
         let undo = matches!(&action, NativeAction::ModelUndo);
         let redo = matches!(&action, NativeAction::ModelRedo);
@@ -1011,13 +1013,13 @@ impl Views {
                 o.presence = Presence::Detached {
                     reason: "Native target removed by model history".into(),
                 };
-                if undo {
+                if proof.before!=proof.after {
                     proofs.insert(o.id.0, proof.clone());
                 }
             } else if !o.presence.active()
                 && resolves
-                && redo
-                && matches_redo(proofs.get(&o.id.0), &proof)
+                && (undo||redo)
+                && matches_inverse(proofs.get(&o.id.0), &proof)
             {
                 o.presence = Presence::Active;
                 proofs.remove(&o.id.0);
@@ -1039,13 +1041,13 @@ impl Views {
                 edge.presence = Presence::Detached {
                     reason: "Native relation or endpoint no longer present".into(),
                 };
-                if undo {
+                if proof.before!=proof.after {
                     proofs.insert(edge.id.0, proof.clone());
                 }
             } else if !edge.presence.active()
                 && resolves
-                && redo
-                && matches_redo(proofs.get(&edge.id.0), &proof)
+                && (undo||redo)
+                && matches_inverse(proofs.get(&edge.id.0), &proof)
             {
                 edge.presence = Presence::Active;
                 proofs.remove(&edge.id.0);
@@ -1131,7 +1133,7 @@ impl Views {
         })
     }
 }
-fn matches_redo(prior: Option<&HistoryProof>, current: &HistoryProof) -> bool {
+fn matches_inverse(prior: Option<&HistoryProof>, current: &HistoryProof) -> bool {
     prior.is_some_and(|p| {
         p.instance == current.instance && p.before == current.after && p.after == current.before
     })
