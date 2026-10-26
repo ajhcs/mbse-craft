@@ -522,6 +522,7 @@ impl ViewWorkspace {
             self.drag = None;
         }
     }
+    pub fn clear_toolbar_bounds(&mut self) { self.toolbar_bounds.clear(); }
     pub fn toolbar_bounds(&self) -> impl Iterator<Item = (String, [f32; 4])> + '_ {
         self.toolbar_bounds.iter().map(|(k, v)| (k.clone(), *v))
     }

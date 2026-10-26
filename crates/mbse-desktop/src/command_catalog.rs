@@ -26,6 +26,7 @@ pub enum Id {
     Library,
     Settings,
     Shortcuts,
+    Panels,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Surface {
@@ -179,6 +180,7 @@ pub const ALL: &[Spec] = &[
         ALT,
         Comma
     ),
+    spec!(Panels, "view.panels", "Panel layout", "View", ALT, P),
 ];
 impl Id {
     pub fn spec(self) -> &'static Spec {

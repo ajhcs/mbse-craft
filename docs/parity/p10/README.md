@@ -1,6 +1,6 @@
 # P10: scoped, persistent shortcut configuration
 
-Draft review: [PR #13](https://github.com/ajhcs/mbse-craft/pull/13).
+Reviewed and merged: [PR #13](https://github.com/ajhcs/mbse-craft/pull/13), merge `0dd5051b8532a58b9f0e9ac01ab5df3cf6727968`. See [follow-up review](REVIEW_FOLLOWUP.md); historical receipts below retain original execution scope.
 
 P09 [PR #12](https://github.com/ajhcs/mbse-craft/pull/12) was reviewed in isolated
 `codex/review-p09` with no additional actionable finding, then merged at

@@ -1,0 +1,31 @@
+{
+  "schema": "mbse-craft.p11-native-review/1",
+  "reviewer": "Codex, same implementing agent",
+  "independent_review": false,
+  "result": "bounded_P11_scenarios_passed",
+  "raw_receipt_status": "actions_completed_review_pending",
+  "native_runs": 2,
+  "retained_action_errors": 1,
+  "corrected_oracle": "Initial assertion used in-memory pre-save digest; opened persisted views digest equals exact final file SHA; baseline and final sidecar JSON entirely equal. Original assertion error retained, no app/test replay.",
+  "pixels_reviewed": [
+    "run/02-floating-invalid-draft.png",
+    "run/03-live-tab-drop-preview.png",
+    "run/06-escape-preserves-docking.png",
+    "reopen/09-reopen-native-views-draft.png"
+  ],
+  "observations": [
+    "Float retains raw9e, accepted95metre, derived2.5km, selected1003, native snapshot and views history",
+    "Real pointer tab drag shows preview and moves Inspector into Browser tabgroup with every panel exactly once",
+    "Switching tabs retains contents; Escape cancels real pending drag without layout/revision/content publication",
+    "Split restores all three stable body IDs; final native snapshot equals baseline; final views JSON entirely equals baseline",
+    "Fresh app opens final native and exact persisted views digest with empty detached runtime history; raw draft visible",
+    "Two app/display runs close normally, exact owned PID identities absent and authentication files removed"
+  ],
+  "limits": [
+    "Same-agent Linux private Xvfb only, no independent/platform/domain acceptance",
+    "Floating egui areas inside one viewport, not native OS windows",
+    "Whole floating-group grip moves existing group; whole-group docking on release is not implemented; individual tabs dock normally",
+    "P12 owns arrangements across restart and reset/off-screen/corrupt settings",
+    "Initial failed focus regression and prelaunch script-hash rejection retained separately; no failed attempts relabeled as passes"
+  ]
+}

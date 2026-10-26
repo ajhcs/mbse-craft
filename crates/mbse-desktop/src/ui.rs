@@ -3,6 +3,8 @@
 mod workspace_commands;
 #[path = "ui_shortcuts.rs"]
 mod shortcut_editor;
+#[path = "ui_docking.rs"]
+mod panel_docking;
 use crate::preferences::Preferences;
 use craft_ui::{
     buttons::{ButtonVisuals, IconButton, IconButtonStyle},
@@ -58,6 +60,8 @@ pub struct Workspace {
     preferences: Preferences,
     settings_window: bool,
     shortcuts: crate::shortcuts::Editor,
+    docking: crate::docking::WorkspaceDock,
+    docking_focus: Option<(egui::Id,RawKey,mbse_model::stage1::Freshness,u8)>,
     periodic_recovery: crate::periodic_recovery::PeriodicRecovery,
     feedback: String,
     error: bool,
@@ -130,7 +134,7 @@ impl Workspace {
         let shortcuts=crate::shortcuts::Editor::new(&preferences.value.shortcut_overrides);
         let views = crate::views_ui::ViewWorkspace::new(&session);
         let periodic_recovery = crate::periodic_recovery::PeriodicRecovery::new(Instant::now(), &session, &views);
-        let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,shortcuts,periodic_recovery, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
+        let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,shortcuts,docking:Default::default(),docking_focus:None,periodic_recovery, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
             creation: None, relation: None, popout: None, usages: None, impact_open:false,impact_target:None,impact_report:None,impact_note:String::new(), search_open:false, search_query:Default::default(), search_report:None, search_note:String::new(), browser_revealed:None,browser_open_groups:BTreeMap::new(), pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new(), menu_scope:None, last_workspace_command:None };
         app.refresh_recoveries();
         app
@@ -703,9 +707,8 @@ impl Workspace {
         self.browser_revealed=selected;
         selected.and_then(|id|self.session.editor.snapshot.records.get(&id).map(|record|record.scope))
     }
-    fn sidebar(&mut self, root: &mut egui::Ui) {
-        egui::Panel::left("model_navigation").default_size(338.).size_range(290. ..=420.).resizable(true).show(root, |ui| {
-            egui::ScrollArea::vertical().show(ui, |ui| {
+    fn browser_body(&mut self, ui:&mut egui::Ui) {
+        egui::ScrollArea::vertical().id_salt("native-browser-scroll").show(ui,|ui| {
                 ui.heading("Model");
                 self.workspace_button(ui,crate::command_catalog::Id::Search,&self.history_scope());
                 let records: Vec<_> = self.session.editor.snapshot.records.values().cloned().collect();
@@ -727,6 +730,12 @@ impl Workspace {
                     },
                     Err(error)=>{ui.colored_label(ERROR,format!("Native membership unavailable: {error}. Model retained."));}
                 }
+        });
+    }
+    fn inspector_body(&mut self, ui:&mut egui::Ui) {
+        egui::ScrollArea::vertical().id_salt("native-inspector-scroll").show(ui,|ui| {
+            let records:Vec<_>=self.session.editor.snapshot.records.values().cloned().collect();
+            let selected=self.session.editor.selected;
                 ui.separator();
                 if let Some(record) = selected.and_then(|id| records.iter().find(|r| r.id == id)).cloned() {
                     ui.label(RichText::new(format!("{} #{}", record.kind.label(), record.id.0)).color(ACCENT));
@@ -752,7 +761,6 @@ impl Workspace {
                     }
                 });
                 ui.label(RichText::new("Select an Objective to Add Measure; select a Stakeholder to Add Expectation.").small());
-            });
         });
     }
     fn inspector(&mut self, ui: &mut egui::Ui, record: &Record, records: &[Record]) {
@@ -1350,8 +1358,7 @@ impl Workspace {
             }
         }
     }
-    fn canvas(&mut self, root: &mut egui::Ui) {
-        egui::CentralPanel::default().show(root, |ui| {
+    fn canvas_body(&mut self, ui: &mut egui::Ui) {
             ui.heading("Native views");
             let scope=self.history_scope();
             ui.horizontal_wrapped(|ui| {
@@ -1440,8 +1447,8 @@ impl Workspace {
                         ui.label("Add records and typed links to populate the relation ledger.");
                     }
                 });
-        });
     }
+
     fn settings_dialog(&mut self, ctx: &egui::Context) {
         if !self.settings_window {
             return;
@@ -1947,14 +1954,14 @@ impl eframe::App for Workspace {
         });
         self.frame_header(root);
         self.toolbar(root);
-        self.sidebar(root);
-        self.canvas(root);
+        self.dock_surface(root);
         self.dialogs(&ctx);
         self.show_usages(&ctx);
         self.show_impact(&ctx);
         self.show_search(&ctx);
         self.views.show_inspection(&ctx, &self.session);
         self.shortcut_dialog(&ctx);
+        self.docking_dialog(&ctx);
         self.audit.extend(self.views.toolbar_bounds());
         self.capture(&ctx);
         self.catalog.show(&ctx);
@@ -1969,6 +1976,7 @@ impl eframe::App for Workspace {
         if let Some(fields) = audit.as_object_mut() {
             fields.insert("command_catalog".into(),self.command_audit());
             fields.insert("shortcut_configuration".into(),self.shortcut_audit());
+            fields.insert("workspace_docking".into(),self.docking.audit());
             fields.insert("views_inspection_profile".into(), serde_json::json!(self.views.inspection_profile()));
             fields.insert("views_inspection_copy_origin".into(), self.views.inspection_copy_origin());
         }

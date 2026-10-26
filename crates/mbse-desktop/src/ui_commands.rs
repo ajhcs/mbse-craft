@@ -8,6 +8,8 @@ impl Workspace {
             || self.assurance.is_visible()
             || self.exchange.is_visible()
             || self.shortcuts.open
+            || self.docking.window
+            || self.docking_chrome_focused()
         {
             return ShortcutTarget::Widget;
         }
@@ -209,6 +211,7 @@ impl Workspace {
             Id::External => self.exchange.open(&self.path),
             Id::Assurance => self.assurance.open_window(),
             Id::Library => self.catalog.open(&self.path),
+            Id::Panels => {self.docking.window=true;},
             Id::Shortcuts => {
                 self.shortcuts.open = true;
             }
@@ -472,14 +475,14 @@ mod tests {
     #[test]
     fn command_ids_defaults_and_menu_groups_are_unique_and_complete() {
         use std::collections::BTreeSet;
-        assert_eq!(catalog::ALL.len(), 22);
+        assert_eq!(catalog::ALL.len(), 23);
         assert_eq!(
             catalog::ALL
                 .iter()
                 .map(|s| s.key)
                 .collect::<BTreeSet<_>>()
                 .len(),
-            22
+            23
         );
         assert_eq!(
             catalog::ALL
@@ -487,7 +490,7 @@ mod tests {
                 .map(|s| s.id)
                 .collect::<BTreeSet<_>>()
                 .len(),
-            22
+            23
         );
         for (i, s) in catalog::ALL.iter().enumerate() {
             assert!(catalog::MENUS.contains(&s.menu));
@@ -810,7 +813,7 @@ mod tests {
                 assert!(!app.session.pending());
             }
             assert!(!dest.exists());
-            assert_eq!(app.command_audit()["items"].as_array().unwrap().len(), 22);
+            assert_eq!(app.command_audit()["items"].as_array().unwrap().len(), 23);
         }
     }
 }
