@@ -253,6 +253,25 @@ impl Workspace {
                 }
             }
         }
+        // eframe calls update before ui: let queued editing input reach the current
+        // editor before deciding that an already-ready candidate is still current.
+        if self.files.pending()
+            && self.context.input(|i| {
+                i.events.iter().any(|event| {
+                    matches!(
+                        event,
+                        egui::Event::Text(_)
+                            | egui::Event::Paste(_)
+                            | egui::Event::Cut
+                            | egui::Event::Key { pressed: true, .. }
+                            | egui::Event::PointerButton { pressed: true, .. }
+                            | egui::Event::MouseWheel { .. }
+                    )
+                })
+            })
+        {
+            return;
+        }
         let Some(pending) = self.files.read.take() else {
             return;
         };
@@ -623,5 +642,41 @@ mod tests {
         assert!(a.files.rows.is_empty());
         a.files.open = false;
         assert!(!a.files.pending());
+    }
+    #[test]
+    fn queued_frame_edit_is_processed_before_a_ready_background_result_can_publish() {
+        let (area, mut a) = app();
+        let tx = pending(&mut a);
+        tx.send(Ok(Session::new(area.path()).unwrap()))
+            .ok()
+            .unwrap();
+        let old = a.session.editor.snapshot.document_id.clone();
+        let ctx = a.context.clone();
+        ctx.run_ui(
+            egui::RawInput {
+                events: vec![egui::Event::Text("9e".into())],
+                ..Default::default()
+            },
+            |_| {
+                a.poll_file_ops();
+                assert!(a.files.pending());
+                assert_eq!(a.session.editor.snapshot.document_id, old);
+                a.command(Command::EditText {
+                    key: RawKey {
+                        record: RecordId(301),
+                        field: "criterion".into(),
+                        item: None,
+                    },
+                    text: "9e".into(),
+                });
+            },
+        )
+        .drop_without_applying_deltas();
+        let edited = state(&a);
+        ctx.run_ui(egui::RawInput::default(), |_| a.poll_file_ops())
+            .drop_without_applying_deltas();
+        assert_eq!(a.files.outcome, "stale");
+        assert_eq!(state(&a), edited);
+        assert_eq!(a.session.editor.snapshot.document_id, old);
     }
 }
