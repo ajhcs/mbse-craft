@@ -832,7 +832,7 @@ struct TextState {
     unit_context: Option<String>,
 }
 
-#[derive(Clone,Debug)]
+#[derive(Clone,Debug,PartialEq)]
 struct ModelState{records:BTreeMap<RecordId,Record>,extensions:Option<crate::extensions::Extensions>}
 impl ModelState{fn capture(snapshot:&Snapshot)->Self{Self{records:snapshot.records.clone(),extensions:crate::types::accepted_extensions(&snapshot.extensions)}}}
 
