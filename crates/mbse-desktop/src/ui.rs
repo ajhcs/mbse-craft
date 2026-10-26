@@ -2026,6 +2026,7 @@ impl eframe::App for Workspace {
             fields.insert("refactor".into(),self.refactor_audit());
             fields.insert("deletion".into(),self.deletion_audit());
             fields.insert("profile_tags".into(),self.profile_tags_audit());
+            fields.insert("requirements_authoring".into(),self.assurance.authoring_audit());
             fields.insert("views_inspection_profile".into(), serde_json::json!(self.views.inspection_profile()));
             fields.insert("views_inspection_copy_origin".into(), self.views.inspection_copy_origin());
         }

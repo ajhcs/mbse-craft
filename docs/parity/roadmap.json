@@ -522,13 +522,15 @@
       "acceptance": [
         "Namespace/version mismatches stay unknown or refuse; tags round-trip; custom domain records are not silently reclassified."
       ],
-      "state": "reviewed_ready_to_merge",
+      "state": "merged",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "branch": "codex/m4-p22-profile-tags",
       "execution_results": "docs/parity/p22/README.md",
       "pr_url": "https://github.com/ajhcs/mbse-craft/pull/28",
-      "review_preservation": "docs/parity/p22/REVIEW_PRESERVATION.json"
+      "review_preservation": "docs/parity/p22/REVIEW_PRESERVATION.json",
+      "merge_commit": "24cb464749e82f28f6199a4a2341ced21bfae421",
+      "reviewed_head": "23bb4a288c599b79cf018416b6f200f7c7655a54"
     },
     {
       "id": "P23",
@@ -540,9 +542,10 @@
       "acceptance": [
         "Duplicate IDs and parent cycles refuse; invalid statements persist as drafts; maturity, implementation and verification remain independent."
       ],
-      "state": "planned",
+      "state": "in_progress",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "branch": "codex/m5-p23-requirement-hierarchy"
     },
     {
       "id": "P24",

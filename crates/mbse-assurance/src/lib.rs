@@ -10,6 +10,9 @@ use std::{
     collections::{BTreeMap, BTreeSet},
     path::{Path, PathBuf},
 };
+mod hierarchy;
+pub use hierarchy::HierarchyRow;
+
 pub const PROFILE: &str = "mbse-craft.requirements-evidence/1";
 pub const MAX_BYTES: usize = 32 * 1024 * 1024;
 pub const MAX_AUDIT_ENTRIES: usize = 20_000;
@@ -78,6 +81,8 @@ pub struct SourceAnchor {
 #[serde(deny_unknown_fields)]
 pub struct Requirement {
     pub id: RequirementId,
+    #[serde(default,skip_serializing_if="Option::is_none")]
+    pub parent:Option<RequirementId>,
     pub statement: String,
     pub rationale: String,
     pub source: String,
@@ -279,6 +284,7 @@ impl Board {
         &mut self,
         f: impl FnOnce(&mut Register) -> Result<T, String>,
     ) -> Result<T, String> {
+        validate_register(&self.register)?;
         envelope_size(&self.register)?;
         let before = self.register.clone();
         let next_revision = before
@@ -289,7 +295,7 @@ impl Board {
             Ok(v) => {
                 if self.register != before {
                     self.register.revision = next_revision;
-                    if let Err(error) = envelope_size(&self.register) {
+                    if let Err(error) = validate_register(&self.register).and_then(|_|envelope_size(&self.register)) {
                         self.register = before;
                         return Err(error);
                     }
@@ -348,35 +354,7 @@ impl Board {
         })
     }
     pub fn add_requirement(&mut self, statement: String) -> Result<RequirementId, String> {
-        self.transaction(|state| {
-            if state.requirements.len() >= 10_000 {
-                return Err("ASSURANCE_RECORD_LIMIT".into());
-            }
-            if statement.trim().is_empty() {
-                return Err("ASSURANCE_STATEMENT_REQUIRED".into());
-            }
-            let id = RequirementId(state.next_id);
-            state.next_id = state.next_id.checked_add(1).ok_or("ASSURANCE_ID_LIMIT")?;
-            state.drafts.remove("new:statement");
-            state.requirements.insert(
-                id,
-                Requirement {
-                    id,
-                    statement,
-                    rationale: String::new(),
-                    source: String::new(),
-                    owner: String::new(),
-                    user_version: String::new(),
-                    revision: 0,
-                    maturity: Maturity::Draft,
-                    implementation: ImplementationStatus::UnderReview,
-                    verification: VerificationStatus::NotStarted,
-                    anchor: None,
-                    unknown: BTreeMap::new(),
-                },
-            );
-            Ok(id)
-        })
+        self.add_requirement_under(statement,None)
     }
     pub fn edit_field(
         &mut self,
@@ -1055,6 +1033,7 @@ impl Board {
         let bytes = mbse_model::local_input::read(path, MAX_BYTES, "ASSURANCE")?;
         let unique: UniqueValue =
             serde_json::from_slice(&bytes).map_err(|e| format!("ASSURANCE_JSON: {e}"))?;
+        hierarchy::validate_wire_ids(&unique.0)?;
         let env: Envelope = serde_json::from_value(unique.0).map_err(|e| e.to_string())?;
         if env.profile != PROFILE {
             return Err("ASSURANCE_UNSUPPORTED_PROFILE".into());
@@ -1098,6 +1077,7 @@ fn validate_register(s: &Register) -> Result<(), String> {
         }
         max = max.max(id.0);
     }
+    hierarchy::validate(s)?;
     for (id, e) in &s.evidence {
         if *id != e.id
             || id.0 == 0

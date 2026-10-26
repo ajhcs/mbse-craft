@@ -1,0 +1,21 @@
+{
+  "schema": "mbse-craft.milestone5-results/1",
+  "state": "in_progress",
+  "milestone_exit_accepted": false,
+  "full_parity_accepted": false,
+  "p23": {
+    "state": "in_progress",
+    "base_commit": "24cb464749e82f28f6199a4a2341ced21bfae421",
+    "contract": "p23/CONTRACT.md",
+    "authority": "existing mbse-assurance Board; native snapshot and views unchanged"
+  },
+  "remaining_prs": [
+    "P23",
+    "P24",
+    "P25",
+    "P26",
+    "P27",
+    "P28",
+    "P29"
+  ]
+}
