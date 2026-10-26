@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m4-p21b-canvas-message-03",
+  "id": "m4-p21b-canvas-message-04",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m4-p21b-native-deletion",
   "source_manifest": "docs/parity/p21b/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "5cc32a4a687ef090d636b6c1afd6dd7caf24f77a6803fe07c3b75689ca414a2d",
-  "source_sha256": "67f79f2c9c76aea39fd5cfbe59a5fb2207a13aa27e87fea5a255ed2574ca0e7c",
+  "source_manifest_sha256": "6160509a4d329c8be158810803fa21ef54e4d7e854bbcbe98e658b811a917c8d",
+  "source_sha256": "493603c43b849e0eb99e4d9af09e3d6e26cf0e0d2bfb66cd77d6908774a85eb5",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -24,7 +24,9 @@
       "test",
       "--locked",
       "--offline",
-      "--workspace",
+      "-p",
+      "mbse-desktop",
+      "ui::deletion_editor::tests",
       "--",
       "--test-threads=1"
     ],
@@ -38,7 +40,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "P21b adds native dependency cascades using existing Stage1 references/calculation definitions, owned Context inventory, last-System refusal, native inverse view history and captured persistence. Full workspace regression then desktop build; one job/test thread, locked/offline.",
+  "rationale": "483 workspace tests and desktop build passed on native/typed deletion engine. Rendered inspection found stale canvas footer claiming semantic Delete unavailable; only that ui.rs string changes. One existing deletion renderer regression plus build, then unexecuted native acceptance. Do not replay full suite or sum counts. An edit-path assertion failed and shell continued into unchanged job03; verified owned mistaken replay stopped, partial receipt retained and not counted.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",
