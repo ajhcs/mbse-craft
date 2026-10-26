@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m4-p18a-connectors-public-test-api",
+  "id": "m4-p18a-connectors-shortcut-fix",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors",
   "source_manifest": "docs/parity/p18a/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "f23f8b9d85d29ed695d8dc26436f286a0ea0b6089321b313c11ba0fb1045dfd2",
-  "source_sha256": "2eedba64db84bcb8252ce274f74e96cf6bf10a55316f7672c8dabd55b585b599",
+  "source_manifest_sha256": "e8ecedab3110ce43c58eb37dbffbad9c2606fdd7af11e514bcdbbf8eaf6c0ddc",
+  "source_sha256": "32f26058ffb52aef944db0eac662b0c0935a50978add32ae871f78b560d1f244",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -24,7 +24,9 @@
       "test",
       "--locked",
       "--offline",
-      "--workspace",
+      "-p",
+      "mbse-desktop",
+      "ui::workspace_commands::tests",
       "--",
       "--test-threads=1"
     ],
@@ -38,7 +40,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "Part-qualified semantic connectors, exact directed interfaces and conveyed identity, durable independent raw forms and native captured-write preservation. Eight new regression tests; unchanged pinned dependencies/licenses/build scripts inspected.",
+  "rationale": "Linux native CtrlAltC did not reach workspace command; change default to CtrlAltK. Prior440-test semantic/UI closure unchanged except catalog shortcut key. Focused catalog/keyboard dispatch regression plus exact binary build; native remainder from actual saved output-port pair.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",

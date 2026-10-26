@@ -71,7 +71,7 @@ macro_rules! spec {
 }
 pub const MENUS: &[&str] = &["File", "Edit", "View", "Tools"];
 pub const ALL: &[Spec] = &[
-    spec!(Connectors,"tools.connectors","Connectors and conveyed items","Tools",ALT,C),
+    spec!(Connectors,"tools.connectors","Connectors and conveyed items","Tools",ALT,K),
     spec!(Ports,"tools.ports","Ports and interfaces","Tools",ALT,I),
     spec!(Types,"tools.types","Types and properties","Tools",ALT,T),
     spec!(Files,"file.choose","Choose model file…","File",ALT,D),

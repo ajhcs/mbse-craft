@@ -1,0 +1,36 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "796c1ba9dfd08b9ce913113bfc5f434fcb11dc7f592ad6114674b46c429db59d",
+    "scripts/verify-m1-native.py": "ef4e7c2308323b9023f83a15ddb3b9214d27368fd9a34a42b4245ad44f574a39",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "id": "p18a-qualified-connectors-native",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p18a-connectors-public-test-api-20261026T205009Z/mbse-desktop",
+  "binary_sha256": "111bc1c6554fa91ee2d35401821ff45b8c8709071d9a209a820981870937fb4b",
+  "source_sha256": "2eedba64db84bcb8252ce274f74e96cf6bf10a55316f7672c8dabd55b585b599",
+  "inputs": {
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/docs/parity/p18a/fixtures/ports.mbse-views.json": "ce8f58d6a298ea9de1803ac5def1e03c99a4969ae9d1df516e13a1c6d7e79c1b",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/docs/parity/p18a/fixtures/ports.kernspan": "39ced001ccc805049b18439d3ca264cae32b6069a08ae5cf690c92390ac42110"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p18a-01",
+  "argv_extra": [
+    "--open",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/docs/parity/p18a/fixtures/ports.kernspan",
+    "--select",
+    "1003"
+  ],
+  "scenarios": [
+    "Open retained native/views3 pair; create output port1017, semantic connector1018 between Parts1009 and1010",
+    "Exact invalid reference/direction/conveyed text must refuse Apply without accepted mutation",
+    "Model Undo/Redo retain newer raw connector and all prior forms",
+    "Actual captured native/views Save and cold app reopen preserve semantics and all existing presentation records"
+  ],
+  "claim_policy": "Bounded same-agent Linux semantic connector acceptance; visual qualified routing reserved P18b; no full SysML NoMagic or independent acceptance"
+}

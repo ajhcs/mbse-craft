@@ -59,7 +59,7 @@
     {
       "path": "crates/mbse-desktop/src/command_catalog.rs",
       "bytes": 4770,
-      "sha256": "fac5c3a719675602e6ce5367abc5258cb46f594455606526682a1af80b276d60"
+      "sha256": "47fda34b1c946b4d27cabb4085677a423c85a3c1f0f9f74bd9bd6eb23ffab152"
     },
     {
       "path": "crates/mbse-desktop/src/docking.rs",
@@ -3467,5 +3467,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "2eedba64db84bcb8252ce274f74e96cf6bf10a55316f7672c8dabd55b585b599"
+  "source_sha256": "32f26058ffb52aef944db0eac662b0c0935a50978add32ae871f78b560d1f244"
 }
