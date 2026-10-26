@@ -1,0 +1,27 @@
+{
+  "reviewer": "Codex, same implementing agent",
+  "independent_review": false,
+  "result": "bounded_P19_authored_values_and_read_only_previews_passed",
+  "source_files": 699,
+  "workspace_tests": 457,
+  "new_tests": 8,
+  "native_runs": 2,
+  "action_errors": 0,
+  "pixels_reviewed": [
+    "native/run/05-newer-invalid-text-stales-result-without-value-change.png",
+    "native/reopen/11-cold-recompute-ephemeral-preview47.png"
+  ],
+  "observations": [
+    "Actual property1020 belongs to Device1007; default12.5, explicit Part1009 override23; changing default17 updates inheritingPart1010 only",
+    "Pure read-only x*2+1 preview47 uses accepted23 and does not change snapshot hash. Newer exact2e+ form invalidates old result and disabledApply retains accepted23",
+    "Clear override returnsPart1009 to inherited17; modelUndo/Redo restores exact override and keeps newer raw value/expression text. Recompute with invaliddraft uses accepted23, explicitly labeled in UI",
+    "Actual captured native/views4 Save and cold reopen preserve complete native snapshot, prior native fields including9e draft and2.5km calculation, old accepted typed semantic data/raw forms and all original core/qualified-port/connector-edge records",
+    "Derived receipt absent on cold app, accepted origins/form2e+ preserved; cold recompute47 changes no snapshot bytes; cold second Save equals entire snapshot",
+    "Two normal app/display exits, original inputs hash unchanged and owned process/auth cleanup verified"
+  ],
+  "limits": [
+    "Same-agent bounded Linux scalar default/Part override workflow; no independent engineering/full NoMagic/Craft/platform acceptance",
+    "Exact1..1 scalar properties; Boolean/i64/finite Real/Text authored literals, unitless numeric read-only previews only; no collections/nested paths/reference-instance values/unit conversion/solve or full SysML values claim",
+    "UI128 instance choices, private effective audit512 rows; all56 broad parity specifications remain NOT_RUN"
+  ]
+}
