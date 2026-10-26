@@ -1,0 +1,40 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "796c1ba9dfd08b9ce913113bfc5f434fcb11dc7f592ad6114674b46c429db59d",
+    "scripts/verify-m1-native.py": "4e477f78eacdcc32af36c45799d4d50d355b40c0af0636ce5fb8ad9f2f91fb60",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "id": "p12-workspace-perspectives",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m3-p12-workspace-perspectives-20261026T164731Z/mbse-desktop",
+  "binary_sha256": "da3ede6fa3364a2828ad7ff368f3628457c41641313a5a084823cd409ebe4529",
+  "source_sha256": "a59ca18fc9a998c629fcf0d94b4a8d0d0ab6b8803172101d11f2d7c1f2979684",
+  "inputs": {
+    "/workspace/repos/builderbob/mbse-craft/work/m3-p12-workspace-perspectives/docs/parity/p12/fixtures/corrupt.toml": "e4a99a7b1f97a884963bccb0e17d6b1f45ce81f92d66cc7680dc44b0ccf05fa4",
+    "/workspace/repos/builderbob/mbse-craft/work/m3-p12-workspace-perspectives/docs/parity/p12/fixtures/offscreen.toml": "880fcd3816653eb90c7bf20d644e4e4989748c2ad03ed23b863fcaa3cd336404",
+    "/workspace/repos/builderbob/mbse-craft/work/m3-p12-workspace-perspectives/docs/parity/p12/fixtures/original.kernspan": "eefc3606af8a0e31bf8a513f942fc9bbe5122fb1417c5c98789af941cbc1c1fd"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p12-01",
+  "argv_extra": [
+    "--open",
+    "/workspace/repos/builderbob/mbse-craft/work/m3-p12-workspace-perspectives/docs/parity/p12/fixtures/original.kernspan",
+    "--select",
+    "1003",
+    "--config-dir",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p12-01/run/config"
+  ],
+  "scenarios": [
+    "Offscreen startup clamps floating Properties into available workspace",
+    "Save Review perspective, dock and persist tab arrangement",
+    "Fresh app restores persisted arrangement and Review; Reset persists across another launch",
+    "Corrupt payload preserves original config/model/draft while opening defaults"
+  ],
+  "claim_policy": "Same-agent Linux private-display acceptance only. Cold launches copy exact prior saved configuration into each owned writable run; no same-physical-path claim.",
+  "config_seed": "/workspace/repos/builderbob/mbse-craft/work/m3-p12-workspace-perspectives/docs/parity/p12/fixtures/offscreen.toml"
+}

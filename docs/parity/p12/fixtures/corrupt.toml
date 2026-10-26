@@ -1,0 +1,6 @@
+schema_version = 1
+# P12 damaged layout retained
+periodic_recovery = false
+recovery_interval_seconds = 42
+workspace_layout = "{broken"
+future_key = "retained"
