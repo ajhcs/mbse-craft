@@ -321,10 +321,11 @@
       "acceptance": [
         "Containment cycles refuse; moves preserve identity; the browser distinguishes actual containment from System membership."
       ],
-      "state": "implemented_draft_pending_review",
+      "state": "reviewed_ready_to_merge",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
-      "evidence": "docs/parity/p16/README.md"
+      "evidence": "docs/parity/p16/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/19"
     },
     {
       "id": "P17",

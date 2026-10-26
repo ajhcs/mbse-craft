@@ -1,0 +1,22 @@
+diff --git a/crates/mbse-desktop/src/ui_types.rs b/crates/mbse-desktop/src/ui_types.rs
+index ba6e246..c4ebd53 100644
+--- a/crates/mbse-desktop/src/ui_types.rs
++++ b/crates/mbse-desktop/src/ui_types.rs
+@@ -83,7 +83,7 @@ impl Workspace {
+    }
+    ui.separator();ui.label("Parts and references · owner and target use Component definition IDs");
+    let r=ui.button("New usage form (replace current form)");self.bound("types:usage:new",&r);if r.clicked(){usage_choice=Some(Action::SetUsageForm{form:types::UsageForm{id:None,name:String::new(),owner:self.type_panel.selected.map_or(String::new(),|id|id.0.to_string()),target:String::new(),kind:types::UsageKind::Part}});}
+-   for usage in store.usages.values(){let r=ui.button(format!("Edit {:?} #{} · {} · owner#{} → type#{}",usage.kind,usage.id.0,usage.name,usage.owner.0,usage.target.0));self.bound(format!("types:usage:edit:{}",usage.id.0),&r);if r.clicked(){usage_choice=Some(Action::SetUsageForm{form:types::UsageForm{id:Some(usage.id),name:usage.name.clone(),owner:usage.owner.0.to_string(),target:usage.target.0.to_string(),kind:usage.kind}});}}
++   for usage in store.usages.values(){let r=ui.button(format!("Edit {:?} #{} · {} · owner#{} uses type#{}",usage.kind,usage.id.0,usage.name,usage.owner.0,usage.target.0));self.bound(format!("types:usage:edit:{}",usage.id.0),&r);if r.clicked(){usage_choice=Some(Action::SetUsageForm{form:types::UsageForm{id:Some(usage.id),name:usage.name.clone(),owner:usage.owner.0.to_string(),target:usage.target.0.to_string(),kind:usage.kind}});}}
+    if let Ok(Some(mut form))=types::usage_form(&self.session.editor.snapshot){
+     let before=form.clone();ui.label(form.id.map_or("New usage (unallocated)".into(),|id|format!("Usage #{}; editing owner moves this same identity",id.0)));
+     for(label,key,text)in [("Usage name","name",&mut form.name),("Owner definition ID","owner",&mut form.owner),("Target definition ID","target",&mut form.target)]{ui.horizontal(|ui|{ui.label(label);let r=ui.add(egui::TextEdit::singleline(text).id(egui::Id::new(("mbse-usage",&native_instance,key))));self.bound(format!("types:usage:{key}"),&r);});}
+@@ -178,7 +178,7 @@ impl Workspace {
+                     };
+                     let target = &store.definitions[&usage.target];
+                     let r = ui.label(format!(
+-                        "{relation} #{} · {} → {} #{}",
++                        "{relation} #{} · {} uses type {} #{}",
+                         usage.id.0, usage.name, target.name, target.id.0
+                     ));
+                     self.bound(format!("tree:usage:{}", usage.id.0), &r);

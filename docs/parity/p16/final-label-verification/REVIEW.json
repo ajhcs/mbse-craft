@@ -1,0 +1,23 @@
+{
+  "schema": "mbse-craft.p16-label-review/1",
+  "reviewer": "Codex, same implementing agent",
+  "independent_review": false,
+  "result": "supported_label_words_visually_verified",
+  "source_sha256": "c93573db4ea8a2c519462565505961892b0ec1258277d70ac91046658bc817e4",
+  "binary_sha256": "7c03dba24fdaffbf72ee7da0aa7701330911c3876b37a3669cfb45f6e8ff340a",
+  "source_changes": [
+    "crates/mbse-desktop/src/ui_types.rs"
+  ],
+  "scope": "Two displayed string substitutions only; model/test files exact to preceding414-test/three-native-run source. Changed desktop build exit0. No new test-suite execution claimed on label-only source.",
+  "native_runs": 1,
+  "action_errors": 0,
+  "model_hash_unchanged": true,
+  "inputs_unchanged": true,
+  "pixels_reviewed": [
+    "native/run/01-reviewed-browser-supported-target-words.png",
+    "native/run/02-reviewed-editor-supported-target-words.png"
+  ],
+  "limits": [
+    "Same-agent Linux label evidence only; prior functional checks retained separately in verification. Full font/platform/domain/NoMagic/Craft acceptance open."
+  ]
+}

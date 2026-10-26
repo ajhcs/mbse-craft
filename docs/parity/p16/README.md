@@ -22,8 +22,9 @@ passed **414 distinct workspace tests**, including **seven new P16 cases**, and
 desktop build exit0 at checkout `2d2f786`. Binary SHA-256:
 `4e9e71efa56f86a92995b9cf975a25d974c5b1c47160781977132eac6c12d0bd`.
 [Compiler receipt](verification/COMPILER_RECEIPT.json), [test pairs](verification/TEST_RESULTS.json),
-[source manifest](SOURCE_MANIFEST.json), [job](JOB.json) and [contract](CONTRACT.md)
-record exact source/execution/input boundaries. Runtime source remains exact.
+[behavior source](before-label-review/SOURCE_MANIFEST.json), [behavior job](before-label-review/JOB.json) and [contract](CONTRACT.md)
+record exact source/execution/input boundaries. The final review below changes
+only two display strings; model/test files remain exact.
 
 Three private Linux app/display runs had zero action errors, normal app/driver
 exits, exact owned-process cleanup and absent authentication files. Native/views
@@ -48,7 +49,22 @@ This is bounded same-agent Linux structural evidence. Part usages are definition
 owned by a Component, with same-System Component targets; configured instance
 values, ports, exchanges, inherited features and typed occurrence diagrams remain
 later work. One current usage form is retained; explicit New/Edit replaces it.
-Existing per-property and definition journals remain independent. The Linux font
-shows an arrow separator placeholder, while relation words and exact IDs remain
-visible. Independent/platform/font/domain/full NoMagic/Craft acceptance and the
+Existing per-property and definition journals remain independent. The PR19 review replaced two unsupported arrow separators with plain
+uses type wording, verified in actual browser/editor pixels. Independent/platform/font/domain/full NoMagic/Craft acceptance and the
 Milestone4 exit remain open; all56 broad parity specifications remain NOT_RUN.
+
+
+PR19 review ran in isolated `codex/review-p16` and corrected the missing arrow
+separator glyph with supported words. Final684-file source closure:
+`c93573db4ea8a2c519462565505961892b0ec1258277d70ac91046658bc817e4`;
+final binary:
+`7c03dba24fdaffbf72ee7da0aa7701330911c3876b37a3669cfb45f6e8ff340a`.
+The changed desktop built exit0 at `43681f8`. One final native display run verified
+both actual label surfaces, exact unchanged model hash and input bytes, zero action
+errors and normal process/authentication cleanup. [Review/patch](final-label-verification/REVIEW.json),
+[build receipt](final-label-verification/BUILD_RECEIPT.json), [raw native receipt](final-label-verification/native/RECEIPT.json)
+and13 original/stored artifact hashes are separate from the414-test/three-run
+functional acceptance. No new test-suite execution is claimed on the label-only
+source. [Final preservation](final-label-verification/PRESERVATION_AFTER.json)
+verifies28 available prior checkouts unchanged, including the original P16 candidate;
+the18 user-removed historical directories remain absent with commit heads retained.

@@ -11,26 +11,23 @@
     "/workspace/worktrees/builderbob/mbse-craft",
     "/workspace/build/builderbob/mbse-craft/milestone1"
   ],
-  "id": "p16-native-parts-references-move-roundtrip",
-  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p16-form-review-final-20261026T185543Z/mbse-desktop",
-  "binary_sha256": "4e9e71efa56f86a92995b9cf975a25d974c5b1c47160781977132eac6c12d0bd",
-  "source_sha256": "fc0bc968cd4df7e19f4bef2fae59edfecb0bb018645ac79879201481e25ed434",
+  "id": "p16-reviewed-browser-labels-only",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p16-reviewed-label-build-20261026T190145Z/mbse-desktop",
+  "binary_sha256": "7c03dba24fdaffbf72ee7da0aa7701330911c3876b37a3669cfb45f6e8ff340a",
+  "source_sha256": "c93573db4ea8a2c519462565505961892b0ec1258277d70ac91046658bc817e4",
   "inputs": {
-    "/workspace/repos/builderbob/mbse-craft/work/m4-p16-parts-references/docs/parity/p16/fixtures/typed.kernspan": "8506fa2bb9ce04d3e76d74d5e9a3f0e61349bb6ea89572f19dad18076ca74b8f"
+    "/workspace/repos/builderbob/mbse-craft/work/review-p16/docs/parity/p16/verification/native/run/decomposition-final.kernspan": "65eca61ce0faa1efc75cb9ee8d91736bb2a1bf66a66fdcf857c28a29cb711236"
   },
-  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p16-01",
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p16-review-labels-01",
   "argv_extra": [
     "--open",
-    "/workspace/repos/builderbob/mbse-craft/work/m4-p16-parts-references/docs/parity/p16/fixtures/typed.kernspan",
+    "/workspace/repos/builderbob/mbse-craft/work/review-p16/docs/parity/p16/verification/native/run/decomposition-final.kernspan",
     "--select",
     "1003"
   ],
   "scenarios": [
-    "Create two Parts reusing one target Component and a non-containing Reference",
-    "Move Part owner preserving ID, Undo/Redo with newer raw usage text retained",
-    "Reject direct/indirect containment cycle and primitive value target atomically",
-    "Browser shows System membership separately from Part containment and References",
-    "Save/cold native reopen exact usages, invalid usage form and existing P15 raw/property data"
+    "Open accepted P16 native file and visually check plain uses type labels on scrolled browser rows",
+    "Open actual usage editor to verify supported edit-row wording; no authored model changes; save views-only state needed for clean close"
   ],
-  "claim_policy": "Bounded same-agent Linux app-owned structural usages; no configured instances, ports, connectors, typed occurrence views, domain/full NoMagic/Craft acceptance."
+  "claim_policy": "Label-only native UI review on final build; earlier414-test source and three native behavioral runs remain separate."
 }
