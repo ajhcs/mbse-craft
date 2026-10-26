@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m3-p13-queued-input-fix",
+  "id": "m3-p13-input-cancel-final",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/review-p13",
   "source_manifest": "docs/parity/p13/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "ea7ec9ec891a841f2ee7027c115a48ff6159a2aeb94685854a9ddd3df4110c32",
-  "source_sha256": "207f22775610cb2df5b2bc7f43d67b2f491ca0a8fb746d32b404ba6524093a23",
+  "source_manifest_sha256": "14f8ac34fa761624d929707530bc8ddbb5581f4f51ea8a2a87025eec8935ff0f",
+  "source_sha256": "04bd96ddfbdc1cbf05cf4917797d649530db8639e860835b8cf24ca5b7366969",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -38,7 +38,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "Review finding: defer ready model read while queued editing/pointer input awaits UI processing; next freshness check retains newer edits. Add actual frame-ordering regression and rerun full workspace/build.",
+  "rationale": "Complete frame-ordering fix for queued text, Cancel button release, IME/touch/wheel/zoom; retained390-test intermediate. Two actual frame-ordering regressions; final full workspace/build.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",
