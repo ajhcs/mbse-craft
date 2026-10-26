@@ -47,6 +47,7 @@ pub struct Summary {
     pub moved_connectors: Vec<Id>,
     pub boundary_connectors: Vec<Id>,
     pub internal_remapped: Vec<Reference>,
+    pub internal_retained: Vec<Reference>,
     pub external_targets_retained: Vec<Reference>,
     pub incoming_targets_retained: Vec<Reference>,
     pub uninterpreted_locations: Vec<String>,
@@ -192,6 +193,7 @@ fn empty_summary(snapshot: &Snapshot, mode: Mode) -> Summary {
         moved_connectors: Vec::new(),
         boundary_connectors: Vec::new(),
         internal_remapped: Vec::new(),
+        internal_retained: Vec::new(),
         external_targets_retained: Vec::new(),
         incoming_targets_retained: Vec::new(),
         uninterpreted_locations: outside,
@@ -368,6 +370,10 @@ pub fn prepare(e: &Editor) -> Result<Prepared, String> {
                             role: r.role,
                             target: owner,
                         });
+                    } else if selected.contains(&r.target)
+                        || summary.moved_connectors.contains(&r.target)
+                    {
+                        summary.internal_retained.push(r);
                     } else {
                         summary.external_targets_retained.push(r);
                     }

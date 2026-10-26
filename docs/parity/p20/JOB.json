@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m4-p20-clone-move-initial",
-  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m4-p20-clone-move",
+  "id": "m4-p20-reference-review",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/review-p20",
   "source_manifest": "docs/parity/p20/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "7f60e6bae629b911b8a1f1d0859dbb1e830a6571de87de916f5cac52e4ef4ab9",
-  "source_sha256": "e867f19811518d02f8b9359bc0b5336f1fb01f21311f753013785f68f224b613",
+  "source_manifest_sha256": "338d810c4af323c34ad6ecee84c028e77123a88edcbff8c9ad36b9190527717d",
+  "source_sha256": "b353f555ffd97faf90ec11b24ff13a6c0f5d136928d634a117fccc5b148c15f8",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -24,7 +24,21 @@
       "test",
       "--locked",
       "--offline",
-      "--workspace",
+      "-p",
+      "mbse-model",
+      "types::refactor_tests",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop",
+      "ui::refactor_editor::tests",
       "--",
       "--test-threads=1"
     ],
@@ -38,7 +52,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "Sealed accepted-model definition/member cloning and atomic usage/enclosed-connector moves; explicit reference treatment, candidate-only allocation, stale/foreign instance guard, durable form/Cancel/model history. Seven model regressions plus real renderer Prepare/Cancel/stale/Apply check. Pinned upstream/dependencies/licenses/build scripts unchanged and inspected in preceding slices.",
+  "rationale": "PR25 isolated review found moved-fragment connector/Part references mislabeled external. Separate retained internal references from shared external targets; model candidate/publication logic unchanged. Strengthen move regression and native preview-only correction; seven model tests plus one renderer test/build, original465-test evidence retained.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",
@@ -47,7 +61,7 @@
   ],
   "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
   "input_hashes": {
-    "/workspace/repos/builderbob/mbse-craft/work/m4-p20-clone-move/docs/parity/p20/fixtures/values.mbse-views.json": "ad17c54d28e06737578102e7b4211814f71aef3bd3b8239e02b0e357f84219b3",
-    "/workspace/repos/builderbob/mbse-craft/work/m4-p20-clone-move/docs/parity/p20/fixtures/values.kernspan": "30ceacd91e6ac2477a279dfcfce80a59b04ac5a7edaede94139ccea6bca00bf8"
+    "/workspace/repos/builderbob/mbse-craft/work/review-p20/docs/parity/p20/fixtures/values.mbse-views.json": "ad17c54d28e06737578102e7b4211814f71aef3bd3b8239e02b0e357f84219b3",
+    "/workspace/repos/builderbob/mbse-craft/work/review-p20/docs/parity/p20/fixtures/values.kernspan": "30ceacd91e6ac2477a279dfcfce80a59b04ac5a7edaede94139ccea6bca00bf8"
   }
 }

@@ -181,6 +181,25 @@ fn move_connected_parts_updates_enclosed_connectors_with_same_ids_and_keeps_rout
     let p = prepare(&mut e, move_form("1009,1010", 1008));
     let counter = e.snapshot.next_id;
     assert_eq!(p.summary().moved_connectors, vec![Id(1018), Id(1019)]);
+    assert!(
+        p.summary()
+            .internal_retained
+            .iter()
+            .any(|r| r.owner == Id(1018) && r.role == "Source Part" && r.target == Id(1009))
+    );
+    assert!(
+        !p.summary()
+            .external_targets_retained
+            .iter()
+            .any(|r| r.owner == Id(1018) && r.role == "Source Part")
+    );
+    assert!(
+        p.summary()
+            .external_targets_retained
+            .iter()
+            .any(|r| r.owner == Id(1018) && r.role == "Source Port" && r.target == Id(1017))
+    );
+
     dispatch(
         &mut v,
         &mut e,
