@@ -173,5 +173,25 @@
     "review_available_preexisting_checkouts_unchanged": 34,
     "merge_commit": "8fec6d83108e35dedc018fe5fe7bc0714d4310e9",
     "reviewed_head": "61cdef9016b4ca844292a8c69fe61bed92d44dfb"
+  },
+  "p18b": {
+    "state": "implemented_awaiting_review",
+    "position_complete": false,
+    "base_commit": "8fec6d83108e35dedc018fe5fe7bc0714d4310e9",
+    "source_files": 696,
+    "full_suite_tests_passed": 448,
+    "new_full_suite_tests": 8,
+    "additional_renderer_regressions": 1,
+    "final_renderer_tests_passed": 2,
+    "final_native_runs": 1,
+    "final_native_action_errors": 0,
+    "captured_cold_runs": 2,
+    "captured_cold_action_errors": 0,
+    "source_sha256": "c4244cacfe42b001d02f48352582df1c164424e099f682be6dd05e335c484177",
+    "binary_sha256": "b53ce4b8bb82839570396339a2a929fc089ac0a176a0ef77f4195a204cfa8706",
+    "acceptance": "p18b/README.md",
+    "contract": "p18b/CONTRACT.md",
+    "same_agent_review": "p18b/verification/NATIVE_REVIEW.json",
+    "preservation": "p18b/verification/PRESERVATION_AFTER.json"
   }
 }

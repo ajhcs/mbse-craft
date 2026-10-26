@@ -11,25 +11,25 @@
     "/workspace/worktrees/builderbob/mbse-craft",
     "/workspace/build/builderbob/mbse-craft/milestone1"
   ],
-  "id": "p18b-interval-labels-pointer-cold-final",
-  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p18b-interval-label-fix-20261026T211747Z/mbse-desktop",
-  "binary_sha256": "b40ab0b0827dbaae858c64e2154c35aa2ecd50aad6cf3917ab83fe59420d839e",
-  "source_sha256": "fa1e716809006688eda7bf22c28b46322d4796e768308998da97871892a9187e",
+  "id": "p18b-visible-viewport-final-remainder",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p18b-viewport-label-fix-20261026T212210Z/mbse-desktop",
+  "binary_sha256": "b53ce4b8bb82839570396339a2a929fc089ac0a176a0ef77f4195a204cfa8706",
+  "source_sha256": "c4244cacfe42b001d02f48352582df1c164424e099f682be6dd05e335c484177",
   "inputs": {
-    "/workspace/build/builderbob/mbse-craft/milestone1/native-p18b-02/run/prepared-moved-routes.kernspan": "69337eafb28ddeaa38df039741efe6223e2ebe095fdf026ff1c9b394f463c156",
-    "/workspace/build/builderbob/mbse-craft/milestone1/native-p18b-02/run/prepared-moved-routes.mbse-views.json": "947b8555b3db348e15c949ee16333c5ae287e773eb26872ca7e399c58cd0c68e"
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p18b-03/run/qualified-routes.kernspan": "69337eafb28ddeaa38df039741efe6223e2ebe095fdf026ff1c9b394f463c156",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p18b-03/run/qualified-routes.mbse-views.json": "d61281289f7cd2cc5f92296afa84c5b97cba4493d90984b8e53dfcb3eee176a1"
   },
-  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p18b-03",
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p18b-04",
   "argv_extra": [
     "--open",
-    "/workspace/build/builderbob/mbse-craft/milestone1/native-p18b-02/run/prepared-moved-routes.kernspan",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p18b-03/run/qualified-routes.kernspan",
     "--select",
     "1003"
   ],
   "scenarios": [
-    "Continue from actual moved views4 checkpoint; verify interval placement in the exact post-drag previously failing scene",
-    "Complete real pointer movement of one qualified endpoint, unchanged connector identities and other-view geometry",
-    "Complete actual captured native/views4 Save and cold app reopen equality of full snapshot/typed contexts/route IDs/core records"
+    "Open actual captured native/views4 pair with moved qualified endpoint and two parallel semantic routes",
+    "Verify complete captions avoid cards/other captions AND lie inside actual visible canvas clip in both views",
+    "One new pointer drag recomputes visible captions while preserving model, route identities and other-view geometry; save corrected presentation"
   ],
-  "claim_policy": "Corrected renderer/remainder only; prior448-test semantic closure and original successful native authoring/history/layout checks retained separately. Final2 renderer tests/build on unchanged model source; no full-suite replay or claim on new UI closure. Same-agent bounded Linux evidence only.; second native attempt preserves successful actual pointer geometry and failed post-drag caption assertion without relabeling"
+  "claim_policy": "Final visible-viewport renderer remainder on unchanged model/schema/history/IO source. Earlier448-test semantics and captured two-run cold reopen remain separate qualified evidence; final focused2 renderer tests and native visual/drag check. No prior failures relabeled; same-agent Linux evidence only."
 }

@@ -1,0 +1,36 @@
+{
+  "reviewer": "Codex, same implementing agent",
+  "independent_review": false,
+  "result": "bounded_P18b_qualified_route_workflow_passed_across_preserved_exact_slices",
+  "initial_authoring_history_layout_runs": 1,
+  "initial_action_errors": 0,
+  "intermediate_post_drag_label_assertion_errors": 1,
+  "captured_cold_runs": 2,
+  "captured_cold_action_errors": 0,
+  "final_viewport_native_runs": 1,
+  "final_viewport_action_errors": 0,
+  "pixels_reviewed": [
+    "final-native/run/02-both-captions-inside-visible-canvas.png",
+    "final-native/run/03-new-drag-visible-captions-and-exact-routes.png"
+  ],
+  "observations": [
+    "Connector1018 uses route13 occurrences11/12 in view1 and route16 occurrences14/15 in view2; exact sourcePart1009 Port1017 and targetPart1010 Port1015; original unqualified occurrences9/10 retained",
+    "Second accepted connector1019 routes through the same second-view occurrences as edge17. ModelUndo detaches only17; Redo restores exact17 with newer malformed1005? raw text intact",
+    "Removing17 retains semantic1019; LayoutUndo restores. Removing endpoint15 removes dependent16/17 together; Undo restores exact maps. Hiding endpoint keeps routes and semantic state; route hide/Undo also exact",
+    "Actual pointer movement affects only second-view endpoint15; final geometry495,375 after incremental saved checkpoints. View1 endpoint12, semantic snapshot and route IDs remain exact",
+    "Native captured views4 Save and cold app reopen roundtrip exact entire native snapshot and all core/typed/route maps; cold second Save equals native snapshot. This source differs from final renderer only in caption placement",
+    "Final actual viewport probes and screenshots show full conveyed captions separate from cards, each other and within visible clip in both views and after new pointer move; final Save preserves full snapshot and other presentation data",
+    "Every owned app/display exited normally, original inputs retained, authentication files absent"
+  ],
+  "retained_findings": [
+    "Three zero-test compile refusals retained unchanged",
+    "Initial caption hidden behind cards fixed by placement; second attempt exposes fixed-step gap miss after pointer and retains one action error",
+    "Interval search passes overlap checks, pixel review catches labels below scroll viewport; corrected clip-aware placement qualifies only final visual remainder"
+  ],
+  "limits": [
+    "Full448-test source and all later renderer jobs remain distinct; final two tests/build, nine total new distinct P18b test names across exact source slices; no summed pass count",
+    "Same-agent bounded Linux straight port-card route evidence; no independent engineering/full NoMagic/Craft/platform acceptance",
+    "At most96 reuse choices,128 route choices/captions; dense views without free visible caption space may require moving/panning cards; no bend editing/nested paths/root delegation",
+    "Typed inspection/copy remains an explicit refusal rather than data loss; old v1/v2/v3 values roundtrip without new empty fields"
+  ]
+}

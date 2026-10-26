@@ -31,3 +31,9 @@ editing, root delegation, nested path expansion, simulation or full SysML/domain
 NoMagic/Craft UI equivalence is claimed. Typed source-copy inspection continues to
 refuse explicitly rather than dropping typed content. Broad56 specifications
 remain NOT_RUN; this is a bounded Linux workflow slice.
+
+Conveyed captions use free vertical intervals inside the actual visible canvas
+clip and avoid card/prior-caption bounds. At most128 captions are drawn. A fully
+crowded viewport may need card movement or panning; automatic complete graph
+layout/readability is outside this bounded slice. Private per-frame caption probes
+are neither saved presentation data nor acceptance authority on their own.
