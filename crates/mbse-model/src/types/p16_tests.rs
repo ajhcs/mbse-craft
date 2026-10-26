@@ -149,8 +149,7 @@ fn reusable_part_types_create_distinct_usage_ids_and_wrong_kind_cross_system_tar
     );
 }
 #[test]
-fn actual_native_roundtrip_preserves_usages_and_invalid_form_beside_p15_definition_and_property_data()
- {
+fn actual_native_roundtrip_preserves_usages_and_invalid_form_beside_definition_draft() {
     use crate::stage1_io::{Session, execute_write};
     let area = tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap();
     let mut session = Session::new(area.path()).unwrap();
@@ -260,4 +259,35 @@ fn serialized_usage_identity_collisions_noncanonical_keys_and_invalid_graphs_ref
         }
         assert!(s.validate().is_err());
     }
+}
+
+#[test]
+fn p15_store_and_journal_values_roundtrip_without_adding_empty_p16_fields() {
+    let raw: serde_json::Value = serde_json::from_str(include_str!(
+        "../../../..//docs/parity/p16/fixtures/typed.kernspan"
+    ))
+    .unwrap();
+    let snapshot: Snapshot = serde_json::from_value(raw["snapshot"].clone()).unwrap();
+    snapshot.validate().unwrap();
+    let ext = snapshot.extensions.as_ref().unwrap();
+    assert!(
+        !ext.namespaces[NAMESPACE]
+            .as_object()
+            .unwrap()
+            .contains_key("usages")
+    );
+    assert!(
+        !ext.namespaces[DRAFTS]
+            .as_object()
+            .unwrap()
+            .contains_key("usage")
+    );
+    assert_eq!(
+        serde_json::to_value(load(&snapshot).unwrap()).unwrap(),
+        ext.namespaces[NAMESPACE]
+    );
+    assert_eq!(
+        serde_json::to_value(journal(&snapshot).unwrap()).unwrap(),
+        ext.namespaces[DRAFTS]
+    );
 }

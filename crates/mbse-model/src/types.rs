@@ -355,26 +355,35 @@ impl Store {
                 return Err("TYPE_USAGE_CROSS_SYSTEM_UNSUPPORTED".into());
             }
         }
-        // Bounded iterative traversal avoids recursive stack growth and expands
-        // each reachable definition once, even when types are reused in a DAG.
-        for root in self.definitions.keys() {
-            let mut seen = BTreeSet::new();
-            let mut pending = vec![*root];
-            while let Some(owner) = pending.pop() {
-                if !seen.insert(owner) {
-                    continue;
-                }
-                for usage in self
-                    .usages
-                    .values()
-                    .filter(|u| u.kind == UsageKind::Part && u.owner == owner)
-                {
-                    if usage.target == *root {
-                        return Err("TYPE_CONTAINMENT_CYCLE".into());
+        // Topological admission bounds work to definitions plus Part edges;
+        // reused targets never expand into every possible occurrence path.
+        let mut incoming: BTreeMap<Id, usize> =
+            self.definitions.keys().map(|id| (*id, 0)).collect();
+        let mut edges: BTreeMap<Id, Vec<Id>> = BTreeMap::new();
+        for u in self.usages.values().filter(|u| u.kind == UsageKind::Part) {
+            *incoming.get_mut(&u.target).unwrap() += 1;
+            edges.entry(u.owner).or_default().push(u.target);
+        }
+        let mut pending: Vec<Id> = incoming
+            .iter()
+            .filter(|(_, count)| **count == 0)
+            .map(|(id, _)| *id)
+            .collect();
+        let mut visited = 0;
+        while let Some(owner) = pending.pop() {
+            visited += 1;
+            if let Some(targets) = edges.get(&owner) {
+                for target in targets {
+                    let count = incoming.get_mut(target).unwrap();
+                    *count -= 1;
+                    if *count == 0 {
+                        pending.push(*target);
                     }
-                    pending.push(usage.target);
                 }
             }
+        }
+        if visited != self.definitions.len() {
+            return Err("TYPE_CONTAINMENT_CYCLE".into());
         }
         Ok(())
     }

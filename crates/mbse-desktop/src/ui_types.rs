@@ -47,6 +47,9 @@ impl Workspace {
         let mut open = true;
         let mut action = None;
         let mut definition_change = None;
+        let mut property_change = None;
+        let mut usage_change = None;
+        let mut usage_choice = None;
         let mut select = None;
         let mut choose_form = None;
         let mut close = false;
@@ -74,18 +77,18 @@ impl Workspace {
    if let Some((id,mut form))=self.type_panel.form.and_then(|id|forms.get(&id).cloned().map(|form|(id,form))){
     ui.separator();ui.label(format!("Property form #{}; text is retained independently of accepted property data.",id.0));let before=form.clone();
     for(label,key,text)in [("Property name","name",&mut form.name),("Value type ID","value-type",&mut form.value_type),("Lower multiplicity","lower",&mut form.lower),("Upper multiplicity or *","upper",&mut form.upper)]{ui.horizontal(|ui|{ui.label(label);let r=ui.add(egui::TextEdit::singleline(text).id(egui::Id::new(("mbse-typed-property",&native_instance,id.0,key))));self.bound(format!("types:property:{key}"),&r);});}
-    let edited=form!=before;if edited{action=Some(Action::SetForm{id,form});}
+    let edited=form!=before;if edited{property_change=Some(Action::SetForm{id,form});}
     let checked=types::preview(&self.session.editor.snapshot,id);if let Err(error)=&checked{ui.colored_label(ERROR,format!("Unapplied form retained: {error}"));}
     let r=ui.add_enabled(checked.is_ok()&&!edited,egui::Button::new("Apply property"));self.bound("types:apply-property",&r);if r.clicked(){action=Some(Action::ApplyProperty{id});}
    }
    ui.separator();ui.label("Parts and references · owner and target use Component definition IDs");
-   let r=ui.button("New usage form (replace current form)");self.bound("types:usage:new",&r);if r.clicked(){action=Some(Action::SetUsageForm{form:types::UsageForm{id:None,name:String::new(),owner:self.type_panel.selected.map_or(String::new(),|id|id.0.to_string()),target:String::new(),kind:types::UsageKind::Part}});}
-   for usage in store.usages.values(){let r=ui.button(format!("Edit {:?} #{} · {} · owner#{} → type#{}",usage.kind,usage.id.0,usage.name,usage.owner.0,usage.target.0));self.bound(format!("types:usage:edit:{}",usage.id.0),&r);if r.clicked(){action=Some(Action::SetUsageForm{form:types::UsageForm{id:Some(usage.id),name:usage.name.clone(),owner:usage.owner.0.to_string(),target:usage.target.0.to_string(),kind:usage.kind}});}}
+   let r=ui.button("New usage form (replace current form)");self.bound("types:usage:new",&r);if r.clicked(){usage_choice=Some(Action::SetUsageForm{form:types::UsageForm{id:None,name:String::new(),owner:self.type_panel.selected.map_or(String::new(),|id|id.0.to_string()),target:String::new(),kind:types::UsageKind::Part}});}
+   for usage in store.usages.values(){let r=ui.button(format!("Edit {:?} #{} · {} · owner#{} → type#{}",usage.kind,usage.id.0,usage.name,usage.owner.0,usage.target.0));self.bound(format!("types:usage:edit:{}",usage.id.0),&r);if r.clicked(){usage_choice=Some(Action::SetUsageForm{form:types::UsageForm{id:Some(usage.id),name:usage.name.clone(),owner:usage.owner.0.to_string(),target:usage.target.0.to_string(),kind:usage.kind}});}}
    if let Ok(Some(mut form))=types::usage_form(&self.session.editor.snapshot){
     let before=form.clone();ui.label(form.id.map_or("New usage (unallocated)".into(),|id|format!("Usage #{}; editing owner moves this same identity",id.0)));
     for(label,key,text)in [("Usage name","name",&mut form.name),("Owner definition ID","owner",&mut form.owner),("Target definition ID","target",&mut form.target)]{ui.horizontal(|ui|{ui.label(label);let r=ui.add(egui::TextEdit::singleline(text).id(egui::Id::new(("mbse-usage",&native_instance,key))));self.bound(format!("types:usage:{key}"),&r);});}
     ui.horizontal(|ui|{for kind in [types::UsageKind::Part,types::UsageKind::Reference]{let r=ui.selectable_value(&mut form.kind,kind,format!("{kind:?}"));self.bound(format!("types:usage:kind:{kind:?}"),&r);}});
-    let edited=form!=before;if edited{action=Some(Action::SetUsageForm{form});}
+    let edited=form!=before;if edited{usage_change=Some(Action::SetUsageForm{form});}
     let checked=types::preview_usage(&self.session.editor.snapshot);if let Err(error)=&checked{ui.colored_label(ERROR,format!("Unapplied usage retained: {error}"));}
     let r=ui.add_enabled(checked.is_ok()&&!edited,egui::Button::new("Apply usage / move"));self.bound("types:usage:apply",&r);if r.clicked(){action=Some(Action::ApplyUsage);}
    }
@@ -99,6 +102,12 @@ impl Workspace {
             self.type_panel.form = Some(id);
         }
         if let Some(change) = definition_change {
+            self.typed_action(change);
+        }
+        for change in [property_change, usage_change, usage_choice]
+            .into_iter()
+            .flatten()
+        {
             self.typed_action(change);
         }
         if let Some(action) = action {
