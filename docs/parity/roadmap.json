@@ -385,34 +385,40 @@
       "acceptance": [
         "Wrong endpoints and item types refuse; views update consistently; removing a visual edge does not delete the semantic connector."
       ],
-      "state": "in_progress",
+      "state": "reviewed_ready_to_merge",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "children": [
         {
           "id": "P18a",
           "title": "Instance-qualified connector endpoints and conveyed-type admission",
-          "state": "reviewed_ready_to_merge",
+          "state": "merged",
           "acceptance": [
             "Wrong part/port ownership, direction and conveyed type refuse atomically; exact connector IDs and unfinished forms survive native persistence and model history."
           ],
           "branch": "codex/m4-p18a-connectors",
           "evidence": "docs/parity/p18a/README.md",
-          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/22"
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/22",
+          "merge_commit": "8fec6d83108e35dedc018fe5fe7bc0714d4310e9",
+          "reviewed_head": "61cdef9016b4ca844292a8c69fe61bed92d44dfb"
         },
         {
           "id": "P18b",
           "title": "Qualified port occurrences and semantic connector visual routes",
-          "state": "planned",
+          "state": "reviewed_ready_to_merge",
           "depends_on": [
             "P18a"
           ],
           "acceptance": [
             "Two views show routes bound to exact qualified port occurrences; wrong endpoints refuse; removing a visual edge retains semantic connector; native/views Save and cold reopen preserve identities."
-          ]
+          ],
+          "branch": "codex/m4-p18b-connector-routes",
+          "evidence": "docs/parity/p18b/README.md",
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/23"
         }
       ],
-      "decomposition_reason": "Separate part-qualified semantic endpoint/type rules from presentation context/routing so each identity boundary is reviewable. P18 stays open until both children pass."
+      "decomposition_reason": "Separate part-qualified semantic endpoint/type rules from presentation context/routing so each identity boundary is reviewable. P18 stays open until both children pass.",
+      "evidence": "docs/parity/p18b/README.md"
     },
     {
       "id": "P19",

@@ -42,11 +42,13 @@ impl Workspace {
         }
         let ready = !self.dock_blocked();
         let mut action = None;
-        egui::CollapsingHeader::new("Typed ports and occurrences").id_salt("typed-port-controls").default_open(true).show(ui,|ui|{
+        let header=egui::CollapsingHeader::new("Typed ports and occurrences").id_salt("typed-port-controls").default_open(true).show(ui,|ui|{
    ui.label("Reuse one port contract across views. Move, hide, pin and remove affect this presentation only.");
    ui.horizontal_wrapped(|ui|{for p in store.ports.values(){let r=ui.add_enabled(ready,egui::Button::new(format!("Reuse port #{} · {}",p.id.0,p.name)));self.bound(format!("ports:reuse:{}",p.id.0),&r);if r.clicked(){let doc=self.views.views.document();let y=doc.occurrences.values().filter(|o|o.view==self.views.active).map(|o|o.geometry.y+o.geometry.height+24.).chain(rows.iter().map(|o|o.geometry.y+o.geometry.height+24.)).fold(24.,f64::max);action=Some(vp::Layout::Reuse{view:self.views.active,port:p.id,geometry:Geometry::at(25.,y)});}}});
    for o in &rows{ui.horizontal_wrapped(|ui|{ui.label(format!("Port #{} · occurrence {} · {}{}",o.port.0,o.id.get(),if o.presence.active(){"active"}else{"detached"},if o.pinned{" · pinned"}else{""}));let r=ui.add_enabled(ready,egui::Button::new(if o.visible{"Hide"}else{"Show"}));self.bound(format!("ports:occurrence:{}:visibility",o.id.get()),&r);if r.clicked(){action=Some(vp::Layout::Visible(o.id,!o.visible));}let r=ui.add_enabled(ready,egui::Button::new(if o.pinned{"Unpin"}else{"Pin"}));self.bound(format!("ports:occurrence:{}:pin",o.id.get()),&r);if r.clicked(){action=Some(vp::Layout::Pin(o.id,!o.pinned));}let r=ui.add_enabled(ready&&!o.pinned,egui::Button::new("Move right 20"));self.bound(format!("ports:occurrence:{}:move-right",o.id.get()),&r);if r.clicked(){let mut geometry=o.geometry.clone();geometry.x+=20.;action=Some(vp::Layout::Move(o.id,geometry));}let r=ui.add_enabled(ready,egui::Button::new("Remove occurrence"));self.bound(format!("ports:occurrence:{}:remove",o.id.get()),&r);if r.clicked(){action=Some(vp::Layout::Remove(o.id));}});}
   });
+        self.bound("ports:controls",&header.header_response);
+        self.qualified_port_controls(ui,&store);
         if let Some(action) = action {
             self.port_layout(action);
         }
@@ -91,7 +93,7 @@ impl Workspace {
             ui.painter().text(
                 rect.min + Vec2::new(14., 13.) * scale,
                 egui::Align2::LEFT_TOP,
-                format!("Port #{} · occurrence {}", port.id.0, o.id.get()),
+                o.usage.map_or_else(||format!("Port #{} · occurrence {}",port.id.0,o.id.get()),|id|format!("Part #{} · Port #{}",id.0,port.id.0)),
                 FontId::proportional(12. * scale),
                 ACCENT,
             );

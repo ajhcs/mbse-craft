@@ -13,6 +13,8 @@ mod typed_properties;
 mod port_editor;
 #[path="ui_port_views.rs"]
 mod port_presentation;
+#[path="ui_connector_routes.rs"]
+mod connector_routes;
 #[path="ui_connectors.rs"]
 mod connector_editor;
 use crate::preferences::Preferences;
@@ -1422,6 +1424,7 @@ impl Workspace {
                     if ui.put(details, egui::Button::new("Details…")).clicked() { self.popout = Some(record.id); }
                 }
                 self.paint_port_occurrences(ui,area,&camera,scale,&port_occurrences);
+                self.paint_connector_routes(ui,area,&camera,scale);
             });
             ui.separator();
             ui.label(
@@ -2001,6 +2004,7 @@ impl eframe::App for Workspace {
             fields.insert("typed_properties".into(),self.typed_audit());
             fields.insert("ports".into(),self.ports_audit());
             fields.insert("port_presentation".into(),self.port_presentation_audit());
+            fields.insert("connector_routes".into(),self.connector_routes_audit());
             fields.insert("connectors".into(),self.connectors_audit());
             fields.insert("views_inspection_profile".into(), serde_json::json!(self.views.inspection_profile()));
             fields.insert("views_inspection_copy_origin".into(), self.views.inspection_copy_origin());

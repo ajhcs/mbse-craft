@@ -34,6 +34,8 @@ pub(crate) fn new_origin() -> Result<Origin, String> {
 
 #[path="native_views_ports.rs"]
 pub mod ports;
+#[path="native_views_connectors.rs"]
+pub mod connectors;
 pub const PROFILE: &str = "mbse-craft.native-views/1";
 pub const RECOVERY_PROFILE: &str = "mbse-craft.native-views-recovery/1";
 pub const COPY_PROFILE: &str = "mbse-craft.native-views/2";
@@ -42,7 +44,7 @@ pub fn supported_profile(profile: &str) -> bool {
     matches!(profile, PROFILE | RECOVERY_PROFILE | COPY_PROFILE | COPY_RECOVERY_PROFILE) || ports::typed_profile(profile)
 }
 pub fn bound_profile(profile: &str) -> bool {
-    matches!(profile, PROFILE | COPY_PROFILE | ports::PROFILE)
+    matches!(profile, PROFILE | COPY_PROFILE | ports::PROFILE | connectors::PROFILE)
 }
 pub fn copy_profile(profile: &str) -> bool {
     matches!(profile, COPY_PROFILE | COPY_RECOVERY_PROFILE) || ports::typed_profile(profile)
@@ -294,6 +296,8 @@ pub struct Document {
     pub edges: BTreeMap<VisualEdgeId, VisualEdge>,
     #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
     pub typed_ports:BTreeMap<OccurrenceId,ports::PortOccurrence>,
+    #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
+    pub connector_edges:BTreeMap<VisualEdgeId,connectors::ConnectorEdge>,
 }
 fn hash(bytes: &[u8]) -> String {
     format!("{:x}", Sha256::digest(bytes))
@@ -374,7 +378,7 @@ impl Document {
         if self.views.is_empty()
             || self.views.len() > MAX_VIEWS
             || self.occurrences.len()+self.typed_ports.len() > MAX_OCCURRENCES
-            || self.edges.len() > MAX_EDGES
+            || self.edges.len()+self.connector_edges.len() > MAX_EDGES
             || !self.views.contains_key(&self.primary)
         {
             return Err("VIEWS_COUNT_OR_PRIMARY".into());
@@ -446,6 +450,7 @@ impl Document {
             }
             check_presence(&edge.presence)?;
         }
+        connectors::validate(self,&mut ids,native.map(|(snapshot,_)|snapshot))?;
         if self.next_id.0 == 0
             || ids.last().is_some_and(|n| *n >= self.next_id.0)
             || self.revision.0 == 0
@@ -478,6 +483,7 @@ pub struct Stamp {
 }
 #[derive(Clone, Debug)]
 pub enum Layout {
+    Connector(connectors::Layout),
     Port(ports::Layout),
     AddView(String),
     RenameView(ViewId, String),
@@ -548,10 +554,10 @@ impl Capture {
             {
                 return Err("VIEWS_CAPTURE_CHECKPOINT_MISMATCH".into());
             }
-            document.profile = if ports::typed_profile(&document.profile){ports::PROFILE}else if copy_profile(&document.profile) { COPY_PROFILE } else { PROFILE }.into();
+            document.profile = if connectors::qualified_profile(&document.profile){connectors::PROFILE}else if ports::typed_profile(&document.profile){ports::PROFILE}else if copy_profile(&document.profile) { COPY_PROFILE } else { PROFILE }.into();
             document.binding = Some(NativeBinding::from_checkpoint(c));
         } else {
-            document.profile = if ports::typed_profile(&document.profile){ports::RECOVERY_PROFILE}else if copy_profile(&document.profile) { COPY_RECOVERY_PROFILE } else { RECOVERY_PROFILE }.into();
+            document.profile = if connectors::qualified_profile(&document.profile){connectors::RECOVERY_PROFILE}else if ports::typed_profile(&document.profile){ports::RECOVERY_PROFILE}else if copy_profile(&document.profile) { COPY_RECOVERY_PROFILE } else { RECOVERY_PROFILE }.into();
             document.binding = None;
         }
         document.validate(&editor.snapshot)?;
@@ -602,6 +608,7 @@ impl Views {
             occurrences: BTreeMap::new(),
             edges: BTreeMap::new(),
             typed_ports:BTreeMap::new(),
+            connector_edges:BTreeMap::new(),
         };
         for (i, record) in editor.snapshot.records.values().enumerate() {
             if i >= MAX_PER_VIEW {
@@ -725,6 +732,7 @@ impl Views {
             reachable.extend(doc.occurrences.keys().map(|id| id.0));
             reachable.extend(doc.typed_ports.keys().map(|id|id.0));
             reachable.extend(doc.edges.keys().map(|id| id.0));
+            reachable.extend(doc.connector_edges.keys().map(|id|id.0));
         }
         self.proofs.retain(|id, _| reachable.contains(id));
     }
@@ -734,6 +742,7 @@ impl Views {
         self.document.validate(&editor.snapshot)?;
         let mut next = self.document.clone();
         match action {
+            Layout::Connector(action)=>connectors::apply(&mut next,&editor.snapshot,action)?,
             Layout::Port(action)=>ports::apply(&mut next,&editor.snapshot,action)?,
             Layout::AddView(title) => {
                 if next.views.len() >= MAX_VIEWS || title.is_empty() || title.len() > 1024 {
@@ -760,6 +769,7 @@ impl Views {
                 next.views.remove(&id).ok_or("VIEWS_NO_VIEW")?;
                 next.occurrences.retain(|_, o| o.view != id);
                 next.typed_ports.retain(|_,o|o.view!=id);
+                next.connector_edges.retain(|_,e|e.view!=id);
                 next.edges.retain(|_, e| e.view != id);
             }
             Layout::Camera(id, camera) => {
@@ -824,7 +834,7 @@ impl Views {
                 source,
                 target,
             } => {
-                if next.edges.len() >= MAX_EDGES {
+                if next.edges.len()+next.connector_edges.len() >= MAX_EDGES {
                     return Err("VIEWS_EDGE_BUDGET".into());
                 }
                 if !key.exists(&editor.snapshot)? {
@@ -870,7 +880,7 @@ impl Views {
         if count == 0 { return Err("VIEWS_COPY_NO_MAPPINGS".into()); }
         if self.document.views.len() >= MAX_VIEWS || count > MAX_PER_VIEW
             || self.document.occurrences.len() + count > MAX_OCCURRENCES
-            || self.document.edges.len() + edges > MAX_EDGES {
+            || self.document.edges.len()+self.document.connector_edges.len() + edges > MAX_EDGES {
             return Err("VIEWS_COPY_CAPACITY".into());
         }
         if title.trim().is_empty() || title.len() > 1024 { return Err("VIEWS_COPY_TITLE".into()); }
@@ -878,7 +888,7 @@ impl Views {
         let declared=source.declared();
         let camera=declared.views.get(&source_view).ok_or("VIEWS_COPY_SOURCE_VIEW")?.camera.clone();
         let mut next=self.document.clone();
-        next.profile=if ports::typed_profile(&next.profile){if bound_profile(&next.profile){ports::PROFILE}else{ports::RECOVERY_PROFILE}}else if bound_profile(&next.profile) {COPY_PROFILE}else{COPY_RECOVERY_PROFILE}.into();
+        next.profile=if connectors::qualified_profile(&next.profile){if bound_profile(&next.profile){connectors::PROFILE}else{connectors::RECOVERY_PROFILE}}else if ports::typed_profile(&next.profile){if bound_profile(&next.profile){ports::PROFILE}else{ports::RECOVERY_PROFILE}}else if bound_profile(&next.profile) {COPY_PROFILE}else{COPY_RECOVERY_PROFILE}.into();
         let view=ViewId(next.allocate()?);
         next.views.insert(view,View{id:view,title:title.into(),camera,copy_origin:None});
         let mut origin=CopyOrigin{profile:crate::native_views_copy::PROFILE.into(),source_sha256:source.source_sha256().into(),source_profile:declared.profile.clone(),source_document_id:declared.document_id.clone(),source_sidecar_id:declared.sidecar_id.clone(),source_view,declared_native_binding:declared.binding.clone(),occurrences:BTreeMap::new(),edges:BTreeMap::new()};
@@ -1014,6 +1024,7 @@ impl Views {
             }
         }
         ports::reconcile(&mut next,&candidate.snapshot,undo,redo,&proof,&mut proofs)?;
+        connectors::reconcile(&mut next,&candidate.snapshot,undo,redo,&proof,&mut proofs)?;
         for edge in next.edges.values_mut() {
             let resolves = next
                 .occurrences
@@ -1064,7 +1075,7 @@ impl Views {
             return Err("VIEWS_NATIVE_CHECKPOINT_NOT_CURRENT".into());
         }
         let mut frozen = self.document.clone();
-        frozen.profile = if ports::typed_profile(&frozen.profile){ports::PROFILE}else if copy_profile(&frozen.profile) { COPY_PROFILE } else { PROFILE }.into();
+        frozen.profile = if connectors::qualified_profile(&frozen.profile){connectors::PROFILE}else if ports::typed_profile(&frozen.profile){ports::PROFILE}else if copy_profile(&frozen.profile) { COPY_PROFILE } else { PROFILE }.into();
         frozen.binding = Some(NativeBinding::from_checkpoint(checkpoint));
         frozen.validate(&editor.snapshot)?;
         Ok(frozen)
@@ -1072,7 +1083,7 @@ impl Views {
     pub fn recovery(&self, editor: &Editor) -> Result<Document, String> {
         self.document.validate(&editor.snapshot)?;
         let mut frozen = self.document.clone();
-        frozen.profile = if ports::typed_profile(&frozen.profile){ports::RECOVERY_PROFILE}else if copy_profile(&frozen.profile) { COPY_RECOVERY_PROFILE } else { RECOVERY_PROFILE }.into();
+        frozen.profile = if connectors::qualified_profile(&frozen.profile){connectors::RECOVERY_PROFILE}else if ports::typed_profile(&frozen.profile){ports::RECOVERY_PROFILE}else if copy_profile(&frozen.profile) { COPY_RECOVERY_PROFILE } else { RECOVERY_PROFILE }.into();
         frozen.binding = None;
         Ok(frozen)
     }
@@ -1152,6 +1163,7 @@ fn decode_document(bytes: &[u8]) -> Result<Document, String> {
             return Err("VIEWS_COUNT_BUDGET".into());
         }
     }
+    if let Some(edges)=root.get("connector_edges"){if edges.as_object().is_none_or(|e|e.len()>MAX_EDGES){return Err("VIEWS_CONNECTOR_EDGE_COUNT_BUDGET".into())}}
     if let Some(ports)=root.get("typed_ports"){if ports.as_object().is_none_or(|p|p.len()>MAX_OCCURRENCES){return Err("VIEWS_TYPED_PORT_COUNT_BUDGET".into())}}
     serde_json::from_value(unique.0).map_err(|e| format!("VIEWS_SCHEMA: {e}"))
 }
@@ -1681,3 +1693,7 @@ mod tests {
 #[cfg(test)]
 #[path="native_views_ports_tests.rs"]
 mod ports_tests;
+
+#[cfg(test)]
+#[path="native_views_connectors_tests.rs"]
+mod connectors_tests;

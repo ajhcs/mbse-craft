@@ -1,0 +1,55 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m4-p18b-routes-label-visibility-fix",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes",
+  "source_manifest": "docs/parity/p18b/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "ca9a8ad99e06e6526328cd127eac4036605953ad967710ea15140497e81f99a7",
+  "source_sha256": "d3407e48b98e58639cef48dcc2c88178622a0780e6fecb064d0c4f1033d36a9a",
+  "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop",
+      "ui::connector_routes::tests",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "Native screenshots exposed long/parallel connector labels hidden by cards. Avoid card and prior label rectangles, paint after cards, bounded128 labels/33 placements and private per-label audit. New regression plus actual route-button renderer regression; semantic/history/schema source remains identical to448-test closure. Native remainder from actual saved bound views4 checkpoint.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/docs/parity/p18b/fixtures/connectors.mbse-views.json": "c2f05ee443601de2558cb382cc1b0ca9961d3a331ede7a22b18e28150f427ec3",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/docs/parity/p18b/fixtures/connectors.kernspan": "5f0b3b0904da1d5dad20651750c901be913e5576d5602045bccc4b3699bac90f"
+  }
+}

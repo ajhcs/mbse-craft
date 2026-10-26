@@ -123,7 +123,7 @@ impl CopyOrigin {
                     {
                         return Err("VIEWS_COPY_TARGET_MAPPING".into());
                     }
-                    if document.typed_ports.contains_key(target_occurrence){return Err("VIEWS_COPY_TARGET_MAPPING".into())}
+                    if document.connector_edges.keys().any(|id|id.get()==target_occurrence.get()) || document.typed_ports.contains_key(target_occurrence){return Err("VIEWS_COPY_TARGET_MAPPING".into())}
                     if let Some(row) = document.occurrences.get(target_occurrence) {
                         if row.view != view
                             || row.record != *target_record
@@ -179,7 +179,7 @@ impl CopyOrigin {
                     {
                         return Err("VIEWS_COPY_TARGET_MAPPING".into());
                     }
-                    if document.typed_ports.keys().any(|id|id.get()==target_edge.get()){return Err("VIEWS_COPY_TARGET_MAPPING".into())}
+                    if document.connector_edges.contains_key(target_edge) || document.typed_ports.keys().any(|id|id.get()==target_edge.get()){return Err("VIEWS_COPY_TARGET_MAPPING".into())}
                     if let Some(edge) = document.edges.get(target_edge) {
                         if edge.view != view || edge.source != *source || edge.target != *target {
                             return Err("VIEWS_COPY_EDGE_IDENTITY".into());
