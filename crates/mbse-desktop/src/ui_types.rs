@@ -22,6 +22,7 @@ impl Workspace {
         self.type_panel.selected = None;
         self.type_panel.form = None;
         self.type_panel.open = false;
+        self.port_panel=Default::default();
     }
     fn typed_action(&mut self, action: Action) -> bool {
         match self

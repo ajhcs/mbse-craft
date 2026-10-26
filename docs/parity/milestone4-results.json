@@ -62,7 +62,7 @@
     "merge_commit": "19cb6516350d180fa3f693034c9acc9dbd2b1821"
   },
   "p16": {
-    "state": "reviewed_ready_to_merge",
+    "state": "merged",
     "branch": "codex/m4-p16-parts-references",
     "base_commit": "19cb6516350d180fa3f693034c9acc9dbd2b1821",
     "source_files": 684,
@@ -89,6 +89,8 @@
     "final_label_native_runs": 1,
     "final_label_native_action_errors": 0,
     "final_preservation": "p16/final-label-verification/PRESERVATION_AFTER.json",
-    "final_available_preexisting_checkouts_unchanged": 28
+    "final_available_preexisting_checkouts_unchanged": 28,
+    "reviewed_head": "0a364869a135fe1dcd623e1ed19c07258111e7ed",
+    "merge_commit": "4370e879411479aa79b3d5aabbba5f2ff80d47ce"
   }
 }
