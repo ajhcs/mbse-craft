@@ -39,8 +39,89 @@ impl Workspace {
                 .memory(|m| m.focused())
                 .map(|id| (id, key, self.session.editor.freshness(), 3))
         });
+        let revision = self.docking.revision;
         self.docking.apply(expected, actions)?;
+        if self.docking.revision != revision {
+            self.persist_dock();
+        }
         self.docking_focus = focus;
+        Ok(())
+    }
+    fn persist_dock(&mut self) {
+        match crate::perspectives::encode(&self.docking.layout) {
+            Ok(text) => {
+                if self.preferences.value.workspace_layout != text {
+                    self.preferences.value.workspace_layout = text;
+                    self.preferences.changed();
+                }
+            }
+            Err(error) => self.docking.note = error,
+        }
+    }
+    fn replace_dock(&mut self, next: craft_ui::docking::Layout<Panel>) -> Result<(), String> {
+        if self.dock_blocked() {
+            return Err("DOCK_BUSY: finish the gesture/write or close the auxiliary editor first; work retained".into());
+        }
+        crate::docking::WorkspaceDock::check(&next)?;
+        crate::perspectives::encode(&next)?;
+        if next == self.docking.layout {
+            return Ok(());
+        }
+        let revision = self
+            .docking
+            .revision
+            .checked_add(1)
+            .ok_or("DOCK_REVISION_EXHAUSTED")?;
+        self.docking_focus = self.focused_raw().and_then(|key| {
+            self.context
+                .memory(|m| m.focused())
+                .map(|id| (id, key, self.session.editor.freshness(), 3))
+        });
+        self.docking.layout = next;
+        self.docking.revision = revision;
+        self.docking.last_actions = vec!["Restore workspace arrangement".into()];
+        self.docking.note =
+            "Workspace restored; native model, selection and incomplete text retained.".into();
+        self.persist_dock();
+        Ok(())
+    }
+    fn save_perspective(&mut self) -> Result<(), String> {
+        if self.dock_blocked() {
+            return Err("DOCK_BUSY: close the auxiliary editor first; work retained".into());
+        }
+        let name = crate::perspectives::name(&self.perspective_name)?.to_string();
+        let rows = &self.preferences.value.workspace_perspectives;
+        if rows.len() > crate::perspectives::MAX_PERSPECTIVES
+            || (rows.len() == crate::perspectives::MAX_PERSPECTIVES && !rows.contains_key(&name))
+        {
+            return Err("At most eight named perspectives; existing entries retained".into());
+        }
+        let text = crate::perspectives::encode(&self.docking.layout)?;
+        self.preferences
+            .value
+            .workspace_perspectives
+            .insert(name, text);
+        self.preferences.changed();
+        self.docking.note = "Perspective saved to preferences; native model untouched.".into();
+        Ok(())
+    }
+    fn restore_perspective(&mut self, name: &str) -> Result<(), String> {
+        let text = self
+            .preferences
+            .value
+            .workspace_perspectives
+            .get(name)
+            .ok_or("Perspective not found")?;
+        let next = crate::perspectives::decode(text)?;
+        self.replace_dock(next)
+    }
+    fn reset_dock(&mut self) -> Result<(), String> {
+        self.replace_dock(crate::docking::WorkspaceDock::default().layout)?;
+        // Empty is an explicit current/default marker in the shared settings store.
+        self.preferences.value.workspace_layout = String::new();
+        self.preferences.changed();
+        self.docking.note =
+            "Default panel arrangement restored; named perspectives retained.".into();
         Ok(())
     }
     pub(super) fn dock_surface(&mut self, root: &mut egui::Ui) {
@@ -58,6 +139,14 @@ impl Workspace {
             })
         }) {
             self.docking_focus = None;
+        }
+        let screen = root.available_rect_before_wrap();
+        if let Ok(next) = crate::perspectives::reachable(&self.docking.layout, screen) {
+            if next != self.docking.layout && !self.dock_blocked() {
+                if let Err(error) = self.replace_dock(next) {
+                    self.docking.note = error;
+                }
+            }
         }
         self.views.clear_toolbar_bounds();
         self.docking.body_ids.clear();
@@ -137,6 +226,9 @@ impl Workspace {
         let mut open = true;
         let mut close = false;
         let mut action = None;
+        let mut reset = false;
+        let mut save = false;
+        let mut restore = None;
         let revision = self.docking.revision;
         egui::Window::new("Panel layout").id(egui::Id::new("workspace-panel-controls")).open(&mut open).default_width(610.).show(ctx,|ui|{
             ui.label("Drag panel tabs to move, split or float. Floating panels stay inside this application viewport. Panel contents and unfinished native text remain owned by this workspace.");
@@ -147,9 +239,26 @@ impl Workspace {
                     let r=ui.button(format!("Left of {}",anchor.label()));self.bound(format!("dock:left:{}",panel.key()),&r);if r.clicked(){action=Some(Action::Move{panel,anchor,placement:Placement::Split(Zone::Left)});}
                 });});
             }
-            ui.label(&self.docking.note);let r=ui.button("Close controls");self.bound("dock:close-controls",&r);close=r.clicked();
+            ui.separator();
+            let r=ui.button("Reset default panels");self.bound("dock:reset",&r);reset=r.clicked();
+            ui.horizontal(|ui|{ui.label("Perspective name");let r=ui.text_edit_singleline(&mut self.perspective_name);self.bound("dock:perspective-name",&r);let r=ui.button("Save perspective");self.bound("dock:save-perspective",&r);save=r.clicked();});
+            let names=self.preferences.value.workspace_perspectives.keys().take(crate::perspectives::MAX_PERSPECTIVES).cloned().collect::<Vec<_>>();
+            for name in names {let r=ui.button(format!("Restore {name}"));self.bound(format!("dock:restore:{name}"),&r);if r.clicked(){restore=Some(name);}}
+            ui.label(&self.preferences.status);ui.label(&self.docking.note);let r=ui.button("Close controls");self.bound("dock:close-controls",&r);close=r.clicked();
         });
         self.docking.window = open && !close;
+        let result = if reset {
+            self.reset_dock()
+        } else if save {
+            self.save_perspective()
+        } else if let Some(name) = restore {
+            self.restore_perspective(&name)
+        } else {
+            Ok(())
+        };
+        if let Err(error) = result {
+            self.docking.note = error;
+        }
         if let Some(action) = action {
             if let Err(error) = self.apply_dock(revision, vec![action]) {
                 self.docking.note = error;
@@ -343,5 +452,116 @@ mod tests {
         assert_eq!(a.views.toolbar_bounds().count(), 0);
         assert_eq!(retained(&a), before);
         assert_eq!(a.docking.layout.panels().len(), 3);
+    }
+    #[test]
+    fn named_restore_reset_and_failed_restore_preserve_live_raw_and_native_state() {
+        let (_area, mut a, _) = app();
+        let before = retained(&a);
+        a.apply_dock(
+            0,
+            vec![Action::Float {
+                panel: Panel::Inspector,
+                rect: [80., 180., 400., 800.],
+            }],
+        )
+        .unwrap();
+        let saved = a.docking.layout.clone();
+        a.perspective_name = " Review ".into();
+        a.save_perspective().unwrap();
+        assert!(a
+            .preferences
+            .value
+            .workspace_perspectives
+            .contains_key("Review"));
+        a.reset_dock().unwrap();
+        assert_eq!(
+            a.docking.layout,
+            crate::docking::WorkspaceDock::default().layout
+        );
+        assert!(a.preferences.value.workspace_layout.is_empty());
+        a.restore_perspective("Review").unwrap();
+        assert_eq!(a.docking.layout, saved);
+        assert_eq!(retained(&a), before);
+        let revision = a.docking.revision;
+        a.preferences
+            .value
+            .workspace_perspectives
+            .insert("Broken".into(), "{broken".into());
+        assert!(a.restore_perspective("Broken").is_err());
+        assert_eq!(a.docking.layout, saved);
+        assert_eq!(a.docking.revision, revision);
+        assert_eq!(
+            a.preferences.value.workspace_perspectives["Broken"],
+            "{broken"
+        );
+        assert_eq!(
+            a.session.editor.display_text(&RawKey {
+                record: RecordId(301),
+                field: "criterion".into(),
+                item: None
+            }),
+            "9e"
+        );
+    }
+    #[test]
+    fn perspective_actions_refuse_busy_and_budget_without_partial_settings_or_native_mutation() {
+        let (_area, mut a, _) = app();
+        let before = retained(&a);
+        let layout = a.docking.layout.clone();
+        for i in 0..crate::perspectives::MAX_PERSPECTIVES {
+            a.preferences.value.workspace_perspectives.insert(
+                format!("Perspective{i}"),
+                crate::perspectives::encode(&layout).unwrap(),
+            );
+        }
+        let prefs = a.preferences.value.clone();
+        a.perspective_name = "Ninth".into();
+        assert!(a.save_perspective().is_err());
+        assert_eq!(a.preferences.value, prefs);
+        a.shortcuts.open = true;
+        assert!(a.reset_dock().is_err());
+        assert!(a.restore_perspective("Perspective0").is_err());
+        assert_eq!(a.preferences.value, prefs);
+        assert_eq!(a.docking.layout, layout);
+        assert_eq!(retained(&a), before);
+    }
+    #[test]
+    fn corrupted_settings_open_with_safe_default_and_exact_native_state_without_rewrite() {
+        let (area, a, ctx) = app();
+        let before = retained(&a);
+        drop(a);
+        let config = area.path().join("config");
+        std::fs::create_dir(&config).unwrap();
+        let file = config.join("config.toml");
+        let bytes="schema_version = 1\nworkspace_layout = '{broken'\nperiodic_recovery = false\nrecovery_interval_seconds = 42\n";
+        std::fs::write(&file, bytes).unwrap();
+        let mut session = Session::new(area.path()).unwrap();
+        let snapshot = mbse_model::stage1::Snapshot::from_fixture(
+            session.editor.snapshot.document_id.clone(),
+            &serde_json::from_str(include_str!(
+                "../../mbse-model/fixtures/stage1/inspection.json"
+            ))
+            .unwrap(),
+        )
+        .unwrap();
+        session.editor =
+            mbse_model::stage1::Editor::new(snapshot, session.editor.freshness().instance_id)
+                .unwrap();
+        session.editor.select(RecordId(301)).unwrap();
+        let app = Workspace::new(
+            session,
+            None,
+            Some(config),
+            craft_window::Choice::probe(craft_window::Prefix::new("MBSE_CRAFT")),
+            &ctx,
+        );
+        assert_eq!(
+            app.docking.layout,
+            crate::docking::WorkspaceDock::default().layout
+        );
+        assert!(app.docking.note.contains("refused"));
+        assert!(app.preferences.value.workspace_layout.contains("broken"));
+        assert_eq!(std::fs::read_to_string(file).unwrap(), bytes);
+        assert_eq!(app.session.editor.selected, before.2);
     }
 }

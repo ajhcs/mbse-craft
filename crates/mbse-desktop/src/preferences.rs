@@ -14,6 +14,8 @@ pub struct RecoveryPreferences {
     pub periodic_recovery: bool,
     pub recovery_interval_seconds: u64,
     pub shortcut_overrides: crate::shortcuts::Overrides,
+    pub workspace_layout: String,
+    pub workspace_perspectives: std::collections::BTreeMap<String,String>,
 }
 impl Default for RecoveryPreferences {
     fn default() -> Self {
@@ -21,6 +23,8 @@ impl Default for RecoveryPreferences {
             periodic_recovery: false,
             recovery_interval_seconds: 60,
             shortcut_overrides: Default::default(),
+            workspace_layout: String::new(),
+            workspace_perspectives: Default::default(),
         }
     }
 }
@@ -417,4 +421,18 @@ mod shortcut_reset_test {
         let(mut store,_)=SettingsStore::<RecoveryPreferences>::open(Location::Dir(area.path().into()));let mut draft=crate::shortcuts::Editor::new(&store.get().shortcut_overrides);draft.reset_known();store.update(|p|p.shortcut_overrides=draft.draft);store.flush().unwrap();
         let(store,_)=SettingsStore::<RecoveryPreferences>::open(Location::Dir(area.path().into()));assert_eq!(store.get().shortcut_overrides["edit.undo"],"Default");assert_eq!(store.get().shortcut_overrides["future.command"],"keep");let active=crate::shortcuts::Bindings::resolve(&store.get().shortcut_overrides).unwrap_or_else(|e|panic!("{e:?}"));assert_eq!(active.get(crate::command_catalog::Id::Undo),Some(crate::command_catalog::Id::Undo.spec().shortcut));let text=std::fs::read_to_string(path).unwrap();assert!(text.contains("# keep reset note")&&!text.contains("Primary+Alt+U"));
     }
+}
+
+#[cfg(test)]mod workspace_persistence_tests{
+ use super::*;use crate::{docking::{Panel,WorkspaceDock},perspectives};use craft_ui::docking::Action;
+ #[test]fn actual_store_reopen_perspective_and_explicit_reset_preserve_other_preferences(){
+  let area=tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap();let path=area.path().join("config.toml");std::fs::write(&path,"schema_version = 1\n# workspace note\nperiodic_recovery = true\nrecovery_interval_seconds = 42\nfuture_key = 'retained'\n[shortcut_overrides]\n'edit.undo' = 'Primary+Alt+U'\n").unwrap();
+  let mut d=WorkspaceDock::default();d.apply(0,vec![Action::Float{panel:Panel::Inspector,rect:[90.,160.,500.,700.]}]).unwrap();let text=perspectives::encode(&d.layout).unwrap();
+  {let(mut store,report)=SettingsStore::<RecoveryPreferences>::open(Location::Dir(area.path().into()));assert!(!report.has_problems());store.update(|p|{p.workspace_layout=text.clone();p.workspace_perspectives.insert("Review".into(),text.clone());});store.flush().unwrap();}
+  {let(mut store,report)=SettingsStore::<RecoveryPreferences>::open(Location::Dir(area.path().into()));assert!(!report.has_problems());assert_eq!(perspectives::decode(&store.get().workspace_layout).unwrap(),d.layout);assert_eq!(store.get().workspace_perspectives["Review"],text);store.update(|p|p.workspace_layout=String::new());store.flush().unwrap();}
+  let(store,report)=SettingsStore::<RecoveryPreferences>::open(Location::Dir(area.path().into()));assert!(!report.has_problems());assert!(store.get().workspace_layout.is_empty());assert_eq!(store.get().workspace_perspectives["Review"],text);assert!(store.get().periodic_recovery);assert_eq!(store.get().recovery_interval_seconds,42);assert_eq!(store.get().shortcut_overrides["edit.undo"],"Primary+Alt+U");let bytes=std::fs::read_to_string(path).unwrap();assert!(bytes.contains("# workspace note")&&bytes.contains("future_key = 'retained'"));
+ }
+ #[test]fn invalid_workspace_payload_retains_original_bytes_and_other_valid_settings(){
+  let area=tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap();let path=area.path().join("config.toml");let bytes="schema_version = 1\nworkspace_layout = '{broken'\nperiodic_recovery = true\nrecovery_interval_seconds = 42\n";std::fs::write(&path,bytes).unwrap();let(store,report)=SettingsStore::<RecoveryPreferences>::open(Location::Dir(area.path().into()));assert!(!report.has_problems());assert!(perspectives::decode(&store.get().workspace_layout).is_err());assert!(store.get().periodic_recovery);assert_eq!(std::fs::read_to_string(path).unwrap(),bytes);
+ }
 }

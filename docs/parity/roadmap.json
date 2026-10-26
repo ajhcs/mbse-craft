@@ -239,7 +239,7 @@
       "acceptance": [
         "Moving, tabbing and floating preserve panel identity, selection and incomplete text; invalid drops lose no panel or model data."
       ],
-      "state": "implemented_draft_pending_review",
+      "state": "merged",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "execution_results": "docs/parity/p11/README.md",
@@ -255,9 +255,11 @@
       "acceptance": [
         "Restart restores arrangements; Reset restores defaults; off-screen panels become reachable; corrupt settings preserve model state."
       ],
-      "state": "planned",
+      "state": "implemented_draft_pending_review",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/p12/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/15"
     },
     {
       "id": "P13",

@@ -1,0 +1,33 @@
+{
+  "schema": "mbse-craft.p12-native-review/1",
+  "reviewer": "Codex, same implementing agent",
+  "independent_review": false,
+  "result": "bounded_P12_scenarios_passed",
+  "raw_receipt_status": "actions_completed_review_pending",
+  "native_runs": 4,
+  "retained_action_errors": 2,
+  "error_explanations": [
+    "Initial offscreen assertion assumed y147 instead of live available workspace y139; corrected using audited tab/padding geometry without app replay.",
+    "Close correctly raised native preservation guard because newly constructed views were unsaved; cancelled guard, explicitly opened matching saved views, then closed normally. No bypass or discarded edits."
+  ],
+  "pixels_reviewed": [
+    "run/01-offscreen-panel-recovered.png",
+    "reopen/04-cold-launch-restores-tabs.png",
+    "corrupt/09-corrupt-layout-retained-with-native-draft.png"
+  ],
+  "observations": [
+    "Offscreen Properties header/body clamped into available viewport; raw9e,95metre,2.5km remain visible",
+    "Actually saved tab arrangement loads exactly in fresh app from exact config seed copy",
+    "Saved Review perspective restores floating geometry; explicit Reset survives another fresh app without deleting Review",
+    "Corrupt workspace JSON reports refusal with defaults and retains entire config byte-for-byte, native snapshot/selected1003/raw draft intact",
+    "Existing unsaved-views close protection remains active; Cancel then explicit open of saved matching views permits normal close",
+    "Four normal app/display exits and exact owned-process cleanup; original fixture/config seeds unchanged"
+  ],
+  "cold_copy_scope": "Exact actual saved config bytes copied to later owned writable run/config directories with seed hashes; no same physical config restart claim",
+  "limits": [
+    "Same-agent Linux private display only; no independent/full-platform/domain acceptance",
+    "Cold apps copy exact actual saved bytes into distinct owned writable config paths; no same physical path claim",
+    "Only existing optional vendored Craft serde feature enabled; no vendor edits or downloads",
+    "Two recorded harness assertion/close-guard errors remain retained without native replay"
+  ]
+}

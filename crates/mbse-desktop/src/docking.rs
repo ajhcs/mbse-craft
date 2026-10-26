@@ -3,7 +3,8 @@ use craft_ui::{
     docking::{Action, Layout, Node, Permissions},
     layout::{SplitAxis, SplitSize},
 };
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, serde::Serialize, serde::Deserialize)]
+#[serde(rename_all="snake_case")]
 pub enum Panel {
     Browser,
     Inspector,

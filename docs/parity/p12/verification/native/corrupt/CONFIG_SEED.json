@@ -1,0 +1,6 @@
+{
+  "source": "/workspace/repos/builderbob/mbse-craft/work/m3-p12-workspace-perspectives/docs/parity/p12/fixtures/corrupt.toml",
+  "destination": "/workspace/build/builderbob/mbse-craft/milestone1/native-p12-01/corrupt/config/config.toml",
+  "bytes": 159,
+  "sha256": "e4a99a7b1f97a884963bccb0e17d6b1f45ce81f92d66cc7680dc44b0ccf05fa4"
+}

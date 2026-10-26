@@ -1,6 +1,6 @@
 {
   "schema": "mbse-craft.milestone3-results/1",
-  "recorded_utc": "2026-10-26T16:41:58.828313+00:00",
+  "recorded_utc": "2026-10-26T16:53:17.477113+00:00",
   "state": "in_progress",
   "base_commit": "d7cca1c17002368f58264e7686e8c71a9b73b6dd",
   "p09": {
@@ -29,7 +29,6 @@
   "milestone_exit_accepted": false,
   "full_parity_accepted": false,
   "remaining_prs": [
-    "P12",
     "P13"
   ],
   "p10": {
@@ -62,7 +61,7 @@
     "review_followup": "p10/REVIEW_FOLLOWUP.md"
   },
   "p11": {
-    "state": "implemented_draft_pending_review",
+    "state": "merged",
     "branch": "codex/m3-p11-transactional-docking",
     "base_commit": "0dd5051b8532a58b9f0e9ac01ab5df3cf6727968",
     "source_commit": "9d7d3c76964b8e98723bad8354e035d58c562f2f",
@@ -79,6 +78,28 @@
     "native_receipt": "p11/verification/native/RECEIPT.json",
     "same_agent_review": "p11/verification/NATIVE_REVIEW.json",
     "preservation": "p11/PRESERVATION_AFTER.json",
-    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/14"
+    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/14",
+    "reviewed_head": "e778caee4f8e1a5e10fe6ac11fdeaa23855ec681",
+    "merge_commit": "b531d40e66dc436d447abaf29c9b2f3117974018",
+    "review_followup": "p11/REVIEW_FOLLOWUP.md"
+  },
+  "p12": {
+    "state": "implemented_draft_pending_review",
+    "branch": "codex/m3-p12-workspace-perspectives",
+    "base_commit": "b531d40e66dc436d447abaf29c9b2f3117974018",
+    "source_files": 679,
+    "source_sha256": "a59ca18fc9a998c629fcf0d94b4a8d0d0ab6b8803172101d11f2d7c1f2979684",
+    "binary_sha256": "da3ede6fa3364a2828ad7ff368f3628457c41641313a5a084823cd409ebe4529",
+    "workspace_tests_passed": 382,
+    "new_p12_tests": 8,
+    "native_runs": 4,
+    "native_action_errors": 2,
+    "acceptance": "p12/README.md",
+    "contract": "p12/CONTRACT.md",
+    "compiler_receipt": "p12/verification/COMPILER_RECEIPT.json",
+    "native_receipt": "p12/verification/native/RECEIPT.json",
+    "same_agent_review": "p12/verification/NATIVE_REVIEW.json",
+    "preservation": "p12/PRESERVATION_AFTER.json",
+    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/15"
   }
 }

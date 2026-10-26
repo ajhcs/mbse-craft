@@ -47,7 +47,7 @@ P07 and P08 are merged in [PR #10](https://github.com/ajhcs/mbse-craft/pull/10) 
 
 ## Milestone 3: Craft workspace behavior
 
-P09 is merged in [PR #12](https://github.com/ajhcs/mbse-craft/pull/12). P10 [scoped shortcuts](parity/p10/README.md) is reviewed and merged in PR #13. P11 [transactional docking](parity/p11/README.md) is implemented with bounded regression/native evidence. P12–P13 and the milestone exit remain open. Ten of 58 positions are merged; 48 remain to merge, including P11.
+P09 is merged in [PR #12](https://github.com/ajhcs/mbse-craft/pull/12). P10 [scoped shortcuts](parity/p10/README.md) is reviewed and merged in PR #13. P11 [transactional docking](parity/p11/README.md) is reviewed and merged in PR #14. P12 [workspace arrangements and perspectives](parity/p12/README.md) is implemented with bounded regression/native evidence. P13 and the milestone exit remain open. Eleven of 58 positions are merged; 47 remain to merge, including P12.
 
 9. **Introduce a stable command catalog and consistent menus.** Acceptance: Menu, toolbar and keyboard paths use identical command checks and outcomes; disabled commands explain their prerequisites.
 
