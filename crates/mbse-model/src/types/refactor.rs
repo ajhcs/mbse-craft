@@ -42,6 +42,7 @@ pub struct Reference {
 #[derive(Clone, Debug, Serialize)]
 pub struct Summary {
     pub operation: String,
+    pub copied_profile_applications:Vec<String>,
     pub id_mapping: BTreeMap<Id, Id>,
     pub moved_usages: Vec<Id>,
     pub moved_connectors: Vec<Id>,
@@ -188,6 +189,7 @@ fn empty_summary(snapshot: &Snapshot, mode: Mode) -> Summary {
             Mode::MoveUsages => "Move usages and enclosed connectors",
         }
         .into(),
+        copied_profile_applications:Vec::new(),
         id_mapping: BTreeMap::new(),
         moved_usages: Vec::new(),
         moved_connectors: Vec::new(),
@@ -302,6 +304,7 @@ pub fn prepare(e: &Editor) -> Result<Prepared, String> {
                     );
                 }
             }
+            summary.copied_profile_applications=tags::copy_applications(&mut store,&before,&summary.id_mapping);
             for r in refs {
                 if members.contains(&r.owner) {
                     if members.contains(&r.target) {

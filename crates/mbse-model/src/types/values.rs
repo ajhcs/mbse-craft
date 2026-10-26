@@ -80,7 +80,7 @@ fn scalar(store: &Store, target: Target) -> Result<Scalar, String> {
         _ => Err("VALUE_TYPE_MISSING_OR_KIND".into()),
     }
 }
-fn literal(kind: Scalar, text: &str) -> Result<Literal, String> {
+pub(super) fn literal(kind: Scalar, text: &str) -> Result<Literal, String> {
     if text.len() > 4096 {
         return Err("VALUE_LITERAL_LIMIT".into());
     }

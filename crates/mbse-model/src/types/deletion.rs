@@ -45,6 +45,7 @@ pub struct Summary {
     pub removed: Vec<Removed>,
     pub incoming: Vec<refactor::Reference>,
     pub removed_values: Vec<ValueEntry>,
+    pub removed_profile_applications:Vec<String>,
     pub retained_raw_forms: usize,
     pub unknown: UnknownImpact,
     pub complete_supported_reference_inventory: bool,
@@ -455,6 +456,7 @@ pub fn prepare(e: &Editor, v: &Views) -> Result<Prepared, String> {
         + usize::from(j.usage.is_some())
         + usize::from(j.interface.is_some())
         + usize::from(j.refactor.is_some())
+        + usize::from(j.profile_tags.is_some())
         + 1;
     let affected_ports: BTreeSet<_> = v
         .document()
@@ -473,6 +475,7 @@ pub fn prepare(e: &Editor, v: &Views) -> Result<Prepared, String> {
             .filter(|r| removed.contains(&r.target))
             .collect(),
         removed_values: values,
+        removed_profile_applications:before.profile_applications.iter().filter(|(_,a)|removed.contains(&a.target)).map(|(key,_)|key.clone()).collect(),
         retained_raw_forms: retained,
         complete_supported_reference_inventory: unknown.count == 0,
         unknown,
@@ -514,6 +517,7 @@ pub fn prepare(e: &Editor, v: &Views) -> Result<Prepared, String> {
         summary.refusal=Some("Unknown impact prevents a complete verdict. Delete is unavailable; original data is retained.".into());
     } else if removed.len() + summary.owned_contexts.len() > 128
         || summary.removed_values.len() > 128
+        || summary.removed_profile_applications.len()>128
         || summary.incoming.len() > 512
     {
         summary.refusal = Some(
@@ -537,6 +541,7 @@ pub fn prepare(e: &Editor, v: &Views) -> Result<Prepared, String> {
         s.ports.retain(|id, _| !removed.contains(id));
         s.connectors.retain(|id, _| !removed.contains(id));
         s.defaults.retain(|id, _| !removed.contains(id));
+        s.profile_applications.retain(|_,a|!removed.contains(&a.target));
         s.overrides.retain(|usage, map| {
             if removed.contains(usage) {
                 return false;

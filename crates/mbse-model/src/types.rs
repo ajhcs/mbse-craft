@@ -11,6 +11,7 @@ pub mod ports;
 pub mod values;
 pub mod refactor;
 pub mod deletion;
+pub mod tags;
 mod deletion_native;
 pub const NAMESPACE: &str = "mbse-craft.types/1";
 pub const DRAFTS: &str = "mbse-craft.type-drafts/1";
@@ -103,6 +104,10 @@ pub struct Store {
     pub defaults:BTreeMap<Id,values::Literal>,
     #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
     pub overrides:BTreeMap<Id,BTreeMap<Id,values::Literal>>,
+    #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
+    pub profiles:BTreeMap<String,tags::Profile>,
+    #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
+    pub profile_applications:BTreeMap<String,tags::Application>,
 }
 impl Default for Store {
     fn default() -> Self {
@@ -115,7 +120,7 @@ impl Default for Store {
             interfaces: BTreeMap::new(),
             ports: BTreeMap::new(),
             connectors: BTreeMap::new(),
-            defaults:BTreeMap::new(),overrides:BTreeMap::new(),
+            defaults:BTreeMap::new(),overrides:BTreeMap::new(),profiles:BTreeMap::new(),profile_applications:BTreeMap::new(),
         }
     }
 }
@@ -158,6 +163,8 @@ struct Journal {
     refactor:Option<refactor::Form>,
     #[serde(default,skip_serializing_if="Option::is_none")]
     deletion:Option<deletion::Form>,
+    #[serde(default,skip_serializing_if="Option::is_none")]
+    profile_tags:Option<tags::Form>,
 }
 impl Default for Journal {
     fn default() -> Self {
@@ -173,6 +180,7 @@ impl Default for Journal {
             values:BTreeMap::new(),
             refactor:None,
             deletion:None,
+            profile_tags:None,
         }
     }
 }
@@ -248,6 +256,7 @@ fn parse_journal(value: &Value) -> Result<Journal, String> {
     values::validate_journal(&j)?;
     refactor::validate_journal(&j)?;
     deletion::validate_journal(&j)?;
+    tags::validate_journal(&j)?;
     Ok(j)
 }
 pub fn validate_namespace(name: &str, value: &Value) -> Result<(), String> {
@@ -419,6 +428,7 @@ impl Store {
         ports::validate_store(self, &mut ids)?;
         connectors::validate_store(self, &mut ids)?;
         values::validate_store(self)?;
+        tags::validate_store(self)?;
         // Topological admission bounds work to definitions plus Part edges;
         // reused targets never expand into every possible occurrence path.
         let mut incoming: BTreeMap<Id, usize> =
@@ -474,6 +484,7 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
     } else {
         Store::default()
     };
+    tags::validate_targets(snapshot,&store)?;
     for d in store.definitions.values() {
         let system = snapshot
             .records
@@ -572,6 +583,7 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
 }
 #[derive(Clone, Debug)]
 pub enum Action {
+    ProfileTag(tags::Action),
     Deletion(deletion::Action),
     Refactor(refactor::Action),
     Value(values::Action),
@@ -620,6 +632,7 @@ pub fn apply(snapshot: &mut Snapshot, action: Action) -> Result<Change, String> 
 fn apply_inner(snapshot: &mut Snapshot, action: Action) -> Result<Change, String> {
     let mut store = load(snapshot)?;
     match action {
+        Action::ProfileTag(action)=>tags::apply_inner(snapshot,action),
         Action::Deletion(action)=>deletion::apply_inner(snapshot,action),
         Action::Refactor(action)=>refactor::apply_inner(snapshot,action),
         Action::Value(action)=>values::apply_inner(snapshot,action),
@@ -1291,3 +1304,6 @@ mod refactor_tests;
 
 #[cfg(test)]
 mod deletion_tests;
+
+#[cfg(test)]
+mod tags_tests;

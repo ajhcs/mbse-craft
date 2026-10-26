@@ -34,6 +34,7 @@ pub enum Id {
     Values,
     Refactor,
     DeleteModel,
+    ProfileTags,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Surface {
@@ -74,6 +75,7 @@ macro_rules! spec {
 }
 pub const MENUS: &[&str] = &["File", "Edit", "View", "Tools"];
 pub const ALL: &[Spec] = &[
+    spec!(ProfileTags,"tools.profile_tags","Exact profiles and literal tags","Tools",ALT,J),
     spec!(DeleteModel,"tools.semantic_delete","Delete model records with impact preview","Tools",ALT,G),
     spec!(Refactor,"tools.clone_move","Clone and move with reference preview","Tools",ALT,B),
     spec!(Values,"tools.values","Defaults and instance values","Tools",ALT,Y),
