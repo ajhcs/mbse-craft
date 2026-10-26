@@ -253,7 +253,7 @@ impl Workspace {
                 }
             }
         }
-        // eframe calls update before ui: let queued editing input reach the current
+        // eframe calls logic before ui: let queued editing input reach the current
         // editor before deciding that an already-ready candidate is still current.
         if self.files.pending()
             && self.context.input(|i| {
@@ -264,8 +264,12 @@ impl Workspace {
                             | egui::Event::Paste(_)
                             | egui::Event::Cut
                             | egui::Event::Key { pressed: true, .. }
-                            | egui::Event::PointerButton { pressed: true, .. }
+                            | egui::Event::PointerButton { .. }
                             | egui::Event::MouseWheel { .. }
+                            | egui::Event::Ime(_)
+                            | egui::Event::Touch { .. }
+                            | egui::Event::Zoom(_)
+                            | egui::Event::Rotate(_)
                     )
                 })
             })
@@ -678,5 +682,36 @@ mod tests {
         assert_eq!(a.files.outcome, "stale");
         assert_eq!(state(&a), edited);
         assert_eq!(a.session.editor.snapshot.document_id, old);
+    }
+    #[test]
+    fn queued_cancel_button_release_precedes_a_ready_candidate_publication() {
+        let (area, mut a) = app();
+        let tx = pending(&mut a);
+        tx.send(Ok(Session::new(area.path()).unwrap()))
+            .ok()
+            .unwrap();
+        let before = state(&a);
+        let ctx = a.context.clone();
+        ctx.run_ui(
+            egui::RawInput {
+                events: vec![egui::Event::PointerButton {
+                    pos: egui::pos2(20., 20.),
+                    button: egui::PointerButton::Primary,
+                    pressed: false,
+                    modifiers: egui::Modifiers::NONE,
+                }],
+                ..Default::default()
+            },
+            |_| {
+                a.poll_file_ops();
+                assert!(a.files.pending());
+                a.cancel_model_read();
+            },
+        )
+        .drop_without_applying_deltas();
+        ctx.run_ui(egui::RawInput::default(), |_| a.poll_file_ops())
+            .drop_without_applying_deltas();
+        assert_eq!(a.files.outcome, "cancelled");
+        assert_eq!(state(&a), before);
     }
 }
