@@ -73,12 +73,31 @@ impl Default for Store {
         }
     }
 }
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct DefinitionForm {
+    pub system: RecordId,
+    pub name: String,
+    pub value: bool,
+    pub scalar: Scalar,
+}
+impl DefinitionForm {
+    pub fn kind(&self) -> Kind {
+        if self.value {
+            Kind::Value(self.scalar)
+        } else {
+            Kind::Component
+        }
+    }
+}
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 struct Journal {
     profile: String,
     schema_version: u32,
     forms: BTreeMap<Id, Form>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    definition: Option<DefinitionForm>,
 }
 impl Default for Journal {
     fn default() -> Self {
@@ -86,6 +105,7 @@ impl Default for Journal {
             profile: DRAFTS.into(),
             schema_version: 1,
             forms: BTreeMap::new(),
+            definition: None,
         }
     }
 }
@@ -117,6 +137,12 @@ fn parse_journal(value: &Value) -> Result<Journal, String> {
         serde_json::from_value(value.clone()).map_err(|e| format!("TYPE_DRAFT_SCHEMA: {e}"))?;
     if j.profile != DRAFTS || j.schema_version != 1 || j.forms.len() > 512 {
         return Err("TYPE_DRAFT_VERSION_OR_LIMIT".into());
+    }
+    if j.definition
+        .as_ref()
+        .is_some_and(|f| f.system.0 == 0 || f.name.len() > 4096)
+    {
+        return Err("TYPE_DEFINITION_DRAFT_SHAPE_OR_LIMIT".into());
     }
     for f in j.forms.values() {
         if f.owner.0 == 0
@@ -156,12 +182,26 @@ pub fn load(snapshot: &Snapshot) -> Result<Store, String> {
         .transpose()
         .map(|s| s.unwrap_or_default())
 }
-pub fn forms(snapshot: &Snapshot) -> Result<BTreeMap<Id, Form>, String> {
+fn journal(snapshot: &Snapshot) -> Result<Journal, String> {
     active(snapshot, DRAFTS)?
         .map(parse_journal)
         .transpose()
-        .map(|j| j.unwrap_or_default().forms)
+        .map(|j| j.unwrap_or_default())
 }
+pub fn forms(snapshot: &Snapshot) -> Result<BTreeMap<Id, Form>, String> {
+    Ok(journal(snapshot)?.forms)
+}
+pub fn definition_form(snapshot: &Snapshot) -> Result<Option<DefinitionForm>, String> {
+    Ok(journal(snapshot)?.definition)
+}
+pub fn drafts_value(value: &Option<Extensions>) -> Option<Value> {
+    value
+        .as_ref()
+        .filter(|e| e.required_namespaces.iter().any(|n| n == DRAFTS))
+        .and_then(|e| e.namespaces.get(DRAFTS))
+        .cloned()
+}
+
 fn put<T: Serialize>(snapshot: &mut Snapshot, name: &str, value: &T) -> Result<(), String> {
     active(snapshot, name)?;
     let e = snapshot
@@ -293,6 +333,9 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
         high = high.max(id.0)
     }
     if e.required_namespaces.iter().any(|n| n == DRAFTS) {
+        if let Some(definition) = definition_form(snapshot)? {
+            high = high.max(definition.system.0);
+        }
         for (id, f) in forms(snapshot)? {
             if store.definitions.contains_key(&id) || native_reserved.contains(&id.0) {
                 return Err("TYPE_DRAFT_ID_COLLISION".into());
@@ -304,6 +347,9 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
 }
 #[derive(Clone, Debug)]
 pub enum Action {
+    SetDefinitionForm {
+        form: DefinitionForm,
+    },
     AddDefinition {
         system: RecordId,
         name: String,
@@ -340,6 +386,12 @@ pub fn apply(snapshot: &mut Snapshot, action: Action) -> Result<Change, String> 
 fn apply_inner(snapshot: &mut Snapshot, action: Action) -> Result<Change, String> {
     let mut store = load(snapshot)?;
     match action {
+        Action::SetDefinitionForm { form } => {
+            let mut j = journal(snapshot)?;
+            j.definition = Some(form);
+            put(snapshot, DRAFTS, &j)?;
+            Ok(Change::Raw)
+        }
         Action::AddDefinition {
             system,
             name: label,
@@ -353,6 +405,12 @@ fn apply_inner(snapshot: &mut Snapshot, action: Action) -> Result<Change, String
             {
                 return Err("TYPE_SYSTEM_WRONG_KIND".into());
             }
+            let mut journal = journal(snapshot)?;
+            if let Some(form) = journal.definition.as_mut() {
+                if form.system == system && form.name == label && form.kind() == kind {
+                    form.name.clear();
+                }
+            }
             let id = allocate(snapshot)?;
             store.definitions.insert(
                 id,
@@ -364,6 +422,9 @@ fn apply_inner(snapshot: &mut Snapshot, action: Action) -> Result<Change, String
                 },
             );
             put(snapshot, NAMESPACE, &store)?;
+            if journal.definition.is_some() {
+                put(snapshot, DRAFTS, &journal)?;
+            }
             Ok(Change::Model)
         }
         Action::BeginProperty { owner } => {
@@ -375,10 +436,7 @@ fn apply_inner(snapshot: &mut Snapshot, action: Action) -> Result<Change, String
                 return Err("TYPE_OWNER_WRONG_KIND".into());
             }
             let id = allocate(snapshot)?;
-            let mut journal = Journal {
-                forms: forms(snapshot)?,
-                ..Default::default()
-            };
+            let mut journal = journal(snapshot)?;
             journal.forms.insert(
                 id,
                 Form {
@@ -393,10 +451,7 @@ fn apply_inner(snapshot: &mut Snapshot, action: Action) -> Result<Change, String
             Ok(Change::Raw)
         }
         Action::SetForm { id, form } => {
-            let mut journal = Journal {
-                forms: forms(snapshot)?,
-                ..Default::default()
-            };
+            let mut journal = journal(snapshot)?;
             if !journal.forms.contains_key(&id) && !store.properties.contains_key(&id) {
                 return Err("TYPE_DRAFT_UNAVAILABLE".into());
             }
@@ -432,7 +487,7 @@ fn apply_inner(snapshot: &mut Snapshot, action: Action) -> Result<Change, String
         }
     }
 }
-/// Model history excludes current property journals; IDs stay in Snapshot.next_id.
+/// Model history excludes current definition/property journals; IDs stay in Snapshot.next_id.
 pub fn accepted_extensions(value: &Option<Extensions>) -> Option<Extensions> {
     let mut value = value.clone();
     if let Some(e) = value.as_mut() {
@@ -630,15 +685,17 @@ mod tests {
             .namespaces
             .insert(NAMESPACE.into(), original.clone());
         let before = e.snapshot.clone();
-        assert!(run(
-            &mut e,
-            Action::AddDefinition {
-                system: RecordId(1),
-                name: "No overwrite".into(),
-                kind: Kind::Component
-            }
-        )
-        .is_err());
+        assert!(
+            run(
+                &mut e,
+                Action::AddDefinition {
+                    system: RecordId(1),
+                    name: "No overwrite".into(),
+                    kind: Kind::Component
+                }
+            )
+            .is_err()
+        );
         assert_eq!(e.snapshot, before);
         assert_eq!(
             e.snapshot.extensions.unwrap().namespaces[NAMESPACE],
@@ -693,20 +750,23 @@ mod tests {
         let ticket = e.freshness();
         let id = property(&mut e, c, v);
         let before = e.snapshot.clone();
-        assert!(e
-            .command(&ticket, Command::Typed(Action::ApplyProperty { id }))
-            .is_err());
+        assert!(
+            e.command(&ticket, Command::Typed(Action::ApplyProperty { id }))
+                .is_err()
+        );
         assert_eq!(e.snapshot, before);
         let mut snapshot = before.clone();
-        assert!(apply(
-            &mut snapshot,
-            Action::AddDefinition {
-                system: RecordId(9999),
-                name: "bad".into(),
-                kind: Kind::Component
-            }
-        )
-        .is_err());
+        assert!(
+            apply(
+                &mut snapshot,
+                Action::AddDefinition {
+                    system: RecordId(9999),
+                    name: "bad".into(),
+                    kind: Kind::Component
+                }
+            )
+            .is_err()
+        );
         assert_eq!(snapshot, before);
         for (lo, hi) in [
             ("2", "1"),
@@ -728,7 +788,7 @@ mod tests {
     #[test]
     fn actual_native_save_reopen_retains_typed_ids_and_unfinished_forms_with_empty_runtime_history()
     {
-        use crate::stage1_io::{execute_write, Session};
+        use crate::stage1_io::{Session, execute_write};
         let area = tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap();
         let mut session = Session::new(area.path()).unwrap();
         session.editor.snapshot.extensions = Some(Extensions::default());
@@ -761,6 +821,143 @@ mod tests {
             v
         );
         assert!(!reopened.editor.can_undo() && !reopened.editor.can_redo());
+    }
+    #[test]
+    fn invalid_definition_draft_survives_property_edits_history_and_native_reopen() {
+        use crate::stage1_io::{Session, execute_write};
+        let area = tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap();
+        let mut session = Session::new(area.path()).unwrap();
+        session.editor.snapshot.extensions = Some(Extensions::default());
+        let (c, v) = definitions(&mut session.editor);
+        let draft = DefinitionForm {
+            system: RecordId(1),
+            name: "x".repeat(257),
+            value: true,
+            scalar: Scalar::Integer,
+        };
+        run(
+            &mut session.editor,
+            Action::SetDefinitionForm {
+                form: draft.clone(),
+            },
+        )
+        .unwrap();
+        let property = property(&mut session.editor, c, v);
+        assert_eq!(
+            definition_form(&session.editor.snapshot).unwrap(),
+            Some(draft.clone())
+        );
+        let before = session.editor.snapshot.clone();
+        assert!(
+            run(
+                &mut session.editor,
+                Action::AddDefinition {
+                    system: draft.system,
+                    name: draft.name.clone(),
+                    kind: draft.kind()
+                }
+            )
+            .is_err()
+        );
+        assert_eq!(session.editor.snapshot, before);
+        assert!(
+            session
+                .editor
+                .undo_model(&session.editor.freshness())
+                .unwrap()
+        );
+        assert_eq!(
+            definition_form(&session.editor.snapshot).unwrap(),
+            Some(draft.clone())
+        );
+        assert!(
+            session
+                .editor
+                .redo_model(&session.editor.freshness())
+                .unwrap()
+        );
+        assert_eq!(
+            definition_form(&session.editor.snapshot).unwrap(),
+            Some(draft.clone())
+        );
+        assert!(
+            forms(&session.editor.snapshot)
+                .unwrap()
+                .contains_key(&property)
+        );
+        let path = area.path().join("definition-draft.kernspan");
+        let job = session.begin_save(&path).unwrap();
+        assert!(session.complete(execute_write(job)));
+        let reopened = Session::open(area.path(), &path).unwrap();
+        assert_eq!(reopened.editor.snapshot, session.editor.snapshot);
+        assert_eq!(
+            definition_form(&reopened.editor.snapshot).unwrap(),
+            Some(draft)
+        );
+    }
+    #[test]
+    fn adding_definition_consumes_only_matching_name_and_advances_raw_revision() {
+        let mut e = editor();
+        let draft = DefinitionForm {
+            system: RecordId(1),
+            name: "Pending value".into(),
+            value: true,
+            scalar: Scalar::Text,
+        };
+        run(
+            &mut e,
+            Action::SetDefinitionForm {
+                form: draft.clone(),
+            },
+        )
+        .unwrap();
+        let unchanged = e.snapshot.clone();
+        run(
+            &mut e,
+            Action::SetDefinitionForm {
+                form: draft.clone(),
+            },
+        )
+        .unwrap();
+        assert_eq!(e.snapshot, unchanged);
+        run(
+            &mut e,
+            Action::AddDefinition {
+                system: RecordId(1),
+                name: "Another definition".into(),
+                kind: Kind::Component,
+            },
+        )
+        .unwrap();
+        assert_eq!(definition_form(&e.snapshot).unwrap(), Some(draft.clone()));
+        let raw = e.snapshot.raw_version;
+        let model = e.snapshot.model_revision;
+        run(
+            &mut e,
+            Action::AddDefinition {
+                system: draft.system,
+                name: draft.name.clone(),
+                kind: draft.kind(),
+            },
+        )
+        .unwrap();
+        assert_eq!(e.snapshot.raw_version, raw + 1);
+        assert_eq!(e.snapshot.model_revision, model + 1);
+        let mut expected = draft;
+        expected.name.clear();
+        assert_eq!(
+            definition_form(&e.snapshot).unwrap(),
+            Some(expected.clone())
+        );
+        assert!(e.undo_model(&e.freshness()).unwrap());
+        assert_eq!(definition_form(&e.snapshot).unwrap(), Some(expected));
+        assert!(
+            load(&e.snapshot)
+                .unwrap()
+                .definitions
+                .values()
+                .all(|d| d.name != "Pending value")
+        );
     }
     #[test]
     fn repeated_apply_and_identical_raw_form_are_noops_in_the_model_history() {

@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m4-p15-renderer-qualified-final",
-  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m4-p15-types-properties",
+  "id": "m4-p15-definition-journal-review-final",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/review-p15",
   "source_manifest": "docs/parity/p15/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "10010fcdb6257a2eddbb9f8ba449866d511ce4fc8618f8f78d1222b09264c04c",
-  "source_sha256": "7507442f0023c7311fe49459d5c89367829cdfd11869836572018b81f4d7c1a9",
+  "source_manifest_sha256": "1bf3c34fe7262ba621e7fdf995ccbeb0af344ceff8d0267ed2bf5d450e1b7618",
+  "source_sha256": "53dd2fee7179cf9a593ae8607bf2ec84b83b51a77c3cd162f46b0f713b9a7ceb",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -38,7 +38,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "Focused actual AreaState trace proved three-frame window/TextEdit startup. Final steady-state focus assertion remains; full workspace/build including new typed model/history/store cases. Earlier failures and focused diagnostic retained separately.",
+  "rationale": "PR18 review correction: persist definition name, System scope and value/scalar choices with property journals, retain across model Undo/Redo and Save/reopen; two new regression tests. Prior405 execution retained separately.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",

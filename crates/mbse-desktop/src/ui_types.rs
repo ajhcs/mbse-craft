@@ -3,9 +3,6 @@ use super::*;
 use mbse_model::types::{self, Action, Id, Kind, Scalar};
 pub(super) struct TypePanel {
     pub open: bool,
-    name: String,
-    value: bool,
-    scalar: Scalar,
     selected: Option<Id>,
     form: Option<Id>,
     note: String,
@@ -14,9 +11,6 @@ impl Default for TypePanel {
     fn default() -> Self {
         Self {
             open: false,
-            name: String::new(),
-            value: false,
-            scalar: Scalar::Real,
             selected: None,
             form: None,
             note: String::new(),
@@ -52,6 +46,7 @@ impl Workspace {
         let native_instance = self.session.editor.freshness().instance_id;
         let mut open = true;
         let mut action = None;
+        let mut definition_change = None;
         let mut select = None;
         let mut choose_form = None;
         let mut close = false;
@@ -59,11 +54,16 @@ impl Workspace {
         egui::Window::new("Types and properties").id(egui::Id::new("mbse-types-properties")).open(&mut open).default_width(850.).default_height(900.).vscroll(true).max_height((ctx.content_rect().height()-80.).max(240.)).show(ctx,|ui|{
    ui.label("Component definitions own typed properties. Value definitions declare Boolean, Integer, Real or Text types. System scope is membership, not containment.");
    if self.session.editor.snapshot.extensions.is_none(){ui.label("Open a migrated native copy to enable extensions. Use --migrate-extensions SOURCE --destination NEW with an owned --state-dir; original native files stay protected.");let r=ui.button("Close types");self.bound("types:close",&r);close=r.clicked();return;}
-   let store=match types::load(&self.session.editor.snapshot){Ok(store)=>store,Err(error)=>{ui.colored_label(ERROR,error);return;}};
+   let store=match types::load(&self.session.editor.snapshot){Ok(store)=>store,Err(error)=>{ui.colored_label(ERROR,error);let r=ui.button("Close types");self.bound("types:close",&r);close=r.clicked();return;}};
    ui.horizontal_wrapped(|ui|{let ready=!self.views.occurrence_navigation_blocked(&self.session);let r=ui.add_enabled(ready&&self.session.editor.can_undo(),egui::Button::new("Undo model"));self.bound("types:undo-model",&r);if r.clicked(){history=Some(false);}let r=ui.add_enabled(ready&&self.session.editor.can_redo(),egui::Button::new("Redo model"));self.bound("types:redo-model",&r);if r.clicked(){history=Some(true);}});
-   ui.separator();ui.horizontal(|ui|{ui.label("Definition name");let r=ui.add(egui::TextEdit::singleline(&mut self.type_panel.name).id(egui::Id::new(("mbse-typed-definition",&native_instance))));self.bound("types:definition-name",&r);let r=ui.checkbox(&mut self.type_panel.value,"Value definition");self.bound("types:value-definition",&r);});
-   if self.type_panel.value{ui.horizontal(|ui|{for scalar in [Scalar::Boolean,Scalar::Integer,Scalar::Real,Scalar::Text]{let r=ui.selectable_value(&mut self.type_panel.scalar,scalar,format!("{scalar:?}"));self.bound(format!("types:scalar:{scalar:?}"),&r);}});}
-   let r=ui.button("Add definition");self.bound("types:add-definition",&r);if r.clicked(){let system=self.session.editor.selected.and_then(|id|self.session.editor.snapshot.records.get(&id)).map(|r|r.scope).unwrap_or(RecordId(1));action=Some(Action::AddDefinition{system,name:self.type_panel.name.clone(),kind:if self.type_panel.value{Kind::Value(self.type_panel.scalar)}else{Kind::Component}});}
+   let retained=match types::definition_form(&self.session.editor.snapshot){Ok(form)=>form,Err(error)=>{ui.colored_label(ERROR,error);let r=ui.button("Close types");self.bound("types:close",&r);close=r.clicked();return;}};
+   let default_system=self.session.editor.selected.and_then(|id|self.session.editor.snapshot.records.get(&id)).map(|r|r.scope).or_else(||self.session.editor.snapshot.records.values().find(|r|r.kind==RecordKind::System).map(|r|r.id)).unwrap_or(RecordId(1));
+   let mut definition=retained.unwrap_or(types::DefinitionForm{system:default_system,name:String::new(),value:false,scalar:Scalar::Real});let before_definition=definition.clone();
+   ui.separator();ui.horizontal_wrapped(|ui|{ui.label(format!("System scope #{}",definition.system.0));for system in self.session.editor.snapshot.records.values().filter(|r|r.kind==RecordKind::System){let r=ui.selectable_value(&mut definition.system,system.id,format!("{} #{}",system.name,system.id.0));self.bound(format!("types:system:{}",system.id.0),&r);}});
+   ui.horizontal(|ui|{ui.label("Definition name");let r=ui.add(egui::TextEdit::singleline(&mut definition.name).id(egui::Id::new(("mbse-typed-definition",&native_instance))));self.bound("types:definition-name",&r);let r=ui.checkbox(&mut definition.value,"Value definition");self.bound("types:value-definition",&r);});
+   if definition.value{ui.horizontal(|ui|{for scalar in [Scalar::Boolean,Scalar::Integer,Scalar::Real,Scalar::Text]{let r=ui.selectable_value(&mut definition.scalar,scalar,format!("{scalar:?}"));self.bound(format!("types:scalar:{scalar:?}"),&r);}});}
+   let definition_edited=definition!=before_definition;if definition_edited{definition_change=Some(Action::SetDefinitionForm{form:definition.clone()});}
+   let r=ui.add_enabled(!definition_edited,egui::Button::new("Add definition"));self.bound("types:add-definition",&r);if r.clicked(){action=Some(Action::AddDefinition{system:definition.system,name:definition.name.clone(),kind:definition.kind()});}
    egui::ScrollArea::vertical().id_salt("typed-definition-rows").max_height(160.).show(ui,|ui|{for d in store.definitions.values(){let r=ui.selectable_label(self.type_panel.selected==Some(d.id),format!("{} · {:?} #{} · System #{}",d.name,d.kind,d.id.0,d.system.0));self.bound(format!("types:definition:{}",d.id.0),&r);if r.clicked(){select=Some(d.id);}}});
    if let Some(owner)=self.type_panel.selected.filter(|id|store.definitions.get(id).is_some_and(|d|d.kind==Kind::Component)){
     let r=ui.button("New property draft");self.bound("types:new-property",&r);if r.clicked(){action=Some(Action::BeginProperty{owner});}
@@ -86,6 +86,9 @@ impl Workspace {
         if let Some(id) = choose_form {
             self.type_panel.form = Some(id);
         }
+        if let Some(change) = definition_change {
+            self.typed_action(change);
+        }
         if let Some(action) = action {
             let next = Id(self.session.editor.snapshot.next_id);
             let add = matches!(action, Action::AddDefinition { .. });
@@ -93,7 +96,6 @@ impl Workspace {
             if self.typed_action(action) {
                 if add {
                     self.type_panel.selected = Some(next);
-                    self.type_panel.name.clear();
                 }
                 if draft {
                     self.type_panel.form = Some(next);
@@ -118,7 +120,7 @@ impl Workspace {
         }
     }
     pub(super) fn typed_audit(&self) -> serde_json::Value {
-        serde_json::json!({"schema":"mbse-craft.types-ui/1","open":self.type_panel.open,"selected":self.type_panel.selected,"form":self.type_panel.form,"store":types::load(&self.session.editor.snapshot).ok(),"forms":types::forms(&self.session.editor.snapshot).ok(),"note":self.type_panel.note})
+        serde_json::json!({"schema":"mbse-craft.types-ui/1","open":self.type_panel.open,"selected":self.type_panel.selected,"form":self.type_panel.form,"store":types::load(&self.session.editor.snapshot).ok(),"forms":types::forms(&self.session.editor.snapshot).ok(),"definition_form":types::definition_form(&self.session.editor.snapshot).ok().flatten(),"note":self.type_panel.note})
     }
 }
 

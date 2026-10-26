@@ -1045,11 +1045,13 @@ impl Editor {
         let accepted = match command {
             Command::Typed(action)=>{
                 let before=ModelState::capture(&self.snapshot);
-                let raw_before=self.snapshot.extensions.clone();let allocator_before=self.snapshot.next_id;
-                match crate::types::apply(&mut self.snapshot,action)?{
+                let raw_before=self.snapshot.extensions.clone();let allocator_before=self.snapshot.next_id;let draft_before=crate::types::drafts_value(&self.snapshot.extensions);
+                let change=crate::types::apply(&mut self.snapshot,action)?;
+                match change{
                     crate::types::Change::Model=>{if before.records!=self.snapshot.records||before.extensions!=crate::types::accepted_extensions(&self.snapshot.extensions){self.past.push(before);self.future.clear();self.snapshot.model_revision=increment(self.snapshot.model_revision,"model revision")?;}},
                     crate::types::Change::Raw=>{if raw_before!=self.snapshot.extensions||allocator_before!=self.snapshot.next_id{self.snapshot.raw_version=increment(self.snapshot.raw_version,"raw version")?;}}
                 }
+                if change==crate::types::Change::Model && draft_before!=crate::types::drafts_value(&self.snapshot.extensions){self.snapshot.raw_version=increment(self.snapshot.raw_version,"raw version")?;}
                 self.finish_field();true
             }
 
