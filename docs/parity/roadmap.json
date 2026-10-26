@@ -493,7 +493,7 @@
         {
           "id": "P21b",
           "title": "Native-core deletion and incoming-reference treatment",
-          "state": "draft_native_remainder_held",
+          "state": "reviewed_ready_to_merge",
           "depends_on": [
             "P21a"
           ],
@@ -501,7 +501,9 @@
             "Handle supported native-core ownership/links/calculation references in preview and transaction; unknown impact blocks exhaustive verdict; Undo restores native records and presentation; native persistence keeps exact remaining meaning."
           ],
           "branch": "codex/m4-p21b-native-deletion",
-          "execution_results": "docs/parity/p21b/README.md"
+          "execution_results": "docs/parity/p21b/README.md",
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/27",
+          "review_preservation": "docs/parity/p21b/REVIEW_PRESERVATION.json"
         }
       ]
     },
