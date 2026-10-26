@@ -1,0 +1,110 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-26T20:50:56.131120+00:00",
+  "job_sha256": "1b494e2e8512b90a8cfc9ce3d4452fd4267850f4d4207890a86599b3e4fe56a1",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p18a-01/run",
+      "started_utc": "2026-10-26T20:50:56.151366+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 4004001,
+          "start_ticks": 42220713
+        },
+        "server_pid": {
+          "pid": 4003998,
+          "start_ticks": 42220708
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/docs/parity/p18a/fixtures/ports.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 4004001,
+        "server_pid": 4003998,
+        "window": 4194307,
+        "binary_sha256": "111bc1c6554fa91ee2d35401821ff45b8c8709071d9a209a820981870937fb4b"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-26T20:52:24.493225+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-26T20:50:56.151150+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1430317932544,
+    "available_memory_bytes": 29456855040,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 565
+      },
+      {
+        "pid": 2912202,
+        "start_ticks": 40560687,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "action_errors": [
+    {
+      "action": "n.send(op='key',key='i',mods=['Control_L','Alt_L']); assert n.audit()['ports']['open']; n.click('ports:owner:1007'); n.click('ports:new-port'); assert n.audit()['ports']['port']==1017; n.fill('ports:port:name','measurement output'); n.fill('ports:port:contract','1014'); assert n.audit()['ports']['forms']['1017']['contract']=='1014'; assert n.audit()['ports']['forms']['1017']['assignment']==''; n.click('ports:apply-port'); assert n.audit()['ports']['store']['ports']['1017']['owner']==1007; n.capture('02-output-port'); n.click('ports:close'); n.send(op='key',key='c',mods=['Control_L','Alt_L']); assert n.audit()['connectors']['open']; n.click('connectors:owner:1004'); n.click('connectors:new'); assert n.audit()['connectors']['selected']==1018",
+      "error": "AssertionError()"
+    }
+  ],
+  "ended_utc": "2026-10-26T20:52:44.895708+00:00"
+}

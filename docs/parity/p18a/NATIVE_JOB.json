@@ -11,26 +11,26 @@
     "/workspace/worktrees/builderbob/mbse-craft",
     "/workspace/build/builderbob/mbse-craft/milestone1"
   ],
-  "id": "p18a-qualified-connectors-native",
-  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p18a-connectors-public-test-api-20261026T205009Z/mbse-desktop",
-  "binary_sha256": "111bc1c6554fa91ee2d35401821ff45b8c8709071d9a209a820981870937fb4b",
-  "source_sha256": "2eedba64db84bcb8252ce274f74e96cf6bf10a55316f7672c8dabd55b585b599",
+  "id": "p18a-connectors-remainder-shortcut-save",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p18a-connectors-shortcut-fix-20261026T205254Z/mbse-desktop",
+  "binary_sha256": "aa29b05b4dc538d13d33f4d495d39337bafa0fa41bedbc780d6acbf4cd43a416",
+  "source_sha256": "32f26058ffb52aef944db0eac662b0c0935a50978add32ae871f78b560d1f244",
   "inputs": {
-    "/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/docs/parity/p18a/fixtures/ports.mbse-views.json": "ce8f58d6a298ea9de1803ac5def1e03c99a4969ae9d1df516e13a1c6d7e79c1b",
-    "/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/docs/parity/p18a/fixtures/ports.kernspan": "39ced001ccc805049b18439d3ca264cae32b6069a08ae5cf690c92390ac42110"
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p18a-01/run/prepared-output-port.kernspan": "5785a0111c85c16c5aadcb48c9702e720e0eb3d80f8b26a57e759b0f955b4802",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p18a-01/run/prepared-output-port.mbse-views.json": "dcfc6a52a413ed7ccf183fd9e6a898fb571ca6377bab10ea2ed9f6c51903a1d2"
   },
-  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p18a-01",
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p18a-02",
   "argv_extra": [
     "--open",
-    "/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/docs/parity/p18a/fixtures/ports.kernspan",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p18a-01/run/prepared-output-port.kernspan",
     "--select",
     "1003"
   ],
   "scenarios": [
-    "Open retained native/views3 pair; create output port1017, semantic connector1018 between Parts1009 and1010",
+    "Continue from actual saved output-port1017 pair; verify corrected CtrlAltK and create connector1018",
     "Exact invalid reference/direction/conveyed text must refuse Apply without accepted mutation",
     "Model Undo/Redo retain newer raw connector and all prior forms",
     "Actual captured native/views Save and cold app reopen preserve semantics and all existing presentation records"
   ],
-  "claim_policy": "Bounded same-agent Linux semantic connector acceptance; visual qualified routing reserved P18b; no full SysML NoMagic or independent acceptance"
+  "claim_policy": "Bounded same-agent Linux semantic connector acceptance; visual qualified routing reserved P18b; no full SysML NoMagic or independent acceptance; earlier port creation and CtrlAltC assertion failure remain separate"
 }

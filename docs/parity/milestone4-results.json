@@ -151,5 +151,22 @@
     "review_available_preexisting_checkouts_unchanged": 32,
     "reviewed_head": "b71f07bcee9ce8f65f1f8f929c095c3aef9baf11",
     "merge_commit": "0694708dd04862c4d2266be2cda36eb4f160374e"
+  },
+  "p18a": {
+    "state": "implemented_awaiting_review",
+    "position_complete": false,
+    "base_commit": "0694708dd04862c4d2266be2cda36eb4f160374e",
+    "source_files": 693,
+    "full_suite_tests_passed": 440,
+    "new_tests": 8,
+    "final_shortcut_tests_passed": 9,
+    "final_native_runs": 2,
+    "final_native_action_errors": 0,
+    "acceptance": "p18a/README.md",
+    "contract": "p18a/CONTRACT.md",
+    "same_agent_review": "p18a/verification/NATIVE_REVIEW.json",
+    "preservation": "p18a/verification/PRESERVATION_AFTER.json",
+    "source_sha256": "32f26058ffb52aef944db0eac662b0c0935a50978add32ae871f78b560d1f244",
+    "binary_sha256": "aa29b05b4dc538d13d33f4d495d39337bafa0fa41bedbc780d6acbf4cd43a416"
   }
 }
