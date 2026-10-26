@@ -548,10 +548,10 @@ impl Capture {
             {
                 return Err("VIEWS_CAPTURE_CHECKPOINT_MISMATCH".into());
             }
-            document.profile = if copy_profile(&document.profile) { COPY_PROFILE } else { PROFILE }.into();
+            document.profile = if ports::typed_profile(&document.profile){ports::PROFILE}else if copy_profile(&document.profile) { COPY_PROFILE } else { PROFILE }.into();
             document.binding = Some(NativeBinding::from_checkpoint(c));
         } else {
-            document.profile = if copy_profile(&document.profile) { COPY_RECOVERY_PROFILE } else { RECOVERY_PROFILE }.into();
+            document.profile = if ports::typed_profile(&document.profile){ports::RECOVERY_PROFILE}else if copy_profile(&document.profile) { COPY_RECOVERY_PROFILE } else { RECOVERY_PROFILE }.into();
             document.binding = None;
         }
         document.validate(&editor.snapshot)?;

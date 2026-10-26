@@ -201,14 +201,31 @@ fn actual_bound_native_save_and_views_cold_decode_preserve_both_port_occurrences
     reuse(&mut v, &session.editor, view_ids[0], types::Id(1015), 11.);
     reuse(&mut v, &session.editor, view_ids[1], types::Id(1015), 22.);
     let native = area.path().join("ports.kernspan");
+    let sidecar = area.path().join("ports.mbse-views.json");
+    let mut io = crate::native_views_io::Io::default();
+    let destination = io
+        .freeze_destination(&session, &v, &sidecar, crate::native_views_io::Kind::Bound)
+        .unwrap();
+    let capture = v.capture(&session.editor);
     let job = session.begin_save(&native).unwrap();
     assert!(session.complete(execute_write(job)));
     let checkpoint = accepted_native(&session).unwrap();
     let frozen = v.freeze(&session.editor, &checkpoint).unwrap();
     assert_eq!(frozen.profile, ports::PROFILE);
     let bytes = frozen.encoded().unwrap();
-    let sidecar = area.path().join("ports.mbse-views.json");
-    std::fs::write(&sidecar, &bytes).unwrap();
+    let job = io
+        .begin_captured(&session, &v, capture, destination)
+        .unwrap();
+    assert!(io.complete(&session, &v, crate::native_views_io::execute(job)));
+    assert!(io.is_saved(&session, &v));
+    assert_eq!(std::fs::read(&sidecar).unwrap(), bytes);
+    assert_eq!(
+        v.capture(&session.editor)
+            .document(&session.editor, None)
+            .unwrap()
+            .profile,
+        ports::RECOVERY_PROFILE
+    );
     let reopened = Session::open(area.path(), &native).unwrap();
     let reopened_checkpoint = accepted_native(&reopened).unwrap();
     let cold = Views::decode(

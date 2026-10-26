@@ -59,6 +59,9 @@ impl Workspace {
         scale: f32,
         ports: &[vp::PortOccurrence],
     ) {
+        let probe_key = egui::Id::new("typed-port-response-probe");
+        self.context
+            .data_mut(|data| data.insert_temp(probe_key, serde_json::json!({})));
         if ports.is_empty() {
             return;
         }
@@ -116,6 +119,14 @@ impl Workspace {
                 egui::Sense::click_and_drag(),
             );
             self.bound(format!("port-occurrence:{}", o.id.get()), &r);
+            let probe=self.context.input(|input|serde_json::json!({"response_id":format!("{:?}",r.id),"ui_id":format!("{:?}",ui.id()),"layer":format!("{:?}",r.layer_id),"hovered":r.hovered(),"contains_pointer":r.contains_pointer(),"enabled":r.enabled(),"drag_started":r.drag_started(),"dragged":r.dragged(),"drag_stopped":r.drag_stopped(),"button_down_on":r.is_pointer_button_down_on(),"pointer_down":input.pointer.primary_down(),"pointer":input.pointer.latest_pos().map(|p|[p.x,p.y]),"dock_blocked":self.dock_blocked()}));
+            self.context.data_mut(|data| {
+                let mut probes = data
+                    .get_temp::<serde_json::Value>(probe_key)
+                    .unwrap_or_else(|| serde_json::json!({}));
+                probes[o.id.get().to_string()] = probe;
+                data.insert_temp(probe_key, probes);
+            });
             if !self.dock_blocked() || self.views.layout_gesture_active() {
                 self.views.drag(&self.session.editor, o.id, &r, scale);
             }
@@ -125,6 +136,6 @@ impl Workspace {
         }
     }
     pub(super) fn port_presentation_audit(&self) -> serde_json::Value {
-        serde_json::json!({"schema":"mbse-craft.port-presentation-ui/1","profile":self.views.views.document().profile,"active_view":self.views.active,"occurrences":self.views.views.document().typed_ports})
+        serde_json::json!({"schema":"mbse-craft.port-presentation-ui/1","profile":self.views.views.document().profile,"active_view":self.views.active,"occurrences":self.views.views.document().typed_ports,"interactions":self.context.data(|data|data.get_temp::<serde_json::Value>(egui::Id::new("typed-port-response-probe")))})
     }
 }
