@@ -21,7 +21,8 @@ Milestone 1, integrate existing feature branches, or qualify application behavio
 | [p02 readiness review](p02/README.md) | Read-only audit of PR 1 evidence, actual coverage gap and prepared unlaunched execution plan |
 | [P07 format and provenance](p07/README.md) | Merged P07 format implementation, acceptance results and preservation evidence |
 | [P08 live Apply/Undo](p08/README.md) | Merged P08 transaction, native recovery/copy/reopen evidence and preservation |
-| [P09 command catalog](p09/README.md) | Draft workspace commands, shared menus/shortcuts and concrete acceptance evidence |
+| [P09 command catalog](p09/README.md) | Merged P09 workspace commands and native acceptance evidence |
+| [P10 scoped shortcuts](p10/README.md) | Draft validated overrides, persistence, field/model/canvas scopes and native evidence |
 | [fixtures](fixtures) | Original synthetic engineering/UI/source inputs; not production or accepted engineering models |
 
 The historical 86-row handoff supplies the CAT identifiers and feature titles.

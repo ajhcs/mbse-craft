@@ -1,0 +1,45 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "id": "p10-scoped-shortcuts-owned-config",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m3-p10-scoped-shortcuts-20261026T154141Z/mbse-desktop",
+  "binary_sha256": "4133267cef9eaf94d2404571983e37a706277f5467cb1444e23bce8d87272a89",
+  "source_sha256": "d66ca8adc39b0e64c7055c15d07b58236bbc3a2d49bbfdf959b0657f17cfe46c",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "796c1ba9dfd08b9ce913113bfc5f434fcb11dc7f592ad6114674b46c429db59d",
+    "scripts/verify-m1-native.py": "4e477f78eacdcc32af36c45799d4d50d355b40c0af0636ce5fb8ad9f2f91fb60",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+    "scripts/test_m1_native_session.py": "99f9e7c5ecfde69fa5a6b903b88a1769f8545d561897be18a5a62efc5b5590b6"
+  },
+  "inputs": {
+    "/workspace/repos/builderbob/mbse-craft/work/m3-p10-scoped-shortcuts/docs/parity/p10/fixtures/original.kernspan": "eefc3606af8a0e31bf8a513f942fc9bbe5122fb1417c5c98789af941cbc1c1fd",
+    "/workspace/repos/builderbob/mbse-craft/work/m3-p10-scoped-shortcuts/docs/parity/p10/fixtures/preferences.toml": "3bacdd48bf35c02b0bfdeb5a32e106815fd8be1c72cd382fc2ae4380223042df"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p10-02",
+  "argv_extra": [
+    "--open",
+    "/workspace/repos/builderbob/mbse-craft/work/m3-p10-scoped-shortcuts/docs/parity/p10/fixtures/original.kernspan",
+    "--select",
+    "1003",
+    "--config-dir",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p10-02/run/config"
+  ],
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "scenarios": [
+    "Conflict and reserved editing boundaries; unfinished shortcut draft retained",
+    "Valid model/layout overrides Apply through existing preferences worker",
+    "Fixed native-field Undo with configured model Undo; independent canvas history; native/raw retention",
+    "Restart verifies overrides; explicit Default reset survives another restart without resurrecting binding"
+  ],
+  "claim_policy": "Bounded P10 Linux synthetic native/settings acceptance only; original inputs immutable, mutable config is a private seed copy. Exact source/binary and raw receipts retained. No full Craft/platform/engineering acceptance.",
+  "mutable_config": {
+    "path": "/workspace/build/builderbob/mbse-craft/milestone1/native-p10-02/run/config/config.toml",
+    "initial_sha256": "3bacdd48bf35c02b0bfdeb5a32e106815fd8be1c72cd382fc2ae4380223042df"
+  },
+  "config_seed": "/workspace/repos/builderbob/mbse-craft/work/m3-p10-scoped-shortcuts/docs/parity/p10/fixtures/preferences.toml",
+  "config_scope": "Only existing per-run writable bind; each later cold run copies the exact prior persisted config bytes into its new owned config directory, with seed source/digest receipts. No writable-root expansion."
+}

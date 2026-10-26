@@ -1,5 +1,5 @@
 //! App-owned workspace commands. IDs are durable API, not translated labels.
-//! These fixed defaults do not implement P10's persisted shortcut overrides.
+//! Default bindings; P10 resolves validated overrides by editing scope.
 use eframe::egui::{Key, KeyboardShortcut, Modifiers};
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord)]
@@ -25,6 +25,7 @@ pub enum Id {
     Assurance,
     Library,
     Settings,
+    Shortcuts,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Surface {
@@ -168,6 +169,14 @@ pub const ALL: &[Spec] = &[
         "Recovery settings",
         "Tools",
         CMD,
+        Comma
+    ),
+    spec!(
+        Shortcuts,
+        "tools.shortcuts",
+        "Keyboard shortcuts",
+        "Tools",
+        ALT,
         Comma
     ),
 ];

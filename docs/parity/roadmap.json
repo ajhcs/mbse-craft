@@ -206,11 +206,12 @@
       "acceptance": [
         "Menu, toolbar and keyboard paths use identical command checks and outcomes; disabled commands explain their prerequisites."
       ],
-      "state": "implemented_draft_pending_review",
+      "state": "merged",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "execution_results": "docs/parity/p09/README.md",
-      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/12"
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/12",
+      "merge_commit": "55322e62e1ea60973c71c56503e1c5f0c474e747"
     },
     {
       "id": "P10",
@@ -222,9 +223,11 @@
       "acceptance": [
         "Conflicts are visible; overrides persist; field Undo stays in the field; model and layout histories remain separately addressable."
       ],
-      "state": "planned",
+      "state": "implemented_draft_pending_review",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/p10/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/13"
     },
     {
       "id": "P11",

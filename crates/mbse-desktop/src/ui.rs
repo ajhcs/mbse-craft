@@ -1,6 +1,8 @@
 //! App-owned UI over the bounded, provenance-preserving Stage1 contract.
 #[path = "ui_commands.rs"]
 mod workspace_commands;
+#[path = "ui_shortcuts.rs"]
+mod shortcut_editor;
 use crate::preferences::Preferences;
 use craft_ui::{
     buttons::{ButtonVisuals, IconButton, IconButtonStyle},
@@ -55,6 +57,7 @@ pub struct Workspace {
     pending_continue: Option<(Load, WriteKind)>,
     preferences: Preferences,
     settings_window: bool,
+    shortcuts: crate::shortcuts::Editor,
     periodic_recovery: crate::periodic_recovery::PeriodicRecovery,
     feedback: String,
     error: bool,
@@ -124,9 +127,10 @@ impl Workspace {
             .unwrap_or_default();
         let (writes, completed_writes) = mpsc::channel();
         let preferences = Preferences::open(config, ctx.clone());
+        let shortcuts=crate::shortcuts::Editor::new(&preferences.value.shortcut_overrides);
         let views = crate::views_ui::ViewWorkspace::new(&session);
         let periodic_recovery = crate::periodic_recovery::PeriodicRecovery::new(Instant::now(), &session, &views);
-        let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,periodic_recovery, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
+        let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,shortcuts,periodic_recovery, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
             creation: None, relation: None, popout: None, usages: None, impact_open:false,impact_target:None,impact_report:None,impact_note:String::new(), search_open:false, search_query:Default::default(), search_report:None, search_note:String::new(), browser_revealed:None,browser_open_groups:BTreeMap::new(), pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new(), menu_scope:None, last_workspace_command:None };
         app.refresh_recoveries();
         app
@@ -671,6 +675,7 @@ impl Workspace {
                 ui.label(if self.preferences.value.periodic_recovery {format!("Periodic recovery on · {}s · {}",self.preferences.value.recovery_interval_seconds,if self.session.pending()||self.views.pair_pending()||self.views.io.pending(){"write pending"}else{"waiting for quiet interval"})}else{"Periodic recovery off".into()});
                 if self.preferences.pending() || self.preferences.read_only {ui.colored_label(if self.preferences.status.contains("failed")||self.preferences.read_only{ERROR}else{INK},&self.preferences.status);}
                 if self.preferences.load_warning{ui.colored_label(ERROR,"Settings load needs attention; open Recovery settings for the retained report.");}
+                if !self.shortcuts.load_errors.is_empty(){ui.colored_label(ERROR,"Stored shortcuts refused; defaults active. Open Keyboard shortcuts for details; original settings retained.");}
                 ui.label(RichText::new("App-owned model · restricted SysML subset").small());
             });
         });
@@ -1447,6 +1452,7 @@ impl Workspace {
             ui.label("Application-local recovery copies; never an automatic save to your source file.");let response=ui.checkbox(&mut self.preferences.value.periodic_recovery,"Enable periodic recovery");self.bound("settings:periodic",&response);
             let combo=egui::ComboBox::from_id_salt("recovery-interval").selected_text(format!("Every {} seconds",self.preferences.value.recovery_interval_seconds)).show_ui(ui,|ui|{for seconds in [15,30,60,120,300,600,3600]{let response=ui.selectable_value(&mut self.preferences.value.recovery_interval_seconds,seconds,format!("{seconds} seconds"));self.bound(format!("settings:interval:{seconds}"),&response);}});self.bound("settings:interval",&combo.response);
             ui.label("Native or layout changes are copied after a quiet period and the interval. Pending writes finish independently; newer edits wait for another recovery copy.");
+            let response=ui.button("Keyboard shortcuts");self.bound("shortcuts:open",&response);if response.clicked(){self.shortcuts.open=true;}
             ui.label(&self.preferences.report);ui.label(&self.preferences.status);if self.preferences.pending(){ui.label("Preference write pending; the GUI remains responsive.");}
             ui.label(format!("Recovery data: {}",self.session.state_root.display()));
         });
@@ -1948,6 +1954,7 @@ impl eframe::App for Workspace {
         self.show_impact(&ctx);
         self.show_search(&ctx);
         self.views.show_inspection(&ctx, &self.session);
+        self.shortcut_dialog(&ctx);
         self.audit.extend(self.views.toolbar_bounds());
         self.capture(&ctx);
         self.catalog.show(&ctx);
@@ -1961,6 +1968,7 @@ impl eframe::App for Workspace {
             "save_status":format!("{:?}",self.session.status()),"periodic_recovery":self.preferences.value.periodic_recovery,"recovery_interval_seconds":self.preferences.value.recovery_interval_seconds,"preferences_status":self.preferences.status,"write_pending":self.session.pending(),"external_copy_pending":self.exchange.copy_pending(),"source_edit_dirty":self.exchange.source_edit_dirty(),"source_edit_pending":self.exchange.source_edit_pending(),"recovery_path":self.session.last_recovery().map(|p|p.display().to_string()),"native_recovery_status":self.periodic_recovery.status(&self.session,&self.views).0,"layout_recovery_status":self.periodic_recovery.status(&self.session,&self.views).1,"views_recovery_current_hint":self.views.io.recovery_current(&self.session,&self.views.views),"views_pair_pending":self.views.pair_pending(),"views_gesture_active":self.views.layout_gesture_active(),"feedback":self.feedback,"error":self.error,"widgets":self.audit});
         if let Some(fields) = audit.as_object_mut() {
             fields.insert("command_catalog".into(),self.command_audit());
+            fields.insert("shortcut_configuration".into(),self.shortcut_audit());
             fields.insert("views_inspection_profile".into(), serde_json::json!(self.views.inspection_profile()));
             fields.insert("views_inspection_copy_origin".into(), self.views.inspection_copy_origin());
         }

@@ -1,0 +1,8 @@
+schema_version = 1
+# P10 original preference comment retained
+periodic_recovery = false
+recovery_interval_seconds = 60
+future_key = 'P10 unknown root preserved'
+
+[shortcut_overrides]
+'future.command' = 'future syntax preserved'

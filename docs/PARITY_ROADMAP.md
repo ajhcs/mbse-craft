@@ -47,7 +47,7 @@ P07 and P08 are merged in [PR #10](https://github.com/ajhcs/mbse-craft/pull/10) 
 
 ## Milestone 3: Craft workspace behavior
 
-P09 [command catalog and native evidence](parity/p09/README.md) is implemented in an isolated draft. P10–P13 and the milestone exit remain open.
+P09 is merged in [PR #12](https://github.com/ajhcs/mbse-craft/pull/12). P10 [scoped shortcut configuration and evidence](parity/p10/README.md) is implemented in an isolated draft. P11–P13 and the milestone exit remain open.
 
 9. **Introduce a stable command catalog and consistent menus.** Acceptance: Menu, toolbar and keyboard paths use identical command checks and outcomes; disabled commands explain their prerequisites.
 
