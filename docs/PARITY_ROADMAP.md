@@ -47,7 +47,7 @@ P07 and P08 are merged in [PR #10](https://github.com/ajhcs/mbse-craft/pull/10) 
 
 ## Milestone 3: Craft workspace behavior
 
-P09 is merged in [PR #12](https://github.com/ajhcs/mbse-craft/pull/12). P10 [scoped shortcuts](parity/p10/README.md) is reviewed and merged in PR #13. P11 [transactional docking](parity/p11/README.md) is reviewed and merged in PR #14. P12 [workspace arrangements and perspectives](parity/p12/README.md) is reviewed and merged in PR #15. P13 [file selection and background reads](parity/p13/README.md) is reviewed, fixed and merged in PR #16. Its integrated milestone exit remains open. P14 [extension admission and migration](parity/p14/README.md) starts Milestone 4 with bounded regression/CLI/native evidence. Thirteen of58 positions are merged;45 remain to merge, including P14.
+P09 is merged in [PR #12](https://github.com/ajhcs/mbse-craft/pull/12). P10 [scoped shortcuts](parity/p10/README.md) is reviewed and merged in PR #13. P11 [transactional docking](parity/p11/README.md) is reviewed and merged in PR #14. P12 [workspace arrangements and perspectives](parity/p12/README.md) is reviewed and merged in PR #15. P13 [file selection and background reads](parity/p13/README.md) is reviewed, fixed and merged in PR #16. Its integrated milestone exit remains open. P14 [extension admission and migration](parity/p14/README.md) is reviewed and merged in PR #17. P15 [typed definitions/properties](parity/p15/README.md) has bounded regression/native evidence and awaits review. Fourteen of58 positions are merged;44 remain to merge, including P15.
 
 9. **Introduce a stable command catalog and consistent menus.** Acceptance: Menu, toolbar and keyboard paths use identical command checks and outcomes; disabled commands explain their prerequisites.
 

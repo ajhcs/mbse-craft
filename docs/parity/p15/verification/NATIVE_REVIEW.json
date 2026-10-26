@@ -1,0 +1,33 @@
+{
+  "schema": "mbse-craft.p15-native-review/1",
+  "reviewer": "Codex, same implementing agent",
+  "independent_review": false,
+  "result": "bounded_P15_types_property_scenarios_passed",
+  "raw_receipt_status": "actions_completed_review_pending",
+  "native_runs": 2,
+  "action_errors": 0,
+  "pixels_reviewed": [
+    "native/run/03-wrong-kind-refused-with-form-retained.png",
+    "native/run/05-model-undo-retains-newer-form.png",
+    "native/reopen/09-cold-reopen-invalid-property-and-accepted-value.png"
+  ],
+  "observations": [
+    "Keyboard opens typed editor on actual migrated source; creates Component1004 and Real value1005, accepted property1006",
+    "Wrong-kind component-as-value ID and lower2/upper1 refuse with disabled Apply, unchanged accepted property/model revision and retained raw form",
+    "Model Undo removes accepted property while preserving newer invalid form; Redo restores same IDs/accepted property without replacing newer text",
+    "Native Save/cold reopen retains pending length text/upper1.. alongside accepted length/1..1, exact native/paired views digest and empty reopened history",
+    "Original native records/raw9e/creation journals/95metre/2.5km remain unchanged; source fixture bytes exact",
+    "Two normal app/display exits with exact owned-process/authentication cleanup"
+  ],
+  "limits": [
+    "Same-agent Linux synthetic evidence; no independent/full-platform/domain/full NoMagic acceptance",
+    "Component and four scalar value definitions, same-System value properties only; no assignments/defaults/derived values/inheritance/ports/parts or typed diagram claim",
+    "Property forms are durable; unapplied definition-name UI buffer is session-only",
+    "Explicit P14 copy migration needed before typed authoring; optional opaque namespaces cannot be silently promoted",
+    "Zero-test compile refusal, two129-pass renderer assertion attempts, and one focused actual area diagnostic remain retained separately; no counts summed"
+  ],
+  "preexisting_checkouts_verified_unchanged": 25,
+  "user_removed_historical_directories": 18,
+  "user_confirmed_removals": true,
+  "registered_heads_retained": true
+}

@@ -1,11 +1,11 @@
 {
   "schema": "mbse-craft.milestone4-results/1",
-  "recorded_utc": "2026-10-26T17:37:37.664619+00:00",
+  "recorded_utc": "2026-10-26T18:31:18.159067+00:00",
   "state": "in_progress",
   "milestone_exit_accepted": false,
   "full_parity_accepted": false,
   "p14": {
-    "state": "implemented_draft_pending_review",
+    "state": "merged",
     "branch": "codex/m4-p14-extension-schema",
     "base_commit": "5b032f4db6504f3517da54d6f2c691a7d8b2ab81",
     "source_files": 681,
@@ -23,10 +23,12 @@
     "native_receipt": "p14/verification/native/RECEIPT.json",
     "same_agent_review": "p14/verification/NATIVE_REVIEW.json",
     "preservation": "p14/PRESERVATION_AFTER.json",
-    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/17"
+    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/17",
+    "reviewed_head": "23c19b26dab509ba3c7d9308a1b626452434d47d",
+    "merge_commit": "46d18c4509bd1dce8c51bd1f41ab55638c889e96",
+    "review_followup": "p14/REVIEW_FOLLOWUP.md"
   },
   "remaining_prs": [
-    "P15",
     "P16",
     "P17",
     "P18",
@@ -34,5 +36,25 @@
     "P20",
     "P21",
     "P22"
-  ]
+  ],
+  "p15": {
+    "state": "implemented_draft_pending_review",
+    "branch": "codex/m4-p15-types-properties",
+    "base_commit": "46d18c4509bd1dce8c51bd1f41ab55638c889e96",
+    "source_files": 683,
+    "source_sha256": "7507442f0023c7311fe49459d5c89367829cdfd11869836572018b81f4d7c1a9",
+    "binary_sha256": "8a0b991d8e8f732684154203f963860bcb83088aeff4090dc55ad706c4882715",
+    "workspace_tests_passed": 405,
+    "new_p15_tests": 8,
+    "native_runs": 2,
+    "native_action_errors": 0,
+    "acceptance": "p15/README.md",
+    "contract": "p15/CONTRACT.md",
+    "compiler_receipt": "p15/verification/COMPILER_RECEIPT.json",
+    "native_receipt": "p15/verification/native/RECEIPT.json",
+    "same_agent_review": "p15/verification/NATIVE_REVIEW.json",
+    "preservation": "p15/PRESERVATION_AFTER.json",
+    "preexisting_checkouts_verified_unchanged": 25,
+    "user_removed_historical_directories": 18
+  }
 }
