@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m4-p17b-captured-write-and-pointer-diagnostic",
+  "id": "m4-p17b-drag-reconcile-final",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m4-p17b-port-occurrences",
   "source_manifest": "docs/parity/p17b/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "4a1163b23817d4bcf54039fc2b7c66d02b115daf281e5b2fc8340081e3191784",
-  "source_sha256": "583f689578095b061acf48ebc2d72713cad53e12ad748376354d0893a0a5c088",
+  "source_manifest_sha256": "85c5c0b72e92b3d0ca3110dc47944f99bb625252453d69d2a4c9b5ef0ae3785b",
+  "source_sha256": "86979cebf62dd472dc38cc5a342123a8606690699e25751418e8e4e87a0f6803",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -38,7 +38,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "Native run exposed missed Capture.document profile selection; preserve views/3 for captured bound/recovery paths and extend actual IO.begin_captured regression. Add private port response/input probes to diagnose pointer drag with no guessed interaction fix. Prior431-test pass and failed native attempt retained separately.",
+  "rationale": "Pointer trace isolated actual drag loss: reconcile clears typed occurrence owners because it only checks core records. Preserve live visible unpinned typed drag while leaving core route endpoints core-only; tenth regression verifies gesture survives reconciliation, blocks camera and clears on view switch without semantic mutation. Captured-write fix included. Earlier jobs/failed attempt/diagnostic remain separate.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",

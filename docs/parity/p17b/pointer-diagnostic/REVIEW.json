@@ -1,0 +1,12 @@
+{
+  "result": "diagnostic_only_capture_fix_verified_drag_fix_still_required",
+  "native_runs": 1,
+  "helper_errors": 1,
+  "helper_error": "Missing recovery-button audit ID; actual adjacent native button clicked and recovery state verified.",
+  "normal_exit": true,
+  "root_cause": "Tool-observed per-step port responses report pointer_down/button_down_on/contains_pointer/dragged true with stable widget ID; controller reconcile only admits core occurrence IDs and clears typed drag owner each frame.",
+  "observation_limit": "Per-step printed probe values observed in tool transcript; final probe/captures and all input events archived. No raw per-step probe log is claimed.",
+  "capture_fix": "Actual native plus views/3 pair written and saved hint current; two typed occurrences remain exact. Original source inputs unchanged and normal app/display/auth cleanup verified.",
+  "diagnostic_input": "Derived explicit unbound recovery; reconstructed live document digest equals recorded UI digest before clearing historical binding. No checkpoint authority inferred.",
+  "native_receipt": "native/RECEIPT.json"
+}

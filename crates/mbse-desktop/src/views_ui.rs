@@ -518,7 +518,8 @@ impl ViewWorkspace {
         if self.route_target.is_some_and(|id| !valid(id)) {
             self.route_target = None;
         }
-        if self.drag.as_ref().is_some_and(|(id, _, _, _)| !valid(*id)) {
+        // Core relation endpoints remain core-only; a drag may own a typed port.
+        if self.drag.as_ref().is_some_and(|(id, _, _, _)| !valid(*id)&&!doc.typed_ports.get(id).is_some_and(|o|o.view==self.active&&o.visible&&o.presence.active()&&!o.pinned)) {
             self.drag = None;
         }
     }
@@ -2100,4 +2101,9 @@ mod typed_port_camera_tests{
  fn fit_includes_visible_typed_port_geometry_and_excludes_hidden_ports_without_model_changes(){
   let area=tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap();let mut session=Session::new(area.path()).unwrap();let instance=session.editor.freshness().instance_id;let raw:serde_json::Value=serde_json::from_str(include_str!("../../../docs/parity/p17b/fixtures/ports.kernspan")).unwrap();session.editor=Editor::new(serde_json::from_value(raw["snapshot"].clone()).unwrap(),instance).unwrap();let before=session.editor.snapshot.clone();let mut ui=ViewWorkspace::new(&session);let original=ui.fit_camera(1000.).unwrap();let id:OccurrenceId=serde_json::from_str(&format!("\"{}\"",ui.views.document().next_id())).unwrap();let stamp=ui.views.stamp(&session.editor);ui.views.apply(&session.editor,&stamp,Layout::Port(v::ports::Layout::Reuse{view:ui.active,port:mbse_model::types::Id(1015),geometry:Geometry::at(5000.,4000.)})).unwrap();let fit=ui.fit_camera(1000.).unwrap();assert!(fit.zoom<original.zoom);let port=&ui.views.document().typed_ports[&id];assert!((port.geometry.x+port.geometry.width-fit.x)*fit.zoom<=1000.);assert!((port.geometry.y+port.geometry.height-fit.y)*fit.zoom<=400.);let stamp=ui.views.stamp(&session.editor);ui.views.apply(&session.editor,&stamp,Layout::Port(v::ports::Layout::Visible(id,false))).unwrap();assert_eq!(ui.fit_camera(1000.).unwrap(),original);assert_eq!(session.editor.snapshot,before);
  }
+ #[test]
+ fn typed_port_gesture_survives_reconciliation_blocks_camera_and_never_becomes_core_route_endpoint(){
+  let area=tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap();let mut session=Session::new(area.path()).unwrap();let instance=session.editor.freshness().instance_id;let raw:serde_json::Value=serde_json::from_str(include_str!("../../../docs/parity/p17b/fixtures/ports.kernspan")).unwrap();session.editor=Editor::new(serde_json::from_value(raw["snapshot"].clone()).unwrap(),instance).unwrap();let before=session.editor.snapshot.clone();let mut ui=ViewWorkspace::new(&session);let stamp=ui.views.stamp(&session.editor);ui.views.apply(&session.editor,&stamp,Layout::Port(v::ports::Layout::Reuse{view:ui.active,port:mbse_model::types::Id(1015),geometry:Geometry::at(25.,160.)})).unwrap();let occurrence=ui.views.document().typed_ports.values().next().unwrap().clone();ui.drag=Some((occurrence.id,occurrence.geometry,ui.views.stamp(&session.editor),egui::Pos2::ZERO));ui.route_source=Some(occurrence.id);ui.reconcile();assert!(ui.layout_gesture_active());assert!(ui.route_source.is_none());assert!(ui.camera_command(&session.editor,CameraCommand::PanRight).unwrap_err().contains("GESTURE_ACTIVE"));ui.active=*ui.views.document().views.keys().find(|id|**id!=ui.active).unwrap();ui.reconcile();assert!(!ui.layout_gesture_active());assert_eq!(session.editor.snapshot,before);
+ }
+
 }

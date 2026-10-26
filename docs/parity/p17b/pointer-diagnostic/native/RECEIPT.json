@@ -1,0 +1,116 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-26T20:09:18.954331+00:00",
+  "job_sha256": "c64dda69b80bff2d795376b42773bd68cb4723860c1d239026db08d63e63339e",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-pointer-diagnostic-01/run",
+      "started_utc": "2026-10-26T20:09:18.975286+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 3944461,
+          "start_ticks": 41970992
+        },
+        "server_pid": {
+          "pid": 3944458,
+          "start_ticks": 41970989
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-01/run/prepared-port-pair.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 3944461,
+        "server_pid": 3944458,
+        "window": 4194307,
+        "binary_sha256": "ebe0f6da6e6ec3d25824c84e080342e6b5cb7b9e772f8c0d0603a86397b85050"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-26T20:13:39.234667+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-26T20:09:18.975016+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1433423507456,
+    "available_memory_bytes": 28374401024,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 546
+      },
+      {
+        "pid": 2912202,
+        "start_ticks": 40560687,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "action_errors": [
+    {
+      "action": "recovery_path=Path.cwd()/'work/diagnostic-unbound-v3.mbse-views.json'; rect=n.audit()['widgets']['views:Open views']; n.send(op='click',x=int(rect[0]-100),y=int((rect[1]+rect[3])/2)); n.send(op='key',key='a',mods=['Control_L']); n.send(op='text',text=str(recovery_path)); n.click('views:Open unbound views recovery'); a=n.audit(); assert len(a['port_presentation']['occurrences'])==2 and a['port_presentation']['profile']=='mbse-craft.native-views-recovery/3'; n.click('view:tab:2'); a=n.audit(); rect=a['widgets']['port-occurrence:10']; scale=a['pixels_per_point']; x=int((rect[0]+rect[2])/2*scale); y=int((rect[1]+rect[3])/2*scale); print('initial probe',a['port_presentation']['interactions']); n.send(op='pointer',x=x,y=y,down=True,pause=.4); print('down probe',n.audit()['port_presentation']['interactions']); n.send(op='pointer',x=x+10,y=y,pause=.4); print('threshold probe',n.audit()['port_presentation']['interactions']); n.send(op='pointer',x=x+50,y=y+20,pause=.4); print('moved probe',n.audit()['port_presentation']['interactions']); n.send(op='pointer',x=x+50,y=y+20,down=False,pause=.4); print('up probe',n.audit()['port_presentation']['interactions']); n.capture('01-port-pointer-response-diagnostic')",
+      "error": "AssertionError('Missing live widget: views:Open unbound views recovery')"
+    }
+  ],
+  "pointer_root_cause": "Actual response trace reports pointer_down, button_down_on, contains_pointer and dragged true; ViewWorkspace.reconcile invalidates every drag owner absent from core occurrences, clearing typed-port gesture before release. Core route validity must remain core-only.",
+  "original_inputs_unchanged": true,
+  "captured_write_fixed_native_v3_pair_saved": true,
+  "prepared_native_path": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-pointer-diagnostic-01/run/captured-v3-prepared.kernspan",
+  "prepared_views_path": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-pointer-diagnostic-01/run/captured-v3-prepared.mbse-views.json",
+  "authentication_files_absent": true,
+  "ended_utc": "2026-10-26T20:13:39.235027+00:00"
+}
