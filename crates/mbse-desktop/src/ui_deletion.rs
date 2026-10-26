@@ -42,13 +42,13 @@ impl Workspace {
         let mut apply = None;
         let mut cancel = false;
         let mut history = None;
-        egui::Window::new("Delete typed model records with impact preview").id(egui::Id::new("mbse-deletion")).open(&mut open).default_width(1000.).default_height(1100.).vscroll(true).max_height((ctx.content_rect().height()-80.).max(240.)).show(ctx,|ui|{
-   ui.label("Delete accepted typed definitions or members with the listed dependencies. Unknown metadata prevents a complete impact verdict and blocks Delete. Raw forms remain available for recovery.");
+        egui::Window::new("Delete model records with impact preview").id(egui::Id::new("mbse-deletion")).open(&mut open).default_width(1000.).default_height(1100.).vscroll(true).max_height((ctx.content_rect().height()-80.).max(240.)).show(ctx,|ui|{
+   ui.label("Delete accepted native or typed records with every listed dependent record. Native references and calculation consumers use dependent deletion, not unlinking. Unknown metadata prevents a complete impact verdict and blocks Delete. Raw forms remain available for recovery.");
    ui.horizontal(|ui|{let ready=!self.views.occurrence_navigation_blocked(&self.session);for(redo,key,label,enabled)in [(false,"undo-model","Undo model",self.session.editor.can_undo()),(true,"redo-model","Redo model",self.session.editor.can_redo())]{let r=ui.add_enabled(ready&&enabled,egui::Button::new(label));self.bound(format!("delete:{key}"),&r);if r.clicked(){history=Some(redo);}}});
-   let mut form=deletion::form(&self.session.editor.snapshot).ok().flatten().unwrap_or_default();let before=form.clone();ui.horizontal(|ui|{ui.label("Typed record IDs, comma separated");let r=ui.add(egui::TextEdit::singleline(&mut form.ids).id(egui::Id::new(("mbse-deletion",&instance,"ids"))));self.bound("delete:field:ids",&r);});let r=ui.checkbox(&mut form.cascade,"Delete the listed dependent accepted records and value entries; keep unfinished forms");self.bound("delete:cascade",&r);let edited=form!=before;if edited{raw=Some(Action::SetForm(form));}
+   let mut form=deletion::form(&self.session.editor.snapshot).ok().flatten().unwrap_or_default();let before=form.clone();ui.horizontal(|ui|{ui.label("Native or typed record IDs, comma separated");let r=ui.add(egui::TextEdit::singleline(&mut form.ids).id(egui::Id::new(("mbse-deletion",&instance,"ids"))));self.bound("delete:field:ids",&r);});let r=ui.checkbox(&mut form.cascade,"Delete the listed dependent accepted records and value entries; keep unfinished forms");self.bound("delete:cascade",&r);let edited=form!=before;if edited{raw=Some(Action::SetForm(form));}
    let r=ui.add_enabled(!edited,egui::Button::new("Prepare deletion impact"));self.bound("delete:prepare",&r);prepare=r.clicked();
-   if let Some(prepared)=&self.deletion_panel.prepared{let summary=prepared.summary().clone();let plan=prepared.plan().cloned();let current=plan.as_ref().is_some_and(|p|p.check(&self.session.editor,&self.views.views).is_ok());ui.separator();ui.label(format!("{} accepted records · {} authored value entries · {} incoming references · {} port occurrences · {} connector routes",summary.removed.len(),summary.removed_values.len(),summary.incoming.len(),summary.port_occurrences.len(),summary.connector_routes.len()));if let Some(refusal)=&summary.refusal{ui.colored_label(ERROR,refusal);}else if !current{ui.colored_label(ERROR,"Impact preview is outdated; prepare again before Delete.");}
-    egui::ScrollArea::vertical().id_salt("deletion-impact-rows").max_height(260.).show(ui,|ui|{for record in summary.removed.iter().take(128){ui.label(format!("Delete {}#{} · {}",record.kind,record.id.0,record.name));}for entry in summary.removed_values.iter().take(128){ui.label(entry.usage.map_or_else(||format!("Remove authored default for Property#{}",entry.property.0),|id|format!("Remove explicit value Part#{} Property#{}; the Part remains unless listed above",id.0,entry.property.0)));}for reference in summary.incoming.iter().take(512){ui.label(format!("Incoming #{} · {} · target#{} is handled by the listed record/value treatment",reference.owner.0,reference.role,reference.target.0));}for location in &summary.unknown.locations{ui.colored_label(ERROR,location);}});
+   if let Some(prepared)=&self.deletion_panel.prepared{let summary=prepared.summary().clone();let plan=prepared.plan().cloned();let current=plan.as_ref().is_some_and(|p|p.check(&self.session.editor,&self.views.views).is_ok());ui.separator();ui.label(format!("{} accepted records · {} owned Context items · {} authored value entries · {} incoming references · {} native occurrences/{} native edges · {} port occurrences/{} connector routes",summary.removed.len(),summary.owned_contexts.len(),summary.removed_values.len(),summary.incoming.len(),summary.native_occurrences.len(),summary.native_edges.len(),summary.port_occurrences.len(),summary.connector_routes.len()));if let Some(refusal)=&summary.refusal{ui.colored_label(ERROR,refusal);}else if !current{ui.colored_label(ERROR,"Impact preview is outdated; prepare again before Delete.");}
+    egui::ScrollArea::vertical().id_salt("deletion-impact-rows").max_height(260.).show(ui,|ui|{for record in summary.removed.iter().take(128){ui.label(format!("Delete {}#{} · {}",record.kind,record.id.0,record.name));}for c in &summary.owned_contexts{ui.label(format!("Delete owned Context#{} · {} with native owner#{}",c.id.0,c.name,c.owner.0));}for entry in summary.removed_values.iter().take(128){ui.label(entry.usage.map_or_else(||format!("Remove authored default for Property#{}",entry.property.0),|id|format!("Remove explicit value Part#{} Property#{}; the Part remains unless listed above",id.0,entry.property.0)));}for reference in summary.incoming.iter().take(512){ui.label(format!("Incoming #{} · {} · target#{} is handled by the listed record/value treatment",reference.owner.0,reference.role,reference.target.0));}for location in &summary.unknown.locations{ui.colored_label(ERROR,location);}});
     ui.label(format!("{} typed raw forms and all native journals are retained. Affected occurrences/routes detach; exact same-runtime model Undo restores their identities. Cold recovery retains detached state without inventing history authority.",summary.retained_raw_forms));let r=ui.add_enabled(current&&!edited,egui::Button::new("Delete reviewed records"));self.bound("delete:apply",&r);if r.clicked(){apply=plan;}let r=ui.button("Cancel deletion preview (keep form)");self.bound("delete:cancel",&r);cancel=r.clicked();
    }
    ui.label(&self.deletion_panel.note);let r=ui.button("Close deletion");self.bound("delete:close",&r);close=r.clicked();
@@ -218,5 +218,33 @@ mod tests {
             Some(form)
         );
         assert_eq!(app.session.editor.snapshot.next_id, before.next_id);
+        // Native-core remainder follows the same rendered transaction.
+        form.ids = "1003".into();
+        assert!(app.deletion_action(Action::SetForm(form.clone())));
+        click(&mut app, "delete:prepare");
+        assert!(app.deletion_audit()["applicable"].as_bool().unwrap());
+        click(&mut app, "delete:apply");
+        assert!(
+            !app.session
+                .editor
+                .snapshot
+                .records
+                .contains_key(&mbse_model::stage1::RecordId(1003))
+        );
+        assert_eq!(types::load(&app.session.editor.snapshot).unwrap(), accepted);
+        form.ids = "1003?".into();
+        assert!(app.deletion_action(Action::SetForm(form.clone())));
+        click(&mut app, "delete:undo-model");
+        assert!(
+            app.session
+                .editor
+                .snapshot
+                .records
+                .contains_key(&mbse_model::stage1::RecordId(1003))
+        );
+        assert_eq!(
+            deletion::form(&app.session.editor.snapshot).unwrap(),
+            Some(form)
+        );
     }
 }

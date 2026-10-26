@@ -247,7 +247,7 @@
     "reviewed_head": "245093aaa814d1f0175baecc4889d893a194e899"
   },
   "p21a": {
-    "state": "reviewed_ready_to_merge",
+    "state": "merged",
     "position_complete": false,
     "parent": "P21",
     "base_commit": "4db52a28edb7851725fb5ce697c5d649ba27caa8",
@@ -264,6 +264,8 @@
     "preservation": "p21a/verification/PRESERVATION_AFTER.json",
     "pr_url": "https://github.com/ajhcs/mbse-craft/pull/26",
     "review_preservation": "p21a/REVIEW_PRESERVATION.json",
-    "review_available_preexisting_checkouts_unchanged": 42
+    "review_available_preexisting_checkouts_unchanged": 42,
+    "merge_commit": "66a56b04410403ed7c775f02a4256f4eecc11922",
+    "reviewed_head": "cab716dcd5e67c090fc31a25fab0bee0b4e935d7"
   }
 }

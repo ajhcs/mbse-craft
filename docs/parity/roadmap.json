@@ -479,25 +479,28 @@
         {
           "id": "P21a",
           "title": "Typed deletion impact preview, unknown-impact refusal and exact Undo restoration",
-          "state": "reviewed_ready_to_merge",
+          "state": "merged",
           "branch": "codex/m4-p21a-typed-deletion",
           "acceptance": [
             "Enumerate typed dependencies/value effects; unknown impact blocks Apply; stale/foreign plans refuse; native Undo restores typed records and qualified occurrences/routes; recovery retains drafts."
           ],
           "execution_results": "docs/parity/p21a/README.md",
           "pr_url": "https://github.com/ajhcs/mbse-craft/pull/26",
-          "review_preservation": "docs/parity/p21a/REVIEW_PRESERVATION.json"
+          "review_preservation": "docs/parity/p21a/REVIEW_PRESERVATION.json",
+          "merge_commit": "66a56b04410403ed7c775f02a4256f4eecc11922",
+          "reviewed_head": "cab716dcd5e67c090fc31a25fab0bee0b4e935d7"
         },
         {
           "id": "P21b",
           "title": "Native-core deletion and incoming-reference treatment",
-          "state": "planned",
+          "state": "in_progress",
           "depends_on": [
             "P21a"
           ],
           "acceptance": [
             "Handle supported native-core ownership/links/calculation references in preview and transaction; unknown impact blocks exhaustive verdict; Undo restores native records and presentation; native persistence keeps exact remaining meaning."
-          ]
+          ],
+          "branch": "codex/m4-p21b-native-deletion"
         }
       ]
     },
