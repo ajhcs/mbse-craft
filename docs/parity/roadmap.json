@@ -271,7 +271,7 @@
       "acceptance": [
         "Cancel, failure and indeterminate outcomes differ; stale replies cannot replace work; background completion cannot discard edits."
       ],
-      "state": "implemented_draft_pending_review",
+      "state": "merged",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "execution_results": "docs/parity/p13/README.md",
@@ -287,9 +287,11 @@
       "acceptance": [
         "Old documents migrate into a new copy with IDs, opaque fields and drafts intact; newer schemas refuse safely; Stage1 identity is not relabeled."
       ],
-      "state": "planned",
+      "state": "implemented_draft_pending_review",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/p14/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/17"
     },
     {
       "id": "P15",

@@ -383,6 +383,9 @@ impl Session {
         self.last_export.as_ref()
     }
     pub fn begin_export_sysml(&mut self, path: &Path) -> Result<ExportJob, String> {
+        if self.editor.snapshot.extensions.as_ref().is_some_and(|e|!e.namespaces.is_empty()){
+            return Err("MBSE_EXTENSIONS_EXCHANGE_UNSUPPORTED: keep the native copy; extension exchange is not implemented".into());
+        }
         if self.export_pending() {
             return Err("STAGE1_EXPORT_PENDING".into());
         }
@@ -449,6 +452,18 @@ impl Session {
     /// Restoring never makes the protected source the active destination. A new
     /// semantic document ID and runtime instance reset interactive history while
     /// all record IDs and raw/creation journals remain intact.
+    /// Independent runtime and protected source, with original document/record IDs.
+    /// Only a fresh destination can be written by this migrated session.
+    pub fn migrate_extensions(state_root:&Path,path:&Path)->Result<Self,String>{
+        let path=native_path(path)?;let bytes=read_bounded(&path)?;let mut envelope=decode(&bytes)?;
+        envelope.snapshot=crate::extensions::migrate(&envelope.snapshot)?;
+        let(root,reservation,session,instance)=reserve(state_root)?;
+        let mut result=Self::assemble(root,reservation,session,instance,envelope.snapshot)?;
+        result.protected_sources.insert(ProtectedSource{path,hash:hash(&bytes)});
+        result.protected_sources.extend(envelope.provenance.protected_sources);
+        if let(Some(path),Some(hash))=(envelope.provenance.source_path,envelope.provenance.source_hash){result.protected_sources.insert(ProtectedSource{path,hash});}
+        Ok(result)
+    }
     pub fn restore(state_root: &Path, path: &Path) -> Result<Self, String> {
         let path = native_path(path)?;
         let bytes = read_bounded(&path)?;
@@ -884,6 +899,7 @@ fn decode(bytes: &[u8]) -> Result<Envelope, String> {
     if !legacy && (envelope.profile != PROFILE || envelope.schema_version != SCHEMA_VERSION) {
         return Err("STAGE1_UNSUPPORTED_PROFILE_OR_VERSION".into());
     }
+    if legacy && envelope.snapshot.extensions.is_some(){return Err("STAGE1_V1_EXTENSION_COLLISION: original source retained".into());}
     if legacy
         && (envelope.snapshot.records.values().any(|record| {
             record.fields.contains_key("calculation")
@@ -994,6 +1010,7 @@ fn check_shape(value: &Value) -> Result<(), String> {
         snapshot,
         &[
             "document_id",
+            "extensions",
             "records",
             "drafts",
             "creation_drafts",
@@ -1770,4 +1787,30 @@ mod tests {
         );
         assert_eq!(fs::read(&path).unwrap(), original);
     }
+    #[test]
+    fn extension_migration_copy_preserves_ids_opaque_fields_drafts_and_protected_source(){
+        let area=area();let state=area.path().join("state");let source=area.path().join("original.kernspan");let mut session=Session::new(&state).unwrap();
+        let snapshot=Snapshot::from_fixture(session.editor.snapshot.document_id.clone(),&serde_json::from_str(include_str!("../fixtures/stage1/inspection.json")).unwrap()).unwrap();session.editor=Editor::new(snapshot,session.instance_id.0.clone()).unwrap();
+        session.editor.command(&session.editor.freshness(),Command::EditText{key:RawKey{record:RecordId(301),field:"criterion".into(),item:None},text:"9e".into()}).unwrap();
+        session.editor.snapshot.records.get_mut(&RecordId(1)).unwrap().fields.insert("opaque_future".into(),serde_json::json!({"untouched":[null,1,"future"]}));
+        session.editor.snapshot.creation_drafts.insert("pending-mission".into(),crate::stage1::CreationDraft{owner:RecordId(1),kind:RecordKind::Mission,fields:BTreeMap::from([("name".into(),"unsubmitted".into())])});
+        save(&mut session,&source);let bytes=fs::read(&source).unwrap();let expected=session.editor.snapshot.clone();let mut migrated=Session::migrate_extensions(&state,&source).unwrap();assert!(migrated.path.is_none()&&migrated.is_dirty());assert_ne!(migrated.instance_id,session.instance_id);assert!(migrated.begin_save(&source).is_err());let occupied=area.path().join("occupied.kernspan");fs::write(&occupied,&bytes).unwrap();assert!(migrated.begin_save(&occupied).is_err());
+        let destination=area.path().join("migrated.kernspan");save(&mut migrated,&destination);let reopened=Session::open(&state,&destination).unwrap();let mut core=reopened.editor.snapshot.clone();assert_eq!(core.extensions,Some(crate::extensions::Extensions::default()));core.extensions=None;assert_eq!(core,expected);assert_eq!(fs::read(&source).unwrap(),bytes);assert_eq!(fs::read(&occupied).unwrap(),bytes);assert!(Session::migrate_extensions(&state,&destination).is_err());
+        let envelope:Value=serde_json::from_slice(&fs::read(&destination).unwrap()).unwrap();assert_eq!(envelope["profile"],PROFILE);assert_eq!(envelope["schema_version"],2);
+    }
+    #[test]
+    fn legacy_stage1_migration_keeps_stage1_identity_and_refuses_typed_collision(){
+        let area=area();let state=area.path().join("state");let source=area.path().join("legacy.kernspan");let mut session=Session::new(&state).unwrap();save(&mut session,&source);let mut value:Value=serde_json::from_slice(&fs::read(&source).unwrap()).unwrap();value["profile"]=LEGACY_PROFILE.into();value["schema_version"]=1.into();fs::write(&source,serde_json::to_vec_pretty(&value).unwrap()).unwrap();let before=fs::read(&source).unwrap();let mut migrated=Session::migrate_extensions(&state,&source).unwrap();assert_eq!(migrated.editor.snapshot.document_id,session.editor.snapshot.document_id);let destination=area.path().join("new.kernspan");save(&mut migrated,&destination);assert_eq!(fs::read(&source).unwrap(),before);assert_eq!(Session::open(&state,&destination).unwrap().editor.snapshot.document_id,session.editor.snapshot.document_id);
+        value["snapshot"]["extensions"]=serde_json::to_value(crate::extensions::Extensions::default()).unwrap();let collision=serde_json::to_vec(&value).unwrap();fs::write(&source,&collision).unwrap();assert!(Session::migrate_extensions(&state,&source).err().unwrap().contains("V1_EXTENSION_COLLISION"));assert_eq!(fs::read(&source).unwrap(),collision);
+    }
+    #[test]
+    fn future_extension_schema_and_required_namespace_refuse_before_any_copy(){
+        let area=area();let source=area.path().join("future.kernspan");let state=area.path().join("state");let mut session=Session::new(&state).unwrap();save(&mut session,&source);let mut value:Value=serde_json::from_slice(&fs::read(&source).unwrap()).unwrap();let mut extensions=crate::extensions::Extensions::default();extensions.schema_version=99;value["snapshot"]["extensions"]=serde_json::to_value(&extensions).unwrap();let future=serde_json::to_vec(&value).unwrap();fs::write(&source,&future).unwrap();assert!(Session::open(&state,&source).is_err());assert!(Session::migrate_extensions(&state,&source).is_err());assert_eq!(fs::read(&source).unwrap(),future);
+        extensions=crate::extensions::Extensions::default();extensions.namespaces.insert("future.types/1".into(),serde_json::json!({"meaning":"required"}));extensions.required_namespaces.push("future.types/1".into());value["snapshot"]["extensions"]=serde_json::to_value(extensions).unwrap();let required=serde_json::to_vec(&value).unwrap();fs::write(&source,&required).unwrap();assert!(Session::open(&state,&source).err().unwrap().contains("REQUIRED_UNSUPPORTED"));assert_eq!(fs::read(&source).unwrap(),required);
+    }
+    #[test]
+    fn optional_extension_json_roundtrips_and_cannot_be_silently_exported_as_supported_sysml(){
+        let area=area();let mut session=Session::new(area.path()).unwrap();let mut ext=crate::extensions::Extensions::default();ext.namespaces.insert("future.opaque/1".into(),serde_json::json!({"nested":[1,null,{"unknown":"retained"}]}));session.editor.snapshot.extensions=Some(ext.clone());let destination=area.path().join("optional.kernspan");save(&mut session,&destination);let reopened=Session::open(area.path(),&destination).unwrap();assert_eq!(reopened.editor.snapshot.extensions,Some(ext));assert!(session.begin_export_sysml(&area.path().join("unsupported.sysml")).unwrap_err().contains("EXTENSIONS_EXCHANGE_UNSUPPORTED"));assert!(!area.path().join("unsupported.sysml").exists());
+    }
+
 }

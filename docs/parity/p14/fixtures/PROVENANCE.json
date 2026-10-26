@@ -1,0 +1,8 @@
+{
+  "qualification": "Synthetic Stage1 acceptance fixtures; no commercial/historical customer-file claim",
+  "original": "Exact preserved P13 original fixture bytes",
+  "opaque-drafts": "Derived original: add opaque System field and pending creation journal; original raw9e and accepted values retained",
+  "legacy": "Derived original: declare Stage1/1 and omit calculation-specific fields/journals forbidden by that profile, preserving remaining IDs and raw9e",
+  "future": "Derived original: unsupported extension schema99",
+  "required-future": "Derived original: unsupported required namespace future.types/1"
+}

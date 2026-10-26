@@ -644,6 +644,7 @@ fn check_model(model: &ExchangeModel) -> Result<()> {
         record.fields.remove("_kernspanCalculationRawOwners");
     }
     let snapshot = Snapshot {
+        extensions:None,
         document_id: DocumentId("sysml-semantic-check".into()),
         records: structural_records,
         drafts: vec![],

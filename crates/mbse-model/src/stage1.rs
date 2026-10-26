@@ -211,6 +211,8 @@ pub struct CreationDraft {
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct Snapshot {
+    #[serde(default,skip_serializing_if="Option::is_none")]
+    pub extensions:Option<crate::extensions::Extensions>,
     pub document_id: DocumentId,
     pub records: BTreeMap<RecordId, Record>,
     pub drafts: Vec<RawDraft>,
@@ -230,6 +232,7 @@ impl Snapshot {
             fields: BTreeMap::from([("purpose".into(), json!(""))]),
         };
         Self {
+            extensions:None,
             document_id,
             records: BTreeMap::from([(system.id, system)]),
             drafts: Vec::new(),
@@ -392,6 +395,7 @@ impl Snapshot {
     /// Checks this app profile's structural integrity, never SysML conformance.
     /// Detached raw and creation journals are intentional after model Undo.
     pub fn validate(&self) -> Result<(), String> {
+        if let Some(extensions)=&self.extensions{extensions.validate()?;}
         if self.document_id.0.is_empty() || self.records.is_empty() {
             return Err("A document identity and at least one System are required".into());
         }

@@ -1,0 +1,26 @@
+{
+  "schema": "mbse-craft.p14-native-review/1",
+  "reviewer": "Codex, same implementing agent",
+  "independent_review": false,
+  "result": "bounded_P14_migration_native_scenarios_passed",
+  "raw_receipt_status": "actions_completed_review_pending",
+  "native_runs": 2,
+  "action_errors": 0,
+  "cli_passed_cases": 7,
+  "pixels_reviewed": [
+    "native/reopen/03-cold-reopen-migrated-draft-and-views.png"
+  ],
+  "observations": [
+    "Actual CLI migration copy opens with separate mbse-craft.extensions/1 header and unchanged native document/record IDs",
+    "Native Save snapshot equals admitted migrated snapshot including opaque field, pending creation and raw journals",
+    "Cold app reopens exact native snapshot and saved views file digest/empty history; raw9e,95metre,2.5km visible",
+    "CLI old/current migrations preserve exact core; source/occupied target, future schema, required namespace and already-versioned requests refuse",
+    "Two normal native exits with exact owned-process and authentication cleanup; inputs unchanged"
+  ],
+  "limits": [
+    "Same-agent Linux private display and synthetic Stage1 fixtures; no historical customer/commercial compatibility claim",
+    "Empty extension header is foundational schema, not type/property/port/decomposition support",
+    "Optional unknown namespace JSON is opaque; unsupported required meaning refuses; nonempty extension payload cannot silently enter restricted SysML export",
+    "Original malformed CLI fixture was correctly refused before any positive case; original active receipt/nonzero case, script and bad fixtures retained separately"
+  ]
+}
