@@ -1044,6 +1044,7 @@ impl Editor {
         let mut created = None;
         let accepted = match command {
             Command::Typed(action)=>{
+                if let crate::types::Action::Refactor(crate::types::refactor::Action::Apply(plan))=&action{plan.check(self)?;}
                 let before=ModelState::capture(&self.snapshot);
                 let raw_before=self.snapshot.extensions.clone();let allocator_before=self.snapshot.next_id;let draft_before=crate::types::drafts_value(&self.snapshot.extensions);
                 let change=crate::types::apply(&mut self.snapshot,action)?;

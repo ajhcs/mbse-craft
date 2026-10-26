@@ -32,6 +32,7 @@ pub enum Id {
     Ports,
     Connectors,
     Values,
+    Refactor,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Surface {
@@ -72,6 +73,7 @@ macro_rules! spec {
 }
 pub const MENUS: &[&str] = &["File", "Edit", "View", "Tools"];
 pub const ALL: &[Spec] = &[
+    spec!(Refactor,"tools.clone_move","Clone and move with reference preview","Tools",ALT,B),
     spec!(Values,"tools.values","Defaults and instance values","Tools",ALT,Y),
     spec!(Connectors,"tools.connectors","Connectors and conveyed items","Tools",ALT,K),
     spec!(Ports,"tools.ports","Ports and interfaces","Tools",ALT,I),
