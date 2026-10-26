@@ -114,7 +114,7 @@
     {
       "path": "crates/mbse-desktop/src/ui_commands.rs",
       "bytes": 36626,
-      "sha256": "3f966261f83292284e63600a73b46049ed1b0304e044b4bdbbf3971061860291"
+      "sha256": "f7182800d647016ef5d34d9ef80556bac9e83d8e17f0f68c6aa9d503914294ee"
     },
     {
       "path": "crates/mbse-desktop/src/ui_connector_routes.rs",
@@ -423,8 +423,8 @@
     },
     {
       "path": "crates/mbse-model/src/types/deletion.rs",
-      "bytes": 19321,
-      "sha256": "76a7275addd2b569f005a68f0a7bc459b05ed2e4ae67d95be242fb921a245ef8"
+      "bytes": 19377,
+      "sha256": "0379cb495c64aa82741224215904004f4bf6a1bfe3f4b99fe9ce0daa4f048ed2"
     },
     {
       "path": "crates/mbse-model/src/types/deletion_native.rs",
@@ -3547,5 +3547,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "b4b5dcdd4969c1d2b955091d03a221fa17740a2c22af5c5c852c986b6446c7ab"
+  "source_sha256": "60490bd237df79089654450f3b09fe60bc95a3207b21bceb421df8c27fc71f6f"
 }

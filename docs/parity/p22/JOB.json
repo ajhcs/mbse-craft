@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m4-p22-profile-tags-01",
+  "id": "m4-p22-profile-tags-remainder-02",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m4-p22-profile-tags",
   "source_manifest": "docs/parity/p22/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "8adcde7a08d67e4ad3fad1b81b50622832a5564f8930cc0792e9b1fa64e56215",
-  "source_sha256": "b4b5dcdd4969c1d2b955091d03a221fa17740a2c22af5c5c852c986b6446c7ab",
+  "source_manifest_sha256": "8ee4950adcb7a8ec4a282284627c92dd6b72eb52ca02218e79360a7e11b14fba",
+  "source_sha256": "60490bd237df79089654450f3b09fe60bc95a3207b21bceb421df8c27fc71f6f",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -24,7 +24,36 @@
       "test",
       "--locked",
       "--offline",
-      "--workspace",
+      "-p",
+      "mbse-desktop",
+      "ui::workspace_commands::tests::command_ids_defaults_and_menu_groups_are_unique_and_complete",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-exchange",
+      "-p",
+      "mbse-model",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "--doc",
+      "-p",
+      "mbse-assurance",
+      "-p",
+      "mbse-catalog",
       "--",
       "--test-threads=1"
     ],
@@ -38,7 +67,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "P22 exact namespace/version immutable registry, explicit literal tag applications and target-kind guards, raw form/history, clone/delete metadata closure, duplicate-key refusal, native/views4 captured persistence and actual renderer actions. Full workspace regression and desktop build; one job/test thread, locked/offline.",
+  "rationale": "Initial workspace run passed139 tests including new profile renderer, but failed catalog uniqueness assertions still expecting30 instead of31; exchange/model/doc groups unexecuted. Fix only two test counts plus clarify deletion review-cap message. Run failed catalog case and unexecuted exchange/model/assurance-catalog doc groups, then build. Preserve initial139 passes/failure without replay or a summed full-suite qualification claim.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",

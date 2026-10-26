@@ -505,7 +505,7 @@ mod tests {
                 .map(|s| s.key)
                 .collect::<BTreeSet<_>>()
                 .len(),
-            30
+            31
         );
         assert_eq!(
             catalog::ALL
@@ -513,7 +513,7 @@ mod tests {
                 .map(|s| s.id)
                 .collect::<BTreeSet<_>>()
                 .len(),
-            30
+            31
         );
         for (i, s) in catalog::ALL.iter().enumerate() {
             assert!(catalog::MENUS.contains(&s.menu));

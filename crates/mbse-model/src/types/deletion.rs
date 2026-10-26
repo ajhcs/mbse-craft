@@ -521,7 +521,7 @@ pub fn prepare(e: &Editor, v: &Views) -> Result<Prepared, String> {
         || summary.incoming.len() > 512
     {
         summary.refusal = Some(
-            "Deletion exceeds the 128-record/value-entry or 512-reference review limit.".into(),
+            "Deletion exceeds the review limit: 128 records plus owned Contexts, 128 value entries, 128 profile applications or 512 references.".into(),
         );
     } else if !f.cascade {
         summary.refusal = Some(
