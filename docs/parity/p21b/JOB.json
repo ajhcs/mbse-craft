@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m4-p21b-native-deletion-01",
+  "id": "m4-p21b-native-deletion-02",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m4-p21b-native-deletion",
   "source_manifest": "docs/parity/p21b/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "8172b1425b730227fa2f1a6f2ced8b7370ed2358420090cef77aa6c42570b511",
-  "source_sha256": "91c1c2e80b90f069491d589240fe582f3170c9302e2d85ecaa83ecf4390fcf44",
+  "source_manifest_sha256": "5cc32a4a687ef090d636b6c1afd6dd7caf24f77a6803fe07c3b75689ca414a2d",
+  "source_sha256": "67f79f2c9c76aea39fd5cfbe59a5fb2207a13aa27e87fea5a255ed2574ca0e7c",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",

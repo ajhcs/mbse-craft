@@ -215,7 +215,7 @@ mod tests {
         assert_eq!(types::load(&app.session.editor.snapshot).unwrap(), accepted);
         assert_eq!(
             deletion::form(&app.session.editor.snapshot).unwrap(),
-            Some(form)
+            Some(form.clone())
         );
         assert_eq!(app.session.editor.snapshot.next_id, before.next_id);
         // Native-core remainder follows the same rendered transaction.
