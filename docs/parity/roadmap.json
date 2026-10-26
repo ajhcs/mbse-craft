@@ -339,7 +339,7 @@
       "acceptance": [
         "Incompatible assignments refuse; port identities survive cross-view reuse, save and reopen."
       ],
-      "state": "reviewed_ready_to_merge",
+      "state": "merged",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "children": [
@@ -364,13 +364,16 @@
           "acceptance": [
             "Distinct presentation occurrences in two actual views reuse one semantic port ID; save/reopen/layout undo/hide retain semantic identity; existing core views and copy/recovery paths preserve or explicitly refuse unsupported typed content."
           ],
-          "state": "reviewed_ready_to_merge",
+          "state": "merged",
           "evidence": "docs/parity/p17b/README.md",
-          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/21"
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/21",
+          "reviewed_head": "b71f07bcee9ce8f65f1f8f929c095c3aef9baf11",
+          "merge_commit": "0694708dd04862c4d2266be2cda36eb4f160374e"
         }
       ],
       "decomposition_reason": "Existing native occurrences require core RecordKind; semantic ports and typed presentation need separately reviewable storage/history adapters. P17 remains open until both children pass.",
-      "evidence": "docs/parity/p17b/README.md"
+      "evidence": "docs/parity/p17b/README.md",
+      "merge_commit": "0694708dd04862c4d2266be2cda36eb4f160374e"
     },
     {
       "id": "P18",
@@ -382,9 +385,31 @@
       "acceptance": [
         "Wrong endpoints and item types refuse; views update consistently; removing a visual edge does not delete the semantic connector."
       ],
-      "state": "planned",
+      "state": "in_progress",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "children": [
+        {
+          "id": "P18a",
+          "title": "Instance-qualified connector endpoints and conveyed-type admission",
+          "state": "in_progress",
+          "acceptance": [
+            "Wrong part/port ownership, direction and conveyed type refuse atomically; exact connector IDs and unfinished forms survive native persistence and model history."
+          ]
+        },
+        {
+          "id": "P18b",
+          "title": "Qualified port occurrences and semantic connector visual routes",
+          "state": "planned",
+          "depends_on": [
+            "P18a"
+          ],
+          "acceptance": [
+            "Two views show routes bound to exact qualified port occurrences; wrong endpoints refuse; removing a visual edge retains semantic connector; native/views Save and cold reopen preserve identities."
+          ]
+        }
+      ],
+      "decomposition_reason": "Separate part-qualified semantic endpoint/type rules from presentation context/routing so each identity boundary is reviewable. P18 stays open until both children pass."
     },
     {
       "id": "P19",
