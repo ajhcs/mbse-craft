@@ -370,7 +370,7 @@ fn controlled_derivative_has_fresh_native_binding_and_actual_deleted_checkpoint_
     let area = tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap();
     let original_native = std::fs::read(input()).unwrap();
     let original_views = std::fs::read(input().with_extension("mbse-views.json")).unwrap();
-    let source = Session::open(area.path(), input()).unwrap();
+    let source = Session::open(area.path(), &input()).unwrap();
     let original = Views::decode(
         &original_views,
         &source.editor,
