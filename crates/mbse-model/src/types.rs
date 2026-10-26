@@ -55,6 +55,29 @@ pub struct Form {
     pub lower: String,
     pub upper: String,
 }
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub enum UsageKind {
+    Part,
+    Reference,
+}
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Usage {
+    pub id: Id,
+    pub name: String,
+    pub owner: Id,
+    pub target: Id,
+    pub kind: UsageKind,
+}
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct UsageForm {
+    pub id: Option<Id>,
+    pub name: String,
+    pub owner: String,
+    pub target: String,
+    pub kind: UsageKind,
+}
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Store {
@@ -62,6 +85,8 @@ pub struct Store {
     pub schema_version: u32,
     pub definitions: BTreeMap<Id, Definition>,
     pub properties: BTreeMap<Id, Property>,
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    pub usages: BTreeMap<Id, Usage>,
 }
 impl Default for Store {
     fn default() -> Self {
@@ -70,6 +95,7 @@ impl Default for Store {
             schema_version: 1,
             definitions: BTreeMap::new(),
             properties: BTreeMap::new(),
+            usages: BTreeMap::new(),
         }
     }
 }
@@ -98,6 +124,8 @@ struct Journal {
     forms: BTreeMap<Id, Form>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     definition: Option<DefinitionForm>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    usage: Option<UsageForm>,
 }
 impl Default for Journal {
     fn default() -> Self {
@@ -106,6 +134,7 @@ impl Default for Journal {
             schema_version: 1,
             forms: BTreeMap::new(),
             definition: None,
+            usage: None,
         }
     }
 }
@@ -126,6 +155,9 @@ fn canonical(value: &Value, field: &str) -> Result<(), String> {
 fn parse(value: &Value) -> Result<Store, String> {
     canonical(value, "definitions")?;
     canonical(value, "properties")?;
+    if value.get("usages").is_some() {
+        canonical(value, "usages")?;
+    }
     let store: Store =
         serde_json::from_value(value.clone()).map_err(|e| format!("TYPE_SCHEMA: {e}"))?;
     store.validate()?;
@@ -143,6 +175,14 @@ fn parse_journal(value: &Value) -> Result<Journal, String> {
         .is_some_and(|f| f.system.0 == 0 || f.name.len() > 4096)
     {
         return Err("TYPE_DEFINITION_DRAFT_SHAPE_OR_LIMIT".into());
+    }
+    if j.usage.as_ref().is_some_and(|f| {
+        f.id.is_some_and(|id| id.0 == 0)
+            || [&f.name, &f.owner, &f.target]
+                .iter()
+                .any(|v| v.len() > 4096)
+    }) {
+        return Err("TYPE_USAGE_DRAFT_SHAPE_OR_LIMIT".into());
     }
     for f in j.forms.values() {
         if f.owner.0 == 0
@@ -193,6 +233,9 @@ pub fn forms(snapshot: &Snapshot) -> Result<BTreeMap<Id, Form>, String> {
 }
 pub fn definition_form(snapshot: &Snapshot) -> Result<Option<DefinitionForm>, String> {
     Ok(journal(snapshot)?.definition)
+}
+pub fn usage_form(snapshot: &Snapshot) -> Result<Option<UsageForm>, String> {
+    Ok(journal(snapshot)?.usage)
 }
 pub fn drafts_value(value: &Option<Extensions>) -> Option<Value> {
     value
@@ -260,7 +303,7 @@ impl Store {
     pub fn validate(&self) -> Result<(), String> {
         if self.profile != NAMESPACE
             || self.schema_version != 1
-            || self.definitions.len() + self.properties.len() > 512
+            || self.definitions.len() + self.properties.len() + self.usages.len() > 512
         {
             return Err("TYPE_VERSION_OR_LIMIT".into());
         }
@@ -290,6 +333,47 @@ impl Store {
             }
             if owner.system != value.system {
                 return Err("TYPE_CROSS_SYSTEM_REFERENCE_UNSUPPORTED".into());
+            }
+        }
+        for (id, u) in &self.usages {
+            if id != &u.id || id.0 == 0 || !ids.insert(*id) {
+                return Err("TYPE_USAGE_ID".into());
+            }
+            name(&u.name)?;
+            let owner = self
+                .definitions
+                .get(&u.owner)
+                .ok_or("TYPE_USAGE_OWNER_MISSING")?;
+            let target = self
+                .definitions
+                .get(&u.target)
+                .ok_or("TYPE_USAGE_TARGET_MISSING")?;
+            if owner.kind != Kind::Component || target.kind != Kind::Component {
+                return Err("TYPE_USAGE_WRONG_KIND".into());
+            }
+            if owner.system != target.system {
+                return Err("TYPE_USAGE_CROSS_SYSTEM_UNSUPPORTED".into());
+            }
+        }
+        // Bounded iterative traversal avoids recursive stack growth and expands
+        // each reachable definition once, even when types are reused in a DAG.
+        for root in self.definitions.keys() {
+            let mut seen = BTreeSet::new();
+            let mut pending = vec![*root];
+            while let Some(owner) = pending.pop() {
+                if !seen.insert(owner) {
+                    continue;
+                }
+                for usage in self
+                    .usages
+                    .values()
+                    .filter(|u| u.kind == UsageKind::Part && u.owner == owner)
+                {
+                    if usage.target == *root {
+                        return Err("TYPE_CONTAINMENT_CYCLE".into());
+                    }
+                    pending.push(usage.target);
+                }
             }
         }
         Ok(())
@@ -326,7 +410,12 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
             return Err("TYPE_SYSTEM_WRONG_KIND".into());
         }
     }
-    for id in store.definitions.keys().chain(store.properties.keys()) {
+    for id in store
+        .definitions
+        .keys()
+        .chain(store.properties.keys())
+        .chain(store.usages.keys())
+    {
         if !ids.insert(id.0) {
             return Err("TYPE_NATIVE_ID_COLLISION".into());
         }
@@ -336,8 +425,23 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
         if let Some(definition) = definition_form(snapshot)? {
             high = high.max(definition.system.0);
         }
+        if let Some(form) = usage_form(snapshot)? {
+            if let Some(id) = form.id {
+                if store.definitions.contains_key(&id)
+                    || store.properties.contains_key(&id)
+                    || native_reserved.contains(&id.0)
+                {
+                    return Err("TYPE_USAGE_DRAFT_ID_COLLISION".into());
+                }
+                high = high.max(id.0);
+            }
+        }
         for (id, f) in forms(snapshot)? {
-            if store.definitions.contains_key(&id) || native_reserved.contains(&id.0) {
+            if store.definitions.contains_key(&id)
+                || store.usages.contains_key(&id)
+                || usage_form(snapshot)?.is_some_and(|f| f.id == Some(id))
+                || native_reserved.contains(&id.0)
+            {
                 return Err("TYPE_DRAFT_ID_COLLISION".into());
             }
             high = high.max(id.0).max(f.owner.0);
@@ -347,6 +451,10 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
 }
 #[derive(Clone, Debug)]
 pub enum Action {
+    SetUsageForm {
+        form: UsageForm,
+    },
+    ApplyUsage,
     SetDefinitionForm {
         form: DefinitionForm,
     },
@@ -386,6 +494,53 @@ pub fn apply(snapshot: &mut Snapshot, action: Action) -> Result<Change, String> 
 fn apply_inner(snapshot: &mut Snapshot, action: Action) -> Result<Change, String> {
     let mut store = load(snapshot)?;
     match action {
+        Action::SetUsageForm { form } => {
+            let mut j = journal(snapshot)?;
+            j.usage = Some(form);
+            put(snapshot, DRAFTS, &j)?;
+            Ok(Change::Raw)
+        }
+        Action::ApplyUsage => {
+            let mut j = journal(snapshot)?;
+            let mut f = j.usage.clone().ok_or("TYPE_USAGE_DRAFT_UNAVAILABLE")?;
+            name(&f.name)?;
+            let reference = |text: &str| -> Result<Id, String> {
+                let id = text
+                    .trim()
+                    .parse::<u64>()
+                    .map_err(|_| "TYPE_USAGE_REFERENCE_ID")?;
+                if id == 0 || id.to_string() != text.trim() {
+                    return Err("TYPE_USAGE_REFERENCE_ID".into());
+                }
+                Ok(Id(id))
+            };
+            let owner = reference(&f.owner)?;
+            let target = reference(&f.target)?;
+            let id = if let Some(id) = f.id {
+                if !store.usages.contains_key(&id) {
+                    return Err("TYPE_USAGE_DETACHED_DRAFT: create a new usage explicitly".into());
+                }
+                id
+            } else {
+                allocate(snapshot)?
+            };
+            store.usages.insert(
+                id,
+                Usage {
+                    id,
+                    name: f.name.clone(),
+                    owner,
+                    target,
+                    kind: f.kind,
+                },
+            );
+            store.validate()?;
+            f.id = Some(id);
+            j.usage = Some(f);
+            put(snapshot, NAMESPACE, &store)?;
+            put(snapshot, DRAFTS, &j)?;
+            Ok(Change::Model)
+        }
         Action::SetDefinitionForm { form } => {
             let mut j = journal(snapshot)?;
             j.definition = Some(form);
@@ -512,6 +667,19 @@ pub fn restore_accepted(current: &mut Option<Extensions>, mut restored: Option<E
         }
     }
     *current = restored;
+}
+
+pub fn preview_usage(snapshot: &Snapshot) -> Result<Usage, String> {
+    let mut candidate = snapshot.clone();
+    apply(&mut candidate, Action::ApplyUsage)?;
+    let id = usage_form(&candidate)?
+        .and_then(|f| f.id)
+        .ok_or("TYPE_USAGE_DRAFT_UNAVAILABLE")?;
+    load(&candidate)?
+        .usages
+        .get(&id)
+        .cloned()
+        .ok_or("TYPE_USAGE_UNAVAILABLE".into())
 }
 
 pub fn preview(snapshot: &Snapshot, id: Id) -> Result<Property, String> {
@@ -974,3 +1142,6 @@ mod tests {
         assert!(!load(&e.snapshot).unwrap().properties.contains_key(&id));
     }
 }
+
+#[cfg(test)]
+mod p16_tests;

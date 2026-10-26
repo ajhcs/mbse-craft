@@ -303,12 +303,13 @@
       "acceptance": [
         "Wrong-kind references and invalid multiplicities refuse atomically; pending property text survives save and reopen."
       ],
-      "state": "reviewed_ready_to_merge",
+      "state": "merged",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "execution_results": "docs/parity/p15/README.md",
       "evidence": "docs/parity/p15/README.md",
-      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/18"
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/18",
+      "merge_commit": "19cb6516350d180fa3f693034c9acc9dbd2b1821"
     },
     {
       "id": "P16",
