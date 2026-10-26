@@ -1,0 +1,1955 @@
+{
+  "workspace_tests": 476,
+  "new_p21a_tests": [
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::deletion_editor::tests::rendered_unknown_hold_cancel_stale_guard_and_delete_undo_preserve_newer_form"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::deletion_tests::clone_delete_cascades_only_owned_records_and_values_preserves_raw_forms_and_allocator"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::deletion_tests::cold_recovery_has_no_inverse_history_authority_even_when_editor_history_is_available"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::deletion_tests::controlled_derivative_has_fresh_native_binding_and_actual_deleted_checkpoint_survives_cold_reopen"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::deletion_tests::delete_undo_redo_restores_exact_port_and_route_identities_and_keeps_newer_invalid_form"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::deletion_tests::deleting_authored_property_removes_defaults_overrides_and_retains_every_part"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::deletion_tests::old_journal_keeps_absent_deletion_field_and_round_trips_raw_detached_forms"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::deletion_tests::original_unknown_metadata_and_unknown_raw_or_namespace_block_without_mutation"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::deletion_tests::payload_delete_closes_all_accepted_incoming_dependencies_without_deleting_part_targets"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::deletion_tests::policy_noncanonical_duplicate_missing_native_and_review_budget_refuse_atomically"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::deletion_tests::sealed_preview_requires_coupled_origin_and_rejects_model_raw_or_presentation_changes"
+    }
+  ],
+  "tests": [
+    {
+      "suite": "Running tests/assurance.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/assurance-be5ad440f67810b8)",
+      "test": "aggregate_and_encoded_evidence_budgets_refuse_atomically_and_leave_register_usable"
+    },
+    {
+      "suite": "Running tests/assurance.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/assurance-be5ad440f67810b8)",
+      "test": "canonical_context_metadata_and_fixed_engine_limits_survive_save_reopen"
+    },
+    {
+      "suite": "Running tests/assurance.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/assurance-be5ad440f67810b8)",
+      "test": "every_freshness_dimension_and_incomplete_raw_refuses_pass"
+    },
+    {
+      "suite": "Running tests/assurance.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/assurance-be5ad440f67810b8)",
+      "test": "exact_native_source_anchor_requires_relink_after_native_raw_or_model_changes"
+    },
+    {
+      "suite": "Running tests/assurance.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/assurance-be5ad440f67810b8)",
+      "test": "failed_unsupported_and_changed_local_artifacts_cannot_pass"
+    },
+    {
+      "suite": "Running tests/assurance.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/assurance-be5ad440f67810b8)",
+      "test": "lifecycle_dimensions_independent_and_calculation_result_is_not_approval"
+    },
+    {
+      "suite": "Running tests/assurance.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/assurance-be5ad440f67810b8)",
+      "test": "raw_9e_invalidates_delayed_evidence_and_audit_records_survive_later_reviews_and_undo"
+    },
+    {
+      "suite": "Running tests/assurance.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/assurance-be5ad440f67810b8)",
+      "test": "saved_history_identity_admission_and_high_water_survive_undone_objects"
+    },
+    {
+      "suite": "Running tests/assurance.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/assurance-be5ad440f67810b8)",
+      "test": "serialized_stamps_and_coordinated_output_tampering_never_mint_native_authenticity"
+    },
+    {
+      "suite": "Running tests/assurance.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/assurance-be5ad440f67810b8)",
+      "test": "undo_audit_merge_and_creation_draft_cannot_trap_register_over_budget"
+    },
+    {
+      "suite": "Running tests/assurance.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/assurance-be5ad440f67810b8)",
+      "test": "unknown_metadata_invalid_raw_and_source_units_survive_native_sidecar_reopen"
+    },
+    {
+      "suite": "Running tests/assurance.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/assurance-be5ad440f67810b8)",
+      "test": "unrecognized_typed_sibling_fields_refuse_instead_of_disappearing_on_reopen"
+    },
+    {
+      "suite": "Running tests/assurance.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/assurance-be5ad440f67810b8)",
+      "test": "unrelated_global_failure_is_retained_while_selected_quantity_remains_successful"
+    },
+    {
+      "suite": "Running tests/admission.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/admission-2f0a09791852240e)",
+      "test": "changed_model_and_duplicate_metadata_are_refused"
+    },
+    {
+      "suite": "Running tests/admission.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/admission-2f0a09791852240e)",
+      "test": "count_and_byte_limits_refuse_without_partial_success"
+    },
+    {
+      "suite": "Running tests/admission.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/admission-2f0a09791852240e)",
+      "test": "malformed_and_unsupported_checksum_are_explicit"
+    },
+    {
+      "suite": "Running tests/admission.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/admission-2f0a09791852240e)",
+      "test": "preview_retains_exact_unknown_metadata_and_sources"
+    },
+    {
+      "suite": "Running tests/admission.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/admission-2f0a09791852240e)",
+      "test": "symlinks_are_not_source"
+    },
+    {
+      "suite": "Running tests/admission.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/admission-2f0a09791852240e)",
+      "test": "untrusted_index_paths_never_escape"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "assurance_ui::tests::delayed_attachment_keeps_new_requirement_selection_and_evidence"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "assurance_ui::tests::delayed_evidence_cannot_apply_to_changed_bytes_with_unchanged_revisions"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "assurance_ui::tests::delayed_load_does_not_replace_newer_register_edits"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "assurance_ui::tests::disconnected_worker_clears_pending_without_acknowledging_save"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "assurance_ui::tests::older_save_ack_keeps_new_edits_dirty_and_close_permission_is_exact"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "assurance_ui::tests::unadmitted_form_text_binds_dirty_close_and_delayed_open"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "docking::tests::invalid_batch_and_geometry_refuse_without_losing_source_or_revision"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "docking::tests::moving_tabbing_splitting_and_floating_keep_each_owned_identity_once"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "docking::tests::stale_exhausted_and_incomplete_registry_refuse_atomically"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "exchange_ui::tests::member_identity_never_silently_chooses_first_global_id"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "perspectives::tests::corrupt_future_missing_duplicate_and_overbudget_are_refused"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "perspectives::tests::offscreen_and_shrunken_viewports_reveal_all_floats_without_native_data"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "perspectives::tests::versioned_roundtrip_keeps_float_tabs_and_explicit_default"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "preferences::shortcut_persistence_tests::actual_worker_shortcut_failure_remains_pending_and_retries_same_generation"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "preferences::shortcut_persistence_tests::additive_overrides_round_trip_with_existing_recovery_values_comments_and_unknown_keys"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "preferences::shortcut_reset_test::explicit_default_marker_survives_merge_save_and_restart_without_resurrecting_old_override"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "preferences::tests::actual_store_failure_reports_backoff_and_retries"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "preferences::tests::defaults_off_and_actual_store_debounces_while_preserving_unknowns"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "preferences::tests::newer_schema_stays_byte_exact_and_read_only"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "preferences::worker_adapter_tests::actual_worker_retries_same_generation_after_local_write_failure"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "preferences::worker_adapter_tests::older_saved_generation_cannot_clear_latest_pending_worker_change"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "preferences::workspace_persistence_tests::actual_store_reopen_perspective_and_explicit_reset_preserve_other_preferences"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "preferences::workspace_persistence_tests::invalid_workspace_payload_retains_original_bytes_and_other_valid_settings"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "semantic_ui::source_name_tests::selecting_another_scoped_node_retains_name_proposal_and_blocks_source_open"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "shortcuts::tests::conflicts_include_defaults_and_atomic_multi_command_swaps_are_valid"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "shortcuts::tests::count_and_byte_limits_bound_configuration_and_preserve_caller_data"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "shortcuts::tests::invalid_loaded_overrides_fall_back_without_rewriting_draft_and_unknowns_stay_inert"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "shortcuts::tests::portable_grammar_normalizes_modifiers_and_rejects_typing_or_malformed_keys"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "shortcuts::tests::unbinding_model_history_cannot_give_away_reserved_text_editing_keys"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "source_edit_ui::tests::delayed_preparation_cannot_replace_changed_raw_or_source"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "source_edit_ui::tests::existing_draft_binding_survives_other_node_begin_and_close"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "source_edit_ui::tests::matching_copy_ack_clears_only_its_draft_and_exposes_exact_digest_open"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "source_edit_ui::tests::pending_write_refuses_discard_close_and_source_replacement"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "source_edit_ui::tests::stale_copy_ack_and_created_output_error_preserve_draft_and_destination"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::connector_editor::tests::connector_text_focus_survives_row_insertion_and_blocks_workspace_history"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::connector_routes::tests::actual_route_controls_disambiguate_two_parts_of_one_type_and_remove_only_presentation"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::connector_routes::tests::long_parallel_route_labels_avoid_both_endpoint_cards_and_each_other"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::deletion_editor::tests::rendered_unknown_hold_cancel_stale_guard_and_delete_undo_preserve_newer_form"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::file_operations::tests::actual_background_read_failure_and_new_session_success_do_not_block_dispatch"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::file_operations::tests::cancel_pending_read_does_not_release_lane_early_or_publish_late_candidate"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::file_operations::tests::controlled_background_completion_rejects_newer_native_draft_and_views_without_discard"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::file_operations::tests::explicit_cancel_backend_failure_and_unknown_empty_results_are_distinct_and_preserving"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::file_operations::tests::queued_cancel_button_release_precedes_a_ready_candidate_publication"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::file_operations::tests::queued_frame_edit_is_processed_before_a_ready_background_result_can_publish"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::file_operations::tests::stale_directory_reply_cannot_reopen_picker_or_replace_current_rows"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::file_operations::tests::stale_selection_cannot_open_or_save_over_new_native_drafts"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::file_operations::tests::worker_failure_disconnect_and_current_success_have_owned_completion_paths"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::panel_docking::tests::busy_or_modal_dock_refusal_retains_panel_layout_and_the_owning_native_ticket"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::panel_docking::tests::corrupted_settings_open_with_safe_default_and_exact_native_state_without_rewrite"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::panel_docking::tests::invalid_pointer_targets_or_canceled_proposals_have_no_mutation_authority"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::panel_docking::tests::named_restore_reset_and_failed_restore_preserve_live_raw_and_native_state"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::panel_docking::tests::panel_moves_never_reconstruct_or_mutate_native_views_raw_selection_or_save_path"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::panel_docking::tests::perspective_actions_refuse_busy_and_budget_without_partial_settings_or_native_mutation"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::panel_docking::tests::real_body_and_native_field_widget_ids_and_focus_survive_floating"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::panel_docking::tests::tabbing_away_canvas_clears_hidden_control_audit_and_retains_native_content"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::policies::browser_reveal_tracks_explicit_selection_and_runtime_without_model_edits"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::policies::close_requires_current_preservation_even_while_hidden"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::policies::detached_occurrence_navigation_preserves_focused_incomplete_native_field_and_browser_reveal"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::policies::impact_navigation_and_original_target_refresh_preserve_live_state_and_clear_failed_rows"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::policies::native_search_draft_changes_clear_results_and_navigation_preserves_dirty_target"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::policies::native_usages_navigation_preserves_dirty_target_and_refuses_stale_rows"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::policies::native_worker_start_failure_clears_only_own_pair_and_retains_live_state"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::policies::occurrence_navigation_changes_real_native_and_view_selection_without_showing_hidden"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::policies::ordinary_text_and_focus_transitions_do_not_undo_model"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::policies::source_inspection_shortcuts_never_undo_or_save_the_live_target"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::port_editor::tests::actual_port_field_focus_and_unfinished_text_survive_interface_row_insertion"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::refactor_editor::tests::actual_preview_cancel_stale_guard_and_apply_keep_source_work_and_allocate_only_on_apply"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::shortcut_editor::tests::configured_model_and_canvas_histories_use_separate_exact_keys_without_text_theft"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::shortcut_editor::tests::editor_scope_blocks_native_file_and_history_and_menu_labels_follow_context"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::shortcut_editor::tests::invalid_apply_retains_active_settings_model_and_unfinished_draft"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::shortcut_editor::tests::overridden_or_unbound_model_undo_leaves_fixed_native_field_history_intact"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::shortcut_editor::tests::readonly_future_settings_allow_explicit_session_override_and_preserve_original_bytes"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::shortcut_editor::tests::stored_conflicts_are_visible_with_defaults_and_no_automatic_file_rewrite"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::typed_properties::tests::real_property_field_focus_and_raw_form_survive_definition_row_insertion"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::value_editor::tests::actual_derived_button_never_writes_values_and_newer_invalid_text_keeps_focus_and_marks_result_stale"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::workspace_commands::tests::all_surfaces_refuse_same_missing_path_busy_and_stale_selection_without_mutation"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::workspace_commands::tests::all_surfaces_share_model_history_and_keep_raw_and_layout_separate"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::workspace_commands::tests::command_ids_defaults_and_menu_groups_are_unique_and_complete"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::workspace_commands::tests::exact_keyboard_modifiers_select_layout_history_and_recovery_instead_of_shorter_bindings"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::workspace_commands::tests::histories_disable_independently_and_widget_undo_and_repeat_keys_remain_unconsumed"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::workspace_commands::tests::inspection_and_auxiliary_scope_refuse_native_actions_without_writes_or_history_loss"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::workspace_commands::tests::menu_toolbar_keyboard_save_actual_pairs_with_the_same_snapshot_and_empty_reopened_history"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::workspace_commands::tests::navigation_commands_preserve_invalid_drafts_until_explicit_dialog_resolution"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "ui::workspace_commands::tests::raw_field_menu_scope_survives_popup_and_never_falls_through_to_model_undo"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::camera_and_layout_history_refuse_during_an_occurrence_gesture"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::camera_commands_are_per_view_and_preserve_native_meaning_and_geometry"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::camera_edit_during_save_is_not_acknowledged_by_an_older_frozen_pair"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::camera_noops_and_rejected_bounds_preserve_revision_history_and_redo"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::deferred_native_ack_keeps_original_destination_and_refuses_open_while_pending"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::injected_worker_start_failure_clears_only_owned_pending_and_keeps_geometry"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::live_copy_apply_selects_new_view_and_one_layout_undo_reconciles"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::live_copy_busy_guards_preserve_target_and_owned_pending_work"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::mapping_rehearsal_preserves_pending_pair_destination_selection_and_histories"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::native_success_alone_and_stale_layout_ack_cannot_authorize_continuation"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::native_validation_failure_clears_exact_pair_and_allows_recovery_retry"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::occurrence_navigation_busy_and_stale_refusals_publish_no_ephemeral_state"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::occurrence_navigation_switches_view_without_show_camera_history_or_route_leak"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::periodic_both_dirty_preserves_native_and_layout_independently"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::periodic_busy_manual_pair_coalesces_without_replacing_ticket_or_destination"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::periodic_disabled_navigation_and_origin_change_reset_quiet_observation"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::periodic_due_time_rechecks_layout_recovery_and_preserves_damaged_evidence"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::periodic_due_time_rechecks_removed_truncated_and_tampered_bound_artifacts"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::periodic_frozen_destination_failure_never_overwrites_foreign_leaf"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::periodic_held_pointer_gesture_and_release_wait_for_persisted_quiet_layout"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::periodic_layout_edit_during_write_leaves_new_revision_due"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::periodic_layout_only_clean_native_creates_verified_pair_without_repeating"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::periodic_native_edit_during_recovery_cannot_ack_newer_snapshot"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::periodic_native_failure_does_not_start_or_ack_views"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::periodic_native_only_edit_is_eligible_without_layout_mutation"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::periodic_recovery_worker_failure_keeps_native_success_and_retries_later"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::periodic_verified_noop_checks_are_interval_bounded_and_native_loss_is_due"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::read_only_source_inspection_is_disjoint_from_dirty_target_and_destination"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::redo_close_selected_view_reconciles_and_keeps_primary"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::refused_sidecar_open_preserves_history_active_selection_and_route_endpoints"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::stale_native_cancel_or_ack_cannot_clear_newer_paired_request"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::tampered_recovery_hint_cannot_authorize_navigation"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::two_view_cameras_round_trip_only_after_explicit_bound_sidecar_open"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::tests::undo_selected_new_view_reconciles_to_primary_without_panicking"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::typed_port_camera_tests::fit_includes_visible_typed_port_geometry_and_excludes_hidden_ports_without_model_changes"
+    },
+    {
+      "suite": "Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_desktop-be41b2dfba63831f)",
+      "test": "views_ui::typed_port_camera_tests::typed_port_gesture_survives_reconciliation_blocks_camera_and_never_becomes_core_route_endpoint"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_exchange-25be8f1b1c428724)",
+      "test": "new_copy::tests::dangling_symlink_and_late_symlink_never_create_target"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_exchange-25be8f1b1c428724)",
+      "test": "new_copy::tests::existing_destination_and_late_arrival_are_preserved"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_exchange-25be8f1b1c428724)",
+      "test": "new_copy::tests::private_success_cleans_stage"
+    },
+    {
+      "suite": "Running tests/projection.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/projection-ca97830b425180f6)",
+      "test": "capella_explicit_components_ports_exchange_and_no_sidecar_fetch"
+    },
+    {
+      "suite": "Running tests/projection.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/projection-ca97830b425180f6)",
+      "test": "lexical_reference_resolution_is_scoped_and_ambiguity_stays_explicit"
+    },
+    {
+      "suite": "Running tests/projection.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/projection-ca97830b425180f6)",
+      "test": "mdzip_projects_actual_named_core_and_retains_unknown_members_without_extraction"
+    },
+    {
+      "suite": "Running tests/projection.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/projection-ca97830b425180f6)",
+      "test": "namespace_false_friends_and_wrong_versions_remain_unknown"
+    },
+    {
+      "suite": "Running tests/projection.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/projection-ca97830b425180f6)",
+      "test": "textual_ast_has_declared_spans_and_explicit_unresolved_typing"
+    },
+    {
+      "suite": "Running tests/projection.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/projection-ca97830b425180f6)",
+      "test": "uml_nodes_id_endpoints_stereotypes_unknown_unit_strings_and_exact_copy"
+    },
+    {
+      "suite": "Running tests/projection.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/projection-ca97830b425180f6)",
+      "test": "xml_refuses_dtd_duplicate_ids_depth_and_encoding"
+    },
+    {
+      "suite": "Running tests/projection.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/projection-ca97830b425180f6)",
+      "test": "zip_refuses_paths_duplicate_candidates_and_high_ratio"
+    },
+    {
+      "suite": "Running tests/semantic_v2.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/semantic_v2-2863871f47ec8d17)",
+      "test": "aggregate_per_node_and_text_limits_refuse_typed_output_but_keep_bytes"
+    },
+    {
+      "suite": "Running tests/semantic_v2.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/semantic_v2-2863871f47ec8d17)",
+      "test": "capella_stored_roles_containment_defaults_and_unevaluated_bodies"
+    },
+    {
+      "suite": "Running tests/semantic_v2.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/semantic_v2-2863871f47ec8d17)",
+      "test": "child_namespace_declarations_obey_per_value_and_scope_limits"
+    },
+    {
+      "suite": "Running tests/semantic_v2.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/semantic_v2-2863871f47ec8d17)",
+      "test": "content_dispatch_ignores_misleading_suffix_and_keeps_v2_text_refusal"
+    },
+    {
+      "suite": "Running tests/semantic_v2.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/semantic_v2-2863871f47ec8d17)",
+      "test": "duplicate_ids_archive_paths_and_missing_members_refuse_without_losing_primary"
+    },
+    {
+      "suite": "Running tests/semantic_v2.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/semantic_v2-2863871f47ec8d17)",
+      "test": "exact_json_expansion_limit_and_diagnostic_truncation_preserve_raw_source"
+    },
+    {
+      "suite": "Running tests/semantic_v2.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/semantic_v2-2863871f47ec8d17)",
+      "test": "exact_namespaces_wrong_version_and_uml_falsefriends_remain_unsupported"
+    },
+    {
+      "suite": "Running tests/semantic_v2.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/semantic_v2-2863871f47ec8d17)",
+      "test": "identity_carrier_policy_is_order_independent_and_does_not_impose_ncname_on_estring"
+    },
+    {
+      "suite": "Running tests/semantic_v2.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/semantic_v2-2863871f47ec8d17)",
+      "test": "inherited_involved_role_accepts_audited_function_and_rejects_known_wrong_kind"
+    },
+    {
+      "suite": "Running tests/semantic_v2.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/semantic_v2-2863871f47ec8d17)",
+      "test": "native_preview_refuses_with_actionable_exact_selection_and_new_copy_is_exact"
+    },
+    {
+      "suite": "Running tests/semantic_v2.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/semantic_v2-2863871f47ec8d17)",
+      "test": "ordered_slots_unknown_namespace_features_and_global_aggregation_are_bounded"
+    },
+    {
+      "suite": "Running tests/semantic_v2.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/semantic_v2-2863871f47ec8d17)",
+      "test": "profile_layers_keep_exact_base_metaclass_and_coverage_gaps"
+    },
+    {
+      "suite": "Running tests/semantic_v2.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/semantic_v2-2863871f47ec8d17)",
+      "test": "reference_uri_policy_is_literal_local_subset_with_no_percent_decode_or_invalidity_claim"
+    },
+    {
+      "suite": "Running tests/semantic_v2.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/semantic_v2-2863871f47ec8d17)",
+      "test": "semantic_endpoints_cannot_resolve_to_a_reference_proxy_mention"
+    },
+    {
+      "suite": "Running tests/semantic_v2.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/semantic_v2-2863871f47ec8d17)",
+      "test": "source_digest_excludes_physical_directory_and_includes_opaque_archive_member"
+    },
+    {
+      "suite": "Running tests/semantic_v2.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/semantic_v2-2863871f47ec8d17)",
+      "test": "typed_aird_and_uml_href_mentions_are_proxies_not_owned_domain_elements"
+    },
+    {
+      "suite": "Running tests/source_edit.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/source_edit-6af5d8f4a90322d6)",
+      "test": "anonymous_foreign_namespace_and_archive_elements_refuse_name_edits"
+    },
+    {
+      "suite": "Running tests/source_edit.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/source_edit-6af5d8f4a90322d6)",
+      "test": "bom_no_declaration_quotes_and_original_whitespace_keep_exact_other_bytes"
+    },
+    {
+      "suite": "Running tests/source_edit.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/source_edit-6af5d8f4a90322d6)",
+      "test": "missing_name_unknown_class_proxy_and_invalid_characters_refuse"
+    },
+    {
+      "suite": "Running tests/source_edit.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/source_edit-6af5d8f4a90322d6)",
+      "test": "rename_preserves_other_bytes_original_and_reference_spellings"
+    },
+    {
+      "suite": "Running tests/source_edit.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/source_edit-6af5d8f4a90322d6)",
+      "test": "source_edit_and_frozen_raw_copy_refuse_dangling_symlink_without_target_creation"
+    },
+    {
+      "suite": "Running tests/source_edit.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/source_edit-6af5d8f4a90322d6)",
+      "test": "stale_source_and_forged_range_refuse_before_destination_creation"
+    },
+    {
+      "suite": "Running tests/source_edit.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/source_edit-6af5d8f4a90322d6)",
+      "test": "supplied_byte_reader_matches_disk_and_refuses_oversize"
+    },
+    {
+      "suite": "Running tests/source_edit.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/source_edit-6af5d8f4a90322d6)",
+      "test": "supported_classes_preserve_original_ids_references_and_unit_lexical_values"
+    },
+    {
+      "suite": "Running tests/source_edit.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/source_edit-6af5d8f4a90322d6)",
+      "test": "unsupported_xml_declarations_refuse_before_output_creation"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "extensions::tests::migration_preserves_native_identity_records_opaque_fields_and_all_journals"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "extensions::tests::unsupported_versions_required_namespaces_and_budgets_refuse_without_mutation"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "local_input::tests::exact_bytes_limits_directories_and_missing_paths"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "local_input::tests::replacement_between_metadata_and_open_cannot_block_or_follow_link"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "local_input::tests::windows_lexical_namespace_and_stream_classification_never_accesses_filesystem"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "local_input::tests::writerless_fifo_socket_device_and_symlink_rejected_before_read"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_navigation::tests::calculation_consumer_uses_producer_under_named_bindings_not_the_reverse"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_navigation::tests::exact_authored_reference_roles_preserve_owner_direction_and_distinct_ids"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_navigation::tests::selection_is_navigation_and_does_not_change_report_freshness_or_histories"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_navigation::tests::stale_runtime_raw_and_layout_refuse_navigation_without_mutation"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_record_impact::tests::all_views_hidden_and_detached_occurrences_and_exact_touching_edges"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_record_impact::tests::calculation_output_usage_retains_consumer_direction_and_named_bindings"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_record_impact::tests::counts_all_stored_owner_drafts_and_pending_creation_drafts_without_text_copy"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_record_impact::tests::detached_occurrence_location_never_aliases_current_native_kind"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_record_impact::tests::direct_roles_remain_normalized_and_inspection_does_not_mutate_state"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_record_impact::tests::label_limits_high_ids_and_truncated_rows_keep_exact_totals"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_record_impact::tests::minted_occurrence_location_refuses_intervening_raw_model_layout_or_runtime_change"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_record_impact::tests::mismatched_document_and_record_key_fail_explicitly"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_record_impact::tests::occurrence_location_is_exact_for_hidden_cross_view_and_selection_preserves_report"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_record_impact::tests::stale_native_raw_layout_and_runtime_refuse_but_selection_is_navigation"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_search::tests::duplicate_labels_keep_exact_ids_kind_and_actual_system_scope"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_search::tests::name_digits_and_canonical_full_width_id_are_separate_modes"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_search::tests::result_and_label_prefix_budgets_are_explicit_and_count_all_matches"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_search::tests::sealed_navigation_stales_on_runtime_raw_layout_and_preserves_target_on_selection"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_search::tests::unknown_or_wrong_kind_scope_refuses_and_empty_supported_query_is_distinct"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_system_browser::tests::exact_membership_keeps_duplicate_names_and_typed_relations_distinct"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_system_browser::tests::group_and_member_labels_are_bounded_without_shortening_ids"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_system_browser::tests::malformed_scope_and_key_refuse_without_partial_projection_or_repair"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_system_browser::tests::projection_is_deterministic_and_preserves_native_values_and_raw_state"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::connectors_tests::captured_v4_native_views_save_and_cold_reopen_preserve_contexts_routes_forms_and_core"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::connectors_tests::malformed_v4_profile_context_wire_and_shared_identity_collision_refuse"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::connectors_tests::remove_visual_route_or_endpoint_and_layout_undo_keep_semantic_connector_and_other_view_exact"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::connectors_tests::semantic_undo_detaches_both_routes_redo_restores_same_runtime_proof_and_newer_text"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::connectors_tests::two_views_route_one_connector_through_distinct_qualified_occurrences_without_model_mutation"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::connectors_tests::v3_and_older_wire_values_remain_exact_without_qualified_fields"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::connectors_tests::wrong_reference_unqualified_reversed_cross_view_duplicate_and_stale_routes_refuse_atomically"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::ports_tests::actual_bound_native_save_and_views_cold_decode_preserve_both_port_occurrences_and_core_data"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::ports_tests::coupled_model_undo_redo_detaches_and_restores_exact_ports_while_retaining_newer_raw_text"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::ports_tests::layout_undo_refuses_to_resurrect_missing_semantic_port_and_keeps_v3_after_removal"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::ports_tests::legacy_wire_values_do_not_gain_typed_fields_or_change_profile"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::ports_tests::malformed_profile_identity_count_and_target_inputs_refuse_instead_of_reclassifying_ports"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::ports_tests::stale_pinned_wrong_kind_and_missing_view_reuse_refuse_without_mutation"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::ports_tests::two_views_reuse_one_semantic_port_with_separate_geometry_and_layout_history"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::ports_tests::typed_source_inspection_and_copy_into_typed_target_refuse_without_dropping_original_content"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::tests::budgets_refuse_without_mutation_and_detached_counts"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::tests::canonical_u64_wire_future_unknown_duplicate_and_corrupt_refused"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::tests::checked_camera_uses_the_existing_finite_wire_limits"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::tests::detached_occurrences_share_per_view_budget_and_oversized_input_refuses"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::tests::duplicate_occurrence_edge_restores_exact_pair_and_three_keys_are_checked"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::tests::history_budget_evicts_and_proof_churn_prunes_orphans"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::tests::invalid_camera_refuses_layout_and_source_restore_without_mutation"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::tests::layout_undo_missing_target_refuses_atomically_and_does_not_discard_native_redo"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::tests::model_text_layout_histories_interleave_without_semantic_delete"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::tests::native_ids_beyond_js_precision_round_trip_without_expanding_core_range"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::tests::native_undo_detaches_and_only_observed_redo_reactivates"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::tests::reopened_detached_has_no_runtime_redo_authority"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::tests::same_element_two_views_move_hide_and_non_reused_ids"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::tests::same_wire_sidecar_revision_geometry_or_record_cannot_reuse_runtime_stamp"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views::tests::stale_command_and_nonfinite_refuse_without_history_or_allocator_change"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_inspect::tests::changed_or_missing_source_refuses_recheck_without_replacing_preview"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_inspect::tests::encoded_payload_expansion_is_bounded_independently_of_raw_input"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_inspect::tests::explicit_source_inspection_retains_bytes_and_never_changes_target"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_inspect::tests::explicit_source_reader_refuses_symlink_without_following_it"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_inspect::tests::future_unknown_duplicate_and_corrupt_source_preserve_original_bytes"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_inspect::tests::nested_duplicates_invalid_endpoints_and_allocator_never_admit_a_preview"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_inspect::tests::raw_boundary_and_collection_budget_are_enforced_before_typed_preview"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_inspect::tests::source_claims_are_not_target_admission_or_native_binding_proof"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_inspect::tests::source_inspection_cannot_bless_a_forged_bound_checkpoint"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_inspect::tests::structurally_invalid_geometry_and_profile_binding_are_refused"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_io::tests::acknowledged_saved_and_recovery_delete_truncate_tamper_blocks_continuation"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_io::tests::bound_save_requires_actual_native_ack_and_round_trips_two_views"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_io::tests::failed_native_completion_does_not_mint_checkpoint_and_old_ack_is_historical"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_io::tests::foreign_presentation_origin_refuses_capture_and_ack_without_clearing_pending"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_io::tests::imported_revision_one_has_no_runtime_pristine_replacement_capability"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_io::tests::local_replacement_rechecks_deleted_truncated_and_tampered_bound_or_recovery_artifact"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_io::tests::missing_future_unknown_duplicate_corrupt_inputs_preserve_default_and_original"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_io::tests::native_and_views_freeze_together_and_old_start_token_cannot_clear_new_job"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_io::tests::native_checkpoint_detects_on_disk_change_and_open_is_sealed_without_request"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_io::tests::noncanonical_recovery_tracks_exact_disk_hash_and_canonical_content_separately"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_io::tests::partial_native_success_views_failure_retains_live_layout_and_native_saved"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_io::tests::recovered_native_document_id_refuses_old_bound_and_unbound_views"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_io::tests::recovery_to_bound_replacement_clears_recovery_ack_and_pending_refuses_all_replacement"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_io::tests::replacement_clears_opposite_ack_and_revision_collision_cannot_discard_recovery_edits"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_io::tests::same_revision_different_bound_files_replace_ack_content_not_just_counter"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_io::tests::same_snapshot_different_artifact_is_refused_and_original_bytes_retained"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_io::tests::stale_views_and_recovery_ack_cannot_preserve_new_layout"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_plan::tests::combined_choices_and_report_reason_copies_are_bounded_before_choice_mutation"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_plan::tests::exact_duplicate_endpoints_and_authored_target_relationship_control_edge_proposals"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_plan::tests::identical_numbers_never_autofill_and_rehearsal_leaves_all_target_state_untouched"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_plan::tests::raw_draft_freshness_alone_stales_rehearsal"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_plan::tests::same_byte_reopen_and_same_id_revision_target_replacement_refuse"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_plan::tests::whitespace_change_missing_source_and_native_or_layout_change_refuse_without_mutation"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "native_views_plan::tests::wrong_kind_missing_target_bad_skip_and_foreign_occurrence_refuse_atomically"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "recovery::read_budget_tests::failed_grown_file_reserves_detection_byte_within_total_budget"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "recovery::read_budget_tests::grown_file_is_charged_by_actual_open_bytes_not_previous_metadata"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1::tests::accepted_numeric_and_exact_text_history_are_independent"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1::tests::create_and_link_is_one_undoable_transaction_and_allocators_never_rewind"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1::tests::detached_selected_raw_and_creation_journals_survive_undo_and_reopen"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1::tests::every_freshness_component_refuses_atomically"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1::tests::fixture_preserves_all_record_properties_and_nested_bytes_as_json_values"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1::tests::initial_measure_metadata_selection_retains_reopened_incomplete_criterion"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1::tests::invalid_criterion_refuses_units_and_valid_units_convert_raw_with_history"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1::tests::malformed_fixture_or_native_snapshot_is_refused_without_repair"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1::tests::model_undo_groups_a_field_session_and_navigation_closes_the_group"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1::tests::model_unit_undo_converts_only_current_valid_raw"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1::tests::native_raw_validity_cannot_contradict_a_known_field_classifier"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1::tests::new_document_is_blank_and_reopen_resets_only_interactive_history"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1::tests::numeric_range_and_incomplete_inputs_never_replace_accepted_value"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1::tests::purpose_and_nested_context_edits_do_not_alias_other_fields"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1::tests::revision_exhaustion_refuses_without_mutating_records_or_journals"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1::tests::text_unit_conversion_overflow_refuses_with_all_history_unchanged"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1::tests::unsupported_expression_is_retained_and_never_evaluated_or_accepted"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1::tests::wrong_kind_wrong_system_and_missing_reference_mutations_are_atomic"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1_graph::tests::authored_edges_are_exact_and_do_not_invent_invocation_ownership"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1_graph::tests::calculation_dependencies_coalesce_named_uses_without_criterion_edges"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1_graph::tests::chooser_filters_are_views_and_cross_scope_or_wrong_typed_edges_refuse"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1_io::tests::autosave_known_destination_uses_actual_save_protocol_and_toggle_has_no_io"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1_io::tests::cooperative_lock_failure_is_not_saved_and_retry_preserves_input"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1_io::tests::extension_migration_copy_preserves_ids_opaque_fields_drafts_and_protected_source"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1_io::tests::external_conflict_and_unknown_target_preserve_live_input_and_source"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1_io::tests::failed_native_worker_start_token_cannot_clear_a_newer_request"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1_io::tests::failed_or_truncated_recovery_never_acknowledges_live_input"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1_io::tests::foreign_and_duplicate_ack_never_clear_active_request"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1_io::tests::frozen_older_save_acknowledges_actual_bytes_but_live_remains_dirty"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1_io::tests::full_snapshot_roundtrip_keeps_opaque_fields_invalid_raw_and_creation_draft"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1_io::tests::future_extension_schema_and_required_namespace_refuse_before_any_copy"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1_io::tests::legacy_stage1_migration_keeps_stage1_identity_and_refuses_typed_collision"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1_io::tests::older_recovery_does_not_acknowledge_later_input"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1_io::tests::optional_extension_json_roundtrips_and_cannot_be_silently_exported_as_supported_sysml"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1_io::tests::original_source_path_hash_pairs_survive_recovery_copy_reopen_generations"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1_io::tests::reader_refuses_nonzero_numeric_underflow_without_changing_source"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1_io::tests::reader_rejects_duplicates_unknown_profiles_and_oversize_before_open"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1_io::tests::recovery_current_rechecks_acknowledged_bytes_before_lifecycle_permission"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1_io::tests::recovery_is_actual_independent_dirty_copy_with_protected_original"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "stage1_io::tests::retained_lock_injection_preserves_existing_file_and_allows_fresh_copy"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::connectors_tests::captured_native_save_cold_reopen_retains_connector_raw_forms_prior_semantics_and_views"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::connectors_tests::connector_qualifies_two_instances_of_same_type_and_uses_effective_interface"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::connectors_tests::invalid_endpoint_kind_owner_port_direction_and_exact_payload_refuse_atomically"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::connectors_tests::malformed_connector_and_cross_journal_id_collisions_refuse"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::connectors_tests::moving_connected_part_out_of_owner_refuses_until_connection_undone"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::connectors_tests::old_type_store_and_journal_wire_values_do_not_gain_empty_connector_fields"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::connectors_tests::undo_redo_keeps_newer_invalid_connector_text_monotonic_ids_and_stale_refusal"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::deletion_tests::clone_delete_cascades_only_owned_records_and_values_preserves_raw_forms_and_allocator"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::deletion_tests::cold_recovery_has_no_inverse_history_authority_even_when_editor_history_is_available"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::deletion_tests::controlled_derivative_has_fresh_native_binding_and_actual_deleted_checkpoint_survives_cold_reopen"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::deletion_tests::delete_undo_redo_restores_exact_port_and_route_identities_and_keeps_newer_invalid_form"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::deletion_tests::deleting_authored_property_removes_defaults_overrides_and_retains_every_part"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::deletion_tests::old_journal_keeps_absent_deletion_field_and_round_trips_raw_detached_forms"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::deletion_tests::original_unknown_metadata_and_unknown_raw_or_namespace_block_without_mutation"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::deletion_tests::payload_delete_closes_all_accepted_incoming_dependencies_without_deleting_part_targets"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::deletion_tests::policy_noncanonical_duplicate_missing_native_and_review_budget_refuse_atomically"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::deletion_tests::sealed_preview_requires_coupled_origin_and_rejects_model_raw_or_presentation_changes"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::p16_tests::actual_native_roundtrip_preserves_usages_and_invalid_form_beside_definition_draft"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::p16_tests::detached_usage_drafts_do_not_recreate_identities_and_identical_apply_is_noop"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::p16_tests::direct_and_indirect_containment_cycles_refuse_atomically_but_references_do_not_contain"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::p16_tests::moving_owned_usage_keeps_identity_and_target_through_undo_redo_and_retains_newer_raw_text"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::p16_tests::p15_store_and_journal_values_roundtrip_without_adding_empty_p16_fields"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::p16_tests::reusable_part_types_create_distinct_usage_ids_and_wrong_kind_cross_system_targets_refuse"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::p16_tests::serialized_usage_identity_collisions_noncanonical_keys_and_invalid_graphs_refuse"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::ports_tests::distinct_interface_ids_assign_when_exact_payload_direction_and_system_agree"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::ports_tests::incompatible_payload_direction_missing_and_wrong_kind_assignments_refuse_atomically"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::ports_tests::native_save_cold_reopen_keeps_port_contracts_both_invalid_forms_and_prior_p16_data"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::ports_tests::p16_values_serialize_without_empty_port_or_interface_fields"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::ports_tests::port_model_undo_redo_retains_newer_invalid_text_and_repeated_apply_is_noop"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::ports_tests::serialized_port_identity_collisions_and_noncanonical_interface_keys_refuse"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::ports_tests::wrong_payload_and_port_owner_and_cross_system_contract_refuse"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::refactor_tests::accepted_clone_member_budget_refuses_before_live_allocation"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::refactor_tests::captured_native_views4_cold_reopen_preserves_cloned_moved_ids_source_forms_and_rejects_old_preview_authority"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::refactor_tests::clone_component_copies_owned_property_defaults_ports_and_reference_without_retargeting_incoming_parts"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::refactor_tests::clone_remaps_owned_usages_connectors_and_override_ids_keeps_external_targets_and_source_drafts"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::refactor_tests::move_connected_parts_updates_enclosed_connectors_with_same_ids_and_keeps_routes_and_values_through_undo"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::refactor_tests::partial_move_policy_cycle_and_invalid_selection_previews_never_mutate_or_allocate_live_state"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::refactor_tests::stale_foreign_and_replayed_plans_refuse_and_clone_undo_keeps_counter_and_newer_raw_form"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::tests::actual_native_save_reopen_retains_typed_ids_and_unfinished_forms_with_empty_runtime_history"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::tests::adding_definition_consumes_only_matching_name_and_advances_raw_revision"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::tests::direct_apply_is_atomic_and_stale_editor_tickets_cannot_mutate_types"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::tests::identity_collision_noncanonical_keys_and_future_typed_schema_refuse"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::tests::invalid_definition_draft_survives_property_edits_history_and_native_reopen"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::tests::model_undo_redo_retains_newer_property_forms_and_monotonic_native_allocator"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::tests::optional_known_key_is_not_reinterpreted_and_native_opaque_data_is_unchanged"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::tests::repeated_apply_and_identical_raw_form_are_noops_in_the_model_history"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::tests::wrong_kind_and_invalid_multiplicities_refuse_atomically_with_raw_form_retained"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::values_tests::bad_literals_wrong_instance_context_and_multivalued_property_changes_refuse_atomically"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::values_tests::boolean_integer_text_literals_keep_types_and_large_integer_results_refuse_precision_loss"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::values_tests::captured_native_views4_save_cold_reopen_retains_defaults_overrides_drafts_routes_and_no_derived_writes"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::values_tests::defaults_update_only_inheriting_parts_and_clear_override_returns_to_inheritance"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::values_tests::derived_previews_use_accepted_effective_values_are_pure_and_invalidate_on_input_or_instance_change"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::values_tests::model_undo_redo_clear_and_stale_apply_preserve_newer_invalid_value_expression_text"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/mbse_model-6547fb3e0c866ec2)",
+      "test": "types::values_tests::serialized_values_refuse_noncanonical_wrong_context_and_type_without_changing_legacy_wire"
+    },
+    {
+      "suite": "Running tests/context_recovery.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/context_recovery-92da181d7d4c75c5)",
+      "test": "context_and_affiliation_are_typed_undoable_preserve_opaque_and_roundtrip"
+    },
+    {
+      "suite": "Running tests/context_recovery.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/context_recovery-92da181d7d4c75c5)",
+      "test": "inventory_is_explicitly_bounded"
+    },
+    {
+      "suite": "Running tests/context_recovery.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/context_recovery-92da181d7d4c75c5)",
+      "test": "native_context_name_retains_unsupported_exchange_text_through_undo_and_reopen"
+    },
+    {
+      "suite": "Running tests/context_recovery.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/context_recovery-92da181d7d4c75c5)",
+      "test": "recovery_inventory_file_count_and_aggregate_byte_caps_are_independent"
+    },
+    {
+      "suite": "Running tests/context_recovery.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/context_recovery-92da181d7d4c75c5)",
+      "test": "recovery_inventory_refuses_file_symlink_and_native_save_envelope"
+    },
+    {
+      "suite": "Running tests/context_recovery.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/context_recovery-92da181d7d4c75c5)",
+      "test": "restart_inventory_refuses_corrupt_main_unknown_and_symlink_and_restores_copy"
+    },
+    {
+      "suite": "Running tests/craft_faults.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/craft_faults-43d0fd4b437c1363)",
+      "test": "actual_craft_rename_refusal_keeps_previous_bytes"
+    },
+    {
+      "suite": "Running tests/craft_faults.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/craft_faults-43d0fd4b437c1363)",
+      "test": "actual_craft_stream_failure_keeps_previous_bytes"
+    },
+    {
+      "suite": "Running tests/craft_recovery.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/craft_recovery-1622d6e65ee7ec18)",
+      "test": "actual_craft_save_and_recovery_survive_corrupt_main"
+    },
+    {
+      "suite": "Running tests/p07_copy_format.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/p07_copy_format-fded1b81d5be5135)",
+      "test": "authored_edges_keep_exact_mapped_occurrence_endpoints"
+    },
+    {
+      "suite": "Running tests/p07_copy_format.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/p07_copy_format-fded1b81d5be5135)",
+      "test": "declared_source_binding_cannot_authorize_a_wrong_outer_native_binding"
+    },
+    {
+      "suite": "Running tests/p07_copy_format.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/p07_copy_format-fded1b81d5be5135)",
+      "test": "future_profiles_unknown_fields_and_malformed_mappings_are_retained_without_mutation"
+    },
+    {
+      "suite": "Running tests/p07_copy_format.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/p07_copy_format-fded1b81d5be5135)",
+      "test": "provenance_is_inert_through_layout_history_and_cannot_reuse_runtime_authority"
+    },
+    {
+      "suite": "Running tests/p07_copy_format.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/p07_copy_format-fded1b81d5be5135)",
+      "test": "provenance_item_byte_and_utf8_reason_limits_refuse_before_target_mutation"
+    },
+    {
+      "suite": "Running tests/p07_copy_format.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/p07_copy_format-fded1b81d5be5135)",
+      "test": "source_hash_identity_coverage_and_changed_bytes_require_explicit_recheck"
+    },
+    {
+      "suite": "Running tests/p07_copy_format.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/p07_copy_format-fded1b81d5be5135)",
+      "test": "v1_bound_and_recovery_remain_readable_without_migration_or_rewrite"
+    },
+    {
+      "suite": "Running tests/p07_copy_format.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/p07_copy_format-fded1b81d5be5135)",
+      "test": "v1_rejects_provenance_even_null_and_v2_rejects_duplicate_or_noncanonical_ids"
+    },
+    {
+      "suite": "Running tests/p07_copy_format.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/p07_copy_format-fded1b81d5be5135)",
+      "test": "v2_bound_recovery_save_and_reopen_preserve_inert_provenance"
+    },
+    {
+      "suite": "Running tests/p07_copy_format.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/p07_copy_format-fded1b81d5be5135)",
+      "test": "version_change_requires_fresh_save_as_and_leaves_owned_v1_exact"
+    },
+    {
+      "suite": "Running tests/p07_copy_format.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/p07_copy_format-fded1b81d5be5135)",
+      "test": "wrong_kind_duplicate_targets_and_unmapped_edge_endpoints_refuse_atomically"
+    },
+    {
+      "suite": "Running tests/p08_live_copy.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/p08_live_copy-def0ae94d24777ad)",
+      "test": "capacity_allocator_and_title_failures_are_atomic"
+    },
+    {
+      "suite": "Running tests/p08_live_copy.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/p08_live_copy-def0ae94d24777ad)",
+      "test": "changed_choices_foreign_plan_and_reopened_source_refuse_old_review"
+    },
+    {
+      "suite": "Running tests/p08_live_copy.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/p08_live_copy-def0ae94d24777ad)",
+      "test": "changed_source_and_native_raw_or_layout_refuse_before_history_or_ids"
+    },
+    {
+      "suite": "Running tests/p08_live_copy.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/p08_live_copy-def0ae94d24777ad)",
+      "test": "combined_provenance_budget_refuses_entire_staged_transaction"
+    },
+    {
+      "suite": "Running tests/p08_live_copy.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/p08_live_copy-def0ae94d24777ad)",
+      "test": "default_unselected_cancel_and_empty_apply_have_no_target_effects"
+    },
+    {
+      "suite": "Running tests/p08_live_copy.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/p08_live_copy-def0ae94d24777ad)",
+      "test": "detached_source_requires_explicit_match_and_remains_unchanged"
+    },
+    {
+      "suite": "Running tests/p08_live_copy.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/p08_live_copy-def0ae94d24777ad)",
+      "test": "duplicate_native_targets_keep_exact_source_edge_occurrence_pair"
+    },
+    {
+      "suite": "Running tests/p08_live_copy.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/p08_live_copy-def0ae94d24777ad)",
+      "test": "frozen_v1_destination_refuses_v2_and_fresh_pair_round_trips"
+    },
+    {
+      "suite": "Running tests/p08_live_copy.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/p08_live_copy-def0ae94d24777ad)",
+      "test": "independent_native_recovery_maps_explicitly_without_old_binding_admission"
+    },
+    {
+      "suite": "Running tests/p08_live_copy.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/p08_live_copy-def0ae94d24777ad)",
+      "test": "selected_occurrences_only_copy_with_provenance_and_one_undo_redo"
+    },
+    {
+      "suite": "Running tests/p08_live_copy.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/p08_live_copy-def0ae94d24777ad)",
+      "test": "undo_retires_ids_and_native_undo_cannot_be_resurrected_by_copy_redo"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "active_generation_filter_preserves_removed_and_reused_binding_drafts"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "c01_count_ratio_is_real_output_not_a_criterion"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "c02_output_reference_converts_ratio_scale_once"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "c03_explicit_times_100_is_not_heuristically_removed"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "c04_mixed_length_scales_have_known_reference"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "c05_length_duration_dependency_yields_speed"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "c06_speed_duration_dependency_yields_distance"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "c07_speed_output_scale_and_astra_reference"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "c08_nominal_kind_distinguishes_equal_dimensions"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "c09_wrong_physical_dimensions_are_unit_errors"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "c10_both_signs_of_zero_refuse_division"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "c11_domain_and_count_exactness_are_enforced_before_rounding"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "c12_overflow_underflow_and_authored_zero_are_distinct"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "c13_missing_output_and_unbound_name_are_not_zero"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "c14_cycle_members_sorted_downstream_blocked_independent_value_survives"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "c15_incomplete_formula_blocks_old_accepted_program"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "c16_invalid_or_incomplete_literal_never_falls_back_to_accepted_input"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "c17_closed_functions_and_algebra_refuse_unsupported_forms"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "c18_unrelated_snapshot_edit_invalidates_receipt_but_not_formula_number"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "c19_native_definition_raw_serialization_preserves_text_and_does_not_persist_current_receipt"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "c20_late_receipt_and_changed_definitions_or_raw_cannot_be_current"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "c21_resources_refuse_without_success_and_report_truncation"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "definitions_reject_unknown_structural_keys_and_bad_attachment_identity"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "exact_raw_validity_claims_and_detached_fields_are_not_trusted"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "historic_unit_context_classifies_itself_but_blocks_execution_after_undo"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "parser_precedence_functions_spans_and_formatter_roundtrip"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "resource_refusal_is_current_for_exact_document_but_never_a_current_computation"
+    },
+    {
+      "suite": "Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)",
+      "test": "thousand_output_chain_is_deterministic_and_bounded"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "actual_export_has_separate_receipt_never_acknowledges_save_or_live_edits_and_refuses_existing_copy"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "actual_v1_open_preserves_unknown_properties_raw_and_native_saved_until_explicit_v2_write"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "binding_generation_query_covers_output_targets_and_imported_zero_without_literal_raw_fields"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "calculation_definition_and_incomplete_raw_survive_actual_save_reopen_and_independent_recovery"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "compatible_literal_unit_conversion_and_model_history_preserve_physical_value_and_raw_context"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "configuration_collisions_and_noncurrent_field_bindings_refuse_without_mutation"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "configuration_generation_removal_recreate_and_model_history_never_adopt_old_scratch"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "configuration_text_fallback_and_key_scoped_undo_redo_do_not_change_accepted_model"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "desktop_import_refusal_retains_exact_bounded_invalid_bytes_independent_of_later_disk_change"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "exported_copy_completion_does_not_consume_pending_native_save_and_disk_conflicts_never_approve_export"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "genuine_import_is_independent_dirty_and_exact_source_survives_native_recovery_generations"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "measure_relink_is_one_undoable_edit_and_preserves_partial_criterion"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "noncanonical_literal_spelling_returns_exactly_after_unit_model_undo_and_redo"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "omitted_literal_context_on_open_is_captured_before_history_and_never_reinterpreted_after_conversion"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "removed_and_recreated_binding_does_not_adopt_old_raw_and_model_undo_restores_exact_generation"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "rename_and_same_name_output_rebind_keep_old_drafts_inactive_and_undo_restores_their_owner"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "schema1_configuration_journal_prefix_collisions_refuse_migration_unchanged"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "source_identity_binds_vendor_contents_membership_and_directory_watches"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "source_identity_is_portable_across_workspace_roots_and_creation_order"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "text_undo_is_scoped_to_binding_generation_and_keeps_previous_journal"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "unfinished_add_replace_rename_configuration_survives_actual_save_open_and_keep_draft_recovery"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "unit_model_undo_never_overwrites_a_later_raw_value_with_restored_accepted_spelling"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "unsupported_import_and_export_refuse_atomically_with_original_bytes_and_native_status_preserved"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "v1_reserved_typed_key_collisions_are_not_promoted_and_original_files_are_unchanged"
+    },
+    {
+      "suite": "Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)",
+      "test": "wrong_kind_missing_and_cross_system_relinks_preserve_exact_document_and_history"
+    },
+    {
+      "suite": "Running tests/stage1_interchange.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_interchange-74484b3aede576d6)",
+      "test": "aggregate_calculation_ast_limit_is_an_exchange_admission_boundary"
+    },
+    {
+      "suite": "Running tests/stage1_interchange.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_interchange-74484b3aede576d6)",
+      "test": "calculation_attachment_map_cycle_and_missing_dependency_cannot_disagree"
+    },
+    {
+      "suite": "Running tests/stage1_interchange.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_interchange-74484b3aede576d6)",
+      "test": "complete_baseline_accepted_meaning_roundtrips_without_native_raw_promotion"
+    },
+    {
+      "suite": "Running tests/stage1_interchange.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_interchange-74484b3aede576d6)",
+      "test": "duplicate_ids_symbols_and_numeric_tag_mismatch_are_atomic_refusals"
+    },
+    {
+      "suite": "Running tests/stage1_interchange.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_interchange-74484b3aede576d6)",
+      "test": "every_modified_prefix_default_ontology_and_import_is_explicitly_refused"
+    },
+    {
+      "suite": "Running tests/stage1_interchange.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_interchange-74484b3aede576d6)",
+      "test": "exact_source_unicode_duplicate_labels_and_qualified_references_keep_identities_and_spans"
+    },
+    {
+      "suite": "Running tests/stage1_interchange.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_interchange-74484b3aede576d6)",
+      "test": "genuine_calc_quantities_dependencies_and_scalar_function_preserve_numeric_oracles"
+    },
+    {
+      "suite": "Running tests/stage1_interchange.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_interchange-74484b3aede576d6)",
+      "test": "imported_members_namespace_roots_and_path_segments_cannot_be_shadowed"
+    },
+    {
+      "suite": "Running tests/stage1_interchange.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_interchange-74484b3aede576d6)",
+      "test": "invalid_utf8_and_resource_failures_retain_or_explicitly_leave_caller_originals"
+    },
+    {
+      "suite": "Running tests/stage1_interchange.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_interchange-74484b3aede576d6)",
+      "test": "native_generation_metadata_and_original_archive_are_excluded_without_mutation"
+    },
+    {
+      "suite": "Running tests/stage1_interchange.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_interchange-74484b3aede576d6)",
+      "test": "native_valid_result_binding_refuses_exchange_return_feature_collision_atomically"
+    },
+    {
+      "suite": "Running tests/stage1_interchange.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_interchange-74484b3aede576d6)",
+      "test": "opaque_values_nonempty_unqualified_observations_and_physical_ast_literals_refuse"
+    },
+    {
+      "suite": "Running tests/stage1_interchange.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_interchange-74484b3aede576d6)",
+      "test": "original_positive_fixture_and_standard_construct_refusals_are_distinct"
+    },
+    {
+      "suite": "Running tests/stage1_interchange.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_interchange-74484b3aede576d6)",
+      "test": "parser_body_superset_does_not_admit_unsupported_native_record_behaviors"
+    },
+    {
+      "suite": "Running tests/stage1_interchange.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_interchange-74484b3aede576d6)",
+      "test": "scientific_scalar_extremes_preserve_unary_minus_and_bounded_semantic_roundtrip"
+    },
+    {
+      "suite": "Running tests/stage1_interchange.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_interchange-74484b3aede576d6)",
+      "test": "signed_scalar_literals_and_optional_absence_have_declared_semantic_normalization"
+    },
+    {
+      "suite": "Running tests/stage1_interchange.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_interchange-74484b3aede576d6)",
+      "test": "unknown_units_types_and_unreviewed_functions_are_not_strings_of_success"
+    },
+    {
+      "suite": "Running tests/stage1_interchange.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/stage1_interchange-74484b3aede576d6)",
+      "test": "wrong_kind_missing_and_cross_scope_references_refuse_without_label_guessing"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/sysmlv2_syntax-528ca1377b05820e)",
+      "test": "ast::spelling_tests::buffered_spelling_matches_the_allocating_one"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/sysmlv2_syntax-528ca1377b05820e)",
+      "test": "name::tests::basic_names_print_bare"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/sysmlv2_syntax-528ca1377b05820e)",
+      "test": "name::tests::canonical_names_split_and_respell"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/sysmlv2_syntax-528ca1377b05820e)",
+      "test": "name::tests::canonical_spelling_round_trips_through_the_lexer"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/sysmlv2_syntax-528ca1377b05820e)",
+      "test": "name::tests::either_dialect_spelling_quotes_the_union"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/sysmlv2_syntax-528ca1377b05820e)",
+      "test": "name::tests::empty_is_illegal"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/sysmlv2_syntax-528ca1377b05820e)",
+      "test": "name::tests::non_basic_names_are_quoted_with_escapes"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/sysmlv2_syntax-528ca1377b05820e)",
+      "test": "name::tests::paths_spell_per_segment"
+    },
+    {
+      "suite": "Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/milestone1/target/debug/deps/sysmlv2_syntax-528ca1377b05820e)",
+      "test": "name::tests::reserved_words_are_quoted_per_dialect"
+    },
+    {
+      "suite": "Doc-tests sysmlv2_syntax",
+      "test": "crates/mbse-model/vendor/sysmlv2-syntax/src/visit.rs - visit (line 14)"
+    }
+  ]
+}
