@@ -219,7 +219,7 @@
     "reviewed_head": "98b3f49b4ac3d3f4310e163befab4513cef8c2f6"
   },
   "p20": {
-    "state": "implemented_awaiting_review",
+    "state": "reviewed_ready_to_merge",
     "position_complete": false,
     "base_commit": "3c628b2a20ae979a223f06c6029c731cbee33de2",
     "source_files": 702,
@@ -232,6 +232,17 @@
     "acceptance": "p20/README.md",
     "contract": "p20/CONTRACT.md",
     "same_agent_review": "p20/verification/NATIVE_REVIEW.json",
-    "preservation": "p20/verification/PRESERVATION_AFTER.json"
+    "preservation": "p20/verification/PRESERVATION_AFTER.json",
+    "pr_url": "https://github.com/ajhcs/mbse-craft/pull/25",
+    "review_preservation": "p20/REVIEW_PRESERVATION.json",
+    "review_available_preexisting_checkouts_unchanged": 40,
+    "review_finding": "Move inventory classified retained internal Part references as external; corrected without candidate/publication changes.",
+    "review_evidence": "p20/reference-review-verification/REVIEW.json",
+    "final_focused_model_tests": 7,
+    "final_focused_renderer_tests": 1,
+    "final_review_native_runs": 1,
+    "final_review_native_action_errors": 0,
+    "final_source_sha256": "b353f555ffd97faf90ec11b24ff13a6c0f5d136928d634a117fccc5b148c15f8",
+    "final_binary_sha256": "f1e10a7ea7b64ef49d310cb140f3208843d23fc723a884e2ad4f2e5409f71679"
   }
 }

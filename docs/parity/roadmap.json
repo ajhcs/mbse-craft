@@ -452,11 +452,12 @@
       "acceptance": [
         "Preview identifies internal and external reference treatment; moves retain IDs; clones allocate fresh IDs; Cancel and Undo restore state."
       ],
-      "state": "implemented_awaiting_review",
+      "state": "reviewed_ready_to_merge",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "branch": "codex/m4-p20-clone-move",
-      "evidence": "docs/parity/p20/README.md"
+      "evidence": "docs/parity/p20/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/25"
     },
     {
       "id": "P21",

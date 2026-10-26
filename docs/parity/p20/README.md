@@ -15,10 +15,10 @@ sealed runtime-only candidate. Source raw work and presentation stay separate.
 | Durable native/views workflow | Actual captured native/views4 Save, cold app and cold second Save reproduce the complete snapshot with next_id1027. All prior raw forms, native opaque fields,9e draft,2.5km calculation and source occurrence/port/route maps remain exact. Cold preview authority is absent |
 | Existing work preserved | All39 available prior checkouts retain exact heads/status. Eighteen user-removed directories retain registered heads; removed contents remain unverifiable. Original native/views fixture bytes unchanged |
 
-Exact702-file source
+Original702-file source
 `e867f19811518d02f8b9359bc0b5336f1fb01f21311f753013785f68f224b613`
 passed **465 distinct workspace tests**, including **eight new P20 cases**, and
-desktop build. The same binary passed two native app runs with zero action errors
+desktop build. That original binary passed two native app runs with zero action errors
 and normal app/display cleanup. Binary SHA-256:
 `202a0149e1842aa365d7892e41406220a0e4b52b828c68cbff077d275764a1f3`.
 
@@ -27,8 +27,27 @@ and normal app/display cleanup. Binary SHA-256:
 [native receipt](verification/native/RECEIPT.json),
 [same-agent review](verification/NATIVE_REVIEW.json) and
 [45 hash-indexed artifacts](verification/ARCHIVES.json) retain exact evidence.
-This P20 compiler/native job had no failed attempts; prior slices' failures remain
-unchanged. No passed job was replayed.
+The original compiler/native job had no failed attempts. Isolated PR25 review
+found that the move inventory labeled retained references between moved Parts and
+connectors as external; actual accepted model/candidate publication was correct.
+That inventory claim is corrected by separate internal-retained rows. Original
+receipts remain unchanged; see [review followup](REVIEW_FOLLOWUP.md).
+
+Current reviewed source
+`b353f555ffd97faf90ec11b24ff13a6c0f5d136928d634a117fccc5b148c15f8`
+passed **seven model regressions, one renderer test and build**. A separate native
+preview/Cancel/Save run has zero action errors and verifies four internal Part
+references with external ports/types kept separate. Accepted clone/move state and
+all original views remain exact. Final binary:
+`f1e10a7ea7b64ef49d310cb140f3208843d23fc723a884e2ad4f2e5409f71679`.
+[Review evidence](reference-review-verification/REVIEW.json) and
+[19 additional indexed artifacts](reference-review-verification/ARCHIVES.json)
+qualify this inventory-only correction. Only the summary/classification, its
+regression assertions and UI rows changed; candidate/publication logic is unchanged.
+The465 full-suite and original two-run native workflow remain separate from final
+focused qualification; counts are not summed and no full suite/native state
+workflow was replayed. All40 available prior checkouts, including original
+candidate, are unchanged.
 
 This is a bounded same-agent Linux typed definition/member clone and usage/
 enclosed-connector move workflow. Clone covers accepted members and preserves

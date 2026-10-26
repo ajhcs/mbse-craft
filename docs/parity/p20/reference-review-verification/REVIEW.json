@@ -1,0 +1,25 @@
+{
+  "reviewer": "Codex, same implementing agent",
+  "independent_review": false,
+  "result": "reference_inventory_finding_fixed_and_qualified",
+  "original_candidate": "5ffefa66eecac34ea96d683008ddf8cac919da2a",
+  "finding": "Move preview mislabeled references between selected Parts and enclosed connectors as external; actual candidate/publication and native model correct.",
+  "fix": "Separate internal_retained references from external_targets_retained and display explicit retained internal identity rows; strengthen connected move regression.",
+  "final_source_sha256": "b353f555ffd97faf90ec11b24ff13a6c0f5d136928d634a117fccc5b148c15f8",
+  "final_binary_sha256": "f1e10a7ea7b64ef49d310cb140f3208843d23fc723a884e2ad4f2e5409f71679",
+  "focused_model_tests": 7,
+  "focused_renderer_tests": 1,
+  "build_exit": 0,
+  "native_runs": 1,
+  "native_action_errors": 0,
+  "original_full_suite_tests": 465,
+  "original_full_native_runs": 2,
+  "counts_not_summed": true,
+  "source_changes": [
+    "crates/mbse-model/src/types/refactor.rs reference summary fields/classification",
+    "crates/mbse-model/src/types/refactor_tests.rs strengthened move classification assertions",
+    "crates/mbse-desktop/src/ui_refactor.rs retained internal reference rows"
+  ],
+  "native_observation": "Reverse move preview of original saved scene shows four retained internal Part references, external Port1017 and no Part refs labeled external. Cancel preserves full snapshot; Save retains accepted clone/move state and original views4 with newer unapplied owner text.",
+  "limits": "Bounded same-agent Linux evidence; original full suite/native state acceptance remains distinct from final inventory-only correction. No exhaustive global reference/full NoMagic/Craft/platform or independent acceptance."
+}
