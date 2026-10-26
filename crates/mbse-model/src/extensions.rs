@@ -53,13 +53,8 @@ impl Extensions {
                 return Err("MBSE_EXTENSIONS_REQUIRED_NAMESPACE_SHAPE".into());
             }
         }
-        // P15 and later register actual typed interpreters. A namespace key alone
-        // does not establish support for its required engineering meaning.
-        if !self.required_namespaces.is_empty() {
-            return Err(format!(
-                "MBSE_EXTENSIONS_REQUIRED_UNSUPPORTED: {}",
-                self.required_namespaces.join(",")
-            ));
+        for required in &self.required_namespaces{
+            crate::types::validate_namespace(required,&self.namespaces[required])?;
         }
         if serde_json::to_vec(self).map_err(|e| e.to_string())?.len() > MAX_BYTES {
             return Err("MBSE_EXTENSIONS_BYTE_LIMIT".into());

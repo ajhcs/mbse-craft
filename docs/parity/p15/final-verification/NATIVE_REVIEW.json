@@ -1,0 +1,25 @@
+{
+  "schema": "mbse-craft.p15-native-review/1",
+  "reviewer": "Codex, same implementing agent",
+  "independent_review": false,
+  "result": "bounded_P15_definition_and_property_scenarios_passed_after_helper_expectation_correction",
+  "raw_receipt_status": "actions_completed_review_pending",
+  "native_runs": 2,
+  "action_errors": 1,
+  "helper_error": "Original fixture System is1; erroneous expected1000 assertion retained, corrected against original fixture and audited actual definition scope.",
+  "pixels_reviewed": [
+    "native/reopen/07-cold-reopen-both-drafts-and-accepted-property.png"
+  ],
+  "observations": [
+    "Component1004, Real value1005, property1006 authored in actual editor",
+    "Wrong-kind/lower2upper1 refused with unchanged accepted model; model Undo/Redo retains newer definition and property forms",
+    "Unsubmitted quantity/System1/Integer choice and pending length text/upper1.. survive native Save and cold app alongside accepted length1..1",
+    "Exact original native records/raw/creation journals and exact saved views hash; reopened view history empty",
+    "Two normal app/display exits, exact owned-process cleanup and absent authentication files"
+  ],
+  "limits": [
+    "Same-agent Linux synthetic bounded evidence; no independent/full-platform/domain/full NoMagic/Craft claim",
+    "Four scalar value definitions/same-System properties only; later parts/ports/defaults/inheritance remain open",
+    "One harness assertion correction is retained and not relabeled zero-error; original405 evidence remains separate"
+  ]
+}

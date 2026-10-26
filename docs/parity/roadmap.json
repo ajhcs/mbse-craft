@@ -287,7 +287,7 @@
       "acceptance": [
         "Old documents migrate into a new copy with IDs, opaque fields and drafts intact; newer schemas refuse safely; Stage1 identity is not relabeled."
       ],
-      "state": "implemented_draft_pending_review",
+      "state": "merged",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "execution_results": "docs/parity/p14/README.md",
@@ -303,9 +303,12 @@
       "acceptance": [
         "Wrong-kind references and invalid multiplicities refuse atomically; pending property text survives save and reopen."
       ],
-      "state": "planned",
+      "state": "reviewed_ready_to_merge",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/p15/README.md",
+      "evidence": "docs/parity/p15/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/18"
     },
     {
       "id": "P16",

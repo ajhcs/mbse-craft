@@ -1,0 +1,36 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "796c1ba9dfd08b9ce913113bfc5f434fcb11dc7f592ad6114674b46c429db59d",
+    "scripts/verify-m1-native.py": "4e477f78eacdcc32af36c45799d4d50d355b40c0af0636ce5fb8ad9f2f91fb60",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "id": "p15-reviewed-definition-property-draft-roundtrip",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p15-definition-journal-corrected-20261026T184615Z/mbse-desktop",
+  "binary_sha256": "2ea8fe78524596e4e76253fde071695f8c4c5e456693a0233177fb07d3da4de0",
+  "source_sha256": "e4576fb1b0a1477c602cde2fed9bdd0f7557e580cc4a465d98814154af4b42dd",
+  "inputs": {
+    "/workspace/repos/builderbob/mbse-craft/work/review-p15/docs/parity/p15/fixtures/migrated.kernspan": "0bbd019c53a06cbdedf1f67259b33096cc0dd7561ad183521e7d923d3f492a43"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01",
+  "argv_extra": [
+    "--open",
+    "/workspace/repos/builderbob/mbse-craft/work/review-p15/docs/parity/p15/fixtures/migrated.kernspan",
+    "--select",
+    "1003"
+  ],
+  "scenarios": [
+    "Create component and Real value definitions; author and Apply a typed property",
+    "Wrong-kind type and invalid multiplicity visibly refuse without accepted mutation",
+    "Model Undo/Redo preserves newer invalid property form and native raw9e",
+    "Save exact native/views pair; cold app restores typed IDs, accepted property and unfinished text",
+    "Unsubmitted definition name/System/Integer choice survives property edits, model Undo/Redo and exact native cold reopen"
+  ],
+  "claim_policy": "Same-agent Linux synthetic native type/property and journal qualification. Four primitive value-type definitions and same-System references only; no property assignments/defaults/inheritance, full NoMagic/Craft/platform/domain acceptance."
+}

@@ -400,6 +400,7 @@ impl Snapshot {
             return Err("A document identity and at least one System are required".into());
         }
         let ids = self.all_ids()?;
+        let extension_high=crate::types::validate_snapshot(self,&ids)?;
         if !self.records.values().any(|r| r.kind == RecordKind::System) {
             return Err("Document has no System".into());
         }
@@ -642,6 +643,7 @@ impl Snapshot {
             }
             high_water = high_water.max(draft.owner.0);
         }
+        high_water=high_water.max(extension_high);
         if self.next_id <= high_water {
             return Err("Record allocator must exceed all retained identities".into());
         }
@@ -757,6 +759,7 @@ pub struct Freshness {
 
 #[derive(Clone, Debug)]
 pub enum Command {
+    Typed(crate::types::Action),
     SetAffiliation {
         stakeholder: RecordId,
         organization: RecordId,
@@ -829,13 +832,17 @@ struct TextState {
     unit_context: Option<String>,
 }
 
+#[derive(Clone,Debug,PartialEq)]
+struct ModelState{records:BTreeMap<RecordId,Record>,extensions:Option<crate::extensions::Extensions>}
+impl ModelState{fn capture(snapshot:&Snapshot)->Self{Self{records:snapshot.records.clone(),extensions:crate::types::accepted_extensions(&snapshot.extensions)}}}
+
 #[derive(Clone, Debug)]
 pub struct Editor {
     pub snapshot: Snapshot,
     pub selected: Option<RecordId>,
     instance_id: String,
-    past: Vec<BTreeMap<RecordId, Record>>,
-    future: Vec<BTreeMap<RecordId, Record>>,
+    past: Vec<ModelState>,
+    future: Vec<ModelState>,
     text_past: BTreeMap<(RawKey, Option<u64>), Vec<TextState>>,
     text_future: BTreeMap<(RawKey, Option<u64>), Vec<TextState>>,
     active_field: Option<RawKey>,
@@ -1036,6 +1043,18 @@ impl Editor {
     fn apply_command(&mut self, command: Command) -> Result<EditOutcome, String> {
         let mut created = None;
         let accepted = match command {
+            Command::Typed(action)=>{
+                let before=ModelState::capture(&self.snapshot);
+                let raw_before=self.snapshot.extensions.clone();let allocator_before=self.snapshot.next_id;let draft_before=crate::types::drafts_value(&self.snapshot.extensions);
+                let change=crate::types::apply(&mut self.snapshot,action)?;
+                match change{
+                    crate::types::Change::Model=>{if before.records!=self.snapshot.records||before.extensions!=crate::types::accepted_extensions(&self.snapshot.extensions){self.past.push(before);self.future.clear();self.snapshot.model_revision=increment(self.snapshot.model_revision,"model revision")?;}},
+                    crate::types::Change::Raw=>{if raw_before!=self.snapshot.extensions||allocator_before!=self.snapshot.next_id{self.snapshot.raw_version=increment(self.snapshot.raw_version,"raw version")?;}}
+                }
+                if change==crate::types::Change::Model && draft_before!=crate::types::drafts_value(&self.snapshot.extensions){self.snapshot.raw_version=increment(self.snapshot.raw_version,"raw version")?;}
+                self.finish_field();true
+            }
+
             Command::EditText { key, text } => {
                 self.validate_key(&key)?;
                 self.write_raw(&key, text.clone(), true, None)?;
@@ -1487,7 +1506,7 @@ impl Editor {
     ) -> Result<(), String> {
         if before != self.snapshot.records {
             if field.is_none() || field != self.active_field {
-                self.past.push(before);
+                self.past.push(ModelState{records:before,extensions:crate::types::accepted_extensions(&self.snapshot.extensions)});
             }
             self.future.clear();
             self.snapshot.model_revision =
@@ -1980,12 +1999,11 @@ impl Editor {
             let Some(records) = records else {
                 return Ok(false);
             };
-            let previous = std::mem::replace(&mut self.snapshot.records, records);
-            if redo {
-                self.past.push(previous.clone());
-            } else {
-                self.future.push(previous.clone());
-            }
+            let previous_extensions=crate::types::accepted_extensions(&self.snapshot.extensions);
+            let previous = std::mem::replace(&mut self.snapshot.records, records.records);
+            crate::types::restore_accepted(&mut self.snapshot.extensions,records.extensions);
+            let previous_state=ModelState{records:previous.clone(),extensions:previous_extensions};
+            if redo {self.past.push(previous_state);}else{self.future.push(previous_state);}
             self.snapshot.model_revision =
                 increment(self.snapshot.model_revision, "model revision")?;
             let conversions: Vec<_> = self
