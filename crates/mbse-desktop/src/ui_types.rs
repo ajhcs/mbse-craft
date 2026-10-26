@@ -56,7 +56,7 @@ impl Workspace {
         let mut choose_form = None;
         let mut close = false;
         let mut history = None;
-        egui::Window::new("Types and properties").id(egui::Id::new("mbse-types-properties")).open(&mut open).default_width(850.).vscroll(true).max_height((ctx.content_rect().height()-80.).max(240.)).show(ctx,|ui|{
+        egui::Window::new("Types and properties").id(egui::Id::new("mbse-types-properties")).open(&mut open).default_width(850.).default_height(900.).vscroll(true).max_height((ctx.content_rect().height()-80.).max(240.)).show(ctx,|ui|{
    ui.label("Component definitions own typed properties. Value definitions declare Boolean, Integer, Real or Text types. System scope is membership, not containment.");
    if self.session.editor.snapshot.extensions.is_none(){ui.label("Open a migrated native copy to enable extensions. Use --migrate-extensions SOURCE --destination NEW with an owned --state-dir; original native files stay protected.");let r=ui.button("Close types");self.bound("types:close",&r);close=r.clicked();return;}
    let store=match types::load(&self.session.editor.snapshot){Ok(store)=>store,Err(error)=>{ui.colored_label(ERROR,error);return;}};
@@ -182,7 +182,11 @@ mod tests {
             property.0,
             "upper",
         ));
-        assert!(ctx.read_response(field).unwrap().enabled());
+        assert!(
+            ctx.read_response(field).unwrap().enabled(),
+            "Property response must be live: {:?}",
+            ctx.read_response(field)
+        );
         ctx.memory_mut(|m| m.request_focus(field));
         assert!(app.typed_action(Action::AddDefinition {
             system: RecordId(1),
@@ -190,7 +194,11 @@ mod tests {
             kind: Kind::Value(Scalar::Real)
         }));
         render(&mut app);
-        assert!(ctx.read_response(field).unwrap().enabled());
+        assert!(
+            ctx.read_response(field).unwrap().enabled(),
+            "Property response must be live: {:?}",
+            ctx.read_response(field)
+        );
         assert_eq!(ctx.memory(|m| m.focused()), Some(field));
         assert_eq!(
             types::forms(&app.session.editor.snapshot).unwrap()[&property],
