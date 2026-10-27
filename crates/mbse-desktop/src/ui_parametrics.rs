@@ -294,7 +294,7 @@ impl Workspace {
    ui.separator();ui.heading(format!("{} proposal · {}",family(&f),f.id().map_or("new".into(),|id|format!("#{}",id.0))));if let Some(m)=f.specification(){ui.label(format!("Owned by Specification #{}",m.0));}
    ui.add_enabled_ui(ready,|ui|{match &mut f{
     Form::Specification{system,name,calculation,..}=>{self.pm_text(ui,"name","Specification name",name,&slot,&instance);self.pm_text(ui,"system","Native System ID",system,&slot,&instance);self.pm_text(ui,"calculation","Native calculation ID (empty = unassigned)",calculation,&slot,&instance);if let Ok(defs)=self.session.editor.snapshot.calculations(){let source=ui.collapsing("Existing native calculations",|ui|{for d in defs.values(){let r=ui.button(format!("Use calculation #{} · {} · {}",d.id.0,self.session.editor.snapshot.records[&d.owner].name,quantity_text(d.output)));self.bound(format!("parametric:calculation:{}",d.id.0),&r);if r.clicked(){*calculation=d.id.0.to_string();}}});self.bound("parametric:Browse calculations",&source.header_response);}},
-    Form::Parameter{name,quantity,..}=>{self.pm_text(ui,"name","Exact native input name",name,&slot,&instance);self.pm_unit(ui,"quantity",&mut quantity.unit);quantity.kind=mbse_model::stage1_calc::unit_kind(quantity.unit);if let Some(a)=self.parametrics.specification.and_then(|id|store.parametrics.get(&id)){if let Some(d)=a.calculation.and_then(|id|self.session.editor.snapshot.calculations().ok().and_then(|defs|defs.get(&id).cloned())){for(n,input)in &d.bindings{let q=match input{mbse_model::stage1_calc::Input::Literal(l)=>Some(l.quantity),mbse_model::stage1_calc::Input::Output(id)=>self.session.editor.snapshot.calculations().ok().and_then(|defs|defs.get(id).map(|d|d.output))};if let Some(native)=q{let r=ui.button(format!("Use input {n} · {}",quantity_text(native)));self.bound(format!("parametric:declare:{n}"),&r);if r.clicked(){*name=n.clone();*quantity=native;}}}}}},
+    Form::Parameter{name,quantity,..}=>{self.pm_text(ui,"name","Exact native input name",name,&slot,&instance);if mbse_model::stage1_calc::unit_kind(quantity.unit)!=quantity.kind{ui.colored_label(ERROR,format!("Draft quantity {} does not match {}. Choose a unit explicitly to change its kind; original proposal retained.",mbse_model::stage1_calc::quantity_label(quantity.kind),mbse_model::stage1_calc::unit_label(quantity.unit)));}if self.pm_unit(ui,"quantity",&mut quantity.unit){quantity.kind=mbse_model::stage1_calc::unit_kind(quantity.unit);}if let Some(a)=self.parametrics.specification.and_then(|id|store.parametrics.get(&id)){if let Some(d)=a.calculation.and_then(|id|self.session.editor.snapshot.calculations().ok().and_then(|defs|defs.get(&id).cloned())){for(n,input)in &d.bindings{let q=match input{mbse_model::stage1_calc::Input::Literal(l)=>Some(l.quantity),mbse_model::stage1_calc::Input::Output(id)=>self.session.editor.snapshot.calculations().ok().and_then(|defs|defs.get(id).map(|d|d.output))};if let Some(native)=q{let r=ui.button(format!("Use input {n} · {}",quantity_text(native)));self.bound(format!("parametric:declare:{n}"),&r);if r.clicked(){*name=n.clone();*quantity=native;}}}}}},
     Form::Binding{parameter,source,..}=>{self.pm_text(ui,"parameter","Exact parameter ID",parameter,&slot,&instance);ui.horizontal_wrapped(|ui|{for kind in["Native input","Native output","Typed value"]{let selected=matches!((&source,kind),(SourceForm::NativeInput{..},"Native input")|(SourceForm::NativeOutput{..},"Native output")|(SourceForm::TypedValue{..},"Typed value"));let r=ui.selectable_label(selected,kind);self.bound(format!("parametric:source-kind:{kind}"),&r);if r.clicked()&&!selected{let calc=match source{SourceForm::NativeInput{calculation,..}|SourceForm::NativeOutput{calculation}=>calculation.clone(),_=>String::new()};*source=match kind{"Native output"=>SourceForm::NativeOutput{calculation:calc},"Typed value"=>SourceForm::TypedValue{property:String::new(),usage:String::new(),unit:mbse_model::stage1_calc::UnitId::ScalarOne},_=>SourceForm::NativeInput{calculation:calc,name:String::new()}};}}});match source{
      SourceForm::NativeInput{calculation,name}=>{self.pm_text(ui,"source_calculation","Source calculation ID",calculation,&slot,&instance);self.pm_text(ui,"source_name","Source native input name",name,&slot,&instance);},
      SourceForm::NativeOutput{calculation}=>self.pm_text(ui,"source_calculation","Source calculation ID",calculation,&slot,&instance),
@@ -525,8 +525,9 @@ impl Workspace {
         ui: &mut egui::Ui,
         key: &str,
         unit: &mut mbse_model::stage1_calc::UnitId,
-    ) {
+    ) -> bool {
         use mbse_model::stage1_calc::{self as c, UnitId::*};
+        let mut chosen = false;
         ui.horizontal_wrapped(|ui| {
             for value in [
                 ScalarOne,
@@ -542,8 +543,10 @@ impl Workspace {
             ] {
                 let r = ui.selectable_value(unit, value, c::unit_label(value));
                 self.bound(format!("parametric:{key}:{value:?}"), &r);
+                chosen |= r.clicked();
             }
         });
+        chosen
     }
     fn pm_report_ui(&mut self, ui: &mut egui::Ui) {
         let Some(id) = self.parametrics.specification else {

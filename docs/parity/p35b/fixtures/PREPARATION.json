@@ -1,0 +1,15 @@
+{
+  "source_native": "docs/parity/p34c/verification/native-02/run/scenario-final-cold-copy.kernspan",
+  "source_views": "docs/parity/p34c/verification/native-02/run/scenario-final-cold-copy.mbse-views.json",
+  "inputs": {
+    "docs/parity/p35b/fixtures/native.kernspan": "18958954dc7043d644598c55a28f2e30c496c03b69372e75cce42b7bd51844d0",
+    "docs/parity/p35b/fixtures/native.mbse-views.json": "5561661c8f77c59a81ffb7987b417dab57520efe955185f560bebcfc441ced9e"
+  },
+  "initial_counters": {
+    "model_revision": 139,
+    "raw_version": 328,
+    "next_id": 14012
+  },
+  "preauthored_parametrics": 0,
+  "expected": "Actual Tools/CtrlAltE forms author specifications/parameters/bindings and accepted-type report. Preserve every prior native/type/activity/state/scenario accepted/raw/opaque field and all8presentation maps; only parametrics/parametric_forms/counters append/change. Save whole native+bound sidecar and cold-copy Snapshot/all8maps exactly. No execution/currentraw/cycle/engineering acceptance."
+}

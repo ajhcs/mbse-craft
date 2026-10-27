@@ -485,3 +485,54 @@ fn rendered_parametric_report_copy_keeps_accepted_type_scope_explicit_when_sourc
     assert_eq!(a.session.editor.snapshot, native);
     assert_eq!(a.views.views.document().encoded().unwrap(), layout);
 }
+
+#[test]
+fn rendered_parametric_mismatched_quantity_draft_is_never_repaired_by_observation_or_disabled_foreign_owner()
+ {
+    use mbse_model::stage1_calc::{QuantityKind, QuantityType, UnitId};
+    let (_d, mut a, ctx) = app();
+    let (root, x, _, _, _) = seed(&mut a);
+    let form = Form::Parameter {
+        specification: root,
+        id: Some(x),
+        name: "x".into(),
+        quantity: QuantityType {
+            kind: QuantityKind::Length,
+            unit: UnitId::Second,
+        },
+    };
+    let stamp = a.views.views.stamp(&a.session.editor);
+    a.pm_model(&stamp, pm::Action::Set(form.clone())).unwrap();
+    pick(&mut a, x);
+    let native = a.session.editor.snapshot.clone();
+    settle(&mut a, &ctx);
+    assert_eq!(a.session.editor.snapshot, native);
+    assert_eq!(
+        pm::forms(&a.session.editor.snapshot).unwrap()[&form.key()],
+        form
+    );
+    a.parametrics.owner.as_mut().unwrap().instance = "foreign".into();
+    settle(&mut a, &ctx);
+    assert_eq!(a.session.editor.snapshot, native);
+    assert_eq!(
+        a.pm_audit()["current"],
+        serde_json::to_value(&form).unwrap()
+    );
+    a.parametrics.owner = Some(a.pm_owner());
+    click(&mut a, &ctx, "parametric:quantity:Metre");
+    let edited = pm::forms(&a.session.editor.snapshot).unwrap();
+    assert!(matches!(
+        edited[&form.key()],
+        Form::Parameter {
+            quantity: QuantityType {
+                kind: QuantityKind::Length,
+                unit: UnitId::Metre
+            },
+            ..
+        }
+    ));
+    assert_eq!(
+        ty::load(&a.session.editor.snapshot).unwrap(),
+        ty::load(&native).unwrap()
+    );
+}
