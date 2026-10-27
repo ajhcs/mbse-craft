@@ -1,0 +1,24 @@
+{
+  "profile": "mbse-craft.source-project-set/1",
+  "schema_version": 1,
+  "members": [
+    {
+      "key": "supplier",
+      "format": "SemanticV2",
+      "primary": {
+        "path": "source.xmi",
+        "sha256": "2e2791ab72a8bf550cb4fe960d3d2f1d8f8b56f6ffad120146d6c740d308c032"
+      },
+      "companions": []
+    },
+    {
+      "key": "consumer",
+      "format": "SemanticV2",
+      "primary": {
+        "path": "source.xmi",
+        "sha256": "2e2791ab72a8bf550cb4fe960d3d2f1d8f8b56f6ffad120146d6c740d308c032"
+      },
+      "companions": []
+    }
+  ]
+}

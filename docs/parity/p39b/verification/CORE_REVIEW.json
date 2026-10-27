@@ -1,0 +1,20 @@
+{
+  "result": "bounded_strict_whole_member_source_admission_adapter_passed",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 787,
+  "source_sha256": "0897f8a3c4e307642e01a589bbe91b8494e36d070eac00ddebc821732b5c2e81",
+  "binary_sha256": "00034bade4bab9b62186f2b5387976fb0596dc19a399055bf394df75b844dddc",
+  "distinct_case_inventory": 823,
+  "new_distinct_cases": 14,
+  "native_rendered_runs": 0,
+  "limits": [
+    "Whole selected member only; explicit supported UML wire shape and documentary SysML Block declaration. Every XML element/attribute/text accounted, unsupported content refuses. No full UML/SysML validity or metamodel equivalence.",
+    "Uses frozen P38 data, existing semantic-set2 identities/spans/resolved type references, and P39a native model/history authority. Existing inspection losses/false admission_preview are retained, not relabeled.",
+    "Exact complete disclosure review plus original-list point-in-time/native runtime/hash recheck before one atomic native Apply. No external file lease/durable currentness promise.",
+    "Original bytes and prior target meaning/raw/opaque preserved; selected System explicit, independent source member contexts receive fresh IDs.",
+    "1MiBXML/512elements/16ancestorlevels/128notices/2MiBsummary plus P38/native limits. Logical bounds, not RSS/performance qualification.",
+    "P39c actual native Apply/Undo/save/cold remains required. All56 broad specifications and integrated exits remain open. No full NoMagic/SysML/Craft/independent engineering/platform/scale/production acceptance.",
+    "Same-agent isolated PR review remains required."
+  ]
+}
