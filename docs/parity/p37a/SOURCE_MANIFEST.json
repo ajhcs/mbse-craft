@@ -73,8 +73,8 @@
     },
     {
       "path": "crates/mbse-assurance/tests/metrics.rs",
-      "bytes": 11912,
-      "sha256": "4d0680b6b21c0dda6be2de2498e6bd6dcbe233841a53f285584113d445d62229"
+      "bytes": 11989,
+      "sha256": "01f3e3eaee2ff94c48a1e9165e40dd1716cf94c6c5159cadeefdc19b0ee18382"
     },
     {
       "path": "crates/mbse-assurance/tests/traces.rs",
@@ -3852,5 +3852,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "80b96d87794faff1cda116296f5560bbfde9fdce58d8a175b98d73fe261a2ea7"
+  "source_sha256": "849cb5dd4688a44c09d7c4079c35cc1b46ca2b50c8fc3a00d4dfdf574d64f8d2"
 }
