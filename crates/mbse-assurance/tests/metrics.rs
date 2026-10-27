@@ -59,3 +59,8 @@ fn metrics_legacy_native_counts_do_not_require_migration_and_typed_unavailable_k
  let typed=fixture();let(b,_)=board(&typed);let mut source=typed.snapshot.clone();source.extensions=None;let e=Editor::new(source,"legacy-metrics-runtime".into()).unwrap();let before=e.snapshot.clone();let r=m::query(&e,Some(&b),Scope::default()).unwrap();assert_eq!(r.model.top_level_records,4);assert!(r.model.typed.is_none());let p=b.trace_projection(&e.snapshot);let counts=r.traces.as_ref().unwrap();assert_eq!(counts.active_traces,3);assert_eq!(counts.detached_traces,2);assert_eq!(counts.active_traces,p.iter().filter(|p|p.active).count());assert_eq!(e.snapshot,before);assert_eq!(serde_json::from_slice::<Value>(&r.encoded().unwrap()).unwrap()["model"]["typed"],Value::Null);
  let blank=Editor::new(Snapshot::new(DocumentId("fresh-legacy".into())),"fresh-legacy-runtime".into()).unwrap();let r=m::query(&blank,None,Scope::default()).unwrap();assert_eq!(r.model.top_level_records,1);assert!(r.model.typed.is_none()&&r.traces.is_none());assert!(blank.snapshot.extensions.is_none());
 }
+
+#[test]
+fn metrics_parent_links_crossing_scope_count_both_selected_child_and_selected_parent_directions(){
+ let e=fixture();let(b,child)=board(&e);let before=b.as_value().unwrap();for id in[RequirementId(1),child]{let scope=Scope{native:NativeScope::All,requirements:RequirementScope::Selected(BTreeSet::from([id]))};let t=m::query(&e,Some(&b),scope).unwrap().traces.unwrap();assert_eq!(t.parent_links_within_scope,0);assert_eq!(t.parent_links_crossing_scope,1,"selected #{} must disclose its accepted containment edge leaving or entering the subset",id.0);if id==RequirementId(1){assert_eq!(t.traces,0);assert_eq!(t.boundary_traces,1);}}assert_eq!(b.as_value().unwrap(),before);
+}
