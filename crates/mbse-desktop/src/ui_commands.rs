@@ -4,7 +4,7 @@ use crate::command_catalog::{self as catalog, Id, Surface};
 
 impl Workspace {
     pub(super) fn history_scope(&self) -> ShortcutTarget {
-        if self.state_machines.open || self.sm_gesture_active() || self.activities.open || self.activity_gesture_active() || self.viewpoints.open || self.matrix.open || self.tag_panel.open || self.deletion_panel.open || self.refactor_panel.open || self.value_panel.open || self.connector_panel.open || self.port_panel.open || self.type_panel.open || self.files.open || self.files.pending() || self.views.inspection_visible()
+        if self.scenarios.open || self.sc_gesture_active() || self.state_machines.open || self.sm_gesture_active() || self.activities.open || self.activity_gesture_active() || self.viewpoints.open || self.matrix.open || self.tag_panel.open || self.deletion_panel.open || self.refactor_panel.open || self.value_panel.open || self.connector_panel.open || self.port_panel.open || self.type_panel.open || self.files.open || self.files.pending() || self.views.inspection_visible()
             || self.assurance.is_visible()
             || self.exchange.is_visible()
             || self.shortcuts.open
@@ -29,6 +29,9 @@ impl Workspace {
     /// Handlers still validate paths, files, revisions and pending tickets on use.
     pub(super) fn command_reason(&self, id: Id, scope: &ShortcutTarget) -> Option<String> {
         let editing = id.is_history() || id.is_layout_history();
+        if self.sc_gesture_active(){return Some("Finish or cancel the sequence gesture before other commands.".into());}
+        if self.scenarios.open&&id!=Id::Scenarios{return Some("Close the scenario editor before other commands; proposals retained.".into());}
+        if id==Id::Scenarios&&self.dock_blocked_without_scenario(){return Some("Finish pending work or close the other editor before scenarios.".into());}
         if self.sm_gesture_active(){return Some("Finish or cancel the state-machine diagram gesture before other commands.".into());}
         if self.state_machines.open && id!=Id::StateMachines{return Some("Close the state-machine editor before other workspace commands; proposals retained.".into());}
         if id==Id::StateMachines && self.dock_blocked_without_state_machine(){return Some("Finish pending work or close the other editor before opening state machines.".into());}
@@ -185,6 +188,7 @@ impl Workspace {
         }
         match id {
             Id::Activities=>{self.activity_open();},
+            Id::Scenarios=>{self.sc_open();},
             Id::StateMachines=>{self.sm_open();},
             Id::Viewpoints=>{self.viewpoints.open=true;},
             Id::Matrix=>{self.matrix.open=true;self.matrix_refresh();},
@@ -512,14 +516,14 @@ mod tests {
     #[test]
     fn command_ids_defaults_and_menu_groups_are_unique_and_complete() {
         use std::collections::BTreeSet;
-        assert_eq!(catalog::ALL.len(), 35);
+        assert_eq!(catalog::ALL.len(), 36);
         assert_eq!(
             catalog::ALL
                 .iter()
                 .map(|s| s.key)
                 .collect::<BTreeSet<_>>()
                 .len(),
-            35
+            36
         );
         assert_eq!(
             catalog::ALL
@@ -527,7 +531,7 @@ mod tests {
                 .map(|s| s.id)
                 .collect::<BTreeSet<_>>()
                 .len(),
-            35
+            36
         );
         for (i, s) in catalog::ALL.iter().enumerate() {
             assert!(!matches!(s.shortcut.logical_key,egui::Key::C|egui::Key::X|egui::Key::V),"egui-winit consumes Command+C/X/V, including extra modifiers, before workspace dispatch");

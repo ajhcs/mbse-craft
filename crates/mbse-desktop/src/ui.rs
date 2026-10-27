@@ -13,6 +13,10 @@ mod typed_properties;
 mod relation_matrix;
 #[path="ui_viewpoints.rs"]
 mod viewpoint_editor;
+#[path="ui_scenarios.rs"]
+mod scenario_editor;
+#[path="ui_sequence_canvas.rs"]
+mod sequence_canvas;
 #[path="ui_state_machines.rs"]
 mod state_machine_editor;
 #[path="ui_state_execution.rs"]
@@ -105,6 +109,7 @@ pub struct Workspace {
     viewpoints:viewpoint_editor::ViewpointPanel,
     activities:activity_editor::ActivityPanel,
     state_machines:state_machine_editor::Panel,
+    scenarios:scenario_editor::Panel,
     type_panel:typed_properties::TypePanel,
     port_panel:port_editor::PortPanel,
     connector_panel:connector_editor::ConnectorPanel,
@@ -188,7 +193,7 @@ impl Workspace {
         let periodic_recovery = crate::periodic_recovery::PeriodicRecovery::new(Instant::now(), &session, &views);
         let mut docking=crate::docking::WorkspaceDock::default();
         match crate::perspectives::decode(&preferences.value.workspace_layout){Ok(layout)=>docking.layout=layout,Err(e)=>{preferences.load_warning=true;preferences.report.push_str(&format!("; {e}"));docking.note=e}}
-        let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,shortcuts,docking,perspective_name:String::new(),files:Default::default(),matrix:Default::default(),viewpoints:Default::default(),activities:Default::default(),state_machines:Default::default(),type_panel:Default::default(),port_panel:Default::default(),connector_panel:Default::default(),value_panel:Default::default(),refactor_panel:Default::default(),deletion_panel:Default::default(),tag_panel:Default::default(),validation_focus:Default::default(),docking_focus:None,periodic_recovery, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
+        let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,shortcuts,docking,perspective_name:String::new(),files:Default::default(),matrix:Default::default(),viewpoints:Default::default(),activities:Default::default(),state_machines:Default::default(),scenarios:Default::default(),type_panel:Default::default(),port_panel:Default::default(),connector_panel:Default::default(),value_panel:Default::default(),refactor_panel:Default::default(),deletion_panel:Default::default(),tag_panel:Default::default(),validation_focus:Default::default(),docking_focus:None,periodic_recovery, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
             creation: None, relation: None, popout: None, usages: None, impact_open:false,impact_target:None,impact_report:None,impact_note:String::new(), search_open:false, search_query:Default::default(), search_report:None, search_note:String::new(), browser_revealed:None,browser_open_groups:BTreeMap::new(), pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new(), menu_scope:None, last_workspace_command:None };
         app.refresh_recoveries();
         app
@@ -1407,7 +1412,8 @@ impl Workspace {
             ui.horizontal_wrapped(|ui| {
                 for id in [crate::command_catalog::Id::LayoutUndo,crate::command_catalog::Id::LayoutRedo,crate::command_catalog::Id::Presentation] {self.workspace_button(ui,id,&scope);}
             });
-            if let Some(record) = ui.add_enabled_ui(!self.state_machines.open&&!self.sm_gesture_active()&&!self.viewpoints.open&&!self.activities.open&&!self.activity_gesture_active(),|ui| self.views.toolbar(ui, &self.session)).inner { self.select(record); }
+            if let Some(record) = ui.add_enabled_ui(!self.scenarios.open&&!self.sc_gesture_active()&&!self.state_machines.open&&!self.sm_gesture_active()&&!self.viewpoints.open&&!self.activities.open&&!self.activity_gesture_active(),|ui| self.views.toolbar(ui, &self.session)).inner { self.select(record); }
+            if self.sc_canvas(ui){return;}
             if self.sm_canvas(ui){return;}
             if self.activity_canvas(ui){return;}
             self.port_view_controls(ui);
@@ -1921,6 +1927,7 @@ impl eframe::App for Workspace {
         self.validation_frame_start();
         self.viewpoint_frame_start();
         self.activity_frame_start();
+        self.sc_frame_start();
         self.sm_frame_start();
         self.finish_writes(ctx);
         self.views.poll(&self.session);
@@ -1945,6 +1952,7 @@ impl eframe::App for Workspace {
         let requested = self.close_intent || ctx.input(|i| i.viewport().close_requested());
         let app_close = self.close_intent;
         self.close_intent = false;
+        if requested && self.sc_close_blocked(){ctx.send_viewport_cmd(egui::ViewportCommand::CancelClose);ctx.request_repaint();return;}
         if requested && self.sm_close_blocked(){ctx.send_viewport_cmd(egui::ViewportCommand::CancelClose);ctx.request_repaint();return;}
         if requested && self.activity_close_blocked(){ctx.send_viewport_cmd(egui::ViewportCommand::CancelClose);ctx.request_repaint();return;}
         if requested && self.viewpoint_close_blocked(){ctx.send_viewport_cmd(egui::ViewportCommand::CancelClose);ctx.request_repaint();return;}
@@ -1995,7 +2003,7 @@ impl eframe::App for Workspace {
         }
         let now = Instant::now();
         let interval = Duration::from_secs(self.preferences.value.recovery_interval_seconds);
-        let navigation_pending=self.pending.is_some()||self.activity_gesture_active()||self.activity_execution_automatic()||self.sm_gesture_active()||self.sm_execution_automatic();
+        let navigation_pending=self.pending.is_some()||self.activity_gesture_active()||self.activity_execution_automatic()||self.sm_gesture_active()||self.sm_execution_automatic()||self.sc_gesture_active();
         if self.periodic_recovery.due(
             now,
             self.preferences.value.periodic_recovery,
@@ -2034,6 +2042,7 @@ impl eframe::App for Workspace {
         self.matrix_dialog(&ctx);
         self.viewpoint_dialog(&ctx);
         self.activity_dialog(&ctx);
+        self.sc_dialog(&ctx);
         self.sm_dialog(&ctx);
         self.type_dialog(&ctx);
         self.port_dialog(&ctx);
@@ -2063,6 +2072,7 @@ impl eframe::App for Workspace {
             fields.insert("relation_matrix".into(),self.matrix_audit());
             fields.insert("viewpoint".into(),self.viewpoint_audit());
             fields.insert("activities".into(),self.activity_audit());
+            fields.insert("scenarios".into(),self.sc_audit());
             fields.insert("state_machines".into(),self.sm_audit());
             fields.insert("typed_properties".into(),self.typed_audit());
             fields.insert("ports".into(),self.ports_audit());

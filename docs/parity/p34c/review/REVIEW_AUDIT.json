@@ -1,0 +1,16 @@
+{
+  "result": "pass_bounded_same_agent_isolated_review",
+  "candidate_commit": "d428bb8bf03d33d08ab44245dc422d502c27c627",
+  "base_commit": "2feb199e5d9b033b8fa9692f97f412a97e6835fe",
+  "source_sha256": "9a1c96fefb6bb6890ac745da0042239ed3f4e2bafe888e4248773f04d3a465b9",
+  "source_files": 758,
+  "artifacts_verified": 94,
+  "whole_saved_snapshot_and_eight_maps_exact": true,
+  "available_prior_checkouts_unchanged": 92,
+  "user_removed_directories_heads_retained": 18,
+  "independent_review": false,
+  "new_compiler_or_native_runs": 0,
+  "production_source_changes": 0,
+  "limits": "Native removal/inverse observed active sequence view54; all-map persistence/inverse core coverage in P34b. Missing/incompatible participant rendering covered by core/egui fixture; native refuses wrong binding while preserving accepted data. No broader native cross-platform/scale/engineering/full-parity acceptance. All56specs/integratedexits remain open.",
+  "checked_utc": "2026-10-27T11:30:11.558751+00:00"
+}

@@ -175,7 +175,7 @@
     }
   },
   "p34": {
-    "state": "in_progress",
+    "state": "reviewed_ready_to_merge_bounded_contract",
     "base_commit": "448a1d1283619918b1a06fd2b5db5c7237e7bd43",
     "children": [
       "P34a",
@@ -196,7 +196,7 @@
       "merge_commit": "d44f2e9f869176ef4ca94d76c783a6dd2eb0bab2"
     },
     "p34b": {
-      "state": "reviewed_ready_to_merge",
+      "state": "merged",
       "scope": "independent ordered lifeline/message presentation data",
       "base_commit": "d44f2e9f869176ef4ca94d76c783a6dd2eb0bab2",
       "execution_results": "p34b/README.md",
@@ -208,11 +208,26 @@
       "pr_number": 50,
       "review": "p34b/REVIEW.md",
       "review_source_sha256": "431d927352a10c6414ee7bb75cb88a72ec45cf5bfa6b6c302317f708a8ce67e1",
-      "review_cases": 2
+      "review_cases": 2,
+      "merge_commit": "2feb199e5d9b033b8fa9692f97f412a97e6835fe"
     },
     "p34c": {
-      "state": "planned",
-      "scope": "native scenario authoring/diagnostics/rendering/history/save/cold acceptance"
+      "state": "reviewed_ready_to_merge",
+      "scope": "native scenario authoring/diagnostics/rendering/history/save/cold acceptance",
+      "base_commit": "2feb199e5d9b033b8fa9692f97f412a97e6835fe",
+      "execution_results": "p34c/README.md",
+      "source_sha256": "9a1c96fefb6bb6890ac745da0042239ed3f4e2bafe888e4248773f04d3a465b9",
+      "distinct_case_inventory": 711,
+      "new_distinct_cases": 8,
+      "native_scenario_runs": 2,
+      "native_controller_errors": 0,
+      "evidence_artifacts": 94,
+      "final_source_full_workspace_claim": false,
+      "pr_number": 51,
+      "review": "p34c/REVIEW.md",
+      "review_production_source_changes": 0,
+      "review_artifacts_recomputed": 94,
+      "review_available_prior_checkouts_unchanged": 92
     }
   }
 }

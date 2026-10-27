@@ -39,6 +39,7 @@ pub enum Id {
     Viewpoints,
     Activities,
     StateMachines,
+    Scenarios,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Surface {
@@ -79,6 +80,7 @@ macro_rules! spec {
 }
 pub const MENUS: &[&str] = &["File", "Edit", "View", "Tools"];
 pub const ALL: &[Spec] = &[
+    spec!(Scenarios,"tools.scenarios","Scenarios and sequence diagrams","Tools",ALT,A),
     spec!(StateMachines,"tools.state_machines","State machines and diagrams","Tools",ALT,S),
     spec!(Activities,"tools.activities","Activities and diagrams","Tools",ALT,H),
     spec!(Viewpoints,"view.viewpoints","Viewpoints and native card filters","View",ALT,L),
