@@ -94,13 +94,18 @@
       "P32c"
     ],
     "p32a": {
-      "state": "core_checks_passed_review_pending",
+      "state": "reviewed_ready_for_merge",
       "scope": "flat state/event/transition authority, keyed drafts and diagnostics",
       "execution_results": "p32a/README.md",
       "source_sha256": "30e0c9f0af341a4e8204952e2874d05a59308409ca9b0c6c7e2f16b3cf576593",
-      "distinct_case_inventory": 642,
-      "new_distinct_cases": 10,
-      "native_state_machine_runs": 0
+      "distinct_case_inventory": 643,
+      "new_distinct_cases": 11,
+      "native_state_machine_runs": 0,
+      "pr_number": 44,
+      "review": "p32a/REVIEW.md",
+      "review_affected_cases": 2,
+      "final_source_full_workspace_claim": false,
+      "review_source_sha256": "9f1beddd3c0d7fc2bf904c344e11e7b680d638132bef7612b050c7aeb8fedbd4"
     },
     "p32b": {
       "state": "planned",

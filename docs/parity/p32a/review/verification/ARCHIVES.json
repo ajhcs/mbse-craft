@@ -1,0 +1,30 @@
+[
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/review-p32a/work/p32a-02.json",
+    "path": "compiler-02/RECEIPT.json",
+    "bytes": 11976,
+    "sha256": "84c4e17d5545eb82ef681ff2faabe06120f32ae823bc9e18b7be944f0933c1cf",
+    "stored_sha256": "84c4e17d5545eb82ef681ff2faabe06120f32ae823bc9e18b7be944f0933c1cf"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p32a-review-opaque-joint-boundary-02-20261027T073937Z/00.log",
+    "path": "compiler-02/00.log.gz",
+    "bytes": 2321,
+    "sha256": "d94d809ecb2c87582e75c51cbab8ed96beb3e8ea2f97026c3449548923a9b3d2",
+    "stored_sha256": "7c709eb7b20520fb70d5ed175f176583553770025917f6133c2b9e3a064d974e"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p32a-review-opaque-joint-boundary-02-20261027T073937Z/01.log",
+    "path": "compiler-02/01.log.gz",
+    "bytes": 1952,
+    "sha256": "9111db66a67f4c19ef0a489647351b4d5bf3819d0ac2dee3566ebadbb316f1b1",
+    "stored_sha256": "10b14d2ac642f0ab56ba12f80f0608c36f47436a89fab703d2d24d3820846193"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p32a-review-opaque-joint-boundary-02-20261027T073937Z/02.log",
+    "path": "compiler-02/02.log.gz",
+    "bytes": 6355,
+    "sha256": "17411a475a5e7e1d7f8830464821912c50f942a75fa7ab348d1b2bbefd3d4762",
+    "stored_sha256": "1ce7fecced4eb538d49195a246b4f925104fa7e097fe14ab502da8b3c02afee2"
+  }
+]

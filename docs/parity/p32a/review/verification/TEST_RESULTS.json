@@ -1,0 +1,29 @@
+{
+  "compiler_slice_counts": [
+    [
+      1,
+      1,
+      0
+    ]
+  ],
+  "prior_case_names_reconciled": 642,
+  "new_distinct_cases": [
+    "state_machine_joint_type_activity_machine_element_cap_rejects_next_creation_atomically"
+  ],
+  "distinct_case_inventory": 643,
+  "changed_source_files": [
+    "crates/mbse-model/tests/state_machine_authoring.rs"
+  ],
+  "production_source_byte_identical": true,
+  "qualification": "Changed opaque cold/recovery fixture1 plus new joint512boundary1/build pass. Original642 retained on original source; no summed final-source full-workspace claim.",
+  "tests": [
+    {
+      "slice": 2,
+      "test": "state_machine_native_save_cold_recovery_preserve_prior_activity_raw_opaque_and_views_source"
+    },
+    {
+      "slice": 2,
+      "test": "state_machine_joint_type_activity_machine_element_cap_rejects_next_creation_atomically"
+    }
+  ]
+}
