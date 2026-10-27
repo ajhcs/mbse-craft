@@ -564,10 +564,11 @@
       "acceptance": [
         "Derive, refine, satisfy, verify and copy have distinct endpoint rules; relabeling cannot change meaning; traces survive history and reopen."
       ],
-      "state": "in_progress",
+      "state": "implemented_bounded_review_pending",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
-      "branch": "codex/m5-p24-requirement-traces"
+      "branch": "codex/m5-p24-requirement-traces",
+      "execution_results": "docs/parity/p24/README.md"
     },
     {
       "id": "P25",
