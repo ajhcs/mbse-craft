@@ -1,0 +1,660 @@
+[
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p34c-native-scenarios/docs/parity/p34c/attempts/01-compile/JOB.json",
+    "path": "compiler-01/JOB.json",
+    "bytes": 3020,
+    "sha256": "f011f1eb45c8ba2df6d964853794784ffe839b4ce364020f2ff230fa9d4d9bed",
+    "stored_sha256": "f011f1eb45c8ba2df6d964853794784ffe839b4ce364020f2ff230fa9d4d9bed"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p34c-native-scenarios/work/p34c-01.json",
+    "path": "compiler-01/RECEIPT.json",
+    "bytes": 5335,
+    "sha256": "12a9ba830c5e5213dd2f9f6792c35dd372f2ab526ae3b43edde4d6e6afded5af",
+    "stored_sha256": "12a9ba830c5e5213dd2f9f6792c35dd372f2ab526ae3b43edde4d6e6afded5af"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p34c-native-scenario-ui-01-20261027T111017Z/00.log",
+    "path": "compiler-01/00.log.gz",
+    "bytes": 8348,
+    "sha256": "442f88016bf4d94b706baf0305ae05c0df3c67bf2c20eb4a3eddf8e0a674f25d",
+    "stored_sha256": "31080f4135a6f6782e27570807a23d2c8156ea355dc8ddd21968eb8e34e80642"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p34c-native-scenarios/docs/parity/p34c/attempts/02-first-regression/JOB.json",
+    "path": "compiler-02/JOB.json",
+    "bytes": 3033,
+    "sha256": "bf82a265a16c4b4933fc88afebad6fe9e8f795b44d79b78c1c8cbe9448988c18",
+    "stored_sha256": "bf82a265a16c4b4933fc88afebad6fe9e8f795b44d79b78c1c8cbe9448988c18"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p34c-native-scenarios/work/p34c-02.json",
+    "path": "compiler-02/RECEIPT.json",
+    "bytes": 32228,
+    "sha256": "9faa8e55a7213bf67def72cc9d7dcf861c80fd40da8302cec33360da2712cfb1",
+    "stored_sha256": "9faa8e55a7213bf67def72cc9d7dcf861c80fd40da8302cec33360da2712cfb1"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p34c-scenario-summary-and-test-field-02-20261027T111105Z/00.log",
+    "path": "compiler-02/00.log.gz",
+    "bytes": 35925,
+    "sha256": "c089e7f9693f7496261e34611707bbd9a72ad756c4b4c31c1e8b325398e3cf12",
+    "stored_sha256": "12ed3956d60038af0d139b7ff3d0bff1f07a0e14b74663d9165f6df84d8df441"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p34c-native-scenarios/docs/parity/p34c/attempts/03-native-arrowhead/JOB.json",
+    "path": "compiler-03/JOB.json",
+    "bytes": 32672,
+    "sha256": "e34b08e3f1cd9c54c73dcf1a8a158175299e56c73ed5eaa51080a91efd3cda88",
+    "stored_sha256": "e34b08e3f1cd9c54c73dcf1a8a158175299e56c73ed5eaa51080a91efd3cda88"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p34c-native-scenarios/work/p34c-03.json",
+    "path": "compiler-03/RECEIPT.json",
+    "bytes": 84243,
+    "sha256": "1cb9daf1f3e0d609d354306771a4ca26a75fde84cd1a42a973b1a34fa7bfcc7f",
+    "stored_sha256": "1cb9daf1f3e0d609d354306771a4ca26a75fde84cd1a42a973b1a34fa7bfcc7f"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p34c-hidden-occurrence-picker-and-regression-remainder-03-20261027T111339Z/00.log",
+    "path": "compiler-03/00.log.gz",
+    "bytes": 59190,
+    "sha256": "fa77fa1b6755ce0fa7719d10e6d4766948ebd3ff8d01738d578a6ca2f0b74aa9",
+    "stored_sha256": "1e5ce94f5ab2d7fa8d737ade0d33b199bb591717e4cd3753e92dbd7544203754"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p34c-hidden-occurrence-picker-and-regression-remainder-03-20261027T111339Z/01.log",
+    "path": "compiler-03/01.log.gz",
+    "bytes": 4250,
+    "sha256": "25dc15fc817e51c62a8f1cd421b973ab09db0932e56d8c260521300f623bf0df",
+    "stored_sha256": "ff97ae91453bfddfaaf85c1ad61c590bc092074e96ca773768aa2016a0406c6e"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p34c-native-scenarios/docs/parity/p34c/JOB.json",
+    "path": "compiler-04/JOB.json",
+    "bytes": 3222,
+    "sha256": "645edeed2bf6ab2bcd15e8ea56da6234f17d3dba7bf4023522800e27b3f44098",
+    "stored_sha256": "645edeed2bf6ab2bcd15e8ea56da6234f17d3dba7bf4023522800e27b3f44098"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p34c-native-scenarios/work/p34c-04.json",
+    "path": "compiler-04/RECEIPT.json",
+    "bytes": 9642,
+    "sha256": "ec1b044b3a3e1d17e3444d7e2858cffcc1ea2116ad5d3e347d9840be3d28076f",
+    "stored_sha256": "ec1b044b3a3e1d17e3444d7e2858cffcc1ea2116ad5d3e347d9840be3d28076f"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p34c-native-filled-call-head-and-affected-gui-04-20261027T112246Z/00.log",
+    "path": "compiler-04/00.log.gz",
+    "bytes": 5567,
+    "sha256": "3000a320155b52c87b8407b067dcd213cc18ebef0ad4056f619bcb8d8bc1e0b4",
+    "stored_sha256": "a9e7ad0ab2bcc319b7832053a1deba8918043c5757bd46e79ddb5f3992a9d000"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p34c-native-filled-call-head-and-affected-gui-04-20261027T112246Z/01.log",
+    "path": "compiler-04/01.log.gz",
+    "bytes": 4243,
+    "sha256": "50c3a496528bb6f99fcd9d1e4783911924d07fe444226e107d0caa9d7e865572",
+    "stored_sha256": "2acfaaf1bb035fe8df6c6c918a86b328159ba59106f767e041437f9103cb5086"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p34c-native-scenarios/docs/parity/p34c/attempts/03-native-arrowhead/NATIVE_JOB.json",
+    "path": "native-01/JOB.json",
+    "bytes": 3115,
+    "sha256": "4b8ca049b6dcc313d84e811fd8e69ad72c8712ed6f8f6b5c656dbf5e8956d0b3",
+    "stored_sha256": "4b8ca049b6dcc313d84e811fd8e69ad72c8712ed6f8f6b5c656dbf5e8956d0b3"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/CONTROLLER_ACTIONS.py",
+    "path": "native-01/CONTROLLER_ACTIONS.py",
+    "bytes": 12942,
+    "sha256": "9397333f26c0ba26a7ab35ee7618a296b1dc1646926ec85d82ccd1404701e5ef",
+    "stored_sha256": "9397333f26c0ba26a7ab35ee7618a296b1dc1646926ec85d82ccd1404701e5ef"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/RECEIPT.json",
+    "path": "native-01/RECEIPT.json",
+    "bytes": 7205,
+    "sha256": "6d4b2dbf6b484ecf77149656cd1ac81530ed44a3badad08ef589346050ea9632",
+    "stored_sha256": "6d4b2dbf6b484ecf77149656cd1ac81530ed44a3badad08ef589346050ea9632"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/01-original-complete-model-and-seven-maps.png",
+    "path": "native-01/run/01-original-complete-model-and-seven-maps.png",
+    "bytes": 489043,
+    "sha256": "74145ecafd17b4adcd5a42640770ec5fd87a4f408c435eaee1bf9f8df48bd814",
+    "stored_sha256": "74145ecafd17b4adcd5a42640770ec5fd87a4f408c435eaee1bf9f8df48bd814"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/01-original-complete-model-and-seven-maps.ui.json",
+    "path": "native-01/run/01-original-complete-model-and-seven-maps.ui.json",
+    "bytes": 256426,
+    "sha256": "15f3262e6d01a4f71e767d85ef8cda87582d7a6b0d3e7d19186a8919d47634c7",
+    "stored_sha256": "15f3262e6d01a4f71e767d85ef8cda87582d7a6b0d3e7d19186a8919d47634c7"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/02-shared-shortcut-widget-authored-scenario.png",
+    "path": "native-01/run/02-shared-shortcut-widget-authored-scenario.png",
+    "bytes": 316114,
+    "sha256": "7db8547f85799f9d712ea9f94d648dff7d957f70c9758da4fe3574c4210d743d",
+    "stored_sha256": "7db8547f85799f9d712ea9f94d648dff7d957f70c9758da4fe3574c4210d743d"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/02-shared-shortcut-widget-authored-scenario.ui.json",
+    "path": "native-01/run/02-shared-shortcut-widget-authored-scenario.ui.json",
+    "bytes": 262288,
+    "sha256": "4446ccad7c58de954563e2b98717979262990b6f361157f430311236eea94aa2",
+    "stored_sha256": "4446ccad7c58de954563e2b98717979262990b6f361157f430311236eea94aa2"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/03-exact-participant-call-reply-and-guard-forms.png",
+    "path": "native-01/run/03-exact-participant-call-reply-and-guard-forms.png",
+    "bytes": 344258,
+    "sha256": "49f255c1626caaf5e2c6c7cdaefc50fcc0908543c3c28f762b29698a8ca22f00",
+    "stored_sha256": "49f255c1626caaf5e2c6c7cdaefc50fcc0908543c3c28f762b29698a8ca22f00"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/03-exact-participant-call-reply-and-guard-forms.ui.json",
+    "path": "native-01/run/03-exact-participant-call-reply-and-guard-forms.ui.json",
+    "bytes": 277848,
+    "sha256": "6f69f1cfcf67e0a197ecb266989e210b4d40e8f0c2815570e0d2180605dcc356",
+    "stored_sha256": "6f69f1cfcf67e0a197ecb266989e210b4d40e8f0c2815570e0d2180605dcc356"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/04-authored-asynchronous-operands-and-self-message.png",
+    "path": "native-01/run/04-authored-asynchronous-operands-and-self-message.png",
+    "bytes": 333122,
+    "sha256": "2b8825cc010bbb84f4d09b72a1b7792a716326b29b55b95ee7e5682a962ae4e9",
+    "stored_sha256": "2b8825cc010bbb84f4d09b72a1b7792a716326b29b55b95ee7e5682a962ae4e9"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/04-authored-asynchronous-operands-and-self-message.ui.json",
+    "path": "native-01/run/04-authored-asynchronous-operands-and-self-message.ui.json",
+    "bytes": 285043,
+    "sha256": "679c3b0038b8547574beab35d84fbd9379f257cb58b9525c752a8f5390530d76",
+    "stored_sha256": "679c3b0038b8547574beab35d84fbd9379f257cb58b9525c752a8f5390530d76"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/05-wrong-participant-raw-retained.png",
+    "path": "native-01/run/05-wrong-participant-raw-retained.png",
+    "bytes": 348660,
+    "sha256": "72536a3d428b56981c1c972dd0ec851b8b35d76e2887dd6cbfd6f847bb4b6527",
+    "stored_sha256": "72536a3d428b56981c1c972dd0ec851b8b35d76e2887dd6cbfd6f847bb4b6527"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/05-wrong-participant-raw-retained.ui.json",
+    "path": "native-01/run/05-wrong-participant-raw-retained.ui.json",
+    "bytes": 286914,
+    "sha256": "cf01e07d2f1c624303fef7e72c5bf657e3b83ce4bdfe6a37603829e837105bcd",
+    "stored_sha256": "cf01e07d2f1c624303fef7e72c5bf657e3b83ce4bdfe6a37603829e837105bcd"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/06-missing-message-target-raw-retained.png",
+    "path": "native-01/run/06-missing-message-target-raw-retained.png",
+    "bytes": 344947,
+    "sha256": "98213877ef1e0d85f8e7ba221e20a7b7849299e2f43d115d5002337e367d9d73",
+    "stored_sha256": "98213877ef1e0d85f8e7ba221e20a7b7849299e2f43d115d5002337e367d9d73"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/06-missing-message-target-raw-retained.ui.json",
+    "path": "native-01/run/06-missing-message-target-raw-retained.ui.json",
+    "bytes": 286099,
+    "sha256": "9a488161d80ecd0d1fdefa7eaad7150a1dc1b5fd4a4f0f2782623c1536290598",
+    "stored_sha256": "9a488161d80ecd0d1fdefa7eaad7150a1dc1b5fd4a4f0f2782623c1536290598"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/07-invalid-reply-identity-raw-retained.png",
+    "path": "native-01/run/07-invalid-reply-identity-raw-retained.png",
+    "bytes": 346335,
+    "sha256": "92f1021a47fe7262473d329caf7af72429ee3db325c9497a805a47616f8faeb1",
+    "stored_sha256": "92f1021a47fe7262473d329caf7af72429ee3db325c9497a805a47616f8faeb1"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/07-invalid-reply-identity-raw-retained.ui.json",
+    "path": "native-01/run/07-invalid-reply-identity-raw-retained.ui.json",
+    "bytes": 286112,
+    "sha256": "df073a74bdbcc0b86b0b407ad8d0ddcb015cf112b67f251d7f4211934d054d16",
+    "stored_sha256": "df073a74bdbcc0b86b0b407ad8d0ddcb015cf112b67f251d7f4211934d054d16"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/08-empty-guard-raw-retained.png",
+    "path": "native-01/run/08-empty-guard-raw-retained.png",
+    "bytes": 338160,
+    "sha256": "adf3342c57e3a144b7f92117f99b71e310da14c67997c3731e6982c6aaa5a1b0",
+    "stored_sha256": "adf3342c57e3a144b7f92117f99b71e310da14c67997c3731e6982c6aaa5a1b0"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/08-empty-guard-raw-retained.ui.json",
+    "path": "native-01/run/08-empty-guard-raw-retained.ui.json",
+    "bytes": 285527,
+    "sha256": "28c24aaeac8b91029267009ac3504cd8f8f0dd0099db094371b52c49487dbb83",
+    "stored_sha256": "28c24aaeac8b91029267009ac3504cd8f8f0dd0099db094371b52c49487dbb83"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/09-duplicate-order-new-slot-raw-retained.png",
+    "path": "native-01/run/09-duplicate-order-new-slot-raw-retained.png",
+    "bytes": 341839,
+    "sha256": "32a7ae605fb73ada08d5cdeacd571c6eee0baa9e0072de296494ccbd56c7e5e3",
+    "stored_sha256": "32a7ae605fb73ada08d5cdeacd571c6eee0baa9e0072de296494ccbd56c7e5e3"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/09-duplicate-order-new-slot-raw-retained.ui.json",
+    "path": "native-01/run/09-duplicate-order-new-slot-raw-retained.ui.json",
+    "bytes": 286746,
+    "sha256": "da9372085de2e4fa82560943ced9a3d8d487c27fdfc1a44627e341e3208b72d1",
+    "stored_sha256": "da9372085de2e4fa82560943ced9a3d8d487c27fdfc1a44627e341e3208b72d1"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/10-global-model-inverse-keeps-newer-proposals.png",
+    "path": "native-01/run/10-global-model-inverse-keeps-newer-proposals.png",
+    "bytes": 343320,
+    "sha256": "9cfc397366dc2606fc3295f20be46c27281ce1334946829fb3282ef8be94dcb2",
+    "stored_sha256": "9cfc397366dc2606fc3295f20be46c27281ce1334946829fb3282ef8be94dcb2"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/10-global-model-inverse-keeps-newer-proposals.ui.json",
+    "path": "native-01/run/10-global-model-inverse-keeps-newer-proposals.ui.json",
+    "bytes": 286782,
+    "sha256": "e6f9c6214f3e619c3dfec8ec500ffbedfd095ed01d1f606c8ecfd5e827ef9b63",
+    "stored_sha256": "e6f9c6214f3e619c3dfec8ec500ffbedfd095ed01d1f606c8ecfd5e827ef9b63"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/11-first-sequence-native-arrows-and-alternative-rows.png",
+    "path": "native-01/run/11-first-sequence-native-arrows-and-alternative-rows.png",
+    "bytes": 442674,
+    "sha256": "47c483089ebf7567184cddf89c955dfdfe2fc86afd74a78572b708d6559aa8c4",
+    "stored_sha256": "47c483089ebf7567184cddf89c955dfdfe2fc86afd74a78572b708d6559aa8c4"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/11-first-sequence-native-arrows-and-alternative-rows.ui.json",
+    "path": "native-01/run/11-first-sequence-native-arrows-and-alternative-rows.ui.json",
+    "bytes": 282525,
+    "sha256": "c96001fb64a42efcbb4b36b93e3ae81f61debacc3a2b7e64950fc36dd17cdb1d",
+    "stored_sha256": "c96001fb64a42efcbb4b36b93e3ae81f61debacc3a2b7e64950fc36dd17cdb1d"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/12-first-sequence-fit-complete-ordered-rows.png",
+    "path": "native-01/run/12-first-sequence-fit-complete-ordered-rows.png",
+    "bytes": 424107,
+    "sha256": "5dca226acada5683871cb88c47f0507bb43d7edadd4d09b2fa30c84a0fb8a389",
+    "stored_sha256": "5dca226acada5683871cb88c47f0507bb43d7edadd4d09b2fa30c84a0fb8a389"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/12-first-sequence-fit-complete-ordered-rows.ui.json",
+    "path": "native-01/run/12-first-sequence-fit-complete-ordered-rows.ui.json",
+    "bytes": 283047,
+    "sha256": "923ec6c6551e1dc970828eac2667a78d6b6487c597aba38417b27ec82b24b2da",
+    "stored_sha256": "923ec6c6551e1dc970828eac2667a78d6b6487c597aba38417b27ec82b24b2da"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/13-second-independent-sequence-view.png",
+    "path": "native-01/run/13-second-independent-sequence-view.png",
+    "bytes": 440272,
+    "sha256": "a64625ca2387bd6c4be031d11f1ecb92e532efc2eb1d65fa36ce64ce2c9b83e4",
+    "stored_sha256": "a64625ca2387bd6c4be031d11f1ecb92e532efc2eb1d65fa36ce64ce2c9b83e4"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/13-second-independent-sequence-view.ui.json",
+    "path": "native-01/run/13-second-independent-sequence-view.ui.json",
+    "bytes": 282397,
+    "sha256": "087de58aa20547b293970811aa4a14b44dbbf65f0ed654e2c3687f50ee759a24",
+    "stored_sha256": "087de58aa20547b293970811aa4a14b44dbbf65f0ed654e2c3687f50ee759a24"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/14-single-publication-native-lifeline-drag.png",
+    "path": "native-01/run/14-single-publication-native-lifeline-drag.png",
+    "bytes": 445946,
+    "sha256": "1b10e0fbd885d3ec529f1b7eab900c588a850c269117940abb43f3d5b5f0572c",
+    "stored_sha256": "1b10e0fbd885d3ec529f1b7eab900c588a850c269117940abb43f3d5b5f0572c"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/14-single-publication-native-lifeline-drag.ui.json",
+    "path": "native-01/run/14-single-publication-native-lifeline-drag.ui.json",
+    "bytes": 282377,
+    "sha256": "0112f6d817bdbbc1ef920932b95deef0d72f804615a69dbfb2a29727adcda764",
+    "stored_sha256": "0112f6d817bdbbc1ef920932b95deef0d72f804615a69dbfb2a29727adcda764"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/15-pin-refusal-hidden-lifeline-suppresses-only-dependent-arrows.png",
+    "path": "native-01/run/15-pin-refusal-hidden-lifeline-suppresses-only-dependent-arrows.png",
+    "bytes": 429908,
+    "sha256": "cdf0d6f9c583dbea7e40d2d0528aa9dd58a46f7a1c692c0263b2ee470da11031",
+    "stored_sha256": "cdf0d6f9c583dbea7e40d2d0528aa9dd58a46f7a1c692c0263b2ee470da11031"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/15-pin-refusal-hidden-lifeline-suppresses-only-dependent-arrows.ui.json",
+    "path": "native-01/run/15-pin-refusal-hidden-lifeline-suppresses-only-dependent-arrows.ui.json",
+    "bytes": 280927,
+    "sha256": "5f0e6fc4045cf136cff7d9b4e563de6afea29e6e6a5e9a089e38f6c0dd496beb",
+    "stored_sha256": "5f0e6fc4045cf136cff7d9b4e563de6afea29e6e6a5e9a089e38f6c0dd496beb"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/16-hidden-occurrence-picker-restores-dependent-arrows.png",
+    "path": "native-01/run/16-hidden-occurrence-picker-restores-dependent-arrows.png",
+    "bytes": 448900,
+    "sha256": "d6014734526e2cd38fff6207d68db9310dacf6f94e8da69ca6d4ae0e6df5c205",
+    "stored_sha256": "d6014734526e2cd38fff6207d68db9310dacf6f94e8da69ca6d4ae0e6df5c205"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/16-hidden-occurrence-picker-restores-dependent-arrows.ui.json",
+    "path": "native-01/run/16-hidden-occurrence-picker-restores-dependent-arrows.ui.json",
+    "bytes": 282724,
+    "sha256": "89d27ce2815dcb2bab9e0ac43a80b5c6f69cb4f3daffb1e5f6f5a6f95855f2ce",
+    "stored_sha256": "89d27ce2815dcb2bab9e0ac43a80b5c6f69cb4f3daffb1e5f6f5a6f95855f2ce"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/17-sequence-message-selection-keeps-invalid-raw-slot.png",
+    "path": "native-01/run/17-sequence-message-selection-keeps-invalid-raw-slot.png",
+    "bytes": 352749,
+    "sha256": "d2138148a5f46a40736c63314fb7954dc149688e9c6999ffcb05730c7019235d",
+    "stored_sha256": "d2138148a5f46a40736c63314fb7954dc149688e9c6999ffcb05730c7019235d"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/17-sequence-message-selection-keeps-invalid-raw-slot.ui.json",
+    "path": "native-01/run/17-sequence-message-selection-keeps-invalid-raw-slot.ui.json",
+    "bytes": 288088,
+    "sha256": "1d3d1cb28751b83180df8d2e50135140f9a8b5904deb0fde4cac0ebb900ee046",
+    "stored_sha256": "1d3d1cb28751b83180df8d2e50135140f9a8b5904deb0fde4cac0ebb900ee046"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/18-root-removal-detaches-both-sequence-views.png",
+    "path": "native-01/run/18-root-removal-detaches-both-sequence-views.png",
+    "bytes": 325132,
+    "sha256": "0d1a3af83f175343a440da36c17ee67a73d345e58de70d2991d5ad7f4dd0393f",
+    "stored_sha256": "0d1a3af83f175343a440da36c17ee67a73d345e58de70d2991d5ad7f4dd0393f"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/18-root-removal-detaches-both-sequence-views.ui.json",
+    "path": "native-01/run/18-root-removal-detaches-both-sequence-views.ui.json",
+    "bytes": 260080,
+    "sha256": "13ea4e064ffd20a11ecd9408127a4b400c5f713e49deec40a2e8d47028ca564d",
+    "stored_sha256": "13ea4e064ffd20a11ecd9408127a4b400c5f713e49deec40a2e8d47028ca564d"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/19-observed-global-inverse-restores-exact-sequence-identities.png",
+    "path": "native-01/run/19-observed-global-inverse-restores-exact-sequence-identities.png",
+    "bytes": 438731,
+    "sha256": "6e97660b3f21615b601bdc8ad7519a7c86c9921954923b948f7fd3ffbdf17950",
+    "stored_sha256": "6e97660b3f21615b601bdc8ad7519a7c86c9921954923b948f7fd3ffbdf17950"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/19-observed-global-inverse-restores-exact-sequence-identities.ui.json",
+    "path": "native-01/run/19-observed-global-inverse-restores-exact-sequence-identities.ui.json",
+    "bytes": 282346,
+    "sha256": "eb7b1151e99604de31d8431d5e15b5e60a376c72f07a214ea5fc927fccd857b9",
+    "stored_sha256": "eb7b1151e99604de31d8431d5e15b5e60a376c72f07a214ea5fc927fccd857b9"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/20-first-view-keeps-original-geometry-and-camera.png",
+    "path": "native-01/run/20-first-view-keeps-original-geometry-and-camera.png",
+    "bytes": 423068,
+    "sha256": "ea2bca020608993657576aea4f62582800a2812ebcf0b63476b54bc741308ff1",
+    "stored_sha256": "ea2bca020608993657576aea4f62582800a2812ebcf0b63476b54bc741308ff1"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/20-first-view-keeps-original-geometry-and-camera.ui.json",
+    "path": "native-01/run/20-first-view-keeps-original-geometry-and-camera.ui.json",
+    "bytes": 282927,
+    "sha256": "4c9b4c5ba0d33f3fa556a25878dfd42bb7625ece184e879ed8694be85805898f",
+    "stored_sha256": "4c9b4c5ba0d33f3fa556a25878dfd42bb7625ece184e879ed8694be85805898f"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/21-second-view-independent-geometry-camera-and-fit.png",
+    "path": "native-01/run/21-second-view-independent-geometry-camera-and-fit.png",
+    "bytes": 421892,
+    "sha256": "a0c096fce7923ce4d66f7b50faec37c26eedc05ba4b14c4ef23651672a35caa0",
+    "stored_sha256": "a0c096fce7923ce4d66f7b50faec37c26eedc05ba4b14c4ef23651672a35caa0"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/21-second-view-independent-geometry-camera-and-fit.ui.json",
+    "path": "native-01/run/21-second-view-independent-geometry-camera-and-fit.ui.json",
+    "bytes": 282942,
+    "sha256": "f63e11619a6af7b98d050ea40ec2892b067c4298f340cd782b4fbc52b41124a2",
+    "stored_sha256": "f63e11619a6af7b98d050ea40ec2892b067c4298f340cd782b4fbc52b41124a2"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/22-complete-authored-model-and-eight-map-save.png",
+    "path": "native-01/run/22-complete-authored-model-and-eight-map-save.png",
+    "bytes": 418886,
+    "sha256": "3244b7a2f242c15a14ccc1a6ae27be3a9be0c308667a2645ddf4d4d5df9f5730",
+    "stored_sha256": "3244b7a2f242c15a14ccc1a6ae27be3a9be0c308667a2645ddf4d4d5df9f5730"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/22-complete-authored-model-and-eight-map-save.ui.json",
+    "path": "native-01/run/22-complete-authored-model-and-eight-map-save.ui.json",
+    "bytes": 282964,
+    "sha256": "b36a4f81c955993ca60063ccd78e1a1d4a33e8a4fbe5351caedc6ba2d52a7fc6",
+    "stored_sha256": "b36a4f81c955993ca60063ccd78e1a1d4a33e8a4fbe5351caedc6ba2d52a7fc6"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/app.log",
+    "path": "native-01/run/app.log.gz",
+    "bytes": 48,
+    "sha256": "0cce862dc4913be2cce3fd531146652899fa528e6bef4c0cc05a1632efdac18e",
+    "stored_sha256": "94e4dd023a62bec4d641e8996e9d854e58601c954020cf040c1f0e0191cf7866"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/events.jsonl",
+    "path": "native-01/run/events.jsonl.gz",
+    "bytes": 23848,
+    "sha256": "14a5ce6e01651efad492c850356ee39e24f27dbd7270d99cee6dc17323995680",
+    "stored_sha256": "d19c1feee6105ddb33155466bfc9690e64db802f22efe3d068ec2a3880159908"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/scenario-checkpoint.kernspan",
+    "path": "native-01/run/scenario-checkpoint.kernspan",
+    "bytes": 27494,
+    "sha256": "18958954dc7043d644598c55a28f2e30c496c03b69372e75cce42b7bd51844d0",
+    "stored_sha256": "18958954dc7043d644598c55a28f2e30c496c03b69372e75cce42b7bd51844d0"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/scenario-checkpoint.mbse-views.json",
+    "path": "native-01/run/scenario-checkpoint.mbse-views.json",
+    "bytes": 20236,
+    "sha256": "5dec8aad1ea37aa2b43f69092024f46b6a4602bd9450a0fc300331e4167a948a",
+    "stored_sha256": "5dec8aad1ea37aa2b43f69092024f46b6a4602bd9450a0fc300331e4167a948a"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/state/ui-geometry.json",
+    "path": "native-01/run/state/ui-geometry.json",
+    "bytes": 282879,
+    "sha256": "bce6ef80d5e80e268ab3fa111827eb905c58de4f537041867ab1fd52af59fdc0",
+    "stored_sha256": "bce6ef80d5e80e268ab3fa111827eb905c58de4f537041867ab1fd52af59fdc0"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run/xvfb.log",
+    "path": "native-01/run/xvfb.log.gz",
+    "bytes": 1321,
+    "sha256": "00971f516769b092bd50063ca4a82f63a4395d9ed9ff57eab62626162f51b9ed",
+    "stored_sha256": "fdda054423b6f7162c79062d661ff1e7c458c6fd848bc9913bbe480d6a657d81"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run-driver.log",
+    "path": "native-01/run-driver.log.gz",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p34c-native-scenarios/docs/parity/p34c/NATIVE_JOB.json",
+    "path": "native-02/JOB.json",
+    "bytes": 3485,
+    "sha256": "dade7862626ac21f198b81c56c17a9d85c4ab614608ad8a91842140955def68c",
+    "stored_sha256": "dade7862626ac21f198b81c56c17a9d85c4ab614608ad8a91842140955def68c"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/CONTROLLER_ACTIONS.py",
+    "path": "native-02/CONTROLLER_ACTIONS.py",
+    "bytes": 4940,
+    "sha256": "2958df49f55605e24fbce11c3b8f34cf6d2897cb67f919a3e60dc4c47648b452",
+    "stored_sha256": "2958df49f55605e24fbce11c3b8f34cf6d2897cb67f919a3e60dc4c47648b452"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/RECEIPT.json",
+    "path": "native-02/RECEIPT.json",
+    "bytes": 3643,
+    "sha256": "815f1dd386e2198a4d9777811c57086e8dcff2ec37a21a99a30515f2999c4f05",
+    "stored_sha256": "815f1dd386e2198a4d9777811c57086e8dcff2ec37a21a99a30515f2999c4f05"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/run/01-final-source-cold-profile8-native-and-independent-sequence.png",
+    "path": "native-02/run/01-final-source-cold-profile8-native-and-independent-sequence.png",
+    "bytes": 421535,
+    "sha256": "e6dd3fbac7ab91c2c6b687460af7fb44254c48089f444f47cdaa3ea5b6e635fd",
+    "stored_sha256": "e6dd3fbac7ab91c2c6b687460af7fb44254c48089f444f47cdaa3ea5b6e635fd"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/run/01-final-source-cold-profile8-native-and-independent-sequence.ui.json",
+    "path": "native-02/run/01-final-source-cold-profile8-native-and-independent-sequence.ui.json",
+    "bytes": 282767,
+    "sha256": "ba90965d67e6f2f71e678aadfeaba4313d35ff8f6a3c315b4502d8040100d5ab",
+    "stored_sha256": "ba90965d67e6f2f71e678aadfeaba4313d35ff8f6a3c315b4502d8040100d5ab"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/run/02-final-source-filled-call-open-async-dashed-reply.png",
+    "path": "native-02/run/02-final-source-filled-call-open-async-dashed-reply.png",
+    "bytes": 436492,
+    "sha256": "68aeab79cfa6a0289757492a5ac068409660bb1459ddc49102f442aded726f89",
+    "stored_sha256": "68aeab79cfa6a0289757492a5ac068409660bb1459ddc49102f442aded726f89"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/run/02-final-source-filled-call-open-async-dashed-reply.ui.json",
+    "path": "native-02/run/02-final-source-filled-call-open-async-dashed-reply.ui.json",
+    "bytes": 282130,
+    "sha256": "dcc772073807f3148bec3d8ef74d37505f8a7bda72af2ffa11f6ebe7599d29ed",
+    "stored_sha256": "dcc772073807f3148bec3d8ef74d37505f8a7bda72af2ffa11f6ebe7599d29ed"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/run/03-cold-message-selection-retains-invalid-target-and-accepted-endpoint.png",
+    "path": "native-02/run/03-cold-message-selection-retains-invalid-target-and-accepted-endpoint.png",
+    "bytes": 332170,
+    "sha256": "3076cd9dccefe56e5305ac10771c024b8bb0b8c7ca8bfbedc5b89772d55a3ae5",
+    "stored_sha256": "3076cd9dccefe56e5305ac10771c024b8bb0b8c7ca8bfbedc5b89772d55a3ae5"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/run/03-cold-message-selection-retains-invalid-target-and-accepted-endpoint.ui.json",
+    "path": "native-02/run/03-cold-message-selection-retains-invalid-target-and-accepted-endpoint.ui.json",
+    "bytes": 286825,
+    "sha256": "30e7f593ea65bd63e34868abdc71783f9a0c2231b93e5cc53b10d8c77b9a96d8",
+    "stored_sha256": "30e7f593ea65bd63e34868abdc71783f9a0c2231b93e5cc53b10d8c77b9a96d8"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/run/04-cold-lifeline-selection-retains-wrong-kind-draft.png",
+    "path": "native-02/run/04-cold-lifeline-selection-retains-wrong-kind-draft.png",
+    "bytes": 348669,
+    "sha256": "ae85c410f71a0739148bc2a27d3de2212a967b98f8de079202f4e830873d9424",
+    "stored_sha256": "ae85c410f71a0739148bc2a27d3de2212a967b98f8de079202f4e830873d9424"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/run/04-cold-lifeline-selection-retains-wrong-kind-draft.ui.json",
+    "path": "native-02/run/04-cold-lifeline-selection-retains-wrong-kind-draft.ui.json",
+    "bytes": 288722,
+    "sha256": "97f46c784250d9d79e7f81db2daf087134e051959c05e9033f4c7ed1b1a0f83b",
+    "stored_sha256": "97f46c784250d9d79e7f81db2daf087134e051959c05e9033f4c7ed1b1a0f83b"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/run/05-cold-guard-selection-retains-empty-draft-and-documentary-text.png",
+    "path": "native-02/run/05-cold-guard-selection-retains-empty-draft-and-documentary-text.png",
+    "bytes": 346725,
+    "sha256": "53352915b732f9bdae544f581dfdeec91fd2bfc4a272592e239c87148d814cab",
+    "stored_sha256": "53352915b732f9bdae544f581dfdeec91fd2bfc4a272592e239c87148d814cab"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/run/05-cold-guard-selection-retains-empty-draft-and-documentary-text.ui.json",
+    "path": "native-02/run/05-cold-guard-selection-retains-empty-draft-and-documentary-text.ui.json",
+    "bytes": 287372,
+    "sha256": "087795e91a78d76a8ba9135eb69f19698789851fb903385dcce7404dae5e6e3a",
+    "stored_sha256": "087795e91a78d76a8ba9135eb69f19698789851fb903385dcce7404dae5e6e3a"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/run/06-final-source-fit-shows-all-ordered-alternatives-and-self-message.png",
+    "path": "native-02/run/06-final-source-fit-shows-all-ordered-alternatives-and-self-message.png",
+    "bytes": 418232,
+    "sha256": "b870f2290d82ca428ef492019896c96ef8c6b628420dac10a1fadfbe56532bcd",
+    "stored_sha256": "b870f2290d82ca428ef492019896c96ef8c6b628420dac10a1fadfbe56532bcd"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/run/06-final-source-fit-shows-all-ordered-alternatives-and-self-message.ui.json",
+    "path": "native-02/run/06-final-source-fit-shows-all-ordered-alternatives-and-self-message.ui.json",
+    "bytes": 282839,
+    "sha256": "c935bfe7c652e204efb43f3f1641514ae14595a36609a2e17ee9a3ffe5287078",
+    "stored_sha256": "c935bfe7c652e204efb43f3f1641514ae14595a36609a2e17ee9a3ffe5287078"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/run/07-cold-second-view-independent-geometry-and-camera.png",
+    "path": "native-02/run/07-cold-second-view-independent-geometry-and-camera.png",
+    "bytes": 416933,
+    "sha256": "81a0b22148b73aa8d9525f425b5164e333129ed6c96fd3f6999363e0a8bca2e1",
+    "stored_sha256": "81a0b22148b73aa8d9525f425b5164e333129ed6c96fd3f6999363e0a8bca2e1"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/run/07-cold-second-view-independent-geometry-and-camera.ui.json",
+    "path": "native-02/run/07-cold-second-view-independent-geometry-and-camera.ui.json",
+    "bytes": 282853,
+    "sha256": "5c606137f993fa7dfbb3da7ea6f9ed87d201a9e6a253487b34985fb6c3bed74f",
+    "stored_sha256": "5c606137f993fa7dfbb3da7ea6f9ed87d201a9e6a253487b34985fb6c3bed74f"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/run/08-final-source-whole-snapshot-and-eight-map-cold-save-copy.png",
+    "path": "native-02/run/08-final-source-whole-snapshot-and-eight-map-cold-save-copy.png",
+    "bytes": 413563,
+    "sha256": "7720e637cf4c25cf4780746cca35a2717002049cd5353726eedb19e909759a15",
+    "stored_sha256": "7720e637cf4c25cf4780746cca35a2717002049cd5353726eedb19e909759a15"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/run/08-final-source-whole-snapshot-and-eight-map-cold-save-copy.ui.json",
+    "path": "native-02/run/08-final-source-whole-snapshot-and-eight-map-cold-save-copy.ui.json",
+    "bytes": 282975,
+    "sha256": "795e527e71295b3f8b077c89524c927ac62e8997605fe79b1cb00356188e3c90",
+    "stored_sha256": "795e527e71295b3f8b077c89524c927ac62e8997605fe79b1cb00356188e3c90"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/run/app.log",
+    "path": "native-02/run/app.log.gz",
+    "bytes": 48,
+    "sha256": "0cce862dc4913be2cce3fd531146652899fa528e6bef4c0cc05a1632efdac18e",
+    "stored_sha256": "94e4dd023a62bec4d641e8996e9d854e58601c954020cf040c1f0e0191cf7866"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/run/events.jsonl",
+    "path": "native-02/run/events.jsonl.gz",
+    "bytes": 3594,
+    "sha256": "ad7817528d1e6b573ab282595ad96f2b46e4886e66405f3182d176a7d12b558d",
+    "stored_sha256": "1b9090e05070a976d930af034d42c1e20278a6a2ffbb638ec998714d8df69ead"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/run/scenario-final-cold-copy.kernspan",
+    "path": "native-02/run/scenario-final-cold-copy.kernspan",
+    "bytes": 27494,
+    "sha256": "18958954dc7043d644598c55a28f2e30c496c03b69372e75cce42b7bd51844d0",
+    "stored_sha256": "18958954dc7043d644598c55a28f2e30c496c03b69372e75cce42b7bd51844d0"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/run/scenario-final-cold-copy.mbse-views.json",
+    "path": "native-02/run/scenario-final-cold-copy.mbse-views.json",
+    "bytes": 20236,
+    "sha256": "5561661c8f77c59a81ffb7987b417dab57520efe955185f560bebcfc441ced9e",
+    "stored_sha256": "5561661c8f77c59a81ffb7987b417dab57520efe955185f560bebcfc441ced9e"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/run/state/ui-geometry.json",
+    "path": "native-02/run/state/ui-geometry.json",
+    "bytes": 282890,
+    "sha256": "8849227b449de98ad361fadb47aa011bedee99dcb856249401787e2977e75256",
+    "stored_sha256": "8849227b449de98ad361fadb47aa011bedee99dcb856249401787e2977e75256"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/run/xvfb.log",
+    "path": "native-02/run/xvfb.log.gz",
+    "bytes": 1321,
+    "sha256": "00971f516769b092bd50063ca4a82f63a4395d9ed9ff57eab62626162f51b9ed",
+    "stored_sha256": "fdda054423b6f7162c79062d661ff1e7c458c6fd848bc9913bbe480d6a657d81"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-02/run-driver.log",
+    "path": "native-02/run-driver.log.gz",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+  }
+]

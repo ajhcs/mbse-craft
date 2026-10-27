@@ -1,0 +1,22 @@
+{
+  "result": "bounded_native_scenario_authoring_sequence_history_persistence_cold_checks_passed",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 758,
+  "source_sha256": "9a1c96fefb6bb6890ac745da0042239ed3f4e2bafe888e4248773f04d3a465b9",
+  "binary_sha256": "80f3d2fd72e3d9ef881d6a3b4b3a1482fca49c4db9ac3dcd2eeb939854b110b9",
+  "distinct_case_inventory": 711,
+  "new_distinct_cases": 8,
+  "native_runs": 2,
+  "native_controller_errors": 0,
+  "source_qualified_native_runs": [
+    "native01 f8b939a8 actual authoring/fiveinvalid/modelhistory/independentviews/drag/pin/hide/picker/selection/Fit/rootinverse/whole139-328-14012 save; sync-headvisualfinding retained.",
+    "native02 final9a1c96fe affectedfilledcallhead and previouslyunexecuted coldemptyhistory/rawselection/eightmapexactsavecopy."
+  ],
+  "original_data_and_maps_preserved": true,
+  "limits": [
+    "Documentary sequence only; no execution/guardtruth/causality/timing/payload/inferredruntimeinstances/nestedfragments/concurrency/fullNoMagic/SysML/Craft/platform/scale/production/independentengineering.",
+    "All56broadspecs/integratedmilestoneexitsremainopen.",
+    "Same-agent isolated PR review still required."
+  ]
+}

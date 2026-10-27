@@ -1,0 +1,51 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m6-p34c-scenario-summary-and-test-field-02",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m6-p34c-native-scenarios",
+  "source_manifest": "docs/parity/p34c/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "929ff981588d5cb44a902e6ecb9ad2cfde22cf5a9366c816b15be811e41718c9",
+  "source_sha256": "6853f286425e5f5f30fbbcd239db3c2624941b40ea42a136fd263c609a86e11f",
+  "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "--workspace"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "P34c native scenario forms and independent sequence canvas. Seven meaningful actual egui interaction cases cover exact participants/call/reply/alternatives/guard text; invalid/newer raw history; UTF8 failed admission/foreign owner; stale-source/actor guards; two-view layout/pin/hide; unresolved participant projection; drag one-entry inverse. Full prior703 plus7/new build once; actual native authoring/save/cold acceptance separate. No dependencies or build scripts changed.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p34c-native-scenarios/docs/parity/p33b/verification/native-02/run/state-execution-cold-copy.kernspan": "332c3afea8989106c197759079f4da36e73a16bf92acb1ad365b08109d4f8d13",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p34c-native-scenarios/docs/parity/p33b/verification/native-02/run/state-execution-cold-copy.mbse-views.json": "a76821e4653339591e0dec0db97a251d52d3c94cb230fa41a7aa063ebb7a7138"
+  }
+}

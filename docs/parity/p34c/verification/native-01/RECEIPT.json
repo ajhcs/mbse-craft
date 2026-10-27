@@ -1,0 +1,283 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-27T11:14:54.081852+00:00",
+  "job_sha256": "4b8ca049b6dcc313d84e811fd8e69ad72c8712ed6f8f6b5c656dbf5e8956d0b3",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p34c-01/run",
+      "started_utc": "2026-10-27T11:14:54.102392+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 924882,
+          "start_ticks": 47404505
+        },
+        "server_pid": {
+          "pid": 924879,
+          "start_ticks": 47404503
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/repos/builderbob/mbse-craft/work/m6-p34c-native-scenarios/docs/parity/p34c/fixtures/native.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 924882,
+        "server_pid": 924879,
+        "window": 4194307,
+        "binary_sha256": "e186da9c66db3a0447db6b227dbb8b4ef230901c307c3ade8aa8f646b2c83f0f"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-27T11:21:31.430930+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-27T11:14:54.102168+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1364063199232,
+    "available_memory_bytes": 27257774080,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 299500,
+        "start_ticks": 43416915,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      },
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 324
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "shared_shortcut_widget_root": 14000,
+  "authored_ids": {
+    "scenario": 14000,
+    "sender": 14001,
+    "receiver": 14002,
+    "system": 14003,
+    "call": 14004,
+    "reply": 14005,
+    "alternative": 14006,
+    "accept": 14007,
+    "decline": 14008
+  },
+  "accepted_before_invalid": {
+    "14000": {
+      "alternatives": {
+        "14006": {
+          "id": 14006,
+          "name": "Reviewer decision",
+          "operands": {
+            "14007": {
+              "guard": "temperature > 50 C",
+              "id": 14007,
+              "name": "Accept",
+              "order": 1
+            },
+            "14008": {
+              "guard": "reviewer declines",
+              "id": 14008,
+              "name": "Decline",
+              "order": 2
+            }
+          },
+          "order": 3
+        }
+      },
+      "id": 14000,
+      "lifelines": {
+        "14001": {
+          "expected": "Component",
+          "id": 14001,
+          "name": "Sender",
+          "participant": 1004
+        },
+        "14002": {
+          "expected": {
+            "Usage": "Part"
+          },
+          "id": 14002,
+          "name": "Receiver",
+          "participant": 1009
+        },
+        "14003": {
+          "expected": {
+            "Native": "System"
+          },
+          "id": 14003,
+          "name": "System context",
+          "participant": 1
+        }
+      },
+      "messages": {
+        "14004": {
+          "id": 14004,
+          "kind": "Synchronous",
+          "name": "Request review",
+          "operand": null,
+          "order": 1,
+          "reply_to": null,
+          "source": 14001,
+          "target": 14002
+        },
+        "14005": {
+          "id": 14005,
+          "kind": "Reply",
+          "name": "Review response",
+          "operand": null,
+          "order": 2,
+          "reply_to": 14004,
+          "source": 14002,
+          "target": 14001
+        },
+        "14009": {
+          "id": 14009,
+          "kind": "Asynchronous",
+          "name": "Accept review",
+          "operand": 14007,
+          "order": 1,
+          "reply_to": null,
+          "source": 14002,
+          "target": 14003
+        },
+        "14010": {
+          "id": 14010,
+          "kind": "Asynchronous",
+          "name": "Decline review",
+          "operand": 14008,
+          "order": 1,
+          "reply_to": null,
+          "source": 14002,
+          "target": 14001
+        },
+        "14011": {
+          "id": 14011,
+          "kind": "Asynchronous",
+          "name": "Record decision",
+          "operand": null,
+          "order": 4,
+          "reply_to": null,
+          "source": 14003,
+          "target": 14003
+        }
+      },
+      "name": "Review request",
+      "system": 1
+    }
+  },
+  "five_invalid_proposals_and_model_inverse": true,
+  "expected_rows": [
+    {
+      "Message": {
+        "message": 14004
+      }
+    },
+    {
+      "Message": {
+        "message": 14005
+      }
+    },
+    {
+      "AlternativeStart": {
+        "alternative": 14006
+      }
+    },
+    {
+      "OperandStart": {
+        "alternative": 14006,
+        "operand": 14007
+      }
+    },
+    {
+      "Message": {
+        "message": 14009
+      }
+    },
+    {
+      "OperandStart": {
+        "alternative": 14006,
+        "operand": 14008
+      }
+    },
+    {
+      "Message": {
+        "message": 14010
+      }
+    },
+    {
+      "AlternativeEnd": {
+        "alternative": 14006
+      }
+    },
+    {
+      "Message": {
+        "message": 14011
+      }
+    }
+  ],
+  "view1": "50",
+  "view2": "54",
+  "drag_one_publication_inverse_and_pin_refusal": true,
+  "hidden_picker_message_raw_root_inverse": true,
+  "saved_counters": {
+    "model_revision": 139,
+    "raw_version": 328,
+    "next_id": 14012
+  },
+  "original_whole_data_and_seven_maps_preserved": true,
+  "native_visual_findings": [
+    "Synchronous legend promises filled arrowhead, but shared activity painter draws open head; final-source fix and affected native check required."
+  ],
+  "ended_utc": "2026-10-27T11:21:59.646218+00:00"
+}
