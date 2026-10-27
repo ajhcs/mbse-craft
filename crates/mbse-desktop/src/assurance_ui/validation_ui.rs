@@ -430,8 +430,11 @@ mod tests {
     fn custom_ready(w:&mut AssuranceWorkspace,e:&Editor,ctx:&egui::Context){
         for _ in 0..3 {render(w,e,ctx,vec![]);}
         click(w,e,ctx,"validation:section");
+        click(w,e,ctx,"validation:Save suite");
+        assert_eq!(w.validation.note,"CUSTOM_RULE_REVIEW_REQUIRED");
         click(w,e,ctx,"validation:Preview suite");
         click(w,e,ctx,"validation:Admit reviewed suite");
+        assert!(w.validation.note.is_empty(),"Superseded refusal remains: {}",w.validation.note);
         click(w,e,ctx,"validation:Run");
         for _ in 0..100 {render(w,e,ctx,vec![]);if audit(w,e,ctx)["current"]==true{return;}std::thread::sleep(Duration::from_millis(10));}
         panic!("custom suite did not complete");
