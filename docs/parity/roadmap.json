@@ -708,7 +708,7 @@
       "acceptance": [
         "A cell edit uses the authoritative typed relation command; wrong-kind cells are disabled; matrix and diagram agree after reopen."
       ],
-      "state": "review_ready",
+      "state": "merged",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "branch": "codex/m5-p28-relation-matrix",
@@ -717,7 +717,9 @@
       "pr_url": "https://github.com/ajhcs/mbse-craft/pull/36",
       "execution_results": "docs/parity/p28/README.md",
       "review": "docs/parity/p28/REVIEW.md",
-      "review_preservation": "docs/parity/p28/REVIEW_PRESERVATION.json"
+      "review_preservation": "docs/parity/p28/REVIEW_PRESERVATION.json",
+      "merge_commit": "5fa7c05e6c341943553bb536b555e843c9aeca1e",
+      "reviewed_head": "e70e62b7648f4da0879b97c858d174663a3b8c76"
     },
     {
       "id": "P29",
@@ -729,9 +731,31 @@
       "acceptance": [
         "Filters change presentation only; stakeholder concern and viewpoint scope remain inspectable; switching preserves identity and independent layouts."
       ],
-      "state": "planned",
+      "state": "in_progress",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "children": [
+        {
+          "id": "P29a",
+          "title": "Versioned viewpoint metadata and presentation filter core",
+          "state": "review_ready",
+          "branch": "codex/m5-p29-viewpoints",
+          "contract": "docs/parity/p29a/CONTRACT.md",
+          "pr_number": 37,
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/37",
+          "execution_results": "docs/parity/p29a/README.md",
+          "review": "docs/parity/p29a/REVIEW.md",
+          "review_preservation": "docs/parity/p29a/REVIEW_PRESERVATION.json"
+        },
+        {
+          "id": "P29b",
+          "title": "Native viewpoint authoring, filtering and scoped switching",
+          "state": "planned",
+          "depends_on": [
+            "P29a"
+          ]
+        }
+      ]
     },
     {
       "id": "P30",

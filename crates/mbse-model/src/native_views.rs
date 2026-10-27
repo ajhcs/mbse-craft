@@ -36,6 +36,8 @@ pub(crate) fn new_origin() -> Result<Origin, String> {
 pub mod ports;
 #[path="native_views_connectors.rs"]
 pub mod connectors;
+#[path="native_viewpoints.rs"]
+pub mod viewpoints;
 pub const PROFILE: &str = "mbse-craft.native-views/1";
 pub const RECOVERY_PROFILE: &str = "mbse-craft.native-views-recovery/1";
 pub const COPY_PROFILE: &str = "mbse-craft.native-views/2";
@@ -44,10 +46,17 @@ pub fn supported_profile(profile: &str) -> bool {
     matches!(profile, PROFILE | RECOVERY_PROFILE | COPY_PROFILE | COPY_RECOVERY_PROFILE) || ports::typed_profile(profile)
 }
 pub fn bound_profile(profile: &str) -> bool {
-    matches!(profile, PROFILE | COPY_PROFILE | ports::PROFILE | connectors::PROFILE)
+    matches!(profile, PROFILE | COPY_PROFILE | ports::PROFILE | connectors::PROFILE | viewpoints::PROFILE)
 }
 pub fn copy_profile(profile: &str) -> bool {
     matches!(profile, COPY_PROFILE | COPY_RECOVERY_PROFILE) || ports::typed_profile(profile)
+}
+fn output_profile(profile:&str,bound:bool)->&'static str{
+ if viewpoints::profile(profile){if bound{viewpoints::PROFILE}else{viewpoints::RECOVERY_PROFILE}}
+ else if connectors::qualified_profile(profile){if bound{connectors::PROFILE}else{connectors::RECOVERY_PROFILE}}
+ else if ports::typed_profile(profile){if bound{ports::PROFILE}else{ports::RECOVERY_PROFILE}}
+ else if copy_profile(profile){if bound{COPY_PROFILE}else{COPY_RECOVERY_PROFILE}}
+ else if bound{PROFILE}else{RECOVERY_PROFILE}
 }
 pub const MAX_BYTES: usize = 8 * 1024 * 1024;
 pub const MAX_VIEWS: usize = 16;
@@ -198,6 +207,10 @@ pub struct View {
     pub camera: Camera,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub copy_origin: Option<crate::native_views_copy::CopyOrigin>,
+    #[serde(default,skip_serializing_if="Option::is_none")]
+    pub viewpoint:Option<viewpoints::Spec>,
+    #[serde(default,skip_serializing_if="Option::is_none")]
+    pub viewpoint_form:Option<viewpoints::Form>,
 }
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -350,6 +363,7 @@ impl Document {
         }
         let mut provenance_bytes = 0;
         for view in self.views.values() {
+            viewpoints::validate(view,&self.profile)?;
             if let Some(origin) = &view.copy_origin {
                 if !copy_profile(&self.profile) { return Err("VIEWS_COPY_REQUIRES_V2".into()); }
                 origin.validate(self, view.id)?;
@@ -483,6 +497,7 @@ pub struct Stamp {
 }
 #[derive(Clone, Debug)]
 pub enum Layout {
+    Viewpoint(ViewId,viewpoints::Action),
     Connector(connectors::Layout),
     Port(ports::Layout),
     AddView(String),
@@ -554,10 +569,10 @@ impl Capture {
             {
                 return Err("VIEWS_CAPTURE_CHECKPOINT_MISMATCH".into());
             }
-            document.profile = if connectors::qualified_profile(&document.profile){connectors::PROFILE}else if ports::typed_profile(&document.profile){ports::PROFILE}else if copy_profile(&document.profile) { COPY_PROFILE } else { PROFILE }.into();
+            document.profile = output_profile(&document.profile,true).into();
             document.binding = Some(NativeBinding::from_checkpoint(c));
         } else {
-            document.profile = if connectors::qualified_profile(&document.profile){connectors::RECOVERY_PROFILE}else if ports::typed_profile(&document.profile){ports::RECOVERY_PROFILE}else if copy_profile(&document.profile) { COPY_RECOVERY_PROFILE } else { RECOVERY_PROFILE }.into();
+            document.profile = output_profile(&document.profile,false).into();
             document.binding = None;
         }
         document.validate(&editor.snapshot)?;
@@ -591,6 +606,7 @@ impl Views {
                         id: ViewId(1),
                         title: "Primary canvas".into(),
                         copy_origin: None,
+                        viewpoint:None,viewpoint_form:None,
                         camera: Camera::default(),
                     },
                 ),
@@ -600,6 +616,7 @@ impl Views {
                         id: ViewId(2),
                         title: "Review view".into(),
                         copy_origin: None,
+                        viewpoint:None,viewpoint_form:None,
                         camera: Camera::default(),
                     },
                 ),
@@ -742,6 +759,7 @@ impl Views {
         self.document.validate(&editor.snapshot)?;
         let mut next = self.document.clone();
         match action {
+            Layout::Viewpoint(view,action)=>viewpoints::apply(&mut next,editor,view,action)?,
             Layout::Connector(action)=>connectors::apply(&mut next,&editor.snapshot,action)?,
             Layout::Port(action)=>ports::apply(&mut next,&editor.snapshot,action)?,
             Layout::AddView(title) => {
@@ -755,6 +773,7 @@ impl Views {
                         id,
                         title,
                         copy_origin: None,
+                        viewpoint:None,viewpoint_form:None,
                         camera: Camera::default(),
                     },
                 );
@@ -888,9 +907,9 @@ impl Views {
         let declared=source.declared();
         let camera=declared.views.get(&source_view).ok_or("VIEWS_COPY_SOURCE_VIEW")?.camera.clone();
         let mut next=self.document.clone();
-        next.profile=if connectors::qualified_profile(&next.profile){if bound_profile(&next.profile){connectors::PROFILE}else{connectors::RECOVERY_PROFILE}}else if ports::typed_profile(&next.profile){if bound_profile(&next.profile){ports::PROFILE}else{ports::RECOVERY_PROFILE}}else if bound_profile(&next.profile) {COPY_PROFILE}else{COPY_RECOVERY_PROFILE}.into();
+        next.profile=if viewpoints::profile(&next.profile)||viewpoints::profile(&declared.profile){if bound_profile(&next.profile){viewpoints::PROFILE}else{viewpoints::RECOVERY_PROFILE}}else if connectors::qualified_profile(&next.profile){if bound_profile(&next.profile){connectors::PROFILE}else{connectors::RECOVERY_PROFILE}}else if ports::typed_profile(&next.profile){if bound_profile(&next.profile){ports::PROFILE}else{ports::RECOVERY_PROFILE}}else if bound_profile(&next.profile) {COPY_PROFILE}else{COPY_RECOVERY_PROFILE}.into();
         let view=ViewId(next.allocate()?);
-        next.views.insert(view,View{id:view,title:title.into(),camera,copy_origin:None});
+        next.views.insert(view,View{id:view,title:title.into(),camera,copy_origin:None,viewpoint:declared.views[&source_view].viewpoint.clone(),viewpoint_form:declared.views[&source_view].viewpoint_form.clone()});
         let mut origin=CopyOrigin{profile:crate::native_views_copy::PROFILE.into(),source_sha256:source.source_sha256().into(),source_profile:declared.profile.clone(),source_document_id:declared.document_id.clone(),source_sidecar_id:declared.sidecar_id.clone(),source_view,declared_native_binding:declared.binding.clone(),occurrences:BTreeMap::new(),edges:BTreeMap::new()};
         let mut mapped=BTreeMap::new();
         for row in &preview.occurrences {
@@ -1077,7 +1096,7 @@ impl Views {
             return Err("VIEWS_NATIVE_CHECKPOINT_NOT_CURRENT".into());
         }
         let mut frozen = self.document.clone();
-        frozen.profile = if connectors::qualified_profile(&frozen.profile){connectors::PROFILE}else if ports::typed_profile(&frozen.profile){ports::PROFILE}else if copy_profile(&frozen.profile) { COPY_PROFILE } else { PROFILE }.into();
+        frozen.profile = output_profile(&frozen.profile,true).into();
         frozen.binding = Some(NativeBinding::from_checkpoint(checkpoint));
         frozen.validate(&editor.snapshot)?;
         Ok(frozen)
@@ -1085,7 +1104,7 @@ impl Views {
     pub fn recovery(&self, editor: &Editor) -> Result<Document, String> {
         self.document.validate(&editor.snapshot)?;
         let mut frozen = self.document.clone();
-        frozen.profile = if connectors::qualified_profile(&frozen.profile){connectors::RECOVERY_PROFILE}else if ports::typed_profile(&frozen.profile){ports::RECOVERY_PROFILE}else if copy_profile(&frozen.profile) { COPY_RECOVERY_PROFILE } else { RECOVERY_PROFILE }.into();
+        frozen.profile = output_profile(&frozen.profile,false).into();
         frozen.binding = None;
         Ok(frozen)
     }
@@ -1150,6 +1169,7 @@ fn decode_document(bytes: &[u8]) -> Result<Document, String> {
     let profile = root.get("profile").and_then(serde_json::Value::as_str).ok_or("VIEWS_PROFILE_REQUIRED")?;
     if !supported_profile(profile) { return Err("VIEWS_FUTURE_PROFILE".into()); }
     crate::native_views_copy::check_wire_budget(root, copy_profile(profile))?;
+    viewpoints::check_wire(root,profile)?;
     for (key, max) in [
         ("views", MAX_VIEWS),
         ("occurrences", MAX_OCCURRENCES),

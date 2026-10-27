@@ -16,7 +16,6 @@
     "merge_commit": "1ae74f4f841b9d1c3d9b6c62b7e8fe4b072246af"
   },
   "remaining_prs": [
-    "P28",
     "P29"
   ],
   "p24": {
@@ -102,7 +101,7 @@
     }
   },
   "p28": {
-    "state": "review_ready",
+    "state": "merged",
     "base_commit": "894e00b8359422e250f670a2b971d11a666b93b3",
     "execution_results": "p28/README.md",
     "distinct_case_inventory": 572,
@@ -111,6 +110,24 @@
     "findings": [],
     "pr_number": 36,
     "review": "p28/REVIEW.md",
-    "final_source_full_workspace_claim": false
+    "final_source_full_workspace_claim": false,
+    "merge_commit": "5fa7c05e6c341943553bb536b555e843c9aeca1e"
+  },
+  "p29": {
+    "state": "in_progress",
+    "base_commit": "5fa7c05e6c341943553bb536b555e843c9aeca1e",
+    "children": [
+      "P29a",
+      "P29b"
+    ],
+    "p29a": {
+      "state": "review_ready",
+      "execution_results": "p29a/README.md",
+      "new_distinct_cases": 8,
+      "distinct_case_inventory": 580,
+      "native_ui": false,
+      "pr_number": 37,
+      "review": "p29a/REVIEW.md"
+    }
   }
 }
