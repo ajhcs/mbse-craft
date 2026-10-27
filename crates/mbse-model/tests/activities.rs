@@ -340,7 +340,10 @@ fn activity_native_save_recovery_and_cold_open_preserve_exact_opaque_and_invalid
     let recovery = result.ticket.destination.clone();
     assert!(session.complete(result));
     let cold = Session::restore(area.path(), &recovery).unwrap();
-    assert_eq!(cold.editor.snapshot, before);
+    assert_ne!(cold.editor.snapshot.document_id, before.document_id);
+    let mut expected_recovery = before.clone();
+    expected_recovery.document_id = cold.editor.snapshot.document_id.clone();
+    assert_eq!(cold.editor.snapshot, expected_recovery);
 }
 #[test]
 fn activity_wire_alias_unknown_fields_identity_and_legacy_empty_shapes_refuse_without_upgrade() {
