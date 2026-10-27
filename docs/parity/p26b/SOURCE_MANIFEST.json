@@ -103,8 +103,8 @@
     },
     {
       "path": "crates/mbse-desktop/src/assurance_ui/validation_ui.rs",
-      "bytes": 19527,
-      "sha256": "64467d4068dff0523778e5215437e951f2b14da225084f67a4f66bce01117080"
+      "bytes": 19541,
+      "sha256": "eab502559c2aa033658a80e263f8ca4f891ba01c338e33fc7f5eb4472040901d"
     },
     {
       "path": "crates/mbse-desktop/src/catalog_ui.rs",
@@ -228,8 +228,8 @@
     },
     {
       "path": "crates/mbse-desktop/src/ui_validation.rs",
-      "bytes": 17519,
-      "sha256": "133f4d99af01416ee730844764dd158a2db2a495c3f5dd5d98192d433fafb20f"
+      "bytes": 17533,
+      "sha256": "89e27130afb75e983861414cc3c8e191bb03fd22f942cbbdc268eacbe0821ae8"
     },
     {
       "path": "crates/mbse-desktop/src/ui_values.rs",
@@ -3607,5 +3607,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "2c6b92f9a47c50c154fcd7f0da7342a3f87830b0cde85650ee8bac482148930d"
+  "source_sha256": "ad3779d8e5c19310e0e3777530481621739bccccb41fe6478d0f6c3723a94ab5"
 }

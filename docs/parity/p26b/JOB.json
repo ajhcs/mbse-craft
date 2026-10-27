@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m5-p26b-scroll-phase-remainder-03",
+  "id": "m5-p26b-window-reveal-remainder-04",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m5-p26b-validation-navigation",
   "source_manifest": "docs/parity/p26b/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "cd75a599bd54212101f897a3657b4e48d2ddbdd4d5c2ca4cc4fbc6ea01a30530",
-  "source_sha256": "2c6b92f9a47c50c154fcd7f0da7342a3f87830b0cde85650ee8bac482148930d",
+  "source_manifest_sha256": "9b8f49dd6df3d90c768669df8ac9341e5f4c75cdbce8f5ccdd0a84746c6df910",
+  "source_sha256": "ad3779d8e5c19310e0e3777530481621739bccccb41fe6478d0f6c3723a94ab5",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -416,7 +416,9 @@
       "--skip",
       "views_ui::typed_port_camera_tests::fit_includes_visible_typed_port_geometry_and_excludes_hidden_ports_without_model_changes",
       "--skip",
-      "views_ui::typed_port_camera_tests::typed_port_gesture_survives_reconciliation_blocks_camera_and_never_becomes_core_route_endpoint"
+      "views_ui::typed_port_camera_tests::typed_port_gesture_survives_reconciliation_blocks_camera_and_never_becomes_core_route_endpoint",
+      "--skip",
+      "assurance_ui::validation_ui::tests::rendered_named_suite_run_and_requirement_issue_focus_preserve_register_raw_and_native"
     ],
     [
       "bash",
@@ -428,7 +430,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "Test-driver reveal update hit fork API compile failure before tests: MouseWheel requires phase; local vendored docs specify TouchPhase::Move for unknown wheel phase. Correct test events only; production code unchanged. Preserve195 successes and two interaction failures, run same failed/unexecuted remainder with exact frozen skip names, then desktop build.",
+  "rationale": "Named suite/requirement-focus case now passes. Remaining native renderer case cannot reveal Type close because window auto-placed at x1139 while test scroll was fixed x160. Use actual target x midpoint for wheel events; production code unchanged. Preserve196 successful names and run only failed/unexecuted remainder/build. Zero-test missing MouseWheel.phase failure retained; vendor requires Move.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",

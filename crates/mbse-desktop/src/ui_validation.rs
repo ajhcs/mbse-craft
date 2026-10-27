@@ -294,7 +294,7 @@ mod tests {
                 a,
                 ctx,
                 vec![
-                    egui::Event::PointerMoved(egui::pos2(160., 650.)),
+                    egui::Event::PointerMoved(egui::pos2((r[0] + r[2]) / 2., 650.)),
                     egui::Event::MouseWheel {
                         unit: egui::MouseWheelUnit::Point,
                         phase: egui::TouchPhase::Move,
