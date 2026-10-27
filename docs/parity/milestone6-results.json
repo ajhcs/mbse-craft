@@ -72,9 +72,14 @@
       "merge_commit": "e26b38a45238d42e1dfb88e4e3127c44514025bc"
     },
     "p31b": {
-      "state": "in_progress",
+      "state": "native_checks_passed_review_pending",
       "scope": "native explicit execution controls, status/trace/staleness/cancellation acceptance",
-      "base_commit": "e26b38a45238d42e1dfb88e4e3127c44514025bc"
+      "base_commit": "e26b38a45238d42e1dfb88e4e3127c44514025bc",
+      "execution_results": "p31b/README.md",
+      "distinct_case_inventory": 632,
+      "new_distinct_cases": 4,
+      "native_execution_runs": 2,
+      "source_sha256": "e3ac3498c960e22191218c18ed2160b03d8f3416d4de04041d1a61436b836c6e"
     }
   }
 }
