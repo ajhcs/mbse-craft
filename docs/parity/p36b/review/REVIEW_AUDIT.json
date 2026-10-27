@@ -1,0 +1,24 @@
+{
+  "result": "pass_bounded_same_agent_isolated_review",
+  "candidate_commit": "853413f6c0f7ce462b79d2c20c144d27447caba3",
+  "base_commit": "39659c97d02381211854042452a9e47b461e6a15",
+  "source_sha256": "02e376be985d4ab5234cefc39bf7aaac384cb2103352325e63bbd9740bcbf317",
+  "source_files": 768,
+  "artifacts_verified": 93,
+  "workspace_cases": 761,
+  "new_gui_behaviors": 6,
+  "native_contexts": 16,
+  "native_controller_errors": [
+    3,
+    0
+  ],
+  "whole_native_prior_meaning_and_eight_maps_preserved": true,
+  "cold_program_and_report_absent": true,
+  "available_prior_checkouts_unchanged": 100,
+  "user_removed_directories_heads_retained": 18,
+  "independent_review": false,
+  "new_compiler_or_native_runs": 0,
+  "production_source_changes": 0,
+  "limits": "Three native01controller timingerrors retained; failed/unexecuted remainder passed with stablegeometry/explicitselection/frame settlement. NativeOSclipboardpayloadnotread; actualGUIoutputtestcoverspayload. No independentengineering/fullparity/platform/scale/production acceptance; all56broadspecs/integratedexitsremainopen.",
+  "checked_utc": "2026-10-27T13:57:02.051942+00:00"
+}

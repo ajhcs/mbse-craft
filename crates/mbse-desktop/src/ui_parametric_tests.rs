@@ -536,3 +536,6 @@ fn rendered_parametric_mismatched_quantity_draft_is_never_repaired_by_observatio
         ty::load(&native).unwrap()
     );
 }
+
+#[path="ui_parametric_analysis_tests.rs"]
+mod analysis_tests;
