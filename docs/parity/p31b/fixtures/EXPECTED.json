@@ -1,0 +1,155 @@
+{
+  "preparation_only": true,
+  "activity_mapping": {
+    "true_branch": 2000,
+    "else_branch": 3000,
+    "false_only": 4000,
+    "incomplete": 5000,
+    "cycle": 6000
+  },
+  "expected_cases": [
+    {
+      "activity": 2000,
+      "graph": "true_branch",
+      "budget": 4,
+      "cancel_after": null,
+      "status": "Completed",
+      "visits": [
+        [
+          2001,
+          2006
+        ],
+        [
+          2002,
+          2007
+        ],
+        [
+          2003,
+          2009
+        ],
+        [
+          2005,
+          null
+        ]
+      ]
+    },
+    {
+      "activity": 3000,
+      "graph": "else_branch",
+      "budget": 4,
+      "cancel_after": null,
+      "status": "Completed",
+      "visits": [
+        [
+          3001,
+          3006
+        ],
+        [
+          3002,
+          3008
+        ],
+        [
+          3004,
+          3010
+        ],
+        [
+          3005,
+          null
+        ]
+      ]
+    },
+    {
+      "activity": 4000,
+      "graph": "false_only",
+      "budget": 8,
+      "cancel_after": null,
+      "status": {
+        "Deadlock": {
+          "node": 4002
+        }
+      },
+      "visits": [
+        [
+          4001,
+          4004
+        ],
+        [
+          4002,
+          null
+        ]
+      ]
+    },
+    {
+      "activity": 5000,
+      "graph": "incomplete",
+      "budget": 8,
+      "cancel_after": null,
+      "status": {
+        "Deadlock": {
+          "node": 5002
+        }
+      },
+      "visits": [
+        [
+          5001,
+          5003
+        ],
+        [
+          5002,
+          null
+        ]
+      ]
+    },
+    {
+      "activity": 6000,
+      "graph": "cycle",
+      "budget": 5,
+      "cancel_after": null,
+      "status": "BudgetExhausted",
+      "visits": [
+        [
+          6001,
+          6004
+        ],
+        [
+          6002,
+          6005
+        ],
+        [
+          6003,
+          6006
+        ],
+        [
+          6002,
+          6005
+        ],
+        [
+          6003,
+          6006
+        ]
+      ]
+    },
+    {
+      "activity": 6000,
+      "graph": "cycle",
+      "budget": 4096,
+      "cancel_after": 2,
+      "status": "Cancelled",
+      "visits": [
+        [
+          6001,
+          6004
+        ],
+        [
+          6002,
+          6005
+        ]
+      ]
+    }
+  ],
+  "original_native_sha256": "d8373934338cb5e7369bcb8264958927fda3890a3283cef7cd8616ebcb389c69",
+  "original_views_sha256": "6cbde4162947be75097fa0b0688504170409cbff15f61d00f461f03060df33d3",
+  "fixture_native_sha256": "54c1f452858ce612327f81832e79758e1345bc8a2fca478983533921a6d1457b",
+  "fixture_snapshot_sha256": "a92f80c7ecf83364854cda1267706d5880536ccfbd864e20904e2885b2330850",
+  "qualification": "Static graph DTO fixtures mapped from independent P31a tables; existing accepted activity1033/payloads/raw/native/type/opaque/presentation data retained. Native Open must validate before execution acceptance."
+}
