@@ -1,0 +1,31 @@
+{
+  "result": "bounded_native_parametric_analysis_quantity_assessment_stale_persistence_cold_passed",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 768,
+  "source_sha256": "02e376be985d4ab5234cefc39bf7aaac384cb2103352325e63bbd9740bcbf317",
+  "binary_sha256": "e4e4b9a57c9ac7dc83b834a183925cb62cab046ea5fc3e901122cd8587023a3e",
+  "distinct_case_inventory": 761,
+  "new_distinct_cases": 6,
+  "native_runs": 2,
+  "native_controller_errors": [
+    3,
+    0
+  ],
+  "native_independent_contexts": 16,
+  "whole_prior_data_and_all_eight_maps_preserved": true,
+  "saved_counters": {
+    "model_revision": 252,
+    "raw_version": 516,
+    "next_id": 60082
+  },
+  "controller_error_interpretation": "Three retained controller timing errors: two scrolling selection attempts retained prior underflow scope (one duplicate underflow evaluation); one newly selected root field was absent until the next rendered geometry frame. Stable scroll waits, explicit selected-ID checks and pointer-driven frame settling completed only failed/unexecuted remainder without source changes.",
+  "limits": [
+    "Existing native engine, quantity table, literal/context sources and native Measure criteria only. No source/observation/verificationwrites/general solver.",
+    "Native01three timingerrors remainretained: two scrolled selections retainedpreviousunderflow (one accidentalduplicateevaluation), one nextframefieldnotyetpublished. Stablegeometry/selectedID/nextframesettling completeonlyfailed/unexecutedremainder. Numeric and Boolean expectations unchanged.",
+    "Nativecopygesturesreadonly; actualGUI output test verifiesJSONpayload, nativeOSclipboardnotread. Firstcapturegeometrymayprecedefrontbufferupdate;05b/remainingcaptureswaitforrenderedresult.",
+    "Two same-source normal native runs, no independentengineering/platform/scale/production/fullSysML/NoMagic/Craft acceptance.",
+    "P36closesboundedquantity/Booleananalysiscontractonlyafterisolatedreview/merge. All56broadspecs/integratedexitsremainopen.",
+    "Same-agentisolatedPRreviewstillrequired."
+  ]
+}

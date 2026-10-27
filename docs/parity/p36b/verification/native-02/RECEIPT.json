@@ -1,0 +1,121 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-27T13:51:46.638869+00:00",
+  "job_sha256": "3eaa8bbe4e92e09147de3b5a93b94119e3116a29ecd1ded2ccc0f274ecbb69c1",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p36b-02/run",
+      "started_utc": "2026-10-27T13:51:46.659854+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 1071983,
+          "start_ticks": 48345762
+        },
+        "server_pid": {
+          "pid": 1071980,
+          "start_ticks": 48345758
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/build/builderbob/mbse-craft/milestone1/native-p36b-01/run/analysis-checkpoint.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 1071983,
+        "server_pid": 1071980,
+        "window": 4194307,
+        "binary_sha256": "e4e4b9a57c9ac7dc83b834a183925cb62cab046ea5fc3e901122cd8587023a3e"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-27T13:53:48.234935+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-27T13:51:46.659602+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1350816628736,
+    "available_memory_bytes": 28581511168,
+    "conflicting_processes": [],
+    "other_project_compilers": [
+      {
+        "pid": 1061892,
+        "comm": "cargo",
+        "cwd": "/workspace/worktrees/builderbob/kernspan/b07-capability-reconciliation",
+        "output_dirs": []
+      },
+      {
+        "pid": 1071951,
+        "comm": "rustc",
+        "cwd": "/workspace/worktrees/builderbob/kernspan/b07-capability-reconciliation",
+        "output_dirs": [
+          "/workspace/repos/builderbob/kernspan/work/b07-capability-reconciliation/build/target/debug/deps"
+        ]
+      }
+    ],
+    "appservers": [
+      {
+        "pid": 992508,
+        "start_ticks": 48052886,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      },
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 526
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "whole_snapshot_all_eight_maps_exact_copy": true,
+  "program_and_report_absent_on_cold_open": true,
+  "ended_utc": "2026-10-27T13:54:18.061734+00:00"
+}
