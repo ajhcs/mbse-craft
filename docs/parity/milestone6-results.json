@@ -109,9 +109,15 @@
       "merge_commit": "8e9e923468278578640af0bd77515052d567ed80"
     },
     "p32b": {
-      "state": "in_progress",
+      "state": "core_checks_passed_review_pending",
       "scope": "independent state-machine presentation data and bound/cold integrity",
-      "base_commit": "8e9e923468278578640af0bd77515052d567ed80"
+      "base_commit": "8e9e923468278578640af0bd77515052d567ed80",
+      "execution_results": "p32b/README.md",
+      "source_sha256": "32aaba49222309724f790077c1fa6a5b1b6424cb72f63905a6d5e3275c466789",
+      "distinct_case_inventory": 653,
+      "new_distinct_cases": 10,
+      "native_state_machine_runs": 0,
+      "final_source_full_workspace_claim": false
     },
     "p32c": {
       "state": "planned",
