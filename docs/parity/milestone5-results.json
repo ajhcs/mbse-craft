@@ -89,8 +89,15 @@
       "merge_commit": "422d1b8972f2e2e07730a538d642a76b37e71524"
     },
     "p27b": {
-      "state": "in_progress",
-      "base_commit": "422d1b8972f2e2e07730a538d642a76b37e71524"
+      "state": "review_pending",
+      "base_commit": "422d1b8972f2e2e07730a538d642a76b37e71524",
+      "execution_results": "p27b/README.md",
+      "workspace_tests": 563,
+      "new_distinct_cases": 4,
+      "native_runs": 2,
+      "findings": [
+        "F01 stale review-required feedback"
+      ]
     }
   }
 }

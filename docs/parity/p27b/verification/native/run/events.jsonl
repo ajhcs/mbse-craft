@@ -1,0 +1,104 @@
+{"ready": true, "app_pid": 489292, "server_pid": 489289, "window": 4194307, "binary_sha256": "f4d8b2efeeb5653639564ca12e0320b0b477e973d36c5694cabe0c47d3345048"}
+{"op": "click", "x": 656, "y": 316, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "/workspace/repos/builderbob/mbse-craft/work/m5-p27b-native-fixes/docs/parity/p27b/fixtures/native.mbse-views.json", "app_returncode": null}
+{"op": "click", "widget": "views:Open views", "x": 794, "y": 316, "app_returncode": null}
+{"op": "wait", "pause": 0.5, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L", "Shift_L"], "app_returncode": null}
+{"op": "click", "widget": "assurance:path", "x": 249, "y": 115, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "/workspace/repos/builderbob/mbse-craft/work/m5-p27b-native-fixes/docs/parity/p27b/fixtures/coverage-register.json", "app_returncode": null}
+{"op": "click", "widget": "assurance:Open", "x": 442, "y": 115, "app_returncode": null}
+{"op": "wait", "pause": 0.5, "app_returncode": null}
+{"op": "click", "widget": "validation:section", "x": 133, "y": 362, "app_returncode": null}
+{"op": "click", "widget": "validation:name", "x": 254, "y": 463, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "P27 Reviewed", "app_returncode": null}
+{"op": "click", "widget": "validation:advanced", "x": 110, "y": 516, "app_returncode": null}
+{"op": "click", "widget": "validation:rules-json", "x": 199, "y": 573, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "{\"rules\": [], \"custom\": [{\"id\": \"root-label\", \"requirement\": 1, \"field\": \"Statement\", \"predicate\": {\"StartsWith\": {\"prefix\": \"Reviewed: \"}}, \"replacement\": \"Reviewed: Subsystem shall retain source context\"}]}", "app_returncode": null}
+{"op": "wait", "pause": 0.5, "app_returncode": null}
+{"op": "click", "widget": "validation:Save suite", "x": 95, "y": 652, "app_returncode": null}
+{"op": "wait", "pause": 0.5, "app_returncode": null}
+{"op": "capture", "name": "01-custom-save-refuses-without-review", "sha256": "3be5a058d1520aa588edfbfbe08a37578f1a0eb5f503c79f5d4a559a6965e725", "app_returncode": null}
+{"op": "click", "widget": "validation:Preview suite", "x": 114, "y": 701, "app_returncode": null}
+{"op": "wait", "pause": 0.5, "app_returncode": null}
+{"op": "capture", "name": "02-complete-declarative-suite-review", "sha256": "b7621ab1c1aebe24b9f631ef2b693e2838e4924f1fdd80e412acbf39492387e8", "app_returncode": null}
+{"op": "scroll", "x": 240, "y": 321, "steps": 4, "pause": 0.2, "app_returncode": null}
+{"op": "click", "widget": "validation:Cancel suite review", "x": 240, "y": 536, "app_returncode": null}
+{"op": "click", "widget": "validation:Preview suite", "x": 114, "y": 381, "app_returncode": null}
+{"op": "click", "widget": "validation:Admit reviewed suite", "x": 106, "y": 526, "app_returncode": null}
+{"op": "click", "widget": "validation:Run", "x": 97, "y": 117, "app_returncode": null}
+{"op": "wait", "pause": 0.5, "app_returncode": null}
+{"op": "capture", "name": "03-explicit-custom-run-one-issue", "sha256": "efb1d6e70b38de91b6f39aca4725a804c462de381e370be227be79258223f378", "app_returncode": null}
+{"op": "click", "widget": "validation:Preview fix:MBSE.CUSTOM.root-label:requirement1:Statement", "x": 315, "y": 594, "app_returncode": null}
+{"op": "wait", "pause": 0.5, "app_returncode": null}
+{"op": "capture", "name": "04-complete-root-and-copy-before-after", "sha256": "f8523ce92e0ab90b1c439c1374389ddfe04157405ed666fad7994c89c20d4e03", "app_returncode": null}
+{"op": "click", "widget": "validation:Cancel fix", "x": 220, "y": 531, "app_returncode": null}
+{"op": "click", "widget": "validation:Preview fix:MBSE.CUSTOM.root-label:requirement1:Statement", "x": 315, "y": 594, "app_returncode": null}
+{"op": "scroll", "x": 255, "y": 811, "steps": -4, "pause": 0.2, "app_returncode": null}
+{"op": "click", "widget": "assurance:select:1", "x": 255, "y": 192, "app_returncode": null}
+{"op": "scroll", "x": 446, "y": 321, "steps": 4, "pause": 0.2, "app_returncode": null}
+{"op": "scroll", "x": 446, "y": 811, "steps": 4, "pause": 0.2, "app_returncode": null}
+{"op": "click", "widget": "assurance:field:rationale", "x": 446, "y": 716, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "P27 stale preview witness", "app_returncode": null}
+{"op": "wait", "pause": 0.5, "app_returncode": null}
+{"op": "click", "widget": "validation:Apply fix", "x": 98, "y": 234, "app_returncode": null}
+{"op": "capture", "name": "05-stale-fix-apply-disabled-source-retained", "sha256": "d8d2aecb23fcd8d60b6aaab9b6c5ba866c3af799c3e16f60b211c2e373fe966e", "app_returncode": null}
+{"op": "scroll", "x": 97, "y": 747, "steps": -4, "pause": 0.2, "app_returncode": null}
+{"op": "click", "widget": "validation:Run", "x": 97, "y": 108, "app_returncode": null}
+{"op": "wait", "pause": 0.5, "app_returncode": null}
+{"op": "scroll", "x": 249, "y": 811, "steps": -4, "pause": 0.2, "app_returncode": null}
+{"op": "click", "widget": "assurance:path", "x": 249, "y": 107, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/milestone1/native-p27b-01/run/before-fix.json", "app_returncode": null}
+{"op": "click", "widget": "assurance:Save fresh", "x": 636, "y": 115, "app_returncode": null}
+{"op": "wait", "pause": 0.5, "app_returncode": null}
+{"op": "scroll", "x": 315, "y": 321, "steps": 4, "pause": 0.2, "app_returncode": null}
+{"op": "click", "widget": "validation:Preview fix:MBSE.CUSTOM.root-label:requirement1:Statement", "x": 315, "y": 775, "app_returncode": null}
+{"op": "click", "widget": "validation:Apply fix", "x": 98, "y": 531, "app_returncode": null}
+{"op": "wait", "pause": 0.5, "app_returncode": null}
+{"op": "capture", "name": "06-explicit-fix-applied-draft-retained", "sha256": "02a26f0b5992ca5e8dc64870d0b0db0f8e29a2640cc652b2ae66d00af53f8007", "app_returncode": null}
+{"op": "scroll", "x": 249, "y": 803, "steps": -4, "pause": 0.2, "app_returncode": null}
+{"op": "click", "widget": "assurance:path", "x": 249, "y": 105, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/milestone1/native-p27b-01/run/after-fix.json", "app_returncode": null}
+{"op": "click", "widget": "assurance:Save fresh", "x": 636, "y": 115, "app_returncode": null}
+{"op": "wait", "pause": 0.5, "app_returncode": null}
+{"op": "click", "widget": "assurance:Undo", "x": 220, "y": 89, "app_returncode": null}
+{"op": "click", "widget": "assurance:path", "x": 249, "y": 115, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/milestone1/native-p27b-01/run/undo-fix.json", "app_returncode": null}
+{"op": "click", "widget": "assurance:Save fresh", "x": 636, "y": 115, "app_returncode": null}
+{"op": "wait", "pause": 0.5, "app_returncode": null}
+{"op": "capture", "name": "07-single-undo-restores-entire-register", "sha256": "f7a4d27711b3eff3465474ffb26094b8e3ed04221a18dfab022556fa619b15e3", "app_returncode": null}
+{"op": "click", "widget": "assurance:Redo", "x": 342, "y": 89, "app_returncode": null}
+{"op": "click", "widget": "assurance:path", "x": 249, "y": 115, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/milestone1/native-p27b-01/run/redo-fix.json", "app_returncode": null}
+{"op": "click", "widget": "assurance:Save fresh", "x": 636, "y": 115, "app_returncode": null}
+{"op": "wait", "pause": 0.5, "app_returncode": null}
+{"op": "click", "widget": "validation:Run", "x": 97, "y": 437, "app_returncode": null}
+{"op": "wait", "pause": 0.5, "app_returncode": null}
+{"op": "click", "widget": "validation:rules-json", "x": 199, "y": 595, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "{\"rules\":[],\"custom\":[{\"id\":\"bad\",\"requirement\":1,\"field\":\"Statement\",\"predicate\":{\"ExecuteShell\":{\"command\":\"never executed\"}}}]}", "app_returncode": null}
+{"op": "click", "widget": "validation:Preview suite", "x": 114, "y": 683, "app_returncode": null}
+{"op": "wait", "pause": 0.5, "app_returncode": null}
+{"op": "capture", "name": "08-unsupported-code-refuses-retained-data", "sha256": "d93dc40b7df5bb0207ac4225d6e7957d7030ac2b7e1c0546318cc85494797963", "app_returncode": null}
+{"op": "click", "widget": "assurance:path", "x": 249, "y": 115, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/milestone1/native-p27b-01/run/final-reviewed-register.json", "app_returncode": null}
+{"op": "click", "widget": "assurance:Save fresh", "x": 636, "y": 115, "app_returncode": null}
+{"op": "wait", "pause": 0.5, "app_returncode": null}
+{"op": "click", "widget": "assurance:Close", "x": 486, "y": 89, "app_returncode": null}
+{"op": "click", "x": 656, "y": 316, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "key", "key": "BackSpace", "app_returncode": null}
+{"op": "click", "widget": "save-path", "x": 1164, "y": 100, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/milestone1/native-p27b-01/run/reviewed-fix.kernspan", "app_returncode": null}
+{"op": "click", "widget": "action:Save", "x": 638, "y": 38, "app_returncode": null}
+{"op": "close", "pause": 1, "app_returncode": 0}
