@@ -89,6 +89,7 @@ fn legacy_native_requirement_suite_does_not_require_type_extension_migration() {
     b.set_validation_suite(
         "Requirements only".into(),
         Suite {
+            custom: vec![],
             rules: BTreeSet::from([RuleFamily::RequirementDrafts]),
         },
     )
@@ -125,6 +126,7 @@ fn requirement_only_suite_preserves_opaque_optional_type_payload_without_parsing
     b.set_validation_suite(
         "Requirements only".into(),
         Suite {
+            custom: vec![],
             rules: BTreeSet::from([RuleFamily::RequirementDrafts]),
         },
     )
@@ -239,6 +241,7 @@ fn named_suite_scope_is_explicit_and_does_not_run_other_rule_families() {
     b.set_validation_suite(
         "Structure only".into(),
         Suite {
+            custom: vec![],
             rules: BTreeSet::from([RuleFamily::PartContainment]),
         },
     )
@@ -359,6 +362,7 @@ fn unsupported_suite_fields_enums_empty_reserved_and_limits_refuse_without_overw
         (
             "Empty".into(),
             Suite {
+            custom: vec![],
                 rules: BTreeSet::new(),
             },
         ),
@@ -413,6 +417,7 @@ fn issue_cap_reports_unreported_count_without_changing_accepted_records() {
     b.set_validation_suite(
         "Requirements only".into(),
         Suite {
+            custom: vec![],
             rules: BTreeSet::from([RuleFamily::RequirementDrafts]),
         },
     )

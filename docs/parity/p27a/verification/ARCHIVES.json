@@ -1,0 +1,23 @@
+[
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m5-p27-reviewed-rules/work/p27a-job-01.json",
+    "path": "compiler/RECEIPT.json",
+    "bytes": 62748,
+    "sha256": "b7672731d38dcbbab29b3d562d21028d526e55e1f1b3632ce3c4f4d330fe6937",
+    "stored_sha256": "b7672731d38dcbbab29b3d562d21028d526e55e1f1b3632ce3c4f4d330fe6937"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m5-p27a-reviewed-rules-01-20261027T024030Z/00.log",
+    "path": "compiler/00.log.gz",
+    "bytes": 68226,
+    "sha256": "d39fd8e4263033ecda98ca2b00701c79fd9bd62d4ddcff10b6d8ac8cef21efcc",
+    "stored_sha256": "8a6e38c1dad02cfca7653af163ba8610a5a7d3c50c866c0ae85699f76d8d927e"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m5-p27a-reviewed-rules-01-20261027T024030Z/01.log",
+    "path": "compiler/01.log.gz",
+    "bytes": 3819,
+    "sha256": "b394b91b772ae8732241834c6ee00cd09426f82ea5ec3506742bbdec0296c7bb",
+    "stored_sha256": "4087dca2b9a13098ca3cf586b57c755ebbd76870a7411b2049a850b03e152ebf"
+  }
+]
