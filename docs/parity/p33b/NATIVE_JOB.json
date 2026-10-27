@@ -11,28 +11,29 @@
     "/workspace/worktrees/builderbob/mbse-craft",
     "/workspace/build/builderbob/mbse-craft/milestone1"
   ],
-  "id": "p33b-native-finite-events-conflict-cancel-stale-cold-01",
-  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p33b-native-state-execution-01-20261027T092749Z/mbse-desktop",
-  "binary_sha256": "bd598fc68a2a9e8b5b74dcad6fc646a1e85662d8be114dffc8664711d1222f10",
-  "source_sha256": "14bcb0e6e5bde0b5d0e16e0e55ee98c94f1adec3b6640e5928ecea1356190163",
+  "id": "p33b-native-cold-fresh-runtime-machine-scope-and-readable-trace-02",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p33b-native-trace-text-and-machine-scope-02-20261027T094145Z/mbse-desktop",
+  "binary_sha256": "fd70f9da8e51c9c81fc1b9dd62464ccecd9661b33d27b6e476c40275f74f4b52",
+  "source_sha256": "2661d8cf91de11407310610fadce058a19320fbc612259a9bcc0fa2aefaebb9f",
   "inputs": {
     "/workspace/repos/builderbob/mbse-craft/work/m6-p33b-native-state-execution/docs/parity/p33b/fixtures/state-fixture.kernspan": "9e89a4cc401e8ebda4769dbcc5a8e1ab6b5ddcb1a21beb2f5361c6e5561b6dd8",
     "/workspace/repos/builderbob/mbse-craft/work/m6-p33b-native-state-execution/docs/parity/p33b/fixtures/state-fixture.mbse-views.json": "ef88d5e4310f2f15aea7249f53c857f929ee8d9729736a736238527e70efc71d",
     "/workspace/repos/builderbob/mbse-craft/work/m6-p33b-native-state-execution/docs/parity/p33b/fixtures/EXPECTED.json": "9b055e63e2a95b6ab14967099b997638ca431ba3a2c0186a6ece2c2a9737bebb",
     "/workspace/repos/builderbob/mbse-craft/work/m6-p33b-native-state-execution/docs/parity/p33a/fixtures/state-traces.json": "59e4eac4b3bd6c36920d566113e5087a33b79dc7290cda0db8440e7814dbaf64",
-    "/workspace/repos/builderbob/mbse-craft/work/m6-p33b-native-state-execution/docs/parity/p32c/verification/native-03/run/state-machine-final-qualified-copy.kernspan": "b1914935cc684e67ff8281b0e1de8b644e85f889e27b85e142a768c43807361e"
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p33b-native-state-execution/docs/parity/p32c/verification/native-03/run/state-machine-final-qualified-copy.kernspan": "b1914935cc684e67ff8281b0e1de8b644e85f889e27b85e142a768c43807361e",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p33b-01/run/state-execution-checkpoint.kernspan": "332c3afea8989106c197759079f4da36e73a16bf92acb1ad365b08109d4f8d13",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p33b-01/run/state-execution-checkpoint.mbse-views.json": "a76821e4653339591e0dec0db97a251d52d3c94cb230fa41a7aa063ebb7a7138"
   },
-  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p33b-01",
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p33b-02",
   "argv_extra": [
     "--open",
-    "/workspace/repos/builderbob/mbse-craft/work/m6-p33b-native-state-execution/docs/parity/p33b/fixtures/state-fixture.kernspan",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p33b-01/run/state-execution-checkpoint.kernspan",
     "--select",
     "1003"
   ],
   "scenarios": [
-    "Explicit native/views Open validates static predeclared execution DTOs. Actual shared CtrlAltS and widgets enter exact owned event IDs/budget. Native Step/Run compare ten true/Else/ignored/quiescent/conflict/completion-priority/cycle/cancel/last-budget traces to fixed independent tables. Full Snapshot/seven maps retained.",
-    "Prepared editor and app close refuse; actual automatic bounded cycle Cancel leaves exact static-trace prefix and no later steps. Bad0budget/noncanonical/foreignEvent/refusedPrepare retain prior result/source. Paused machine8000 raw-name edit stales active trace preserving accepted machine and prior steps.",
-    "Owned Save retains original native/types/activities/state7000/12oldforms(fourinvalid)/opaque and seven maps; only machine8000raw proposal/rawversion intentional. Fresh preflight cold Open has no live execution; actual newPrepare starts empty/Stepfirst exact route/Cancel then wholeSnapshot/sevenmap savecopy exact. Normal owned app/display/PIDstarttick/authentication cleanup and protected inputs unchanged."
+    "Continue unexecuted cold remainder from native01 owned checkpoint. Explicit native/views Open retains exact complete Snapshot/allsevenmaps and rawMachine8000name; no old runtime/automatic state restored. Actual CtrlAltS and select8000/Prepare yields fresh empty/current runtime; actual Step first fixed transition has readable State #8001 to State #8002 text.",
+    "Affected cross-machine scope fix: while paused prepared execution try selecting9000; explicit refusal retains current8000/report/raw/source. Actual Cancel permits switching9000 and keeps previous report tied8000, no rebinding. Save-copy entireSnapshot/sevenmaps exact. Normal owned cleanup and protected inputs unchanged. Do not replay completed original ten trace/cancel/refusal/staleness checks."
   ],
-  "claim_policy": "677 workspace cases/build on exact751-file source. Fixture materialization is preparation, not native authoring proof; P32c actual authoring remains distinct. Same-agent bounded Linux synthetic finite state execution only, no independent engineering/platform/scale/production/full parity/hierarchy/orthogonal/payload/actioncode/arbitraryguards/verification claim. All56broadspecs/integratedexits open."
+  "claim_policy": "Original677fullworkspace/build and native01alltenfixedtraces retained; final5affectedGUIcases/build (one new scope case) and cold/fix native remainder on exact751-file source.678distinctinventory, no summed final-source fullsuite claim. Same-agent bounded Linux only; broad specs/exits/fullparity/independentengineering/platform/scale/production remain open."
 }

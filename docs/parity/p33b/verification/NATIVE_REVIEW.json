@@ -1,0 +1,37 @@
+{
+  "result": "bounded_native_finite_state_execution_and_cold_passed",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 751,
+  "source_sha256": "2661d8cf91de11407310610fadce058a19320fbc612259a9bcc0fa2aefaebb9f",
+  "binary_sha256": "fd70f9da8e51c9c81fc1b9dd62464ccecd9661b33d27b6e476c40275f74f4b52",
+  "distinct_case_inventory": 678,
+  "new_cases": 6,
+  "normal_native_runs": 2,
+  "native_controller_errors": 5,
+  "automatic_cancelled_steps": 3,
+  "visual_scope_findings_fixed": [
+    "Missing Unicode arrow in new trace replaced by explicit State #source to State #target text.",
+    "Paused live trace stayed frozen but browser could select another machine. Cross-machine selection now refuses until Cancel/termination; same-machine raw editing/staleness remains."
+  ],
+  "controller_errors": [
+    "Incorrect audit key last_workspace_command; actual command_catalog.last proves shared shortcut.",
+    "Scrolled root click hit collapsed Browse header; attempted wrong-owned events correctly refused and prior result preserved.",
+    "Next root lookup found collapsed Browse, no source write.",
+    "Run click outside actual window scroll viewport left trace Ready; original pending conflict completed once with visible controls.",
+    "Another case was attempted before prior Ready trace completed; inputs/Prepare remained guarded, no replacement or source mutation. Pending case executed only after actual prior termination."
+  ],
+  "observations": [
+    "All10fixed event/transition tables match native Step/Run/Cancel, including true/Else, ignored event, quiescence, both exact conflicts, completion priority,5stepcycle, lastbudgetFinal.",
+    "Prepared editor/app Close refused; actual automatic4096cycle Cancel stopped at3steps, a fixed-cycle prefix, with no later steps or model writes.",
+    "Bad0budget/noncanonical event013005/StateID13001 refuse while prior Cancelled report/source remain. HistoricalCopy/Clear exercised; no external clipboard consumer.",
+    "Paused rawMachine8000name stales after one exact step; accepted machines unchanged. Checkpoint complete Snapshot equals fixture except explicit machine:8000raw and raw_version261to262. model123/next14000 and alloriginalraw/type/activity/state7000/opaque/sevenmaps exact.",
+    "Final binary cold Open restores complete model/raw/views and no old live/automatic state. FreshPrepare new runtime starts empty/current, Step route8007 then actual other-machine refusal retains source/selection/report, Cancel permits selection without rebinding.",
+    "Cold save-copy wholeSnapshot/allsevenmaps exact; both owned app/display runs normal exit0/PIDstarttickabsence/authenticationcleanup/protectedinputhashes."
+  ],
+  "limits": [
+    "Same-agent bounded Linux synthetic finite execution. Native fixture materialization is preparation; actual authoring remains separately establishedP32c.",
+    "No dynamic injection/payload/hierarchy/orthogonal/actioncode/arbitrary expressions/concurrency/external I/O/solver/verification/full parity/independentengineering/platform/scale/production acceptance.",
+    "All56broadspecs/integratedexits remain unaccepted."
+  ]
+}
