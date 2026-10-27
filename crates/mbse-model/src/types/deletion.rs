@@ -234,7 +234,7 @@ fn raw_native_field_known(field: &str) -> bool {
         })
 }
 /// This is the admitted document's current reference schemas, not a standards verdict.
-pub(crate) fn unknown_impact(e: &Editor) -> UnknownImpact {
+pub fn unknown_impact(e: &Editor) -> UnknownImpact {
     let mut unknown = UnknownImpact::default();
     for record in e.snapshot.records.values() {
         for (key, value) in &record.fields {

@@ -1,0 +1,10 @@
+{
+  "source": "P24 final accepted native pair and register",
+  "exact_copies": [
+    "native.kernspan",
+    "native.mbse-views.json",
+    "requirement-traces.json"
+  ],
+  "derivative": "uninterpreted-register.json",
+  "only_change": "Added register.unknown future.trace/1 uninterpreted metadata for conservative query disclosure; native model and accepted traces unchanged"
+}

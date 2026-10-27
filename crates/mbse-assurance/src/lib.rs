@@ -12,6 +12,7 @@ use std::{
 };
 mod hierarchy;
 pub mod traces;
+pub mod coverage;
 pub use traces::{TraceKind, TraceEndpoint, RequirementTrace, TestCase};
 pub use hierarchy::HierarchyRow;
 
@@ -143,6 +144,8 @@ pub struct Evidence {
     pub requirement: RequirementId,
     pub requirement_revision: u64,
     pub requirement_hash: String,
+    #[serde(default,skip_serializing_if="Option::is_none")]
+    pub dependency_hash:Option<String>,
     pub context: EvidenceContext,
     #[serde(default)]
     pub context_metadata: Option<Value>,
@@ -622,6 +625,7 @@ impl Board {
             requirement,
             requirement_revision: req.revision,
             requirement_hash: requirement_hash(req)?,
+            dependency_hash:coverage::dependency_hash(&self.register,requirement)?,
             context,
             context_metadata,
             evaluator_limits: selected_calculation.map(|_| calc::Limits::default()),
@@ -708,6 +712,8 @@ impl Board {
         if req.revision != e.requirement_revision || requirement_hash(req)? != e.requirement_hash {
             reasons.push("requirement changed".into());
         }
+        let dependency=coverage::dependency_hash(&self.register,e.requirement)?;
+        if e.dependency_hash!=dependency {reasons.push(if e.dependency_hash.is_none(){"requirement dependency context was not captured"}else{"requirement dependency context changed"}.into());}
         if &e.context != current {
             reasons.push("model/raw/input/tool/config stamp changed".into());
         }
@@ -966,7 +972,9 @@ impl Serialize for RegisterWithEvidence<'_> {
             .revision
             .checked_add(1)
             .ok_or_else(|| <S::Error as serde::ser::Error>::custom("ASSURANCE_REVISION_LIMIT"))?;
-        let mut state = serializer.serialize_struct("Register", 9)?;
+        let mut state = serializer.serialize_struct("Register", 9+usize::from(!r.traces.is_empty())+usize::from(!r.test_cases.is_empty()))?;
+        if !r.traces.is_empty(){state.serialize_field("traces",&r.traces)?;}
+        if !r.test_cases.is_empty(){state.serialize_field("test_cases",&r.test_cases)?;}
         state.serialize_field("requirements", &r.requirements)?;
         state.serialize_field("evidence", &Entries(&r.evidence, self.evidence))?;
         state.serialize_field("decisions", &r.decisions)?;
@@ -1100,6 +1108,7 @@ fn validate_register(s: &Register) -> Result<(), String> {
             || id.0 == 0
             || !used.insert(id.0)
             || !s.requirements.contains_key(&e.requirement)
+            || e.dependency_hash.as_ref().is_some_and(|h|h.len()!=64||!h.bytes().all(|b|b.is_ascii_hexdigit()&&!b.is_ascii_uppercase()))
             || bytes_hash(&e.artifact_bytes) != e.artifact_sha256
             || e.context_metadata
                 .as_ref()
