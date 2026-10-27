@@ -1,0 +1,16 @@
+{
+  "result": "bounded_sequence_presentation_data_regression_and_build_passed",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 755,
+  "source_sha256": "59e166c475462518c59f2a0a0a9f00582ce843df2debb75dc1271a84d34288da",
+  "binary_sha256": "c83aaaa9e4665ab4cea97a1e8dcd7590d84785c505446c6df5fe5917749fbc77",
+  "distinct_case_inventory": 702,
+  "new_cases": 12,
+  "native_scenario_runs": 0,
+  "limits": [
+    "P34c actual native authoring/rendering/selection/drag/history/save/cold acceptance remains required for parent closure.",
+    "Documentary ordered sequence projections only; no execution/causality/timing/guard truth/inferred instances/operation signatures/concurrency/verification/fullparity/independentengineering/platform/scale/production.",
+    "All56broadspecs/integratedexits remain open."
+  ]
+}

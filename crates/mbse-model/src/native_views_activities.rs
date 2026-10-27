@@ -170,7 +170,7 @@ pub(super) fn apply(doc: &mut Document, snapshot: &Snapshot, action: Layout) -> 
             let elements = elements(activity);
             if doc.views.len() >= MAX_VIEWS
                 || elements.len() > MAX_PER_VIEW
-                || doc.occurrences.len() + doc.typed_ports.len() + super::state_machines::count(doc) + count(doc) + elements.len()
+                || doc.occurrences.len() + doc.typed_ports.len() + super::state_machines::count(doc) + super::scenarios::count(doc) + count(doc) + elements.len()
                     > MAX_OCCURRENCES
             {
                 return Err("VIEWS_ACTIVITY_CAPACITY".into());
@@ -241,7 +241,7 @@ pub(super) fn apply(doc: &mut Document, snapshot: &Snapshot, action: Layout) -> 
                 .ok_or("VIEWS_ACTIVITY_ELEMENT_MISSING_OR_FOREIGN")?;
             let native = doc.occurrences.values().filter(|o| o.view == view).count()
                 + doc.typed_ports.values().filter(|o| o.view == view).count();
-            if doc.occurrences.len() + doc.typed_ports.len() + super::state_machines::count(doc) + count(doc) >= MAX_OCCURRENCES
+            if doc.occurrences.len() + doc.typed_ports.len() + super::state_machines::count(doc) + super::scenarios::count(doc) + count(doc) >= MAX_OCCURRENCES
                 || d.occurrences.len() + native >= MAX_PER_VIEW
             {
                 return Err("VIEWS_ACTIVITY_CAPACITY".into());

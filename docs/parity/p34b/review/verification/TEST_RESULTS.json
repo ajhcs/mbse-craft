@@ -1,0 +1,25 @@
+{
+  "compiler_slice_counts": [
+    [
+      1,
+      1,
+      0
+    ]
+  ],
+  "prior_case_names_reconciled": 702,
+  "new_distinct_cases": [
+    "sequence_individual_lifeline_removal_and_observed_inverse_preserve_remaining_order_and_all_other_geometry"
+  ],
+  "distinct_case_inventory": 703,
+  "qualification": "Isolated review adds meaningful individual lifeline removal/remaining rows/geometry/inverse/raw-highwater case and strengthens captured recovery to all8maps. Production unchanged; only new1+affected1/build run. Retain original702source-qualified evidence, no summed final-source fullsuite/native UI claim.",
+  "tests": [
+    {
+      "slice": 3,
+      "test": "sequence_individual_lifeline_removal_and_observed_inverse_preserve_remaining_order_and_all_other_geometry"
+    },
+    {
+      "slice": 3,
+      "test": "sequence_actual_bound_native_cold_and_captured_recovery_preserve_all_eight_maps_and_entire_snapshot"
+    }
+  ]
+}
