@@ -250,7 +250,7 @@ impl Board {
                 .ok_or("VALIDATION_SUITE_MISSING")?
         };
         let mut issues = vec![];
-        let mut issue_total = 0;
+        let mut issue_total: usize = 0;
         let mut limitations=vec!["Local working-draft checks only; no full native/SysML/NoMagic, engineering or verification verdict.".into(),"Ports/interfaces/connectors/profile/value/refactor/deletion drafts and arbitrary external schemas are outside these four rule families.".into()];
         let mut limitation_total = limitations.len();
         let mut limit = |text: String| {
@@ -270,8 +270,19 @@ impl Board {
                 });
             }
         };
-        let store = types::load(&e.snapshot)?;
-        if suite.rules.contains(&RuleFamily::PropertyDraft) {
+        let typed_available = e.snapshot.extensions.is_some();
+        let store = if typed_available {
+            types::load(&e.snapshot)?
+        } else {
+            types::Store::default()
+        };
+        if !typed_available
+            && (suite.rules.contains(&RuleFamily::PropertyDraft)
+                || suite.rules.contains(&RuleFamily::PartContainment))
+        {
+            limit("Type working-draft scope unavailable: native extensions are not migrated; other selected rule families remain available.".into());
+        }
+        if typed_available && suite.rules.contains(&RuleFamily::PropertyDraft) {
             for (id, form) in types::forms(&e.snapshot)? {
                 if let Err(error) = types::preview(&e.snapshot, id) {
                     let classification = if (error.starts_with("TYPE_REFERENCE")
@@ -314,7 +325,7 @@ impl Board {
                 }
             }
         }
-        if suite.rules.contains(&RuleFamily::PartContainment) {
+        if typed_available && suite.rules.contains(&RuleFamily::PartContainment) {
             if let Some(form) = types::usage_form(&e.snapshot)? {
                 if let Err(error) = types::preview_usage(&e.snapshot) {
                     let classification = match error.as_str() {

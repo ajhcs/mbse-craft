@@ -74,6 +74,44 @@ fn area() -> tempfile::TempDir {
     tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap()
 }
 #[test]
+fn legacy_native_requirement_suite_does_not_require_type_extension_migration() {
+    let (mut b, _) = setup();
+    let e = Editor::new(
+        mbse_model::stage1::Snapshot::new(mbse_model::stage1::DocumentId("p26a:legacy".into())),
+        "p26a:legacy-runtime".into(),
+    )
+    .unwrap();
+    assert!(e.snapshot.extensions.is_none());
+    assert!(
+        !b.edit_field(RequirementId(1), "statement", " ".into())
+            .unwrap()
+    );
+    b.set_validation_suite(
+        "Requirements only".into(),
+        Suite {
+            rules: BTreeSet::from([RuleFamily::RequirementDrafts]),
+        },
+    )
+    .unwrap();
+    let before = b.register.clone();
+    let native = e.snapshot.clone();
+    let report = b.run_validation("Requirements only", &e).unwrap();
+    assert_eq!(report.issue_total(), 1);
+    assert_eq!(
+        report.issues()[0].id,
+        "MBSE.REQUIREMENT.DRAFT:requirement1:Statement"
+    );
+    let builtin = b.run_validation(BUILTIN_NAME, &e).unwrap();
+    assert!(
+        builtin
+            .limitations()
+            .iter()
+            .any(|l| l.contains("extensions are not migrated"))
+    );
+    assert_eq!(b.register, before);
+    assert_eq!(e.snapshot, native);
+}
+#[test]
 fn seeded_type_reference_containment_and_unit_faults_have_stable_exact_rule_targets() {
     let (mut b, mut e) = setup();
     faults(&mut b, &mut e);
