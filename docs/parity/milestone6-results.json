@@ -125,7 +125,7 @@
       "merge_commit": "37420112f144d26b9d0f80a65b5c6e25123f2ba5"
     },
     "p32c": {
-      "state": "draft_review",
+      "state": "reviewed_ready_to_merge",
       "scope": "native authoring/diagnostics/layout/history/save/cold acceptance",
       "base_commit": "37420112f144d26b9d0f80a65b5c6e25123f2ba5",
       "execution_results": "p32c/README.md",
@@ -133,7 +133,9 @@
       "distinct_case_inventory": 664,
       "new_distinct_cases": 9,
       "native_state_machine_runs": 4,
-      "final_source_full_workspace_claim": false
+      "final_source_full_workspace_claim": false,
+      "pr_number": 46,
+      "review": "p32c/REVIEW.md"
     }
   }
 }
