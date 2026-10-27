@@ -731,29 +731,38 @@
       "acceptance": [
         "Filters change presentation only; stakeholder concern and viewpoint scope remain inspectable; switching preserves identity and independent layouts."
       ],
-      "state": "in_progress",
+      "state": "reviewed_ready_to_merge",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "children": [
         {
           "id": "P29a",
           "title": "Versioned viewpoint metadata and presentation filter core",
-          "state": "review_ready",
+          "state": "merged",
           "branch": "codex/m5-p29-viewpoints",
           "contract": "docs/parity/p29a/CONTRACT.md",
           "pr_number": 37,
           "pr_url": "https://github.com/ajhcs/mbse-craft/pull/37",
           "execution_results": "docs/parity/p29a/README.md",
           "review": "docs/parity/p29a/REVIEW.md",
-          "review_preservation": "docs/parity/p29a/REVIEW_PRESERVATION.json"
+          "review_preservation": "docs/parity/p29a/REVIEW_PRESERVATION.json",
+          "merge_commit": "8a893d13614429e6d0c904bf5c58c6c210ef5bf8",
+          "reviewed_head": "66e95e84b117d38a074761d357d8ca18a16cfec0"
         },
         {
           "id": "P29b",
           "title": "Native viewpoint authoring, filtering and scoped switching",
-          "state": "planned",
+          "state": "reviewed_ready_to_merge",
           "depends_on": [
             "P29a"
-          ]
+          ],
+          "branch": "codex/m5-p29b-native-viewpoints",
+          "contract": "docs/parity/p29b/CONTRACT.md",
+          "execution_results": "docs/parity/p29b/README.md",
+          "pr_number": 38,
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/38",
+          "review": "docs/parity/p29b/REVIEW.md",
+          "review_preservation": "docs/parity/p29b/REVIEW_PRESERVATION.json"
         }
       ]
     },

@@ -11,6 +11,8 @@ mod file_operations;
 mod typed_properties;
 #[path="ui_matrix.rs"]
 mod relation_matrix;
+#[path="ui_viewpoints.rs"]
+mod viewpoint_editor;
 #[path="ui_validation.rs"]
 mod validation_navigation;
 #[path="ui_ports.rs"]
@@ -88,6 +90,7 @@ pub struct Workspace {
     perspective_name: String,
     files:file_operations::FileOps,
     matrix:relation_matrix::MatrixPanel,
+    viewpoints:viewpoint_editor::ViewpointPanel,
     type_panel:typed_properties::TypePanel,
     port_panel:port_editor::PortPanel,
     connector_panel:connector_editor::ConnectorPanel,
@@ -171,7 +174,7 @@ impl Workspace {
         let periodic_recovery = crate::periodic_recovery::PeriodicRecovery::new(Instant::now(), &session, &views);
         let mut docking=crate::docking::WorkspaceDock::default();
         match crate::perspectives::decode(&preferences.value.workspace_layout){Ok(layout)=>docking.layout=layout,Err(e)=>{preferences.load_warning=true;preferences.report.push_str(&format!("; {e}"));docking.note=e}}
-        let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,shortcuts,docking,perspective_name:String::new(),files:Default::default(),matrix:Default::default(),type_panel:Default::default(),port_panel:Default::default(),connector_panel:Default::default(),value_panel:Default::default(),refactor_panel:Default::default(),deletion_panel:Default::default(),tag_panel:Default::default(),validation_focus:Default::default(),docking_focus:None,periodic_recovery, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
+        let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,shortcuts,docking,perspective_name:String::new(),files:Default::default(),matrix:Default::default(),viewpoints:Default::default(),type_panel:Default::default(),port_panel:Default::default(),connector_panel:Default::default(),value_panel:Default::default(),refactor_panel:Default::default(),deletion_panel:Default::default(),tag_panel:Default::default(),validation_focus:Default::default(),docking_focus:None,periodic_recovery, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
             creation: None, relation: None, popout: None, usages: None, impact_open:false,impact_target:None,impact_report:None,impact_note:String::new(), search_open:false, search_query:Default::default(), search_report:None, search_note:String::new(), browser_revealed:None,browser_open_groups:BTreeMap::new(), pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new(), menu_scope:None, last_workspace_command:None };
         app.refresh_recoveries();
         app
@@ -1390,7 +1393,7 @@ impl Workspace {
             ui.horizontal_wrapped(|ui| {
                 for id in [crate::command_catalog::Id::LayoutUndo,crate::command_catalog::Id::LayoutRedo,crate::command_catalog::Id::Presentation] {self.workspace_button(ui,id,&scope);}
             });
-            if let Some(record) = self.views.toolbar(ui, &self.session) { self.select(record); }
+            if let Some(record) = ui.add_enabled_ui(!self.viewpoints.open,|ui| self.views.toolbar(ui, &self.session)).inner { self.select(record); }
             self.port_view_controls(ui);
             let records: Vec<_> = self.session.editor.snapshot.records.values().cloned().collect();
             let graph = match stage1_graph::derive_graph(&self.session.editor.snapshot) {
@@ -1403,10 +1406,14 @@ impl Workspace {
             let Some(view) = self.views.views.document().views.get(&self.views.active) else {
                 ui.colored_label(ERROR, "No valid view available; model retained."); return;
             };
+            self.viewpoint_summary(ui,view);
+            let projection=mbse_model::native_views::viewpoints::project(view,&self.session.editor.snapshot);
             let camera = view.camera.clone();
-            let occurrences: Vec<_> = self.views.views.document().occurrences.values().filter(|o| o.view == self.views.active && o.visible && o.presence.active()).cloned().collect();
+            let occurrences: Vec<_> = self.views.views.document().occurrences.values().filter(|o| o.view == self.views.active && o.visible && o.presence.active() && projection.allows(o.record)).cloned().collect();
             let port_occurrences:Vec<_>=self.views.views.document().typed_ports.values().filter(|o|o.view==self.views.active&&o.visible&&o.presence.active()).cloned().collect();
             let attached: Vec<_> = self.views.views.document().edges.values().filter(|e| e.view == self.views.active && e.presence.active()).cloned().collect();
+            self.viewpoint_record_render(self.views.active,occurrences.iter().map(|o|(o.id,o.record)).collect());
+            ui.label(format!("Native cards shown: {}. The complete model ledger retains all records.",occurrences.len()));
             let scale = camera.zoom as f32;
             let canvas_height = (ui.available_height() * 0.60).max(260.);
             egui::ScrollArea::both().id_salt(("native-view", self.views.active.get())).max_height(canvas_height).auto_shrink([false, false]).show(ui, |ui| {
@@ -1896,6 +1903,7 @@ impl eframe::App for Workspace {
         self.preferences.poll();
         self.poll_file_ops();
         self.validation_frame_start();
+        self.viewpoint_frame_start();
         self.finish_writes(ctx);
         self.views.poll(&self.session);
         if let Some((action, kind)) = self.pending_continue.clone() {
@@ -1919,6 +1927,7 @@ impl eframe::App for Workspace {
         let requested = self.close_intent || ctx.input(|i| i.viewport().close_requested());
         let app_close = self.close_intent;
         self.close_intent = false;
+        if requested && self.viewpoint_close_blocked(){ctx.send_viewport_cmd(egui::ViewportCommand::CancelClose);ctx.request_repaint();return;}
         if requested && (self.files.pending()||self.files.open){
             ctx.send_viewport_cmd(egui::ViewportCommand::CancelClose);
             self.result(Err("Finish or cancel the file operation before closing; current work retained.".into()));
@@ -2002,6 +2011,7 @@ impl eframe::App for Workspace {
         self.docking_dialog(&ctx);
         self.file_operations_ui(&ctx);
         self.matrix_dialog(&ctx);
+        self.viewpoint_dialog(&ctx);
         self.type_dialog(&ctx);
         self.port_dialog(&ctx);
         self.connector_dialog(&ctx);
@@ -2028,6 +2038,7 @@ impl eframe::App for Workspace {
             fields.insert("file_operations".into(),self.file_audit());
             fields.insert("native_extensions".into(),serde_json::json!(self.session.editor.snapshot.extensions));
             fields.insert("relation_matrix".into(),self.matrix_audit());
+            fields.insert("viewpoint".into(),self.viewpoint_audit());
             fields.insert("typed_properties".into(),self.typed_audit());
             fields.insert("ports".into(),self.ports_audit());
             fields.insert("port_presentation".into(),self.port_presentation_audit());
