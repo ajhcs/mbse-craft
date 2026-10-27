@@ -658,29 +658,38 @@
       "acceptance": [
         "Unsupported declarative rules refuse; fixes preview changes, reject stale state and Undo atomically; opening projects executes no embedded code."
       ],
-      "state": "in_progress",
+      "state": "review_ready",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "children": [
         {
           "id": "P27a",
           "title": "Reviewed declarative requirement rules and atomic fix previews",
-          "state": "review_ready",
+          "state": "merged",
           "branch": "codex/m5-p27-reviewed-rules",
           "contract": "docs/parity/p27a/CONTRACT.md",
           "execution_results": "docs/parity/p27a/README.md",
           "pr_number": 34,
           "pr_url": "https://github.com/ajhcs/mbse-craft/pull/34",
           "review": "docs/parity/p27a/REVIEW.md",
-          "review_preservation": "docs/parity/p27a/REVIEW_PRESERVATION.json"
+          "review_preservation": "docs/parity/p27a/REVIEW_PRESERVATION.json",
+          "merge_commit": "422d1b8972f2e2e07730a538d642a76b37e71524",
+          "reviewed_head": "51aa253c72a613b43568dc3a77244df0f10e9ebd"
         },
         {
           "id": "P27b",
           "title": "Native rule review and explicit quick-fix preview Apply Undo",
-          "state": "planned",
+          "state": "review_ready",
           "depends_on": [
             "P27a"
-          ]
+          ],
+          "branch": "codex/m5-p27b-native-fixes",
+          "contract": "docs/parity/p27b/CONTRACT.md",
+          "pr_number": 35,
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/35",
+          "execution_results": "docs/parity/p27b/README.md",
+          "review": "docs/parity/p27b/REVIEW.md",
+          "review_preservation": "docs/parity/p27b/REVIEW_PRESERVATION.json"
         }
       ]
     },

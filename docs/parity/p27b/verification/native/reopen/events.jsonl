@@ -1,0 +1,32 @@
+{"ready": true, "app_pid": 492292, "server_pid": 492289, "window": 4194307, "binary_sha256": "f4d8b2efeeb5653639564ca12e0320b0b477e973d36c5694cabe0c47d3345048"}
+{"op": "click", "x": 656, "y": 316, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/milestone1/native-p27b-01/run/reviewed-fix.mbse-views.json", "app_returncode": null}
+{"op": "click", "widget": "views:Open views", "x": 794, "y": 316, "app_returncode": null}
+{"op": "wait", "pause": 0.5, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L", "Shift_L"], "app_returncode": null}
+{"op": "click", "widget": "assurance:path", "x": 249, "y": 115, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/milestone1/native-p27b-01/run/final-reviewed-register.json", "app_returncode": null}
+{"op": "click", "widget": "assurance:Open", "x": 442, "y": 115, "app_returncode": null}
+{"op": "wait", "pause": 0.5, "app_returncode": null}
+{"op": "click", "widget": "validation:section", "x": 133, "y": 362, "app_returncode": null}
+{"op": "click", "widget": "validation:suite", "x": 112, "y": 411, "app_returncode": null}
+{"op": "click", "widget": "validation:suite:P27 Reviewed", "x": 112, "y": 462, "app_returncode": null}
+{"op": "click", "widget": "validation:Run", "x": 97, "y": 437, "app_returncode": null}
+{"op": "wait", "pause": 0.5, "app_returncode": null}
+{"op": "capture", "name": "09-cold-inert-data-and-fresh-accepted-rule-run", "sha256": "13eea112ca0831e67e0441a20c3c5405cf7a22c5a57770a92aabec019600b2c8", "app_returncode": null}
+{"op": "click", "widget": "assurance:path", "x": 249, "y": 115, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/milestone1/native-p27b-01/reopen/cold-register-copy.json", "app_returncode": null}
+{"op": "click", "widget": "assurance:Save fresh", "x": 636, "y": 115, "app_returncode": null}
+{"op": "wait", "pause": 0.5, "app_returncode": null}
+{"op": "click", "widget": "assurance:Close", "x": 486, "y": 89, "app_returncode": null}
+{"op": "click", "x": 656, "y": 316, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "key", "key": "BackSpace", "app_returncode": null}
+{"op": "click", "widget": "save-path", "x": 1164, "y": 100, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/milestone1/native-p27b-01/reopen/cold-native-copy.kernspan", "app_returncode": null}
+{"op": "click", "widget": "action:Save", "x": 638, "y": 38, "app_returncode": null}
+{"op": "close", "pause": 1, "app_returncode": 0}

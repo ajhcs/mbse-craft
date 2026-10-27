@@ -1,0 +1,40 @@
+{
+  "finding": "F01 superseded review-required feedback after admission",
+  "status": "fixed",
+  "source_files": 724,
+  "source_sha256": "be2cf9cc29f150a697bc40b3a5be5ca73c944fb5b81b65619e2ec58b06d613d1",
+  "binary_sha256": "2db33a3d0f8e598431ffcd30a163d3054649ab69c5e8987471697c4e332e664d",
+  "compiler_slice_counts": [
+    [
+      0
+    ],
+    [
+      0
+    ],
+    [
+      1,
+      0
+    ]
+  ],
+  "distinct_inventory_unchanged": 563,
+  "final_source_full_workspace_claim": false,
+  "native_runs_final_source": 1,
+  "native_runs_original_source": 2,
+  "original_artifacts_unchanged": 43,
+  "review_artifacts": 23,
+  "retained_attempts": [
+    "02 exact affected renderer regression failed with superseded refusal remains.",
+    "03 attempted scripted edit missed the dense formatted source, so source stayed35ac2943 and the same failed case reproduced. Commit02d0c95 title overstated application; receipt/source/failed log preserved unchanged.",
+    "04 verified exact-line patch clears only superseded feedback; affected renderer1 and desktop build pass."
+  ],
+  "observations": [
+    "Final native actual ordinary custom Save refusal then explicit suite Preview/Admit clears prior refusal.",
+    "Fresh custom Run and fix Preview show all3 full before/after values, including Copy5, in actual pixels after actual scroll. Cancel and fresh independent Save preserve whole pre-fix register.",
+    "Final native Snapshot/all5 maps remain exact; frozen inputs unchanged, normal owned app/display exit/auth/process cleanup."
+  ],
+  "limits": [
+    "Initial563/fullbuild and2 native runs qualify source1922f9b9. Final one-line production correction and expanded existing regression qualify sourcebe2cf9cc with affected case/build/native1; no summed final full-suite claim.",
+    "Inherited initial job rationale labels still mention P26b. Exact job IDs, source hashes, command lists and receipts qualify actual P27 jobs; original bytes retained, final review rationale corrected.",
+    "Same-agent bounded Linux; all56 broad specs/integrated exits/full standards/OCL/script/platform/independent engineering acceptance remain open."
+  ]
+}

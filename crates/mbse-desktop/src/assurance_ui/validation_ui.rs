@@ -1,4 +1,5 @@
 use super::*;
+mod reviewed_ui;
 use mbse_assurance::validation::{self, Report, RuleFamily, Suite, Target};
 
 /// Desktop form/scope binding around the sealed core location. Never deserialized.
@@ -14,6 +15,7 @@ struct Completion {
     scope: String,
 }
 pub(super) struct State {
+    reviewed: reviewed_ui::State,
     selected: String,
     pending: Option<Receiver<Completion>>,
     result: Option<Completion>,
@@ -26,6 +28,7 @@ pub(super) struct State {
 impl Default for State {
     fn default() -> Self {
         Self {
+            reviewed: Default::default(),
             selected: validation::BUILTIN_NAME.into(),
             pending: None,
             result: None,
@@ -96,7 +99,7 @@ fn current(w: &AssuranceWorkspace, e: &Editor, c: &Completion) -> bool {
             .is_ok_and(|r| r.check(&w.board, e).is_ok())
 }
 pub(super) fn audit(w: &AssuranceWorkspace, e: &Editor, ctx: &egui::Context) -> serde_json::Value {
-    serde_json::json!({"selected_suite":w.validation.selected,"pending":w.validation.pending.is_some(),"current":w.validation.result.as_ref().is_some_and(|c|current(w,e,c)),"report":w.validation.result.as_ref().and_then(|c|c.report.as_ref().ok()),"error":w.validation.result.as_ref().and_then(|c|c.report.as_ref().err()),"note":w.validation.note,"last_focus":w.validation.last.as_ref().map(|(request,target,id)|serde_json::json!({"target":target,"source_current":resolve(w,request,e).is_ok(),"focused":ctx.memory(|m|m.focused())==Some(*id)}))})
+    serde_json::json!({"reviewed":reviewed_ui::audit(w,e),"selected_suite":w.validation.selected,"pending":w.validation.pending.is_some(),"current":w.validation.result.as_ref().is_some_and(|c|current(w,e,c)),"report":w.validation.result.as_ref().and_then(|c|c.report.as_ref().ok()),"error":w.validation.result.as_ref().and_then(|c|c.report.as_ref().err()),"note":w.validation.note,"last_focus":w.validation.last.as_ref().map(|(request,target,id)|serde_json::json!({"target":target,"source_current":resolve(w,request,e).is_ok(),"focused":ctx.memory(|m|m.focused())==Some(*id)}))})
 }
 pub(super) fn focus(
     w: &mut AssuranceWorkspace,
@@ -161,9 +164,10 @@ pub(super) fn show(
         let mut name=w.board.register.drafts.get("validation:name").map(|d|d.text.clone()).unwrap_or_default();let mut rules=w.board.register.drafts.get("validation:rules").map(|d|d.text.clone()).unwrap_or_else(||serde_json::to_string(&Suite::local()).expect("known suite serializes"));let before=(name.clone(),rules.clone());
         ui.horizontal(|ui|{ui.label("Suite name");mark(audit,"validation:name",ui.add(egui::TextEdit::singleline(&mut name).char_limit(128).id(egui::Id::new("validation-name"))));});
         match serde_json::from_str::<Suite>(&rules){Ok(mut suite)=>{let prior=suite.clone();ui.horizontal_wrapped(|ui|{for(rule,label)in[(RuleFamily::PropertyDraft,"Property drafts"),(RuleFamily::PartContainment,"Part containment"),(RuleFamily::CalculationUnits,"Calculation units"),(RuleFamily::RequirementDrafts,"Requirement drafts")]{let mut yes=suite.rules.contains(&rule);if mark(audit,format!("validation:rule:{rule:?}"),ui.checkbox(&mut yes,label)).changed(){if yes{suite.rules.insert(rule);}else{suite.rules.remove(&rule);}}}});if suite!=prior{rules=serde_json::to_string(&suite).expect("known suite serializes");}},Err(error)=>{ui.colored_label(egui::Color32::DARK_RED,format!("Unapplied suite proposal retained: {}",short(&error.to_string())));}}
-        ui.collapsing("Advanced suite data",|ui|{ui.label("Known rule families only; opening or editing this data runs no scripts.");mark(audit,"validation:rules-json",ui.add(egui::TextEdit::multiline(&mut rules).char_limit(4096).desired_rows(2).id(egui::Id::new("validation-rules"))));});
+        let advanced=ui.collapsing("Advanced suite data",|ui|{ui.label("Known rule families only; opening or editing this data runs no scripts.");mark(audit,"validation:rules-json",ui.add(egui::TextEdit::multiline(&mut rules).char_limit(4096).desired_rows(2).id(egui::Id::new("validation-rules"))));});mark(audit,"validation:advanced",advanced.header_response);
         let edited=before!=(name.clone(),rules.clone());if edited{let result=w.board.set_validation_form(name.clone(),rules.clone());w.result(result,"Suite proposal retained independently; save the suite to admit its known rule set.");}
         if mark(audit,"validation:Save suite",ui.add_enabled(!edited,egui::Button::new("Save named suite"))).clicked(){match w.board.apply_validation_form(){Ok(())=>{w.epoch=w.epoch.saturating_add(1);w.validation.selected=name;w.validation.note="Named suite saved in the independent register; run it against current source.".into();},Err(error)=>w.validation.note=error}}
+        reviewed_ui::show(w,ui,e,audit);
         if w.validation.pending.is_some(){ui.spinner();ui.label("Checking frozen source; newer work is retained.");}
         ui.label(&w.validation.note);
         let Some(c)=&w.validation.result else{ui.label("No report yet. Choose a suite and run it.");return;};
@@ -172,8 +176,9 @@ pub(super) fn show(
         if let Err(error)=report.check(&w.board,e){ui.colored_label(egui::Color32::DARK_RED,error);return;}
         let frozen_form=c.form.clone();let frozen_scope=c.scope.clone();
         ui.label(format!("Suite {} · {} · {} known issues, {} omitted. Scope limitations {} (first128 retained).",report.suite_name(),report.rules().iter().map(|r|match r{RuleFamily::PropertyDraft=>"property drafts",RuleFamily::PartContainment=>"Part containment",RuleFamily::CalculationUnits=>"calculation units",RuleFamily::RequirementDrafts=>"requirement drafts"}).collect::<Vec<_>>().join(", "),report.issue_total(),report.unreported_issues(),report.limitation_total()));
+        if !report.custom_rules().is_empty(){ui.label(format!("Custom exact-requirement text rules: {}. Accepted text only; no arbitrary code.",report.custom_rules().len()));}
         for limitation in report.limitations().iter().take(16){ui.label(short(limitation));}
-        for issue in report.issues().iter().take(128){ui.horizontal_wrapped(|ui|{ui.label(format!("{} · {}",issue.rule,short(&issue.message)));if mark(audit,format!("validation:issue:{}",issue.id),ui.add_enabled(!w.validation_navigation_blocked(),egui::Button::new(format!("Go to {}",target_label(&issue.target))))).clicked(){match report.navigate(&w.board,e,&issue.id){Ok(location)=>{let request=Request{location,form:frozen_form.clone(),scope:frozen_scope.clone()};match resolve(w,&request,e){Ok(Target::Requirement{requirement,..})=>{w.selected=Some(requirement);w.evidence=None;w.validation.focus=Some(request);w.validation.focus_frames=0;},Ok(_)=>w.validation.navigation=Some(request),Err(error)=>w.validation.note=error}},Err(error)=>w.validation.note=error}}});}
+        for issue in report.issues().iter().take(128){ui.horizontal_wrapped(|ui|{ui.label(format!("{} · {}",issue.rule,short(&issue.message)));if mark(audit,format!("validation:issue:{}",issue.id),ui.add_enabled(!w.validation_navigation_blocked(),egui::Button::new(format!("Go to {}",target_label(&issue.target))))).clicked(){match report.navigate(&w.board,e,&issue.id){Ok(location)=>{let request=Request{location,form:frozen_form.clone(),scope:frozen_scope.clone()};match resolve(w,&request,e){Ok(Target::Requirement{requirement,..})=>{w.selected=Some(requirement);w.evidence=None;w.validation.focus=Some(request);w.validation.focus_frames=0;},Ok(_)=>w.validation.navigation=Some(request),Err(error)=>w.validation.note=error}},Err(error)=>w.validation.note=error}} reviewed_ui::issue_button(w,ui,e,audit,&report,issue);});}
         ui.label("First128 issue rows and16 limitation details displayed. Full retained report has no serialized navigation authority.");
     });
     mark(audit, "validation:section", section.header_response);
@@ -261,7 +266,7 @@ mod tests {
         }
         for _ in 0..20 {
             let r = w.audit[key];
-            if r[2] > r[0] && r[3] > r[1] && r[1] >= 0. && r[3] <= 1600. {
+            if r[2] > r[0] && r[3]-r[1] >= 12. && r[1] >= 0. && r[3] <= 1600. {
                 break;
             }
             let delta = if r[3] < 200. { 240. } else { -240. };
@@ -417,4 +422,47 @@ mod tests {
                 .contains_key("validation:issue:MBSE.REQUIREMENT.DRAFT:requirement1:Parent")
         );
     }
+    fn custom_form(w: &mut AssuranceWorkspace, field: validation::TextField) {
+        let rule=validation::CustomRule{id:"native-review".into(),requirement:RequirementId(1),field,predicate:validation::TextPredicate::StartsWith{prefix:"REVIEW-".into()},replacement:Some("REVIEW-1".into())};
+        let suite=Suite{rules:Default::default(),custom:vec![rule]};
+        w.board.set_validation_form("Reviewed native".into(),serde_json::to_string(&suite).unwrap()).unwrap();
+    }
+    fn custom_ready(w:&mut AssuranceWorkspace,e:&Editor,ctx:&egui::Context){
+        for _ in 0..3 {render(w,e,ctx,vec![]);}
+        click(w,e,ctx,"validation:section");
+        click(w,e,ctx,"validation:Save suite");
+        assert_eq!(w.validation.note,"CUSTOM_RULE_REVIEW_REQUIRED");
+        click(w,e,ctx,"validation:Preview suite");
+        click(w,e,ctx,"validation:Admit reviewed suite");
+        assert!(w.validation.note.is_empty(),"Superseded refusal remains: {}",w.validation.note);
+        click(w,e,ctx,"validation:Run");
+        for _ in 0..100 {render(w,e,ctx,vec![]);if audit(w,e,ctx)["current"]==true{return;}std::thread::sleep(Duration::from_millis(10));}
+        panic!("custom suite did not complete");
+    }
+    #[test]
+    fn rendered_explicit_rule_admission_fix_preview_apply_and_undo_are_distinct_actions(){
+        let(mut w,e)=setup();custom_form(&mut w,validation::TextField::Identifier);let ctx=egui::Context::default();let native=e.snapshot.clone();
+        custom_ready(&mut w,&e,&ctx);let before=w.board.register.clone();
+        click(&mut w,&e,&ctx,"validation:Preview fix:MBSE.CUSTOM.native-review:requirement1:Identifier");
+        assert_eq!(w.board.register,before);let preview=audit(&w,&e,&ctx)["reviewed"]["fix_preview"].clone();assert_eq!(preview["current"],true);assert_eq!(preview["preview"]["changes"].as_array().unwrap().len(),2);
+        click(&mut w,&e,&ctx,"validation:Apply fix");let after=w.board.register.clone();assert_eq!(after.requirements[&RequirementId(1)].identifier,"REVIEW-1");assert_eq!(after.revision,before.revision+1);assert_eq!(audit(&w,&e,&ctx)["current"],false);assert_eq!(e.snapshot,native);
+        click(&mut w,&e,&ctx,"assurance:Undo");assert_eq!(w.board.register,before);click(&mut w,&e,&ctx,"assurance:Redo");assert_eq!(w.board.register,after);
+    }
+    #[test]
+    fn rendered_suite_review_rejects_unadmitted_forms_and_cancel_preserves_proposal(){
+        let(mut w,e)=setup();custom_form(&mut w,validation::TextField::Identifier);let ctx=egui::Context::default();for _ in 0..3{render(&mut w,&e,&ctx,vec![]);}click(&mut w,&e,&ctx,"validation:section");
+        click(&mut w,&e,&ctx,"validation:Save suite");assert!(w.board.register.validation_suites.is_empty());click(&mut w,&e,&ctx,"validation:Preview suite");let before=w.board.register.clone();w.statement="New text retained only in the form".into();click(&mut w,&e,&ctx,"validation:Admit reviewed suite");assert_eq!(w.board.register,before);assert_eq!(audit(&w,&e,&ctx)["reviewed"]["suite_review"]["current"],false);assert!(w.board.register.validation_suites.is_empty());click(&mut w,&e,&ctx,"validation:Cancel suite review");assert_eq!(w.statement,"New text retained only in the form");assert_eq!(w.board.register,before);
+    }
+    #[test]
+    fn rendered_fix_rejects_native_source_scope_and_pending_register_io_without_mutation(){
+        let(mut w,mut e)=setup();custom_form(&mut w,validation::TextField::Identifier);let ctx=egui::Context::default();custom_ready(&mut w,&e,&ctx);click(&mut w,&e,&ctx,"validation:Preview fix:MBSE.CUSTOM.native-review:requirement1:Identifier");let before=w.board.register.clone();
+        let(tx,rx)=mpsc::channel();w.pending=Some(rx);click(&mut w,&e,&ctx,"validation:Apply fix");assert_eq!(w.board.register,before);w.pending=None;drop(tx);
+        w.validation.selected=validation::BUILTIN_NAME.into();click(&mut w,&e,&ctx,"validation:Apply fix");assert_eq!(w.board.register,before);w.validation.selected="Reviewed native".into();
+        e.snapshot.records.get_mut(&mbse_model::stage1::RecordId(1003)).unwrap().name="Different native bytes same counters".into();click(&mut w,&e,&ctx,"validation:Apply fix");assert_eq!(w.board.register,before);assert_eq!(audit(&w,&e,&ctx)["reviewed"]["fix_preview"]["current"],false);click(&mut w,&e,&ctx,"validation:Cancel fix");assert!(audit(&w,&e,&ctx)["reviewed"]["fix_preview"].is_null());
+    }
+    #[test]
+    fn rendered_copy_fix_previews_master_slave_and_retains_invalid_slave_draft_through_undo(){
+        let(mut w,e)=setup();w.board.edit_field(RequirementId(2),"statement","Root".into()).unwrap();w.board.add_trace(mbse_assurance::TraceKind::Copy,mbse_assurance::TraceEndpoint::Requirement(RequirementId(2)),RequirementId(1),"Copy".into(),&e.snapshot).unwrap();w.board.edit_field(RequirementId(2),"statement","Retained slave proposal".into()).unwrap();custom_form(&mut w,validation::TextField::Statement);let ctx=egui::Context::default();custom_ready(&mut w,&e,&ctx);let before=w.board.register.clone();click(&mut w,&e,&ctx,"validation:Preview fix:MBSE.CUSTOM.native-review:requirement1:Statement");let changes=audit(&w,&e,&ctx)["reviewed"]["fix_preview"]["preview"]["changes"].as_array().unwrap().clone();assert_eq!(changes.iter().filter(|c|c["field"]=="statement").count(),2);click(&mut w,&e,&ctx,"validation:Apply fix");assert_eq!(w.board.register.requirements[&RequirementId(2)].statement,"REVIEW-1");assert_eq!(w.board.register.drafts["2:statement"],before.drafts["2:statement"]);click(&mut w,&e,&ctx,"assurance:Undo");assert_eq!(w.board.register,before);
+    }
+
 }
