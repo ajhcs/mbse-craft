@@ -608,7 +608,7 @@
       "acceptance": [
         "Seeded type, reference and structural faults produce stable expected rule IDs; issue navigation selects the exact element and property."
       ],
-      "state": "in_progress",
+      "state": "review_ready",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "branch": "codex/m5-p26-validation-suites",
@@ -629,12 +629,17 @@
         {
           "id": "P26b",
           "title": "Native suite authoring and exact issue/field navigation",
-          "state": "in_progress",
+          "state": "review_ready",
           "depends_on": [
             "P26a"
           ],
           "branch": "codex/m5-p26b-validation-navigation",
-          "contract": "docs/parity/p26b/CONTRACT.md"
+          "contract": "docs/parity/p26b/CONTRACT.md",
+          "execution_results": "docs/parity/p26b/README.md",
+          "review": "docs/parity/p26b/REVIEW.md",
+          "review_preservation": "docs/parity/p26b/REVIEW_PRESERVATION.json",
+          "pr_number": 33,
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/33"
         }
       ]
     },
