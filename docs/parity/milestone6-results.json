@@ -239,7 +239,7 @@
       "P35b"
     ],
     "p35a": {
-      "state": "reviewed_ready_to_merge",
+      "state": "merged",
       "scope": "independent specification/parameter/binding authority over existing native calculation and typed value sources",
       "execution_results": "p35a/README.md",
       "source_sha256": "6d0d7da041e56203c4035649b2862aa1b6277fa35bb1345716b45a3dea16f986",
@@ -252,11 +252,22 @@
       "review": "p35a/REVIEW.md",
       "review_source_sha256": "0953707195245ec05f4c70d8c91d0daf4eb67d68baa717668e686b2ca2e0e032",
       "review_affected_cases": 1,
-      "review_production_source_changes": 0
+      "review_production_source_changes": 0,
+      "merge_commit": "42fea872f002b958f6455ce2e0c264c250842905"
     },
     "p35b": {
-      "state": "planned",
-      "scope": "native specification/parameter/binding authoring, diagnostics/report and save/cold acceptance"
+      "state": "draft_candidate_native_acceptance_complete_review_pending",
+      "scope": "native specification/parameter/binding authoring, diagnostics/report and save/cold acceptance",
+      "base_commit": "42fea872f002b958f6455ce2e0c264c250842905",
+      "execution_results": "p35b/README.md",
+      "source_sha256": "9532f8f76ea2d023ee70f151c22b31f8de19ec62519bbf79c26a6dcd2b2bfb0d",
+      "distinct_case_inventory": 731,
+      "new_distinct_cases": 8,
+      "native_parametric_runs": 2,
+      "native_controller_errors": 0,
+      "evidence_artifacts": 83,
+      "parametric_execution_performed": false,
+      "final_source_full_workspace_claim": false
     }
   }
 }
