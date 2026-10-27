@@ -563,8 +563,8 @@
     },
     {
       "path": "crates/mbse-model/src/types/deletion.rs",
-      "bytes": 20376,
-      "sha256": "b2e2f921b8974dad9629a5395661c298200b68aed005bbc7a9788fe9049d76c7"
+      "bytes": 20874,
+      "sha256": "4bd09afe33d3da9c3541b5883651f25a2d18afc0e036e830d5a5d2352b4c4e7b"
     },
     {
       "path": "crates/mbse-model/src/types/deletion_native.rs",
@@ -3727,5 +3727,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "56bbd422f9d10391e1da8b5e39cef74ebd5062a717810ad061fcb0d9fe496734"
+  "source_sha256": "6f11b6bff9cf8f67afefb361b29078fee1d41f852c6bfab83118c000c4ebfcee"
 }

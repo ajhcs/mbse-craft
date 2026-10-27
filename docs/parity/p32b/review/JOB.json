@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m6-p32b-review-retained-diagram-deletion-repro-03",
+  "id": "m6-p32b-review-retained-diagram-deletion-fix-04",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/review-p32b",
   "source_manifest": "docs/parity/p32b/review/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "7cea39e0fd1b9e8820992f34509cc2ea8e15b68a960617487a95dc9535862bef",
-  "source_sha256": "56bbd422f9d10391e1da8b5e39cef74ebd5062a717810ad061fcb0d9fe496734",
+  "source_manifest_sha256": "690f23e3e5dcb14fee637bc1390c4faa559896caeb2fdd87d9793e6009710b0d",
+  "source_sha256": "6f11b6bff9cf8f67afefb361b29078fee1d41f852c6bfab83118c000c4ebfcee",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -24,16 +24,22 @@
       "test",
       "--locked",
       "--offline",
-      "-p",
-      "mbse-model",
-      "--test",
-      "state_machine_views",
-      "diagram_prevents_legacy_deletion_complete_inventory",
+      "--workspace",
+      "deletion",
       "--",
       "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
     ]
   ],
-  "rationale": "Review F01 reproducer: after accepted behavior/raw removal, retained detached activity/state-machine diagrams remain outside legacy deletion inventory. Editor-only unknown count0 must not authorize complete inventory/Delete with uninterpreted presentation schemas. Two exact cases only.",
+  "rationale": "Review F01 reproduced both retained detached activity/state-machine diagrams omitted after semantics/raw removal. Include all retained behavior diagrams as uninterpreted deletion impact before complete verdict or plan admission. Run affected deletion family (including2repros) plus desktop build; prior653 successes not broadly replayed.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",
