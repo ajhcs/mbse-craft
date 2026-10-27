@@ -1,0 +1,124 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-27T12:17:01.051267+00:00",
+  "job_sha256": "bedf43f46c460a6b0802a21d0182a259fc99a4310c827613ac4d35d0db80288b",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p35b-01/run",
+      "started_utc": "2026-10-27T12:17:01.070335+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 975200,
+          "start_ticks": 47777201
+        },
+        "server_pid": {
+          "pid": 975197,
+          "start_ticks": 47777199
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/repos/builderbob/mbse-craft/work/m6-p35b-native-parametrics/docs/parity/p35b/fixtures/native.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 975200,
+        "server_pid": 975197,
+        "window": 4194307,
+        "binary_sha256": "44009cc0c0e77c0dd223cfdc15ba5fed4fc22c09b3ced7b03b6026e9de813680"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-27T12:27:12.350908+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-27T12:17:01.070117+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1359690317824,
+    "available_memory_bytes": 27268542464,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 299500,
+        "start_ticks": 43416915,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      },
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 323
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "shared_shortcut_actual_forms": {
+    "specification": 14012,
+    "length": 14013,
+    "duration": 14014,
+    "length_binding": 14015,
+    "duration_binding": 14016
+  },
+  "typed_sources_unset_part_and_independent_incomplete_spec": {
+    "specification": 14017,
+    "parameter": 14018
+  },
+  "five_invalid_slots_and_model_inverse": true,
+  "root_inverse_preserves_original_authorities": true,
+  "original_whole_data_and_all_eight_maps_preserved": true,
+  "saved_counters": {
+    "model_revision": 153,
+    "raw_version": 361,
+    "next_id": 14019
+  },
+  "scope_note": "execution_performed=false describes parametric accepted-type review; baseline Stage1 derived calculation display remains existing independent behavior. Native copy gesture readonly; clipboard payload validated inGUI test, OS clipboard notread here.",
+  "ended_utc": "2026-10-27T12:28:27.544522+00:00"
+}
