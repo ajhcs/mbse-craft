@@ -194,7 +194,8 @@ fn activity_foreign_ownership_wrong_pin_type_and_control_direction_refuse_atomic
         assert_eq!(e.snapshot, before);
     }
     let component = define(&mut e, t::Kind::Component);
-    for owner in [start, other] {
+    let action = node(&mut e, a, NodeKind::Action);
+    for owner in [start, other, action] {
         let before = e.snapshot.clone();
         assert!(
             run(
@@ -436,5 +437,57 @@ fn activity_global_count_and_byte_budgets_refuse_without_partial_allocation_or_r
     let mut f = form(a, Id(1), Id(2), "true");
     f.guard = "x".repeat(4097);
     assert!(run(&mut e, Action::SetFlowForm(f)).is_err());
+    assert_eq!(e.snapshot, before);
+}
+
+#[test]
+fn activity_shared_extension_byte_budget_and_foreign_partition_edits_refuse_atomically() {
+    let mut e = editor();
+    let a = activity(&mut e, "A");
+    let b = activity(&mut e, "B");
+    let p = Id(e.snapshot.next_id);
+    run(
+        &mut e,
+        Action::Partition {
+            activity: b,
+            id: None,
+            name: "Foreign".into(),
+        },
+    )
+    .unwrap();
+    let before = e.snapshot.clone();
+    assert!(
+        run(
+            &mut e,
+            Action::Node {
+                activity: a,
+                id: None,
+                name: "wrong partition".into(),
+                kind: NodeKind::Action,
+                partition: Some(p)
+            }
+        )
+        .is_err()
+    );
+    assert_eq!(e.snapshot, before);
+    e.snapshot
+        .extensions
+        .as_mut()
+        .unwrap()
+        .namespaces
+        .insert("opaque.padding/1".into(), json!(""));
+    let remaining = mbse_model::extensions::MAX_BYTES
+        - serde_json::to_vec(e.snapshot.extensions.as_ref().unwrap())
+            .unwrap()
+            .len();
+    e.snapshot
+        .extensions
+        .as_mut()
+        .unwrap()
+        .namespaces
+        .insert("opaque.padding/1".into(), json!("x".repeat(remaining - 64)));
+    e.snapshot.validate().unwrap();
+    let before = e.snapshot.clone();
+    assert!(run(&mut e, Action::SetFlowForm(form(a, Id(1), Id(2), "true"))).is_err());
     assert_eq!(e.snapshot, before);
 }
