@@ -51,13 +51,18 @@
       "P26b"
     ],
     "p26a": {
-      "state": "reviewed_bounded_ready_to_merge",
+      "state": "merged",
       "execution_results": "p26a/README.md",
       "new_distinct_cases": 11,
       "native_ui": false,
       "parent_complete": false,
       "pr_number": 32,
-      "review": "p26a/REVIEW.md"
+      "review": "p26a/REVIEW.md",
+      "merge_commit": "517fc3e10ffd44e19f30bc5cb9c45c0314651385"
+    },
+    "p26b": {
+      "state": "in_progress",
+      "base_commit": "517fc3e10ffd44e19f30bc5cb9c45c0314651385"
     }
   }
 }
