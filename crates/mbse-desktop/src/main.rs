@@ -6,6 +6,7 @@ mod assurance_ui;
 mod catalog_ui;
 mod exchange_ui;
 mod semantic_ui;
+mod project_set_ui;
 mod source_edit_ui;
 mod preferences;
 mod periodic_recovery;

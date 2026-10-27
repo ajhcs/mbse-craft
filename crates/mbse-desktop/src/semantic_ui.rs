@@ -19,6 +19,8 @@ enum ResultValue {
 }
 #[derive(Default)]
 pub struct SemanticBrowser {
+    projects: crate::project_set_ui::Browser,
+    project_path: String,
     legacy: crate::exchange_ui::ExchangeBrowser,
     name_editor: crate::source_edit_ui::NameEditor,
     visible: bool,
@@ -45,7 +47,7 @@ pub struct SemanticBrowser {
 }
 impl SemanticBrowser {
     pub fn is_visible(&self) -> bool {
-        self.visible || self.legacy.is_visible()
+        self.visible || self.legacy.is_visible() || self.projects.visible || self.projects.pending()
     }
     pub fn copy_pending(&self) -> bool {
         self.name_editor.write_pending()
@@ -76,9 +78,25 @@ impl SemanticBrowser {
         }
     }
     pub fn open(&mut self, path: &str) {
+        self.project_path=path.trim().into();
+        if path.trim().ends_with(".mbse-projects.json") {
+            self.open_projects(path.trim());
+            return;
+        }
         self.visible = true;
         self.start_open(PathBuf::from(path.trim()), None);
     }
+    fn open_projects(&mut self,path:&str) {
+        if self.name_editor.blocks_source_change() || self.pending.is_some() || self.legacy.copy_pending() || self.projects.pending() {
+            self.visible=true;
+            self.feedback="Finish pending source operations or explicitly resolve the retained name proposal before opening a project set.".into();
+            return;
+        }
+        self.projects.open_window(path);
+        self.visible=false;
+        self.legacy.hide();
+    }
+    pub fn project_audit(&self)->serde_json::Value { self.projects.audit() }
     fn bound(&mut self, key: impl Into<String>, response: &egui::Response) {
         let r = response.interact_rect;
         self.bounds
@@ -89,7 +107,7 @@ impl SemanticBrowser {
             self.feedback="A name proposal is retained for its exact frozen source. Create its new copy or explicitly discard it before opening, replacing or reverifying a source.".into();
             return;
         }
-        if self.pending.is_some() || self.legacy.copy_pending() {
+        if self.pending.is_some() || self.legacy.copy_pending() || self.projects.pending() {
             self.feedback = "An external operation is pending; frozen source retained.".into();
             return;
         }
@@ -387,6 +405,7 @@ impl SemanticBrowser {
         self.poll();
         self.name_editor.poll(ctx);
         let mut bounds = self.legacy.show(ctx);
+        bounds.extend(self.projects.show(ctx));
         if self.pending.is_some() {
             ctx.request_repaint_after(Duration::from_millis(100));
         }
@@ -397,6 +416,7 @@ impl SemanticBrowser {
         let source = self.source.clone();
         let mut reopen = None;
         let mut copy = None;
+        let mut projects=false;
         let window = egui::Window::new("Source-specific external inspection")
             .id(egui::Id::new("semantic-v2-window"))
             .open(&mut visible)
@@ -406,6 +426,9 @@ impl SemanticBrowser {
             ui.set_max_width(ui.available_width());
             ui.colored_label(if self.error{Color32::DARK_RED}else{Color32::from_rgb(25,65,70)},&self.feedback);
             ui.label("Independent frozen source · Native admission: false · Execution: false. No native model mutation or dependency fetching.");
+            ui.label("Explicit source project-set manifest");
+            let r=ui.add(egui::TextEdit::singleline(&mut self.project_path).char_limit(4096).desired_width(ui.available_width()).hint_text("/workspace/…/project-set.mbse-projects.json"));self.bound("semantic:project-path",&r);
+            let r=ui.add_enabled(self.pending.is_none()&&!self.name_editor.blocks_source_change()&&!self.legacy.copy_pending(),egui::Button::new("Browse source project set"));self.bound("semantic:projects",&r);projects=r.clicked();
             let Some((path,set))=&source else{return;};
             wrapped(ui,format!("Source: {}\nContract: {}\nStage: {}",path.display(),set.profile,human(&format!("{:?}",set.stage))));
             wrapped(ui,format!("Primary SHA256: {}\nSource-set SHA256: {}",set.primary_sha256,set.source_set_digest));
@@ -480,6 +503,7 @@ impl SemanticBrowser {
         if let Some((set, path)) = copy {
             self.start_copy(set, path);
         }
+        if projects { self.open_projects(&self.project_path.clone()); }
         bounds.extend(std::mem::take(&mut self.bounds));
         bounds
     }
@@ -526,7 +550,7 @@ fn wrapped(ui: &mut egui::Ui, text: impl Into<String>) {
     }
     ui.add(egui::Label::new(text).wrap());
 }
-fn key_label(key: &ElementKey) -> String {
+pub(crate) fn key_label(key: &ElementKey) -> String {
     format!(
         "{} :: {}",
         key.member_path,
@@ -653,6 +677,9 @@ mod source_name_tests {
         );
         assert!(browser.close_blocked());
         assert!(!browser.copy_pending());
+        browser.open("/workspace/retained-proposal.mbse-projects.json");
+        assert!(!browser.projects.visible && !browser.projects.pending());
+        assert!(browser.source_edit_dirty());
         browser.visible = false;
         browser.keep_open_for_copy();
         assert!(browser.visible);

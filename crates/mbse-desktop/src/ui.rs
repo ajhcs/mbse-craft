@@ -1818,6 +1818,17 @@ mod policies {
         app.command(Command::EditText{key:RawKey{record:mission,field:"name".into(),item:None},text:"Edited after report".into()});let selected=app.session.editor.selected;app.navigate_usage(index);assert!(app.error);assert!(app.feedback.contains("USAGES_STALE"));assert_eq!(app.session.editor.selected,selected);assert!(!app.session.pending());assert!(!app.views.pair_pending());
     }
     #[test]
+    fn project_set_shared_command_scopes_save_and_undo_away_from_dirty_native_work() {
+        let area=tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap();let session=Session::new(area.path()).unwrap();let ctx=egui::Context::default();
+        let mut app=Workspace::new(session,None,None,craft_window::Choice::probe(craft_window::Prefix::new("MBSE_CRAFT")),&ctx);
+        app.command(Command::EditText{key:RawKey{record:RecordId(1),field:"name".into(),item:None},text:"Preserved native work".into()});
+        app.path=area.path().join("set.mbse-projects.json").display().to_string();let dest=area.path().join("must-not-write.kernspan");app.save_path=dest.display().to_string();
+        app.dispatch_workspace(crate::command_catalog::Id::External,crate::command_catalog::Surface::Keyboard,app.history_scope());assert!(app.exchange.project_audit()["visible"].as_bool().unwrap());
+        let before=(app.session.editor.snapshot.digest(),app.views.views.document().digest().unwrap());assert!(matches!(app.history_scope(),ShortcutTarget::Widget));
+        let modifiers=egui::Modifiers::COMMAND;let input=egui::RawInput{events:vec![egui::Event::ModifiersChanged(modifiers),egui::Event::Key{key:egui::Key::Z,physical_key:None,pressed:true,repeat:false,modifiers},egui::Event::Key{key:egui::Key::S,physical_key:None,pressed:true,repeat:false,modifiers}],..Default::default()};ctx.run_ui(input,|ui|app.handle_shortcuts(ui.ctx())).drop_without_applying_deltas();
+        assert_eq!((app.session.editor.snapshot.digest(),app.views.views.document().digest().unwrap()),before);assert!(!app.session.pending()&&!app.views.pair_pending()&&!dest.exists());
+    }
+    #[test]
     fn source_inspection_shortcuts_never_undo_or_save_the_live_target() {
         let tmp=std::env::var_os("TMPDIR").expect("workspace TMPDIR");let area=tempfile::Builder::new().prefix("inspection-shortcut-").tempdir_in(tmp).unwrap();
         let session=Session::new(area.path()).unwrap();let ctx=egui::Context::default();
@@ -2091,6 +2102,7 @@ impl eframe::App for Workspace {
             fields.insert("profile_tags".into(),self.profile_tags_audit());
             fields.insert("validation_navigation".into(),self.validation_navigation_audit());
             fields.insert("requirements_authoring".into(),self.assurance.authoring_audit(&self.session.editor,&ctx));
+            fields.insert("source_project_sets".into(),self.exchange.project_audit());
             fields.insert("views_inspection_profile".into(), serde_json::json!(self.views.inspection_profile()));
             fields.insert("views_inspection_copy_origin".into(), self.views.inspection_copy_origin());
         }
