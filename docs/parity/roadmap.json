@@ -542,11 +542,15 @@
       "acceptance": [
         "Duplicate IDs and parent cycles refuse; invalid statements persist as drafts; maturity, implementation and verification remain independent."
       ],
-      "state": "implemented_bounded_review_pending",
+      "state": "reviewed_bounded_ready_to_merge",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "branch": "codex/m5-p23-requirement-hierarchy",
-      "execution_results": "docs/parity/p23/README.md"
+      "execution_results": "docs/parity/p23/README.md",
+      "pr_number": 29,
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/29",
+      "review": "docs/parity/p23/REVIEW.md",
+      "review_preservation": "docs/parity/p23/REVIEW_PRESERVATION.json"
     },
     {
       "id": "P24",

@@ -4,13 +4,15 @@
   "milestone_exit_accepted": false,
   "full_parity_accepted": false,
   "p23": {
-    "state": "implemented_bounded_review_pending",
+    "state": "reviewed_bounded_ready_to_merge",
     "base_commit": "24cb464749e82f28f6199a4a2341ced21bfae421",
     "contract": "p23/CONTRACT.md",
     "authority": "existing mbse-assurance Board; native snapshot and views unchanged",
     "execution_results": "p23/README.md",
     "native_runs": 2,
-    "new_distinct_cases": 14
+    "new_distinct_cases": 14,
+    "pr_number": 29,
+    "review": "p23/REVIEW.md"
   },
   "remaining_prs": [
     "P23",
