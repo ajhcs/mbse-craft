@@ -121,11 +121,13 @@
       "P29b"
     ],
     "p29a": {
-      "state": "review_pending",
+      "state": "review_ready",
       "execution_results": "p29a/README.md",
       "new_distinct_cases": 8,
       "distinct_case_inventory": 580,
-      "native_ui": false
+      "native_ui": false,
+      "pr_number": 37,
+      "review": "p29a/REVIEW.md"
     }
   }
 }

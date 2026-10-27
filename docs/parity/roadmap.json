@@ -738,9 +738,14 @@
         {
           "id": "P29a",
           "title": "Versioned viewpoint metadata and presentation filter core",
-          "state": "in_progress",
+          "state": "review_ready",
           "branch": "codex/m5-p29-viewpoints",
-          "contract": "docs/parity/p29a/CONTRACT.md"
+          "contract": "docs/parity/p29a/CONTRACT.md",
+          "pr_number": 37,
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/37",
+          "execution_results": "docs/parity/p29a/README.md",
+          "review": "docs/parity/p29a/REVIEW.md",
+          "review_preservation": "docs/parity/p29a/REVIEW_PRESERVATION.json"
         },
         {
           "id": "P29b",
