@@ -1,0 +1,22 @@
+{
+  "schema": "mbse-craft.milestone6-results/1",
+  "state": "in_progress",
+  "milestone_exit_accepted": false,
+  "full_parity_accepted": false,
+  "p30": {
+    "state": "in_progress",
+    "base_commit": "7d7247b64585cdd4d1ae8dfdfeaa2c244277f867",
+    "children": [
+      "P30a",
+      "P30b"
+    ],
+    "p30a": {
+      "state": "draft_review_pending",
+      "execution_results": "p30a/README.md",
+      "new_distinct_cases": 9,
+      "distinct_case_inventory": 595,
+      "native_activity_runs": 0,
+      "final_source_full_workspace_claim": false
+    }
+  }
+}

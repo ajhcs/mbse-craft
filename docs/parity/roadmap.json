@@ -787,9 +787,10 @@
         {
           "id": "P30a",
           "title": "Bounded activity semantic core and retained guard proposals",
-          "state": "in_progress",
+          "state": "draft_review_pending",
           "branch": "codex/m6-p30a-activity-core",
-          "contract": "docs/parity/p30a/CONTRACT.md"
+          "contract": "docs/parity/p30a/CONTRACT.md",
+          "execution_results": "docs/parity/p30a/README.md"
         },
         {
           "id": "P30b",
