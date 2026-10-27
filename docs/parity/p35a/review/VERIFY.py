@@ -11,7 +11,7 @@ j=json.load(open(review/'JOB.json'));c=json.load(open('work/p35a-review-01.json'
 def archive(p,rel):
  raw=p.read_bytes();stored=gzip.compress(raw,mtime=0)if p.suffix=='.log'else raw;dest=out/rel
  if p.suffix=='.log':dest=Path(str(dest)+'.gz')
- dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(stored);rows.append(dict(original=str(p),path=str(dest.relative_to(out)),bytes=len(raw),sha256=sha(raw),stored_sha256=sha(stored)))
+ dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(stored);rows.append(dict(original=str(p),path=str(dest.relative_to(review)),bytes=len(raw),sha256=sha(raw),stored_sha256=sha(stored)))
 archive(review/'JOB.json',Path('JOB.json'));archive(r/'work/p35a-review-01.json',Path('RECEIPT.json'))
 for cmd in c['commands']:
  p=Path(cmd['log']);assert sha(p.read_bytes())==cmd['log_sha256'];archive(p,Path(p.name))
