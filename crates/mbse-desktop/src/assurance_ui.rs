@@ -1,6 +1,7 @@
 //! Native authoring and explicit review of an independent requirements sidecar.
 mod traces_ui;
 mod coverage_ui;
+mod metrics_ui;
 mod validation_ui;
 pub(crate) use validation_ui::Request as ValidationNavigation;
 use eframe::egui;
@@ -48,6 +49,7 @@ struct Assessment {
 pub struct AssuranceWorkspace {
     board: Board,
     coverage:coverage_ui::State,
+    metrics:metrics_ui::State,
     validation:validation_ui::State,
     visible: bool,
     selected: Option<RequirementId>,
@@ -77,7 +79,7 @@ impl AssuranceWorkspace {
         self.audit.clone()
     }
     pub fn authoring_audit(&self,editor:&Editor,ctx:&egui::Context)->serde_json::Value {
-        serde_json::json!({"schema":"mbse-craft.requirement-authoring-ui/1","coverage":coverage_ui::audit(self),"validation":validation_ui::audit(self,editor,ctx),"visible":self.visible,"selected":self.selected.map(|id|id.0),"requirements":self.board.register.requirements,"traces":self.board.register.traces,"test_cases":self.board.register.test_cases,"drafts":self.board.register.drafts,"next_id":self.board.register.next_id,"revision":self.board.register.revision,"hierarchy":self.board.hierarchy().ok(),"pending":self.pending.is_some(),"dirty":self.dirty(),"feedback":self.feedback})
+        serde_json::json!({"schema":"mbse-craft.requirement-authoring-ui/1","metrics":metrics_ui::audit(self,editor),"coverage":coverage_ui::audit(self),"validation":validation_ui::audit(self,editor,ctx),"visible":self.visible,"selected":self.selected.map(|id|id.0),"requirements":self.board.register.requirements,"traces":self.board.register.traces,"test_cases":self.board.register.test_cases,"drafts":self.board.register.drafts,"next_id":self.board.register.next_id,"revision":self.board.register.revision,"hierarchy":self.board.hierarchy().ok(),"pending":self.pending.is_some(),"dirty":self.dirty(),"feedback":self.feedback})
     }
     pub(crate) fn take_validation_navigation(&mut self)->Option<ValidationNavigation>{validation_ui::take(self)}
     pub(crate) fn resolve_validation_navigation(&self,request:&ValidationNavigation,e:&Editor)->Result<mbse_assurance::validation::Target,String>{validation_ui::resolve(self,request,e)}
@@ -408,6 +410,7 @@ impl AssuranceWorkspace {
                 egui::ScrollArea::vertical().id_salt("requirement-list").max_height(180.).show(&mut columns[0],|ui|{match self.board.hierarchy(){Ok(rows)=>{for row in rows.iter().take(256){let r=&self.board.register.requirements[&row.id];ui.horizontal(|ui|{ui.add_space(row.depth.min(16)as f32*12.);let short:String=r.statement.chars().take(120).collect();let identifier=if r.identifier.is_empty(){"identifier unset"}else{r.identifier.as_str()};let label=format!("{} · local #{} · depth {} · {}{}",identifier,row.id.0,row.depth,short,if r.statement.chars().nth(120).is_some(){" [shortened]"}else{""});if mark(&mut audit,format!("assurance:select:{}",row.id.0),ui.selectable_label(self.selected==Some(row.id),label)).clicked(){self.selected=Some(row.id);self.evidence=None;}});}if rows.len()>256{ui.label(format!("Showing first256 of{} hierarchy rows; complete register retained.",rows.len()));}},Err(e)=>{ui.colored_label(egui::Color32::DARK_RED,e);}}});
                 columns[1].collapsing("Evidence-context metadata (JSON)",|ui|{ui.label("Canonical JSON is retained with its hash for evidence context. These values do not configure the evaluator. Native execution uses the fixed algorithm and Limits::default() recorded with each receipt.");ui.text_edit_multiline(&mut self.config);});
             });
+            metrics_ui::show(self,ui,editor,&mut audit);
             validation_ui::show(self,ui,editor,&mut audit);
             coverage_ui::show(self,ui,editor,&mut audit);
             let Some(id)=self.selected else {ui.label("Add or select a requirement to edit and review evidence.");return;};
