@@ -1,0 +1,38 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "796c1ba9dfd08b9ce913113bfc5f434fcb11dc7f592ad6114674b46c429db59d",
+    "scripts/verify-m1-native.py": "ef4e7c2308323b9023f83a15ddb3b9214d27368fd9a34a42b4245ad44f574a39",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "id": "p23-identified-requirement-hierarchy-cold-register",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m5-p23-identified-authoring-03-20261027T001035Z/mbse-desktop",
+  "binary_sha256": "055d925d86c372f8df4ba5723f4ec8a0602c9353c668cc64a123539754e6e208",
+  "source_sha256": "9e205f42d5a39f016f0414c7dce1df15ccea919cef41e15424ffcbd8341a65e4",
+  "inputs": {
+    "/workspace/repos/builderbob/mbse-craft/work/m5-p23-requirement-hierarchy/docs/parity/p23/fixtures/profile-tags.kernspan": "778e35d48ddf38c9c5e539aea0a65fb0cade73f850209f377840e01a913317a1",
+    "/workspace/repos/builderbob/mbse-craft/work/m5-p23-requirement-hierarchy/docs/parity/p23/fixtures/profile-tags.mbse-views.json": "e793dbe99a639f45d6a35d380bb34e1a6b32fd93b08c3f2d3d394b43e4aebe88",
+    "/workspace/repos/builderbob/mbse-craft/work/m5-p23-requirement-hierarchy/docs/parity/acceptance.json": "862cf503c2c65d18f1ddd1c0bb087441eba76e106fdab8aa82883c98d0428c00"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p23-01",
+  "argv_extra": [
+    "--open",
+    "/workspace/repos/builderbob/mbse-craft/work/m5-p23-requirement-hierarchy/docs/parity/p23/fixtures/profile-tags.kernspan",
+    "--select",
+    "1003"
+  ],
+  "scenarios": [
+    "Open preserved native/views4 source; create fresh independent identified requirements R-1 root/R-2 child/R-3 grandchild through actual native controls; duplicate R-2 creation refuses without allocation/selection loss",
+    "Parent cycle/missing/invalid local ID and duplicate identifier drafts retain accepted graph/IDs; reparent subtree and register Undo/Redo; invalid statement/new requirement text persists; approval/implementation/verification stay independent",
+    "Actual frozen independent register Save; generated numeric-ID-alias and false valid-draft input files refuse through real Open worker while preserving current saved register",
+    "Close editor retains work; actual native/views4 Save equals original native Snapshot and presentation maps; cold explicit register reopen equals saved requirements/drafts/status/identifier/hierarchy state, with no recovered runtime proof/history",
+    "Original frozen native/views and acceptance-package inputs unchanged; normal owned app/display/auth cleanup"
+  ],
+  "claim_policy": "Same-agent bounded Linux existing assurance Board hierarchy/identifiers only; parent containment no derive/status rollup, independent register Save separate from native model Save. Original504-test/build source retained; draft-validity fix23/UI7 and identifier completion26/UI7/build on final source recorded separately, no summed final-source workspace-run claim. AC-CAT-017 action shape exercised on fresh synthetic register, but56 broad specs remain NOT_RUN without independent/target-specific coverage. No new model or calculation engine."
+}

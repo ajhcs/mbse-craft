@@ -1,0 +1,47 @@
+{
+  "result": "bounded_identified_hierarchy_save_reopen_and_refusal_checks_passed",
+  "reviewer": "Codex same implementing agent",
+  "independent_review": false,
+  "source_files": 711,
+  "source_sha256": "9e205f42d5a39f016f0414c7dce1df15ccea919cef41e15424ffcbd8341a65e4",
+  "binary_sha256": "055d925d86c372f8df4ba5723f4ec8a0602c9353c668cc64a123539754e6e208",
+  "compiler_slice_counts": [
+    [
+      504,
+      0
+    ],
+    [
+      23,
+      7,
+      0
+    ],
+    [
+      26,
+      7,
+      0
+    ]
+  ],
+  "counts_not_summed": true,
+  "new_distinct_cases": 14,
+  "native_runs": 2,
+  "controller_errors_retained": 1,
+  "pixels_reviewed": [
+    "native/run/03-parent-cycle-refused-as-retained-draft.png",
+    "native/reopen/09-cold-hierarchy-status-and-invalid-drafts.png"
+  ],
+  "observations": [
+    "Actual R-1 -> R-2 -> R-3 root/child/grandchild; duplicate R-2 leaves accepted records/allocation/selection/new proposal unchanged.",
+    "Duplicate existing identifier refused; rename R-1 -> R-A -> R-1 keeps local parent endpoints. Root Approved/Implemented does not change child Draft/UnderReview or verification NotStarted.",
+    "Cycle R-2 -> R-3 refused as raw draft. Move R-2 subtree to root R-4 participates in register Undo/Redo, then raw parent 2? retained.",
+    "Blank statement draft retains accepted R-3 text; blank new R-5 proposal refuses without consuming ID5.",
+    "Actual atomic independent register Save, cold Open and fresh copy preserve exact requirements/drafts/revision/next_id; cold register history absent.",
+    "Actual alias 01 and forged-valid parent import refuse; live register and original malformed input bytes exact.",
+    "Native Save and cold second Save equal complete original Snapshot, with all view/occurrence/edge/typed-port/connector maps exact. Two normal app/display exits and owned process/auth cleanup."
+  ],
+  "retained_controller_error": "After first native Save, assertion incorrectly expected a nested document key in views4. KeyError retained. Corrected assertion checks actual top-level maps; saved model and all presentation maps verified before normal close, without replaying authoring.",
+  "limits": [
+    "Bounded Linux same-agent acceptance; no independent review, full NoMagic/SysML/Craft/platform or formal requirements-language claim.",
+    "Existing independent requirements/evidence Board authority; native source remains separate. Hierarchy is containment only, no state inheritance or rollup.",
+    "M03/M04 integrated exits and all56 broad parity specifications remain unaccepted."
+  ]
+}
