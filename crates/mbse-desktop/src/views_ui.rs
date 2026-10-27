@@ -556,8 +556,8 @@ impl ViewWorkspace {
             .apply(editor, &stamp, Layout::Camera(view, camera))?;
         Ok(true)
     }
-    fn fit_camera(&self,width:f64)->Result<v::Camera,String>{
-        let doc=self.views.document();let items:Vec<_>=doc.occurrences.values().filter(|o|o.view==self.active&&o.visible&&o.presence.active()).map(|o|&o.geometry).chain(doc.typed_ports.values().filter(|o|o.view==self.active&&o.visible&&o.presence.active()).map(|o|&o.geometry)).collect();
+    fn fit_camera(&self,editor:&Editor,width:f64)->Result<v::Camera,String>{
+        let doc=self.views.document();let projection=v::viewpoints::project(doc.views.get(&self.active).ok_or("VIEWS_NO_VIEW")?,&editor.snapshot);let items:Vec<_>=doc.occurrences.values().filter(|o|o.view==self.active&&o.visible&&o.presence.active()&&projection.allows(o.record)).map(|o|&o.geometry).chain(doc.typed_ports.values().filter(|o|o.view==self.active&&o.visible&&o.presence.active()).map(|o|&o.geometry)).collect();
         let x=items.iter().map(|o|o.x).fold(0.,f64::min);let y=items.iter().map(|o|o.y).fold(0.,f64::min);let right=items.iter().map(|o|o.x+o.width).fold(800.,f64::max);let bottom=items.iter().map(|o|o.y+o.height).fold(400.,f64::max);let zoom=(width.max(300.)/(right-x+50.)).min(400./(bottom-y+50.)).clamp(v::Camera::MIN_ZOOM,v::Camera::MAX_ZOOM);v::Camera::checked(x,y,zoom)
     }
     fn camera_target(old: &v::Camera, command: CameraCommand) -> Result<v::Camera, String> {
@@ -637,7 +637,7 @@ impl ViewWorkspace {
             }
             if ui
                 .add_enabled(
-                    self.active != self.views.document().primary,
+                    self.active != self.views.document().primary && self.views.document().views.get(&self.active).is_none_or(|v|v.viewpoint_form.as_ref().is_none_or(|f|v.viewpoint.as_ref().is_some_and(|s|v::viewpoints::Form::from_spec(s)==*f))),
                     egui::Button::new("Close view"),
                 )
                 .clicked()
@@ -647,7 +647,7 @@ impl ViewWorkspace {
             let response = ui.add_enabled(self.drag.is_none(), egui::Button::new("Fit"));
             self.toolbar_bound("camera:Fit", &response);
             if response.clicked() {
-                let camera=self.fit_camera(ui.available_width().max(300.)as f64);
+                let camera=self.fit_camera(&session.editor,ui.available_width().max(300.)as f64);
                 self.note = format!(
                     "{:?}",
                     camera.and_then(|camera|self.set_camera(&session.editor,camera))
@@ -2099,7 +2099,7 @@ mod typed_port_camera_tests{
  use super::*;
  #[test]
  fn fit_includes_visible_typed_port_geometry_and_excludes_hidden_ports_without_model_changes(){
-  let area=tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap();let mut session=Session::new(area.path()).unwrap();let instance=session.editor.freshness().instance_id;let raw:serde_json::Value=serde_json::from_str(include_str!("../../../docs/parity/p17b/fixtures/ports.kernspan")).unwrap();session.editor=Editor::new(serde_json::from_value(raw["snapshot"].clone()).unwrap(),instance).unwrap();let before=session.editor.snapshot.clone();let mut ui=ViewWorkspace::new(&session);let original=ui.fit_camera(1000.).unwrap();let id:OccurrenceId=serde_json::from_str(&format!("\"{}\"",ui.views.document().next_id())).unwrap();let stamp=ui.views.stamp(&session.editor);ui.views.apply(&session.editor,&stamp,Layout::Port(v::ports::Layout::Reuse{view:ui.active,port:mbse_model::types::Id(1015),geometry:Geometry::at(5000.,4000.)})).unwrap();let fit=ui.fit_camera(1000.).unwrap();assert!(fit.zoom<original.zoom);let port=&ui.views.document().typed_ports[&id];assert!((port.geometry.x+port.geometry.width-fit.x)*fit.zoom<=1000.);assert!((port.geometry.y+port.geometry.height-fit.y)*fit.zoom<=400.);let stamp=ui.views.stamp(&session.editor);ui.views.apply(&session.editor,&stamp,Layout::Port(v::ports::Layout::Visible(id,false))).unwrap();assert_eq!(ui.fit_camera(1000.).unwrap(),original);assert_eq!(session.editor.snapshot,before);
+  let area=tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap();let mut session=Session::new(area.path()).unwrap();let instance=session.editor.freshness().instance_id;let raw:serde_json::Value=serde_json::from_str(include_str!("../../../docs/parity/p17b/fixtures/ports.kernspan")).unwrap();session.editor=Editor::new(serde_json::from_value(raw["snapshot"].clone()).unwrap(),instance).unwrap();let before=session.editor.snapshot.clone();let mut ui=ViewWorkspace::new(&session);let original=ui.fit_camera(&session.editor,1000.).unwrap();let id:OccurrenceId=serde_json::from_str(&format!("\"{}\"",ui.views.document().next_id())).unwrap();let stamp=ui.views.stamp(&session.editor);ui.views.apply(&session.editor,&stamp,Layout::Port(v::ports::Layout::Reuse{view:ui.active,port:mbse_model::types::Id(1015),geometry:Geometry::at(5000.,4000.)})).unwrap();let fit=ui.fit_camera(&session.editor,1000.).unwrap();assert!(fit.zoom<original.zoom);let port=&ui.views.document().typed_ports[&id];assert!((port.geometry.x+port.geometry.width-fit.x)*fit.zoom<=1000.);assert!((port.geometry.y+port.geometry.height-fit.y)*fit.zoom<=400.);let stamp=ui.views.stamp(&session.editor);ui.views.apply(&session.editor,&stamp,Layout::Port(v::ports::Layout::Visible(id,false))).unwrap();assert_eq!(ui.fit_camera(&session.editor,1000.).unwrap(),original);assert_eq!(session.editor.snapshot,before);
  }
  #[test]
  fn typed_port_gesture_survives_reconciliation_blocks_camera_and_never_becomes_core_route_endpoint(){

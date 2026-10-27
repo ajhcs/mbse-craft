@@ -121,13 +121,18 @@
       "P29b"
     ],
     "p29a": {
-      "state": "review_ready",
+      "state": "merged",
       "execution_results": "p29a/README.md",
       "new_distinct_cases": 8,
       "distinct_case_inventory": 580,
       "native_ui": false,
       "pr_number": 37,
-      "review": "p29a/REVIEW.md"
+      "review": "p29a/REVIEW.md",
+      "merge_commit": "8a893d13614429e6d0c904bf5c58c6c210ef5bf8"
+    },
+    "p29b": {
+      "state": "in_progress",
+      "base_commit": "8a893d13614429e6d0c904bf5c58c6c210ef5bf8"
     }
   }
 }

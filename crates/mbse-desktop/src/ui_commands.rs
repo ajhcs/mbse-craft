@@ -4,7 +4,7 @@ use crate::command_catalog::{self as catalog, Id, Surface};
 
 impl Workspace {
     pub(super) fn history_scope(&self) -> ShortcutTarget {
-        if self.matrix.open || self.tag_panel.open || self.deletion_panel.open || self.refactor_panel.open || self.value_panel.open || self.connector_panel.open || self.port_panel.open || self.type_panel.open || self.files.open || self.files.pending() || self.views.inspection_visible()
+        if self.viewpoints.open || self.matrix.open || self.tag_panel.open || self.deletion_panel.open || self.refactor_panel.open || self.value_panel.open || self.connector_panel.open || self.port_panel.open || self.type_panel.open || self.files.open || self.files.pending() || self.views.inspection_visible()
             || self.assurance.is_visible()
             || self.exchange.is_visible()
             || self.shortcuts.open
@@ -29,6 +29,8 @@ impl Workspace {
     /// Handlers still validate paths, files, revisions and pending tickets on use.
     pub(super) fn command_reason(&self, id: Id, scope: &ShortcutTarget) -> Option<String> {
         let editing = id.is_history() || id.is_layout_history();
+        if self.viewpoints.open && id!=Id::Viewpoints{return Some("Close the viewpoint editor before other workspace commands; proposals retained.".into());}
+        if id==Id::Viewpoints && self.dock_blocked_without_viewpoint(){return Some("Finish pending work or close the auxiliary editor before opening viewpoints.".into());}
         if self.matrix.open && id!=Id::Matrix{return Some("Relation matrix: close it before other workspace commands; model work retained.".into());}
         if id==Id::Matrix && self.dock_blocked_without_matrix(){return Some("Finish pending writes/gestures or close the auxiliary editor before opening the matrix.".into());}
         if self.tag_panel.open && id!=Id::ProfileTags{return Some("Profiles: close the editor before other commands; unfinished form retained.".into());}
@@ -176,6 +178,7 @@ impl Workspace {
             return;
         }
         match id {
+            Id::Viewpoints=>{self.viewpoints.open=true;},
             Id::Matrix=>{self.matrix.open=true;self.matrix_refresh();},
             Id::ProfileTags=>{self.tag_panel.open=true;},
             Id::DeleteModel=>{self.deletion_panel.open=true;},
@@ -501,14 +504,14 @@ mod tests {
     #[test]
     fn command_ids_defaults_and_menu_groups_are_unique_and_complete() {
         use std::collections::BTreeSet;
-        assert_eq!(catalog::ALL.len(), 32);
+        assert_eq!(catalog::ALL.len(), 33);
         assert_eq!(
             catalog::ALL
                 .iter()
                 .map(|s| s.key)
                 .collect::<BTreeSet<_>>()
                 .len(),
-            32
+            33
         );
         assert_eq!(
             catalog::ALL
@@ -516,7 +519,7 @@ mod tests {
                 .map(|s| s.id)
                 .collect::<BTreeSet<_>>()
                 .len(),
-            32
+            33
         );
         for (i, s) in catalog::ALL.iter().enumerate() {
             assert!(catalog::MENUS.contains(&s.menu));
