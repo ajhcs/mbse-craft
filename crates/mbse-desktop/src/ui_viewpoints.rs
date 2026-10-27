@@ -1,5 +1,6 @@
 //! Per-view native scope controls; durable proposals live in the existing layout document.
 use super::*;
+use mbse_model::native_views::Layout;
 use mbse_model::native_views::{self as nv, OccurrenceId, Stamp, View, ViewId, viewpoints as vp};
 #[derive(Clone)]
 struct Pending {
@@ -202,6 +203,7 @@ impl Workspace {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use mbse_model::stage1::Editor;
     fn app() -> (tempfile::TempDir, Workspace, egui::Context) {
         let area = tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap();
         let mut session = Session::new(area.path()).unwrap();

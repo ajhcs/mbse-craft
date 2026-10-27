@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m5-p29b-native-viewpoints-01",
+  "id": "m5-p29b-imports-02",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m5-p29b-native-viewpoints",
   "source_manifest": "docs/parity/p29b/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "3eec26f7c9f56f0ba5a6a78e2351f1654f079976ecf2da2bef3d48800c8bc98a",
-  "source_sha256": "6d4abb10810775e97ccbc5342ce09f4f569c30c099146083c26f8bdae505b596",
+  "source_manifest_sha256": "ad5de8b0ca1a95bdcb6b9a4906e18bd68578aa72b02d4ed51a903156efff05d4",
+  "source_sha256": "8d2085348af6780a6bd4ad1859d2ce9073e88e864602301777ad80d68117ebc8",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
