@@ -77,6 +77,13 @@
     "children": [
       "P27a",
       "P27b"
-    ]
+    ],
+    "p27a": {
+      "state": "review_pending",
+      "execution_results": "p27a/README.md",
+      "workspace_tests": 559,
+      "new_distinct_cases": 8,
+      "native_ui": false
+    }
   }
 }
