@@ -1,0 +1,55 @@
+{
+  "schema": "mbse-craft.publication-preparation/1",
+  "base": "2858c353ce2277a76d41b89e29591bb7903e276b",
+  "visibility": "private",
+  "promotion_pr": 1,
+  "promotion_executed": false,
+  "scanner": "gitleaks 8.30.1",
+  "history_scope": "locally reachable refs, git --log-opts=--all after origin fetch",
+  "snapshot": "7bab104b657eaa9edeafeac06e276b371ba77e65",
+  "snapshot_archive_depth": 2,
+  "scans": [
+    {
+      "report": "history-redacted.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "findings": 0,
+      "exit_code": 0
+    },
+    {
+      "report": "tree-redacted.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "findings": 0,
+      "exit_code": 0
+    },
+    {
+      "report": "new-docs-redacted.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "findings": 0,
+      "exit_code": 0
+    }
+  ],
+  "validation": {
+    "parity_package": "58 positions, 56 NOT_RUN, 18 negative cases rejected",
+    "changed_markdown_local_links": "PASS",
+    "diff_check": "PASS",
+    "cargo_or_native_replay": false
+  },
+  "review_kind": "same-agent documentary review; no new engineering acceptance",
+  "preservation": {
+    "canonical": {
+      "head": "53133f6ac228fac885767a5d9f1165a8db5d139b",
+      "status": ""
+    },
+    "candidate": {
+      "head": "7bab104b657eaa9edeafeac06e276b371ba77e65",
+      "status": ""
+    },
+    "review": {
+      "head": "086f654edf3f85cd296166bb756dfbf3f09d2a04",
+      "status": ""
+    }
+  }
+}

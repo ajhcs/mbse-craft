@@ -2,6 +2,14 @@
 
 An independent native Rust systems-modeling workbench. It reuses the attributed MIT Kernspan Stage1 core and integrates pinned ArtCraft persistence, UI controls, settings, quit, document-path and window-frame contracts. It has its own native shell and preserves the bounded Kernspan storage and exchange profiles; it is not a full ArtCraft application or general SysML implementation.
 
+## Current development and contribution
+
+The integrated development branch is `implementation/native-alpha`, through P39 in [PR #62](https://github.com/ajhcs/mbse-craft/pull/62). The 58-position roadmap has 39 merged implementation positions; P40–P58 remain. Splitting positions can require additional PRs. Bounded implementation evidence does not close the 56 broad acceptance specifications or integrated milestone exits.
+
+Start with [CONTRIBUTING.md](CONTRIBUTING.md) for branch selection, isolated development, build prerequisites and review evidence. [Publication readiness](docs/PUBLIC_READINESS.md) records the prepared default-branch handoff and the material already retained in history. `main` is currently a skeleton; [PR #1](https://github.com/ajhcs/mbse-craft/pull/1) is the proposed promotion of the integrated work. Repository visibility has not been changed by this handoff.
+
+The latest native import workflow reviews an explicit source member and target System, requires disclosures, then applies one native Undo/Redo transaction. It preserves source bytes and native drafts; its strict synthetic UML subset and documentary Block mapping do not establish vendor No Magic interoperability. See [P39c evidence and exact limitations](docs/parity/p39c/README.md). Older qualification sections below describe their original frozen epochs.
+
 ## Build on Linux
 
 The package metadata declares Rust 1.97; the recorded build and test toolchain is Rust 1.99.1. The declared minimum has not been independently tested. The native GUI uses eframe/egui 0.36.2 with X11/OpenGL. Linux needs X11, keyboard and OpenGL runtime libraries; private test display uses an already installed Xvfb. No MySQL, Redis, Node, provider credentials or ArtCraft service is needed for this offline integration.
@@ -52,7 +60,7 @@ Independent Linux verification passed 123 tests, including actual Craft streamin
 
 Exact build-input SHA-256: `323fe697051fe40a508dcab6d8d3979898a0da8c34a4a2007aa1ec30ee3ac6d7`. Linux debug executable SHA-256: `ddefaaaa73675b5e1aacd8aee6288cfdf513049c0e8cad88b15be894a7e4b587`. Build used Rust 1.99.1, one Cargo job, offline locked registry inputs, private Xvfb and software OpenGL. Recompute inputs with `python3 scripts/source-manifest.py`.
 
-The draft PR is not a release. Windows native behavior, AT-SPI accessibility, physical FPS/input latency, engineering acceptance and full ecosystem compatibility remain unqualified. The canvas uses a responsive grid with basic crossing routes, explicit scope-link visibility and a complete relation ledger; this does not establish collision-free dense layouts. The continuation adds actor/environment/organization context editors and default-off periodic recovery; its evidence is recorded separately below. Generic CAD and service/AI integrations remain outside the implemented scope. See `docs/UI_WORKFLOW.md` and the independent acceptance artifacts under `docs/verification/`.
+These frozen acceptance epochs are not a release. Windows native behavior, AT-SPI accessibility, physical FPS/input latency, engineering acceptance and full ecosystem compatibility remain unqualified. The canvas uses a responsive grid with basic crossing routes, explicit scope-link visibility and a complete relation ledger; this does not establish collision-free dense layouts. The continuation adds actor/environment/organization context editors and default-off periodic recovery; its evidence is recorded separately below. Generic CAD and service/AI integrations remain outside the implemented scope. See `docs/UI_WORKFLOW.md` and the independent acceptance artifacts under `docs/verification/`.
 
 [Independent acceptance report](docs/verification/FINAL_ACCEPTANCE.md) · [machine-readable receipt](docs/verification/FINAL_ACCEPTANCE.json) · [exact source manifest](docs/verification/SOURCE_MANIFEST.json) · [blank-authored native model](docs/verification/models/blank-authored.kernspan)
 
