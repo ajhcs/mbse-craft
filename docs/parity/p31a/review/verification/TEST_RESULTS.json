@@ -1,0 +1,51 @@
+{
+  "compiler_slice_counts": [
+    [
+      0
+    ],
+    [
+      8,
+      0
+    ]
+  ],
+  "prior_case_names_reconciled": 627,
+  "new_distinct_cases": [
+    "finite_activity_start_refuses_invalid_native_source_even_if_type_store_parses"
+  ],
+  "distinct_case_inventory": 628,
+  "qualification": "Source-admission repro fails0; final source validates complete Snapshot, passes8affected cases/build. Original627 retained on original source; no summed final-source full-workspace claim.",
+  "tests": [
+    {
+      "slice": 3,
+      "test": "finite_activity_budget_counts_visits_and_final_at_exact_budget_completes"
+    },
+    {
+      "slice": 3,
+      "test": "finite_activity_cancellation_and_terminal_steps_are_idempotent_without_model_or_history_writes"
+    },
+    {
+      "slice": 3,
+      "test": "finite_activity_missing_initial_foreign_ids_fanout_and_unsupported_payloads_refuse_without_mutation"
+    },
+    {
+      "slice": 3,
+      "test": "finite_activity_new_raw_invalid_guard_stales_execution_without_overwriting_accepted_or_proposal"
+    },
+    {
+      "slice": 3,
+      "test": "finite_activity_serialized_reports_remain_historical_and_cannot_authorize_resume"
+    },
+    {
+      "slice": 3,
+      "test": "finite_activity_source_digest_and_exact_runtime_reject_same_counter_changed_or_reopened_source"
+    },
+    {
+      "slice": 3,
+      "test": "finite_activity_start_refuses_invalid_native_source_even_if_type_store_parses"
+    },
+    {
+      "slice": 3,
+      "test": "finite_activity_traces_match_independently_specified_branch_deadlock_cycle_and_cancel_tables"
+    }
+  ]
+}

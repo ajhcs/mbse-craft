@@ -4,7 +4,7 @@
   "milestone_exit_accepted": false,
   "full_parity_accepted": false,
   "p30": {
-    "state": "reviewed_native_contract_ready_for_merge",
+    "state": "merged_bounded_contract",
     "base_commit": "7d7247b64585cdd4d1ae8dfdfeaa2c244277f867",
     "children": [
       "P30a",
@@ -37,7 +37,7 @@
       "merge_commit": "f8a615b86175b7226d6cacf152b09564bc85f07e"
     },
     "p30c": {
-      "state": "reviewed_ready_for_merge",
+      "state": "merged",
       "base_commit": "f8a615b86175b7226d6cacf152b09564bc85f07e",
       "execution_results": "p30c/README.md",
       "new_distinct_cases": 11,
@@ -46,7 +46,33 @@
       "final_source_full_workspace_claim": false,
       "source_sha256": "444d60d701f0f332d74e88313fc968ff19b59be746bae56e04090a3c715c37dd",
       "pr_number": 41,
-      "review": "p30c/REVIEW.md"
+      "review": "p30c/REVIEW.md",
+      "merge_commit": "0054c0c45bbcba758ff1b6e5f86ea1abb5359755"
+    }
+  },
+  "p31": {
+    "state": "in_progress",
+    "base_commit": "0054c0c45bbcba758ff1b6e5f86ea1abb5359755",
+    "children": [
+      "P31a",
+      "P31b"
+    ],
+    "p31a": {
+      "state": "reviewed_ready_for_merge",
+      "scope": "finite control execution core and independent fixed trace fixtures",
+      "execution_results": "p31a/README.md",
+      "distinct_case_inventory": 628,
+      "new_distinct_cases": 8,
+      "native_execution_checks": 0,
+      "pr_number": 42,
+      "review": "p31a/REVIEW.md",
+      "review_affected_cases": 8,
+      "final_source_full_workspace_claim": false,
+      "review_source_sha256": "7658979103b5011e553237983c4cde37e7d90da37c5b58945224156c98d66438"
+    },
+    "p31b": {
+      "state": "planned",
+      "scope": "native explicit execution controls, status/trace/staleness/cancellation acceptance"
     }
   }
 }

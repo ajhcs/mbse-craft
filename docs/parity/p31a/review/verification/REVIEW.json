@@ -1,0 +1,12 @@
+{
+  "result": "bounded_execution_source_admission_fix_passed",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 740,
+  "source_sha256": "7658979103b5011e553237983c4cde37e7d90da37c5b58945224156c98d66438",
+  "binary_sha256": "c14727e215942c7dd5e79c95fdeee864d8007a61173d1021c63d0421029966f4",
+  "distinct_case_inventory": 628,
+  "new_review_cases": 1,
+  "affected_cases": 8,
+  "native_execution_checks": 0
+}
