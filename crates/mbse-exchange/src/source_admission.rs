@@ -26,6 +26,9 @@ pub struct Summary {
 }
 pub struct Prepared {source:Arc<ProjectSet>,summary:Summary,plan:Option<native::Plan>}
 pub struct Reviewed {source:Arc<ProjectSet>,summary:Summary,plan:native::Plan}
+/// A short-lived result of an original-file check. No serialization, setters
+/// or caller-supplied timestamp; native state is checked again on publication.
+pub struct Checked {summary:Summary,plan:native::Plan,original_file_check:Recheck,checked_unix_milliseconds:u128,checked_at:std::time::Instant}
 #[derive(Clone,Debug,Serialize)]
 pub struct Applied {pub summary:Summary,pub original_file_check:Recheck,pub checked_unix_milliseconds:u128,pub target_model_revision:u64,pub target_snapshot_sha256:String}
 impl Prepared {
@@ -42,12 +45,25 @@ impl Reviewed {
  /// Point-in-time original-list recheck, then one atomic native command. This
  /// does not lease external files or claim they remain current after the check.
  pub fn apply(self,e:&mut Editor)->Result<Applied,String>{
+  self.check_source()?.apply(e)
+ }
+ /// May run off the UI thread. Checking has no target mutation authority.
+ pub fn check_source(self)->Result<Checked,String>{
   let original_file_check=self.source.recheck()?;
   if !original_file_check.unchanged{return Err("SOURCE_ADMISSION_SOURCE_CHANGED: reviewed frozen source retained; prepare/review again explicitly".into());}
-  self.plan.check(e)?;
   let checked_unix_milliseconds=std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map_err(|e|e.to_string())?.as_millis();
-  e.command(&e.freshness(),Command::Typed(types::Action::Admission(Box::new(self.plan))))?;
-  Ok(Applied{summary:self.summary,original_file_check,checked_unix_milliseconds,target_model_revision:e.snapshot.model_revision,target_snapshot_sha256:e.snapshot.digest()})
+  Ok(Checked{summary:self.summary,plan:self.plan,original_file_check,checked_unix_milliseconds,checked_at:std::time::Instant::now()})
+ }
+}
+impl Checked {
+ pub fn apply(self,e:&mut Editor)->Result<Applied,String>{self.complete(e,None)}
+ pub fn apply_with_views(self,e:&mut Editor,views:&mut mbse_model::native_views::Views)->Result<Applied,String>{self.complete(e,Some(views))}
+ fn complete(self,e:&mut Editor,views:Option<&mut mbse_model::native_views::Views>)->Result<Applied,String>{
+  if self.checked_at.elapsed()>std::time::Duration::from_secs(5){return Err("SOURCE_ADMISSION_CHECK_EXPIRED: check original files again before publication".into());}
+  self.plan.check(e)?;
+  let command=Command::Typed(types::Action::Admission(Box::new(self.plan)));
+  if let Some(views)=views{let stamp=views.stamp(e);views.dispatch(e,&stamp,mbse_model::native_views::NativeAction::Command(command))?;}else{e.command(&e.freshness(),command)?;}
+  Ok(Applied{summary:self.summary,original_file_check:self.original_file_check,checked_unix_milliseconds:self.checked_unix_milliseconds,target_model_revision:e.snapshot.model_revision,target_snapshot_sha256:e.snapshot.digest()})
  }
 }
 impl Summary {

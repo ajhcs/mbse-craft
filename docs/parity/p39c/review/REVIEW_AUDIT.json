@@ -1,0 +1,28 @@
+{
+  "checked_utc": "2026-10-27T17:47:00.269476+00:00",
+  "candidate": "7bab104b657eaa9edeafeac06e276b371ba77e65",
+  "base": "f1bb06826bcfe26ab976279d05a707aeff773e26",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 789,
+  "source_sha256": "aa2923866bcbae9b002e298f74c1a5d57ca8806f296a4d350ae603bad706f789",
+  "source_qualified_cases": 835,
+  "new_distinct_cases": 11,
+  "artifacts": 76,
+  "native_runs": 2,
+  "controller_errors": [
+    1,
+    0
+  ],
+  "controller_failure_preserved_and_settled_remainder": true,
+  "native_captures": 20,
+  "pre_edit_original_journal_exact": true,
+  "whole_other_prior_data_and_eight_maps_exact": true,
+  "cold_snapshot_exact": true,
+  "available_checkouts_unchanged": 114,
+  "user_removed_registered_heads_retained": 18,
+  "blocking_findings": [],
+  "new_source_changes": false,
+  "new_compiler_or_native_runs": false,
+  "final_source_full_suite_claim": false
+}

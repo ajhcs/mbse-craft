@@ -29,3 +29,7 @@ fn rendered_project_set_window_reopen_keeps_frozen_session_but_cold_browser_requ
 fn rendered_project_set_pending_worker_prevents_reopen_recheck_and_clear_and_disconnection_retains_previous_capture(){
  let(_a,mut b,ctx)=setup();opened(&mut b,&ctx);let source=b.source.clone().unwrap();let(tx,rx)=mpsc::channel();b.pending=Some(rx);b.checking=true;settle(&mut b,&ctx);for key in["projects:Open","projects:Recheck","projects:Clear"]{click(&mut b,&ctx,key);assert!(b.pending());assert!(Arc::ptr_eq(b.source.as_ref().unwrap(),&source));}drop(tx);wait(&mut b,&ctx);assert!(b.error&&b.last_check.as_ref().unwrap().is_err());assert!(Arc::ptr_eq(b.source.as_ref().unwrap(),&source));
 }
+#[test]
+fn rendered_project_set_import_entry_requires_one_semantic_member_and_emits_only_frozen_source_context(){
+ let(_a,mut b,ctx)=setup();opened(&mut b,&ctx);click(&mut b,&ctx,"projects:Review import");assert!(b.take_import_request().is_none());click(&mut b,&ctx,"projects:member:left");click(&mut b,&ctx,"projects:Review import");assert!(b.take_import_request().is_none());click(&mut b,&ctx,"projects:member:supplier");click(&mut b,&ctx,"projects:Review import");let request=b.take_import_request().unwrap();assert_eq!(request.member,"supplier");assert!(Arc::ptr_eq(&request.source,b.source.as_ref().unwrap()));assert!(!b.visible);assert!(b.take_import_request().is_none());
+}

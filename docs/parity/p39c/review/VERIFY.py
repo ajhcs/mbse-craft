@@ -1,0 +1,44 @@
+"""Read-only source/evidence/model/preservation audit; no compiler/native replay."""
+from pathlib import Path
+import json,hashlib,gzip,subprocess,datetime,copy
+r=Path(__file__).resolve().parents[4];d=r/'docs/parity/p39c';out=d/'review';sha=lambda b:hashlib.sha256(b).hexdigest()
+def load(p):return json.loads(p.read_text())
+def git(*args,cwd=r):return subprocess.check_output(['git','-C',str(cwd),'-c','core.worktree='+str(cwd),*args],text=True).strip()
+m=load(d/'SOURCE_MANIFEST.json');assert len(m['files'])==789
+names=sorted(p for p in git('ls-files','-z').split('\0')if p and(p in('Cargo.toml','Cargo.lock')or p.startswith(('crates/','vendor/'))));assert names==[f['path']for f in m['files']]
+for f in m['files']:b=(r/f['path']).read_bytes();assert len(b)==f['bytes']and sha(b)==f['sha256']
+assert sha(json.dumps(m['files'],sort_keys=True,separators=(',',':')).encode())==m['source_sha256']
+full=load(d/'attempts/02-full-regression-native/SOURCE_MANIFEST.json');assert [f['path']for f,o in zip(m['files'],full['files'])if f!=o]==['crates/mbse-desktop/src/ui_source_import.rs']
+archives=load(d/'verification/ARCHIVES.json');assert len(archives)==76
+for row in archives:
+ stored=(d/'verification'/row['path']).read_bytes();assert sha(stored)==row['stored_sha256'];raw=gzip.decompress(stored)if row['path'].endswith('.gz')else stored;assert len(raw)==row['bytes']and sha(raw)==row['sha256']
+tests=[];compilers=[]
+for i,manifest in [(1,d/'attempts/01/SOURCE_MANIFEST.json'),(2,d/'attempts/02-full-regression-native/SOURCE_MANIFEST.json'),(3,d/'SOURCE_MANIFEST.json')]:
+ folder=d/f'verification/compiler-{i:02}';j=load(folder/'JOB.json');c=load(folder/'RECEIPT.json');compilers.append(c);assert c['job_sha256']==sha((folder/'JOB.json').read_bytes())and not c['owned_jobs'];assert c['status']==('failed'if i==1 else'passed');assert j['source_sha256']==load(manifest)['source_sha256']and j['source_manifest_sha256']==sha(manifest.read_bytes());assert [len(x['passed_tests'])for x in c['commands']]==[[0],[835,0],[0]][i-1]
+ for cmd in c['commands']:raw=gzip.decompress((folder/(Path(cmd['log']).name+'.gz')).read_bytes());assert sha(raw)==cmd['log_sha256'];tests+=cmd['passed_tests']
+ if i>1:assert sha(Path(c['preserved_binary']).read_bytes())==c['binary_sha256']
+t=load(d/'verification/TEST_RESULTS.json');assert len(tests)==len(set(tests))==835 and sorted(tests)==sorted(v['test']for v in t['tests']);prior={v['test']for v in load(r/'docs/parity/p39b/verification/TEST_RESULTS.json')['tests']};assert len(prior)==824 and prior<=set(tests)and sorted(set(tests)-prior)==t['new_distinct_cases']and len(t['new_distinct_cases'])==11
+uis={};native=[]
+for i in[1,2]:
+ j=load(d/f'NATIVE_JOB_{i:02}.json');c=load(d/f'verification/native-{i:02}/RECEIPT.json');native.append(c);assert c['job_sha256']==sha((d/f'NATIVE_JOB_{i:02}.json').read_bytes())and c['status']=='actions_completed_review_pending'and len(c.get('action_errors',[]))==(1 if i==1 else 0);assert len(c['runs'])==1 and j['binary_sha256']==compilers[i]['binary_sha256'];assert j['source_sha256']==(full['source_sha256']if i==1 else m['source_sha256']);assert c['all_protected_inputs_unchanged']
+ for relative,expected in j['script_hashes'].items():assert sha((r/relative).read_bytes())==expected
+ for run in c['runs']:assert run['normal_app_exit']==run['driver_exit']==0 and run['owned_processes_absent']and not(Path(run['run'])/'Xauthority').exists()
+ for p in(d/f'verification/native-{i:02}/run').glob('*.ui.json'):number=int(p.name[:2]);assert number not in uis;uis[number]=load(p)
+assert set(uis)==set(range(20));state={i:a['source_import']for i,a in uis.items()};old=load(r/'docs/parity/p38b/verification/native-01/cold-run/project-set-target-cold-copy.kernspan')['snapshot'];old_views=load(r/'docs/parity/p38b/verification/native-01/cold-run/project-set-target-cold-copy.mbse-views.json');maps=['views','occurrences','edges','typed_ports','connector_edges','activity_diagrams','state_machine_diagrams','scenario_diagrams']
+assert state[0]['summary']is None and state[1]['summary']['ready_for_review']and state[1]['target_current']and state[1]['acknowledgements']==[];assert state[2]['applied']is None and len(state[3]['acknowledgements'])==5;assert len({uis[i]['snapshot_hash']for i in range(4)})==1;assert state[4]['applied']is not None and uis[4]['model_revision']==254 and uis[4]['raw_version']==516;assert uis[5]['native_extensions']==old['extensions']and uis[5]['model_revision']==255;assert not state[6]['applied_current'];assert state[8]['summary']['ready_for_review']is False and any(n['code']=='UNSUPPORTED_ELEMENT'for n in state[8]['summary']['notices']);assert 'SOURCE_CHANGED'in state[9]['note']and uis[8]['snapshot_hash']==uis[9]['snapshot_hash']==uis[7]['snapshot_hash'];assert uis[11]['typed_properties']['usage_form']['target']=='not-an-id';assert uis[11]['typed_properties']['store']['usages']['60085']['target']==60084;assert uis[13]['typed_properties']['store']==old['extensions']['namespaces']['mbse-craft.types/1'];assert uis[13]['typed_properties']['usage_form']==uis[14]['typed_properties']['usage_form'];assert state[16]['summary']is None and state[16]['applied']is None and not state[16]['acknowledgements'];assert not state[17]['summary']['ready_for_review']and any('ALREADY_ATTACHED'in n['detail']for n in state[17]['summary']['notices']);assert state[18]['summary']['ready_for_review']and state[18]['summary']['selected_member']=='consumer'and state[18]['applied']is None;assert len({uis[i]['snapshot_hash']for i in[15,16,17,18,19]})==1
+base=d/'verification/native-01/run';cold=d/'verification/native-02/run';checkpoint=load(base/'native-import-preserved-checkpoint.kernspan')['snapshot'];final=load(base/'native-import-final.kernspan')['snapshot'];assert load(cold/'native-import-cold-copy.kernspan')['snapshot']==final;assert (checkpoint['model_revision'],checkpoint['raw_version'],checkpoint['next_id'])==(256,516,60087);assert (final['model_revision'],final['raw_version'],final['next_id'])==(261,519,60087)
+for snapshot in[checkpoint,final]:assert snapshot['records']==old['records']and snapshot['drafts']==old['drafts']and snapshot['creation_drafts']==old['creation_drafts']
+assert checkpoint['extensions']['namespaces']['mbse-craft.type-drafts/1']==old['extensions']['namespaces']['mbse-craft.type-drafts/1']
+ns=copy.deepcopy(final['extensions']['namespaces']);s=ns['mbse-craft.types/1'];assert s['definitions']['60083']['system']==s['definitions']['60084']['system']==60082;assert s['usages']['60085']['name']=='sensor revised'and s['usages']['60085']['target']==60084
+for key in['60083','60084']:del s['definitions'][key]
+for key in['60085','60086']:del s['usages'][key]
+s['profiles']={k:v for k,v in s['profiles'].items()if v['identity']['namespace']!='urn:mbse-craft:source-correspondence'};s['profile_applications']={k:v for k,v in s['profile_applications'].items()if v['profile']['namespace']!='urn:mbse-craft:source-correspondence'};assert s==old['extensions']['namespaces']['mbse-craft.types/1'];assert ns['mbse-craft.type-drafts/1']['usage']['target']=='not-an-id';ns['mbse-craft.type-drafts/1']['usage']=old['extensions']['namespaces']['mbse-craft.type-drafts/1']['usage'];assert ns==old['extensions']['namespaces']
+for p in[base/'native-import-preserved-checkpoint.mbse-views.json',base/'native-import-final.mbse-views.json',cold/'native-import-cold-copy.mbse-views.json']:v=load(p);assert all(v[k]==old_views[k]for k in maps)
+available=removed=0
+for w in load(d/'PRESERVATION_BEFORE.json')['worktrees']:
+ p=Path(w['path'])
+ if w['state']=='user_removed_directory':assert not p.exists();assert git('rev-parse',w['branch'])==w['head'];removed+=1
+ else:assert git('rev-parse','HEAD',cwd=p)==w['head']and git('status','--porcelain',cwd=p)==w['status'];available+=1
+candidate=r.parent/'m7-p39c-native-source-import';assert git('rev-parse','HEAD',cwd=candidate)=='7bab104b657eaa9edeafeac06e276b371ba77e65'and git('status','--porcelain',cwd=candidate)=='';available+=1;assert available==114 and removed==18
+result=dict(checked_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),candidate='7bab104b657eaa9edeafeac06e276b371ba77e65',base='f1bb06826bcfe26ab976279d05a707aeff773e26',same_agent=True,independent_review=False,source_files=789,source_sha256=m['source_sha256'],source_qualified_cases=835,new_distinct_cases=11,artifacts=76,native_runs=2,controller_errors=[1,0],controller_failure_preserved_and_settled_remainder=True,native_captures=20,pre_edit_original_journal_exact=True,whole_other_prior_data_and_eight_maps_exact=True,cold_snapshot_exact=True,available_checkouts_unchanged=available,user_removed_registered_heads_retained=removed,blocking_findings=[],new_source_changes=False,new_compiler_or_native_runs=False,final_source_full_suite_claim=False)
+(out/'REVIEW_AUDIT.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

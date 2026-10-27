@@ -1,0 +1,54 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m7-p39c-window-close-borrow-correction-02",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m7-p39c-native-source-import",
+  "source_manifest": "docs/parity/p39c/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "419147f5f446f7a76807b060101b2dd552bbe01f10d8a274c2d55cc318ddf368",
+  "source_sha256": "f4d23a2f3eeb5aeb95fc899b98310a7cf2366db6cdc9d144b3ba9b943c041761",
+  "cargo_lock_sha256": "26687453bfdee99d59a404b010c9fcdda95c1d77462c08e387ccebae3b14347b",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "--workspace"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "P39c existingprojectbrowser emitsfrozenmember request to separate native review window: explicit System, asyncpurePrepare, exactdisclosures, asyncoriginal-listcheck/private5secondtoken, existingViews/EditoratomicApply/history. QueuedCancel/Close and appclose cancel beforelatepublication; raw/scope/nativeIO/gesture/stale guards. EightnewGUI/workspacecases plusbrowser entryone andcheckedViewsbridge/expiry two; expected835=824prior+11new. Fullworkspace once then desktopbuild. Existing P39b source-only fixtures reused unchanged; actual private native acceptance follows separately. No new deps/licenses/upstream/buildscripts/provider/service/release workflows. Original789-file696ddcd0 stops at compile before any tests: dialog mutably borrows open flag into egui Window and also writes it inside closure. Collect explicit Close intent separately, apply after window show; no workflow semantics change. Preserve failed attempt; all835workspace cases/build remain unexecuted.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p39c-native-source-import/docs/parity/p38b/verification/native-01/cold-run/project-set-target-cold-copy.kernspan": "76308c47303441f4dc6575399a85a9d842143c9784d442709a0402226cb670dc",
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p39c-native-source-import/docs/parity/p38b/verification/native-01/cold-run/project-set-target-cold-copy.mbse-views.json": "bc5e0519f10a956e8110c496c783c51f5521bae0279a86dc60c1a956b6dbeb2b",
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p39c-native-source-import/docs/parity/p39b/fixtures/native-prepared-01/source.xmi": "2e2791ab72a8bf550cb4fe960d3d2f1d8f8b56f6ffad120146d6c740d308c032",
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p39c-native-source-import/docs/parity/p39b/fixtures/native-prepared-01/source.mbse-projects.json": "77d462cc8f78a21a6de44bfab8ce5f4da5a1ce71c573d4d738ef0a8855f3e02c",
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p39c-native-source-import/docs/parity/p39b/verification/TEST_RESULTS.json": "c0361f08ff9ea85937a43d40b28cd3a514a9e14dbef7be57edfed7ae8e35e7e5"
+  }
+}

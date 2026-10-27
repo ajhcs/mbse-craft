@@ -1,0 +1,123 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-27T17:21:47.367547+00:00",
+  "job_sha256": "0e50a980c0aff37526b2570b500eed3f22195b07fc4f4955fd91db60ccbdb20e",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p39c-01/run",
+      "started_utc": "2026-10-27T17:21:47.388126+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 1619849,
+          "start_ticks": 49605833
+        },
+        "server_pid": {
+          "pid": 1619846,
+          "start_ticks": 49605830
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/repos/builderbob/mbse-craft/work/m7-p39c-native-source-import/docs/parity/p38b/verification/native-01/cold-run/project-set-target-cold-copy.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 1619849,
+        "server_pid": 1619846,
+        "window": 4194307,
+        "binary_sha256": "c480f069f16e9e42634f9e17908ca90c4e814fdb574beb9201ff64334ff92ad0"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-27T17:33:04.582711+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-27T17:21:47.387885+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1325881671680,
+    "available_memory_bytes": 28042006528,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 1364113,
+        "start_ticks": 48988541,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      },
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 549
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "action_errors": [
+    {
+      "action": "n.send(op='key',key='t',mods=['Control_L','Alt_L']); n.send(op='pointer',x=2190,y=1590,pause=.5); assert n.audit()['command_catalog']['last']['id']=='tools.types'; n.click('types:usage:edit:60085'); fill(n,'types:usage:name','sensor revised'); n.click('types:usage:apply'); a=n.audit()['typed_properties']; assert a['store']['usages']['60085']['name']=='sensor revised' and a['store']['usages']['60085']['target']==60084; n.capture('10-imported-part-is-editable-through-existing-native-types-workflow'); fill(n,'types:usage:target','not-an-id'); a=n.audit()['typed_properties']; assert a['usage_form']['target']=='not-an-id' and a['store']['usages']['60085']['target']==60084 and a['store']['usages']['60085']['name']=='sensor revised'; retained_usage_form=a['usage_form']; n.capture('11-invalid-new-target-proposal-retained-separate-from-accepted-imported-part'); n.click('types:undo-model'); a=n.audit()['typed_properties']; assert a['store']['usages']['60085']['name']=='sensor' and a['usage_form']==retained_usage_form; n.capture('12-undo-native-name-edit-retains-newer-invalid-usage-proposal'); n.click('types:undo-model'); a=n.audit()['typed_properties']; assert a['store']==original_store and a['usage_form']==retained_usage_form; n.capture('13-undo-whole-import-retains-newer-detached-invalid-proposal-and-highwater'); n.click('types:redo-model'); a=n.audit()['typed_properties']; assert a['store']['usages']['60085']['name']=='sensor' and a['usage_form']==retained_usage_form; n.click('types:redo-model'); a=n.audit()['typed_properties']; assert a['store']['usages']['60085']['name']=='sensor revised' and a['usage_form']==retained_usage_form; n.capture('14-redo-import-and-edit-restores-same-identities-with-invalid-proposal-untouched'); n.click('types:close')",
+      "error": "AssertionError()"
+    }
+  ],
+  "controller_timing_qualification": "One read immediately after XTest text input preceded publication of the next UI audit. Accepted Part/name already passed; settled target field is not-an-id with accepted target60084 unchanged. No repeated edit or passed workflow replay; continue failed/unexecuted remainder only.",
+  "saved_counters": {
+    "model_revision": 261,
+    "raw_version": 519,
+    "next_id": 60087
+  },
+  "original_invalid_form_preserved_in_checkpoint": true,
+  "whole_prior_data_and_all_eight_maps_preserved_except_explicit_usage_form_edit": true,
+  "visual_review_finding": "Mapping separator right-arrow glyph appears missing in captured native font; replace this display-only separator before the unexecuted cold check.",
+  "remaining_unexecuted": [
+    "cold/native reopening and duplicate-source refusal on final readable-label binary"
+  ],
+  "all_protected_inputs_unchanged": true,
+  "ended_utc": "2026-10-27T17:33:47.009145+00:00"
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.omg.org/spec/UML/20131001" xmlns:sysml="http://www.omg.org/spec/SysML/20181001/SysML" xmi:version="2.5.1">
+<!-- Synthetic source fixture; not a vendor-created project or engineering acceptance. -->
+<uml:Model xmi:id="model" name="Synthetic source model">
+<packagedElement xmi:type="uml:Class" xmi:id="A" name="Imported Assembly" isAbstract="false">
+<ownedAttribute xmi:type="uml:Property" xmi:id="part" name="sensor" type="B" aggregation="composite"><lowerValue xmi:type="uml:LiteralInteger" xmi:id="lowerP" value="1"/><upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="upperP" value="1"/></ownedAttribute>
+</packagedElement>
+<packagedElement xmi:type="uml:Class" xmi:id="B" name="Imported Sensor" isAbstract="false"><ownedAttribute xmi:type="uml:Property" xmi:id="ref" name="assemblyReference" type="A" aggregation="none" lower="1" upper="1"/></packagedElement>
+</uml:Model>
+<sysml:Block xmi:id="blockA" base_Class="A"/>
+</xmi:XMI> 

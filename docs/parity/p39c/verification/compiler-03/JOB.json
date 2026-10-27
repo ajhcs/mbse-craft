@@ -1,0 +1,46 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m7-p39c-readable-mapping-separator-03",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m7-p39c-native-source-import",
+  "source_manifest": "docs/parity/p39c/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "2028e22ddb468f23dcb0a9a80189f34e2bfe5c694008c61c5a36515f5fc433ae",
+  "source_sha256": "aa2923866bcbae9b002e298f74c1a5d57ca8806f296a4d350ae603bad706f789",
+  "cargo_lock_sha256": "26687453bfdee99d59a404b010c9fcdda95c1d77462c08e387ccebae3b14347b",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "Native01 actual complete Apply/Undo/Redo/edit/refusal/save workflow on corrected789-filef4d23a2f; all835workspace cases and build already passed. Native visual QA finds missing right-arrow separator glyph in mapping rows. Change display separator only to ASCII word to; no mapping/review/sourcecheck/apply/history logic changes. Build desktop only, no unnecessary test/workflow replay or final-source full-suite claim. Remaining cold/duplicate-source/readability checks use fresh native job after build. Retain one controller read-after-text publication timing error and exact failed/unexecuted remainder.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p39c-native-source-import/docs/parity/p38b/verification/native-01/cold-run/project-set-target-cold-copy.kernspan": "76308c47303441f4dc6575399a85a9d842143c9784d442709a0402226cb670dc",
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p39c-native-source-import/docs/parity/p38b/verification/native-01/cold-run/project-set-target-cold-copy.mbse-views.json": "bc5e0519f10a956e8110c496c783c51f5521bae0279a86dc60c1a956b6dbeb2b",
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p39c-native-source-import/docs/parity/p39b/fixtures/native-prepared-01/source.xmi": "2e2791ab72a8bf550cb4fe960d3d2f1d8f8b56f6ffad120146d6c740d308c032",
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p39c-native-source-import/docs/parity/p39b/fixtures/native-prepared-01/source.mbse-projects.json": "77d462cc8f78a21a6de44bfab8ce5f4da5a1ce71c573d4d738ef0a8855f3e02c",
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p39c-native-source-import/docs/parity/p39b/verification/TEST_RESULTS.json": "c0361f08ff9ea85937a43d40b28cd3a514a9e14dbef7be57edfed7ae8e35e7e5"
+  }
+}

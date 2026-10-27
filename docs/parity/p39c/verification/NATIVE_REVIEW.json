@@ -1,0 +1,34 @@
+{
+  "result": "bounded_native_reviewed_source_apply_undo_edit_save_cold_passed",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 789,
+  "source_sha256": "aa2923866bcbae9b002e298f74c1a5d57ca8806f296a4d350ae603bad706f789",
+  "binary_sha256": "38fa65b578631b8680a7439c91148e028d3dc32f2ff91525e911b9314a24834b",
+  "distinct_case_inventory": 835,
+  "new_distinct_cases": 11,
+  "native_jobs": 2,
+  "native_runs": 2,
+  "native_controller_errors": [
+    1,
+    0
+  ],
+  "saved_counters": {
+    "model_revision": 261,
+    "raw_version": 519,
+    "next_id": 60087
+  },
+  "original_invalid_usage_form_preserved_in_protected_pre_edit_checkpoint": true,
+  "final_intentional_usage_journal_replacement_only": true,
+  "whole_other_prior_data_and_all_eight_maps_preserved": true,
+  "cold_full_snapshot_exact": true,
+  "all_protected_inputs_unchanged": true,
+  "limits": [
+    "Existing projectbrowser emitsfrozenmember context; separate native review/explicitSystem/disclosures/asyncsourcecheck/private5sectoken/existingViewsEditorhistory. No worker receives live native target.",
+    "QueuedCancel/Close/appclose precede readypublication; busy/raw/scope/foreign/refused/expired checks preserve nativework. Source check point-in-time, not lease.",
+    "Original invalidusageform remains exact in protected source and pre-editcheckpoint. Later deliberate existingTypes edit replaces only globalusagejournal in owned modelcopy; new invalidtargetproposal remains separate from acceptedtarget and survives Undo/Redo/cold.",
+    "835workspace/build atcorrectedF4Dsource; display-onlyfinalAA292 build/cold, no final-source full-suite claim. Native01onecontrollerpublicationtimingerror retained/settledremainder only; Native02zeroerrors.",
+    "No nativeOSclipboard read; exactJSONpayload verifiedGUIoutput. SyntheticXML/documentaryBlocktags not vendor-created NoMagic interop/fullSysML/verification/source truth.",
+    "All56broad specifications/integrated exits/fullparity/independentengineering/platform/scale/production acceptance remainopen. P39 closesboundedcontractonlyafterisolatedreview/merge."
+  ]
+}
