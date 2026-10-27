@@ -557,7 +557,7 @@ fn state_machine_bound_native_checkpoint_and_unbound_capture_recovery_roundtrip_
     );
     assert_eq!(session.editor.snapshot, native);
     let mut io = mbse_model::native_views_io::Io::default();
-    let recovery_path = area.path().join("state-views-recovery.json");
+    let recovery_path = area.path().join("state-views-recovery.mbse-views.json");
     let destination = io
         .freeze_destination(
             &session,
