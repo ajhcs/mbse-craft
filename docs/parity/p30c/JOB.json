@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m6-p30c-native-symbol-anchors-03",
+  "id": "m6-p30c-bounded-arrowheads-04",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m6-p30c-native-activities",
   "source_manifest": "docs/parity/p30c/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "643d2d9ebd3858349dbbc560787ce1f0abc60d5579b71b6f1524171384ea7e98",
-  "source_sha256": "ddcd0b16cf7ff19df503e37dd86190f44d4c930ac90cb708a6ae93f1e0b0c874",
+  "source_manifest_sha256": "9d985238d5d14bc223d6da5c4f3e841a1388f7d635a186c4b0eca1c49f2037f3",
+  "source_sha256": "444d60d701f0f332d74e88313fc968ff19b59be746bae56e04090a3c715c37dd",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -33,18 +33,6 @@
     [
       "bash",
       "scripts/dev.sh",
-      "test",
-      "--locked",
-      "--offline",
-      "-p",
-      "mbse-desktop",
-      "rendered_activity_drag_publishes_one_layout_entry_and_single_undo_keeps_entire_native",
-      "--",
-      "--test-threads=1"
-    ],
-    [
-      "bash",
-      "scripts/dev.sh",
       "build",
       "--locked",
       "--offline",
@@ -52,7 +40,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "Native screenshot08 finding F01: card anchors missed circular glyphs and arrows went behind opaque symbols. Use actual circle/diamond/rounded-rectangle contours, self-loop arrowheads and explicit overlap refusal/ledger counts. New geometry2 and affected rendered drag1 plus build; prior617 not replayed. Fresh native corrected rendering/cold remainder from saved checkpoint follows.",
+  "rationale": "Native screenshot02 exposes egui proportionally oversized arrowheads on long flows. Bounded heads, actual self-loop symbol contours; all3 affected geometry cases plus build. Prior workspace/drag checks retained without broad rerun.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",

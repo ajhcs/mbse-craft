@@ -352,8 +352,8 @@ impl Workspace {
                         let source_kind = diagram.occurrences[&flow.source].expected;
                         let target_kind = diagram.occurrences[&flow.target].expected;
                         let (start, end) = if flow.source == flow.target {
-                            let start = a.right_center();
-                            let end = a.center_top();
+                            let start = symbol_boundary(*a, source_kind, scale, egui::Vec2::X);
+                            let end = symbol_boundary(*a, target_kind, scale, -egui::Vec2::Y);
                             let upper = egui::pos2(a.right() + 50., a.top() - 35.);
                             ui.painter().line_segment(
                                 [start, egui::pos2(upper.x, start.y)],
@@ -366,8 +366,7 @@ impl Workspace {
                             let last = egui::pos2(end.x, upper.y);
                             ui.painter()
                                 .line_segment([upper, last], Stroke::new(1.5, color));
-                            ui.painter()
-                                .arrow(last, end - last, Stroke::new(1.5, color));
+                            paint_flow_arrow(ui.painter(), last, end, Stroke::new(1.5, color));
                             (start, end)
                         } else {
                             let Some((start, end)) =
@@ -376,8 +375,7 @@ impl Workspace {
                                 overlapping_flows += 1;
                                 continue;
                             };
-                            ui.painter()
-                                .arrow(start, end - start, Stroke::new(1.5, color));
+                            paint_flow_arrow(ui.painter(), start, end, Stroke::new(1.5, color));
                             (start, end)
                         };
                         endpoints.push((flow.flow, [start.x, start.y], [end.x, end.y]));
@@ -683,6 +681,23 @@ fn symbol_boundary(rect: Rect, kind: va::Kind, scale: f32, direction: egui::Vec2
     };
     center + direction * distance
 }
+fn arrow_wings(start: egui::Pos2, end: egui::Pos2) -> Option<[egui::Pos2; 2]> {
+    let delta = end - start;
+    let length = delta.length();
+    if !length.is_finite() || length <= 0.01 { return None; }
+    let unit = delta / length;
+    let head = 9_f32.min(length * 0.35);
+    let base = end - unit * head;
+    let normal = egui::vec2(-unit.y, unit.x) * head * 0.5;
+    Some([base + normal, base - normal])
+}
+fn paint_flow_arrow(painter: &egui::Painter, start: egui::Pos2, end: egui::Pos2, stroke: Stroke) {
+    if let Some(wings) = arrow_wings(start, end) {
+        painter.line_segment([start, end], stroke);
+        painter.line_segment([wings[0], end], stroke);
+        painter.line_segment([wings[1], end], stroke);
+    }
+}
 fn flow_endpoints(
     a: Rect,
     ak: va::Kind,
@@ -715,6 +730,17 @@ fn flow_endpoints(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn arrowheads_remain_bounded_for_long_diagonal_flows_and_short_pin_links() {
+        for end in [egui::pos2(1000., 600.), egui::pos2(6., 0.), egui::pos2(-200., -300.)] {
+            let start = egui::Pos2::ZERO;
+            let wings = arrow_wings(start, end).unwrap();
+            assert!(wings.iter().all(|w| w.distance(end) <= 10.1 && w.distance(end) < start.distance(end) * 0.4));
+            assert!(((wings[0] + wings[1].to_vec2()) / 2. - end).dot(end - start) < 0.);
+        }
+        assert!(arrow_wings(egui::Pos2::ZERO, egui::Pos2::ZERO).is_none());
+        assert!(arrow_wings(egui::Pos2::ZERO, egui::pos2(f32::NAN, 0.)).is_none());
+    }
     #[test]
     fn flow_endpoints_touch_visible_circle_diamond_and_rounded_rectangle_contours() {
         let a = Rect::from_min_max(egui::pos2(0., 0.), egui::pos2(100., 100.));

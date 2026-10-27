@@ -11,26 +11,24 @@
     "/workspace/worktrees/builderbob/mbse-craft",
     "/workspace/build/builderbob/mbse-craft/milestone1"
   ],
-  "id": "p30c-native-activity-authoring-diagrams-and-cold",
-  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p30c-fit-placement-02-20261027T060753Z/mbse-desktop",
-  "binary_sha256": "635e5f7b4c1b100c771673c73d8931f26bc616a01eb6cda1f06b796b22daf4ee",
-  "source_sha256": "0e2b2869dbb8d01318fa0f5d3f6ffffa138a464e24ca1648bf71793a708a03e6",
+  "id": "p30c-corrected-arrows-and-unexecuted-cold",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p30c-native-symbol-anchors-03-20261027T064643Z/mbse-desktop",
+  "binary_sha256": "931f6d43bcca9c820715c5d38e718cde159354c0d5944c2ba39d6605fbc0137c",
+  "source_sha256": "ddcd0b16cf7ff19df503e37dd86190f44d4c930ac90cb708a6ae93f1e0b0c874",
   "inputs": {
-    "/workspace/repos/builderbob/mbse-craft/work/m6-p30c-native-activities/docs/parity/p30c/fixtures/native.kernspan": "778e35d48ddf38c9c5e539aea0a65fb0cade73f850209f377840e01a913317a1",
-    "/workspace/repos/builderbob/mbse-craft/work/m6-p30c-native-activities/docs/parity/p30c/fixtures/native.mbse-views.json": "e793dbe99a639f45d6a35d380bb34e1a6b32fd93b08c3f2d3d394b43e4aebe88"
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p30c-01/run/activity-checkpoint.kernspan": "d8373934338cb5e7369bcb8264958927fda3890a3283cef7cd8616ebcb389c69",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p30c-01/run/activity-checkpoint.mbse-views.json": "95cb1ff99b198ce69adf0ca7e933004ea47889eec8bb4498bd459fc7371de7a4"
   },
-  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p30c-01",
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p30c-03",
   "argv_extra": [
     "--open",
-    "/workspace/repos/builderbob/mbse-craft/work/m6-p30c-native-activities/docs/parity/p30c/fixtures/native.kernspan",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p30c-01/run/activity-checkpoint.kernspan",
     "--select",
     "1003"
   ],
   "scenarios": [
-    "Explicit original native/views Open. Shared Ctrl+Alt+H; widgets author activity/partition/Initial/Action/Decision/Final nodes, Out/In typed pins and control/object flows under nativeSystem1/Value1005. Original Stage1 records/drafts/creation and prior type/opaque data remain exact.",
-    "Distinct existing flow guard proposals invalid1/invalid2 retain raw while accepted true/else arrows stay current; refusal, selection and global model Undo/Redo preserve newer raw. Accepted activity removal detaches diagrams; observed inverse restores exact IDs/presence.",
-    "Create two independent diagrams, actual rendered shapes/flow ledger, drag one layout entry/Undo, nudge/pin/hide and independent cameras/switching preserve semantics. Exact native/views Save and protected inputs unchanged.",
-    "Cold explicit Open restores activity/invalid proposals/diagrams without prior model/layout inverse authority; actual fresh selection/inspect/render/switch/save-copy retains whole Snapshot/all6 maps. Normal owned app/display/PID/startticks/authentication cleanup."
+    "Corrected circle/diamond/rounded-box flow contour anchors and disclosed overlap; presentation-only move apart; exact full native Snapshot checkpoint preserved; save owned final pair.",
+    "Fresh preflight cold native/views Open; exact activity/proposals/two diagram maps/cameras; no old Undo authority; actual selection/render/save-copy; normal process/startticks/Xauthority cleanup."
   ],
-  "claim_policy": "Same-agent bounded Linux synthetic fixture.617 final-source workspace regression cases plus build; original zero-test compile edit-placement failure retained. Finite documentary activity authoring/diagrams only, no execution/general guards/full NoMagic/SysML/Craft/scale/platform/independent engineering acceptance. All56 broad specs/integrated exits remain unaccepted."
+  "claim_policy": "Same-agent bounded Linux synthetic native remainder. Earlier successful authoring checks retained on their qualified source; current source has prior617 regression and2 new contour cases with affected drag rerun and build. No final-source full suite or independent/full-parity acceptance."
 }
