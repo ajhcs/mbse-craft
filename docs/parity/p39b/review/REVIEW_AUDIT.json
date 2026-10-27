@@ -1,0 +1,23 @@
+{
+  "checked_utc": "2026-10-27T16:55:27.462521+00:00",
+  "candidate": "80a0bfdd5c6c21ab775108dd8b5e8b1c22ee35b0",
+  "base": "12219917c22029d4f191767579e53f0a7b426ae6",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 787,
+  "source_sha256": "5371749e9e9219cee4c68fe043955145d086fef67f62f104f73ab2c356a4a1c2",
+  "source_qualified_distinct_cases": 824,
+  "new_distinct_cases": 15,
+  "passing_executions": 825,
+  "base_artifacts": 5,
+  "review_artifacts": 8,
+  "available_checkouts_unchanged": 112,
+  "user_removed_registered_heads_retained": 18,
+  "findings_addressed": [
+    "Expose existing source projection omitted-loss and omitted-diagnostic counts; preserve earlier refusal behavior.",
+    "Correct retained failed boundary hypothesis: existing1MiBauxiliary loss budget triggers before new2MiBsummary budget. Focused corrected/new+affected checks and desktopbuild pass."
+  ],
+  "blocking_findings_remaining": [],
+  "native_ui_runs": 0,
+  "final_source_full_suite_claim": false
+}

@@ -1,0 +1,15 @@
+{
+  "qualification": "Source-only preparation outputs; no source-adapter/native result was queried to generate these bytes.",
+  "files": [
+    {
+      "path": "fixtures/native-prepared-01/source.mbse-projects.json",
+      "bytes": 560,
+      "sha256": "77d462cc8f78a21a6de44bfab8ce5f4da5a1ce71c573d4d738ef0a8855f3e02c"
+    },
+    {
+      "path": "fixtures/native-prepared-01/source.xmi",
+      "bytes": 1059,
+      "sha256": "2e2791ab72a8bf550cb4fe960d3d2f1d8f8b56f6ffad120146d6c740d308c032"
+    }
+  ]
+}
