@@ -175,7 +175,7 @@
     }
   },
   "p34": {
-    "state": "in_progress",
+    "state": "reviewed_ready_to_merge_bounded_contract",
     "base_commit": "448a1d1283619918b1a06fd2b5db5c7237e7bd43",
     "children": [
       "P34a",
@@ -212,7 +212,7 @@
       "merge_commit": "2feb199e5d9b033b8fa9692f97f412a97e6835fe"
     },
     "p34c": {
-      "state": "draft_candidate_native_acceptance_complete_review_pending",
+      "state": "reviewed_ready_to_merge",
       "scope": "native scenario authoring/diagnostics/rendering/history/save/cold acceptance",
       "base_commit": "2feb199e5d9b033b8fa9692f97f412a97e6835fe",
       "execution_results": "p34c/README.md",
@@ -222,7 +222,12 @@
       "native_scenario_runs": 2,
       "native_controller_errors": 0,
       "evidence_artifacts": 94,
-      "final_source_full_workspace_claim": false
+      "final_source_full_workspace_claim": false,
+      "pr_number": 51,
+      "review": "p34c/REVIEW.md",
+      "review_production_source_changes": 0,
+      "review_artifacts_recomputed": 94,
+      "review_available_prior_checkouts_unchanged": 92
     }
   }
 }
