@@ -1,0 +1,36 @@
+[
+  {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Action completed."
+        }
+      ],
+      "structuredContent": {
+        "comments": [],
+        "url": "https://github.com/ajhcs/mbse-craft/pull/57",
+        "title": "ajhcs/mbse-craft PR #57 comments",
+        "display_url": "https://github.com/ajhcs/mbse-craft/pull/57",
+        "display_title": "ajhcs/mbse-craft PR #57 comments"
+      },
+      "isError": false
+    }
+  },
+  {
+    "status": "fulfilled",
+    "value": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Action completed."
+        }
+      ],
+      "structuredContent": {
+        "review_threads": []
+      },
+      "isError": false
+    }
+  }
+]

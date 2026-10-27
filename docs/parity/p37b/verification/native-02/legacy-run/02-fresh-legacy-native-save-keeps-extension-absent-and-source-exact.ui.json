@@ -1,0 +1,1277 @@
+{
+  "activities": {
+    "accepted": null,
+    "activity": null,
+    "current": null,
+    "execution": {
+      "automatic": false,
+      "budget": "128",
+      "current": null,
+      "note": "",
+      "report": null
+    },
+    "form_admitted": true,
+    "gesture_active": false,
+    "note": "",
+    "open": false,
+    "owner_current": true,
+    "proposals": null,
+    "rendered": null,
+    "selected": null
+  },
+  "command_catalog": {
+    "items": [
+      {
+        "default_shortcut": "Ctrl+Alt+E",
+        "enabled": true,
+        "id": "tools.parametrics",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Parametric specifications and bindings",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+E"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+A",
+        "enabled": true,
+        "id": "tools.scenarios",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Scenarios and sequence diagrams",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+A"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+S",
+        "enabled": true,
+        "id": "tools.state_machines",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "State machines and diagrams",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+S"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+H",
+        "enabled": true,
+        "id": "tools.activities",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Activities and diagrams",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+H"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+L",
+        "enabled": true,
+        "id": "view.viewpoints",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Viewpoints and native card filters",
+        "menu": "View",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+L"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+M",
+        "enabled": true,
+        "id": "tools.relation_matrix",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Native relation matrix",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+M"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+J",
+        "enabled": true,
+        "id": "tools.profile_tags",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Exact profiles and literal tags",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+J"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+G",
+        "enabled": true,
+        "id": "tools.semantic_delete",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Delete model records with impact preview",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+G"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+B",
+        "enabled": true,
+        "id": "tools.clone_move",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Clone and move with reference preview",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+B"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+Y",
+        "enabled": true,
+        "id": "tools.values",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Defaults and instance values",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+Y"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+K",
+        "enabled": true,
+        "id": "tools.connectors",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Connectors and conveyed items",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+K"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+I",
+        "enabled": true,
+        "id": "tools.ports",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Ports and interfaces",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+I"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+T",
+        "enabled": true,
+        "id": "tools.types",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Types and properties",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+T"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+D",
+        "enabled": true,
+        "id": "file.choose",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Choose model file\u2026",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+D"
+      },
+      {
+        "default_shortcut": "Ctrl+N",
+        "enabled": true,
+        "id": "file.new",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "New",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+N"
+      },
+      {
+        "default_shortcut": "Ctrl+O",
+        "enabled": false,
+        "id": "file.open",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Open",
+        "menu": "File",
+        "reason": "Enter an explicit source or export path in Open / import / recover / export.",
+        "shortcut": "Ctrl+O"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+O",
+        "enabled": false,
+        "id": "file.recover",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Recover",
+        "menu": "File",
+        "reason": "Enter an explicit source or export path in Open / import / recover / export.",
+        "shortcut": "Ctrl+Shift+O"
+      },
+      {
+        "default_shortcut": "Ctrl+I",
+        "enabled": false,
+        "id": "file.import_sysml",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Import SysML",
+        "menu": "File",
+        "reason": "Enter an explicit source or export path in Open / import / recover / export.",
+        "shortcut": "Ctrl+I"
+      },
+      {
+        "default_shortcut": "Ctrl+S",
+        "enabled": true,
+        "id": "file.save",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Save",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+S"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+S",
+        "enabled": true,
+        "id": "file.recovery_copy",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Recovery copy",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+S"
+      },
+      {
+        "default_shortcut": "Ctrl+E",
+        "enabled": false,
+        "id": "file.export_sysml",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Export SysML copy",
+        "menu": "File",
+        "reason": "Enter an explicit source or export path in Open / import / recover / export.",
+        "shortcut": "Ctrl+E"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+R",
+        "enabled": true,
+        "id": "file.review_recoveries",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Review recovery copies",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+R"
+      },
+      {
+        "default_shortcut": "Ctrl+Q",
+        "enabled": true,
+        "id": "file.quit",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Quit",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+Q"
+      },
+      {
+        "default_shortcut": "Ctrl+Z",
+        "enabled": false,
+        "id": "edit.undo",
+        "keyboard_scope": "model; fixed native-field Ctrl/Cmd+Z and Ctrl/Cmd+Shift+Z",
+        "label": "Undo",
+        "menu": "Edit",
+        "reason": "No model history available.",
+        "shortcut": "Ctrl+Z"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+Z",
+        "enabled": false,
+        "id": "edit.redo",
+        "keyboard_scope": "model; fixed native-field Ctrl/Cmd+Z and Ctrl/Cmd+Shift+Z",
+        "label": "Redo",
+        "menu": "Edit",
+        "reason": "No model history available.",
+        "shortcut": "Ctrl+Shift+Z"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+Z",
+        "enabled": false,
+        "id": "view.layout_undo",
+        "keyboard_scope": "canvas; inactive while editing text or an auxiliary window",
+        "label": "Layout Undo",
+        "menu": "View",
+        "reason": "No layout history available in this direction.",
+        "shortcut": "Ctrl+Alt+Z"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+Shift+Z",
+        "enabled": false,
+        "id": "view.layout_redo",
+        "keyboard_scope": "canvas; inactive while editing text or an auxiliary window",
+        "label": "Layout Redo",
+        "menu": "View",
+        "reason": "No layout history available in this direction.",
+        "shortcut": "Ctrl+Alt+Shift+Z"
+      },
+      {
+        "default_shortcut": "Ctrl+F",
+        "enabled": true,
+        "id": "edit.search",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Search native records",
+        "menu": "Edit",
+        "reason": null,
+        "shortcut": "Ctrl+F"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+U",
+        "enabled": true,
+        "id": "edit.usages",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Find usages",
+        "menu": "Edit",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+U"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+I",
+        "enabled": true,
+        "id": "edit.impact",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Inspect record impact",
+        "menu": "Edit",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+I"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+P",
+        "enabled": true,
+        "id": "view.presentation_source",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Inspect presentation source\u2026",
+        "menu": "View",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+P"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+E",
+        "enabled": true,
+        "id": "tools.external_projection",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Open external projection",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+E"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+A",
+        "enabled": true,
+        "id": "tools.assurance",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Requirements and evidence",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+A"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+L",
+        "enabled": true,
+        "id": "tools.library",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Browse library folder",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+L"
+      },
+      {
+        "default_shortcut": "Ctrl+Comma",
+        "enabled": true,
+        "id": "tools.recovery_settings",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Recovery settings",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Comma"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+Comma",
+        "enabled": true,
+        "id": "tools.shortcuts",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Keyboard shortcuts",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+Comma"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+P",
+        "enabled": true,
+        "id": "view.panels",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Panel layout",
+        "menu": "View",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+P"
+      }
+    ],
+    "last": {
+      "id": "file.save",
+      "reason": null,
+      "refused": false,
+      "scope": "model",
+      "surface": "toolbar"
+    },
+    "schema": "mbse-craft.command-catalog/1"
+  },
+  "connector_routes": {
+    "edges": {},
+    "labels": {},
+    "profile": "mbse-craft.native-views/1",
+    "schema": "mbse-craft.connector-routes-ui/1"
+  },
+  "connectors": {
+    "forms": null,
+    "note": "",
+    "open": false,
+    "owner": null,
+    "schema": "mbse-craft.connectors-ui/1",
+    "selected": null,
+    "store": null
+  },
+  "deletion": {
+    "applicable": false,
+    "form": null,
+    "note": "",
+    "open": false,
+    "schema": "mbse-craft.deletion-ui/1",
+    "summary": null
+  },
+  "error": false,
+  "external_copy_pending": false,
+  "feedback": "Saved accepted values and drafts; current bytes verified.",
+  "file_operations": {
+    "backend": "application-owned chooser; no OS-picker claim",
+    "listing_pending": false,
+    "note": "",
+    "open": false,
+    "outcome": "idle",
+    "pending": false,
+    "schema": "mbse-craft.file-operations/1"
+  },
+  "frame_override": null,
+  "frame_policy": "Desktop",
+  "layout_recovery_status": "awaiting timer check",
+  "model_revision": 0,
+  "native_extensions": null,
+  "native_record_impact": {
+    "note": "",
+    "open": false,
+    "report": null,
+    "target": null
+  },
+  "native_recovery_status": "awaiting timer check",
+  "native_search": {
+    "note": "",
+    "open": false,
+    "query_mode": "NameContains",
+    "report": null
+  },
+  "native_system_browser": {
+    "open_groups": {
+      "1": true
+    }
+  },
+  "native_usages": null,
+  "parametrics": {
+    "accepted": null,
+    "analysis": {
+      "current": null,
+      "note": "",
+      "program": null,
+      "report": null,
+      "selected_scope": null
+    },
+    "current": null,
+    "form_admitted": true,
+    "note": "",
+    "open": false,
+    "owner_current": true,
+    "proposals": null,
+    "report": null,
+    "specification": null
+  },
+  "periodic_recovery": false,
+  "pixels_per_point": 1.0,
+  "port_presentation": {
+    "active_view": "1",
+    "interactions": {},
+    "occurrences": {},
+    "profile": "mbse-craft.native-views/1",
+    "schema": "mbse-craft.port-presentation-ui/1"
+  },
+  "ports": {
+    "forms": null,
+    "interface_form": null,
+    "note": "",
+    "open": false,
+    "owner": null,
+    "port": null,
+    "schema": "mbse-craft.ports-ui/1",
+    "store": null
+  },
+  "preferences_status": "Session preferences.",
+  "profile": "mbse-craft.ui-geometry/1",
+  "profile_tags": {
+    "applications": null,
+    "apply_enabled": false,
+    "form": null,
+    "note": "",
+    "open": false,
+    "profiles": null,
+    "register_enabled": false,
+    "remove_enabled": false,
+    "schema": "mbse-craft.profile-tags-ui/1"
+  },
+  "raw_version": 0,
+  "recovery_interval_seconds": 60,
+  "recovery_path": null,
+  "refactor": {
+    "applicable": false,
+    "form": null,
+    "note": "",
+    "open": false,
+    "schema": "mbse-craft.refactor-ui/1",
+    "summary": null
+  },
+  "relation_matrix": {
+    "current": false,
+    "graph_edges": [],
+    "note": "",
+    "open": false,
+    "query": {
+      "column_offset": 0,
+      "kind": "ContributesTo",
+      "row_offset": 0
+    },
+    "report": null
+  },
+  "requirements_authoring": {
+    "coverage": {
+      "current": false,
+      "error": null,
+      "pending": false,
+      "report": null
+    },
+    "dirty": false,
+    "drafts": {},
+    "feedback": "",
+    "hierarchy": [],
+    "metrics": {
+      "current": true,
+      "ids": "",
+      "include_register": false,
+      "native_all": true,
+      "note": "Read-only query complete; native data, register and verification unchanged.",
+      "ready": true,
+      "report": {
+        "limits": [
+          "Accepted-data inventory only. Native counts are top-level records; embedded actor/context items and presentation geometry are not counted. Calculation definitions overlap their native Measure owners; table categories are not one additive total.",
+          "Model scope and requirement-register scope are independent. Requirement subsets are exact IDs with no automatic descendant expansion; links crossing a requirement subset are reported separately, not included as internal traces.",
+          "Active/detached means the existing trace endpoint projection only. Declared lifecycle counts are not current verification, fulfillment, evidence adequacy or engineering acceptance. No calculations or verification run.",
+          "Legacy documents without an extension remain unchanged: native counts are available, typed metrics are unavailable (null), and existing legacy trace projection rules remain unchanged. Typed counts cover declared schema families and accepted literal entries; profiles/applications/opaque namespace contents, raw drafts and UI occurrences are not inventoried. Unsupported/malformed source refuses rather than substituting zero.",
+          "No provided register means trace metrics unavailable, distinct from an explicitly provided empty register. Source-stamped JSON export is documentary; it cannot execute or authorize verification."
+        ],
+        "model": {
+          "calculation_definitions": 0,
+          "native_by_kind": {
+            "Actor": 0,
+            "Capability": 0,
+            "Environment": 0,
+            "Expectation": 0,
+            "Measure": 0,
+            "Mission": 0,
+            "Objective": 0,
+            "Organization": 0,
+            "Stakeholder": 0,
+            "System": 1
+          },
+          "top_level_records": 1,
+          "typed": null
+        },
+        "native_source": {
+          "document_id": "document:session:stage1-session-ssQlmN",
+          "instance_id": "instance:stage1-session-ssQlmN",
+          "model_revision": 0,
+          "raw_version": 0,
+          "snapshot_hash": "7ac701a5e65df682a34d9470a75abf1f59ad88772e4457a316bc6b765d7f408f"
+        },
+        "opaque_native_namespaces": [],
+        "profile": "mbse-craft.scoped-metrics-report/1",
+        "register_source": null,
+        "rules_revision": "mbse-craft.scoped-metrics/1",
+        "scope": {
+          "native": "All",
+          "requirements": "All"
+        },
+        "traces": null
+      },
+      "requested_scope": {
+        "native": "All",
+        "requirements": "All"
+      },
+      "requirements_all": true,
+      "scope_error": null,
+      "system": "1"
+    },
+    "next_id": 1,
+    "pending": false,
+    "requirements": {},
+    "revision": 0,
+    "schema": "mbse-craft.requirement-authoring-ui/1",
+    "selected": null,
+    "test_cases": {},
+    "traces": {},
+    "validation": {
+      "current": false,
+      "error": null,
+      "last_focus": null,
+      "note": "",
+      "pending": false,
+      "report": null,
+      "reviewed": {
+        "blocked": false,
+        "fix_preview": null,
+        "note": "",
+        "suite_review": null
+      },
+      "selected_suite": "Local working drafts"
+    },
+    "visible": false
+  },
+  "save_status": "Saved",
+  "scenarios": {
+    "accepted": null,
+    "current": null,
+    "diagnostics": null,
+    "form_admitted": true,
+    "gesture_active": false,
+    "note": "",
+    "open": false,
+    "owner_current": true,
+    "proposals": null,
+    "rendered": null,
+    "scenario": null,
+    "selected": null
+  },
+  "selected": 1,
+  "shortcut_configuration": {
+    "draft": {},
+    "draft_errors": [],
+    "load_errors": [],
+    "note": "",
+    "open": false,
+    "pending": false,
+    "persistent": false,
+    "read_only": false,
+    "schema": "mbse-craft.shortcut-configuration/1",
+    "status": "Session preferences.",
+    "stored_overrides": {}
+  },
+  "snapshot_hash": "7ac701a5e65df682a34d9470a75abf1f59ad88772e4457a316bc6b765d7f408f",
+  "source_edit_dirty": false,
+  "source_edit_pending": false,
+  "state_machines": {
+    "accepted": null,
+    "current": null,
+    "diagnostics": null,
+    "execution": {
+      "automatic": false,
+      "budget": "128",
+      "current": null,
+      "events": "",
+      "note": "",
+      "report": null
+    },
+    "form_admitted": true,
+    "gesture_active": false,
+    "machine": null,
+    "note": "",
+    "open": false,
+    "owner_current": true,
+    "proposals": null,
+    "rendered": null,
+    "selected": null
+  },
+  "typed_properties": {
+    "definition_form": null,
+    "form": null,
+    "forms": null,
+    "note": "",
+    "open": false,
+    "schema": "mbse-craft.types-ui/1",
+    "selected": null,
+    "store": null,
+    "usage_form": null
+  },
+  "typed_values": {
+    "derived": null,
+    "derived_current": null,
+    "effective": null,
+    "forms": null,
+    "note": "",
+    "open": false,
+    "schema": "mbse-craft.values-ui/1",
+    "selected": null,
+    "store": null
+  },
+  "validation_navigation": {
+    "last_focus": null,
+    "note": "",
+    "pending": null
+  },
+  "viewpoint": {
+    "active_view": "1",
+    "form": null,
+    "form_admitted": true,
+    "note": "",
+    "open": false,
+    "projection": {
+      "active": false,
+      "context_resolved": true,
+      "limitations": [
+        "Filters affect native record cards only; typed port/connector rendering, manual visibility and the complete model/ledger retain their existing scope. No normative SysML Viewpoint/Concern or engineering approval is inferred."
+      ],
+      "matched": []
+    },
+    "rendered": {
+      "current": true,
+      "occurrences": [
+        {
+          "occurrence": "3",
+          "record": 1
+        }
+      ],
+      "view": "1"
+    },
+    "saved": null
+  },
+  "views_active": "1",
+  "views_camera": {
+    "view": "1",
+    "x": 0.0,
+    "y": 0.0,
+    "zoom": 1.0
+  },
+  "views_gesture_active": false,
+  "views_inspection_copy_origin": null,
+  "views_inspection_note": "Choose an explicit local presentation source to inspect read only.",
+  "views_inspection_profile": null,
+  "views_inspection_sha256": null,
+  "views_inspection_visible": false,
+  "views_mapping_rehearsal": {
+    "checked_preview_retained": false,
+    "choices": null,
+    "copy_note": "",
+    "copy_title": "Recovered presentation",
+    "last_applied_view": null,
+    "note": "",
+    "target_current": false
+  },
+  "views_note": "Native saved \u00b7 views saved. Separate acknowledgments verified.",
+  "views_occurrence_navigation": {
+    "active_view": "1",
+    "document_sha256": "8d155832b9e7f07988cc593184dcbdb2a209b8cf7838615070a6da72de258f18",
+    "history_usage": [
+      0,
+      0
+    ],
+    "next_id": "5",
+    "occurrence": null,
+    "selected_occurrence": null
+  },
+  "views_pair_pending": false,
+  "views_pending": false,
+  "views_recovery_current_hint": false,
+  "views_revision": "1",
+  "views_saved_hint": true,
+  "widgets": {
+    "action:Add Actor": [
+      101.375,
+      843.9375,
+      167.59375,
+      861.9375
+    ],
+    "action:Add Capability": [
+      94.9375,
+      817.9375,
+      186.375,
+      835.9375
+    ],
+    "action:Add Environment": [
+      8.0,
+      869.9375,
+      116.96875,
+      887.9375
+    ],
+    "action:Add Expectation": [
+      8.0,
+      895.9375,
+      111.6875,
+      913.9375
+    ],
+    "action:Add Measure": [
+      8.0,
+      843.9375,
+      92.375,
+      861.9375
+    ],
+    "action:Add Mission": [
+      8.0,
+      817.9375,
+      85.9375,
+      835.9375
+    ],
+    "action:Add Objective": [
+      195.375,
+      817.9375,
+      285.125,
+      835.9375
+    ],
+    "action:Add Organization": [
+      125.96875,
+      869.9375,
+      235.5,
+      887.9375
+    ],
+    "action:Add Stakeholder": [
+      176.59375,
+      843.9375,
+      280.625,
+      861.9375
+    ],
+    "action:Browse library folder": [
+      1256.71875,
+      29.5,
+      1386.125,
+      47.5
+    ],
+    "action:Choose model file\u2026": [
+      234.46875,
+      29.5,
+      359.6875,
+      47.5
+    ],
+    "action:Export SysML copy": [
+      1514.6875,
+      29.5,
+      1630.8125,
+      47.5
+    ],
+    "action:Find usages": [
+      8.0,
+      614.0,
+      83.5,
+      632.0
+    ],
+    "action:Import SysML": [
+      525.1875,
+      29.5,
+      611.6875,
+      47.5
+    ],
+    "action:Inspect presentation source\u2026": [
+      532.21875,
+      202.0,
+      713.875,
+      220.0
+    ],
+    "action:Inspect record impact": [
+      8.0,
+      640.0,
+      141.3125,
+      658.0
+    ],
+    "action:New": [
+      368.6875,
+      29.5,
+      403.09375,
+      47.5
+    ],
+    "action:Open": [
+      412.09375,
+      29.5,
+      452.25,
+      47.5
+    ],
+    "action:Open external projection": [
+      916.6875,
+      29.5,
+      1070.0,
+      47.5
+    ],
+    "action:Recover": [
+      461.25,
+      29.5,
+      516.1875,
+      47.5
+    ],
+    "action:Recovery copy": [
+      664.375,
+      29.5,
+      756.0,
+      47.5
+    ],
+    "action:Redo": [
+      1692.8125,
+      28.0,
+      1736.8125,
+      56.0
+    ],
+    "action:Requirements and evidence": [
+      1079.0,
+      29.5,
+      1247.71875,
+      47.5
+    ],
+    "action:Save": [
+      620.6875,
+      29.5,
+      655.375,
+      47.5
+    ],
+    "action:Search native records": [
+      8.0,
+      202.0,
+      139.65625,
+      220.0
+    ],
+    "action:Undo": [
+      1639.8125,
+      28.0,
+      1683.8125,
+      56.0
+    ],
+    "camera:100%": [
+      478.8125,
+      281.0,
+      519.625,
+      299.0
+    ],
+    "camera:Fit": [
+      949.8125,
+      254.5,
+      972.6875,
+      272.5
+    ],
+    "camera:Pan down": [
+      780.4375,
+      281.0,
+      845.625,
+      299.0
+    ],
+    "camera:Pan left": [
+      592.59375,
+      281.0,
+      645.53125,
+      299.0
+    ],
+    "camera:Pan right": [
+      654.53125,
+      281.0,
+      714.90625,
+      299.0
+    ],
+    "camera:Pan up": [
+      723.90625,
+      281.0,
+      771.4375,
+      299.0
+    ],
+    "camera:Reset camera": [
+      854.625,
+      281.0,
+      940.875,
+      299.0
+    ],
+    "camera:Zoom in": [
+      528.625,
+      281.0,
+      583.59375,
+      299.0
+    ],
+    "camera:Zoom out": [
+      405.34375,
+      281.0,
+      469.8125,
+      299.0
+    ],
+    "command:toolbar:edit.impact": [
+      8.0,
+      640.0,
+      141.3125,
+      658.0
+    ],
+    "command:toolbar:edit.redo": [
+      1692.8125,
+      28.0,
+      1736.8125,
+      56.0
+    ],
+    "command:toolbar:edit.search": [
+      8.0,
+      202.0,
+      139.65625,
+      220.0
+    ],
+    "command:toolbar:edit.undo": [
+      1639.8125,
+      28.0,
+      1683.8125,
+      56.0
+    ],
+    "command:toolbar:edit.usages": [
+      8.0,
+      614.0,
+      83.5,
+      632.0
+    ],
+    "command:toolbar:file.choose": [
+      234.46875,
+      29.5,
+      359.6875,
+      47.5
+    ],
+    "command:toolbar:file.export_sysml": [
+      1514.6875,
+      29.5,
+      1630.8125,
+      47.5
+    ],
+    "command:toolbar:file.import_sysml": [
+      525.1875,
+      29.5,
+      611.6875,
+      47.5
+    ],
+    "command:toolbar:file.new": [
+      368.6875,
+      29.5,
+      403.09375,
+      47.5
+    ],
+    "command:toolbar:file.open": [
+      412.09375,
+      29.5,
+      452.25,
+      47.5
+    ],
+    "command:toolbar:file.recover": [
+      461.25,
+      29.5,
+      516.1875,
+      47.5
+    ],
+    "command:toolbar:file.recovery_copy": [
+      664.375,
+      29.5,
+      756.0,
+      47.5
+    ],
+    "command:toolbar:file.review_recoveries": [
+      765.0,
+      29.5,
+      907.6875,
+      47.5
+    ],
+    "command:toolbar:file.save": [
+      620.6875,
+      29.5,
+      655.375,
+      47.5
+    ],
+    "command:toolbar:tools.assurance": [
+      1079.0,
+      29.5,
+      1247.71875,
+      47.5
+    ],
+    "command:toolbar:tools.external_projection": [
+      916.6875,
+      29.5,
+      1070.0,
+      47.5
+    ],
+    "command:toolbar:tools.library": [
+      1256.71875,
+      29.5,
+      1386.125,
+      47.5
+    ],
+    "command:toolbar:tools.recovery_settings": [
+      1395.125,
+      29.5,
+      1505.6875,
+      47.5
+    ],
+    "command:toolbar:view.layout_redo": [
+      442.65625,
+      202.0,
+      523.21875,
+      220.0
+    ],
+    "command:toolbar:view.layout_undo": [
+      352.0,
+      202.0,
+      433.65625,
+      220.0
+    ],
+    "command:toolbar:view.presentation_source": [
+      532.21875,
+      202.0,
+      713.875,
+      220.0
+    ],
+    "dock:body:browser": [
+      8.0,
+      173.0,
+      348.0,
+      547.0
+    ],
+    "dock:body:canvas": [
+      352.0,
+      173.0,
+      2192.0,
+      1572.0
+    ],
+    "dock:body:inspector": [
+      8.0,
+      577.0,
+      348.0,
+      1572.0
+    ],
+    "dock:tab:browser": [
+      8.0,
+      147.0,
+      112.6875,
+      173.0
+    ],
+    "dock:tab:canvas": [
+      352.0,
+      147.0,
+      442.78125,
+      173.0
+    ],
+    "dock:tab:inspector": [
+      8.0,
+      551.0,
+      87.84375,
+      577.0
+    ],
+    "field:1:name": [
+      8.0,
+      689.0,
+      348.0,
+      708.0
+    ],
+    "field:1:purpose": [
+      8.0,
+      739.0,
+      348.0,
+      772.9375
+    ],
+    "menu:Edit": [
+      41.28125,
+      2.0,
+      68.0625,
+      20.0
+    ],
+    "menu:File": [
+      8.0,
+      2.0,
+      32.28125,
+      20.0
+    ],
+    "menu:Tools": [
+      118.46875,
+      2.0,
+      153.03125,
+      20.0
+    ],
+    "menu:View": [
+      77.0625,
+      2.0,
+      109.46875,
+      20.0
+    ],
+    "occurrence:3": [
+      377.0,
+      581.0,
+      647.0,
+      665.0
+    ],
+    "path": [
+      202.6875,
+      64.0,
+      2192.0,
+      83.0
+    ],
+    "recovery:Review copies": [
+      765.0,
+      29.5,
+      907.6875,
+      47.5
+    ],
+    "save-path": [
+      137.46875,
+      91.0,
+      2192.0,
+      110.0
+    ],
+    "settings:Open": [
+      1395.125,
+      29.5,
+      1505.6875,
+      47.5
+    ],
+    "tree:1": [
+      26.0,
+      295.0,
+      132.6875,
+      313.0
+    ],
+    "tree:system:1:header": [
+      8.0,
+      269.0,
+      229.84375,
+      287.0
+    ],
+    "view:Layout Redo": [
+      442.65625,
+      202.0,
+      523.21875,
+      220.0
+    ],
+    "view:Layout Undo": [
+      352.0,
+      202.0,
+      433.65625,
+      220.0
+    ],
+    "view:tab:1": [
+      352.0,
+      228.0,
+      446.15625,
+      246.0
+    ],
+    "view:tab:2": [
+      455.15625,
+      228.0,
+      534.3125,
+      246.0
+    ],
+    "views:Open views": [
+      756.53125,
+      307.5,
+      831.75,
+      325.5
+    ]
+  },
+  "workspace_docking": {
+    "body_ids": {
+      "browser": "Id::new(\"mbse-owned-workspace-docking\").with((\"body\", Browser))",
+      "canvas": "Id::new(\"mbse-owned-workspace-docking\").with((\"body\", Canvas))",
+      "inspector": "Id::new(\"mbse-owned-workspace-docking\").with((\"body\", Inspector))"
+    },
+    "controls_open": false,
+    "floating": [],
+    "last_actions": [],
+    "layout": "Layout { root: Some(Split { axis: Horizontal, size: FixedFirst(340.0), first: Split { axis: Vertical, size: FixedFirst(400.0), first: Tabs { panels: [Browser], active: 0 }, second: Tabs { panels: [Inspector], active: 0 } }, second: Tabs { panels: [Canvas], active: 0 } }), floating: [] }",
+    "note": "",
+    "panels": [
+      "browser",
+      "inspector",
+      "canvas"
+    ],
+    "revision": 0,
+    "schema": "mbse-craft.workspace-docking/1"
+  },
+  "write_pending": false
+}
