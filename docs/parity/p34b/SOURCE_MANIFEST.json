@@ -713,8 +713,8 @@
     },
     {
       "path": "crates/mbse-model/tests/scenario_views.rs",
-      "bytes": 35799,
-      "sha256": "86f8c213aa9569308e92147fe7e3e3e56641a89459d1ba40c4df02e1f0ce0b96"
+      "bytes": 36291,
+      "sha256": "b252670178c448d6f09553d1b67527b81d6111d07013c2ec78721d3f91741d6b"
     },
     {
       "path": "crates/mbse-model/tests/stage1_calculation.rs",
@@ -3777,5 +3777,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "9f3b2b343e233042132deca5fd28966fd2517f15da4389e116948d79fb328aab"
+  "source_sha256": "59e166c475462518c59f2a0a0a9f00582ce843df2debb75dc1271a84d34288da"
 }

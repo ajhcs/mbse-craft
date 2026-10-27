@@ -615,8 +615,16 @@ fn sequence_profile8_wire_and_exclusive_lifeline_views_reject_legacy_fields_nonc
                     .unwrap()
                     .remove(&occurrence.get().to_string())
                     .unwrap();
-                d["id"] = json!("2");
-                root["occurrences"]["2"] = d;
+                let native_id = v
+                    .document()
+                    .occurrences
+                    .keys()
+                    .next()
+                    .unwrap()
+                    .get()
+                    .to_string();
+                d["id"] = json!(native_id);
+                root["occurrences"][native_id] = d;
             }
             9 => {
                 let row = value["occurrences"]
@@ -853,7 +861,13 @@ fn sequence_legacy_inspection_copy_refuse_before_partial_inventory_and_copy_orig
             .contains("SCENARIO_COPY_UNSUPPORTED")
     );
     let mut plan = Plan::new(&inspected, plain.document().primary, &e, &plain).unwrap();
-    for id in inspected.declared().occurrences.keys() {
+    for id in inspected
+        .declared()
+        .occurrences
+        .values()
+        .filter(|o| o.view == inspected.declared().primary)
+        .map(|o| &o.id)
+    {
         plan.choose(&inspected, &e, &plain, *id, Choice::Target(RecordId(1)))
             .unwrap();
     }
@@ -882,7 +896,13 @@ fn sequence_legacy_inspection_copy_refuse_before_partial_inventory_and_copy_orig
     assert!(closed.document().scenario_diagrams.is_empty());
     assert_eq!(closed.document().profile, p::RECOVERY_PROFILE);
     let mut plan = Plan::new(&inspected, inspected.declared().primary, &e, &closed).unwrap();
-    for id in inspected.declared().occurrences.keys() {
+    for id in inspected
+        .declared()
+        .occurrences
+        .values()
+        .filter(|o| o.view == inspected.declared().primary)
+        .map(|o| &o.id)
+    {
         plan.choose(&inspected, &e, &closed, *id, Choice::Target(RecordId(1)))
             .unwrap();
     }
