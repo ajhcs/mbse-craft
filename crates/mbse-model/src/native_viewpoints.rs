@@ -4,7 +4,7 @@ use super::*;
 pub const PROFILE: &str = "mbse-craft.native-views/5";
 pub const RECOVERY_PROFILE: &str = "mbse-craft.native-views-recovery/5";
 pub fn profile(s: &str) -> bool {
-    matches!(s, PROFILE | RECOVERY_PROFILE)
+    matches!(s, PROFILE | RECOVERY_PROFILE)||super::activities::profile(s)
 }
 mod optional_id {
     use super::*;
@@ -259,12 +259,14 @@ pub(super) fn apply(
                 .source_document = editor.snapshot.document_id.clone();
         }
     }
+    if !super::activities::profile(&doc.profile){
     doc.profile = if bound_profile(&doc.profile) {
         PROFILE
     } else {
         RECOVERY_PROFILE
     }
     .into();
+    }
     Ok(())
 }
 #[derive(Clone, Debug, Serialize)]
