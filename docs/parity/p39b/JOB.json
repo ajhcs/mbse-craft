@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m7-p39b-review-summary-output-budget-boundary-02",
+  "id": "m7-p39b-review-explicit-existing-loss-truncation-counts-03",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/review-p39b",
   "source_manifest": "docs/parity/p39b/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "b1c52370cdb13e7ecedac8fdd71e758090ee8fb3504d21d4c69a7f4637d85666",
-  "source_sha256": "846ad3f611ef61370938cfad1ef964313182384b4ab3eea92e7cd66aaec61271",
+  "source_manifest_sha256": "0ccd22a6bba1877b8ced533e45db995a710760d9fe49ba27fe9efeeb41db2b15",
+  "source_sha256": "5371749e9e9219cee4c68fe043955145d086fef67f62f104f73ab2c356a4a1c2",
   "cargo_lock_sha256": "26687453bfdee99d59a404b010c9fcdda95c1d77462c08e387ccebae3b14347b",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -28,7 +28,21 @@
       "mbse-exchange",
       "--test",
       "source_admission",
-      "source_admission_oversized_inspection_detail_refuses_review_with_original_loss_counts_and_no_partial_candidate",
+      "source_admission_truncated_inspection_exposes_omitted_loss_counts_and_cannot_review_a_partial_candidate",
+      "--",
+      "--exact"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-exchange",
+      "--test",
+      "source_admission",
+      "source_admission_strict_sysml_component_subset_reuses_existing_projection_keys_and_never_changes_prepared_source_or_target",
       "--",
       "--exact"
     ],
@@ -42,7 +56,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "Isolated PR61 review adds one missing boundary case for 2MiB summary output refusal: retained XML <=1MiB creates untruncated existing projection losses >2MiB through exact large original IDs and40unresolved references. New adapter must refuse review, preserve original loss counts, label detailed-output omission explicitly, expose no candidate/mappings and leave native data unchanged. Production source unchanged. Prior full823source0897f8a3/preparer/build stays qualified; run only the new case plus desktop build, no final-source full-suite claim.",
+  "rationale": "PR61 isolated review first boundary attempt846ad3f6 fails one new test,0passes: existing semantic-set/2 1MiB auxiliary loss budget refuses/labels truncation before the new adapter2MiBsummary budget could trigger. Preserve failure and correct expected layer. Review finds new summary omitted the existing projection omitted-loss/diagnostic counts; add2documentary count fields only, leave all refusal/mapping/application logic unchanged. Run corrected new truncated-inspection case and one affected happy-path summary case, then desktopbuild. Prior823full0897/preparer/build retained;824distinct source-qualified cases after correction, no final-source full-suite claim. No new native UI runs/source acquisitions.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",

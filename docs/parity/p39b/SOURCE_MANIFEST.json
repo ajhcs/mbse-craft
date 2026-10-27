@@ -418,8 +418,8 @@
     },
     {
       "path": "crates/mbse-exchange/src/source_admission.rs",
-      "bytes": 19253,
-      "sha256": "31c656af6672f03937b05e42cc5c4c9764bfa8bf9c50500d9214de51e4f4b492"
+      "bytes": 19521,
+      "sha256": "7ef81c9dd712bbfaec468c867819b422c7a4ef2afdc079db74a45aa5cc5ae21c"
     },
     {
       "path": "crates/mbse-exchange/src/source_edit.rs",
@@ -468,8 +468,8 @@
     },
     {
       "path": "crates/mbse-exchange/tests/source_admission.rs",
-      "bytes": 15270,
-      "sha256": "7cb3d4644679254fde36b989408f8579572cd8cb72d3b0e3bc23aa466ae835a1"
+      "bytes": 15422,
+      "sha256": "10a9898eada96b5d873eb4cef950a00637fbe1ffadb2e49942ae8896cf0b18a3"
     },
     {
       "path": "crates/mbse-exchange/tests/source_edit.rs",
@@ -3937,5 +3937,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "846ad3f611ef61370938cfad1ef964313182384b4ab3eea92e7cd66aaec61271"
+  "source_sha256": "5371749e9e9219cee4c68fe043955145d086fef67f62f104f73ab2c356a4a1c2"
 }
