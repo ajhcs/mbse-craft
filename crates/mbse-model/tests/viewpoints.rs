@@ -364,7 +364,7 @@ fn viewpoint_v5_survives_typed_port_connector_actions_recovery_and_stale_native_
         }),
     )
     .unwrap();
-    assert_eq!(v.document().profile, PROFILE);
+    assert_eq!(v.document().profile, RECOVERY_PROFILE);
     assert_eq!(v.document().views[&id].viewpoint, point);
     assert_eq!(e.snapshot, native);
     let rec = v.recovery(&e).unwrap();

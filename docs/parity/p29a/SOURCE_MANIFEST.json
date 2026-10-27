@@ -623,8 +623,8 @@
     },
     {
       "path": "crates/mbse-model/tests/viewpoints.rs",
-      "bytes": 14227,
-      "sha256": "54ca064a06b1d0a8386f7ee292ae4d4132418f6e7b362ef284eec5ebb49b229b"
+      "bytes": 14236,
+      "sha256": "e7f80609a7b8ad3228fe41d1bad2303fb2cef20e4e980948c3530d5373eae357"
     },
     {
       "path": "crates/mbse-model/vendor/sysmlv2-syntax/Cargo.toml",
@@ -3647,5 +3647,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "5f5b245cf5cc28fdf33b36225e32f2facbe11c2c9a77905094e090d482e8ae5e"
+  "source_sha256": "afe77fa619129755c9064428fd672b9d8fa79618ecb9367d57ab139301f5ef11"
 }
