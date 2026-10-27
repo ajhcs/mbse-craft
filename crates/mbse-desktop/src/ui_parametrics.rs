@@ -141,7 +141,7 @@ impl Workspace {
             .dispatch(
                 &mut self.session.editor,
                 stamp,
-                nv::NativeAction::Command(Command::Typed(ty::Action::Specification(action))),
+                nv::NativeAction::Command(Command::Typed(ty::Action::Parametric(action))),
             )
             .map(|_| ());
         self.views.reconcile();

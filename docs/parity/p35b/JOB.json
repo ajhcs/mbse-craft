@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m6-p35b-native-parametric-forms-type-report-01",
+  "id": "m6-p35b-correct-parametric-command-variant-02",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m6-p35b-native-parametrics",
   "source_manifest": "docs/parity/p35b/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "26b791eff33626038b7df876dd551d3db69f63ff2aa2c6730d9bc38d8d4b78fe",
-  "source_sha256": "a176a04314185fa724e7ac371c8f781544cc3c68f050c85c011aec10c50cd6f5",
+  "source_manifest_sha256": "e86f7a03663c296f111bcb4872d5fae3c4cd5b3f73f4ba3c4273d640fadd56df",
+  "source_sha256": "0c04b4aca9d692edc1301607fa2a65a645a98f7f27699d288aea7c8e26691b0c",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -36,7 +36,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "P35b native specification/parameter/binding forms and accepted-type report. Shared Tools/CtrlAltE command, exact native calculation/input and typed-source pickers, source quantity units, raw vsacceptedsummary, unbound/mismatchdiagnostics, noexecute/currentraw/cycle claim.7newactualGUIcases: allforms/sourcepickers/typecompleteness; dimension/duplicate/raw/modelhistory; explicittypeddefault/Part/units/unset; UTF8/foreignowner; unsupportedsourcecopysalvage; stalesource/otheractors/docking; actualreportcopy retainedsourcehash/executionfalse withinvalidtypedvalueraw. Full723prior+7workspace/build once; nativeauthoring/save/cold acceptance separate. No dependencies/buildscripts changed.",
+  "rationale": "Original762-file sourcea176a043 compilefailsbeforetests: one copied dispatch variantSpecification shouldbeexisting Action::Parametric. Correct onlythat source reference. All730workspace cases/build remainunexecuted; run underfresh job. P35b7actualGUI cases/nativeauthoringacceptance scope retained. No dependency/buildscriptchanges.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",
