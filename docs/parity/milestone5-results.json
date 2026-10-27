@@ -61,8 +61,12 @@
       "merge_commit": "517fc3e10ffd44e19f30bc5cb9c45c0314651385"
     },
     "p26b": {
-      "state": "in_progress",
-      "base_commit": "517fc3e10ffd44e19f30bc5cb9c45c0314651385"
+      "state": "review_pending",
+      "base_commit": "517fc3e10ffd44e19f30bc5cb9c45c0314651385",
+      "execution_results": "p26b/README.md",
+      "new_distinct_cases": 8,
+      "distinct_case_inventory": 551,
+      "native_runs": 2
     }
   }
 }
