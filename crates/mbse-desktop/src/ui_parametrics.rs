@@ -1,5 +1,8 @@
 //! Native flat specification proposals over the existing typed authority.
 use super::*;
+#[path="ui_parametric_analysis.rs"]
+mod analysis_ui;
+use analysis_ui::{Analysis, AnalysisAction};
 use mbse_model::{
     native_views::{self as nv, Stamp},
     types::{
@@ -25,6 +28,7 @@ pub(super) struct Panel {
     owner: Option<Owner>,
     pending: Option<Pending>,
     pub note: String,
+    pub analysis: Analysis,
 }
 fn scope(f: &Form) -> Option<Id> {
     match f {
@@ -275,6 +279,7 @@ impl Workspace {
         let stamp = self.views.views.stamp(&self.session.editor);
         let ready = self.pm_ready() && owner_ok;
         let admitted = !self.pm_pending();
+        let mut analysis_action=None;
         let (
             mut pick,
             mut apply,
@@ -286,7 +291,8 @@ impl Workspace {
             mut open,
         ) = (None, false, false, false, false, None, false, true);
         egui::Window::new("Parametric specifications and bindings").id(egui::Id::new("mbse-parametrics")).open(&mut open).default_width(1080.).default_height(1000.).max_height((ctx.content_rect().height()-80.).max(300.)).vscroll(true).show(ctx,|ui|{
-   ui.heading("Parametric specifications and bindings");if let Err(error)=pm::forms(&self.session.editor.snapshot){ui.colored_label(ERROR,error);}ui.label("Declare existing calculation inputs and bind exact native or typed-value sources. Accepted values and unfinished proposals stay separate. This review checks accepted types only; it does not run calculations, inspect current raw validity or check cycles.");if !owner_ok{ui.colored_label(ERROR,"This proposal belongs to another native instance. Copy it or explicitly discard new text; no IDs are rebound.");}
+   ui.heading("Parametric specifications and bindings");if let Err(error)=pm::forms(&self.session.editor.snapshot){ui.colored_label(ERROR,error);}ui.label("Declare existing calculation inputs and bind exact native or typed-value sources. Accepted values and unfinished proposals stay separate. The accepted-type review is separate from explicit bounded analysis below. Prepare/Run checks current sources and executes the existing native engine.");if !owner_ok{ui.colored_label(ERROR,"This proposal belongs to another native instance. Copy it or explicitly discard new text; no IDs are rebound.");}
+   analysis_action=self.pm_analysis_ui(ui,ready&&admitted);
    ui.add_enabled_ui(ready&&admitted,|ui|{ui.horizontal_wrapped(|ui|{for name in["Specification","Parameter","Binding"]{let r=ui.add_enabled(name=="Specification"||self.parametrics.specification.is_some(),egui::Button::new(format!("New {name}")));self.bound(format!("parametric:new:{name}"),&r);if r.clicked(){pick=Some(self.pm_new_form(name));}}});
     let browse=ui.collapsing("Specifications and owned parameters/bindings",|ui|{for a in store.parametrics.values(){let r=ui.button(format!("Specification #{} · {} · System #{}",a.id.0,a.name,a.system.0));self.bound(format!("parametric:select:{}",a.id.0),&r);if r.clicked(){pick=accepted_form(a,a.id);}if self.parametrics.specification==Some(a.id){ui.indent(("parametric-elements",a.id.0),|ui|{for id in a.parameters.keys().chain(a.bindings.keys()){let f=accepted_form(a,*id).unwrap();let r=ui.button(accepted_label(a,*id));self.bound(format!("parametric:edit:{}",id.0),&r);if r.clicked(){pick=Some(f);}}});}}});self.bound("parametric:Browse elements",&browse.header_response);
     let proposals=ui.collapsing(format!("Retained proposals ({})",forms.len()),|ui|{for(key,p)in &forms{let r=ui.button(format!("{key} · {} proposal",family(p)));self.bound(format!("parametric:proposal:{key}"),&r);if r.clicked(){pick=Some(p.clone());}}});self.bound("parametric:Browse proposals",&proposals.header_response);
@@ -362,6 +368,10 @@ impl Workspace {
                                 .into();
                     })
             }
+        } else if let Some(action)=analysis_action {
+            let result=self.pm_analysis_action(&stamp,action);
+            if let Err(error)=&result { self.parametrics.analysis.note=error.clone(); }
+            result
         } else {
             Ok(())
         };
@@ -402,7 +412,7 @@ impl Workspace {
                 })
             });
         let store = ty::load(&self.session.editor.snapshot).ok();
-        serde_json::json!({"open":self.parametrics.open,"owner_current":owner_current,"specification":self.parametrics.specification,"current":current,"form_admitted":!self.pm_pending(),"note":self.parametrics.note,"accepted":store.as_ref().map(|s|&s.parametrics),"proposals":forms,"report":self.parametrics.specification.and_then(|id|pm::report(&self.session.editor.snapshot,id).ok())})
+        serde_json::json!({"open":self.parametrics.open,"owner_current":owner_current,"specification":self.parametrics.specification,"current":current,"form_admitted":!self.pm_pending(),"note":self.parametrics.note,"accepted":store.as_ref().map(|s|&s.parametrics),"proposals":forms,"analysis":self.pm_analysis_audit(),"report":self.parametrics.specification.and_then(|id|pm::report(&self.session.editor.snapshot,id).ok())})
     }
 }
 pub(super) fn accepted_form(a: &pm::Specification, id: Id) -> Option<Form> {
@@ -522,7 +532,7 @@ impl Workspace {
                 } else {
                     "Unbound or unresolved inputs remain"
                 });
-                ui.label("Calculations have not been run. Current raw source edits, cycles and engineering correctness are not checked by this type review.");
+                ui.label("This accepted-type review does not execute calculations or inspect current raw/cycles. Bounded analysis runs separately through explicit Prepare/Run controls.");
                 if let Ok(s) = ty::load(&self.session.editor.snapshot) {
                     if let Some(a) = s.parametrics.get(&id) {
                         for p in a.parameters.values() {
