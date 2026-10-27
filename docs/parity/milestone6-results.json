@@ -140,7 +140,7 @@
     }
   },
   "p33": {
-    "state": "in_progress",
+    "state": "merged_bounded_contract",
     "base_commit": "f2153a20cafe6856cd1e0e8ff6bda53688601d20",
     "children": [
       "P33a",
@@ -160,7 +160,7 @@
       "merge_commit": "938930a8829576879a4d1bb402bac12f923e9848"
     },
     "p33b": {
-      "state": "reviewed_ready_to_merge",
+      "state": "merged",
       "scope": "native state execution controls and acceptance",
       "base_commit": "938930a8829576879a4d1bb402bac12f923e9848",
       "execution_results": "p33b/README.md",
@@ -170,7 +170,29 @@
       "native_state_execution_runs": 2,
       "final_source_full_workspace_claim": false,
       "pr_number": 48,
-      "review": "p33b/REVIEW.md"
+      "review": "p33b/REVIEW.md",
+      "merge_commit": "448a1d1283619918b1a06fd2b5db5c7237e7bd43"
+    }
+  },
+  "p34": {
+    "state": "in_progress",
+    "base_commit": "448a1d1283619918b1a06fd2b5db5c7237e7bd43",
+    "children": [
+      "P34a",
+      "P34b",
+      "P34c"
+    ],
+    "p34a": {
+      "state": "in_progress",
+      "scope": "exact participant/message/guarded-alternative authority and keyed drafts"
+    },
+    "p34b": {
+      "state": "planned",
+      "scope": "independent ordered lifeline/message presentation data"
+    },
+    "p34c": {
+      "state": "planned",
+      "scope": "native scenario authoring/diagnostics/rendering/history/save/cold acceptance"
     }
   }
 }
