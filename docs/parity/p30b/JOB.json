@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m6-p30b-quota-repro-03",
+  "id": "m6-p30b-quota-and-source-disclosure-04",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m6-p30b-activity-forms-views",
   "source_manifest": "docs/parity/p30b/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "9fca05bd3b781e2136a8a8c05874f55e42c036c7b5339ca07e021f484ed8e9f2",
-  "source_sha256": "179a6a5ec8951dfcd135910e29fadeb5b4ad09115b8f34c3f270e48d8f2614dd",
+  "source_manifest_sha256": "488381afb6e8c3d7c42393481fe83ba22153defab5eb522148069e197318401c",
+  "source_sha256": "d38c8439d4eff1b806817553da954716e2d6686bb5d6cb8d248ec0aee959cf50",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -28,13 +28,20 @@
       "mbse-model",
       "--test",
       "activity_forms_views",
-      "applying_creation_at_form_quota_reuses_its_slot_without_transient_overflow_or_raw_loss",
       "--",
-      "--exact",
       "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
     ]
   ],
-  "rationale": "P30b review F01: reproduce transient extra form during legacy bridge when Apply consumes a creation slot at128-form quota. Final journal should still have128 and preserve every other proposal; no production edits yet.",
+  "rationale": "Fix reproduced transient form quota: consume the selected slot inside the atomic candidate before legacy bridge staging, then replace with accepted-ID slot. All13 related activity form/diagram cases and build. Activity source inspection explicitly refuses before legacy UI can omit unhandled activity content; original file bytes retained. Unrelated608 prior successes not replayed.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",

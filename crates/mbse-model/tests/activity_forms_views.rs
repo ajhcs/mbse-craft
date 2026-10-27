@@ -555,9 +555,10 @@ fn activity_view_wire_legacy_alias_foreign_active_missing_kind_and_copy_routes_r
     let area = tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap();
     let path = area.path().join("source.mbse-views.json");
     std::fs::write(&path, d.encoded().unwrap()).unwrap();
-    let source = Inspection::open(&path).unwrap();
+    let original = std::fs::read(&path).unwrap();
+    assert!(Inspection::open(&path).is_err());
+    assert_eq!(std::fs::read(&path).unwrap(), original);
     let target = Views::new(&e).unwrap();
-    assert!(Plan::new(&source, view, &e, &target).is_err());
     let native = target.recovery(&e).unwrap();
     let path2 = area.path().join("native.mbse-views.json");
     std::fs::write(&path2, native.encoded().unwrap()).unwrap();

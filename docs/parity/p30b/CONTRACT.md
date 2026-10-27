@@ -21,7 +21,8 @@ native model. Existing count/geometry/byte/history bounds apply jointly.
 
 Profiles1..5 without activity fields stay exact; older readers reject6. Native/views
 save/recovery/cold-open, typed port/connector/viewpoint actions retain6 and metadata.
-Cross-document reviewed activity diagram copy/mapping is unsupported and refuses
+Source inspection and cross-document reviewed activity diagram copy/mapping through
+the older native-only UI are unsupported and refuse
 without partial publication. No implicit execution, engineering verdict, general
 SysML guard language or full NoMagic/SysML/Craft compatibility. P30c actual native
 editor/rendering/selection/save/cold evidence is required before parent completion.

@@ -252,6 +252,9 @@ pub(super) fn apply(snapshot: &mut Snapshot, action: Action) -> Result<Change, S
                 .ok_or("ACTIVITY_FORM_UNAVAILABLE")?;
             let action = form.concrete()?;
             let allocated = form.id().unwrap_or(Id(snapshot.next_id));
+            // Replace the consumed slot inside this atomic candidate before the
+            // legacy flow bridge stages its accepted-ID proposal at the quota.
+            j.activity_forms.remove(&key);
             put(snapshot, DRAFTS, &j)?;
             super::apply_inner(snapshot, action)?;
             if matches!(form, Form::Flow { .. }) {

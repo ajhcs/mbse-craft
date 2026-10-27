@@ -1209,6 +1209,7 @@ fn decode_document(bytes: &[u8]) -> Result<Document, String> {
 pub(crate) fn inspect_document(bytes: &[u8]) -> Result<Document, String> {
     let document = decode_document(bytes)?;
     document.validate_contents(None)?;
+    if !document.activity_diagrams.is_empty(){return Err("VIEWS_ACTIVITY_SOURCE_INSPECTION_UNSUPPORTED: preserve original activity presentation; legacy mapping does not inventory it".into());}
     if !document.typed_ports.is_empty(){return Err("VIEWS_TYPED_SOURCE_INSPECTION_UNSUPPORTED: retain original typed presentation".into())}
     if (bound_profile(&document.profile) && document.binding.is_none())
         || (!bound_profile(&document.profile) && document.binding.is_some())
