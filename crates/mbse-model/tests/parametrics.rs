@@ -429,8 +429,28 @@ fn parametric_boolean_text_and_foreign_value_sources_are_actionable_without_coer
 #[test]
 fn parametric_removed_or_changed_calculation_retains_identity_bindings_and_diagnostics() {
     let (mut e, a, _, _, _, _) = graph();
+    let mut unused = e.snapshot.records[&RecordId(1003)].clone();
+    unused.id = RecordId(20000);
+    unused.name = "Independent native calculation source".into();
+    unused.fields.remove("_kernspanCalculationRawOwners");
+    unused.fields.get_mut("calculation").unwrap()["id"] = json!(20000);
+    unused.fields.get_mut("calculation").unwrap()["owner"] = json!(20000);
+    e.snapshot.records.insert(unused.id, unused);
+    e.snapshot.next_id = 20001;
+    let mut store = t::load(&e.snapshot).unwrap();
+    let owned = store.parametrics.get_mut(&a).unwrap();
+    owned.calculation = Some(c::CalculationId(20000));
+    for b in owned.bindings.values_mut() {
+        if let Source::NativeInput { calculation, .. } | Source::NativeOutput { calculation } =
+            &mut b.source
+        {
+            *calculation = c::CalculationId(20000);
+        }
+    }
+    put(&mut e, &store);
+    e.snapshot.validate().unwrap();
     let accepted = t::load(&e.snapshot).unwrap().parametrics;
-    let removed = e.snapshot.records.remove(&RecordId(1003)).unwrap();
+    let removed = e.snapshot.records.remove(&RecordId(20000)).unwrap();
     e.snapshot.validate().unwrap();
     let r = p::report(&e.snapshot, a).unwrap();
     assert!(!r.accepted_bindings_complete);
@@ -441,7 +461,7 @@ fn parametric_removed_or_changed_calculation_retains_identity_bindings_and_diagn
     );
     assert_eq!(t::load(&e.snapshot).unwrap().parametrics, accepted);
     e.snapshot.records.insert(removed.id, removed);
-    let record = e.snapshot.records.get_mut(&RecordId(1003)).unwrap();
+    let record = e.snapshot.records.get_mut(&RecordId(20000)).unwrap();
     record.fields.get_mut("calculation").unwrap()["bindings"]
         .as_object_mut()
         .unwrap()
@@ -523,7 +543,7 @@ fn parametric_wire_schema_canonical_nested_ids_global_collisions_and_future_refe
     let original = serde_json::to_value(&e.snapshot).unwrap();
     let base = original["extensions"]["namespaces"][t::NAMESPACE].clone();
     let path = a.0.to_string();
-    for mode in 0..5 {
+    for mode in 0..6 {
         let mut wire = original.clone();
         let s = &mut wire["extensions"]["namespaces"][t::NAMESPACE];
         match mode {
@@ -542,8 +562,15 @@ fn parametric_wire_schema_canonical_nested_ids_global_collisions_and_future_refe
                 let v = root.remove(&x.0.to_string()).unwrap();
                 root.insert(format!("0{}", x.0), v);
             }
-            3 => {
-                s["parametrics"][&path]["parameters"][x.0.to_string()]["id"] = json!(1003);
+            3 | 5 => {
+                let target = if mode == 3 { 1003 } else { 1005 };
+                let parameters = s["parametrics"][&path]["parameters"]
+                    .as_object_mut()
+                    .unwrap();
+                let mut p = parameters.remove(&x.0.to_string()).unwrap();
+                p["id"] = json!(target);
+                parameters.insert(target.to_string(), p);
+                s["parametrics"][&path]["bindings"][b.0.to_string()]["parameter"] = json!(target);
             }
             _ => {
                 s["parametrics"][&path]["parameters"][x.0.to_string()]["quantity"]["unit"] =
@@ -581,6 +608,16 @@ fn parametric_wire_schema_canonical_nested_ids_global_collisions_and_future_refe
             .iter()
             .any(|d| d.code == "PARAMETRIC_BINDING_UNRESOLVED")
     );
+    let mut reserved = Editor::new(future, "future:allocator".into()).unwrap();
+    let next = spec(&mut reserved, false);
+    assert_eq!(next, Id(1000000));
+    assert!(
+        p::report(&reserved.snapshot, a)
+            .unwrap()
+            .diagnostics
+            .iter()
+            .any(|d| d.code == "PARAMETRIC_BINDING_UNRESOLVED")
+    );
     let mut wire = serde_json::to_value(&e.snapshot).unwrap();
     wire["extensions"]["namespaces"][t::DRAFTS]["scenario_forms"][format!("scenario:{}", a.0)] =
         serde_json::to_value(t::scenarios::Form::Scenario {
@@ -611,6 +648,7 @@ fn parametric_raw_utf8_quota_shared512_and_native_binding_limits_refuse_without_
         .is_err()
     );
     assert_eq!(e.snapshot, before);
+    e.snapshot.next_id = 50000; // Explicit retained raw IDs are already retired, not fresh allocations.
     for i in 0..127 {
         set(
             &mut e,
@@ -779,7 +817,8 @@ fn parametric_bound_native_cold_and_captured_recovery_keep_whole_prior_raw_opaqu
     };
     let area = tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap();
     let mut session = Session::new(area.path()).unwrap();
-    session.editor = editor();
+    session.editor =
+        Editor::new(editor().snapshot, session.editor.freshness().instance_id).unwrap();
     let before = session.editor.snapshot.clone();
     let mut doc:v::Document=serde_json::from_slice(include_bytes!("../../../docs/parity/p34c/verification/native-02/run/scenario-final-cold-copy.mbse-views.json")).unwrap();
     doc.profile = v::scenarios::RECOVERY_PROFILE.into();
