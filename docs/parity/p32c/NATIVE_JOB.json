@@ -11,26 +11,28 @@
     "/workspace/worktrees/builderbob/mbse-craft",
     "/workspace/build/builderbob/mbse-craft/milestone1"
   ],
-  "id": "p32c-native-state-authoring-diagrams-cold-01",
-  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p32c-preserve-undo-example-shortcut-remainder-03-20261027T083340Z/mbse-desktop",
-  "binary_sha256": "b20be566578ee8eeb0a6e3f798d2184732f0844a7b5bb773e6148ac66bfcae0f",
-  "source_sha256": "a9680edd85d0136e87794c35e37b7757a93c8c78d7223877607fea03729f7dac",
+  "id": "p32c-native-labels-layout-root-inverse-cold-remainder-02",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p32c-native-labels-fit-status-04-20261027T090353Z/mbse-desktop",
+  "binary_sha256": "87879d4552ccdd75babc443975cf5dec2c6f5c29d4535e5c6a097750f6b916f8",
+  "source_sha256": "892a35dd3ed38521882b172d40960d1010c0490e4ad5f084e63ea7f130aaebec",
   "inputs": {
     "/workspace/repos/builderbob/mbse-craft/work/m6-p32c-native-state-machines/docs/parity/p32c/fixtures/native.kernspan": "378c62008e2cc1f7b4c6b760413374082fbfb9878756b2ffef5e1451371ecd97",
     "/workspace/repos/builderbob/mbse-craft/work/m6-p32c-native-state-machines/docs/parity/p32c/fixtures/native.mbse-views.json": "29d482f7e8935b90397fe4705fbcbe7ddf47849ffaa426275b24b90316057de2",
-    "/workspace/repos/builderbob/mbse-craft/work/m6-p32c-native-state-machines/docs/parity/p32c/fixtures/PREPARATION.json": "352ede1d7661d5e04ee6f5de67324e33fcc04907e2777906fe45c20c0d624d1f"
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p32c-native-state-machines/docs/parity/p32c/fixtures/PREPARATION.json": "352ede1d7661d5e04ee6f5de67324e33fcc04907e2777906fe45c20c0d624d1f",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p32c-01/run/state-machine-checkpoint.kernspan": "90394299a6d57369b9772c3bbd72bd884e0367221325efcb699be43299a4f4f8",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p32c-01/run/state-machine-checkpoint.mbse-views.json": "758f4e5cafb120c1f0cdb681e00575c83ca8c7fd6b022840aa7f0297c57b75c8"
   },
-  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p32c-01",
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p32c-02",
   "argv_extra": [
     "--open",
-    "/workspace/repos/builderbob/mbse-craft/work/m6-p32c-native-state-machines/docs/parity/p32c/fixtures/native.kernspan",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p32c-01/run/state-machine-checkpoint.kernspan",
     "--select",
     "1003"
   ],
   "scenarios": [
-    "Explicit frozen native/views Open and actual shared CtrlAltS. Widgets author Machine/Initial-State-Final/events/transitions and exact ambiguity diagnostics. Distinct invalid guard/target/event proposals retain raw while accepted values remain current; refusal/selection/global model Undo/Redo preserve newer proposals.",
-    "Two independent diagrams show actual state glyphs/derived Event/guard arrows/complete ledger. Actual drag publishes one entry/Undo/Redo, nudge/pin refusal/hide/show, independent cameras/switching preserve complete native Snapshot. Accepted root removal detaches; observed inverse restores exact model/diagram identities.",
-    "Actual owned native/views Save preserves every original record/draft/creation/type/activity/opaque and six presentation maps, except intentional new Machine/forms/diagrams/counters. Fresh preflight cold Open restores all data and no prior native/layout inverse authority; actual selection/render/switch/save-copy retains whole Snapshot/all7maps. Normal owned app/display/PID-starttick/Xauthority cleanup; protected inputs unchanged."
+    "Continue from preserved native01 widget-authored checkpoint; corrected actual transition labels disclose exact IDs/Event/true/else/unconditional and nonoverlapping text bounds; camera Fit uses plain language. No replay of completed original authoring/invalid-draft/drag checks.",
+    "Unexecuted remainder: pin/nudge refusal/hide/Undo/Redo, two independent cameras, ledger selects original invalid proposal, accepted root removal/detachment and fresh observed inverse restore identities. Whole original native data/opaque/old layouts preserved.",
+    "Save owned final native/views pair; fresh preflight cold Open proves retained raw/forms/semantics/seven maps/cameras, no old runtime inverse authority, explicit selection/render/save-copy. All owned app/display processes absent, authentication absent, protected inputs unchanged."
   ],
-  "claim_policy": "Same-agent bounded Linux synthetic flat state-machine authoring.663 distinct case inventory across original238 and final427 slices with2affected repeats; initial0test compile retained. No summed final-source full-suite claim. Fixture preparation only added optional opaque JSON; actual state-machine authoring required. No state execution/hierarchy/orthogonal regions/action code/general guards/verification/full parity/independent engineering/platform/scale/production acceptance. All56 broad specs/integrated exits open."
+  "claim_policy": "Same-agent bounded Linux synthetic flat state-machine authoring. Original native01 completed subset plus corrected remainder.664 distinct cases across recorded source slices; latest2focused/build. No summed final-source full suite. No execution/hierarchy/orthogonal/actioncode/generalguards/fullparity/independentengineering/platform/scale/production acceptance. Broad specs/exits open."
 }

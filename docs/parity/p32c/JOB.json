@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m6-p32c-native-labels-fit-status-04",
+  "id": "m6-p32c-labels-preserve-state-captions-05",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m6-p32c-native-state-machines",
   "source_manifest": "docs/parity/p32c/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "be98d9089f666ceeefcafb948030505fbe235e1a68cbe4ea6e970b708734386f",
-  "source_sha256": "892a35dd3ed38521882b172d40960d1010c0490e4ad5f084e63ea7f130aaebec",
+  "source_manifest_sha256": "8d0c7ea75121f9e6877590c4cff2d3864a1bb9454e0d6dc27627932882ab4fee",
+  "source_sha256": "fed2f1d8c791949670538d249123e0db7c764e07061f6f5f6e67b4d8e0583257",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -33,18 +33,6 @@
     [
       "bash",
       "scripts/dev.sh",
-      "test",
-      "--locked",
-      "--offline",
-      "-p",
-      "mbse-desktop",
-      "--bin",
-      "mbse-desktop",
-      "rendered_state_machine_two_diagrams_shapes_transition_ledger_layout_history_pin_hide_fit_preserve_semantics"
-    ],
-    [
-      "bash",
-      "scripts/dev.sh",
       "build",
       "--locked",
       "--offline",
@@ -52,7 +40,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "Native visual findings: parallel route label overlap and Fit debug result. Actual text bounds allocated without label overlap, exact transition/Event/guard labels painted after glyphs; plain language Fit success/error. Run new visual regression and affected two-diagram/Fit case then desktop build. Preserve original663 cases and all failed attempts; no summed final-source full-suite claim.",
+  "rationale": "Native02 confirms source/cold preservation and parallel labels, but completion label overlaps state caption. Allocate labels away from all state bounds as well as prior labels; extend meaningful existing regression with actual rendered state rectangles. Only affected visual regression/build; prior663+1 distinct names retained by tested source. No final-source full suite claim.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",

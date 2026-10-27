@@ -681,6 +681,14 @@ fn rendered_parallel_state_transition_labels_keep_exact_id_event_guards_and_disj
             egui::pos2(bounds[2], bounds[3]),
         );
         assert!(rect.width() > 0. && rect.height() > 0.);
+        for (occ, _, _) in &r.occurrences {
+            let b = a.audit[&format!("state-machine-occurrence:{}", occ.get())];
+            let node = Rect::from_min_max(egui::pos2(b[0], b[1]), egui::pos2(b[2], b[3]));
+            assert!(
+                !rect.intersects(node),
+                "Transition {id:?} label hides a state caption"
+            );
+        }
         for (_, other, _) in r.labels.iter().skip(i + 1) {
             assert!(!rect.intersects(Rect::from_min_max(
                 egui::pos2(other[0], other[1]),

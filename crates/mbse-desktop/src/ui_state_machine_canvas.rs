@@ -394,16 +394,19 @@ impl Workspace {
                         let mut label = Rect::from_center_size(start.lerp(end, 0.5), galley.size());
                         // Allocate actual text bounds, including wrapped lines, independently of
                         // semantic routes. Parallel transitions must not hide each other's guards.
-                        while labels
-                            .iter()
-                            .any(|(_, bounds, _): &(Id, [f32; 4], String)| {
-                                Rect::from_min_max(
-                                    egui::pos2(bounds[0], bounds[1]),
-                                    egui::pos2(bounds[2], bounds[3]),
-                                )
-                                .expand(3.)
-                                .intersects(label)
-                            })
+                        while rects
+                            .values()
+                            .any(|state| state.expand(5.).intersects(label))
+                            || labels
+                                .iter()
+                                .any(|(_, bounds, _): &(Id, [f32; 4], String)| {
+                                    Rect::from_min_max(
+                                        egui::pos2(bounds[0], bounds[1]),
+                                        egui::pos2(bounds[2], bounds[3]),
+                                    )
+                                    .expand(3.)
+                                    .intersects(label)
+                                })
                         {
                             label = label.translate(egui::vec2(0., galley.size().y + 8.));
                         }

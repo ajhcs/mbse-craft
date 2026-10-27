@@ -263,13 +263,13 @@
     },
     {
       "path": "crates/mbse-desktop/src/ui_state_machine_canvas.rs",
-      "bytes": 27537,
-      "sha256": "52be4641c0c031941064e7dedcf3662226759d4f188cbb76d14e45e14a78ee3c"
+      "bytes": 27725,
+      "sha256": "6c59d07a5c1350d329c24cdb14f4c58cf4855354b47468c9fbc6dde28830a6d0"
     },
     {
       "path": "crates/mbse-desktop/src/ui_state_machine_tests.rs",
-      "bytes": 24372,
-      "sha256": "35c697dc37ae95f588c52648f15447c763d84f271a4f40cfd944947e10a168a4"
+      "bytes": 24738,
+      "sha256": "6752c33a0fba0bd30e957e91ab922a6c55aa3d2b4c494dbfc915fa8fc002b4bc"
     },
     {
       "path": "crates/mbse-desktop/src/ui_state_machines.rs",
@@ -3742,5 +3742,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "892a35dd3ed38521882b172d40960d1010c0490e4ad5f084e63ea7f130aaebec"
+  "source_sha256": "fed2f1d8c791949670538d249123e0db7c764e07061f6f5f6e67b4d8e0583257"
 }
