@@ -1,0 +1,56 @@
+{
+  "profile": "mbse-craft.presentation-copy-contract/0.1-draft",
+  "status": "ProposedNotImplementedNotRun",
+  "source_pin": "fdae8dfa94bf5bef18944243612a04cbf3047fda",
+  "native_schema_unchanged": true,
+  "vectors": [
+    {
+      "id": "RC-01",
+      "case": "Recovered DocumentId differs; explicit geometry copy",
+      "expected": "Old bound/unbound sidecar still refuses ordinary Open; operator-selected target records populate one new view with fresh presentation IDs; source bytes unchanged.",
+      "status": "UNRUN"
+    },
+    {
+      "id": "RC-02",
+      "case": "Equal number/name without operator mapping",
+      "expected": "No mapping or new active occurrence is inferred. Native accepted/raw data and evaluator stamps unchanged.",
+      "status": "UNRUN"
+    },
+    {
+      "id": "RC-03",
+      "case": "Detached source occurrence explicitly mapped",
+      "expected": "New occurrence gets a fresh target ID and copied geometry; old detached source remains intact; no runtime reactivation proof copied.",
+      "status": "UNRUN"
+    },
+    {
+      "id": "RC-04",
+      "case": "Duplicate occurrences and supported/unsupported edge keys",
+      "expected": "Exact mapped occurrence endpoints are preserved; only checked target semantic keys produce new edges; unsupported/unmapped edges are listed as skipped.",
+      "status": "UNRUN"
+    },
+    {
+      "id": "RC-05",
+      "case": "Source or target changes after preview",
+      "expected": "Atomic refusal before allocator/history/state commit; preserve current views, source bytes and diagnostic mapping preview.",
+      "status": "UNRUN"
+    },
+    {
+      "id": "RC-06",
+      "case": "Undo/Redo with missing native target",
+      "expected": "Single layout action, nonreused IDs; missing/wrong-kind target refuses Redo without semantic resurrection or retarget.",
+      "status": "UNRUN"
+    },
+    {
+      "id": "RC-07",
+      "case": "Provenance/collection/history budget or future wire profile",
+      "expected": "Bounded refusal; no v1 rewrite, automatic migration, partial application or unsupported provenance authority.",
+      "status": "UNRUN"
+    },
+    {
+      "id": "RC-08",
+      "case": "Native/views partial save and local replacement",
+      "expected": "Independent acknowledgment and actual current-artifact verification still gate navigation; imported revision1 or provenance metadata never grants pristine capability.",
+      "status": "UNRUN"
+    }
+  ]
+}
