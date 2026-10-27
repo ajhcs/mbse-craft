@@ -140,7 +140,7 @@
     }
   },
   "p33": {
-    "state": "in_progress",
+    "state": "merged_bounded_contract",
     "base_commit": "f2153a20cafe6856cd1e0e8ff6bda53688601d20",
     "children": [
       "P33a",
@@ -160,7 +160,7 @@
       "merge_commit": "938930a8829576879a4d1bb402bac12f923e9848"
     },
     "p33b": {
-      "state": "reviewed_ready_to_merge",
+      "state": "merged",
       "scope": "native state execution controls and acceptance",
       "base_commit": "938930a8829576879a4d1bb402bac12f923e9848",
       "execution_results": "p33b/README.md",
@@ -170,7 +170,37 @@
       "native_state_execution_runs": 2,
       "final_source_full_workspace_claim": false,
       "pr_number": 48,
-      "review": "p33b/REVIEW.md"
+      "review": "p33b/REVIEW.md",
+      "merge_commit": "448a1d1283619918b1a06fd2b5db5c7237e7bd43"
+    }
+  },
+  "p34": {
+    "state": "in_progress",
+    "base_commit": "448a1d1283619918b1a06fd2b5db5c7237e7bd43",
+    "children": [
+      "P34a",
+      "P34b",
+      "P34c"
+    ],
+    "p34a": {
+      "state": "reviewed_ready_to_merge",
+      "scope": "exact participant/message/guarded-alternative authority and keyed drafts",
+      "execution_results": "p34a/README.md",
+      "source_sha256": "dad877f6c6b39a3194707a89760de44be6399732180e93e0d9031a3a3f4d9920",
+      "distinct_case_inventory": 690,
+      "new_distinct_cases": 12,
+      "native_scenario_runs": 0,
+      "final_source_full_workspace_claim": true,
+      "pr_number": 49,
+      "review": "p34a/REVIEW.md"
+    },
+    "p34b": {
+      "state": "planned",
+      "scope": "independent ordered lifeline/message presentation data"
+    },
+    "p34c": {
+      "state": "planned",
+      "scope": "native scenario authoring/diagnostics/rendering/history/save/cold acceptance"
     }
   }
 }
