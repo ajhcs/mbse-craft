@@ -51,11 +51,13 @@
       "P26b"
     ],
     "p26a": {
-      "state": "implemented_bounded_review_pending",
+      "state": "reviewed_bounded_ready_to_merge",
       "execution_results": "p26a/README.md",
       "new_distinct_cases": 11,
       "native_ui": false,
-      "parent_complete": false
+      "parent_complete": false,
+      "pr_number": 32,
+      "review": "p26a/REVIEW.md"
     }
   }
 }

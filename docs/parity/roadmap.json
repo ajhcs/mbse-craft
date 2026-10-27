@@ -616,9 +616,13 @@
         {
           "id": "P26a",
           "title": "Named validation suites and sealed issue locations",
-          "state": "implemented_bounded_review_pending",
+          "state": "reviewed_bounded_ready_to_merge",
           "contract": "docs/parity/p26a/CONTRACT.md",
-          "execution_results": "docs/parity/p26a/README.md"
+          "execution_results": "docs/parity/p26a/README.md",
+          "pr_number": 32,
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/32",
+          "review": "docs/parity/p26a/REVIEW.md",
+          "review_preservation": "docs/parity/p26a/REVIEW_PRESERVATION.json"
         },
         {
           "id": "P26b",
