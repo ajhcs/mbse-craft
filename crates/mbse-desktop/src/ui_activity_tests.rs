@@ -601,3 +601,263 @@ fn rendered_activity_drag_publishes_one_layout_entry_and_single_undo_keeps_entir
     );
     assert_eq!(a.session.editor.snapshot, native);
 }
+
+#[test]
+fn rendered_activity_execution_prepare_step_trace_copy_and_clear_preserve_whole_native_and_layout()
+{
+    use mbse_model::types::activities::execution::Status;
+    let (_area, mut a, ctx) = app();
+    let (activity, start, action, end) = seeded(&mut a);
+    let before = a.session.editor.snapshot.clone();
+    let layout = a.views.views.document().clone();
+    click(&mut a, &ctx, "activity:Execution controls");
+    click(&mut a, &ctx, "activity:execution:Prepare");
+    assert_eq!(
+        a.activities
+            .execution
+            .live
+            .as_ref()
+            .unwrap()
+            .report()
+            .activity,
+        activity
+    );
+    assert_eq!(
+        a.activities
+            .execution
+            .live
+            .as_ref()
+            .unwrap()
+            .report()
+            .status,
+        Status::Ready
+    );
+    for _ in 0..3 {
+        click(&mut a, &ctx, "activity:execution:Step");
+    }
+    let live = a.activities.execution.live.as_ref().unwrap();
+    assert_eq!(live.report().status, Status::Completed);
+    assert_eq!(
+        live.report()
+            .visits
+            .iter()
+            .map(|v| v.node)
+            .collect::<Vec<_>>(),
+        vec![start, action, end]
+    );
+    assert!(live.is_current(&a.session.editor));
+    click(&mut a, &ctx, "activity:execution:Copy");
+    assert_eq!(a.session.editor.snapshot, before);
+    assert_eq!(a.views.views.document(), &layout);
+    click(&mut a, &ctx, "activity:execution:Clear");
+    assert!(a.activities.execution.live.is_none());
+}
+fn seed_cycle(a: &mut Workspace) -> Id {
+    let (id, _, action, end) = seeded(a);
+    let stamp = a.views.views.stamp(&a.session.editor);
+    a.activity_model(
+        &stamp,
+        ac::Action::Node {
+            activity: id,
+            id: Some(end),
+            name: "Merge cycle".into(),
+            kind: ac::NodeKind::Merge,
+            partition: None,
+        },
+    )
+    .unwrap();
+    let stamp = a.views.views.stamp(&a.session.editor);
+    a.activity_model(
+        &stamp,
+        ac::Action::SetFlowForm(ac::FlowForm {
+            activity: id,
+            id: None,
+            name: "Cycle back".into(),
+            kind: ac::FlowKind::Control,
+            source: end.0.to_string(),
+            target: action.0.to_string(),
+            guard: "".into(),
+        }),
+    )
+    .unwrap();
+    let stamp = a.views.views.stamp(&a.session.editor);
+    a.activity_model(&stamp, ac::Action::ApplyFlow).unwrap();
+    id
+}
+#[test]
+fn rendered_activity_execution_auto_budget_and_explicit_cancel_close_guards_preserve_source() {
+    use mbse_model::types::activities::execution::Status;
+    let (_area, mut a, ctx) = app();
+    seed_cycle(&mut a);
+    let before = a.session.editor.snapshot.clone();
+    click(&mut a, &ctx, "activity:Execution controls");
+    fill(&mut a, &ctx, "execution-budget", "3");
+    click(&mut a, &ctx, "activity:execution:Prepare");
+    click(&mut a, &ctx, "activity:execution:Run");
+    assert!(a.activity_execution_automatic());
+    assert!(a.dock_blocked());
+    assert!(!a.activity_ready());
+    for _ in 0..4 {
+        a.activities.execution.next_tick = None;
+        a.activity_execution_tick();
+    }
+    assert_eq!(
+        a.activities
+            .execution
+            .live
+            .as_ref()
+            .unwrap()
+            .report()
+            .status,
+        Status::BudgetExhausted
+    );
+    assert_eq!(
+        a.activities
+            .execution
+            .live
+            .as_ref()
+            .unwrap()
+            .report()
+            .visits
+            .len(),
+        3
+    );
+    assert!(!a.activity_execution_automatic());
+    fill(&mut a, &ctx, "execution-budget", "4096");
+    click(&mut a, &ctx, "activity:execution:Prepare");
+    click(&mut a, &ctx, "activity:execution:Run");
+    click(&mut a, &ctx, "activity:Close");
+    assert!(a.activities.open);
+    assert!(a.activity_execution_active());
+    assert!(a.activities.note.contains("Cancel"));
+    click(&mut a, &ctx, "activity:execution:Cancel");
+    assert_eq!(
+        a.activities
+            .execution
+            .live
+            .as_ref()
+            .unwrap()
+            .report()
+            .status,
+        Status::Cancelled
+    );
+    assert!(!a.activity_execution_automatic());
+    click(&mut a, &ctx, "activity:Close");
+    assert!(!a.activities.open);
+    assert_eq!(a.session.editor.snapshot, before);
+}
+#[test]
+fn rendered_activity_execution_paused_new_raw_source_change_stops_and_marks_historical_trace() {
+    use mbse_model::types::activities::execution::Status;
+    let (_area, mut a, ctx) = app();
+    seeded(&mut a);
+    let accepted = ty::load(&a.session.editor.snapshot).unwrap();
+    click(&mut a, &ctx, "activity:Execution controls");
+    click(&mut a, &ctx, "activity:execution:Prepare");
+    click(&mut a, &ctx, "activity:execution:Step");
+    let visits = a
+        .activities
+        .execution
+        .live
+        .as_ref()
+        .unwrap()
+        .report()
+        .visits
+        .clone();
+    fill(&mut a, &ctx, "name", "New raw source proposal");
+    settle(&mut a, &ctx);
+    let live = a.activities.execution.live.as_ref().unwrap();
+    assert_eq!(live.report().status, Status::StaleSource);
+    assert!(!live.is_current(&a.session.editor));
+    assert_eq!(live.report().visits, visits);
+    assert_eq!(ty::load(&a.session.editor.snapshot).unwrap(), accepted);
+    assert_eq!(
+        a.activity_audit()["current"]["name"],
+        "New raw source proposal"
+    );
+    click(&mut a, &ctx, "activity:execution:Copy");
+    click(&mut a, &ctx, "activity:Close");
+    assert!(!a.activities.open);
+}
+#[test]
+fn rendered_activity_execution_deadlock_bad_budget_and_payload_refusal_remain_visible_without_overwrite()
+ {
+    use mbse_model::types::activities::execution::Status;
+    let (_area, mut a, ctx) = app();
+    let (id, _, action, end) = seeded(&mut a);
+    let flow = ty::load(&a.session.editor.snapshot).unwrap().activities[&id]
+        .flows
+        .values()
+        .find(|f| f.target == end)
+        .unwrap()
+        .id;
+    let stamp = a.views.views.stamp(&a.session.editor);
+    a.activity_model(
+        &stamp,
+        ac::Action::Remove {
+            activity: id,
+            element: flow,
+        },
+    )
+    .unwrap();
+    click(&mut a, &ctx, "activity:Execution controls");
+    fill(&mut a, &ctx, "execution-budget", "0");
+    let before = a.session.editor.snapshot.clone();
+    click(&mut a, &ctx, "activity:execution:Prepare");
+    assert!(a.activities.execution.live.is_none());
+    assert!(a.activities.execution.note.contains("BUDGET"));
+    assert_eq!(a.session.editor.snapshot, before);
+    fill(&mut a, &ctx, "execution-budget", "8");
+    click(&mut a, &ctx, "activity:execution:Prepare");
+    click(&mut a, &ctx, "activity:execution:Step");
+    click(&mut a, &ctx, "activity:execution:Step");
+    assert_eq!(
+        a.activities
+            .execution
+            .live
+            .as_ref()
+            .unwrap()
+            .report()
+            .status,
+        Status::Deadlock { node: action }
+    );
+    let prior = a
+        .activities
+        .execution
+        .live
+        .as_ref()
+        .unwrap()
+        .report()
+        .clone();
+    let root: serde_json::Value = serde_json::from_str(include_str!(
+        "../../../docs/parity/p30c/verification/native-04/run/activity-cold-copy.kernspan"
+    ))
+    .unwrap();
+    a.session.editor = mbse_model::stage1::Editor::new(
+        serde_json::from_value(root["snapshot"].clone()).unwrap(),
+        a.session.editor.freshness().instance_id,
+    )
+    .unwrap();
+    a.activities.activity = Some(Id(1033));
+    let before = a.session.editor.snapshot.clone();
+    click(&mut a, &ctx, "activity:execution:Prepare");
+    assert!(
+        a.activities
+            .execution
+            .note
+            .contains("OBJECT_PINS_OR_FLOWS_UNSUPPORTED")
+    );
+    assert_eq!(
+        a.activities.execution.live.as_ref().unwrap().report(),
+        &prior
+    );
+    assert!(
+        !a.activities
+            .execution
+            .live
+            .as_ref()
+            .unwrap()
+            .is_current(&a.session.editor)
+    );
+    assert_eq!(a.session.editor.snapshot, before);
+}
