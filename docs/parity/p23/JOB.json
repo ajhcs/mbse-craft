@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m5-p23-draft-validity-review-02",
+  "id": "m5-p23-identified-authoring-03",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m5-p23-requirement-hierarchy",
   "source_manifest": "docs/parity/p23/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "a7f7411e52a881070f0de0182b0caa9ca340d696a5ed95f54fbb652d54575607",
-  "source_sha256": "a20e92f13b90c49567964dd37b442da52fd6a0c1d9250309780516d393f3030c",
+  "source_manifest_sha256": "ffe3946ad4b255b8786c184fd4c7a9aa6551289a6d8425da2c473645197181f7",
+  "source_sha256": "9e205f42d5a39f016f0414c7dce1df15ccea919cef41e15424ffcbd8341a65e4",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -51,7 +51,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "504 workspace tests/build passed initial hierarchy source. Source review found serialized raw.valid=true could disagree with accepted parent/statement. Refuse those flags during existing hierarchy/register validation, preserve all invalid/raw.valid=false work, add reader regression. Run full assurance package and affected assurance UI tests/build only; retain504 initial-source evidence, no full-workspace replay or count summing.",
+  "rationale": "Initial504 tests/build passed hierarchy source; reviewed draft-validity fix then passed assurance23/UI7/build. Saved AC-CAT-017 explicitly requires R-1/R-2 and duplicate R-2 refusal. Add exact unique editable user identifiers beside stable local IDs, preserving legacy unset IDs, drafts/statuses/links and form IO guards; three new identifier regressions. Run all affected assurance package/UI/build only, no full-suite replay or summed claim.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",

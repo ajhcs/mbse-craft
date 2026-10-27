@@ -2,11 +2,11 @@
 
 Build on P22 PR28 merge24cb4647. Extend the existing mbse-assurance Board and its
 independent requirements/evidence register; do not create another requirements or
-native concept engine. Requirement.parent is an optional, empty-omitted local
+native concept engine. An exact, nonblank user identifier such as R-1/R-2 is unique within this register. Renaming it preserves the stable internal RequirementId and all parent/evidence links; duplicate/invalid names remain drafts. Native UI creation requires an identifier; legacy APIs/files may retain unset identifiers, omitted on wire. Requirement.parent is an optional, empty-omitted local
 RequirementId. Old flat registers remain exact; strict old readers refuse unfamiliar
 parent fields. No native record reclassification or native snapshot embedding.
 
-Create root or child atomically with the existing non-recycling register allocator.
+Create an identified root or child atomically with the existing non-recycling internal allocator; user identifiers are labels, never inferred relation endpoints. Identifier matching is exact/case-sensitive,1..128 UTF8 bytes without whitespace/control characters. Raw identifier input is bounded4096 backend bytes/128 UI characters. New identifier/statement forms are covered by existing frozen save, dirty, stale-open and exact-close guards.
 Parent must already exist in this same register. Current and candidate state are
 validated around transactions, preventing duplicate/high-water or malformed-ID
 state from silently overwriting work. Reader rejects noncanonical numeric map keys

@@ -83,6 +83,8 @@ pub struct Requirement {
     pub id: RequirementId,
     #[serde(default,skip_serializing_if="Option::is_none")]
     pub parent:Option<RequirementId>,
+    #[serde(default,skip_serializing_if="String::is_empty")]
+    pub identifier:String,
     pub statement: String,
     pub rationale: String,
     pub source: String,

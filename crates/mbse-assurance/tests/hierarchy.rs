@@ -306,3 +306,79 @@ fn serialized_valid_draft_flags_cannot_promote_cycles_missing_parent_or_unaccept
     std::fs::write(&path, serde_json::to_vec(&exact).unwrap()).unwrap();
     assert!(Board::open(&path).is_ok());
 }
+
+#[test]
+fn exact_user_identifiers_duplicate_refusal_and_rename_keep_stable_local_links() {
+    let mut b = Board::new();
+    let a = b
+        .add_identified_requirement("Root".into(), "R-1".into(), None)
+        .unwrap();
+    let c = b
+        .add_identified_requirement("Child".into(), "R-2".into(), Some(a))
+        .unwrap();
+    b.set_new_identifier_draft("R-2".into()).unwrap();
+    b.set_new_statement_draft("Duplicate proposal retained".into())
+        .unwrap();
+    let before = b.register.clone();
+    assert!(
+        b.add_identified_requirement("Duplicate proposal retained".into(), "R-2".into(), Some(a))
+            .unwrap_err()
+            .contains("DUPLICATE_IDENTIFIER")
+    );
+    assert_eq!(b.register, before);
+    assert!(!b.register.drafts["new:identifier"].valid);
+    assert!(!b.edit_identifier(a, "R-2".into()).unwrap());
+    assert_eq!(b.register.requirements[&a].identifier, "R-1");
+    assert_eq!(b.register.requirements[&c].parent, Some(a));
+    assert!(b.edit_identifier(a, "R-A".into()).unwrap());
+    assert_eq!(b.register.requirements[&a].id, a);
+    assert_eq!(b.register.requirements[&c].parent, Some(a));
+    assert_eq!(b.register.requirements[&a].identifier, "R-A");
+    assert_eq!(b.register.requirements[&c].identifier, "R-2");
+}
+#[test]
+fn reader_rejects_duplicate_user_identifiers_and_forged_identifier_validity() {
+    let mut b = Board::new();
+    let a = b
+        .add_identified_requirement("Root".into(), "R-1".into(), None)
+        .unwrap();
+    let c = b
+        .add_identified_requirement("Child".into(), "R-2".into(), Some(a))
+        .unwrap();
+    let dir = area();
+    for case in 0..2 {
+        let mut data = envelope(&b);
+        if case == 0 {
+            data["register"]["requirements"][c.0.to_string()]["identifier"] = json!("R-1");
+        } else {
+            data["register"]["drafts"][format!("{}:identifier", a.0)] =
+                json!({"text":"R-2","valid":true});
+        }
+        let bytes = serde_json::to_vec(&data).unwrap();
+        let path = dir.path().join(format!("duplicate-identifier-{case}.json"));
+        std::fs::write(&path, &bytes).unwrap();
+        assert!(Board::open(&path).is_err());
+        assert_eq!(std::fs::read(path).unwrap(), bytes);
+    }
+}
+#[test]
+fn legacy_unset_identifiers_round_trip_and_invalid_identifier_drafts_keep_accepted_value() {
+    let mut b = Board::new();
+    let legacy = b.add_requirement("Legacy flat requirement".into()).unwrap();
+    assert_eq!(b.register.requirements[&legacy].identifier, "");
+    assert!(
+        envelope(&b)["register"]["requirements"][legacy.0.to_string()]
+            .get("identifier")
+            .is_none()
+    );
+    assert!(b.edit_identifier(legacy, "R-1".into()).unwrap());
+    for text in ["", "R 1", " R-1", "R-1 "] {
+        assert!(!b.edit_identifier(legacy, text.into()).unwrap());
+        assert_eq!(b.register.requirements[&legacy].identifier, "R-1");
+    }
+    let dir = area();
+    let path = dir.path().join("identifier-draft.json");
+    b.save_new(&path).unwrap();
+    let (cold, _) = Board::open(&path).unwrap();
+    assert_eq!(cold.register, b.register);
+}

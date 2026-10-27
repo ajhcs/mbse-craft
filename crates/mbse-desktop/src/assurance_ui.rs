@@ -47,6 +47,7 @@ pub struct AssuranceWorkspace {
     selected: Option<RequirementId>,
     evidence: Option<EvidenceId>,
     statement: String,
+    new_identifier:String,
     path: String,
     owned: Option<(PathBuf, String)>,
     saved: Option<serde_json::Value>,
@@ -79,7 +80,7 @@ impl AssuranceWorkspace {
         self.visible
     }
     fn unadmitted_form(&self) -> bool {
-        self.statement
+        self.new_identifier!=self.board.register.drafts.get("new:identifier").map(|d|d.text.as_str()).unwrap_or("") || self.statement
             != self
                 .board
                 .register
@@ -90,12 +91,12 @@ impl AssuranceWorkspace {
     }
     fn close_state(&self) -> Option<serde_json::Value> {
         Some(
-            serde_json::json!({"register":self.board.as_value().ok()?,"newStatementForm":self.statement}),
+            serde_json::json!({"register":self.board.as_value().ok()?,"newStatementForm":self.statement,"newIdentifierForm":self.new_identifier}),
         )
     }
     fn history(&mut self, undo: bool) {
         if self.unadmitted_form() {
-            self.feedback="New requirement text is retained only in the form. Reduce or clear it before register history navigation; text-field Undo remains available.".into();
+            self.feedback="New requirement fields are retained only in the form. Reduce or clear it before register history navigation; text-field Undo remains available.".into();
             return;
         }
         if if undo {
@@ -111,6 +112,7 @@ impl AssuranceWorkspace {
                 .get("new:statement")
                 .map(|d| d.text.clone())
                 .unwrap_or_default();
+            self.new_identifier=self.board.register.drafts.get("new:identifier").map(|d|d.text.clone()).unwrap_or_default();
         } else {
             self.feedback="Register history cannot move within the current integrity and document budget; work retained.".into();
         }
@@ -347,7 +349,7 @@ impl AssuranceWorkspace {
         if let Some(completion) = completion {
             self.pending = None;
             match completion {
-            Completion::Loaded(Ok((board,hash)),path,frozen) if self.close_state().as_ref()==Some(&frozen)&&PathBuf::from(self.path.trim())==path=>{self.epoch=self.epoch.saturating_add(1);self.saved=board.as_value().ok();self.board=board;self.selected=self.board.register.requirements.keys().next().copied();self.evidence=None;self.owned=Some((path,hash));self.discard=None;self.statement=self.board.register.drafts.get("new:statement").map(|d|d.text.clone()).unwrap_or_default();self.feedback="Register reopened. Historical evidence is retained; reopening does not authenticate a native evaluator run.".into();},
+            Completion::Loaded(Ok((board,hash)),path,frozen) if self.close_state().as_ref()==Some(&frozen)&&PathBuf::from(self.path.trim())==path=>{self.epoch=self.epoch.saturating_add(1);self.saved=board.as_value().ok();self.board=board;self.selected=self.board.register.requirements.keys().next().copied();self.evidence=None;self.owned=Some((path,hash));self.discard=None;self.statement=self.board.register.drafts.get("new:statement").map(|d|d.text.clone()).unwrap_or_default();self.new_identifier=self.board.register.drafts.get("new:identifier").map(|d|d.text.clone()).unwrap_or_default();self.feedback="Register reopened. Historical evidence is retained; reopening does not authenticate a native evaluator run.".into();},
             Completion::Loaded(Ok(_),_,_)=>self.feedback="Open result is stale because register edits changed after dispatch; live changes retained. Open again after preserving them.".into(),
             Completion::Loaded(Err(e),_,_)=>self.feedback=e,
             Completion::Updated(Ok((board,evidence,message)),frozen,stamp,config) if self.close_state().as_ref()==Some(&frozen)&&editor.calculation_stamp()==stamp&&self.config().ok().as_ref()==Some(&config)=>{self.board=board;self.epoch=self.epoch.saturating_add(1);if let Some(eid)=evidence{if self.board.register.evidence.get(&eid).is_some_and(|e|Some(e.requirement)==self.selected){self.evidence=Some(eid);}}self.feedback=message;},
@@ -389,19 +391,21 @@ impl AssuranceWorkspace {
             ui.horizontal(|ui|{ui.label("Register path");mark(&mut audit,"assurance:path",ui.text_edit_singleline(&mut self.path));if mark(&mut audit,"assurance:Open",ui.add_enabled(self.pending.is_none(),egui::Button::new("Open register"))).clicked(){self.load();}if mark(&mut audit,"assurance:Save",ui.add_enabled(self.pending.is_none(),egui::Button::new("Save register"))).clicked(){self.save(false);}if mark(&mut audit,"assurance:Save fresh",ui.add_enabled(self.pending.is_none(),egui::Button::new("Save fresh copy"))).clicked(){self.save(true);}});
             ui.label(&self.feedback);
             ui.separator();
-            ui.horizontal_wrapped(|ui|{ui.label("New requirement");if mark(&mut audit,"assurance:new-statement",ui.add(egui::TextEdit::singleline(&mut self.statement).id(egui::Id::new("new-requirement-statement")))).changed(){let result=self.board.set_new_statement_draft(self.statement.clone());self.result(result,"New requirement draft retained. If admission fails, its text stays in the form and remains unsaved.");}for(child,key,label)in[(false,"assurance:Add","Add root requirement"),(true,"assurance:Add child","Add child of selected")]{let r=mark(&mut audit,key,ui.add_enabled(!child||self.selected.is_some(),egui::Button::new(label)));if r.clicked(){let parent=if child{self.selected}else{None};match self.board.add_requirement_under(self.statement.clone(),parent){Ok(id)=>{self.epoch=self.epoch.saturating_add(1);self.selected=Some(id);self.statement.clear();self.feedback="Requirement added in Draft / Under review / Not started; parent status is not inherited.".into();},Err(e)=>self.feedback=e}}}});
+            ui.horizontal_wrapped(|ui|{ui.label("New identifier");if mark(&mut audit,"assurance:new-identifier",ui.add(egui::TextEdit::singleline(&mut self.new_identifier).desired_width(110.).char_limit(128).id(egui::Id::new("new-requirement-identifier")))).changed(){let result=self.board.set_new_identifier_draft(self.new_identifier.clone());self.result(result,"Identifier draft retained; accepted identifiers must be exact and unique.");}ui.label("New requirement");if mark(&mut audit,"assurance:new-statement",ui.add(egui::TextEdit::singleline(&mut self.statement).id(egui::Id::new("new-requirement-statement")))).changed(){let result=self.board.set_new_statement_draft(self.statement.clone());self.result(result,"New requirement draft retained. If admission fails, its text stays in the form and remains unsaved.");}for(child,key,label)in[(false,"assurance:Add","Add root requirement"),(true,"assurance:Add child","Add child of selected")]{let r=mark(&mut audit,key,ui.add_enabled(!child||self.selected.is_some(),egui::Button::new(label)));if r.clicked(){let parent=if child{self.selected}else{None};match self.board.add_identified_requirement(self.statement.clone(),self.new_identifier.clone(),parent){Ok(id)=>{self.epoch=self.epoch.saturating_add(1);self.selected=Some(id);self.statement.clear();self.new_identifier.clear();self.feedback="Requirement added in Draft / Under review / Not started; parent status is not inherited.".into();},Err(e)=>self.feedback=e}}}});
             ui.columns(2,|columns|{
-                egui::ScrollArea::vertical().id_salt("requirement-list").max_height(180.).show(&mut columns[0],|ui|{match self.board.hierarchy(){Ok(rows)=>{for row in rows.iter().take(256){let r=&self.board.register.requirements[&row.id];ui.horizontal(|ui|{ui.add_space(row.depth.min(16)as f32*12.);let short:String=r.statement.chars().take(120).collect();let label=format!("R{} · depth {} · {}{}",row.id.0,row.depth,short,if r.statement.chars().nth(120).is_some(){" [shortened]"}else{""});if mark(&mut audit,format!("assurance:select:{}",row.id.0),ui.selectable_label(self.selected==Some(row.id),label)).clicked(){self.selected=Some(row.id);self.evidence=None;}});}if rows.len()>256{ui.label(format!("Showing first256 of{} hierarchy rows; complete register retained.",rows.len()));}},Err(e)=>{ui.colored_label(egui::Color32::DARK_RED,e);}}});
+                egui::ScrollArea::vertical().id_salt("requirement-list").max_height(180.).show(&mut columns[0],|ui|{match self.board.hierarchy(){Ok(rows)=>{for row in rows.iter().take(256){let r=&self.board.register.requirements[&row.id];ui.horizontal(|ui|{ui.add_space(row.depth.min(16)as f32*12.);let short:String=r.statement.chars().take(120).collect();let identifier=if r.identifier.is_empty(){"identifier unset"}else{r.identifier.as_str()};let label=format!("{} · local #{} · depth {} · {}{}",identifier,row.id.0,row.depth,short,if r.statement.chars().nth(120).is_some(){" [shortened]"}else{""});if mark(&mut audit,format!("assurance:select:{}",row.id.0),ui.selectable_label(self.selected==Some(row.id),label)).clicked(){self.selected=Some(row.id);self.evidence=None;}});}if rows.len()>256{ui.label(format!("Showing first256 of{} hierarchy rows; complete register retained.",rows.len()));}},Err(e)=>{ui.colored_label(egui::Color32::DARK_RED,e);}}});
                 columns[1].collapsing("Evidence-context metadata (JSON)",|ui|{ui.label("Canonical JSON is retained with its hash for evidence context. These values do not configure the evaluator. Native execution uses the fixed algorithm and Limits::default() recorded with each receipt.");ui.text_edit_multiline(&mut self.config);});
             });
             let Some(id)=self.selected else {ui.label("Add or select a requirement to edit and review evidence.");return;};
             let Some(req)=self.board.register.requirements.get(&id).cloned() else{return;};
-            ui.heading(format!("Requirement R{}",id.0));
+            ui.heading(format!("Requirement {} · local #{}",if req.identifier.is_empty(){"identifier unset"}else{req.identifier.as_str()},id.0));
+            let identifier_key=format!("{}:identifier",id.0);let mut identifier_text=self.board.register.drafts.get(&identifier_key).map(|d|d.text.clone()).unwrap_or_else(||req.identifier.clone());ui.horizontal(|ui|{ui.label("Exact requirement identifier");if mark(&mut audit,"assurance:field:identifier",ui.add(egui::TextEdit::singleline(&mut identifier_text).char_limit(128).id(egui::Id::new(("requirement-identifier",id.0))))).changed(){let result=self.board.edit_identifier(id,identifier_text);self.result(result,"Identifier draft retained; duplicates/invalid text leave accepted identifier and stable internal links unchanged.");}});if self.board.register.drafts.get(&identifier_key).is_some_and(|d|!d.valid){ui.colored_label(egui::Color32::DARK_RED,format!("Unapplied identifier draft; accepted identifier remains {}",req.identifier));}
+
             ui.label("Parenting organizes the requirement hierarchy; it does not derive another statement or roll up approval, implementation or verification.");
             let parent_key=format!("{}:parent",id.0);let mut parent_text=self.board.register.drafts.get(&parent_key).map(|d|d.text.clone()).unwrap_or_else(||req.parent.map_or(String::new(),|p|p.0.to_string()));
-            ui.horizontal(|ui|{ui.label("Parent requirement ID (empty means root)");if mark(&mut audit,"assurance:field:parent",ui.add(egui::TextEdit::singleline(&mut parent_text).char_limit(128).id(egui::Id::new(("requirement-parent",id.0))))).changed(){let result=self.board.edit_parent(id,parent_text);self.result(result,"Parent draft retained; only an existing acyclic parent is accepted. Lifecycle states remain independent.");}});
+            ui.horizontal(|ui|{ui.label("Parent local ID (empty means root)");if mark(&mut audit,"assurance:field:parent",ui.add(egui::TextEdit::singleline(&mut parent_text).char_limit(128).id(egui::Id::new(("requirement-parent",id.0))))).changed(){let result=self.board.edit_parent(id,parent_text);self.result(result,"Parent draft retained; only an existing acyclic parent is accepted. Lifecycle states remain independent.");}});
             if self.board.register.drafts.get(&parent_key).is_some_and(|d|!d.valid){ui.colored_label(egui::Color32::DARK_RED,"Unapplied parent draft: use an existing canonical requirement ID that does not create a cycle, or leave empty for a root.");}
-            ui.label(req.parent.map_or("Accepted parent: root".into(),|p|format!("Accepted parent: R{}",p.0)));
+            ui.label(req.parent.map_or("Accepted parent: root".into(),|p|format!("Accepted parent local #{}",p.0)));
 
             ui.horizontal_wrapped(|ui|{
                 if mark(&mut audit,"assurance:Link source",ui.button("Link selected native record")).clicked(){
@@ -778,6 +782,6 @@ mod hierarchy_tests{
  #[test]
  fn rendered_root_child_cycle_draft_and_register_history_preserve_native_model(){
   use mbse_model::stage1::{DocumentId,Snapshot};let editor=Editor::new(Snapshot::new(DocumentId("p23:render".into())),"p23:render".into()).unwrap();let native=editor.snapshot.clone();let mut w=AssuranceWorkspace::default();w.open_window();let ctx=egui::Context::default();let render=|w:&mut AssuranceWorkspace,events|{ctx.run_ui(egui::RawInput{screen_rect:Some(egui::Rect::from_min_size(egui::Pos2::ZERO,egui::vec2(2200.,1600.))),focused:true,events,..Default::default()},|_|w.show(&ctx,&editor)).drop_without_applying_deltas();};for _ in 0..3{render(&mut w,vec![]);}let click=|w:&mut AssuranceWorkspace,key:&str|{let r=w.audit[key];let pos=egui::pos2((r[0]+r[2])/2.,(r[1]+r[3])/2.);for pressed in [true,false]{render(w,vec![egui::Event::PointerMoved(pos),egui::Event::PointerButton{pos,button:egui::PointerButton::Primary,pressed,modifiers:egui::Modifiers::NONE}]);}render(w,vec![]);};
-  click(&mut w,"assurance:new-statement");render(&mut w,vec![egui::Event::Text("Root requirement".into())]);click(&mut w,"assurance:Add");assert_eq!(w.selected,Some(RequirementId(1)));click(&mut w,"assurance:new-statement");render(&mut w,vec![egui::Event::Text("Child requirement".into())]);click(&mut w,"assurance:Add child");assert_eq!(w.selected,Some(RequirementId(2)));assert_eq!(w.board.register.requirements[&RequirementId(2)].parent,Some(RequirementId(1)));click(&mut w,"assurance:select:1");ctx.memory_mut(|m|m.request_focus(egui::Id::new(("requirement-parent",1u64))));render(&mut w,vec![egui::Event::Text("2".into())]);render(&mut w,vec![]);assert_eq!(w.board.register.requirements[&RequirementId(1)].parent,None);assert_eq!(w.board.register.drafts["1:parent"].text,"2");assert!(!w.board.register.drafts["1:parent"].valid);assert_eq!(ctx.memory(|m|m.focused()),Some(egui::Id::new(("requirement-parent",1u64))));let state=w.board.register.clone();click(&mut w,"assurance:Undo");assert!(!w.board.register.drafts.contains_key("1:parent"));click(&mut w,"assurance:Redo");assert_eq!(w.board.register,state);let state=w.board.register.clone();click(&mut w,"assurance:Close");assert!(!w.visible);assert_eq!(w.board.register,state);assert!(!w.request_close());assert_eq!(editor.snapshot,native);
+  click(&mut w,"assurance:new-identifier");render(&mut w,vec![egui::Event::Text("R-1".into())]);click(&mut w,"assurance:new-statement");render(&mut w,vec![egui::Event::Text("Root requirement".into())]);click(&mut w,"assurance:Add");assert_eq!(w.selected,Some(RequirementId(1)));click(&mut w,"assurance:new-identifier");render(&mut w,vec![egui::Event::Text("R-2".into())]);click(&mut w,"assurance:new-statement");render(&mut w,vec![egui::Event::Text("Child requirement".into())]);click(&mut w,"assurance:Add child");assert_eq!(w.selected,Some(RequirementId(2)));assert_eq!(w.board.register.requirements[&RequirementId(2)].parent,Some(RequirementId(1)));click(&mut w,"assurance:select:1");ctx.memory_mut(|m|m.request_focus(egui::Id::new(("requirement-parent",1u64))));render(&mut w,vec![egui::Event::Text("2".into())]);render(&mut w,vec![]);assert_eq!(w.board.register.requirements[&RequirementId(1)].parent,None);assert_eq!(w.board.register.drafts["1:parent"].text,"2");assert!(!w.board.register.drafts["1:parent"].valid);assert_eq!(ctx.memory(|m|m.focused()),Some(egui::Id::new(("requirement-parent",1u64))));let state=w.board.register.clone();click(&mut w,"assurance:Undo");assert!(!w.board.register.drafts.contains_key("1:parent"));click(&mut w,"assurance:Redo");assert_eq!(w.board.register,state);let state=w.board.register.clone();click(&mut w,"assurance:Close");assert!(!w.visible);assert_eq!(w.board.register,state);assert!(!w.request_close());assert_eq!(editor.snapshot,native);
  }
 }

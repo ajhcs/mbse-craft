@@ -29,6 +29,15 @@ pub(super) fn validate(s: &Register) -> Result<(), String> {
     if s.requirements.len() > 10000 {
         return Err("ASSURANCE_RECORD_LIMIT".into());
     }
+    let mut identifiers = BTreeSet::new();
+    for r in s.requirements.values() {
+        if !r.identifier.is_empty() {
+            identifier_syntax(&r.identifier)?;
+            if !identifiers.insert(r.identifier.as_str()) {
+                return Err("ASSURANCE_DUPLICATE_IDENTIFIER".into());
+            }
+        }
+    }
     let children = children(s)?;
     let mut pending: Vec<_> = s
         .requirements
@@ -48,6 +57,14 @@ pub(super) fn validate(s: &Register) -> Result<(), String> {
     }
     // Serialized raw flags cannot promote a proposal to accepted source truth.
     for r in s.requirements.values() {
+        if s.drafts
+            .get(&format!("{}:identifier", r.id.0))
+            .is_some_and(|d| {
+                d.valid && (identifier_syntax(&d.text).is_err() || d.text != r.identifier)
+            })
+        {
+            return Err("ASSURANCE_IDENTIFIER_DRAFT_VALIDITY_MISMATCH".into());
+        }
         if s.drafts
             .get(&format!("{}:parent", r.id.0))
             .is_some_and(|d| d.valid && parse_parent(&d.text).ok() != Some(r.parent))
@@ -98,13 +115,94 @@ fn parse_parent(text: &str) -> Result<Option<RequirementId>, String> {
     }
     Ok(Some(RequirementId(n)))
 }
+fn identifier_syntax(text: &str) -> Result<(), String> {
+    if text.is_empty()
+        || text.len() > 128
+        || text.chars().any(|c| c.is_whitespace() || c.is_control())
+    {
+        return Err("ASSURANCE_IDENTIFIER_REQUIRED_OR_FORMAT".into());
+    }
+    Ok(())
+}
 impl Board {
+    pub fn set_new_identifier_draft(&mut self, text: String) -> Result<(), String> {
+        if text.len() > 4096 {
+            return Err("ASSURANCE_IDENTIFIER_DRAFT_LIMIT".into());
+        }
+        self.transaction(|s| {
+            if text.is_empty() {
+                s.drafts.remove("new:identifier");
+            } else {
+                let valid = identifier_syntax(&text).is_ok()
+                    && !s.requirements.values().any(|r| r.identifier == text);
+                s.drafts
+                    .insert("new:identifier".into(), RawDraft { text, valid });
+            }
+            Ok(())
+        })
+    }
+    pub fn edit_identifier(&mut self, id: RequirementId, text: String) -> Result<bool, String> {
+        if text.len() > 4096 {
+            return Err("ASSURANCE_IDENTIFIER_DRAFT_LIMIT".into());
+        }
+        self.transaction(|s| {
+            if !s.requirements.contains_key(&id) {
+                return Err("ASSURANCE_REQUIREMENT_MISSING".into());
+            }
+            let valid = identifier_syntax(&text).is_ok()
+                && !s
+                    .requirements
+                    .values()
+                    .any(|r| r.id != id && r.identifier == text);
+            s.drafts.insert(
+                format!("{}:identifier", id.0),
+                RawDraft {
+                    text: text.clone(),
+                    valid,
+                },
+            );
+            if valid {
+                let r = s.requirements.get_mut(&id).unwrap();
+                if r.identifier != text {
+                    r.identifier = text;
+                    r.revision = r
+                        .revision
+                        .checked_add(1)
+                        .ok_or("ASSURANCE_REVISION_LIMIT")?;
+                }
+            }
+            Ok(valid)
+        })
+    }
     pub fn add_requirement_under(
         &mut self,
         statement: String,
         parent: Option<RequirementId>,
     ) -> Result<RequirementId, String> {
+        self.add_with_identifier(statement, None, parent)
+    }
+    pub fn add_identified_requirement(
+        &mut self,
+        statement: String,
+        identifier: String,
+        parent: Option<RequirementId>,
+    ) -> Result<RequirementId, String> {
+        identifier_syntax(&identifier)?;
+        self.add_with_identifier(statement, Some(identifier), parent)
+    }
+    fn add_with_identifier(
+        &mut self,
+        statement: String,
+        identifier: Option<String>,
+        parent: Option<RequirementId>,
+    ) -> Result<RequirementId, String> {
         self.transaction(|s| {
+            if identifier
+                .as_ref()
+                .is_some_and(|id| s.requirements.values().any(|r| &r.identifier == id))
+            {
+                return Err("ASSURANCE_DUPLICATE_IDENTIFIER".into());
+            }
             if s.requirements.len() >= 10000 {
                 return Err("ASSURANCE_RECORD_LIMIT".into());
             }
@@ -120,11 +218,16 @@ impl Board {
             }
             s.next_id = s.next_id.checked_add(1).ok_or("ASSURANCE_ID_LIMIT")?;
             s.drafts.remove("new:statement");
+            if identifier.is_some() {
+                s.drafts.remove("new:identifier");
+            }
+            let identifier = identifier.unwrap_or_default();
             s.requirements.insert(
                 id,
                 Requirement {
                     id,
                     parent,
+                    identifier,
                     statement,
                     rationale: String::new(),
                     source: String::new(),
