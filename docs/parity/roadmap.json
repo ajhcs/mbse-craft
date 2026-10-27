@@ -564,7 +564,7 @@
       "acceptance": [
         "Derive, refine, satisfy, verify and copy have distinct endpoint rules; relabeling cannot change meaning; traces survive history and reopen."
       ],
-      "state": "reviewed_bounded_ready_to_merge",
+      "state": "merged",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "branch": "codex/m5-p24-requirement-traces",
@@ -572,7 +572,9 @@
       "pr_number": 30,
       "pr_url": "https://github.com/ajhcs/mbse-craft/pull/30",
       "review": "docs/parity/p24/REVIEW.md",
-      "review_preservation": "docs/parity/p24/REVIEW_PRESERVATION.json"
+      "review_preservation": "docs/parity/p24/REVIEW_PRESERVATION.json",
+      "merge_commit": "0c528b7ddb49d6a2662f3d77698ca030c9bbb745",
+      "reviewed_head": "672fe026a6827f241efb3da05eca10632aaf5920"
     },
     {
       "id": "P25",
@@ -584,9 +586,10 @@
       "acceptance": [
         "Known orphan requirements and missing verification links are found; changed requirements stale affected evidence; unsupported relations are disclosed."
       ],
-      "state": "planned",
+      "state": "in_progress",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "branch": "codex/m5-p25-coverage-impact"
     },
     {
       "id": "P26",

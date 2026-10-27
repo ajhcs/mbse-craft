@@ -16,7 +16,6 @@
     "merge_commit": "1ae74f4f841b9d1c3d9b6c62b7e8fe4b072246af"
   },
   "remaining_prs": [
-    "P24",
     "P25",
     "P26",
     "P27",
@@ -24,13 +23,18 @@
     "P29"
   ],
   "p24": {
-    "state": "reviewed_bounded_ready_to_merge",
+    "state": "merged",
     "base_commit": "1ae74f4f841b9d1c3d9b6c62b7e8fe4b072246af",
     "execution_results": "p24/README.md",
     "workspace_tests": 519,
     "new_distinct_cases": 11,
     "native_runs": 3,
     "pr_number": 30,
-    "review": "p24/REVIEW.md"
+    "review": "p24/REVIEW.md",
+    "merge_commit": "0c528b7ddb49d6a2662f3d77698ca030c9bbb745"
+  },
+  "p25": {
+    "state": "in_progress",
+    "base_commit": "0c528b7ddb49d6a2662f3d77698ca030c9bbb745"
   }
 }
