@@ -14,9 +14,10 @@ impl Workspace {
     pub(super) fn dock_blocked_without_viewpoint(&self) -> bool {self.matrix.open||self.dock_blocked_base()}
     pub(super) fn dock_blocked_without_activity(&self)->bool{self.matrix.open||self.viewpoints.open||self.dock_blocked_legacy_base()}
     fn dock_blocked_base(&self)->bool{self.activities.open||self.dock_blocked_legacy_base()}
-    fn dock_blocked_legacy_base(&self) -> bool {self.scenarios.open||self.state_machines.open||self.dock_blocked_without_behavior()}
-    pub(super) fn dock_blocked_without_state_machine(&self)->bool{self.matrix.open||self.viewpoints.open||self.activities.open||self.scenarios.open||self.dock_blocked_without_behavior()}
-    pub(super) fn dock_blocked_without_scenario(&self)->bool{self.matrix.open||self.viewpoints.open||self.activities.open||self.state_machines.open||self.dock_blocked_without_behavior()}
+    fn dock_blocked_legacy_base(&self) -> bool {self.parametrics.open||self.scenarios.open||self.state_machines.open||self.dock_blocked_without_behavior()}
+    pub(super) fn dock_blocked_without_state_machine(&self)->bool{self.matrix.open||self.viewpoints.open||self.activities.open||self.parametrics.open||self.scenarios.open||self.dock_blocked_without_behavior()}
+    pub(super) fn dock_blocked_without_scenario(&self)->bool{self.matrix.open||self.viewpoints.open||self.activities.open||self.parametrics.open||self.state_machines.open||self.dock_blocked_without_behavior()}
+    pub(super) fn dock_blocked_without_parametric(&self)->bool{self.matrix.open||self.viewpoints.open||self.activities.open||self.state_machines.open||self.scenarios.open||self.dock_blocked_without_behavior()}
     fn dock_blocked_without_behavior(&self) -> bool {
         if self.sc_gesture_active() || self.sm_gesture_active() || self.activity_gesture_active() || self.activity_execution_automatic() || self.sm_execution_automatic(){return true;}
         self.tag_panel.open || self.deletion_panel.open || self.refactor_panel.open || self.value_panel.open || self.connector_panel.open || self.port_panel.open || self.type_panel.open || self.files.open || self.files.pending() || self.views.occurrence_navigation_blocked(&self.session)

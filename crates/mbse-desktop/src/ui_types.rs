@@ -28,6 +28,7 @@ impl Workspace {
         self.activities=Default::default();
         self.state_machines=Default::default();
         self.scenarios=Default::default();
+        self.parametrics=Default::default();
         self.validation_focus=Default::default();
         self.type_panel.selected = None;
         self.type_panel.form = None;
