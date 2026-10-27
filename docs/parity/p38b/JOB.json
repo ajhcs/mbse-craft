@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m7-p38b-native-project-set-browser-01",
+  "id": "m7-p38b-gui-harness-compile-correction-02",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m7-p38b-native-project-sets",
   "source_manifest": "docs/parity/p38b/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "600d3cc52b8cbbc05090a15bb0b9a80e9dd3e20f5a5fb37381d2dadab07b1b64",
-  "source_sha256": "fe8f186a6d969c330f1d1f2f24aebc1cc6a701b688d653cfb6da2602e55cb156",
+  "source_manifest_sha256": "866e912af58badbc519180cb58e2cd3afebc7663e8fca28608bde5a4c18efc4e",
+  "source_sha256": "ca8c9e152073d65bda0c7ce6619a28753ef2d721e15941790be3d5e4af9de91f",
   "cargo_lock_sha256": "26687453bfdee99d59a404b010c9fcdda95c1d77462c08e387ccebae3b14347b",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -49,7 +49,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "P38b native read-only project-set browser via existing External command, explicit manifest button and .mbse-projects.json route. Shared source-only fixture factory preserves P37 native/profile8 bytes and prepares duplicate native/external IDs plus missing/changed companions and unsupplied URI. Six new GUI/workspace cases plus strengthened retained-name-proposal guard. Expected799=793prior+6new; one full workspace regression, source-only fixture preparation, desktop build. Only existing pinned sha2 added to desktop dev-dependencies for shared fixture hashing; no new package/version/license/build-script/runtime dependency. Native acceptance follows separately.",
+  "rationale": "P38b native read-only project-set browser via existing External command, explicit manifest button and .mbse-projects.json route. Shared source-only fixture factory preserves P37 native/profile8 bytes and prepares duplicate native/external IDs plus missing/changed companions and unsupplied URI. Six new GUI/workspace cases plus strengthened retained-name-proposal guard. Expected799=793prior+6new; one full workspace regression, source-only fixture preparation, desktop build. Only existing pinned sha2 added to desktop dev-dependencies for shared fixture hashing; no new package/version/license/build-script/runtime dependency. Native acceptance follows separately. First frozen781-file fe8f186a attempt failed at compile before any test ran: new GUI test helper returned a BTreeMap where run_ui expects unit. Test-only semicolon correction; all workspace cases/preparer/build remain unexecuted.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",
