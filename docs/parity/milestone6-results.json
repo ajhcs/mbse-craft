@@ -196,9 +196,15 @@
       "merge_commit": "d44f2e9f869176ef4ca94d76c783a6dd2eb0bab2"
     },
     "p34b": {
-      "state": "in_progress",
+      "state": "draft_review",
       "scope": "independent ordered lifeline/message presentation data",
-      "base_commit": "d44f2e9f869176ef4ca94d76c783a6dd2eb0bab2"
+      "base_commit": "d44f2e9f869176ef4ca94d76c783a6dd2eb0bab2",
+      "execution_results": "p34b/README.md",
+      "source_sha256": "59e166c475462518c59f2a0a0a9f00582ce843df2debb75dc1271a84d34288da",
+      "distinct_case_inventory": 702,
+      "new_distinct_cases": 12,
+      "native_sequence_runs": 0,
+      "final_source_full_workspace_claim": false
     },
     "p34c": {
       "state": "planned",
