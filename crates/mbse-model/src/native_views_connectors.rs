@@ -4,9 +4,10 @@ use crate::types::{self, Id, UsageKind, connectors::Endpoint};
 pub const PROFILE: &str = "mbse-craft.native-views/4";
 pub const RECOVERY_PROFILE: &str = "mbse-craft.native-views-recovery/4";
 pub fn qualified_profile(p: &str) -> bool {
-    matches!(p, PROFILE | RECOVERY_PROFILE)
+    matches!(p, PROFILE | RECOVERY_PROFILE) || viewpoints::profile(p)
 }
 pub(super) fn upgrade(doc: &mut Document) {
+    if viewpoints::profile(&doc.profile){return;}
     doc.profile = if bound_profile(&doc.profile) {
         PROFILE
     } else {
