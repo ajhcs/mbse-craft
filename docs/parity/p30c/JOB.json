@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m6-p30c-native-activities-01",
+  "id": "m6-p30c-fit-placement-02",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m6-p30c-native-activities",
   "source_manifest": "docs/parity/p30c/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "bb48d63673ec409194106abed05a29159e41a8a0f784bd8a0a1e254d61328769",
-  "source_sha256": "1bf65e6543cddc21eebf47e258f3909229cdf7260f788a3ef9849ab0d80593c8",
+  "source_manifest_sha256": "4e2d4d2f3f711f4e80df27d8509426eefea50618d6d9e325933a143f2550c05b",
+  "source_sha256": "0e2b2869dbb8d01318fa0f5d3f6ffffa138a464e24ca1648bf71793a708a03e6",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",

@@ -278,8 +278,8 @@
     },
     {
       "path": "crates/mbse-desktop/src/views_ui.rs",
-      "bytes": 106606,
-      "sha256": "2869950986cd5c93c3c574cbba7b5f8e3f7c7c9fb075cdb668ca40c0cd2e64eb"
+      "bytes": 106706,
+      "sha256": "7a0ad31787825de257ff72ee44eee4e314caf0fb3bfffd9d311a0321b0b73bc5"
     },
     {
       "path": "crates/mbse-exchange/Cargo.toml",
@@ -3692,5 +3692,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "1bf65e6543cddc21eebf47e258f3909229cdf7260f788a3ef9849ab0d80593c8"
+  "source_sha256": "0e2b2869dbb8d01318fa0f5d3f6ffffa138a464e24ca1648bf71793a708a03e6"
 }
