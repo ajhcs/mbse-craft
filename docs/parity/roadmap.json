@@ -586,7 +586,7 @@
       "acceptance": [
         "Known orphan requirements and missing verification links are found; changed requirements stale affected evidence; unsupported relations are disclosed."
       ],
-      "state": "reviewed_bounded_ready_to_merge",
+      "state": "merged",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "branch": "codex/m5-p25-coverage-impact",
@@ -594,7 +594,9 @@
       "pr_number": 31,
       "pr_url": "https://github.com/ajhcs/mbse-craft/pull/31",
       "review": "docs/parity/p25/REVIEW.md",
-      "review_preservation": "docs/parity/p25/REVIEW_PRESERVATION.json"
+      "review_preservation": "docs/parity/p25/REVIEW_PRESERVATION.json",
+      "merge_commit": "885dbb21d6f9f95ae51c1e509dcad208f60ca52f",
+      "reviewed_head": "075aa169b130eb85d6b30da2277781c275667c03"
     },
     {
       "id": "P26",
@@ -606,9 +608,31 @@
       "acceptance": [
         "Seeded type, reference and structural faults produce stable expected rule IDs; issue navigation selects the exact element and property."
       ],
-      "state": "planned",
+      "state": "in_progress",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "branch": "codex/m5-p26-validation-suites",
+      "children": [
+        {
+          "id": "P26a",
+          "title": "Named validation suites and sealed issue locations",
+          "state": "reviewed_bounded_ready_to_merge",
+          "contract": "docs/parity/p26a/CONTRACT.md",
+          "execution_results": "docs/parity/p26a/README.md",
+          "pr_number": 32,
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/32",
+          "review": "docs/parity/p26a/REVIEW.md",
+          "review_preservation": "docs/parity/p26a/REVIEW_PRESERVATION.json"
+        },
+        {
+          "id": "P26b",
+          "title": "Native suite authoring and exact issue/field navigation",
+          "state": "planned",
+          "depends_on": [
+            "P26a"
+          ]
+        }
+      ]
     },
     {
       "id": "P27",

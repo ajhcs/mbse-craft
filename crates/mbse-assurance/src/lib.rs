@@ -13,6 +13,7 @@ use std::{
 mod hierarchy;
 pub mod traces;
 pub mod coverage;
+pub mod validation;
 pub use traces::{TraceKind, TraceEndpoint, RequirementTrace, TestCase};
 pub use hierarchy::HierarchyRow;
 
@@ -198,6 +199,8 @@ pub struct RawDraft {
 #[serde(deny_unknown_fields)]
 pub struct Register {
     #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
+    pub validation_suites:BTreeMap<String,validation::Suite>,
+    #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
     pub traces:BTreeMap<u64,RequirementTrace>,
     #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
     pub test_cases:BTreeMap<u64,TestCase>,
@@ -274,6 +277,7 @@ impl Board {
     pub fn new() -> Self {
         Self {
             register: Register {
+                validation_suites:BTreeMap::new(),
                 traces:BTreeMap::new(),
                 test_cases:BTreeMap::new(),
                 requirements: BTreeMap::new(),
@@ -972,7 +976,8 @@ impl Serialize for RegisterWithEvidence<'_> {
             .revision
             .checked_add(1)
             .ok_or_else(|| <S::Error as serde::ser::Error>::custom("ASSURANCE_REVISION_LIMIT"))?;
-        let mut state = serializer.serialize_struct("Register", 9+usize::from(!r.traces.is_empty())+usize::from(!r.test_cases.is_empty()))?;
+        let mut state = serializer.serialize_struct("Register", 9+usize::from(!r.traces.is_empty())+usize::from(!r.test_cases.is_empty())+usize::from(!r.validation_suites.is_empty()))?;
+        if !r.validation_suites.is_empty(){state.serialize_field("validation_suites",&r.validation_suites)?;}
         if !r.traces.is_empty(){state.serialize_field("traces",&r.traces)?;}
         if !r.test_cases.is_empty(){state.serialize_field("test_cases",&r.test_cases)?;}
         state.serialize_field("requirements", &r.requirements)?;
@@ -1099,6 +1104,7 @@ fn validate_register(s: &Register) -> Result<(), String> {
     }
     hierarchy::validate(s)?;
     traces::validate(s)?;
+    validation::validate_suites(s)?;
     for id in s.traces.keys().chain(s.test_cases.keys()){
         if *id==0||!used.insert(*id){return Err("TRACE_SHARED_ID_COLLISION".into());}
         max=max.max(*id);

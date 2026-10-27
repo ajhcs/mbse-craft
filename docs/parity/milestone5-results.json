@@ -16,7 +16,6 @@
     "merge_commit": "1ae74f4f841b9d1c3d9b6c62b7e8fe4b072246af"
   },
   "remaining_prs": [
-    "P25",
     "P26",
     "P27",
     "P28",
@@ -34,13 +33,31 @@
     "merge_commit": "0c528b7ddb49d6a2662f3d77698ca030c9bbb745"
   },
   "p25": {
-    "state": "reviewed_bounded_ready_to_merge",
+    "state": "merged",
     "base_commit": "0c528b7ddb49d6a2662f3d77698ca030c9bbb745",
     "execution_results": "p25/README.md",
     "workspace_tests": 531,
     "new_distinct_cases": 13,
     "native_runs": 3,
     "pr_number": 31,
-    "review": "p25/REVIEW.md"
+    "review": "p25/REVIEW.md",
+    "merge_commit": "885dbb21d6f9f95ae51c1e509dcad208f60ca52f"
+  },
+  "p26": {
+    "state": "in_progress",
+    "base_commit": "885dbb21d6f9f95ae51c1e509dcad208f60ca52f",
+    "children": [
+      "P26a",
+      "P26b"
+    ],
+    "p26a": {
+      "state": "reviewed_bounded_ready_to_merge",
+      "execution_results": "p26a/README.md",
+      "new_distinct_cases": 11,
+      "native_ui": false,
+      "parent_complete": false,
+      "pr_number": 32,
+      "review": "p26a/REVIEW.md"
+    }
   }
 }

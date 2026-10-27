@@ -1,0 +1,46 @@
+{
+  "result": "bounded_named_suite_core_and_sealed_issue_targets_passed",
+  "reviewer": "Codex same implementing agent",
+  "independent_review": false,
+  "source_files": 719,
+  "source_sha256": "53014f85d302e096ef36908631cad9de2ee757ffffefe4c1f64d45c713c3683f",
+  "binary_sha256": "a74fb638c9f2c22a57708d3089a293aa9bb57fc70382b3e1afbc48f626b366fa",
+  "compiler_slice_counts": [
+    [
+      0
+    ],
+    [
+      53
+    ],
+    [
+      10
+    ],
+    [
+      1,
+      486,
+      0,
+      0
+    ]
+  ],
+  "counts_not_summed": true,
+  "new_distinct_cases": 11,
+  "distinct_case_inventory": 543,
+  "native_ui_run": false,
+  "p26_parent_complete": false,
+  "observations": [
+    "Existing validators identify dangling property1020 value_type, pending Reference1011 Part self-containment proposal target/owner, calculation1003 incompatible expression x+x1 and exact requirement parent/statement drafts. Accepted typed/reference records remain unchanged by proposals/query/navigation.",
+    "Named scope, immutable built-in, strict unsupported/empty/reserved/limit refusal, invalid declarative raw retention, independent Save/cold/Undo and legacy empty wire maps qualified.",
+    "Sealed report/navigation locations refuse changed native/raw/register payload, reused counters and other runtime. Selection alone leaves source valid. No Deserialize/public location constructor.",
+    "Legacy requirement scope runs without type migration, and opaque optional type payload is retained without interpretation. Unroutable diagnostics remain explicit; issue/detail caps and totals qualified."
+  ],
+  "retained_failures": [
+    "Initial compile stopped before tests: ambiguous issue_total counter needed usize.",
+    "Next source53 passes/3 containment assertions failed: prepared Part1023 carried connector/value constraints that prevented intended cycle diagnostic. Changed only synthetic proposals to unconstrained Reference1011; accepted source retained.",
+    "Next affected validator10 passes/1 fixture failure: attempted owner-only fixture still changed target due missed replacement. Corrected only test to owner1004 with original target1004; failed case passed."
+  ],
+  "limits": [
+    "P26a core API/data only. Native suite authoring, rendered exact-field focus and AC-CAT-028 action belong to P26b; P26 parent remains open.",
+    "Four local rule families only; no broad clean-model, engineering, verification Passed or full native/SysML/NoMagic/Craft acceptance.",
+    "All56 broad specs/integrated milestone exits/platform/independent engineering acceptance remain open."
+  ]
+}
