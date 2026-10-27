@@ -15,7 +15,7 @@ and cross-requirement/evidence/audit ID collisions retain existing refusal rules
 
 Parent projection and cycle validation are iterative, deterministic and bounded by
 the existing10000-requirement/32MiB document limits; no recursive depth expansion.
-Self, missing and cyclic parent proposals are retained as invalid raw parent drafts
+Serialized raw validity cannot claim a parent/statement different from its accepted record; such imports refuse with original bytes preserved. Self, missing and cyclic parent proposals are retained as invalid raw parent drafts
 without changing the accepted parent or requirement revision. Empty parent means
 root; canonical positive decimal local IDs only. Invalid blank statements remain
 raw drafts and keep prior accepted text. Statement admission is bounded nonblank

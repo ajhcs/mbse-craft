@@ -274,3 +274,35 @@ fn failed_child_admission_and_parent_raw_limits_do_not_allocate_or_clear_work() 
     assert!(b.add_requirement("Allocator exhausted".into()).is_err());
     assert_eq!(b.register, before);
 }
+
+#[test]
+fn serialized_valid_draft_flags_cannot_promote_cycles_missing_parent_or_unaccepted_statement() {
+    let (b, _, _, _) = tree();
+    let dir = area();
+    for (i, (key, text)) in [
+        ("1:parent", "2"),
+        ("2:parent", "999"),
+        ("1:statement", "  "),
+        ("1:statement", "Unaccepted different statement"),
+    ]
+    .into_iter()
+    .enumerate()
+    {
+        let mut data = envelope(&b);
+        data["register"]["drafts"][key] = json!({"text":text,"valid":true});
+        let bytes = serde_json::to_vec(&data).unwrap();
+        let path = dir.path().join(format!("forged-validity-{i}.json"));
+        std::fs::write(&path, &bytes).unwrap();
+        assert!(
+            Board::open(&path)
+                .unwrap_err()
+                .contains("DRAFT_VALIDITY_MISMATCH")
+        );
+        assert_eq!(std::fs::read(&path).unwrap(), bytes);
+    }
+    let mut exact = envelope(&b);
+    exact["register"]["drafts"]["2:parent"] = json!({"text":"1","valid":true});
+    let path = dir.path().join("matching-validity.json");
+    std::fs::write(&path, serde_json::to_vec(&exact).unwrap()).unwrap();
+    assert!(Board::open(&path).is_ok());
+}

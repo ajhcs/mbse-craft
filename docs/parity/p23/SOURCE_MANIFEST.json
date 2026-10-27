@@ -18,8 +18,8 @@
     },
     {
       "path": "crates/mbse-assurance/src/hierarchy.rs",
-      "bytes": 7100,
-      "sha256": "2b33db085ae9f78d050a85129cb34fa4d8bc74b30104e910f6976354945a91fd"
+      "bytes": 7736,
+      "sha256": "8d3e13a333a423a7a7110e0f6b5813e3335843ca8a0972652cd9aafbc54bd9f6"
     },
     {
       "path": "crates/mbse-assurance/src/lib.rs",
@@ -33,8 +33,8 @@
     },
     {
       "path": "crates/mbse-assurance/tests/hierarchy.rs",
-      "bytes": 10556,
-      "sha256": "b79b41b8423811d2475a8e7c74e2f21df8f087ad10ca7df5b90af8c4e8d77264"
+      "bytes": 11722,
+      "sha256": "42786148a106800b10cf5cf3ad8b4dd0545264ead5972cf79df5bbcb97fb22c5"
     },
     {
       "path": "crates/mbse-catalog/Cargo.toml",
@@ -3557,5 +3557,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "6e90c520761c6493185c94ee9a4d22146a7f49232907d437ad95aeaeb07c1fbd"
+  "source_sha256": "a20e92f13b90c49567964dd37b442da52fd6a0c1d9250309780516d393f3030c"
 }

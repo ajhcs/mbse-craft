@@ -46,6 +46,21 @@ pub(super) fn validate(s: &Register) -> Result<(), String> {
     if visited != s.requirements.len() {
         return Err("ASSURANCE_PARENT_CYCLE".into());
     }
+    // Serialized raw flags cannot promote a proposal to accepted source truth.
+    for r in s.requirements.values() {
+        if s.drafts
+            .get(&format!("{}:parent", r.id.0))
+            .is_some_and(|d| d.valid && parse_parent(&d.text).ok() != Some(r.parent))
+        {
+            return Err("ASSURANCE_PARENT_DRAFT_VALIDITY_MISMATCH".into());
+        }
+        if s.drafts
+            .get(&format!("{}:statement", r.id.0))
+            .is_some_and(|d| d.valid && (d.text.trim().is_empty() || d.text != r.statement))
+        {
+            return Err("ASSURANCE_STATEMENT_DRAFT_VALIDITY_MISMATCH".into());
+        }
+    }
     Ok(())
 }
 /// Reject numeric-map aliases before typed map deserialization can overwrite a record.

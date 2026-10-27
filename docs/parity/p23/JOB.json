@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m5-p23-requirement-hierarchy-01",
+  "id": "m5-p23-draft-validity-review-02",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m5-p23-requirement-hierarchy",
   "source_manifest": "docs/parity/p23/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "41ad78fc5c8d64b913e1290b96a0733aa0caaab7718bd2212754f61d67f3c7a6",
-  "source_sha256": "6e90c520761c6493185c94ee9a4d22146a7f49232907d437ad95aeaeb07c1fbd",
+  "source_manifest_sha256": "a7f7411e52a881070f0de0182b0caa9ca340d696a5ed95f54fbb652d54575607",
+  "source_sha256": "a20e92f13b90c49567964dd37b442da52fd6a0c1d9250309780516d393f3030c",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -24,7 +24,20 @@
       "test",
       "--locked",
       "--offline",
-      "--workspace",
+      "-p",
+      "mbse-assurance",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop",
+      "assurance_ui::",
       "--",
       "--test-threads=1"
     ],
@@ -38,7 +51,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "P23 extends existing assurance Board with optional parent, iterative hierarchy, atomic root/child, invalid parent drafts and pre/post transaction/reader ID validation. Full regression covers existing evidence/proof/history/status authority plus9 new model and1 rendered case, then desktop build. One Cargo job/thread, locked/offline.",
+  "rationale": "504 workspace tests/build passed initial hierarchy source. Source review found serialized raw.valid=true could disagree with accepted parent/statement. Refuse those flags during existing hierarchy/register validation, preserve all invalid/raw.valid=false work, add reader regression. Run full assurance package and affected assurance UI tests/build only; retain504 initial-source evidence, no full-workspace replay or count summing.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",
