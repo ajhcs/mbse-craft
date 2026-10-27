@@ -1,0 +1,323 @@
+{
+  "preparation_only": true,
+  "machine_mapping": {
+    "true": 8000,
+    "else": 9000,
+    "ambiguous": 10000,
+    "else_conflict": 11000,
+    "completion_priority": 12000,
+    "cycle": 13000
+  },
+  "cases": [
+    {
+      "name": "true sequence",
+      "graph": "true",
+      "events": [
+        8005,
+        8006
+      ],
+      "budget": 8,
+      "steps": [
+        {
+          "source": 8001,
+          "target": 8002,
+          "transition": 8007,
+          "event": null
+        },
+        {
+          "source": 8002,
+          "target": 8003,
+          "transition": 8008,
+          "event": 8005
+        },
+        {
+          "source": 8003,
+          "target": 8004,
+          "transition": 8010,
+          "event": 8006
+        }
+      ],
+      "status": "Completed",
+      "consumed": 2,
+      "state": 8004,
+      "machine": 8000
+    },
+    {
+      "name": "unhandled owned event consumed",
+      "graph": "true",
+      "events": [
+        8006,
+        8005,
+        8006
+      ],
+      "budget": 8,
+      "steps": [
+        {
+          "source": 8001,
+          "target": 8002,
+          "transition": 8007,
+          "event": null
+        },
+        {
+          "source": 8002,
+          "target": 8002,
+          "transition": null,
+          "event": 8006
+        },
+        {
+          "source": 8002,
+          "target": 8003,
+          "transition": 8008,
+          "event": 8005
+        },
+        {
+          "source": 8003,
+          "target": 8004,
+          "transition": 8010,
+          "event": 8006
+        }
+      ],
+      "status": "Completed",
+      "consumed": 3,
+      "state": 8004,
+      "machine": 8000
+    },
+    {
+      "name": "quiescent empty finite sequence",
+      "graph": "true",
+      "events": [],
+      "budget": 8,
+      "steps": [
+        {
+          "source": 8001,
+          "target": 8002,
+          "transition": 8007,
+          "event": null
+        }
+      ],
+      "status": {
+        "WaitingForEvent": {
+          "state": 8002
+        }
+      },
+      "consumed": 0,
+      "state": 8002,
+      "machine": 8000
+    },
+    {
+      "name": "cancel before next transition",
+      "graph": "true",
+      "events": [
+        8005,
+        8006
+      ],
+      "budget": 8,
+      "cancel_after": 1,
+      "steps": [
+        {
+          "source": 8001,
+          "target": 8002,
+          "transition": 8007,
+          "event": null
+        }
+      ],
+      "status": "Cancelled",
+      "consumed": 0,
+      "state": 8002,
+      "machine": 8000
+    },
+    {
+      "name": "final transition on last budget succeeds",
+      "graph": "true",
+      "events": [
+        8005,
+        8006
+      ],
+      "budget": 3,
+      "steps": [
+        {
+          "source": 8001,
+          "target": 8002,
+          "transition": 8007,
+          "event": null
+        },
+        {
+          "source": 8002,
+          "target": 8003,
+          "transition": 8008,
+          "event": 8005
+        },
+        {
+          "source": 8003,
+          "target": 8004,
+          "transition": 8010,
+          "event": 8006
+        }
+      ],
+      "status": "Completed",
+      "consumed": 2,
+      "state": 8004,
+      "machine": 8000
+    },
+    {
+      "name": "else fallback",
+      "graph": "else",
+      "events": [
+        9005
+      ],
+      "budget": 8,
+      "steps": [
+        {
+          "source": 9001,
+          "target": 9002,
+          "transition": 9007,
+          "event": null
+        },
+        {
+          "source": 9002,
+          "target": 9004,
+          "transition": 9009,
+          "event": 9005
+        }
+      ],
+      "status": "Completed",
+      "consumed": 1,
+      "state": 9004,
+      "machine": 9000
+    },
+    {
+      "name": "conflict never chooses ID",
+      "graph": "ambiguous",
+      "events": [
+        10005
+      ],
+      "budget": 8,
+      "steps": [
+        {
+          "source": 10001,
+          "target": 10002,
+          "transition": 10007,
+          "event": null
+        }
+      ],
+      "status": {
+        "Conflict": {
+          "state": 10002,
+          "event": 10005,
+          "transitions": [
+            10008,
+            10011
+          ]
+        }
+      },
+      "consumed": 0,
+      "state": 10002,
+      "machine": 10000
+    },
+    {
+      "name": "ambiguous else refusal",
+      "graph": "else_conflict",
+      "events": [
+        11005
+      ],
+      "budget": 8,
+      "steps": [
+        {
+          "source": 11001,
+          "target": 11002,
+          "transition": 11007,
+          "event": null
+        }
+      ],
+      "status": {
+        "Conflict": {
+          "state": 11002,
+          "event": 11005,
+          "transitions": [
+            11009,
+            11011
+          ]
+        }
+      },
+      "consumed": 0,
+      "state": 11002,
+      "machine": 11000
+    },
+    {
+      "name": "completion before queued event",
+      "graph": "completion_priority",
+      "events": [
+        12005,
+        12006
+      ],
+      "budget": 8,
+      "steps": [
+        {
+          "source": 12001,
+          "target": 12002,
+          "transition": 12007,
+          "event": null
+        },
+        {
+          "source": 12002,
+          "target": 12004,
+          "transition": 12011,
+          "event": null
+        }
+      ],
+      "status": "Completed",
+      "consumed": 0,
+      "state": 12004,
+      "machine": 12000
+    },
+    {
+      "name": "completion cycle bounded",
+      "graph": "cycle",
+      "events": [
+        13005
+      ],
+      "budget": 5,
+      "steps": [
+        {
+          "source": 13001,
+          "target": 13002,
+          "transition": 13007,
+          "event": null
+        },
+        {
+          "source": 13002,
+          "target": 13002,
+          "transition": 13011,
+          "event": null
+        },
+        {
+          "source": 13002,
+          "target": 13002,
+          "transition": 13011,
+          "event": null
+        },
+        {
+          "source": 13002,
+          "target": 13002,
+          "transition": 13011,
+          "event": null
+        },
+        {
+          "source": 13002,
+          "target": 13002,
+          "transition": 13011,
+          "event": null
+        }
+      ],
+      "status": "BudgetExhausted",
+      "consumed": 0,
+      "state": 13002,
+      "machine": 13000
+    }
+  ],
+  "original_native_sha256": "b1914935cc684e67ff8281b0e1de8b644e85f889e27b85e142a768c43807361e",
+  "original_views_sha256": "4b8e8761af850418f11dab95ec0f880b686c0d974715219f418892ed265305d1",
+  "fixture_native_sha256": "9e89a4cc401e8ebda4769dbcc5a8e1ab6b5ddcb1a21beb2f5361c6e5561b6dd8",
+  "fixture_snapshot_sha256": "d4358e9a2c0fd9bbf6b5bfffaae3c75b00b2b180fa7df86473f8d7cef8f087b5",
+  "qualification": "Only remapped P33a graph DTOs/nextID/modelrevision and bound identity added. All original native/type/activity/state7000/raw/opaque and seven presentation maps retained. Native Open must validate before execution acceptance."
+}

@@ -710,3 +710,249 @@ fn rendered_parallel_state_transition_labels_keep_exact_id_event_guards_and_disj
     }
     assert_eq!(a.session.editor.snapshot, native);
 }
+
+#[test]
+fn rendered_state_execution_prepare_exact_events_step_trace_copy_clear_preserve_full_native_and_layout()
+ {
+    use mbse_model::types::state_machines::execution::Status;
+    let (_area, mut a, ctx) = app();
+    let (m, first, node, last, go, edge) = seeded(&mut a);
+    let before = a.session.editor.snapshot.clone();
+    let layout = a.views.views.document().clone();
+    click(&mut a, &ctx, "state-machine:Execution controls");
+    fill(&mut a, &ctx, "execution-events", &go.0.to_string());
+    click(&mut a, &ctx, "state-machine:execution:Prepare");
+    assert_eq!(
+        a.state_machines
+            .execution
+            .live
+            .as_ref()
+            .unwrap()
+            .report()
+            .machine,
+        m
+    );
+    assert_eq!(
+        a.state_machines
+            .execution
+            .live
+            .as_ref()
+            .unwrap()
+            .report()
+            .status,
+        Status::Ready
+    );
+    for _ in 0..2 {
+        click(&mut a, &ctx, "state-machine:execution:Step");
+    }
+    let live = a.state_machines.execution.live.as_ref().unwrap();
+    assert_eq!(live.report().status, Status::Completed);
+    assert_eq!(
+        live.report()
+            .steps
+            .iter()
+            .map(|s| (s.source, s.target))
+            .collect::<Vec<_>>(),
+        vec![(first, node), (node, last)]
+    );
+    assert_eq!(live.report().steps[1].transition, Some(edge));
+    assert_eq!(live.report().consumed_events, 1);
+    assert!(live.is_current(&a.session.editor));
+    click(&mut a, &ctx, "state-machine:execution:Copy");
+    assert_eq!(a.session.editor.snapshot, before);
+    assert_eq!(a.views.views.document(), &layout);
+    click(&mut a, &ctx, "state-machine:execution:Clear");
+    assert!(a.state_machines.execution.live.is_none());
+}
+fn execution_cycle(a: &mut Workspace) {
+    let (m, _, node, _, _, edge) = seeded(a);
+    let f = Form::Transition {
+        machine: m,
+        id: Some(edge),
+        name: "Completion loop".into(),
+        source: node.0.to_string(),
+        target: node.0.to_string(),
+        event: String::new(),
+        guard: "true".into(),
+    };
+    let key = f.key();
+    let stamp = a.views.views.stamp(&a.session.editor);
+    a.sm_model(&stamp, sm::Action::Set(f)).unwrap();
+    let stamp = a.views.views.stamp(&a.session.editor);
+    a.sm_model(&stamp, sm::Action::Apply(key)).unwrap();
+}
+#[test]
+fn rendered_state_execution_auto_budget_cancel_prepared_close_and_docking_guards_preserve_source() {
+    use mbse_model::types::state_machines::execution::Status;
+    let (_area, mut a, ctx) = app();
+    execution_cycle(&mut a);
+    let before = a.session.editor.snapshot.clone();
+    click(&mut a, &ctx, "state-machine:Execution controls");
+    fill(&mut a, &ctx, "execution-budget", "3");
+    click(&mut a, &ctx, "state-machine:execution:Prepare");
+    click(&mut a, &ctx, "state-machine:Close");
+    assert!(a.state_machines.open && a.sm_close_blocked());
+    click(&mut a, &ctx, "state-machine:execution:Run");
+    assert!(a.sm_execution_automatic() && a.dock_blocked() && !a.sm_ready());
+    for _ in 0..4 {
+        a.state_machines.execution.next_tick = None;
+        a.sm_execution_tick();
+    }
+    assert_eq!(
+        a.state_machines
+            .execution
+            .live
+            .as_ref()
+            .unwrap()
+            .report()
+            .status,
+        Status::BudgetExhausted
+    );
+    assert_eq!(
+        a.state_machines
+            .execution
+            .live
+            .as_ref()
+            .unwrap()
+            .report()
+            .steps
+            .len(),
+        3
+    );
+    assert!(!a.sm_execution_automatic());
+    click(&mut a, &ctx, "state-machine:execution:Prepare");
+    click(&mut a, &ctx, "state-machine:execution:Run");
+    click(&mut a, &ctx, "state-machine:execution:Cancel");
+    let stopped = a
+        .state_machines
+        .execution
+        .live
+        .as_ref()
+        .unwrap()
+        .report()
+        .clone();
+    assert_eq!(stopped.status, Status::Cancelled);
+    a.sm_execution_tick();
+    assert_eq!(
+        a.state_machines.execution.live.as_ref().unwrap().report(),
+        &stopped
+    );
+    click(&mut a, &ctx, "state-machine:Close");
+    assert!(!a.state_machines.open);
+    assert_eq!(a.session.editor.snapshot, before);
+}
+#[test]
+fn rendered_state_execution_paused_raw_change_stales_prior_trace_and_keeps_accepted_source() {
+    use mbse_model::types::state_machines::execution::Status;
+    let (_area, mut a, ctx) = app();
+    let (_, _, _, _, go, _) = seeded(&mut a);
+    let accepted = ty::load(&a.session.editor.snapshot).unwrap();
+    click(&mut a, &ctx, "state-machine:Execution controls");
+    fill(&mut a, &ctx, "execution-events", &go.0.to_string());
+    click(&mut a, &ctx, "state-machine:execution:Prepare");
+    click(&mut a, &ctx, "state-machine:execution:Step");
+    let steps = a
+        .state_machines
+        .execution
+        .live
+        .as_ref()
+        .unwrap()
+        .report()
+        .steps
+        .clone();
+    fill(
+        &mut a,
+        &ctx,
+        "name",
+        "Unapplied state execution source edit",
+    );
+    settle(&mut a, &ctx);
+    let live = a.state_machines.execution.live.as_ref().unwrap();
+    assert_eq!(live.report().status, Status::StaleSource);
+    assert!(!live.is_current(&a.session.editor));
+    assert_eq!(live.report().steps, steps);
+    assert_eq!(ty::load(&a.session.editor.snapshot).unwrap(), accepted);
+    assert_eq!(
+        a.sm_audit()["current"]["name"],
+        "Unapplied state execution source edit"
+    );
+    click(&mut a, &ctx, "state-machine:Close");
+    assert!(!a.state_machines.open);
+}
+#[test]
+fn rendered_state_execution_conflict_exact_ids_quiescence_bad_budget_and_foreign_event_preserve_prior_result()
+ {
+    use mbse_model::types::state_machines::execution::Status;
+    let (_area, mut a, ctx) = app();
+    let (m, _, node, last, go, edge) = seeded(&mut a);
+    let conflict = Id(a.session.editor.snapshot.next_id);
+    let f = Form::Transition {
+        machine: m,
+        id: None,
+        name: "Competing route".into(),
+        source: node.0.to_string(),
+        target: last.0.to_string(),
+        event: go.0.to_string(),
+        guard: String::new(),
+    };
+    let key = f.key();
+    let stamp = a.views.views.stamp(&a.session.editor);
+    a.sm_model(&stamp, sm::Action::Set(f)).unwrap();
+    let stamp = a.views.views.stamp(&a.session.editor);
+    a.sm_model(&stamp, sm::Action::Apply(key)).unwrap();
+    let before = a.session.editor.snapshot.clone();
+    click(&mut a, &ctx, "state-machine:Execution controls");
+    fill(&mut a, &ctx, "execution-events", &go.0.to_string());
+    click(&mut a, &ctx, "state-machine:execution:Prepare");
+    for _ in 0..2 {
+        click(&mut a, &ctx, "state-machine:execution:Step");
+    }
+    let report = a
+        .state_machines
+        .execution
+        .live
+        .as_ref()
+        .unwrap()
+        .report()
+        .clone();
+    assert_eq!(
+        report.status,
+        Status::Conflict {
+            state: node,
+            event: Some(go),
+            transitions: vec![edge, conflict]
+        }
+    );
+    assert_eq!(report.consumed_events, 0);
+    fill(&mut a, &ctx, "execution-budget", "0");
+    click(&mut a, &ctx, "state-machine:execution:Prepare");
+    assert!(a.state_machines.execution.note.contains("BUDGET"));
+    assert_eq!(
+        a.state_machines.execution.live.as_ref().unwrap().report(),
+        &report
+    );
+    fill(&mut a, &ctx, "execution-budget", "8");
+    fill(&mut a, &ctx, "execution-events", &node.0.to_string());
+    click(&mut a, &ctx, "state-machine:execution:Prepare");
+    assert!(a.state_machines.execution.note.contains("EVENT_NOT_OWNED"));
+    assert_eq!(
+        a.state_machines.execution.live.as_ref().unwrap().report(),
+        &report
+    );
+    fill(&mut a, &ctx, "execution-events", "");
+    click(&mut a, &ctx, "state-machine:execution:Prepare");
+    for _ in 0..2 {
+        click(&mut a, &ctx, "state-machine:execution:Step");
+    }
+    assert_eq!(
+        a.state_machines
+            .execution
+            .live
+            .as_ref()
+            .unwrap()
+            .report()
+            .status,
+        Status::WaitingForEvent { state: node }
+    );
+    assert_eq!(a.session.editor.snapshot, before);
+}
