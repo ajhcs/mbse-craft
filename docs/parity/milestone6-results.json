@@ -109,15 +109,19 @@
       "merge_commit": "8e9e923468278578640af0bd77515052d567ed80"
     },
     "p32b": {
-      "state": "core_checks_passed_review_pending",
+      "state": "reviewed_ready_for_merge",
       "scope": "independent state-machine presentation data and bound/cold integrity",
       "base_commit": "8e9e923468278578640af0bd77515052d567ed80",
       "execution_results": "p32b/README.md",
       "source_sha256": "32aaba49222309724f790077c1fa6a5b1b6424cb72f63905a6d5e3275c466789",
-      "distinct_case_inventory": 653,
-      "new_distinct_cases": 10,
+      "distinct_case_inventory": 655,
+      "new_distinct_cases": 12,
       "native_state_machine_runs": 0,
-      "final_source_full_workspace_claim": false
+      "final_source_full_workspace_claim": false,
+      "pr_number": 45,
+      "review": "p32b/REVIEW.md",
+      "review_affected_deletion_cases": 22,
+      "review_source_sha256": "6f11b6bff9cf8f67afefb361b29078fee1d41f852c6bfab83118c000c4ebfcee"
     },
     "p32c": {
       "state": "planned",
