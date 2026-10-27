@@ -472,7 +472,13 @@ pub fn prepare(e: &Editor, v: &Views) -> Result<Prepared, String> {
         .filter(|o| removed.contains(&o.port) || o.usage.is_some_and(|id| removed.contains(&id)))
         .map(|o| o.id)
         .collect();
-    let unknown = unknown_impact(e);
+    let mut unknown = unknown_impact(e);
+    for (view, diagram) in &v.document().activity_diagrams {
+        unknown.add(format!("Retained activity diagram view#{} activity#{} has uninterpreted deletion impact; preserve original presentation.",view.get(),diagram.activity.0));
+    }
+    for (view, diagram) in &v.document().state_machine_diagrams {
+        unknown.add(format!("Retained state-machine diagram view#{} machine#{} has uninterpreted deletion impact; preserve original presentation.",view.get(),diagram.machine.0));
+    }
     let mut summary = Summary {
         roots: roots.iter().copied().collect(),
         removed: removed.iter().map(|id| all[id].clone()).collect(),

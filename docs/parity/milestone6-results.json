@@ -94,7 +94,7 @@
       "P32c"
     ],
     "p32a": {
-      "state": "reviewed_ready_for_merge",
+      "state": "merged",
       "scope": "flat state/event/transition authority, keyed drafts and diagnostics",
       "execution_results": "p32a/README.md",
       "source_sha256": "30e0c9f0af341a4e8204952e2874d05a59308409ca9b0c6c7e2f16b3cf576593",
@@ -105,11 +105,23 @@
       "review": "p32a/REVIEW.md",
       "review_affected_cases": 2,
       "final_source_full_workspace_claim": false,
-      "review_source_sha256": "9f1beddd3c0d7fc2bf904c344e11e7b680d638132bef7612b050c7aeb8fedbd4"
+      "review_source_sha256": "9f1beddd3c0d7fc2bf904c344e11e7b680d638132bef7612b050c7aeb8fedbd4",
+      "merge_commit": "8e9e923468278578640af0bd77515052d567ed80"
     },
     "p32b": {
-      "state": "planned",
-      "scope": "independent state-machine presentation data and bound/cold integrity"
+      "state": "reviewed_ready_for_merge",
+      "scope": "independent state-machine presentation data and bound/cold integrity",
+      "base_commit": "8e9e923468278578640af0bd77515052d567ed80",
+      "execution_results": "p32b/README.md",
+      "source_sha256": "32aaba49222309724f790077c1fa6a5b1b6424cb72f63905a6d5e3275c466789",
+      "distinct_case_inventory": 655,
+      "new_distinct_cases": 12,
+      "native_state_machine_runs": 0,
+      "final_source_full_workspace_claim": false,
+      "pr_number": 45,
+      "review": "p32b/REVIEW.md",
+      "review_affected_deletion_cases": 22,
+      "review_source_sha256": "6f11b6bff9cf8f67afefb361b29078fee1d41f852c6bfab83118c000c4ebfcee"
     },
     "p32c": {
       "state": "planned",

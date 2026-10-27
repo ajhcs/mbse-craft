@@ -98,6 +98,7 @@ impl Plan {
         target: &Views,
     ) -> Result<Self, String> {
         source.verify_unchanged()?;
+        if !target.document().state_machine_diagrams.is_empty()||!source.declared().state_machine_diagrams.is_empty(){return Err("VIEWS_STATE_MACHINE_COPY_UNSUPPORTED: preserve original state-machine presentation".into());}
         if !target.document().activity_diagrams.is_empty()||!source.declared().activity_diagrams.is_empty(){return Err("VIEWS_ACTIVITY_COPY_UNSUPPORTED: preserve original activity presentation".into());}
         if !target.document().typed_ports.is_empty(){return Err("VIEWS_TYPED_COPY_UNSUPPORTED: retain original typed presentation".into())}
         if !source.declared().views.contains_key(&view) {
