@@ -665,9 +665,14 @@
         {
           "id": "P27a",
           "title": "Reviewed declarative requirement rules and atomic fix previews",
-          "state": "in_progress",
+          "state": "review_ready",
           "branch": "codex/m5-p27-reviewed-rules",
-          "contract": "docs/parity/p27a/CONTRACT.md"
+          "contract": "docs/parity/p27a/CONTRACT.md",
+          "execution_results": "docs/parity/p27a/README.md",
+          "pr_number": 34,
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/34",
+          "review": "docs/parity/p27a/REVIEW.md",
+          "review_preservation": "docs/parity/p27a/REVIEW_PRESERVATION.json"
         },
         {
           "id": "P27b",
