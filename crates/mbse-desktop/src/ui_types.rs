@@ -23,6 +23,7 @@ impl TypePanel{
 }
 impl Workspace {
     pub(super) fn reset_type_context(&mut self) {
+        self.source_import=Default::default();
         self.matrix=Default::default();
         self.viewpoints=Default::default();
         self.activities=Default::default();

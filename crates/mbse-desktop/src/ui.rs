@@ -1,6 +1,8 @@
 //! App-owned UI over the bounded, provenance-preserving Stage1 contract.
 #[path = "ui_commands.rs"]
 mod workspace_commands;
+#[path="ui_source_import.rs"]
+mod source_import;
 #[path = "ui_shortcuts.rs"]
 mod shortcut_editor;
 #[path = "ui_docking.rs"]
@@ -95,6 +97,7 @@ pub struct Workspace {
     context: egui::Context,
     catalog: crate::catalog_ui::CatalogBrowser,
     exchange: crate::semantic_ui::SemanticBrowser,
+    source_import:source_import::Panel,
     assurance: crate::assurance_ui::AssuranceWorkspace,
     frame_choice: craft_window::Choice,
     close_intent: bool,
@@ -196,7 +199,7 @@ impl Workspace {
         let periodic_recovery = crate::periodic_recovery::PeriodicRecovery::new(Instant::now(), &session, &views);
         let mut docking=crate::docking::WorkspaceDock::default();
         match crate::perspectives::decode(&preferences.value.workspace_layout){Ok(layout)=>docking.layout=layout,Err(e)=>{preferences.load_warning=true;preferences.report.push_str(&format!("; {e}"));docking.note=e}}
-        let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,shortcuts,docking,perspective_name:String::new(),files:Default::default(),matrix:Default::default(),viewpoints:Default::default(),activities:Default::default(),state_machines:Default::default(),scenarios:Default::default(),parametrics:Default::default(),type_panel:Default::default(),port_panel:Default::default(),connector_panel:Default::default(),value_panel:Default::default(),refactor_panel:Default::default(),deletion_panel:Default::default(),tag_panel:Default::default(),validation_focus:Default::default(),docking_focus:None,periodic_recovery, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
+        let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),source_import:Default::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,shortcuts,docking,perspective_name:String::new(),files:Default::default(),matrix:Default::default(),viewpoints:Default::default(),activities:Default::default(),state_machines:Default::default(),scenarios:Default::default(),parametrics:Default::default(),type_panel:Default::default(),port_panel:Default::default(),connector_panel:Default::default(),value_panel:Default::default(),refactor_panel:Default::default(),deletion_panel:Default::default(),tag_panel:Default::default(),validation_focus:Default::default(),docking_focus:None,periodic_recovery, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
             creation: None, relation: None, popout: None, usages: None, impact_open:false,impact_target:None,impact_report:None,impact_note:String::new(), search_open:false, search_query:Default::default(), search_report:None, search_note:String::new(), browser_revealed:None,browser_open_groups:BTreeMap::new(), pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new(), menu_scope:None, last_workspace_command:None };
         app.refresh_recoveries();
         app
@@ -1964,6 +1967,7 @@ impl eframe::App for Workspace {
             if !saved && !recovered { self.allow_close = None; }
         }
         let requested = self.close_intent || ctx.input(|i| i.viewport().close_requested());
+        if requested{self.source_import_request_close();}
         let app_close = self.close_intent;
         self.close_intent = false;
         if requested && self.pm_close_blocked(){ctx.send_viewport_cmd(egui::ViewportCommand::CancelClose);ctx.request_repaint();return;}
@@ -2074,6 +2078,8 @@ impl eframe::App for Workspace {
         self.handle_validation_navigation();
         self.audit.extend(self.assurance.audit());
         self.audit.extend(self.exchange.show(&ctx));
+        if let Some(request)=self.exchange.take_import_request(){self.open_source_import(request);}
+        self.source_import_dialog(&ctx);
         let mut audit = serde_json::json!({"profile":"mbse-craft.ui-geometry/1","frame_policy":format!("{:?}",self.frame_choice.frame()),"frame_override":self.frame_choice.overridden(), "pixels_per_point":ctx.pixels_per_point(),
             "views_camera":self.views.camera_audit(),"views_occurrence_navigation":self.views.occurrence_selection_audit(),"views_mapping_rehearsal":self.views.mapping_audit(&self.session.editor),"views_inspection_visible":self.views.inspection_visible(),"views_inspection_sha256":self.views.inspection_source_sha256(),"views_inspection_note":self.views.inspection_note(),"views_revision":self.views.views.document().revision().to_string(),"views_active":self.views.active.get().to_string(),"views_pending":self.views.io.pending(),"views_saved_hint":self.views.io.is_saved(&self.session,&self.views.views),"views_note":self.views.note,
             "model_revision":self.session.editor.snapshot.model_revision,"raw_version":self.session.editor.snapshot.raw_version,
@@ -2103,6 +2109,7 @@ impl eframe::App for Workspace {
             fields.insert("validation_navigation".into(),self.validation_navigation_audit());
             fields.insert("requirements_authoring".into(),self.assurance.authoring_audit(&self.session.editor,&ctx));
             fields.insert("source_project_sets".into(),self.exchange.project_audit());
+            fields.insert("source_import".into(),self.source_import_audit());
             fields.insert("views_inspection_profile".into(), serde_json::json!(self.views.inspection_profile()));
             fields.insert("views_inspection_copy_origin".into(), self.views.inspection_copy_origin());
         }

@@ -74,3 +74,11 @@ fn source_admission_apply_receipt_distinct_member_fresh_ids_single_undo_and_sele
 fn source_admission_truncated_inspection_exposes_omitted_loss_counts_and_cannot_review_a_partial_candidate(){
  let id="x".repeat(60000);let targets=(0..40).map(|i|format!("missing{i}")).collect::<Vec<_>>().join(" ");let xml=fixture::XML.replacen("xmi:id=\"part\"",&format!("xmi:id=\"{id}\""),1).replacen("type=\"B\"",&format!("type=\"{targets}\""),1);let(_root,_path,e,p)=prepared(&xml);let s=p.summary();assert!(!s.ready_for_review&&!s.inspection_details_omitted_budget);assert!(s.inspection_omitted_losses>0);assert_eq!(s.inspection_loss_count,s.source_inspection_losses.len());assert!(s.source_inspection_losses.iter().any(|l|l.code=="LOSSES_TRUNCATED"));assert!(s.native_candidate.is_none()&&s.mappings.is_empty());assert!(s.notices.iter().any(|n|n.code=="BOUNDED_COMPLETE_XML_INSPECTION_REQUIRED"&&n.blocking));assert!(p.review(&BTreeSet::new()).is_err());assert_eq!(e.snapshot,editor().snapshot);
 }
+#[test]
+fn source_admission_checked_ui_bridge_uses_existing_native_views_history_and_preserves_layout_and_original_target_data(){
+ use mbse_model::native_views::{Views,NativeAction};let(_r,_path,mut e,p)=prepared(fixture::XML);ready(&p);let before=e.snapshot.clone();let mut views=Views::new(&e).unwrap();let layout=views.document().clone();let checked=p.review(&p.summary().required_acknowledgements).unwrap().check_source().unwrap();let result=checked.apply_with_views(&mut e,&mut views).unwrap();assert_eq!(result.target_snapshot_sha256,e.snapshot.digest());assert_eq!(e.snapshot.records,before.records);assert_eq!(e.snapshot.drafts,before.drafts);assert_eq!(views.document(),&layout);let stamp=views.stamp(&e);views.dispatch(&mut e,&stamp,NativeAction::ModelUndo).unwrap();assert_eq!(t::load(&e.snapshot).unwrap(),t::load(&before).unwrap());assert_eq!(views.document(),&layout);
+}
+#[test]
+fn source_admission_expired_completed_check_cannot_publish_native_state_after_a_delayed_ui_frame(){
+ let(_r,_path,mut e,p)=prepared(fixture::XML);let checked=p.review(&p.summary().required_acknowledgements).unwrap().check_source().unwrap();let before=e.snapshot.clone();std::thread::sleep(std::time::Duration::from_millis(5100));assert!(checked.apply(&mut e).unwrap_err().contains("CHECK_EXPIRED"));assert_eq!(e.snapshot,before);assert!(!e.can_undo());
+}

@@ -6,7 +6,7 @@ impl Workspace {
     pub(super) fn history_scope(&self) -> ShortcutTarget {
         if self.parametrics.open || self.scenarios.open || self.sc_gesture_active() || self.state_machines.open || self.sm_gesture_active() || self.activities.open || self.activity_gesture_active() || self.viewpoints.open || self.matrix.open || self.tag_panel.open || self.deletion_panel.open || self.refactor_panel.open || self.value_panel.open || self.connector_panel.open || self.port_panel.open || self.type_panel.open || self.files.open || self.files.pending() || self.views.inspection_visible()
             || self.assurance.is_visible()
-            || self.exchange.is_visible()
+            || self.exchange.is_visible() || self.source_import.open || self.source_import.pending()
             || self.shortcuts.open
             || self.docking.window
             || self.docking_chrome_focused()
@@ -28,6 +28,7 @@ impl Workspace {
     /// Cheap hints only: no filesystem reads or output authorization in a frame.
     /// Handlers still validate paths, files, revisions and pending tickets on use.
     pub(super) fn command_reason(&self, id: Id, scope: &ShortcutTarget) -> Option<String> {
+        if self.source_import.open||self.source_import.pending(){return Some("Finish or close native source import review before other workspace commands; native work and source bytes retained.".into());}
         let editing = id.is_history() || id.is_layout_history();
         if self.parametrics.open&&id!=Id::Parametrics{return Some("Close the parametric editor before other workspace commands; proposals retained.".into());}
         if id==Id::Parametrics&&self.dock_blocked_without_parametric(){return Some("Finish pending work or close the other editor before parametric authoring.".into());}

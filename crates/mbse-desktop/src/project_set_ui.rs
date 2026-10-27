@@ -4,6 +4,7 @@ use mbse_exchange::project_sets::{ProjectSet,ElementKey,LocalIdentity,Recheck};
 use std::{collections::BTreeMap,path::PathBuf,sync::{Arc,mpsc::{self,Receiver}}};
 
 enum Completion { Opened(Arc<ProjectSet>),Checked(Recheck) }
+pub struct ImportRequest {pub source:Arc<ProjectSet>,pub member:String}
 #[derive(Default)]
 pub struct Browser {
     pub visible:bool,
@@ -23,8 +24,10 @@ pub struct Browser {
     note:String,
     error:bool,
     bounds:BTreeMap<String,[f32;4]>,
+    import_request:Option<ImportRequest>,
 }
 impl Browser {
+    pub fn take_import_request(&mut self)->Option<ImportRequest>{self.import_request.take()}
     pub fn pending(&self)->bool {self.pending.is_some()}
     pub fn open_window(&mut self,path:&str) {
         self.visible=true;
@@ -92,6 +95,7 @@ impl Browser {
             ui.label(format!("Source-set SHA-256: {}",summary.source_set_digest));
             ui.label("A matching pin proves captured bytes, not source truth or semantic completeness. Recheck is explicit; a prior result is historical.");
             ui.horizontal_wrapped(|ui|{let r=ui.selectable_label(self.member.is_empty(),"All members");self.bound("projects:all-members",&r);if r.clicked(){self.member.clear();}for m in &summary.members{let r=ui.selectable_label(self.member==m.key,&m.key);self.bound(format!("projects:member:{}",m.key),&r);if r.clicked(){self.member=m.key.clone();}}});
+            let r=ui.add_enabled(!self.pending()&&!self.member.is_empty()&&source.semantic(&self.member).is_some(),egui::Button::new("Review native import of this member"));self.bound("projects:Review import",&r);if r.clicked(){self.import_request=Some(ImportRequest{source:source.clone(),member:self.member.clone()});self.visible=false;}
             let r=ui.add(egui::TextEdit::singleline(&mut self.query).char_limit(512).hint_text("Find member, name, kind or local ID"));self.bound("projects:filter",&r);
             self.refresh_rows(source,&summary.source_set_digest);ui.label(format!("{} matching element identities · native list contains top-level records",self.rows.len()));
             egui::ScrollArea::vertical().id_salt("project-set-elements").max_height(220.).show_rows(ui,28.,self.rows.len(),|ui,range|{for i in range{let(key,label)=self.rows[i].clone();let r=ui.add(egui::Button::new(label).selected(self.selected.as_ref()==Some(&key)).truncate().min_size(egui::vec2(ui.available_width(),28.)));self.bound(format!("projects:element:{i}"),&r);if r.clicked(){self.selected=Some(key);}}});

@@ -97,6 +97,7 @@ impl SemanticBrowser {
         self.legacy.hide();
     }
     pub fn project_audit(&self)->serde_json::Value { self.projects.audit() }
+    pub fn take_import_request(&mut self)->Option<crate::project_set_ui::ImportRequest>{self.projects.take_import_request()}
     fn bound(&mut self, key: impl Into<String>, response: &egui::Response) {
         let r = response.interact_rect;
         self.bounds

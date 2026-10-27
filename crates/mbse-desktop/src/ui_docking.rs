@@ -29,6 +29,7 @@ impl Workspace {
             || self.views.inspection_visible()
             || self.assurance.is_visible()
             || self.exchange.is_visible()
+            || self.source_import.open || self.source_import.pending()
             || self.recovery_window
             || self.search_open
             || self.impact_open
