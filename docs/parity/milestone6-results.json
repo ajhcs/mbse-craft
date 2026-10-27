@@ -147,7 +147,7 @@
       "P33b"
     ],
     "p33a": {
-      "state": "reviewed_ready_to_merge",
+      "state": "merged",
       "scope": "finite flat execution core and fixed event/trace fixtures",
       "execution_results": "p33a/README.md",
       "source_sha256": "f33637b79c00760157b2d8d46d135a084a99f462520f1fd293a4d912b60f6fae",
@@ -156,11 +156,21 @@
       "native_state_execution_checks": 0,
       "final_source_full_workspace_claim": false,
       "pr_number": 47,
-      "review": "p33a/REVIEW.md"
+      "review": "p33a/REVIEW.md",
+      "merge_commit": "938930a8829576879a4d1bb402bac12f923e9848"
     },
     "p33b": {
-      "state": "planned",
-      "scope": "native state execution controls and acceptance"
+      "state": "reviewed_ready_to_merge",
+      "scope": "native state execution controls and acceptance",
+      "base_commit": "938930a8829576879a4d1bb402bac12f923e9848",
+      "execution_results": "p33b/README.md",
+      "source_sha256": "2661d8cf91de11407310610fadce058a19320fbc612259a9bcc0fa2aefaebb9f",
+      "distinct_case_inventory": 678,
+      "new_distinct_cases": 6,
+      "native_state_execution_runs": 2,
+      "final_source_full_workspace_claim": false,
+      "pr_number": 48,
+      "review": "p33b/REVIEW.md"
     }
   }
 }

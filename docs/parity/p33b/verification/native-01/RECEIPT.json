@@ -1,0 +1,517 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-27T09:30:25.498327+00:00",
+  "job_sha256": "c93aca2e88e5ba522a6f7c7e06e75fdfc565bdff2a41232f3c082854236a5a6e",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p33b-01/run",
+      "started_utc": "2026-10-27T09:30:25.518406+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 855771,
+          "start_ticks": 46777645
+        },
+        "server_pid": {
+          "pid": 855768,
+          "start_ticks": 46777643
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/repos/builderbob/mbse-craft/work/m6-p33b-native-state-execution/docs/parity/p33b/fixtures/state-fixture.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 855771,
+        "server_pid": 855768,
+        "window": 4194307,
+        "binary_sha256": "bd598fc68a2a9e8b5b74dcad6fc646a1e85662d8be114dffc8664711d1222f10"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-27T09:40:48.112457+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-27T09:30:25.518119+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1369286254592,
+    "available_memory_bytes": 27243433984,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 299500,
+        "start_ticks": 43416915,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      },
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 324
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "action_errors": [
+    {
+      "action": "r=n.audit()['widgets']['views:Open views']; n.send(op='click',x=int(r[0]-100),y=int((r[1]+r[3])/2)); n.send(op='key',key='a',mods=['Control_L']); n.send(op='text',text=str(Path('docs/parity/p33b/fixtures/state-fixture.mbse-views.json').resolve())); n.click('views:Open views'); n.click('view:tab:45'); n.capture('01-frozen-native-raw-opaque-and-seven-presentation-maps'); original_hash=n.audit()['snapshot_hash']; n.send(op='key',key='s',mods=['Control_L','Alt_L']); assert n.audit()['last_workspace_command']['id']=='tools.state_machines'; n.click('state-machine:Browse elements'); n.click('state-machine:select:8000'); n.click('state-machine:Execution controls'); report=state_case(n,cases['true sequence'],'02-native-step-true-exact-fixed-event-trace',False); assert n.audit()['snapshot_hash']==original_hash; receipt['native_true_step_trace_matches_fixed_table']=True; print(report)",
+      "error": "KeyError('last_workspace_command')"
+    },
+    {
+      "action": "assert n.audit()['command_catalog']['last']['id']=='tools.state_machines'; receipt['actual_shared_shortcut_delivered']=True; receipt['fixed_reports']={'true sequence':report}; receipt['fixed_reports']['else fallback']=state_case(n,cases['else fallback'],'03-native-automatic-else-exact-fixed-trace'); assert n.audit()['snapshot_hash']==original_hash; receipt['fixed_reports']['unhandled owned event consumed']=state_case(n,cases['unhandled owned event consumed'],'04-native-unhandled-event-recorded-with-exact-event-identity'); assert n.audit()['snapshot_hash']==original_hash; receipt['fixed_reports']['quiescent empty finite sequence']=state_case(n,cases['quiescent empty finite sequence'],'05-native-waiting-for-event-finite-sequence-ended'); assert n.audit()['snapshot_hash']==original_hash; receipt['native_else_ignored_and_quiescent_traces_match_fixed_tables']=True",
+      "error": "AssertionError()"
+    },
+    {
+      "action": "receipt['native_visual_finding']='The new state trace uses a Unicode arrow that renders as a missing-glyph box in the qualified Linux font. After normal closure, use explicit readable State #source to State #target text; retain screenshot02 and completed original checks.'; receipt['fixed_reports']['conflict never chooses ID']=state_case(n,cases['conflict never chooses ID'],'06-native-conflict-exposes-exact-routes-without-event-consumption'); assert n.audit()['snapshot_hash']==original_hash; receipt['fixed_reports']['ambiguous else refusal']=state_case(n,cases['ambiguous else refusal'],'07-native-multiple-else-conflict-exact-identities'); assert n.audit()['snapshot_hash']==original_hash; receipt['fixed_reports']['completion before queued event']=state_case(n,cases['completion before queued event'],'08-native-completion-priority-leaves-queued-events-unconsumed'); assert n.audit()['snapshot_hash']==original_hash; receipt['native_both_conflicts_and_completion_priority_match_fixed_tables']=True",
+      "error": "AssertionError('Missing live widget: state-machine:select:10000')"
+    },
+    {
+      "action": "receipt['fixed_reports']['conflict never chooses ID']=state_case(n,cases['conflict never chooses ID'],'06-native-conflict-exposes-exact-routes-without-event-consumption'); assert n.audit()['snapshot_hash']==original_hash; receipt['fixed_reports']['ambiguous else refusal']=state_case(n,cases['ambiguous else refusal'],'07-native-multiple-else-conflict-exact-identities'); assert n.audit()['snapshot_hash']==original_hash; receipt['fixed_reports']['completion before queued event']=state_case(n,cases['completion before queued event'],'08-native-completion-priority-leaves-queued-events-unconsumed'); assert n.audit()['snapshot_hash']==original_hash; receipt['native_both_conflicts_and_completion_priority_match_fixed_tables']=True",
+      "error": "AssertionError(('conflict never chooses ID', {'consumed_events': 0, 'current_state': 10001, 'engine': 'mbse-craft.state-execution/1', 'events': [10005], 'machine': 10000, 'policy': 'completion-first;true-or-unconditional;else-fallback;conflict-refuses;unhandled-event-consumed/1', 'snapshot_sha256': 'd4358e9a2c0fd9bbf6b5bfffaae3c75b00b2b180fa7df86473f8d7cef8f087b5', 'source': {'document_id': 'document:session:stage1-session-sL9Mtp', 'instance_id': 'instance:stage1-session-TX7QCl', 'model_revision': 123, 'raw_version': 261}, 'status': 'Ready', 'step_budget': 8, 'steps': []}))"
+    },
+    {
+      "action": "receipt['fixed_reports']['completion cycle bounded']=state_case(n,cases['completion cycle bounded'],'09-native-completion-cycle-exhausts-exact-five-steps'); assert n.audit()['snapshot_hash']==original_hash; receipt['fixed_reports']['cancel before next transition']=state_case(n,cases['cancel before next transition'],'10-native-cancel-before-next-transition-matches-fixed-prefix',False); assert n.audit()['snapshot_hash']==original_hash; receipt['fixed_reports']['final transition on last budget succeeds']=state_case(n,cases['final transition on last budget succeeds'],'11-native-last-budget-transition-completes-exactly',False); assert n.audit()['snapshot_hash']==original_hash; assert len(receipt['fixed_reports'])==10; receipt['native_all_ten_fixed_tables_match']=True",
+      "error": "AssertionError(('completion cycle bounded', {'consumed_events': 0, 'current_state': 10001, 'engine': 'mbse-craft.state-execution/1', 'events': [10005], 'machine': 10000, 'policy': 'completion-first;true-or-unconditional;else-fallback;conflict-refuses;unhandled-event-consumed/1', 'snapshot_sha256': 'd4358e9a2c0fd9bbf6b5bfffaae3c75b00b2b180fa7df86473f8d7cef8f087b5', 'source': {'document_id': 'document:session:stage1-session-sL9Mtp', 'instance_id': 'instance:stage1-session-TX7QCl', 'model_revision': 123, 'raw_version': 261}, 'status': 'Ready', 'step_budget': 8, 'steps': []}))"
+    }
+  ],
+  "native_true_step_trace_matches_fixed_table": true,
+  "actual_shared_shortcut_delivered": true,
+  "fixed_reports": {
+    "true sequence": {
+      "consumed_events": 2,
+      "current_state": 8004,
+      "engine": "mbse-craft.state-execution/1",
+      "events": [
+        8005,
+        8006
+      ],
+      "machine": 8000,
+      "policy": "completion-first;true-or-unconditional;else-fallback;conflict-refuses;unhandled-event-consumed/1",
+      "snapshot_sha256": "d4358e9a2c0fd9bbf6b5bfffaae3c75b00b2b180fa7df86473f8d7cef8f087b5",
+      "source": {
+        "document_id": "document:session:stage1-session-sL9Mtp",
+        "instance_id": "instance:stage1-session-TX7QCl",
+        "model_revision": 123,
+        "raw_version": 261
+      },
+      "status": "Completed",
+      "step_budget": 8,
+      "steps": [
+        {
+          "event": null,
+          "source": 8001,
+          "target": 8002,
+          "transition": 8007
+        },
+        {
+          "event": 8005,
+          "source": 8002,
+          "target": 8003,
+          "transition": 8008
+        },
+        {
+          "event": 8006,
+          "source": 8003,
+          "target": 8004,
+          "transition": 8010
+        }
+      ]
+    },
+    "else fallback": {
+      "consumed_events": 1,
+      "current_state": 9004,
+      "engine": "mbse-craft.state-execution/1",
+      "events": [
+        9005
+      ],
+      "machine": 9000,
+      "policy": "completion-first;true-or-unconditional;else-fallback;conflict-refuses;unhandled-event-consumed/1",
+      "snapshot_sha256": "d4358e9a2c0fd9bbf6b5bfffaae3c75b00b2b180fa7df86473f8d7cef8f087b5",
+      "source": {
+        "document_id": "document:session:stage1-session-sL9Mtp",
+        "instance_id": "instance:stage1-session-TX7QCl",
+        "model_revision": 123,
+        "raw_version": 261
+      },
+      "status": "Completed",
+      "step_budget": 8,
+      "steps": [
+        {
+          "event": null,
+          "source": 9001,
+          "target": 9002,
+          "transition": 9007
+        },
+        {
+          "event": 9005,
+          "source": 9002,
+          "target": 9004,
+          "transition": 9009
+        }
+      ]
+    },
+    "unhandled owned event consumed": {
+      "consumed_events": 3,
+      "current_state": 8004,
+      "engine": "mbse-craft.state-execution/1",
+      "events": [
+        8006,
+        8005,
+        8006
+      ],
+      "machine": 8000,
+      "policy": "completion-first;true-or-unconditional;else-fallback;conflict-refuses;unhandled-event-consumed/1",
+      "snapshot_sha256": "d4358e9a2c0fd9bbf6b5bfffaae3c75b00b2b180fa7df86473f8d7cef8f087b5",
+      "source": {
+        "document_id": "document:session:stage1-session-sL9Mtp",
+        "instance_id": "instance:stage1-session-TX7QCl",
+        "model_revision": 123,
+        "raw_version": 261
+      },
+      "status": "Completed",
+      "step_budget": 8,
+      "steps": [
+        {
+          "event": null,
+          "source": 8001,
+          "target": 8002,
+          "transition": 8007
+        },
+        {
+          "event": 8006,
+          "source": 8002,
+          "target": 8002,
+          "transition": null
+        },
+        {
+          "event": 8005,
+          "source": 8002,
+          "target": 8003,
+          "transition": 8008
+        },
+        {
+          "event": 8006,
+          "source": 8003,
+          "target": 8004,
+          "transition": 8010
+        }
+      ]
+    },
+    "quiescent empty finite sequence": {
+      "consumed_events": 0,
+      "current_state": 8002,
+      "engine": "mbse-craft.state-execution/1",
+      "events": [],
+      "machine": 8000,
+      "policy": "completion-first;true-or-unconditional;else-fallback;conflict-refuses;unhandled-event-consumed/1",
+      "snapshot_sha256": "d4358e9a2c0fd9bbf6b5bfffaae3c75b00b2b180fa7df86473f8d7cef8f087b5",
+      "source": {
+        "document_id": "document:session:stage1-session-sL9Mtp",
+        "instance_id": "instance:stage1-session-TX7QCl",
+        "model_revision": 123,
+        "raw_version": 261
+      },
+      "status": {
+        "WaitingForEvent": {
+          "state": 8002
+        }
+      },
+      "step_budget": 8,
+      "steps": [
+        {
+          "event": null,
+          "source": 8001,
+          "target": 8002,
+          "transition": 8007
+        }
+      ]
+    },
+    "conflict never chooses ID": {
+      "consumed_events": 0,
+      "current_state": 10002,
+      "engine": "mbse-craft.state-execution/1",
+      "events": [
+        10005
+      ],
+      "machine": 10000,
+      "policy": "completion-first;true-or-unconditional;else-fallback;conflict-refuses;unhandled-event-consumed/1",
+      "snapshot_sha256": "d4358e9a2c0fd9bbf6b5bfffaae3c75b00b2b180fa7df86473f8d7cef8f087b5",
+      "source": {
+        "document_id": "document:session:stage1-session-sL9Mtp",
+        "instance_id": "instance:stage1-session-TX7QCl",
+        "model_revision": 123,
+        "raw_version": 261
+      },
+      "status": {
+        "Conflict": {
+          "event": 10005,
+          "state": 10002,
+          "transitions": [
+            10008,
+            10011
+          ]
+        }
+      },
+      "step_budget": 8,
+      "steps": [
+        {
+          "event": null,
+          "source": 10001,
+          "target": 10002,
+          "transition": 10007
+        }
+      ]
+    },
+    "ambiguous else refusal": {
+      "consumed_events": 0,
+      "current_state": 11002,
+      "engine": "mbse-craft.state-execution/1",
+      "events": [
+        11005
+      ],
+      "machine": 11000,
+      "policy": "completion-first;true-or-unconditional;else-fallback;conflict-refuses;unhandled-event-consumed/1",
+      "snapshot_sha256": "d4358e9a2c0fd9bbf6b5bfffaae3c75b00b2b180fa7df86473f8d7cef8f087b5",
+      "source": {
+        "document_id": "document:session:stage1-session-sL9Mtp",
+        "instance_id": "instance:stage1-session-TX7QCl",
+        "model_revision": 123,
+        "raw_version": 261
+      },
+      "status": {
+        "Conflict": {
+          "event": 11005,
+          "state": 11002,
+          "transitions": [
+            11009,
+            11011
+          ]
+        }
+      },
+      "step_budget": 8,
+      "steps": [
+        {
+          "event": null,
+          "source": 11001,
+          "target": 11002,
+          "transition": 11007
+        }
+      ]
+    },
+    "completion before queued event": {
+      "consumed_events": 0,
+      "current_state": 12004,
+      "engine": "mbse-craft.state-execution/1",
+      "events": [
+        12005,
+        12006
+      ],
+      "machine": 12000,
+      "policy": "completion-first;true-or-unconditional;else-fallback;conflict-refuses;unhandled-event-consumed/1",
+      "snapshot_sha256": "d4358e9a2c0fd9bbf6b5bfffaae3c75b00b2b180fa7df86473f8d7cef8f087b5",
+      "source": {
+        "document_id": "document:session:stage1-session-sL9Mtp",
+        "instance_id": "instance:stage1-session-TX7QCl",
+        "model_revision": 123,
+        "raw_version": 261
+      },
+      "status": "Completed",
+      "step_budget": 8,
+      "steps": [
+        {
+          "event": null,
+          "source": 12001,
+          "target": 12002,
+          "transition": 12007
+        },
+        {
+          "event": null,
+          "source": 12002,
+          "target": 12004,
+          "transition": 12011
+        }
+      ]
+    },
+    "completion cycle bounded": {
+      "consumed_events": 0,
+      "current_state": 13002,
+      "engine": "mbse-craft.state-execution/1",
+      "events": [
+        13005
+      ],
+      "machine": 13000,
+      "policy": "completion-first;true-or-unconditional;else-fallback;conflict-refuses;unhandled-event-consumed/1",
+      "snapshot_sha256": "d4358e9a2c0fd9bbf6b5bfffaae3c75b00b2b180fa7df86473f8d7cef8f087b5",
+      "source": {
+        "document_id": "document:session:stage1-session-sL9Mtp",
+        "instance_id": "instance:stage1-session-TX7QCl",
+        "model_revision": 123,
+        "raw_version": 261
+      },
+      "status": "BudgetExhausted",
+      "step_budget": 5,
+      "steps": [
+        {
+          "event": null,
+          "source": 13001,
+          "target": 13002,
+          "transition": 13007
+        },
+        {
+          "event": null,
+          "source": 13002,
+          "target": 13002,
+          "transition": 13011
+        },
+        {
+          "event": null,
+          "source": 13002,
+          "target": 13002,
+          "transition": 13011
+        },
+        {
+          "event": null,
+          "source": 13002,
+          "target": 13002,
+          "transition": 13011
+        },
+        {
+          "event": null,
+          "source": 13002,
+          "target": 13002,
+          "transition": 13011
+        }
+      ]
+    },
+    "cancel before next transition": {
+      "consumed_events": 0,
+      "current_state": 8002,
+      "engine": "mbse-craft.state-execution/1",
+      "events": [
+        8005,
+        8006
+      ],
+      "machine": 8000,
+      "policy": "completion-first;true-or-unconditional;else-fallback;conflict-refuses;unhandled-event-consumed/1",
+      "snapshot_sha256": "d4358e9a2c0fd9bbf6b5bfffaae3c75b00b2b180fa7df86473f8d7cef8f087b5",
+      "source": {
+        "document_id": "document:session:stage1-session-sL9Mtp",
+        "instance_id": "instance:stage1-session-TX7QCl",
+        "model_revision": 123,
+        "raw_version": 261
+      },
+      "status": "Cancelled",
+      "step_budget": 8,
+      "steps": [
+        {
+          "event": null,
+          "source": 8001,
+          "target": 8002,
+          "transition": 8007
+        }
+      ]
+    },
+    "final transition on last budget succeeds": {
+      "consumed_events": 2,
+      "current_state": 8004,
+      "engine": "mbse-craft.state-execution/1",
+      "events": [
+        8005,
+        8006
+      ],
+      "machine": 8000,
+      "policy": "completion-first;true-or-unconditional;else-fallback;conflict-refuses;unhandled-event-consumed/1",
+      "snapshot_sha256": "d4358e9a2c0fd9bbf6b5bfffaae3c75b00b2b180fa7df86473f8d7cef8f087b5",
+      "source": {
+        "document_id": "document:session:stage1-session-sL9Mtp",
+        "instance_id": "instance:stage1-session-TX7QCl",
+        "model_revision": 123,
+        "raw_version": 261
+      },
+      "status": "Completed",
+      "step_budget": 3,
+      "steps": [
+        {
+          "event": null,
+          "source": 8001,
+          "target": 8002,
+          "transition": 8007
+        },
+        {
+          "event": 8005,
+          "source": 8002,
+          "target": 8003,
+          "transition": 8008
+        },
+        {
+          "event": 8006,
+          "source": 8003,
+          "target": 8004,
+          "transition": 8010
+        }
+      ]
+    }
+  },
+  "native_visual_finding": "The new state trace uses a Unicode arrow that renders as a missing-glyph box in the qualified Linux font. After normal closure, use explicit readable State #source to State #target text; retain screenshot02 and completed original checks.",
+  "native_else_ignored_and_quiescent_traces_match_fixed_tables": true,
+  "native_scope_followup": "Paused live trace remains correctly frozen to its prepared Machine, but the authoring browser permits selecting a different Machine while inputs remain locked to the old trace. Pin cross-machine selection until Cancel/termination so the selected editor and live controls cannot diverge.",
+  "native_both_conflicts_and_completion_priority_match_fixed_tables": true,
+  "native_all_ten_fixed_tables_match": true,
+  "native_prepared_app_editor_close_and_actual_automatic_cancel_passed": true,
+  "automatic_cancelled_steps": 3,
+  "native_bad_budget_canonical_and_event_refusals_copy_clear_preserve_prior_result_and_source": true,
+  "native_paused_raw_edit_stales_trace_and_preserves_accepted_machines": true,
+  "native_checkpoint_whole_snapshot_exact_except_explicit_machine8000_raw_and_version": true,
+  "native_checkpoint_all_seven_maps_exact": true,
+  "all_frozen_inputs_unchanged": true,
+  "authentication_files_absent": true,
+  "ended_utc": "2026-10-27T09:41:21.808656+00:00"
+}

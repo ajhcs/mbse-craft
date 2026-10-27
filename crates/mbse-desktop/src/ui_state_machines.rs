@@ -30,6 +30,7 @@ pub(super) struct Rendered {
 #[derive(Default)]
 pub(super) struct Panel {
     pub open: bool,
+    pub execution: super::state_execution::Panel,
     pub machine: Option<Id>,
     pub current: Option<Form>,
     owner: Option<Owner>,
@@ -66,6 +67,7 @@ impl Workspace {
     }
     pub(super) fn sm_frame_start(&mut self) {
         self.state_machines.rendered = None;
+        self.sm_execution_tick();
     }
     pub(super) fn sm_gesture_active(&self) -> bool {
         self.state_machines.drag.is_some()
@@ -74,6 +76,13 @@ impl Workspace {
         self.state_machines.pending.is_some()
     }
     pub(super) fn sm_close_blocked(&mut self) -> bool {
+        if self.sm_execution_active() {
+            self.state_machines.open = true;
+            self.state_machines.note =
+                "Cancel the prepared or running execution before closing.".into();
+            self.state_machines.execution.note = self.state_machines.note.clone();
+            return true;
+        }
         if self.sm_pending() {
             self.state_machines.open = true;
             self.state_machines.note="New text remains in this window. Admit it, copy it, or explicitly discard it before closing.".into();
@@ -84,7 +93,8 @@ impl Workspace {
         }
     }
     pub(super) fn sm_ready(&self) -> bool {
-        !self.dock_blocked_without_state_machine()
+        !self.sm_execution_automatic()
+            && !self.dock_blocked_without_state_machine()
             && ty::load(&self.session.editor.snapshot).is_ok()
             && sm::forms(&self.session.editor.snapshot).is_ok()
     }
@@ -145,6 +155,17 @@ impl Workspace {
             return Err(
                 "State-machine selection source changed; original selection retained.".into(),
             );
+        }
+        if self
+            .state_machines
+            .execution
+            .live
+            .as_ref()
+            .is_some_and(|live| {
+                !live.report().status.terminal() && scope(&f) != Some(live.report().machine)
+            })
+        {
+            return Err("Cancel the prepared or running execution before selecting another machine. Original selection and trace retained.".into());
         }
         let f = sm::forms(&self.session.editor.snapshot)?
             .get(&f.key())
@@ -310,6 +331,7 @@ impl Workspace {
                                 self.state_machines.machine = None;
                             }
                         }
+                        self.sm_execution_ui(ui, false);
                         let r = ui.button("Close state-machine editor");
                         self.bound("state-machine:Close", &r);
                         if r.clicked() && !self.sm_close_blocked() {
@@ -376,6 +398,7 @@ impl Workspace {
    ui.horizontal_wrapped(|ui|{let r=ui.add_enabled(ready&&admitted&&!edited&&forms.contains_key(&slot),egui::Button::new("Apply proposal"));self.bound("state-machine:Apply",&r);apply=r.clicked();let r=ui.add_enabled(ready&&admitted&&!edited&&forms.contains_key(&slot),egui::Button::new("Discard selected proposal"));self.bound("state-machine:Discard proposal",&r);discard=r.clicked();let r=ui.add_enabled(ready&&admitted&&!edited&&accepted_present(&store,&f),egui::Button::new(if matches!(f,Form::Machine{..}){"Remove accepted machine and owned contents"}else{"Remove accepted element"}));self.bound("state-machine:Remove accepted",&r);remove=r.clicked();});
    ui.horizontal_wrapped(|ui|{ui.label("Global model history");for(redo,label)in[(false,"Model Undo"),(true,"Model Redo")]{let enabled=if redo{self.session.editor.can_redo()}else{self.session.editor.can_undo()};let r=ui.add_enabled(ready&&admitted&&!edited&&enabled,egui::Button::new(label));self.bound(format!("state-machine:{label}"),&r);if r.clicked(){history=Some(redo);}}if let Some(m)=self.state_machines.machine{let r=ui.add_enabled(ready&&admitted&&!edited&&store.state_machines.contains_key(&m),egui::Button::new("Create accepted machine diagram"));self.bound("state-machine:Create diagram",&r);if r.clicked(){create=Some(m);}}});
    if self.sm_pending(){ui.colored_label(ERROR,"New text is retained only in this window.");ui.horizontal(|ui|{let r=ui.button("Copy retained new proposal");self.bound("state-machine:Copy new text",&r);if r.clicked(){ctx.copy_text(serde_json::to_string_pretty(&f).unwrap());}let r=ui.button("Discard unadmitted new text");self.bound("state-machine:Discard new text",&r);discard_pending=r.clicked();});}
+   self.sm_execution_ui(ui,ready&&admitted&&!edited);
    ui.label(&self.state_machines.note);ui.separator();ui.heading("Accepted data and diagnostics");ui.label(accepted_text(&store,&f));if let Some(m)=self.state_machines.machine.and_then(|id|store.state_machines.get(&id)){ui.label(format!("Machine #{} · {} · System #{} · {} states · {} events · {} transitions",m.id.0,m.name,m.system.0,m.states.len(),m.events.len(),m.transitions.len()));for d in sm::diagnostics(&store,m.id).unwrap_or_default(){ui.label(format!("{} · elements {:?}: {}",d.code,d.elements,d.message));}}
    let r=ui.button("Close state-machine editor");self.bound("state-machine:Close",&r);close=r.clicked();
   });
@@ -429,7 +452,7 @@ impl Workspace {
             }
         }
         if close || !open {
-            if self.sm_pending() {
+            if self.sm_pending() || self.sm_execution_active() {
                 self.sm_close_blocked();
             } else {
                 self.state_machines.open = false;
@@ -460,7 +483,7 @@ impl Workspace {
                 })
             });
         let store = ty::load(&self.session.editor.snapshot).ok();
-        serde_json::json!({"open":self.state_machines.open,"owner_current":owner_current,"machine":self.state_machines.machine,"current":current,"form_admitted":!self.sm_pending(),"note":self.state_machines.note,"accepted":store.as_ref().map(|s|&s.state_machines),"proposals":forms,"diagnostics":store.as_ref().and_then(|s|self.state_machines.machine.and_then(|m|sm::diagnostics(s,m).ok())),"gesture_active":self.sm_gesture_active(),"selected":self.state_machines.selected,"rendered":self.state_machines.rendered.as_ref().map(|r|serde_json::json!({"view":r.view,"current":r.view==self.views.active&&r.stamp==self.views.views.stamp(&self.session.editor),"preview_only":r.preview,"occurrences":r.occurrences.iter().map(|(id,element,g)|serde_json::json!({"occurrence":id,"element":element,"geometry":g})).collect::<Vec<_>>(),"transitions":r.transitions,"endpoints":r.endpoints,"labels":r.labels,"overlapping_transitions":r.overlapping}))})
+        serde_json::json!({"execution":self.sm_execution_audit(),"open":self.state_machines.open,"owner_current":owner_current,"machine":self.state_machines.machine,"current":current,"form_admitted":!self.sm_pending(),"note":self.state_machines.note,"accepted":store.as_ref().map(|s|&s.state_machines),"proposals":forms,"diagnostics":store.as_ref().and_then(|s|self.state_machines.machine.and_then(|m|sm::diagnostics(s,m).ok())),"gesture_active":self.sm_gesture_active(),"selected":self.state_machines.selected,"rendered":self.state_machines.rendered.as_ref().map(|r|serde_json::json!({"view":r.view,"current":r.view==self.views.active&&r.stamp==self.views.views.stamp(&self.session.editor),"preview_only":r.preview,"occurrences":r.occurrences.iter().map(|(id,element,g)|serde_json::json!({"occurrence":id,"element":element,"geometry":g})).collect::<Vec<_>>(),"transitions":r.transitions,"endpoints":r.endpoints,"labels":r.labels,"overlapping_transitions":r.overlapping}))})
     }
 }
 fn accepted_present(s: &ty::Store, f: &Form) -> bool {
