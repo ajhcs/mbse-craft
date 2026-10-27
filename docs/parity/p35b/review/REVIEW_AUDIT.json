@@ -1,0 +1,17 @@
+{
+  "result": "pass_bounded_same_agent_isolated_review",
+  "candidate_commit": "1c72fcdbcc656097723451a5ababddae9c3344a5",
+  "base_commit": "42fea872f002b958f6455ce2e0c264c250842905",
+  "source_sha256": "9532f8f76ea2d023ee70f151c22b31f8de19ec62519bbf79c26a6dcd2b2bfb0d",
+  "source_files": 762,
+  "artifacts_verified": 83,
+  "whole_saved_snapshot_and_all_eight_maps_exact": true,
+  "cold_views_do_not_normalize_or_change_raw": true,
+  "available_prior_checkouts_unchanged": 96,
+  "user_removed_directories_heads_retained": 18,
+  "independent_review": false,
+  "new_compiler_or_native_runs": 0,
+  "production_source_changes": 0,
+  "limits": "Parametric accepted-type review only; existing Stage1 derived display remains separate. Native clipboard payload notread; actualGUI output test verifies payload. No parametric execution/currentraw/cycle/engineering/fullparity/platform/scale/production acceptance; all56specs/integratedexits remainopen.",
+  "checked_utc": "2026-10-27T12:43:18.095849+00:00"
+}

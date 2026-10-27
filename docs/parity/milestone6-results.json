@@ -232,7 +232,7 @@
     }
   },
   "p35": {
-    "state": "in_progress",
+    "state": "reviewed_ready_to_merge_bounded_contract",
     "base_commit": "e388d46d60d2c1fbf7f7cbca889d64b6804f91a7",
     "children": [
       "P35a",
@@ -256,7 +256,7 @@
       "merge_commit": "42fea872f002b958f6455ce2e0c264c250842905"
     },
     "p35b": {
-      "state": "draft_candidate_native_acceptance_complete_review_pending",
+      "state": "reviewed_ready_to_merge",
       "scope": "native specification/parameter/binding authoring, diagnostics/report and save/cold acceptance",
       "base_commit": "42fea872f002b958f6455ce2e0c264c250842905",
       "execution_results": "p35b/README.md",
@@ -267,7 +267,12 @@
       "native_controller_errors": 0,
       "evidence_artifacts": 83,
       "parametric_execution_performed": false,
-      "final_source_full_workspace_claim": false
+      "final_source_full_workspace_claim": false,
+      "pr_number": 53,
+      "review": "p35b/REVIEW.md",
+      "review_production_source_changes": 0,
+      "review_artifacts_recomputed": 83,
+      "review_available_prior_checkouts_unchanged": 96
     }
   }
 }
