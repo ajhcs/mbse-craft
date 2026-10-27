@@ -50,6 +50,7 @@ impl Execution {
         if !(1..=MAX_STEPS).contains(&step_budget) {
             return Err("ACTIVITY_EXECUTION_STEP_BUDGET_1_TO_4096".into());
         }
+        editor.snapshot.validate()?;
         let store = super::super::load(&editor.snapshot)?;
         let a = store
             .activities

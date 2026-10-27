@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m6-p31a-review-source-admission-repro-02",
+  "id": "m6-p31a-review-native-source-admission-fix-03",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/review-p31a",
   "source_manifest": "docs/parity/p31a/review/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "4465df5017f3ac5eedf537b03b0bbc81f7692895c7548eeeabc94db4f8c7a976",
-  "source_sha256": "dc919531d7c6b24e0d997d476ca1f560368f9076758dd384164a210d67696bcb",
+  "source_manifest_sha256": "ca8b80f056473854b06115500e1477da7bd679f5fbb820cb1bba300d0794975c",
+  "source_sha256": "7658979103b5011e553237983c4cde37e7d90da37c5b58945224156c98d66438",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -26,12 +26,22 @@
       "--offline",
       "-p",
       "mbse-model",
-      "finite_activity_start_refuses_invalid_native_source_even_if_type_store_parses",
+      "--test",
+      "activity_execution",
       "--",
       "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
     ]
   ],
-  "rationale": "Review F01 reproduction: read accepted Store does not validate native source; public Editor snapshot can lose System while typed activity still parses. Explicit start must refuse before any live trace. Single reproducer only.",
+  "rationale": "Review F01 fixed: full Snapshot.validate before reading typed activity freezes native source/reference/namespace authority. All8 affected finite execution cases plus desktop build; prior full627 successes retained without unrelated replay.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",
