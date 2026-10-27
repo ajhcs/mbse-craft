@@ -256,7 +256,34 @@ mod tests {
         .drop_without_applying_deltas();
     }
     fn click(w: &mut AssuranceWorkspace, e: &Editor, ctx: &egui::Context, key: &str) {
+        for _ in 0..3 {
+            render(w, e, ctx, vec![]);
+        }
+        for _ in 0..20 {
+            let r = w.audit[key];
+            if r[2] > r[0] && r[3] > r[1] && r[1] >= 0. && r[3] <= 1600. {
+                break;
+            }
+            let delta = if r[3] < 200. { 240. } else { -240. };
+            render(
+                w,
+                e,
+                ctx,
+                vec![
+                    egui::Event::PointerMoved(egui::pos2(160., 650.)),
+                    egui::Event::MouseWheel {
+                        unit: egui::MouseWheelUnit::Point,
+                        delta: egui::vec2(0., delta),
+                        modifiers: egui::Modifiers::NONE,
+                    },
+                ],
+            );
+        }
         let r = w.audit[key];
+        assert!(
+            r[2] > r[0] && r[3] > r[1],
+            "clipped test widget {key}: {r:?}"
+        );
         let pos = egui::pos2((r[0] + r[2]) / 2., (r[1] + r[3]) / 2.);
         for pressed in [true, false] {
             render(
