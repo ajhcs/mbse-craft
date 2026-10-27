@@ -58,7 +58,7 @@
       "P31b"
     ],
     "p31a": {
-      "state": "reviewed_ready_for_merge",
+      "state": "merged",
       "scope": "finite control execution core and independent fixed trace fixtures",
       "execution_results": "p31a/README.md",
       "distinct_case_inventory": 628,
@@ -68,11 +68,13 @@
       "review": "p31a/REVIEW.md",
       "review_affected_cases": 8,
       "final_source_full_workspace_claim": false,
-      "review_source_sha256": "7658979103b5011e553237983c4cde37e7d90da37c5b58945224156c98d66438"
+      "review_source_sha256": "7658979103b5011e553237983c4cde37e7d90da37c5b58945224156c98d66438",
+      "merge_commit": "e26b38a45238d42e1dfb88e4e3127c44514025bc"
     },
     "p31b": {
-      "state": "planned",
-      "scope": "native explicit execution controls, status/trace/staleness/cancellation acceptance"
+      "state": "in_progress",
+      "scope": "native explicit execution controls, status/trace/staleness/cancellation acceptance",
+      "base_commit": "e26b38a45238d42e1dfb88e4e3127c44514025bc"
     }
   }
 }

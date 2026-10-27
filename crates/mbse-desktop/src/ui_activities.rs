@@ -40,6 +40,7 @@ pub(super) struct Rendered {
 }
 #[derive(Default)]
 pub(super) struct ActivityPanel {
+    pub execution: super::activity_execution::Panel,
     pub open: bool,
     pub activity: Option<Id>,
     pub current: Option<Form>,
@@ -81,6 +82,7 @@ impl Workspace {
     }
     pub(super) fn activity_frame_start(&mut self) {
         self.activities.rendered = None;
+        self.activity_execution_tick();
     }
     pub(super) fn activity_gesture_active(&self) -> bool {
         self.activities.drag.is_some()
@@ -89,6 +91,12 @@ impl Workspace {
         self.activities.pending.is_some()
     }
     pub(super) fn activity_close_blocked(&mut self) -> bool {
+        if self.activity_execution_active() {
+            self.activities.open = true;
+            self.activities.note = "Cancel the prepared or running execution before closing.".into();
+            self.activities.execution.note = self.activities.note.clone();
+            return true;
+        }
         if self.activities.pending.is_some() {
             self.activities.open = true;
             self.activities.note="New text is retained in this window. Admit it, copy it, or explicitly discard it before closing.".into();
@@ -106,7 +114,8 @@ impl Workspace {
         }
     }
     pub(super) fn activity_ready(&self) -> bool {
-        !self.dock_blocked_without_activity()
+        !self.activity_execution_automatic()
+            && !self.dock_blocked_without_activity()
             && self.session.editor.snapshot.extensions.is_some()
             && ty::load(&self.session.editor.snapshot).is_ok()
             && af::load(&self.session.editor.snapshot).is_ok()
@@ -347,6 +356,7 @@ impl Workspace {
                                 self.activities.activity = None;
                             }
                         }
+                        self.activity_execution_ui(ui, false);
                         let r = ui.button("Close activity editor");
                         self.bound("activity:Close", &r);
                         if r.clicked() && !self.activity_close_blocked() {
@@ -420,6 +430,7 @@ impl Workspace {
   });
   ui.horizontal_wrapped(|ui|{ui.label("Global model history");for(redo,label)in[(false,"Model Undo"),(true,"Model Redo")]{let enabled=if redo{self.session.editor.can_redo()}else{self.session.editor.can_undo()};let r=ui.add_enabled(ready&&admitted&&!edited&&enabled,egui::Button::new(label));self.bound(format!("activity:{label}"),&r);if r.clicked(){history=Some(redo);}}if let Some(a)=self.activities.activity{let r=ui.add_enabled(ready&&admitted&&!edited&&store.activities.contains_key(&a),egui::Button::new("Create independent diagram"));self.bound("activity:Create diagram",&r);if r.clicked(){create=Some(a);}}});
   if self.activities.pending.is_some(){ui.colored_label(ERROR,"New text is retained only in this window.");ui.horizontal(|ui|{let r=ui.button("Copy retained new proposal");self.bound("activity:Copy new text",&r);if r.clicked(){ctx.copy_text(serde_json::to_string_pretty(&form).expect("proposal serializes"));}let r=ui.button("Discard unadmitted new text");self.bound("activity:Discard new text",&r);discard_pending=r.clicked();});}
+  self.activity_execution_ui(ui, ready && admitted && !edited);
   ui.label(&self.activities.note);ui.separator();ui.heading("Accepted data");if accepted_present(&store,&form){ui.label(accepted_text(&store,&form));}else{ui.label("No accepted object in this slot. Unfinished proposals remain separate; missing IDs are not rebound.");}if let Some(a)=self.activities.activity.and_then(|id|store.activities.get(&id)){ui.label(format!("Activity #{} · {} · System #{} · {} partitions · {} nodes · {} pins · {} flows",a.id.0,a.name,a.system.0,a.partitions.len(),a.nodes.len(),a.pins.len(),a.flows.len()));for d in ac::diagnostics(&store,a.id).unwrap_or_default(){ui.label(format!("{}: {}",d.code,d.message));}}
   let r=ui.button("Close activity editor");self.bound("activity:Close",&r);close=r.clicked();
  });
@@ -491,7 +502,7 @@ impl Workspace {
             }
         }
         if close || !open {
-            if self.activities.pending.is_some() {
+            if self.activities.pending.is_some() || self.activity_execution_active() {
                 self.activity_close_blocked();
             } else {
                 self.activities.open = false;
@@ -521,7 +532,7 @@ impl Workspace {
                         .unwrap_or_else(|| f.clone())
                 })
             });
-        serde_json::json!({"open":self.activities.open,"owner_current":owner_current,"activity":self.activities.activity,"current":current,"form_admitted":self.activities.pending.is_none(),"note":self.activities.note,"accepted":ty::load(&self.session.editor.snapshot).ok().map(|s|s.activities),"proposals":forms,"gesture_active":self.activity_gesture_active(),"selected":self.activities.selected,"rendered":self.activities.rendered.as_ref().map(|r|serde_json::json!({"view":r.view,"current":r.view==self.views.active&&r.stamp==self.views.views.stamp(&self.session.editor),"preview_only":r.preview,"occurrences":r.occurrences.iter().map(|(id,element,geometry)|serde_json::json!({"occurrence":id,"element":element,"geometry":geometry})).collect::<Vec<_>>(),"flows":r.flows,"endpoints":r.endpoints,"overlapping_flows":r.overlapping_flows}))})
+        serde_json::json!({"execution":self.activity_execution_audit(),"open":self.activities.open,"owner_current":owner_current,"activity":self.activities.activity,"current":current,"form_admitted":self.activities.pending.is_none(),"note":self.activities.note,"accepted":ty::load(&self.session.editor.snapshot).ok().map(|s|s.activities),"proposals":forms,"gesture_active":self.activity_gesture_active(),"selected":self.activities.selected,"rendered":self.activities.rendered.as_ref().map(|r|serde_json::json!({"view":r.view,"current":r.view==self.views.active&&r.stamp==self.views.views.stamp(&self.session.editor),"preview_only":r.preview,"occurrences":r.occurrences.iter().map(|(id,element,geometry)|serde_json::json!({"occurrence":id,"element":element,"geometry":geometry})).collect::<Vec<_>>(),"flows":r.flows,"endpoints":r.endpoints,"overlapping_flows":r.overlapping_flows}))})
     }
 }
 pub(super) fn guard_text(guard: Option<ac::Guard>) -> String {

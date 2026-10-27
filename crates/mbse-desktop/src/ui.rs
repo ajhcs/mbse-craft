@@ -15,6 +15,8 @@ mod relation_matrix;
 mod viewpoint_editor;
 #[path="ui_activities.rs"]
 mod activity_editor;
+#[path="ui_activity_execution.rs"]
+mod activity_execution;
 #[path="ui_activity_canvas.rs"]
 mod activity_canvas;
 #[path="ui_validation.rs"]
@@ -1983,7 +1985,7 @@ impl eframe::App for Workspace {
         }
         let now = Instant::now();
         let interval = Duration::from_secs(self.preferences.value.recovery_interval_seconds);
-        let navigation_pending=self.pending.is_some()||self.activity_gesture_active();
+        let navigation_pending=self.pending.is_some()||self.activity_gesture_active()||self.activity_execution_automatic();
         if self.periodic_recovery.due(
             now,
             self.preferences.value.periodic_recovery,
