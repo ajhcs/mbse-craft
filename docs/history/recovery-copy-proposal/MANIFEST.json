@@ -1,0 +1,33 @@
+{
+  "status": "historical source-only proposals; not acceptance",
+  "files": [
+    {
+      "file": "PROPOSED-VECTORS.json",
+      "original_path": "docs/continuation-m2b02/PROPOSED-VECTORS.json",
+      "commit": "9304395e8473e15af20612aabd56e0d1d1d1e92d",
+      "bytes": 2449,
+      "sha256": "d56d8bc275ce3845da96bea96178c11fe6d2b65a1764c4d24f6d3b4d283aae3a"
+    },
+    {
+      "file": "RECOVERY-PRESENTATION-COPY-CONTRACT.md",
+      "original_path": "docs/continuation-m2b02/RECOVERY-PRESENTATION-COPY-CONTRACT.md",
+      "commit": "9304395e8473e15af20612aabd56e0d1d1d1e92d",
+      "bytes": 6316,
+      "sha256": "e5165f222cdda901bc350a8b85b121518f23ba5da56ea1f3ee6e4aa8d82669b6"
+    },
+    {
+      "file": "RECONCILIATION-09DF25D.md",
+      "original_path": "docs/continuation-m2b02/RECONCILIATION-09DF25D.md",
+      "commit": "57ba816c9c0cb0f5be331107f5f011117f645823",
+      "bytes": 5089,
+      "sha256": "af82e6938e32031bf8117534b375e0fb2bd57a26f34629d3877df1683fb3fd7d"
+    },
+    {
+      "file": "SUPPLEMENTAL-VECTORS-09DF25D.json",
+      "original_path": "docs/continuation-m2b02/SUPPLEMENTAL-VECTORS-09DF25D.json",
+      "commit": "57ba816c9c0cb0f5be331107f5f011117f645823",
+      "bytes": 1937,
+      "sha256": "cb66b312ce7202a26a59e050266f74ae1b85ea6813ddc81b36dc6630e83b8bc8"
+    }
+  ]
+}

@@ -4,17 +4,17 @@ MBSE-Craft is an experimental native Rust workbench. Start with the [roadmap](do
 
 ## Choose the development base
 
-Until PR #1 is merged, clone `implementation/native-alpha`. After that promotion, clone `main`. Do not start from the current skeleton `main`.
+PR #1 is merged and the repository is public. Clone or fork current `main`; it contains the reviewed work through P39. Retained implementation/review branches and older lane branches are history and provenance references.
 
 ```bash
-git clone --branch implementation/native-alpha https://github.com/ajhcs/mbse-craft.git /workspace/repos/mbse-craft-contributor
+git clone https://github.com/ajhcs/mbse-craft.git /workspace/repos/mbse-craft-contributor
 cd /workspace/repos/mbse-craft-contributor
 git worktree add /workspace/worktrees/mbse-craft-my-change -b codex/my-change HEAD
 ```
 
-Choose unused paths. On BuilderBob, verify the Samsung `/workspace` with `bob-admin workspace-status` before creating working data. Keep the canonical checkout and other worktrees untouched. Follow [AGENTS.md](AGENTS.md); one integrator owns the integration branch. Before public visibility is enabled, cloning requires existing repository access.
+Choose unused paths. On BuilderBob, verify the Samsung `/workspace` with `bob-admin workspace-status` before creating working data. Keep the canonical checkout and other worktrees untouched. Follow [AGENTS.md](AGENTS.md); one integrator owns the integration branch. Use current remote `main` as the base of each new contribution.
 
-For an external contribution after publication, fork the repository, make a focused branch from the current integration base and open a draft PR. Coordinate a roadmap position or a small defect first so two people do not replace the same implementation. No separate model, calculation or persistence authority should be introduced to duplicate existing contracts.
+For an external contribution, fork the repository, make a focused branch from the current integration base and open a draft PR. Coordinate a roadmap position or a small defect first so two people do not replace the same implementation. No separate model, calculation or persistence authority should be introduced to duplicate existing contracts.
 
 ## Build and verify
 

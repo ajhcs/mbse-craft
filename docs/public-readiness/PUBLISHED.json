@@ -1,0 +1,9 @@
+{
+  "anonymous_repository_read": "PASS",
+  "repository": "ajhcs/mbse-craft",
+  "private": false,
+  "default_branch": "main",
+  "promotion_merge": "de65951c24f3a8d7db779d75fa5c0ee3d076d5e0",
+  "retained_integration": "614475c2967b27dba890ba260aa641442b3a789e",
+  "documentation_secret_scan_findings": 0
+}

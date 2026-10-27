@@ -1,0 +1,44 @@
+{
+  "profile": "mbse-craft.presentation-copy-reconciliation/0.1-draft",
+  "status": "ProposedNotImplementedNotRun",
+  "qualified_source_pin": "09df25de9fdff9e2c68e1c931b2155f08049254c",
+  "original_proposal": "9304395e8473e15af20612aabd56e0d1d1d1e92d",
+  "vectors": [
+    {
+      "id": "RC-R2-S",
+      "case": "Source preview replaced with equal wire IDs/revision",
+      "expected": "Old preview token refuses apply; source bytes/target/history/highwater unchanged.",
+      "status": "UNRUN"
+    },
+    {
+      "id": "RC-R2-T",
+      "case": "Target Views replaced with equal sidecar_id/revision but other geometry/record",
+      "expected": "Private runtime origin mismatch refuses copy before allocator/history/state commit; no retarget.",
+      "status": "UNRUN"
+    },
+    {
+      "id": "RC-R3-P",
+      "case": "Copy applied as permitted newer layout during paired save",
+      "expected": "Frozen pair ticket/destination/kind/prior ownership unchanged; old ACK leaves copied view dirty; stale native completion cannot clear a newer pair.",
+      "status": "UNRUN"
+    },
+    {
+      "id": "RC-BUDGET",
+      "case": "Preview+provenance+skip-report aggregate budget",
+      "expected": "Account before clone/allocation; refuse atomically including detached/skipped items; no RSS claim.",
+      "status": "UNRUN"
+    },
+    {
+      "id": "RC-AUTO-01",
+      "case": "Layout-only periodic scheduler eligibility",
+      "expected": "Future controlled-clock test proves exactly one recovery for eligible dirty generation, no launch while disabled or native/pair/views pending.",
+      "status": "UNRUN"
+    },
+    {
+      "id": "RC-AUTO-02",
+      "case": "Stale or foreign-origin recovery ACK / changed recovery file",
+      "expected": "Future actual bounded file/controller tests keep newer generation dirty and refuse navigation on missing/truncated/tampered artifact; native Save unchanged.",
+      "status": "UNRUN"
+    }
+  ]
+}

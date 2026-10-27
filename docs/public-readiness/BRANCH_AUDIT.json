@@ -1,0 +1,1423 @@
+{
+  "main": "de65951c24f3a8d7db779d75fa5c0ee3d076d5e0",
+  "refs": [
+    {
+      "ref": "codex/m1-p03-views",
+      "head": "486a95b156ed4619123633703a6d25833cb865b5",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m1-p04-recovery",
+      "head": "73b2c8df938a7fdda65fc056aa8ad727a83bc1ee",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m1-p05-navigation",
+      "head": "c815d0a364e120c5f97bb70bddf597be7820403d",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m1-p06-occurrence",
+      "head": "6b1288ee3c5d267fb7c46bad58d36525bfd95c0d",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m2-p07-copy-format",
+      "head": "c4a9e3945ab16db108de73b42af4def87b9e19de",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m2-p08-live-copy",
+      "head": "d64c9c9690208dcc3dc1f1de73b05a6a04f22b67",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m3-p09-command-catalog",
+      "head": "0926aed84ab18d13196b0d9ea87ff8d4f7a33521",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m3-p10-scoped-shortcuts",
+      "head": "b300919dc7de3774a9809a133910d1c74f6b97a0",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m3-p11-transactional-docking",
+      "head": "e1aefde4a1222ae4dcd50072b39e9fcade39e347",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m3-p12-workspace-perspectives",
+      "head": "943f15327dd65b7dc9da7288847b75d1f436b21d",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m3-p13-dialogs-progress",
+      "head": "091b33b13a4d153736c8d0550a8ebbe17fedeb41",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m4-p14-extension-schema",
+      "head": "a8ab8d64bf455f01587d8dab0778fd9ca7441179",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m4-p15-types-properties",
+      "head": "7b37c37e253597bc80c8be2f3e590cc5f49a26ab",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m4-p16-parts-references",
+      "head": "3fc2087636f55396bbf49f5e17b78dfab2087c89",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m4-p17a-ports-interfaces",
+      "head": "c6d2dc0a92c541839c8bbedf5b6c895e795d8d97",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m4-p17b-port-occurrences",
+      "head": "2a3d087c95457d8c726567763075e08dabc50f35",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m4-p18a-connectors",
+      "head": "772cc15877409af1582bd06c42480489dabd20f1",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m4-p18b-connector-routes",
+      "head": "bc5c08f57fcc60598db1b2cdedb2f4d7f2f5f270",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m4-p19-values",
+      "head": "209ebc1a0bb88a225b8b6c0035e823477966e905",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m4-p20-clone-move",
+      "head": "5ffefa66eecac34ea96d683008ddf8cac919da2a",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m4-p21a-typed-deletion",
+      "head": "0c7aa9e328c4ab3c60522f48d5d5777377dacb40",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m4-p21b-native-deletion",
+      "head": "21b793906bcbead97d1736c726708da6347d30c8",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m4-p22-profile-tags",
+      "head": "e8854668c6e741a33c99bede3ef3a824c85b3d61",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m5-p23-requirement-hierarchy",
+      "head": "215a34939fc6b8ca5461f6eb17cf60836e94d9cc",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m5-p24-requirement-traces",
+      "head": "4a3e98e4e27d448117c1d1bfabf24875436a1958",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m5-p25-coverage-impact",
+      "head": "5382e828cdf82c97e69019b3e3b3369ff288b031",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m5-p26-validation-suites",
+      "head": "ae4e126c8351ca1ad4a43a697999eee933798e69",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m5-p26b-validation-navigation",
+      "head": "8f808edeb1e1731a36a438cf99eb2e418a945669",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m5-p27-reviewed-rules",
+      "head": "0aea1a1b7eb172c398932ea631d08061d2fd072e",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m5-p27b-native-fixes",
+      "head": "86f0f1d2efdd1978e3e3d0053c8146338e099b75",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m5-p28-relation-matrix",
+      "head": "a3e14aa7b5fafcb6d16d86c31e02fe49d8600728",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m5-p29-viewpoints",
+      "head": "70ccda34c03dee68cc3ba22277b7a3984e6a2e2d",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m5-p29b-native-viewpoints",
+      "head": "51123db1ebf4c18b3f557a4671ce458482a7521d",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m6-p30a-activity-core",
+      "head": "c1dc9901a5de79567f2240ca2e3d86b19be13c5d",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m6-p30b-activity-forms-views",
+      "head": "8c02a354f94ae478fc5591ec2a3bf35058e0b546",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m6-p30c-native-activities",
+      "head": "48b620ea8be9f1a15323b510389543ef7ad31732",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m6-p31-activity-execution",
+      "head": "7c947f8fd10bfe1619b5a29ce27c3c76a57a11b0",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m6-p31b-native-execution",
+      "head": "026ba3b4e6fe329cf383ad03b92657ed4b714ce0",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m6-p32a-state-machine-core",
+      "head": "a99a03c3f67cbfcc98dc15decfc56910358dfeb5",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m6-p32b-state-machine-views",
+      "head": "e9ce684fb6a0d6992101ef53ba6f894c4f534fe7",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m6-p32c-native-state-machines",
+      "head": "38ba8f5e6b3580dcf4f3d2a76077205fe1598bb1",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m6-p33a-state-execution",
+      "head": "53a70b18b0da0e4811d7eb29a2dddd9e8042918d",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m6-p33b-native-state-execution",
+      "head": "7f3830c74de85c15732cb947250e643001504a2c",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m6-p34a-scenario-core",
+      "head": "de9a90d31725b0ce2928c3c7c0f01d1ec1ccb35c",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m6-p34b-sequence-views",
+      "head": "16e9e7ef3ec0103a07a4eb4c797e4e3c378dda99",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m6-p34c-native-scenarios",
+      "head": "d428bb8bf03d33d08ab44245dc422d502c27c627",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m6-p35a-parametric-core",
+      "head": "50ab1aed4fc93b76d6891ad71622c8f6cecb2035",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m6-p35b-native-parametrics",
+      "head": "1c72fcdbcc656097723451a5ababddae9c3344a5",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m6-p36a-parametric-analysis",
+      "head": "b357c3fd9bf9923a31ddda4e47d919e29c9b8c53",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m6-p36b-native-analysis",
+      "head": "853413f6c0f7ce462b79d2c20c144d27447caba3",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m6-p37a-scoped-metrics",
+      "head": "329c599fde948aa4dec7e4088b440b2c100bc1e0",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m6-p37b-native-metrics",
+      "head": "6ccd5f0682d6945b5abeb41102f7890d06e2b5cf",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m7-p38a-project-sets",
+      "head": "2458e7d7e499a9a22fc7aaab1b9fd04e13c926a1",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m7-p38b-native-project-sets",
+      "head": "3574d81762d85fc1911f739fedd882ecc3e2f99f",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m7-p39a-editable-subset",
+      "head": "a7bee15d199b2c98c1ae091572a76cfc0e3786ef",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m7-p39b-source-adapter",
+      "head": "80a0bfdd5c6c21ab775108dd8b5e8b1c22ee35b0",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/m7-p39c-native-source-import",
+      "head": "7bab104b657eaa9edeafeac06e276b371ba77e65",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/main-consolidation",
+      "head": "de65951c24f3a8d7db779d75fa5c0ee3d076d5e0",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/p02-readiness",
+      "head": "7f3cbfb8fb8976fcf563eae5ffd10d02f5b2f910",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/parity-matrix",
+      "head": "725e28c1c852429449a5f7303ba981db66f775fc",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/public-contributor-handoff",
+      "head": "91f41b1df8090d822dea67e46e04440ddab9ff12",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-m1-pr4-9",
+      "head": "42f710db71080d4ef640451eb9134c531b1a36a0",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-native-retry",
+      "head": "bfbe0f1ad361739fd14d728d93db3b9527c76b0a",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p07",
+      "head": "7c69915d441cb3a507cf169bae7c46088037b913",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p08",
+      "head": "85c9098c5f2e3f98713da10fe53926a42ffe0020",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p09",
+      "head": "5b661f8ff87ce708c9b313266c68d51dba7e282d",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p10",
+      "head": "95aaedca0ec5f50a881e4c1e43c320d2ad3f02c2",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p11",
+      "head": "e778caee4f8e1a5e10fe6ac11fdeaa23855ec681",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p12",
+      "head": "b17e58ee15046f26964f36b49a6bea507039bc36",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p13",
+      "head": "b935162b11bbf18e8844b2091386748965026849",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p14",
+      "head": "23c19b26dab509ba3c7d9308a1b626452434d47d",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p15",
+      "head": "4ff8d31fd8e64ad343ab2b01bd63018a76c2e324",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p16",
+      "head": "0a364869a135fe1dcd623e1ed19c07258111e7ed",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p17a",
+      "head": "fe594f15c8bac4b30af2e2dab6fad8b81fac9881",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p17b",
+      "head": "b71f07bcee9ce8f65f1f8f929c095c3aef9baf11",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p18a",
+      "head": "61cdef9016b4ca844292a8c69fe61bed92d44dfb",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p18b",
+      "head": "10dda0a6bbe9e6b9c11c8a0076ebb114c7dde53d",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p19",
+      "head": "98b3f49b4ac3d3f4310e163befab4513cef8c2f6",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p20",
+      "head": "245093aaa814d1f0175baecc4889d893a194e899",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p21a",
+      "head": "cab716dcd5e67c090fc31a25fab0bee0b4e935d7",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p21b",
+      "head": "9ec83dd483610fcdbe43c78d62cd809b50fc9c26",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p22",
+      "head": "23bb4a288c599b79cf018416b6f200f7c7655a54",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p23",
+      "head": "431982cdf7e05e5acb5a4ecb38813698f58387f5",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p24",
+      "head": "672fe026a6827f241efb3da05eca10632aaf5920",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p25",
+      "head": "075aa169b130eb85d6b30da2277781c275667c03",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p26a",
+      "head": "348afce0cf8797e39bf663faf616a8d67c97a230",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p26b",
+      "head": "8f15781acea7182494c9be25d6802434c7d3b947",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p27a",
+      "head": "51aa253c72a613b43568dc3a77244df0f10e9ebd",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p27b",
+      "head": "49d1230cb2d2423190950818b2dbf3f59b54390e",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p28",
+      "head": "e70e62b7648f4da0879b97c858d174663a3b8c76",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p29a",
+      "head": "66e95e84b117d38a074761d357d8ca18a16cfec0",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p29b",
+      "head": "e8be2ad63ff1eb593c5edfdc2b7ca67ab40827c3",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p30a",
+      "head": "1753cf1e467086f9c13cecc9b5d42963d52b671c",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p30b",
+      "head": "2723cdebb036cc3e2f34684792479b6722685072",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p30c",
+      "head": "0f86b7666d8cb2688fac7f2d76c8dc3d037725f5",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p31a",
+      "head": "ee3b89c92ab7ffa6040f05d2c2377d954bfce8fd",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p31b",
+      "head": "f2545fd52f8d457d45904fa0091555aa853ae13d",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p32a",
+      "head": "ce9b57fc72bc4e4480ed60606d6ee4e93f9bdd93",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p32b",
+      "head": "a5528d99b32fe1964bf054ab593895cb77085d09",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p32c",
+      "head": "279f0eb8ed965842946ec531bb482437b7695041",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p33a",
+      "head": "e01e45c9c63af00a42c40ff4693eb2f889a42c9b",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p33b",
+      "head": "381c27a6adaf3302a8d4b2365e3153e1bc2d92da",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p34a",
+      "head": "0d1ee114eb7401ff7db3fa5cb5f36c94b372b642",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p34b",
+      "head": "16e8da09855a12d4f01c6db4844f57307d50b2d9",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p34c",
+      "head": "9647b842c68de23f528719b1c05dfe18e8984590",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p35a",
+      "head": "0a2a3087f493fa47f8a0d5d605db45e3b539d0b6",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p35b",
+      "head": "a39e24f470ca5f5d88da88a6521cbfac02c6f3b1",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p36a",
+      "head": "4410173d2d774dd3a00fd43d8becc5086baebc12",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p36b",
+      "head": "db5ccf50bcce4172ccc6963816e7e186d4c76790",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p37a",
+      "head": "981c1e1b253e59d55507038e8aa74d9c10656a2e",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p37b",
+      "head": "e3cb0e38cf8e00e4156ce5e12a4bdde1bf1852db",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p38a",
+      "head": "c50f425038ba8d33ed1acde3905e438fc515e948",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p38b",
+      "head": "2362731a9bd5fa2ca8a74c06452b6387e378c218",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p39a",
+      "head": "feea358260ba1381881ded76121eab493a0a177f",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p39b",
+      "head": "5b4e73aa3612231d0ae4f68bd0e7a7c536f7d1cd",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-p39c",
+      "head": "086f654edf3f85cd296166bb756dfbf3f09d2a04",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "codex/review-public-handoff",
+      "head": "936a52b0cada8b5bfe7cb094aea01df758b1102a",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "feature/layout-periodic-recovery",
+      "head": "a0079d5232996e9e6350f5bae71138a9b2d276ed",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "feature/native-camera-controls",
+      "head": "b5e7d2c437748a2334fd4f0c3881ee1c501ba076",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "feature/native-find-usages",
+      "head": "9196d702e8a3ac6cea668621903614a211a0dbca",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "feature/native-occurrence-navigation",
+      "head": "7cb7876ee182872d1a2bf41f5b7707c9a04e04a0",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "feature/native-record-impact",
+      "head": "a985205ca8a77c5f051dadc71ae2d83c1470a4ee",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "feature/native-scoped-search",
+      "head": "643f97bb6e84325d77fb924543784a8733eb7b22",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "feature/native-system-browser",
+      "head": "cb58e13881231139f493eb5f0415427d02bf91d1",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "feature/native-views-m2b01",
+      "head": "eb80c0caa2ef40ea3c4798b0c97df7c69f655049",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "feature/recovery-layout-mapping",
+      "head": "7308d2ba00a98f2ed5f0a830e13b58b2420a50fe",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "feature/recovery-layout-preview",
+      "head": "358443099827c854b023194383add51c520ea01e",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "fix/views-origin-paired-save",
+      "head": "557ee47e0bb7237a5064c8e51718506431f8f825",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "fix/views-replacement-guard",
+      "head": "32cd156f34d9496acf931b5543f4b40c42c8e240",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "implementation/native-alpha",
+      "head": "53133f6ac228fac885767a5d9f1165a8db5d139b",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "integration/compatibility-m1",
+      "head": "e6892509205aedb11fd4e206978593c56c7e55d2",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "integration/paired-fork-m2",
+      "head": "58334e2fb778d5bb42b8acf0e61dc372c8a1cdf2",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "integration/semantic-v2-m2",
+      "head": "5b907c333d423df60de7d539da2a0900941825aa",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "lane/fork-m2",
+      "head": "43801badee4cd6524d516f65121e64a26c958c21",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "43801badee4cd6524d516f65121e64a26c958c21"
+      ],
+      "patch_distinct_commits": []
+    },
+    {
+      "ref": "lane/model",
+      "head": "9f639f96b7bef23f9284202deaac9c883ed6aadb",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "56f5fbfd2cdb479105a14981c81512c6cdb79568",
+        "9f639f96b7bef23f9284202deaac9c883ed6aadb"
+      ],
+      "patch_distinct_commits": []
+    },
+    {
+      "ref": "lane/model-m1",
+      "head": "688d303eaaec5422d6893317fbc8c0130cc86717",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "0a9ec8211a4cad569c4e68cc6cd133b904fd8a28",
+        "032bcdcccba0ee0242ea0911508d938b67809c25",
+        "3cf51c557652b1145ef47516c86d02b7c1ba4e6e",
+        "3c644a52b6bc924e23c032d2d7f0bf5bb108db57",
+        "883d80a38b7d140e12fffa82994b2f89f63c9c58",
+        "ab00498565b3f2aa1ee306e4dc63500f40019a50",
+        "4f8b3f4f13d21e0cfd2990002b8bcb5ebc497db9",
+        "f1013b71f4b4f2c1411ef3cd759187c26eb6882c",
+        "08d0552d628252b5568b42917e19fec1336b559e",
+        "9d4463bf1f52f6388fecad092eebfe4f29e358e0",
+        "e55dc2aac5c354a9b3e2022710a55b50949236d9",
+        "281a06d9b85862178a39573474dcfed74e6e920b",
+        "c48724049fa6e4381c8128d8e1fbcd68d453a5f3",
+        "688d303eaaec5422d6893317fbc8c0130cc86717"
+      ],
+      "patch_distinct_commits": [
+        "aff430729bf668c83d717bcb0631be8441f04764",
+        "d0d0e5f3081be0680459d209b6f963d150f6d95b"
+      ]
+    },
+    {
+      "ref": "lane/model-m2",
+      "head": "b9769021512b7e35a6d2b467dc8b9e4e4a03912b",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "be0200388d208a3225e22e5f4b22f37094d6f61e",
+        "5813bb801d25aa6d757bf1d7c82cfbf27a707778",
+        "9c27c0fb4b998c12bbd90a33b459ca935306d4e4",
+        "c87d3e95d80ce80c092490e73108a6595a0492d5",
+        "c211f7c6b2a12567374ab13edb17396263aaef97",
+        "e28a0154d927c77ba87213c0360706141e92aaf4",
+        "de74b4ed44dea4626b9d7c88d6d58faea1df4bf9",
+        "b9769021512b7e35a6d2b467dc8b9e4e4a03912b"
+      ],
+      "patch_distinct_commits": []
+    },
+    {
+      "ref": "lane/research",
+      "head": "75fc52c9bd885e857ea11df9445f30fa7c923508",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "dffb942be356cf614f071247dd3e6bebee99bfa4",
+        "75fc52c9bd885e857ea11df9445f30fa7c923508"
+      ],
+      "patch_distinct_commits": []
+    },
+    {
+      "ref": "lane/research-m1",
+      "head": "cb538d25b66225abc76ad481757912c73fdb7d3a",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "07a4c65f5e835616b4b47189133df4d1f566e948",
+        "cb538d25b66225abc76ad481757912c73fdb7d3a"
+      ],
+      "patch_distinct_commits": []
+    },
+    {
+      "ref": "lane/ui",
+      "head": "89609ba9f4e45b44db3e4eebb366c65c4658cd74",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "4773155c521c140cbdb17b8655f52452ff78ca3b",
+        "174233cdeee792787be4a5d0d2ea3c9d378e5f72",
+        "bbe219dd656d1086cc68fb19a482b727d6f6a4f9",
+        "c67f3134bd4609c0fe35652f89d79b6ba1c6211d",
+        "e72584d5ea5afed974ead53026703db4be9abda8",
+        "a76eb565223213c3199aa924cbf6581c834d9049",
+        "4a869e3d5b6ad5713a7e1f71f9a2c8bcc5edcafe",
+        "02806c532aeeb351ffaa56d113e142f6d0e1ce3c",
+        "996ed735f74b10342242cfe968dd297d50e5a83b",
+        "89609ba9f4e45b44db3e4eebb366c65c4658cd74"
+      ],
+      "patch_distinct_commits": []
+    },
+    {
+      "ref": "lane/ui-assurance-labels",
+      "head": "1c831b19e4276770eca3eaacc91d11040d42c428",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "1c831b19e4276770eca3eaacc91d11040d42c428"
+      ],
+      "patch_distinct_commits": []
+    },
+    {
+      "ref": "lane/ui-exchange-close-audit",
+      "head": "4803c7b4c6c7d76b795a1922768c821091e595cd",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "6976f35a1ba3893290becd76810376ca0fa59e77",
+        "4803c7b4c6c7d76b795a1922768c821091e595cd"
+      ],
+      "patch_distinct_commits": []
+    },
+    {
+      "ref": "lane/ui-exchange-m2",
+      "head": "c43de2b31a4a52082ae849c7adb912537523029b",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "c43de2b31a4a52082ae849c7adb912537523029b"
+      ],
+      "patch_distinct_commits": []
+    },
+    {
+      "ref": "lane/ui-m1",
+      "head": "6012ee062678c9769c7730528c52ba2e90cbb88e",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "71ec244afe55ac556966f63747a94b65a36d5c2a",
+        "e2ee4a4960c16f9aa5f1848f7d755312567e2050",
+        "248984ee26dda8acf56b1b5499646d74666f2eb8",
+        "f4517720ae89a947c134a72e8776cade35ac8bb9",
+        "164e7182eba2131c860c0d7b459d51bd067f73dc",
+        "00289632b971cc7690529b1497227386b91174e6",
+        "5638f62485e1074c4195c2686a15747bf5193031",
+        "7744bcdeb93a1e550f4085fd2f3e3627e5e41b85",
+        "6012ee062678c9769c7730528c52ba2e90cbb88e"
+      ],
+      "patch_distinct_commits": []
+    },
+    {
+      "ref": "lane/ui-m1-preserved-6012ee0",
+      "head": "6012ee062678c9769c7730528c52ba2e90cbb88e",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "71ec244afe55ac556966f63747a94b65a36d5c2a",
+        "e2ee4a4960c16f9aa5f1848f7d755312567e2050",
+        "248984ee26dda8acf56b1b5499646d74666f2eb8",
+        "f4517720ae89a947c134a72e8776cade35ac8bb9",
+        "164e7182eba2131c860c0d7b459d51bd067f73dc",
+        "00289632b971cc7690529b1497227386b91174e6",
+        "5638f62485e1074c4195c2686a15747bf5193031",
+        "7744bcdeb93a1e550f4085fd2f3e3627e5e41b85",
+        "6012ee062678c9769c7730528c52ba2e90cbb88e"
+      ],
+      "patch_distinct_commits": []
+    },
+    {
+      "ref": "lane/ui-semantic-v2",
+      "head": "e965edaccfc08eb71a0352d55d20ed3b9679269d",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "ffcdd3b1cec397665c0a7304c0b4429705497161",
+        "bdf942db1079e460a8f01f7c2511d758b946d6d8",
+        "e965edaccfc08eb71a0352d55d20ed3b9679269d"
+      ],
+      "patch_distinct_commits": []
+    },
+    {
+      "ref": "lane/ui-source-name",
+      "head": "7df3b76800e0ab0eec1f407202875957fd684617",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "ffcdd3b1cec397665c0a7304c0b4429705497161",
+        "bdf942db1079e460a8f01f7c2511d758b946d6d8",
+        "e965edaccfc08eb71a0352d55d20ed3b9679269d",
+        "7df3b76800e0ab0eec1f407202875957fd684617"
+      ],
+      "patch_distinct_commits": []
+    },
+    {
+      "ref": "lane/verification",
+      "head": "b7c277f17c2146163daa55728c80ca3cbb512796",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "c1ba20d6dd5475a5bfeaa3bf2074ca9ddaa9b9ca",
+        "ffdbe2abba5d50b78c5192ffaeee26a1faded8a3",
+        "5a7939cfb77169340e7917f055731ddf8cb0ff6c",
+        "dfa3e90b97c2afc0ef38daad0b1fa2a74c13888f",
+        "c43e407f2c23785cb8a16a3d5ed04f6156012c2c",
+        "c444008a7163a4379bf5ac75428eacdd17ac1b2a",
+        "2fd57e84e02e711f58175bdcc8a32b8a542fe107",
+        "164739ea70b759fa31bff758f42e12dc3bf2c3af",
+        "dd7100f5231665c6851a0cec94dbe60f6e387b69",
+        "0a831f3e0bb2698ee504e0002ce6f61fe162d38e",
+        "beeb3be86c378c7047b795dbc40cf7846e9d5682",
+        "a8729f555260082c501afdb0629cf611c58ed2ad",
+        "18b21277a6640ad92b9daebd26fe2a304ed31d16",
+        "9284a7b6ec94c538f208c1af874cde6cd0cc3334",
+        "34d1610a20a25f12d9a5dea6b41d3abcdd020fd1",
+        "39ce8ca10f0f79eacb8acb982feb105cc7d86685",
+        "b7c277f17c2146163daa55728c80ca3cbb512796"
+      ],
+      "patch_distinct_commits": [
+        "4bea2fd29278fa64df3f877ac1e3f14bf18fe945"
+      ]
+    },
+    {
+      "ref": "lane/verification-m1",
+      "head": "f396cc7df5dda5eb28ad1b28f701b5d8b5c0789d",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "6a5cc97c9d5f50c02071bed7274a3b26e16c8875",
+        "1df2111855428e58062fe7bf8ac4743692a5e2f7",
+        "92c8f97fa28cdef208ba2d4d2d2b21fbd1e8bef2",
+        "58ce26c274400b10ca0ee661aa167e7de0866253",
+        "9adc9e99940f79380a53c753b188410dbc2de113",
+        "13fbcfd48662d9f75f3cdb0b56b3b84fa30d270f",
+        "4b9e1597003e8ee41021f2a0d09301220fb779de",
+        "7815502c1daa8140eb87a3b56a078421018593d3",
+        "18308da8ec09ae963eb4472e6171f967198b913a",
+        "f9d45db82e9e7a59a07780b4e3fa5178b93746c0",
+        "e37503145ac594521bff6a62f3c77e1ee7cd64b9",
+        "f396cc7df5dda5eb28ad1b28f701b5d8b5c0789d"
+      ],
+      "patch_distinct_commits": []
+    },
+    {
+      "ref": "lane/verification-m1-r10",
+      "head": "3e9343edb534ec9ec2763357666e1c5dde0412a5",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "3e9343edb534ec9ec2763357666e1c5dde0412a5"
+      ],
+      "patch_distinct_commits": []
+    },
+    {
+      "ref": "lane/verification-m1-r2",
+      "head": "d83ff9573e93081f3972a4de681322c85d0d4456",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "4c232f36a38e917b81c0effe47744a4747ccfcd6",
+        "13428f844f22fbe75c5aee53af8064d1cdde536c",
+        "61cf2206dc4bd5cdf4efc0b735ebfc9d370b5425",
+        "39a7bc1499750a08174758992f70d7987fa93b25",
+        "e1443d76c238195b4e7491c7df45f72a23fcc39e",
+        "43a9574bd20221fbf686b3cfd5b5be4f0e338253",
+        "319ad607aa6328b9d09dfa7e36eef4cc106dc777",
+        "b6904e9e6022c18f1605d0204f55e634f48618aa",
+        "c08b605fdb8c3571f1c26791060a93aac34552f1",
+        "127ba86c5a7163b29b9c38f4714d9dad6b6a4622",
+        "d83ff9573e93081f3972a4de681322c85d0d4456"
+      ],
+      "patch_distinct_commits": []
+    },
+    {
+      "ref": "lane/verification-m1-r3",
+      "head": "cf5af521215bffe371d6925e758e02ffa0f832b4",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "cf5af521215bffe371d6925e758e02ffa0f832b4"
+      ],
+      "patch_distinct_commits": []
+    },
+    {
+      "ref": "lane/verification-m1-r4",
+      "head": "b2d93ef44ef1be74fbfa9780f60ba59afef220b8",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "dcf275d51ddb18fad69cb6aefab212ff028a0723",
+        "95278c0afad10ee0d12090fec958533030300cd0",
+        "0152f3d2d1f26df68b723bb4555c489760af737d",
+        "b2d93ef44ef1be74fbfa9780f60ba59afef220b8"
+      ],
+      "patch_distinct_commits": []
+    },
+    {
+      "ref": "lane/verification-m1-r5",
+      "head": "579d2d84a64cff654aa5c1ce1ef0c5b5c425ed59",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "a20e9584257be9823f09130407c16cd24240153b",
+        "579d2d84a64cff654aa5c1ce1ef0c5b5c425ed59"
+      ],
+      "patch_distinct_commits": []
+    },
+    {
+      "ref": "lane/verification-m1-r6",
+      "head": "90897b8c7a308aa5da37bf1ba0e514a10db27a3c",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "lane/verification-m1-r7",
+      "head": "9bb1d7fceda15b89e49839ec67f738316f900483",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "lane/verification-m1-r8",
+      "head": "32794857b2d64626d6f1d7e28ff090a2aae23796",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "32794857b2d64626d6f1d7e28ff090a2aae23796"
+      ],
+      "patch_distinct_commits": []
+    },
+    {
+      "ref": "lane/verification-m1-r9",
+      "head": "69f002c9fa132786ef89d5bc602c0d6b67320732",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "b393ab8dc35b2d4ec6ebbe41f034ab3bd13ef1d0",
+        "69f002c9fa132786ef89d5bc602c0d6b67320732"
+      ],
+      "patch_distinct_commits": []
+    },
+    {
+      "ref": "lane/verification-paired-fork",
+      "head": "2e92087882554faca074bab0763bf4a5ed3dd8ac",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "cced8a3d851600d245ddf5570a127b2bdd25c078",
+        "06e6ff371d350825409f60c8193799c089d7d708",
+        "2e92087882554faca074bab0763bf4a5ed3dd8ac"
+      ],
+      "patch_distinct_commits": []
+    },
+    {
+      "ref": "lane/verification-semantic-v2",
+      "head": "4472751b76e57f1348d194fcf52207438178b132",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [
+        "ca03cd956fb6c5aad983cb9bd4e22ed9bc9b82c3",
+        "4472751b76e57f1348d194fcf52207438178b132"
+      ],
+      "patch_distinct_commits": []
+    },
+    {
+      "ref": "lane/verification-semantic-v2-r2",
+      "head": "6d2eeb6c1995ddfae860e493e1993747d7101bdb",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "lane/verification-semantic-v2-r3",
+      "head": "2bb258a5ba610ea9b03b2ed770224b08e354283e",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "main",
+      "head": "c922395b19e89bc8ac4c882e1ead8a93a87bb2fb",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "milestone/alpha-qualified-20261022",
+      "head": "53133f6ac228fac885767a5d9f1165a8db5d139b",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "milestone/m1-followup-36f4d1c",
+      "head": "36f4d1c3a230055be3a51fb12a4e556a1a88320c",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "milestone/m1-native-08aae61",
+      "head": "08aae61b3ecfdb67d02e1ddc6a63db01856b7014",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "milestone/m1-resource-c6e0d67",
+      "head": "c6e0d67e01adb1b76e08fa70b998330cf9677712",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "milestone/paired-native-0c2665b",
+      "head": "0c2665b1cf3e736c059a2fa11b2b81566979c4d5",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "plan/views-recovery-copy-contract",
+      "head": "57ba816c9c0cb0f5be331107f5f011117f645823",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [],
+      "patch_distinct_commits": [
+        "9304395e8473e15af20612aabd56e0d1d1d1e92d",
+        "57ba816c9c0cb0f5be331107f5f011117f645823"
+      ]
+    },
+    {
+      "ref": "origin/codex/m1-p03-views",
+      "head": "486a95b156ed4619123633703a6d25833cb865b5",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m1-p04-recovery",
+      "head": "73b2c8df938a7fdda65fc056aa8ad727a83bc1ee",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m1-p05-navigation",
+      "head": "c815d0a364e120c5f97bb70bddf597be7820403d",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m1-p06-occurrence",
+      "head": "ec0b6c3942472ddec9ae59d898693a103985581f",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m2-p07-copy-format",
+      "head": "7c69915d441cb3a507cf169bae7c46088037b913",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m2-p08-live-copy",
+      "head": "85c9098c5f2e3f98713da10fe53926a42ffe0020",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m3-p09-command-catalog",
+      "head": "5b661f8ff87ce708c9b313266c68d51dba7e282d",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m3-p10-scoped-shortcuts",
+      "head": "95aaedca0ec5f50a881e4c1e43c320d2ad3f02c2",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m3-p11-transactional-docking",
+      "head": "e778caee4f8e1a5e10fe6ac11fdeaa23855ec681",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m3-p12-workspace-perspectives",
+      "head": "b17e58ee15046f26964f36b49a6bea507039bc36",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m3-p13-dialogs-progress",
+      "head": "b935162b11bbf18e8844b2091386748965026849",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m4-p14-extension-schema",
+      "head": "23c19b26dab509ba3c7d9308a1b626452434d47d",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m4-p15-types-properties",
+      "head": "4ff8d31fd8e64ad343ab2b01bd63018a76c2e324",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m4-p16-parts-references",
+      "head": "0a364869a135fe1dcd623e1ed19c07258111e7ed",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m4-p17a-ports-interfaces",
+      "head": "fe594f15c8bac4b30af2e2dab6fad8b81fac9881",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m4-p17b-port-occurrences",
+      "head": "b71f07bcee9ce8f65f1f8f929c095c3aef9baf11",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m4-p18a-connectors",
+      "head": "61cdef9016b4ca844292a8c69fe61bed92d44dfb",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m4-p18b-connector-routes",
+      "head": "10dda0a6bbe9e6b9c11c8a0076ebb114c7dde53d",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m4-p19-values",
+      "head": "98b3f49b4ac3d3f4310e163befab4513cef8c2f6",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m4-p20-clone-move",
+      "head": "245093aaa814d1f0175baecc4889d893a194e899",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m4-p21a-typed-deletion",
+      "head": "cab716dcd5e67c090fc31a25fab0bee0b4e935d7",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m4-p21b-native-deletion",
+      "head": "9ec83dd483610fcdbe43c78d62cd809b50fc9c26",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m4-p22-profile-tags",
+      "head": "23bb4a288c599b79cf018416b6f200f7c7655a54",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m5-p23-requirement-hierarchy",
+      "head": "431982cdf7e05e5acb5a4ecb38813698f58387f5",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m5-p24-requirement-traces",
+      "head": "672fe026a6827f241efb3da05eca10632aaf5920",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m5-p25-coverage-impact",
+      "head": "075aa169b130eb85d6b30da2277781c275667c03",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m5-p26-validation-suites",
+      "head": "348afce0cf8797e39bf663faf616a8d67c97a230",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m5-p26b-validation-navigation",
+      "head": "8f15781acea7182494c9be25d6802434c7d3b947",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m5-p27-reviewed-rules",
+      "head": "51aa253c72a613b43568dc3a77244df0f10e9ebd",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m5-p27b-native-fixes",
+      "head": "49d1230cb2d2423190950818b2dbf3f59b54390e",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m5-p28-relation-matrix",
+      "head": "e70e62b7648f4da0879b97c858d174663a3b8c76",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m5-p29-viewpoints",
+      "head": "66e95e84b117d38a074761d357d8ca18a16cfec0",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m5-p29b-native-viewpoints",
+      "head": "e8be2ad63ff1eb593c5edfdc2b7ca67ab40827c3",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m6-p30a-activity-core",
+      "head": "1753cf1e467086f9c13cecc9b5d42963d52b671c",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m6-p30b-activity-forms-views",
+      "head": "2723cdebb036cc3e2f34684792479b6722685072",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m6-p30c-native-activities",
+      "head": "0f86b7666d8cb2688fac7f2d76c8dc3d037725f5",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m6-p31-activity-execution",
+      "head": "ee3b89c92ab7ffa6040f05d2c2377d954bfce8fd",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m6-p31b-native-execution",
+      "head": "f2545fd52f8d457d45904fa0091555aa853ae13d",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m6-p32a-state-machine-core",
+      "head": "ce9b57fc72bc4e4480ed60606d6ee4e93f9bdd93",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m6-p32b-state-machine-views",
+      "head": "a5528d99b32fe1964bf054ab593895cb77085d09",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m6-p32c-native-state-machines",
+      "head": "279f0eb8ed965842946ec531bb482437b7695041",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m6-p33a-state-execution",
+      "head": "e01e45c9c63af00a42c40ff4693eb2f889a42c9b",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m6-p33b-native-state-execution",
+      "head": "381c27a6adaf3302a8d4b2365e3153e1bc2d92da",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m6-p34a-scenario-core",
+      "head": "0d1ee114eb7401ff7db3fa5cb5f36c94b372b642",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m6-p34b-sequence-views",
+      "head": "16e8da09855a12d4f01c6db4844f57307d50b2d9",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m6-p34c-native-scenarios",
+      "head": "9647b842c68de23f528719b1c05dfe18e8984590",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m6-p35a-parametric-core",
+      "head": "0a2a3087f493fa47f8a0d5d605db45e3b539d0b6",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m6-p35b-native-parametrics",
+      "head": "a39e24f470ca5f5d88da88a6521cbfac02c6f3b1",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m6-p36a-parametric-analysis",
+      "head": "4410173d2d774dd3a00fd43d8becc5086baebc12",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m6-p36b-native-analysis",
+      "head": "db5ccf50bcce4172ccc6963816e7e186d4c76790",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m6-p37a-scoped-metrics",
+      "head": "981c1e1b253e59d55507038e8aa74d9c10656a2e",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m6-p37b-native-metrics",
+      "head": "e3cb0e38cf8e00e4156ce5e12a4bdde1bf1852db",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m7-p38a-project-sets",
+      "head": "c50f425038ba8d33ed1acde3905e438fc515e948",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m7-p38b-native-project-sets",
+      "head": "2362731a9bd5fa2ca8a74c06452b6387e378c218",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m7-p39a-editable-subset",
+      "head": "feea358260ba1381881ded76121eab493a0a177f",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m7-p39b-source-adapter",
+      "head": "5b4e73aa3612231d0ae4f68bd0e7a7c536f7d1cd",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/m7-p39c-native-source-import",
+      "head": "086f654edf3f85cd296166bb756dfbf3f09d2a04",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/p02-readiness",
+      "head": "7f3cbfb8fb8976fcf563eae5ffd10d02f5b2f910",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/parity-matrix",
+      "head": "725e28c1c852429449a5f7303ba981db66f775fc",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/codex/public-contributor-handoff",
+      "head": "936a52b0cada8b5bfe7cb094aea01df758b1102a",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/feature/layout-periodic-recovery",
+      "head": "a0079d5232996e9e6350f5bae71138a9b2d276ed",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/feature/native-views-m2b01",
+      "head": "557ee47e0bb7237a5064c8e51718506431f8f825",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/implementation/native-alpha",
+      "head": "614475c2967b27dba890ba260aa641442b3a789e",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/main",
+      "head": "de65951c24f3a8d7db779d75fa5c0ee3d076d5e0",
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "origin/plan/views-recovery-copy-contract",
+      "head": "9304395e8473e15af20612aabd56e0d1d1d1e92d",
+      "ancestor_of_main": false,
+      "patch_equivalent_commits": [],
+      "patch_distinct_commits": [
+        "9304395e8473e15af20612aabd56e0d1d1d1e92d"
+      ]
+    }
+  ],
+  "dispositions": [
+    {
+      "commit": "aff430729bf668c83d717bcb0631be8441f04764",
+      "status": "behavior and named regression already present",
+      "evidence": [
+        "crates/mbse-assurance/src/lib.rs: exact native anchor/hash/document checks",
+        "crates/mbse-assurance/tests/assurance.rs: exact_native_source_anchor_requires_relink_after_native_raw_or_model_changes"
+      ]
+    },
+    {
+      "commit": "d0d0e5f3081be0680459d209b6f963d150f6d95b",
+      "status": "later documentation and current assurance implementation retain the behavior and limits",
+      "evidence": [
+        "docs/continuation-m1/ASSURANCE_SCOPE.md",
+        "crates/mbse-assurance/src/lib.rs"
+      ]
+    },
+    {
+      "commit": "4bea2fd29278fa64df3f877ac1e3f14bf18fe945",
+      "status": "toolchain script is byte-identical; README superseded by current instructions",
+      "evidence": [
+        "scripts/dev.sh",
+        "README.md"
+      ]
+    },
+    {
+      "commit": "9304395e8473e15af20612aabd56e0d1d1d1e92d",
+      "status": "historical proposal preserved byte-exact in docs/history/recovery-copy-proposal; later P04/P07/P08 implement reviewed contracts"
+    },
+    {
+      "commit": "57ba816c9c0cb0f5be331107f5f011117f645823",
+      "status": "historical supplement preserved byte-exact in docs/history/recovery-copy-proposal; no new behavior or acceptance"
+    }
+  ],
+  "scope": "all locally registered local/origin branch refs after publication fetch; no hidden provider refs or uncommitted external material claim"
+}
