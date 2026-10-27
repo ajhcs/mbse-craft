@@ -333,7 +333,7 @@ fn parametric_dependency_outputs_require_current_formula_but_direct_literal_sour
     second["output"] = json!("Metre");
     e.snapshot
         .records
-        .insert(RecordId(200), native(200, &second));
+        .insert(RecordId(200), native(200, 2, &second));
     e.snapshot.next_id = 201;
     e.snapshot.validate().unwrap();
     let (parameter, binding) = keys["d"];

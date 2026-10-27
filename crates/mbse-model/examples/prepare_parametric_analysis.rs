@@ -44,7 +44,7 @@ fn main() {
             .editor
             .snapshot
             .records
-            .insert(RecordId(calc), support::native(calc, row));
+            .insert(RecordId(calc), support::native(calc, 1002, row));
         session.editor.snapshot.next_id = calc + 1;
         session.editor.snapshot.model_revision += 1;
         session.editor.snapshot.validate().unwrap();
@@ -69,7 +69,7 @@ fn main() {
         .editor
         .snapshot
         .records
-        .insert(RecordId(calc), support::native(calc, &row));
+        .insert(RecordId(calc), support::native(calc, 1002, &row));
     session.editor.snapshot.next_id = calc + 1;
     session.editor.snapshot.model_revision += 1;
     let (spec, params) = support::selected(&mut session.editor, calc);

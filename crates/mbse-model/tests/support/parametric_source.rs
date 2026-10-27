@@ -31,7 +31,7 @@ pub fn q(unit: c::UnitId) -> c::QuantityType {
 pub fn unit(name: &str) -> c::UnitId {
     c::unit_from_key(name).unwrap()
 }
-pub fn native(id: u64, case: &Value) -> Record {
+pub fn native(id: u64, objective: u64, case: &Value) -> Record {
     let bindings = case["inputs"]
         .as_object()
         .unwrap()
@@ -68,7 +68,7 @@ pub fn native(id: u64, case: &Value) -> Record {
         name: format!("{} source", case["name"].as_str().unwrap()),
         scope: RecordId(1),
         fields: BTreeMap::from([
-            ("forObjective".into(), Value::Null),
+            ("forObjective".into(), json!(objective)),
             (
                 "quantity".into(),
                 json!(if native_unit == "metre" {
@@ -153,7 +153,8 @@ pub fn fixture(name: &str) -> (Editor, Id, BTreeMap<String, (Id, Id)>) {
     let case = data(name);
     let mut s = Snapshot::new(DocumentId("analysis:independent".into()));
     s.extensions = Some(Extensions::default());
-    s.records.insert(RecordId(100), native(100, &case));
+    s.records.insert(RecordId(2), Record { id: RecordId(2), kind: RecordKind::Objective, name: "Independent fixture objective".into(), scope: RecordId(1), fields: BTreeMap::new() });
+    s.records.insert(RecordId(100), native(100, 2, &case));
     s.next_id = 101;
     let mut e = Editor::new(s, "analysis:runtime".into()).unwrap();
     let (id, keys) = selected(&mut e, 100);
