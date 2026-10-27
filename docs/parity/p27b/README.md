@@ -21,11 +21,17 @@ Two actual native runs qualify:
 - Unsupported ExecuteShell predicate refuses; invalid data stays raw, accepted suite unchanged. Cold explicit Open restores no report/review/fix proof; fresh saved-suite Run reports zero remaining custom issue. Fresh register/native/views copies equal final saved data.
 - Both owned apps/displays exit normally; process/auth cleanup and frozen original hashes verified.59 prior available checkouts retain heads/status;18 user-removed directories retain registered heads.
 
-Native pixel review identified F01: earlier CUSTOM_RULE_REVIEW_REQUIRED feedback
-remains visible after successful suite admission. This is pending correction and
-final-source focused evidence in isolated review; original evidence stays intact.
+F01 is corrected in isolated review: successful explicit suite admission clears
+superseded refusal feedback. Both failed attempts remain exact, including a missed
+scripted replacement. Final724-file source
+`be2cf9cc29f150a697bc40b3a5be5ca73c944fb5b81b65619e2ec58b06d613d1`
+passes affected renderer1/build and final native1: actual prior refusal clears,
+full3 before/after values are visible after actual scroll, Cancel/fresh whole
+register/native/views copies remain exact. [Review results](verification/review/RESULTS.json)
+record23 additional artifacts and source distinctions. No summed final-source
+full-workspace claim; unique inventory remains563. [Isolated review](REVIEW.md)
+records60 prior available checkouts preserved/18 removed registered heads.
 
 Same-agent bounded Linux finite exact-requirement text/literal fixes. No OCL/script
-or general validation engine. P27 parent completes only after review fixes/native
-confirmation. All56 broad specifications/integrated exits/full NoMagic/SysML/Craft/
+or general validation engine. P27a plus this reviewed native child meet the bounded P27 workflow after merge. All56 broad specifications/integrated exits/full NoMagic/SysML/Craft/
 platform/independent engineering acceptance remain open.
