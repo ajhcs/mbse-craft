@@ -49,6 +49,13 @@
     "children": [
       "P26a",
       "P26b"
-    ]
+    ],
+    "p26a": {
+      "state": "implemented_bounded_review_pending",
+      "execution_results": "p26a/README.md",
+      "new_distinct_cases": 11,
+      "native_ui": false,
+      "parent_complete": false
+    }
   }
 }

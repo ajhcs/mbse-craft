@@ -1,0 +1,79 @@
+[
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m5-p26-validation-suites/work/p26a-job-01.json",
+    "path": "compiler-01/RECEIPT.json",
+    "bytes": 5371,
+    "sha256": "e92b70fedceafd67da7f3fb871efc3c8ee1f32c2ee8f58726c1833b936730662",
+    "stored_sha256": "e92b70fedceafd67da7f3fb871efc3c8ee1f32c2ee8f58726c1833b936730662"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m5-p26a-validation-core-01-20261027T012321Z/00.log",
+    "path": "compiler-01/00.log.gz",
+    "bytes": 3848,
+    "sha256": "3252c3c83781396c200f91ca129a5777b964ff7e004593d71c31ae1932f445eb",
+    "stored_sha256": "133edfe896635160810fbcf87b70330000068a96c1f3f5ae653e5ef9583b6f87"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m5-p26-validation-suites/work/p26a-job-02.json",
+    "path": "compiler-02/RECEIPT.json",
+    "bytes": 10021,
+    "sha256": "5cbebfc87a621964bdd4cc75f2a284c1a6744ac666839d8fd56afa7294336c18",
+    "stored_sha256": "5cbebfc87a621964bdd4cc75f2a284c1a6744ac666839d8fd56afa7294336c18"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m5-p26a-validation-core-02-20261027T012605Z/00.log",
+    "path": "compiler-02/00.log.gz",
+    "bytes": 14439,
+    "sha256": "944ddce1bf7b6ddd86a44a7b4cb5a7f047e75e4c4ecd4accaf1ebdf58b87fe0d",
+    "stored_sha256": "d5e6a0d32fa5a7354fb5c12c3d36253179e8d3bba7585bd8ce08370d85a417fa"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m5-p26-validation-suites/work/p26a-job-03.json",
+    "path": "compiler-03/RECEIPT.json",
+    "bytes": 6314,
+    "sha256": "d8fb05a43c9f7ddce9f73361870bb258a470d8fb233b28c5862f96698b369b69",
+    "stored_sha256": "d8fb05a43c9f7ddce9f73361870bb258a470d8fb233b28c5862f96698b369b69"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m5-p26a-validation-remainder-03-20261027T013039Z/00.log",
+    "path": "compiler-03/00.log.gz",
+    "bytes": 3837,
+    "sha256": "3b2e287e4375b58fe45da6a97e570090d68a3b566fc44e8ae690d8f62c08f461",
+    "stored_sha256": "7df9e52758da02b1425e70e87935df423a781dedb307517fb69602d517cfdc01"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m5-p26-validation-suites/work/p26a-job-04.json",
+    "path": "compiler-04/RECEIPT.json",
+    "bytes": 62081,
+    "sha256": "985f8a90ef13408cee45eb04a8294a83ee41bc23bf0a0546fedeb6773c073a9f",
+    "stored_sha256": "985f8a90ef13408cee45eb04a8294a83ee41bc23bf0a0546fedeb6773c073a9f"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m5-p26a-owner-fixture-remainder-04-20261027T013148Z/00.log",
+    "path": "compiler-04/00.log.gz",
+    "bytes": 2074,
+    "sha256": "f00660ed9438a56a8a9618182ca3fb6a94896ebd5ebf80976cfdb1f84162be43",
+    "stored_sha256": "7d4e024f5fd7bcceba382c9aa8b44dddcc5826c2578dc1dee6d42bb5d8a71c28"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m5-p26a-owner-fixture-remainder-04-20261027T013148Z/01.log",
+    "path": "compiler-04/01.log.gz",
+    "bytes": 56512,
+    "sha256": "e74c8865d6f2ba49147bb6b1672c9a073446389fea199e6f25e5589b0af81d57",
+    "stored_sha256": "910ebb9d99703bc94d65ad17f48d1e9587fd05ed6638825c0bbca698bc8a8398"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m5-p26a-owner-fixture-remainder-04-20261027T013148Z/02.log",
+    "path": "compiler-04/02.log.gz",
+    "bytes": 1763,
+    "sha256": "2f4d40d5f23154d446bdde74affafd643e58f876dd895023a501d1ce1d23cf3c",
+    "stored_sha256": "40903b6f2cc2c3e8f5786213d0ab67fcc79e1bb187bc79c0c69c764f34dd7982"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m5-p26a-owner-fixture-remainder-04-20261027T013148Z/03.log",
+    "path": "compiler-04/03.log.gz",
+    "bytes": 3452,
+    "sha256": "b7820042cbf1d475c50f79a9caeee4bd5e7274d86476f62c3450a6f07f053f51",
+    "stored_sha256": "118e830f4cf3595f043c1cfdcee866838777959622e330cea1d6154f0b4c951d"
+  }
+]

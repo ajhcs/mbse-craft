@@ -616,8 +616,9 @@
         {
           "id": "P26a",
           "title": "Named validation suites and sealed issue locations",
-          "state": "in_progress",
-          "contract": "docs/parity/p26a/CONTRACT.md"
+          "state": "implemented_bounded_review_pending",
+          "contract": "docs/parity/p26a/CONTRACT.md",
+          "execution_results": "docs/parity/p26a/README.md"
         },
         {
           "id": "P26b",
