@@ -1,0 +1,40 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "796c1ba9dfd08b9ce913113bfc5f434fcb11dc7f592ad6114674b46c429db59d",
+    "scripts/verify-m1-native.py": "ef4e7c2308323b9023f83a15ddb3b9214d27368fd9a34a42b4245ad44f574a39",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "id": "p21b-native-core-delete-undo-cold",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p21b-native-deletion-02-20261026T225609Z/mbse-desktop",
+  "binary_sha256": "f26f77b4a184515b6db1169074813f3ecaf2df7c056dabeda7a58e6e9951c169",
+  "source_sha256": "67f79f2c9c76aea39fd5cfbe59a5fb2207a13aa27e87fea5a255ed2574ca0e7c",
+  "inputs": {
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p21b-native-deletion/docs/parity/p21b/fixtures/PROVENANCE.json": "60f5745717621ea75b856ac80790f5035c76b138057442baaf0194fcfd8e0bcf",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p21b-native-deletion/docs/parity/p21b/fixtures/controlled.kernspan": "31f79134057415fc3847e2cab2795c94cff90aa3dbb62d9a84471fbf214a7bca",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p21b-native-deletion/docs/parity/p21b/fixtures/controlled.mbse-views.json": "a3316c41da763c5f9b18fadd8e150fc2c167781051f1b91e5af20bf4afe77e3e",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p21b-native-deletion/docs/parity/p21a/fixtures/refactored.kernspan": "e834399ddebc22c392af17f01e761bb8d591f69f5cbe0852608877e10635bd7b",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p21b-native-deletion/docs/parity/p21a/fixtures/refactored.mbse-views.json": "799d826e4ae8179762298673dcea9fffd96b843f124827b316432517c2811b03"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p21b-01",
+  "argv_extra": [
+    "--open",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p21b-native-deletion/docs/parity/p21b/fixtures/controlled.kernspan",
+    "--select",
+    "1003"
+  ],
+  "scenarios": [
+    "Explicitly load and hash-verify actual controlled native/views4; real native UI reuse and attach Objective-owner edge in two views",
+    "Prepare native deletion1003 includes accepted calculation and two-view occurrences/edges; Cancel preserves entire model/layout; Apply preserves typed members/values/raw forms",
+    "Native Undo/Redo restores/removes exact native record/calculation and occurrence/edge identities with newer invalid1003? retained; last-System preview refuses",
+    "Captured native/views4 Save/cold second Save equal full native snapshot; typed meaning,9e and detached native presentations retained without cold preview/history authority",
+    "Separate actual original opaque source with explicit sidecar open: native-root deletion blocks complete verdict and Apply; Cancel/Save retains native/typed meaning and all view maps"
+  ],
+  "claim_policy": "Same-agent bounded Linux native-core dependency deletion and captured persistence. Transitive calculation consumer/stakeholder/Context/System cases qualified by model regressions; rendered native scenario deletes existing calculation owner. Positive source explicitly synthetic with P21a provenance; original opaque source remains blocking. All56 broad parity specs NOT_RUN; M04 integrated exit remains unaccepted."
+}

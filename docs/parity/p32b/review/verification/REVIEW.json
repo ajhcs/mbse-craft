@@ -1,0 +1,12 @@
+{
+  "result": "bounded_retained_behavior_presentation_deletion_hold_passed",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 745,
+  "source_sha256": "6f11b6bff9cf8f67afefb361b29078fee1d41f852c6bfab83118c000c4ebfcee",
+  "binary_sha256": "4f42a7a3924788e7eed2ba9567d8de5e49a537f608300abffa90e6afcf6055ee",
+  "distinct_case_inventory": 655,
+  "new_review_cases": 2,
+  "affected_cases": 22,
+  "native_state_machine_checks": 0
+}

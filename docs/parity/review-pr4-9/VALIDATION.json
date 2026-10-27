@@ -1,0 +1,28 @@
+{
+  "schema": "mbse-craft.pr4-9-review-validation/1",
+  "recorded_utc": "2026-10-25T21:41:59.286250+00:00",
+  "source_sha256": "8b43545d4033edf12c69e86e7d1f32a650c55b867911347542f2ac1d99f30e2b",
+  "source_files": 669,
+  "rust_workspace_tests_passed": 319,
+  "single_final_source_run": true,
+  "desktop_build_exit": 0,
+  "preserved_binary": "/workspace/build/builderbob/mbse-craft/milestone1/m1-pr4-9-review-20261025T213644Z/mbse-desktop",
+  "binary_sha256": "90dfe7eb3709d7ca57e174bfdbd06942d140f8c21f823e74d1bf3b58abe7f844",
+  "controller_regressions_passed": 6,
+  "package_negative_variants_rejected": 18,
+  "p02_archive_entries_verified": 41,
+  "p05_archive_entries_verified": 48,
+  "p06_archive_entries_verified": 142,
+  "additional_native_smoke": {
+    "state": "partial_second_run_held_by_resource_preflight",
+    "completed_normal_runs": 1,
+    "requested_runs": 2,
+    "reason": "Less than 8 GiB workspace reserve before second run",
+    "available_workspace_bytes_at_followup": 7413981184,
+    "original_receipt": "native-partial/RECEIPT.json",
+    "harness_assertion_correction": "The controller tried the two-run negative assertion after the preflight had refused the second run. The one completed run legitimately satisfies finish_runs. This was an expectation error, not a product defect; original action errors retained."
+  },
+  "existing_native_evidence": "Unchanged669-file application closure retains prior source-bound native evidence; no claim of completing the optional additional two-run native smoke.",
+  "reviewer": "Same executing agent; no new external independent review claim",
+  "remaining_actionable_findings": 0
+}

@@ -1,0 +1,107 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-27T06:50:25.705327+00:00",
+  "job_sha256": "eb2a54abfe1ae20ef8a649333ca70498ad04fc25840ea529b28736201722fd9f",
+  "status": "active",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p30c-02/run",
+      "started_utc": "2026-10-27T06:50:25.725606+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 716279,
+          "start_ticks": 45817666
+        },
+        "server_pid": {
+          "pid": 716276,
+          "start_ticks": 45817664
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/build/builderbob/mbse-craft/milestone1/native-p30c-01/run/activity-checkpoint.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 716279,
+        "server_pid": 716276,
+        "window": 4194307,
+        "binary_sha256": "931f6d43bcca9c820715c5d38e718cde159354c0d5944c2ba39d6605fbc0137c"
+      }
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-27T06:50:25.725325+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1381214044160,
+    "available_memory_bytes": 24788008960,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 299500,
+        "start_ticks": 43416915,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      },
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 359
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "interrupted_cleanup": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p30c-02/run",
+      "normal_app_exit_claimed": false,
+      "driver_exit": 0
+    }
+  ],
+  "ended_utc": "2026-10-27T06:50:29.178381+00:00"
+}

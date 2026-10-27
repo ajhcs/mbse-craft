@@ -1,0 +1,25 @@
+{
+  "result": "bounded_native_parametric_forms_type_review_history_persistence_cold_passed",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 762,
+  "source_sha256": "9532f8f76ea2d023ee70f151c22b31f8de19ec62519bbf79c26a6dcd2b2bfb0d",
+  "binary_sha256": "44009cc0c0e77c0dd223cfdc15ba5fed4fc22c09b3ced7b03b6026e9de813680",
+  "distinct_case_inventory": 731,
+  "new_distinct_cases": 8,
+  "native_runs": 2,
+  "native_controller_errors": 0,
+  "whole_prior_data_and_all_eight_maps_preserved": true,
+  "saved_counters": {
+    "model_revision": 153,
+    "raw_version": 361,
+    "next_id": 14019
+  },
+  "limits": [
+    "execution_performed=false is scoped to parametric accepted-type review. Existing Stage1 calculation display remains baseline independent behavior. No parametric binding execution, currentraw/cycle/engineering readiness or verification writes.",
+    "Native clipboard gesture observed readonly; payload independently inspected by same-agent actualGUI output test, not read from native OS clipboard.",
+    "Two same-source normal native runs, no independent engineering/platform/scale/production/fullSysML/NoMagic/Craft/parametric-diagram/general-solver acceptance.",
+    "P35 closes bounded specification/binding authoring/type-review contract onlyafterisolatedreview/merge; all56broadspecs/integratedexits remainopen.",
+    "Same-agent isolated PR review still required."
+  ]
+}

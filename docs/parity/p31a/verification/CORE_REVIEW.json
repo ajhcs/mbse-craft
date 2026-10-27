@@ -1,0 +1,15 @@
+{
+  "result": "bounded_finite_control_core_regression_and_build_passed",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 740,
+  "source_sha256": "f283545f824acdefb6be300c0b189c3a3b8f0c41ebb8927535d79eac56f85b21",
+  "binary_sha256": "f44ecae31497a2f6c7922e93559b23f558103c2a5970e14fa7494d60b61f67f3",
+  "distinct_case_inventory": 627,
+  "new_cases": 7,
+  "native_execution_checks": 0,
+  "limits": [
+    "P31b native controls/trace/deadlock/budget/cancel/staleness acceptance remains required for P31 parent closure.",
+    "Single control token; no payload/action code/fork/join/concurrency/arbitrary guards/verification claims. All56 broad specs/integrated exits/independent engineering/full parity remain unaccepted."
+  ]
+}

@@ -1,0 +1,7 @@
+# P36b native bounded quantity analysis
+
+Use the existing Tools parametric editor and explicit Prepare then Run controls to execute merged P36a current frozen sources. Show selected specification, quantity/unit, separate computed Met/NotMet/assessment failure, native criterion/comparator, exact source/algorithm/unit stamps and dependency diagnostics. Copy historical JSON and explicit runtime clear preserve model, raw forms, all presentation maps and verification.
+
+Wrong selected scope, stale/full-hash/instance sources, current invalid proposals, unadmitted text and foreign form owners cannot execute. Failed preparation clears old program and retains labeled historical report. Same-frame source edits/selection/history take precedence over execution; dispatch rechecks source stamps and owner. Session window close/reopen retains reports; native source load/cold reopen clears program/results. Existing guardrails remain; no persisted authority, engine/solver/quantity algebra/criterion concept or verification writes.
+
+Six actualGUI cases include16independent contexts, wrongscope/samecounterstale, pendingraw, foreignowner/unadmittedtext, exactcopy/clear, close/reopen/foreignruntime/loadreset. Native acceptance runs actual controls against all16prepared contexts, checks diagnostics/rawstaleness/failedprepare, copies/saves/coldreopens while retaining prior data and all8maps. Source-only prepared fixtures do not prove native authoring. Broad56specs/integratedexits/independentengineering/fullparity/platform/scale/production acceptance remain open.

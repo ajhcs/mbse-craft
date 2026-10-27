@@ -1,0 +1,32 @@
+{
+  "source_commit": "36f4d1c",
+  "source_sha256": "95a8557788cf1cd5d10b19d54dc3d403d94f0e8d643d6ee624ace2cf66d00268",
+  "command": "bash scripts/dev.sh test -p mbse-assurance -p mbse-desktop --locked --offline",
+  "build_cwd": "/workspace/worktrees/builderbob/mbse-craft/verification",
+  "environment": "DedicatedM1 cache,target,tmp,exactRust1.99.1,onejob as preceding resource receipt",
+  "assurance_tests_passed": 13,
+  "desktop_tests_passed": 13,
+  "new_native_run": false,
+  "review_observation": "Undo/Redo peek cloned candidate, merge immutable audit, check envelope+integrity before stackpop. New statement draft uses bounded transaction. Unadmitted form included in dirty/close/delayedopen identity.",
+  "regression": "Legal20MiB anchor plus13MiB retained review causes oversized Undo refusal; currentregister unchanged; Redo succeeds; subsequentedit and save succeed. Rejectedform text bindsdirty close and delayedopen and staysretained.",
+  "format_files": [
+    "crates/mbse-assurance/src/lib.rs",
+    "crates/mbse-assurance/tests/assurance.rs",
+    "crates/mbse-desktop/src/assurance_ui.rs"
+  ],
+  "format_exit": 0,
+  "artifacts": [
+    {
+      "path": "focused-tests.log",
+      "sha256": "9ff1c3ffea956b54cceaf16177b7da7f2874a3aad94f52f39dc3ad04816033fb"
+    },
+    {
+      "path": "format-check.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "source-manifest.json",
+      "sha256": "de2418f7cbad44d53178084bfaea99c6e09b61d15c943eb1c703f02a2aa9223d"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "status": "CorrectedWordingPixelsVerifiedNormalCloseNotQualified",
+  "recorded_utc": "2026-10-23T20:14:49.634898+00:00",
+  "reviewer": "/root/periodic_actual_review",
+  "source_commit": "f1b6c71681b221aba446f4b308d847fe08aef2eb",
+  "original_frames_inspected": 3,
+  "outcome_artifacts_verified": 12,
+  "visible_frame01": "stored creation draft entries owned here:1",
+  "state_preserved": "selected1002/model2/raw3/snapshot1e8d599f/viewsrevision1/defaultcamera",
+  "normal_close_qualified": false,
+  "app_exit_code": -15,
+  "close_outcome": "Existingpreservationguard appeared; queuedstopfinallyterminatedapp. NoSaveconstraintrespected.",
+  "outcome_sha256": "c0392692db4ebff2c1519f6a3b9acf7e1b0c50244918416f3605f3898128f4d5",
+  "reviewer_execution": false,
+  "reviewer_changes": false
+}

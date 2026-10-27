@@ -1,0 +1,9 @@
+warning: patch `egui_extras v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui_extras)` was not used in the crate graph
+warning: patch `egui_inspection v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui_inspection)` was not used in the crate graph
+warning: patch `egui_kittest v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui_kittest)` was not used in the crate graph
+help: Check that the patched package version and available features are compatible
+      with the dependency requirements. If the patch has a different version from
+      what is locked in the Cargo.lock file, run `cargo update` to use the new
+      version. This may also occur with an optional dependency that is not enabled.
+error: cannot update the lock file /workspace/worktrees/builderbob/mbse-craft/verification/Cargo.lock because --locked was passed to prevent this
+help: to generate the lock file without accessing the network, remove the --locked flag and use --offline instead.

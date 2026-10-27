@@ -1,0 +1,148 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-27T13:40:10.723214+00:00",
+  "job_sha256": "3e317e5c01797e7a885372615c1604ad18db581a9308987c8871c22bd96e91cc",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p36b-01/run",
+      "started_utc": "2026-10-27T13:40:10.743397+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 1045410,
+          "start_ticks": 48276185
+        },
+        "server_pid": {
+          "pid": 1045407,
+          "start_ticks": 48276166
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/repos/builderbob/mbse-craft/work/m6-p36b-native-analysis/docs/parity/p36a/fixtures/native-prepared-01/native.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 1045410,
+        "server_pid": 1045407,
+        "window": 4194307,
+        "binary_sha256": "e4e4b9a57c9ac7dc83b834a183925cb62cab046ea5fc3e901122cd8587023a3e"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-27T13:51:05.579278+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-27T13:40:10.743097+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1353950355456,
+    "available_memory_bytes": 29699899392,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 992508,
+        "start_ticks": 48052886,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      },
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 433
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "action_errors": [
+    {
+      "action": "for i in range(13,16): run_case(n,i,expected[i])",
+      "error": "AssertionError()"
+    },
+    {
+      "action": "run_case(n,13,expected[13])",
+      "error": "AssertionError('Selection did not settle')"
+    },
+    {
+      "action": "authored_report=n.audit()['parametrics']['analysis']['report']; n.click('parametric:select:'+str(authored_spec)); fill(n,'parametric:field:calculation','1001'); pa=n.audit()['parametrics']['analysis']; assert pa['current'] is False and pa['report']==authored_report; n.capture('19-new-invalid-root-proposal-stales-exact-prior-computed-result'); n.click('parametric:analysis:Run'); assert n.audit()['parametrics']['analysis']['report']==authored_report; n.click('parametric:analysis:Prepare'); pa=n.audit()['parametrics']['analysis']; assert pa['program'] is None and 'PROPOSAL_PENDING' in pa['note'] and pa['report']==authored_report; n.capture('20-failed-preparation-clears-old-program-keeps-raw-and-historical-report'); n.click('parametric:analysis:Copy'); n.click('parametric:Close'); n.send(op='key',key='e',mods=['Control_L','Alt_L']); n.send(op='wait',pause=.6); assert n.audit()['parametrics']['analysis']['report']==authored_report; n.capture('21-window-reopen-keeps-session-historical-report-and-invalid-proposal')",
+      "error": "AssertionError('Missing live widget: parametric:field:calculation')"
+    }
+  ],
+  "saved_counters": {
+    "model_revision": 252,
+    "raw_version": 516,
+    "next_id": 60082
+  },
+  "numeric_contexts_completed": [
+    "length_conversion",
+    "duration_conversion",
+    "speed",
+    "ratio_percent",
+    "scalar_equal",
+    "count_literal",
+    "length_equal",
+    "length_upper",
+    "zero_denominator",
+    "quantity_mismatch",
+    "sqrt_domain",
+    "overflow",
+    "underflow",
+    "criterion_quantity_mismatch",
+    "cycle",
+    "pending_original_criterion"
+  ],
+  "authored_ids": [
+    60079,
+    60080,
+    60081
+  ],
+  "original_meaning_and_eight_maps_preserved": true,
+  "controller_error_interpretation": "Three retained controller timing errors: two scrolling selection attempts retained prior underflow scope (one duplicate underflow evaluation); one newly selected root field was absent until the next rendered geometry frame. Stable scroll waits, explicit selected-ID checks and pointer-driven frame settling completed only failed/unexecuted remainder without source changes.",
+  "ended_utc": "2026-10-27T13:51:40.071263+00:00"
+}

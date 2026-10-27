@@ -1,0 +1,174 @@
+{
+  "items": [
+    {
+      "enabled": true,
+      "id": "file.new",
+      "label": "New",
+      "menu": "File",
+      "reason": null,
+      "shortcut": "Ctrl+N"
+    },
+    {
+      "enabled": true,
+      "id": "file.open",
+      "label": "Open",
+      "menu": "File",
+      "reason": null,
+      "shortcut": "Ctrl+O"
+    },
+    {
+      "enabled": true,
+      "id": "file.recover",
+      "label": "Recover",
+      "menu": "File",
+      "reason": null,
+      "shortcut": "Ctrl+Shift+O"
+    },
+    {
+      "enabled": true,
+      "id": "file.import_sysml",
+      "label": "Import SysML",
+      "menu": "File",
+      "reason": null,
+      "shortcut": "Ctrl+I"
+    },
+    {
+      "enabled": true,
+      "id": "file.save",
+      "label": "Save",
+      "menu": "File",
+      "reason": null,
+      "shortcut": "Ctrl+S"
+    },
+    {
+      "enabled": true,
+      "id": "file.recovery_copy",
+      "label": "Recovery copy",
+      "menu": "File",
+      "reason": null,
+      "shortcut": "Ctrl+Shift+S"
+    },
+    {
+      "enabled": true,
+      "id": "file.export_sysml",
+      "label": "Export SysML copy",
+      "menu": "File",
+      "reason": null,
+      "shortcut": "Ctrl+E"
+    },
+    {
+      "enabled": true,
+      "id": "file.review_recoveries",
+      "label": "Review recovery copies",
+      "menu": "File",
+      "reason": null,
+      "shortcut": "Ctrl+Shift+R"
+    },
+    {
+      "enabled": true,
+      "id": "file.quit",
+      "label": "Quit",
+      "menu": "File",
+      "reason": null,
+      "shortcut": "Ctrl+Q"
+    },
+    {
+      "enabled": false,
+      "id": "edit.undo",
+      "label": "Undo",
+      "menu": "Edit",
+      "reason": "No model history available.",
+      "shortcut": "Ctrl+Z"
+    },
+    {
+      "enabled": false,
+      "id": "edit.redo",
+      "label": "Redo",
+      "menu": "Edit",
+      "reason": "No model history available.",
+      "shortcut": "Ctrl+Shift+Z"
+    },
+    {
+      "enabled": false,
+      "id": "view.layout_undo",
+      "label": "Layout Undo",
+      "menu": "View",
+      "reason": "No layout history available in this direction.",
+      "shortcut": "Ctrl+Alt+Z"
+    },
+    {
+      "enabled": false,
+      "id": "view.layout_redo",
+      "label": "Layout Redo",
+      "menu": "View",
+      "reason": "No layout history available in this direction.",
+      "shortcut": "Ctrl+Alt+Shift+Z"
+    },
+    {
+      "enabled": true,
+      "id": "edit.search",
+      "label": "Search native records",
+      "menu": "Edit",
+      "reason": null,
+      "shortcut": "Ctrl+F"
+    },
+    {
+      "enabled": true,
+      "id": "edit.usages",
+      "label": "Find usages",
+      "menu": "Edit",
+      "reason": null,
+      "shortcut": "Ctrl+Shift+U"
+    },
+    {
+      "enabled": true,
+      "id": "edit.impact",
+      "label": "Inspect record impact",
+      "menu": "Edit",
+      "reason": null,
+      "shortcut": "Ctrl+Shift+I"
+    },
+    {
+      "enabled": true,
+      "id": "view.presentation_source",
+      "label": "Inspect presentation source\u2026",
+      "menu": "View",
+      "reason": null,
+      "shortcut": "Ctrl+Shift+P"
+    },
+    {
+      "enabled": true,
+      "id": "tools.external_projection",
+      "label": "Open external projection",
+      "menu": "Tools",
+      "reason": null,
+      "shortcut": "Ctrl+Shift+E"
+    },
+    {
+      "enabled": true,
+      "id": "tools.assurance",
+      "label": "Requirements and evidence",
+      "menu": "Tools",
+      "reason": null,
+      "shortcut": "Ctrl+Shift+A"
+    },
+    {
+      "enabled": true,
+      "id": "tools.library",
+      "label": "Browse library folder",
+      "menu": "Tools",
+      "reason": null,
+      "shortcut": "Ctrl+Shift+L"
+    },
+    {
+      "enabled": true,
+      "id": "tools.recovery_settings",
+      "label": "Recovery settings",
+      "menu": "Tools",
+      "reason": null,
+      "shortcut": "Ctrl+Comma"
+    }
+  ],
+  "last": null,
+  "schema": "mbse-craft.command-catalog/1"
+}

@@ -1,0 +1,69 @@
+[
+  {
+    "name": "byteorder",
+    "version": "1.5.0",
+    "license": "Unlicense OR MIT",
+    "notices": [
+      {
+        "name": "UNLICENSE",
+        "sha256": "7e12e5df4bae12cb21581ba157ced20e1986a0508dd10d0e8a4ab9a4cf94e85c"
+      },
+      {
+        "name": "COPYING",
+        "sha256": "01c266bced4a434da0051174d6bee16a4c82cf634e2679b6155d40d75012390f"
+      },
+      {
+        "name": "LICENSE-MIT",
+        "sha256": "0f96a83840e146e43c0ec96a22ec1f392e0680e6c1226e6f3ba87e0740af850f"
+      }
+    ],
+    "build_scripts": [],
+    "manifest_sha256": "94ba374cb26f3c68fb83da2e5e7dce85920fc4fb827620b06b39d71a9d0e1e18"
+  },
+  {
+    "name": "mbse-catalog",
+    "version": "0.1.0",
+    "license": "MIT",
+    "notices": [],
+    "build_scripts": [],
+    "manifest_sha256": "74e87680794d307b6fc8fc0cf6ca872986e10a2c41793e9b071f5bee039e5c47"
+  },
+  {
+    "name": "mbse-exchange",
+    "version": "0.1.0",
+    "license": "MIT",
+    "notices": [],
+    "build_scripts": [],
+    "manifest_sha256": "a66b3bf73a03ef8a68d11ae6813bf5931ab66f28426eba150636c971eac6ffca"
+  },
+  {
+    "name": "roxmltree",
+    "version": "0.19.0",
+    "license": "MIT OR Apache-2.0",
+    "notices": [
+      {
+        "name": "LICENSE-APACHE",
+        "sha256": "a60eea817514531668d7e00765731449fe14d059d3249e0bc93b36de45f759f2"
+      },
+      {
+        "name": "LICENSE-MIT",
+        "sha256": "fffe218c1e349e1d482a05677f2ce850502f88298174d77f6ac7c04821db7899"
+      }
+    ],
+    "build_scripts": [],
+    "manifest_sha256": "9af4011e68570239422eb0a6c638bbee5c99ea07da88cbaeca13c47ecafcbc8d"
+  },
+  {
+    "name": "zip",
+    "version": "0.6.6",
+    "license": "MIT",
+    "notices": [
+      {
+        "name": "LICENSE",
+        "sha256": "6ac8711fb340c62ce0a4ecd463342d3fa0e8e70de697c863a2e1c0c53006003c"
+      }
+    ],
+    "build_scripts": [],
+    "manifest_sha256": "7cb213851ac9541dc7dd3ce163ef72c302985c9fb7d5bfed8859cb7988afd766"
+  }
+]

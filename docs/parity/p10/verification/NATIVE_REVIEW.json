@@ -1,0 +1,38 @@
+{
+  "schema": "mbse-craft.p10-native-review/1",
+  "reviewer": "Codex, same implementing agent",
+  "independent_review": false,
+  "result": "bounded_scoped_shortcut_scenarios_passed",
+  "raw_receipt_status": "actions_completed_review_pending",
+  "positive_native_runs": 3,
+  "readonly_scope_runs": 1,
+  "retained_action_errors": 0,
+  "pixels_reviewed": [
+    "native-readonly/run/02-invalid-draft-retained-after-close.png",
+    "native/run/01-conflict-refused-with-writable-config.png",
+    "native/run/04-overrides-actually-saved.png",
+    "native/run/05-fixed-field-undo-with-model-override.png",
+    "native/run/08-configured-layout-undo-preserves-native.png",
+    "native/reopen-overrides/11-cold-reload-shows-model-override.png",
+    "native/reopen-reset/14-default-reset-survives-cold-reopen.png",
+    "native/reopen-reset/16-final-native-raw-and-config-retained.png"
+  ],
+  "observations": [
+    "Conflict with effective Save default visible; disabled Apply leaves native, stored bindings and config bytes exact",
+    "Invalid shortcut draft retained after editor close/reopen",
+    "Four model/layout bindings applied with actual Preferences saved status, original comments/root unknown key/future command retained",
+    "Fixed native-field CtrlZ and CtrlShiftZ remain field history despite model overrides; separate configured model and layout keys address intended histories",
+    "Saved config bytes cold-load into next owned writable run with matching CONFIG_SEED hashes; old model default is inactive",
+    "Explicit Default marker persists; next cold load restores default while old override remains inactive and other bindings remain custom",
+    "Native/views pair reopens with exact snapshot/layout hash, empty history, invalid raw9e, accepted95metre and2.5km retained",
+    "Initial config outside writable run correctly reports session-only/readonly and preserves original file. No write authority expanded"
+  ],
+  "copy_scope": "Each cold app run loaded an exact byte copy of the previous actual persisted settings file into its own existing writable run/config directory; CONFIG_SEED receipts pin source and destination hashes. No writable-root expansion or same-physical-path restart claim.",
+  "limits": [
+    "Same-agent Linux private Xvfb/software-rendered only; no independent PR/domain/full platform acceptance",
+    "Cold launches copy exact saved configuration bytes into new run directories; no same-physical-path restart claim",
+    "Readonly-future-schema, write-failure retry, swaps, Unbound and malformed/budget cases have actual API/controller/store test scope",
+    "Unapplied shortcut draft retained in session only; no draft persistence across application exit claim",
+    "366 Cargo tests and12harness tests are separate suites, not replayed or summed"
+  ]
+}

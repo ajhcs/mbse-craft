@@ -1,0 +1,417 @@
+{
+  "profile": "mbse-craft.native-scoped-search-receipt/1",
+  "status": "Passed",
+  "started_utc": "2026-10-23T17:27:48.607556+00:00",
+  "job_manifest_sha256": "27b548dcaf22b1f724314e43e456025d46c1b53e0b18d609ad62e82e378e1d4b",
+  "source_commit": "83f000139379789b15a4855940edff02e7af7ae6",
+  "source_sha256": "b08746df59ca882937b0438ba10ce026a37a355be742fbad9d958c4adf7a29eb",
+  "launcher_sha256": "1fb3dd443cddaa6602e7d995944ed82b94898c2229c036f5fd9a4980d4bf8c12",
+  "allocation": {
+    "owner_thread_id": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+    "job_manifest_sha256": "27b548dcaf22b1f724314e43e456025d46c1b53e0b18d609ad62e82e378e1d4b",
+    "commands_authorized": [
+      [
+        "bash",
+        "scripts/dev.sh",
+        "test",
+        "--locked",
+        "--offline",
+        "-p",
+        "mbse-model",
+        "native_search",
+        "--",
+        "--test-threads=1"
+      ],
+      [
+        "bash",
+        "scripts/dev.sh",
+        "test",
+        "--locked",
+        "--offline",
+        "-p",
+        "mbse-desktop",
+        "ui::policies",
+        "--",
+        "--test-threads=1"
+      ],
+      [
+        "bash",
+        "scripts/dev.sh",
+        "build",
+        "--locked",
+        "--offline",
+        "-p",
+        "mbse-desktop"
+      ]
+    ],
+    "target_dir": "/workspace/build/builderbob/mbse-craft/semantic-v2/target",
+    "target_exclusive_confirmed": true,
+    "build_launch_authorized": true,
+    "expected_appserver_identity": {
+      "pid": 1072280,
+      "start_ticks": 14235850,
+      "uid": 1000,
+      "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+      "pid_namespace": "pid:[4026531836]",
+      "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+    },
+    "authority": "Existing authorized next scoped native navigation feature tests/build; fresh coordinator exact job evidence and normal action review",
+    "writer_confirmation": "Sole MBSE candidate/target writer; previous build/renderer identities absent; separate frozen old worktrees unchanged; no idle global reservation",
+    "gui": false,
+    "uploads": false
+  },
+  "commands": [
+    {
+      "argv": [
+        "bash",
+        "scripts/dev.sh",
+        "test",
+        "--locked",
+        "--offline",
+        "-p",
+        "mbse-model",
+        "native_search",
+        "--",
+        "--test-threads=1"
+      ],
+      "started_utc": "2026-10-23T17:27:48.621209+00:00",
+      "health_packet": {
+        "schema": "builderbob.job-bound-health/1",
+        "checked_utc": "2026-10-23T17:27:22.2752802+00:00",
+        "owner_thread_id": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+        "job_label": "MBSE scoped search 11 focused tests and offline desktop build",
+        "expected_job_manifest_sha256": "27b548dcaf22b1f724314e43e456025d46c1b53e0b18d609ad62e82e378e1d4b",
+        "job_hash_verification": "Caller supplies frozen SHA; existing owner must verify actual manifest/source and scoped permission at action time. This checker does not access the remote job.",
+        "resource_admission": "PASS",
+        "expires_utc": "2026-10-23T17:28:39.2497280+00:00",
+        "sample_age_seconds": 43.0,
+        "watchdog_age_seconds": 11.8,
+        "watchdog_identity_matches": true,
+        "health": {
+          "schema": "builderbob.fd-watch-health/1",
+          "checked_utc": "2026-10-23T17:27:22.2353196+00:00",
+          "observation_route": "AVAILABLE",
+          "observer_pid": 15648,
+          "exact_process_start_matches": true,
+          "status_pid_matches": true,
+          "observer_state": "RUNNING",
+          "completed_samples": 160,
+          "planned_samples": 1440,
+          "planned_last_sample_utc": "2026-10-24T14:46:36.5991315+00:00",
+          "monitor_status": "OK",
+          "reasons": [],
+          "trend_matches_latest_observation": true,
+          "growth_fds_per_minute": 40.0,
+          "recent_peak_positive_fds_per_minute": 40,
+          "forecast_seconds_to_90_percent_with_64_fd_reserve": 850.0,
+          "heartbeat_age_seconds": 45.3,
+          "successful_sample_age_seconds": 43.0,
+          "latest_observation": {
+            "fd_count": 291,
+            "fd_types": {
+              "anon_inode": 9,
+              "file_or_device": 68,
+              "pidfd": 47,
+              "pipe": 141,
+              "socket": 26
+            },
+            "hard_nofile": 1048576,
+            "headroom": 733,
+            "identity": {
+              "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+              "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+              "pid": 1072280,
+              "pid_namespace": "pid:[4026531836]",
+              "start_ticks": 14235850,
+              "uid": 1000
+            },
+            "max_fd": 307,
+            "mutations": false,
+            "occupied_below_soft": 291,
+            "pidfd_targets": {
+              "live": 47
+            },
+            "schema": "builderbob.fd-observation/1",
+            "soft_nofile": 1024,
+            "status": "OK",
+            "thresholds": {
+              "critical_free_fds": 64,
+              "critical_percent": 90,
+              "warning_free_fds": 128,
+              "warning_percent": 80
+            },
+            "used_percent": 28.41796875,
+            "utc": "2026-10-23T13:26:39.249728-04:00"
+          },
+          "log_path": "C:\\Users\\colet\\Documents\\Codex\\2026-10-22\\task-16\\evidence\\FD-WATCH-20261023T144736Z.jsonl",
+          "alert_path": "C:\\Users\\colet\\Documents\\Codex\\2026-10-22\\task-16\\evidence\\FD-ALERTS-20261023T144736Z.jsonl",
+          "automatic_remediation": false
+        },
+        "watchdog": {
+          "checked_utc": "2026-10-23T17:27:10.4780136+00:00",
+          "decision": {
+            "level": "OK",
+            "hold_new_launches": false,
+            "reasons": [],
+            "seconds_to_observer_end": 76766.1,
+            "automatic_remediation": false
+          },
+          "console_window_handle": 0,
+          "notification_hold": false
+        },
+        "permission_or_job_allocation_granted": false,
+        "remote_commands_executed": 0,
+        "target_launches": 0,
+        "automatic_remediation": false
+      },
+      "log": "/workspace/build/builderbob/mbse-craft/native-scoped-search/attempt-20261023T172748607351Z/00.log",
+      "pid": 1165160,
+      "start_ticks": 15081950,
+      "exit_code": 0,
+      "ended_utc": "2026-10-23T17:27:58.341836+00:00",
+      "log_sha256": "c6984d5f4507640f7e47ce423c7e63f0c1fac2098d612b2d94ca8e12e3714278",
+      "actual_passed_tests": [
+        "native_search::tests::duplicate_labels_keep_exact_ids_kind_and_actual_system_scope",
+        "native_search::tests::name_digits_and_canonical_full_width_id_are_separate_modes",
+        "native_search::tests::result_and_label_prefix_budgets_are_explicit_and_count_all_matches",
+        "native_search::tests::sealed_navigation_stales_on_runtime_raw_layout_and_preserves_target_on_selection",
+        "native_search::tests::unknown_or_wrong_kind_scope_refuses_and_empty_supported_query_is_distinct"
+      ]
+    },
+    {
+      "argv": [
+        "bash",
+        "scripts/dev.sh",
+        "test",
+        "--locked",
+        "--offline",
+        "-p",
+        "mbse-desktop",
+        "ui::policies",
+        "--",
+        "--test-threads=1"
+      ],
+      "started_utc": "2026-10-23T17:27:58.356088+00:00",
+      "health_packet": {
+        "schema": "builderbob.job-bound-health/1",
+        "checked_utc": "2026-10-23T17:27:22.2752802+00:00",
+        "owner_thread_id": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+        "job_label": "MBSE scoped search 11 focused tests and offline desktop build",
+        "expected_job_manifest_sha256": "27b548dcaf22b1f724314e43e456025d46c1b53e0b18d609ad62e82e378e1d4b",
+        "job_hash_verification": "Caller supplies frozen SHA; existing owner must verify actual manifest/source and scoped permission at action time. This checker does not access the remote job.",
+        "resource_admission": "PASS",
+        "expires_utc": "2026-10-23T17:28:39.2497280+00:00",
+        "sample_age_seconds": 43.0,
+        "watchdog_age_seconds": 11.8,
+        "watchdog_identity_matches": true,
+        "health": {
+          "schema": "builderbob.fd-watch-health/1",
+          "checked_utc": "2026-10-23T17:27:22.2353196+00:00",
+          "observation_route": "AVAILABLE",
+          "observer_pid": 15648,
+          "exact_process_start_matches": true,
+          "status_pid_matches": true,
+          "observer_state": "RUNNING",
+          "completed_samples": 160,
+          "planned_samples": 1440,
+          "planned_last_sample_utc": "2026-10-24T14:46:36.5991315+00:00",
+          "monitor_status": "OK",
+          "reasons": [],
+          "trend_matches_latest_observation": true,
+          "growth_fds_per_minute": 40.0,
+          "recent_peak_positive_fds_per_minute": 40,
+          "forecast_seconds_to_90_percent_with_64_fd_reserve": 850.0,
+          "heartbeat_age_seconds": 45.3,
+          "successful_sample_age_seconds": 43.0,
+          "latest_observation": {
+            "fd_count": 291,
+            "fd_types": {
+              "anon_inode": 9,
+              "file_or_device": 68,
+              "pidfd": 47,
+              "pipe": 141,
+              "socket": 26
+            },
+            "hard_nofile": 1048576,
+            "headroom": 733,
+            "identity": {
+              "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+              "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+              "pid": 1072280,
+              "pid_namespace": "pid:[4026531836]",
+              "start_ticks": 14235850,
+              "uid": 1000
+            },
+            "max_fd": 307,
+            "mutations": false,
+            "occupied_below_soft": 291,
+            "pidfd_targets": {
+              "live": 47
+            },
+            "schema": "builderbob.fd-observation/1",
+            "soft_nofile": 1024,
+            "status": "OK",
+            "thresholds": {
+              "critical_free_fds": 64,
+              "critical_percent": 90,
+              "warning_free_fds": 128,
+              "warning_percent": 80
+            },
+            "used_percent": 28.41796875,
+            "utc": "2026-10-23T13:26:39.249728-04:00"
+          },
+          "log_path": "C:\\Users\\colet\\Documents\\Codex\\2026-10-22\\task-16\\evidence\\FD-WATCH-20261023T144736Z.jsonl",
+          "alert_path": "C:\\Users\\colet\\Documents\\Codex\\2026-10-22\\task-16\\evidence\\FD-ALERTS-20261023T144736Z.jsonl",
+          "automatic_remediation": false
+        },
+        "watchdog": {
+          "checked_utc": "2026-10-23T17:27:10.4780136+00:00",
+          "decision": {
+            "level": "OK",
+            "hold_new_launches": false,
+            "reasons": [],
+            "seconds_to_observer_end": 76766.1,
+            "automatic_remediation": false
+          },
+          "console_window_handle": 0,
+          "notification_hold": false
+        },
+        "permission_or_job_allocation_granted": false,
+        "remote_commands_executed": 0,
+        "target_launches": 0,
+        "automatic_remediation": false
+      },
+      "log": "/workspace/build/builderbob/mbse-craft/native-scoped-search/attempt-20261023T172748607351Z/01.log",
+      "pid": 1166439,
+      "start_ticks": 15082923,
+      "exit_code": 0,
+      "ended_utc": "2026-10-23T17:28:20.693188+00:00",
+      "log_sha256": "dd95b702b4ccfe52bb600208be00acca1161f06dc627522f909bf988aed284f1",
+      "actual_passed_tests": [
+        "ui::policies::close_requires_current_preservation_even_while_hidden",
+        "ui::policies::native_search_draft_changes_clear_results_and_navigation_preserves_dirty_target",
+        "ui::policies::native_usages_navigation_preserves_dirty_target_and_refuses_stale_rows",
+        "ui::policies::native_worker_start_failure_clears_only_own_pair_and_retains_live_state",
+        "ui::policies::ordinary_text_and_focus_transitions_do_not_undo_model",
+        "ui::policies::source_inspection_shortcuts_never_undo_or_save_the_live_target"
+      ]
+    },
+    {
+      "argv": [
+        "bash",
+        "scripts/dev.sh",
+        "build",
+        "--locked",
+        "--offline",
+        "-p",
+        "mbse-desktop"
+      ],
+      "started_utc": "2026-10-23T17:28:20.707662+00:00",
+      "health_packet": {
+        "schema": "builderbob.job-bound-health/1",
+        "checked_utc": "2026-10-23T17:27:22.2752802+00:00",
+        "owner_thread_id": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+        "job_label": "MBSE scoped search 11 focused tests and offline desktop build",
+        "expected_job_manifest_sha256": "27b548dcaf22b1f724314e43e456025d46c1b53e0b18d609ad62e82e378e1d4b",
+        "job_hash_verification": "Caller supplies frozen SHA; existing owner must verify actual manifest/source and scoped permission at action time. This checker does not access the remote job.",
+        "resource_admission": "PASS",
+        "expires_utc": "2026-10-23T17:28:39.2497280+00:00",
+        "sample_age_seconds": 43.0,
+        "watchdog_age_seconds": 11.8,
+        "watchdog_identity_matches": true,
+        "health": {
+          "schema": "builderbob.fd-watch-health/1",
+          "checked_utc": "2026-10-23T17:27:22.2353196+00:00",
+          "observation_route": "AVAILABLE",
+          "observer_pid": 15648,
+          "exact_process_start_matches": true,
+          "status_pid_matches": true,
+          "observer_state": "RUNNING",
+          "completed_samples": 160,
+          "planned_samples": 1440,
+          "planned_last_sample_utc": "2026-10-24T14:46:36.5991315+00:00",
+          "monitor_status": "OK",
+          "reasons": [],
+          "trend_matches_latest_observation": true,
+          "growth_fds_per_minute": 40.0,
+          "recent_peak_positive_fds_per_minute": 40,
+          "forecast_seconds_to_90_percent_with_64_fd_reserve": 850.0,
+          "heartbeat_age_seconds": 45.3,
+          "successful_sample_age_seconds": 43.0,
+          "latest_observation": {
+            "fd_count": 291,
+            "fd_types": {
+              "anon_inode": 9,
+              "file_or_device": 68,
+              "pidfd": 47,
+              "pipe": 141,
+              "socket": 26
+            },
+            "hard_nofile": 1048576,
+            "headroom": 733,
+            "identity": {
+              "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+              "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+              "pid": 1072280,
+              "pid_namespace": "pid:[4026531836]",
+              "start_ticks": 14235850,
+              "uid": 1000
+            },
+            "max_fd": 307,
+            "mutations": false,
+            "occupied_below_soft": 291,
+            "pidfd_targets": {
+              "live": 47
+            },
+            "schema": "builderbob.fd-observation/1",
+            "soft_nofile": 1024,
+            "status": "OK",
+            "thresholds": {
+              "critical_free_fds": 64,
+              "critical_percent": 90,
+              "warning_free_fds": 128,
+              "warning_percent": 80
+            },
+            "used_percent": 28.41796875,
+            "utc": "2026-10-23T13:26:39.249728-04:00"
+          },
+          "log_path": "C:\\Users\\colet\\Documents\\Codex\\2026-10-22\\task-16\\evidence\\FD-WATCH-20261023T144736Z.jsonl",
+          "alert_path": "C:\\Users\\colet\\Documents\\Codex\\2026-10-22\\task-16\\evidence\\FD-ALERTS-20261023T144736Z.jsonl",
+          "automatic_remediation": false
+        },
+        "watchdog": {
+          "checked_utc": "2026-10-23T17:27:10.4780136+00:00",
+          "decision": {
+            "level": "OK",
+            "hold_new_launches": false,
+            "reasons": [],
+            "seconds_to_observer_end": 76766.1,
+            "automatic_remediation": false
+          },
+          "console_window_handle": 0,
+          "notification_hold": false
+        },
+        "permission_or_job_allocation_granted": false,
+        "remote_commands_executed": 0,
+        "target_launches": 0,
+        "automatic_remediation": false
+      },
+      "log": "/workspace/build/builderbob/mbse-craft/native-scoped-search/attempt-20261023T172748607351Z/02.log",
+      "pid": 1169213,
+      "start_ticks": 15085159,
+      "exit_code": 0,
+      "ended_utc": "2026-10-23T17:28:23.580265+00:00",
+      "log_sha256": "752cf41f0b775d37138fd1ddcd174a3c1203e4dc0c64340397f39998ad1692a4",
+      "actual_passed_tests": []
+    }
+  ],
+  "gui": false,
+  "uploads": false,
+  "owned_jobs": [],
+  "binary_path": "/workspace/build/builderbob/mbse-craft/native-scoped-search/attempt-20261023T172748607351Z/mbse-desktop",
+  "binary_sha256": "b0c1ae6d64bd3489f7a1ef50329d9b99636251cce4275b3aec45a6f159143ee7",
+  "binary_bytes": 400038896,
+  "workspace_free_bytes_after": 62996750336,
+  "source_unchanged": true,
+  "ended_utc": "2026-10-23T17:28:24.378187+00:00"
+}

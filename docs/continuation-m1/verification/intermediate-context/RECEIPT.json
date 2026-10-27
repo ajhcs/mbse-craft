@@ -1,0 +1,240 @@
+{
+  "schema": "mbse-craft.m1.intermediate-native-context/1",
+  "status": "bounded intermediate evidence; newer settings retry/catalog source pending separate qualification",
+  "source_sha256": "bf31040628a56210bbfded5c0086d36f17e14eb6d98f293646dbede9a7f1f45e",
+  "binary_sha256": "2f3503350b23f18d891f3b004d88de289272261206542035603c59f9d1acf847",
+  "tests": {
+    "passed": 131,
+    "failed": 0,
+    "scope": "current intermediate workspace incl2policy+6context/recovery tests; not newer settingsretry/catalog"
+  },
+  "observed": [
+    "Blank System/Organization/Stakeholder interest+Internal affiliation/Environment Context name/text/Assumption authored through native UI",
+    "Native save and process reopen preserved context/affiliation",
+    "Focused model Context name ControlZ restored field, not Context kind",
+    "Ordinary source path/save path ControlZ identical model snapshot f6344040a0243da5fc46a17b746ab615cc07be9f237820b9606e015e9c2f2aa7",
+    "Canvas nontext ControlZ/ShiftControlZ performed model Undo/Redo; creation TextEdit ControlZ changed only raw draft/modelrev15 unchanged",
+    "Periodic recovery opt-in15s persisted separate config, actual current recovery while Unsaved; default-off before opt-in",
+    "XUnmapWindow+WM_DELETE_WINDOW kept app alive; remap revealed preservation prompt; Cancel kept same snapshot9131df1519c0cba909cdf39baeba32b1ef596d8346585181db765329818d43e4; KeepRecovery later exited0",
+    "Restart banner/chooser listed recoveries and required explicit context model selection; restore independent dirty; incomplete contextName raw retained beside acceptedReviewercoverage",
+    "Recovery chooser Refresh reported2 injected invalid candidates: malformed regular file and recovery-file symlink; detailed reason expansion not natively captured",
+    "Actual supported SysML UI export/import retained contextkindAcceptedConstraint/text and OrgInternal affiliation"
+  ],
+  "unqualified": [
+    "newer preference retry/backoff",
+    "deterministic native stale worker race; exact receipts unit coverage only",
+    "arrow-key canvas navigation absent; no inherited Kernspan repair claim",
+    "platform compositor/physicalaccessibility/Windows/fork equivalence"
+  ],
+  "upstream_keyboard_inventory": {
+    "zip_sha256": "75f01344746e7ed1ac15df090f465ea48b872aee274a68aacb8018d5b11d94a4",
+    "entry": "BASELINE-KEYBOARD-ADDENDUM-r02.md",
+    "use": "read-only scope distinction; MBSE did not copy or qualify later Kernspan patch"
+  },
+  "artifacts": [
+    {
+      "path": "build-focus.log",
+      "sha256": "86e2512cff4c55783584d4a13682ff2a5fe565d7c55816bf5eefdf93dbae548c"
+    },
+    {
+      "path": "context-native-with-incomplete-name.kernspan",
+      "sha256": "17ea246a9c73cfe7c75deb41a125dad250a0a731bfaae70200051be834fcb930"
+    },
+    {
+      "path": "context-supported.sysml",
+      "sha256": "7bd37805ed5e951a76eb24e9e7e8836af3af0cddbc0be7d558657ac297b76c9d"
+    },
+    {
+      "path": "gui-context-r02/empty-context-name-retained.png",
+      "sha256": "7e83831245f008062657d9a239056b7dc93babb8f5e18bb13fcd6789eac94527"
+    },
+    {
+      "path": "gui-context-r02/empty-context-name-retained.ui.json",
+      "sha256": "239cfea1f9e442f5c622325f75b665ba2c129424be3c23321e4438eff980749d"
+    },
+    {
+      "path": "gui-context-r02/events.jsonl",
+      "sha256": "ab588e73eb6a8a7858a9b989a7d05f9090347e8b077632cfb0742fcd1a5ad597"
+    },
+    {
+      "path": "gui-context-r02/hidden-close-cancel-retained.png",
+      "sha256": "0881b1984edd6c001317f35b5bfbc6989e239aec877efc29d1567e60f8224d5b"
+    },
+    {
+      "path": "gui-context-r02/hidden-close-cancel-retained.ui.json",
+      "sha256": "96c838855d884b3bdf943686b69a815166a57e76e2dc0ef8c5e3a8d233f7af7f"
+    },
+    {
+      "path": "gui-context-r02/hidden-close-preservation.png",
+      "sha256": "6e6c443b44bf5aa47f970a51f3f074989d3db6e100ba16961d26b1d5c69db3ed"
+    },
+    {
+      "path": "gui-context-r02/hidden-close-preservation.ui.json",
+      "sha256": "c079420dc1f2aaefc483c7ddd328ee0e68ac1a393cbf7fe1970a5cb4921f5bd2"
+    },
+    {
+      "path": "gui-context-r02/keyboard-model-before.png",
+      "sha256": "6ba751907979c0ecf6781a3e0507df494046b0dfa3c970d9718a9a8ce9d78e50"
+    },
+    {
+      "path": "gui-context-r02/keyboard-model-before.ui.json",
+      "sha256": "36cea5bf49da8025a2ad9bad170c5b5d9668444e7b09e567b83ea352bd0933e8"
+    },
+    {
+      "path": "gui-context-r02/kind-before-nontext-undo.png",
+      "sha256": "34616cf55568c21c9797aa1bfafa78bc6671dad89afe7764f5b982f0e31b44d2"
+    },
+    {
+      "path": "gui-context-r02/kind-before-nontext-undo.ui.json",
+      "sha256": "d56b4cfea6eced86a2d8b5728e669883f7d6475e5f5f907d7effdc2c012d8e72"
+    },
+    {
+      "path": "gui-context-r02/model-field-control-z.png",
+      "sha256": "d319564f6ba0fdfc27c2b563dc575df00036017f1da2a9022dd0d0b8bde211bf"
+    },
+    {
+      "path": "gui-context-r02/model-field-control-z.ui.json",
+      "sha256": "a88e46db0e01173206418f5040399ec954301251fd0935983b4502dffec703ec"
+    },
+    {
+      "path": "gui-context-r02/native-context-reopened.png",
+      "sha256": "56ba0c2568a11d52a641ed7fd11ae9ccf93e3b93a1138083dfd4864ac02db263"
+    },
+    {
+      "path": "gui-context-r02/native-context-reopened.ui.json",
+      "sha256": "5be571ccfc567d43845bf87837f2e6973e85fb049af956d503b5a7da4255fb9e"
+    },
+    {
+      "path": "gui-context-r02/nontext-canvas-model-redo.png",
+      "sha256": "309cc40fc8f77423be2ae531961c0d9de9aa9c6e610d081e653bc280a7d72f88"
+    },
+    {
+      "path": "gui-context-r02/nontext-canvas-model-redo.ui.json",
+      "sha256": "ebfcfdfbc5e3d38b88c07f0b1e882f4fb30fe189cbda23201d554a5589c3f45b"
+    },
+    {
+      "path": "gui-context-r02/nontext-canvas-model-undo.png",
+      "sha256": "66b05117b9811498a513509f142341d21d46daf3f024e5bf24eccf2f1051056d"
+    },
+    {
+      "path": "gui-context-r02/nontext-canvas-model-undo.ui.json",
+      "sha256": "7a35a4cd62184d8b90e8915df88c6802cfee3887da2c688c62c266959bf1b4a2"
+    },
+    {
+      "path": "gui-context-r02/ordinary-creation-undo.png",
+      "sha256": "d3914a29467435019a2755009b5edaa1d119e7c00b6231e658f37c7f1c9382b9"
+    },
+    {
+      "path": "gui-context-r02/ordinary-creation-undo.ui.json",
+      "sha256": "607baf3f4ebc296582b4ab6badf84e3e2b0ff84285b407bf75b4ba9359c6b29e"
+    },
+    {
+      "path": "gui-context-r02/ordinary-path-undo.png",
+      "sha256": "34ca1cdcf79e41d5dd5486fabd0efac0f09524dade6af1a0d04fdee6b6a28fa1"
+    },
+    {
+      "path": "gui-context-r02/ordinary-path-undo.ui.json",
+      "sha256": "1345d8d27530e2528a9b64d5f18773b938307562a0a9520f7c776924704def96"
+    },
+    {
+      "path": "gui-context-r02/ordinary-savepath-undo.png",
+      "sha256": "f83b786bd7b009f551d9ba38fc2ff4d9c599095cefd86c8813b41c8a3672d79b"
+    },
+    {
+      "path": "gui-context-r02/ordinary-savepath-undo.ui.json",
+      "sha256": "1345d8d27530e2528a9b64d5f18773b938307562a0a9520f7c776924704def96"
+    },
+    {
+      "path": "gui-context-r02/periodic-enabled.png",
+      "sha256": "b1e41c6dcd6b8439d5c614a3e73c22e861a2faa71ee43d8ec5f61c1cff16b74a"
+    },
+    {
+      "path": "gui-context-r02/periodic-enabled.ui.json",
+      "sha256": "d231be59c6eb38402c494df53f5834cfc5a3e072810c4cbd2412943277c84191"
+    },
+    {
+      "path": "gui-context-r02/settings-popup.png",
+      "sha256": "b1e41c6dcd6b8439d5c614a3e73c22e861a2faa71ee43d8ec5f61c1cff16b74a"
+    },
+    {
+      "path": "gui-context-r02/settings-popup.ui.json",
+      "sha256": "d231be59c6eb38402c494df53f5834cfc5a3e072810c4cbd2412943277c84191"
+    },
+    {
+      "path": "gui-recovery-restart/chooser-restored-context.png",
+      "sha256": "c9cf58107dd9308ad7f1ee7974d7266a41b5d5ac4f7aadfe10b944e48bba6be5"
+    },
+    {
+      "path": "gui-recovery-restart/chooser-restored-context.ui.json",
+      "sha256": "15c2c8605f8f300fb7578acacfa1a20dc16cbda6515079bfb909a77560db3dd7"
+    },
+    {
+      "path": "gui-recovery-restart/context-sysml-export.png",
+      "sha256": "fc00d71db82841a8472d87420fe996816ff574cdfff51cca185df44fe4aa587c"
+    },
+    {
+      "path": "gui-recovery-restart/context-sysml-export.ui.json",
+      "sha256": "09d83e0639e80f861e002a4930f88372bd2065908171acbd1bc733786b3cbd6b"
+    },
+    {
+      "path": "gui-recovery-restart/context-sysml-import.png",
+      "sha256": "6c3c8c9aec40b2d09606c466ac18f2de4ef384b2a74a19ed6b5af05daf7dc735"
+    },
+    {
+      "path": "gui-recovery-restart/context-sysml-import.ui.json",
+      "sha256": "14ebbc70ef3060bbe7dde8ea0dd3b87694fd9e3594d01caabb465914e3611878"
+    },
+    {
+      "path": "gui-recovery-restart/events.jsonl",
+      "sha256": "19a2ac7c4d1cfda19fbb36f7620bfebede62fb37753855b00df91aee73b1ff64"
+    },
+    {
+      "path": "gui-recovery-restart/recovery-rejected-candidates.png",
+      "sha256": "5019be382528ec1676e900b8bdaa85d4e16b9cae705866d0279e57b1fa4ce55a"
+    },
+    {
+      "path": "gui-recovery-restart/recovery-rejected-candidates.ui.json",
+      "sha256": "468ac25ded926d24c0a6db2603de1a375a768826f353ee2ae4e1d48d3ff7de03"
+    },
+    {
+      "path": "gui-recovery-restart/recovery-selected.png",
+      "sha256": "23e7e35555dcbc4b9ec3604c60ce5ff5b2b052296de738d31a953dcbcb0b33f5"
+    },
+    {
+      "path": "gui-recovery-restart/recovery-selected.ui.json",
+      "sha256": "d1a0109d6e420f0b2a832c896b8d3688882b6125bbdac3f3b7c4f7ae6c78c2aa"
+    },
+    {
+      "path": "gui-recovery-restart/restart-discovery-banner.png",
+      "sha256": "b664c168a936b1165dde347893226fc8de8936d459f3be93875fca222d6474fb"
+    },
+    {
+      "path": "gui-recovery-restart/restart-discovery-banner.ui.json",
+      "sha256": "01a93e4c2bafc590648e87e6c66f376f647a0e8b5097208fdf67f17d0a874ee8"
+    },
+    {
+      "path": "gui-recovery-restart/restart-recovery-chooser.png",
+      "sha256": "95785ea1e6c6d36523b10d64832bf87982b99a62f78738a105ff0dc5bf150a19"
+    },
+    {
+      "path": "gui-recovery-restart/restart-recovery-chooser.ui.json",
+      "sha256": "146095c604a4aa4858ccf4e62a3686d86fb9e98f9eb7399cf352c9d0ad5b36f2"
+    },
+    {
+      "path": "opt-in-config.toml",
+      "sha256": "482c9dd76ebcd2410b5192e8fa00dd95eb3f9de5949872fcf3dc60c8c603774c"
+    },
+    {
+      "path": "restored-context-native.kernspan",
+      "sha256": "06941c8553063d303ce4a5871a4618d341d5d80a1351ef17a28928e745b61bee"
+    },
+    {
+      "path": "source-focus.json",
+      "sha256": "8facaa7790f3da1e9481ed78700b9617aae7debc1fd4975b5e5bda0dc12dc57a"
+    },
+    {
+      "path": "test-focus.log",
+      "sha256": "bf37f3d6f141883d0333bdf980b15de098667bd81621f5573b551972efa49b76"
+    }
+  ]
+}

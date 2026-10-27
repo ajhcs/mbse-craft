@@ -1,0 +1,68 @@
+{
+  "schema": "mbse-craft.p02-local-job/1",
+  "state": "frozen_before_execution",
+  "recorded_utc": "2026-10-25T20:18:04.727490+00:00",
+  "owner_thread_id": "01a16f82-07a1-7cd3-bb10-3ef7b8e83905",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/p02-readiness",
+  "source_sha256": "fe2c135180c5489306ff46f139c6fad5b5553b72749169bc25edea70b3dfca04",
+  "preserved_original_job_sha256": "f74c46e5522493e28e59494b2514ee686f49757d2017ceb41054ea472206a750",
+  "runner_sha256": "38efc089eda12310b89fa5115718d5c6c18a9b7b23931567241a7c57bb0af6c0",
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-model",
+      "--test",
+      "stage1_completion_foundation",
+      "--test",
+      "stage1_calculation",
+      "--test",
+      "craft_faults",
+      "--test",
+      "craft_recovery",
+      "--test",
+      "context_recovery",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop",
+      "ui::policies",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/p02-readiness/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/p02-readiness/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "execution_basis": "Current direct task instruction to complete P02 and Milestone 1 on BuilderBob; operator questioned the continued observer assumption. Current project AGENTS requires isolated worktrees and one Cargo job, not a permanent observer. This is a new bounded local execution contract, not original Lenovo observer admission or a release of another job hold.",
+  "local_preflight": "Immediately before each child: verified Samsung workspace, >=8 GiB reserve, visible current app-server identities with >=128 FD headroom and <80 percent use, no other visible builderbob cargo/rustc/mbse-desktop; exclusive dedicated-target flock. No daemon, observer, original-watchdog PASS, automatic retry or service change.",
+  "historical_evidence": "Original frozen JOB, runner, preflight, route failures and receipts remain unchanged. Old bounded observer planned last sample was 2026-10-24T14:46:36.5991315+00:00; its current process state on Lenovo is unknown.",
+  "native_phase": "Separate bounded local preflight and exact binary/action receipt after this build. No GUI in this compiler phase.",
+  "partial_execution": "Once any child starts, job is spent. Preserve failures/partials; freeze only unexecuted remainder, never replay passes."
+}

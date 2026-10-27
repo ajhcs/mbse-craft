@@ -1,0 +1,34 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "796c1ba9dfd08b9ce913113bfc5f434fcb11dc7f592ad6114674b46c429db59d",
+    "scripts/verify-m1-native.py": "4e477f78eacdcc32af36c45799d4d50d355b40c0af0636ce5fb8ad9f2f91fb60",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "id": "p13-final-input-cancel-fix",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m3-p13-input-cancel-final-20261026T171458Z/mbse-desktop",
+  "binary_sha256": "e7a8dea73fbe560bd5cba17369c44076df270b62317b13e9b495690954178c18",
+  "source_sha256": "04bd96ddfbdc1cbf05cf4917797d649530db8639e860835b8cf24ca5b7366969",
+  "inputs": {
+    "/workspace/repos/builderbob/mbse-craft/work/m3-p13-dialogs-progress/docs/parity/p13/fixtures/original.kernspan": "eefc3606af8a0e31bf8a513f942fc9bbe5122fb1417c5c98789af941cbc1c1fd"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p13-final-01",
+  "argv_extra": [
+    "--open",
+    "/workspace/repos/builderbob/mbse-craft/work/m3-p13-dialogs-progress/docs/parity/p13/fixtures/original.kernspan",
+    "--select",
+    "1003"
+  ],
+  "scenarios": [
+    "Final binary: chooser explicit Cancel and actual empty-path indeterminate preserve native state",
+    "Final binary: background missing file fails and successful chooser Open retains exact saved native/paired views",
+    "Queued-edit and Cancel-release races have two actual egui-frame controller regressions, no native timing hook"
+  ],
+  "claim_policy": "Application-owned chooser, no OS picker backend. Same-agent Linux live checks plus controlled delayed reply tests for stale/cancel/background ownership; no fabricated timing or full parity claim."
+}

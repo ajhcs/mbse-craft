@@ -1,0 +1,55 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m4-p18a-connectors-shortcut-fix",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors",
+  "source_manifest": "docs/parity/p18a/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "e8ecedab3110ce43c58eb37dbffbad9c2606fdd7af11e514bcdbbf8eaf6c0ddc",
+  "source_sha256": "32f26058ffb52aef944db0eac662b0c0935a50978add32ae871f78b560d1f244",
+  "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop",
+      "ui::workspace_commands::tests",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "Linux native CtrlAltC did not reach workspace command; change default to CtrlAltK. Prior440-test semantic/UI closure unchanged except catalog shortcut key. Focused catalog/keyboard dispatch regression plus exact binary build; native remainder from actual saved output-port pair.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/docs/parity/p18a/fixtures/ports.mbse-views.json": "ce8f58d6a298ea9de1803ac5def1e03c99a4969ae9d1df516e13a1c6d7e79c1b",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p18a-connectors/docs/parity/p18a/fixtures/ports.kernspan": "39ced001ccc805049b18439d3ca264cae32b6069a08ae5cf690c92390ac42110"
+  }
+}

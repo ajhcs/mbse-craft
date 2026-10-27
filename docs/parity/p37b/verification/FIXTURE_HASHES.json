@@ -1,0 +1,9 @@
+{
+  "/workspace/repos/builderbob/mbse-craft/work/m6-p37b-native-metrics/docs/parity/p37b/fixtures/native-prepared-01/EXPECTED.json": "f0cca2be91d637ea67619b5a3b72d2d2351976a327b4317324ee7c3778dee944",
+  "/workspace/repos/builderbob/mbse-craft/work/m6-p37b-native-metrics/docs/parity/p37b/fixtures/native-prepared-01/native.kernspan": "76308c47303441f4dc6575399a85a9d842143c9784d442709a0402226cb670dc",
+  "/workspace/repos/builderbob/mbse-craft/work/m6-p37b-native-metrics/docs/parity/p37b/fixtures/native-prepared-01/native.mbse-views.json": "bc5e0519f10a956e8110c496c783c51f5521bae0279a86dc60c1a956b6dbeb2b",
+  "/workspace/repos/builderbob/mbse-craft/work/m6-p37b-native-metrics/docs/parity/p37b/fixtures/native-prepared-01/requirements.json": "bd712f6adc7981f51b261fc7cbe7fbbc2e660acf3a8189ae8f11980941e7c291",
+  "/workspace/build/builderbob/mbse-craft/milestone1/native-p37b-01/run/metrics-checkpoint.kernspan": "76308c47303441f4dc6575399a85a9d842143c9784d442709a0402226cb670dc",
+  "/workspace/build/builderbob/mbse-craft/milestone1/native-p37b-01/run/metrics-checkpoint.mbse-views.json": "bc5e0519f10a956e8110c496c783c51f5521bae0279a86dc60c1a956b6dbeb2b",
+  "/workspace/build/builderbob/mbse-craft/milestone1/native-p37b-01/run/metrics-register-checkpoint.json": "299424c625fe63fc705e9b73a60de112a0a0ea705c353e2c225c2fd46c92eb46"
+}

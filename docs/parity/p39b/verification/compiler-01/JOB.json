@@ -1,0 +1,64 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m7-p39b-strict-whole-member-source-adapter-01",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m7-p39b-source-adapter",
+  "source_manifest": "docs/parity/p39b/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "fecdc9cf862b349ff072d867960931ba78ff9079f6dcb1f3a6ab9ed0ec28a645",
+  "source_sha256": "0897f8a3c4e307642e01a589bbe91b8494e36d070eac00ddebc821732b5c2e81",
+  "cargo_lock_sha256": "26687453bfdee99d59a404b010c9fcdda95c1d77462c08e387ccebae3b14347b",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "--workspace"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "run",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-exchange",
+      "--example",
+      "prepare_source_admission",
+      "--",
+      "/workspace/repos/builderbob/mbse-craft/work/m7-p39b-source-adapter/docs/parity/p39b/fixtures/native-prepared-01"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "P39b strict whole-member source adapter reuses frozen P38 SemanticV2 projection keys/spans/reference resolution and P39a native authority. Flat explicit concrete UML Class, one-to-one composite/none Property, optional documentary SysML Block declaration; every XML element/attribute/text accounted, unknown/untyped/URI/default/extension semantics refuse. Exact sealed disclosure review plus original-list point-in-time/native freshness recheck before one native Apply. Fourteen new integration cases, source-only fixture preparation and desktop build; expected823=809prior+14new. No new deps/license/upstream/build-script/provider/service/release or native UI acceptance. P39c follows separately.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p39b-source-adapter/docs/parity/p38b/verification/native-01/cold-run/project-set-target-cold-copy.kernspan": "76308c47303441f4dc6575399a85a9d842143c9784d442709a0402226cb670dc",
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p39b-source-adapter/docs/parity/p39a/verification/TEST_RESULTS.json": "82a0d2de9078ad2b5b31a8df325f8cf51172a2f3e4edb58f3926c1151c960dbd"
+  }
+}

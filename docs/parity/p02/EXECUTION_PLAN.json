@@ -1,0 +1,92 @@
+{
+  "schema": "mbse-craft.p02-execution-plan/1",
+  "state": "prepared_not_launched",
+  "reviewed_pr": 1,
+  "reviewed_head": "5b907c333d423df60de7d539da2a0900941825aa",
+  "source_sha256": "fe2c135180c5489306ff46f139c6fad5b5553b72749169bc25edea70b3dfca04",
+  "source_manifest": "docs/continuation-m2/verification/epoch-217c977c-source-edit/SOURCE_MANIFEST.json",
+  "cargo_lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+  "integration_owner": "Existing sole MBSE integrator retains product/target ownership; this worktree is assigned to the P02 readiness review.",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/p02-readiness/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/p02-readiness/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-model",
+      "--test",
+      "stage1_completion_foundation",
+      "--test",
+      "stage1_calculation",
+      "--test",
+      "craft_faults",
+      "--test",
+      "craft_recovery",
+      "--test",
+      "context_recovery",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop",
+      "ui::policies",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "New P02 integrated acceptance, not replay/relabel of historical qualification. These focused model/draft/calculation/preservation regressions support the newly defined M1-AUTHOR scenario.",
+  "native_followup": {
+    "state": "not_launched_not_allocated",
+    "driver": "scripts/verify-native.py",
+    "vector": "M1-AUTHOR",
+    "required_observations": [
+      "Blank start without --fixture or --open",
+      "Author System purpose, Mission, Capability, typed Objective subject and Measure",
+      "Show independent 120 m / 8 s = 15 m/s and 2500 m = 2.5 km",
+      "Preserve accepted criterion 95 beside incomplete raw 9e; verify actual field/model history",
+      "Controlled owned save failure and Cancel retain current work",
+      "Save to a new owned destination, close normally with exit 0, relaunch and verify exact IDs/typed fields/raw text",
+      "Record exact owned app/driver/display identities and verify normal cleanup"
+    ],
+    "note": "Existing generic XTest driver reviewed read-only; no new driver launch or invented screenshot coordinates. Freeze an actual action script and exact binary hash after admitted build, before separately allocated native run."
+  },
+  "admission_requirements": [
+    "Fresh original resource-health evidence bound to the exact reviewed job/source, not copied historical admission",
+    "Explicit exclusive compiler/target allocation and later separate renderer allocation",
+    "Action-time upstream/registry build-script and dependency review for the offline locked graph",
+    "Verified workspace and available disk budget for a new dedicated target; never reuse or overwrite frozen binaries/targets",
+    "Preserve failed/held/partial receipts and run only an admitted unexecuted remainder"
+  ],
+  "currently_missing": [
+    "fresh original exact-job health packet",
+    "exclusive compiler allocation",
+    "separate reviewed/frozen native action packet and renderer allocation"
+  ],
+  "execution_policy": "This file is a reviewable plan, not an executable launcher or a resource allocation. No automatic retry, monitor, service or background worker is created."
+}

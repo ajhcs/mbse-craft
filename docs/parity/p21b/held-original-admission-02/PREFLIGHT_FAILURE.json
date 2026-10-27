@@ -1,0 +1,10 @@
+{
+  "recorded_utc": "2026-10-26T23:07:55.977382+00:00",
+  "job_sha256": "a01d97385c2b96af40d052abe729883bd65d273579fbf5607cc578bfd35857be",
+  "phase": "initial default host local_preflight before native launch",
+  "exit_code": 1,
+  "error": "Existing compiler/native process requires coordination: [{\"pid\": 113463, \"comm\": \"cargo\", \"cwd\": \"/workspace/worktrees/builderbob/kernspan/b06-keyboard-coverage\", \"output_dirs\": []}]",
+  "native_runs": 0,
+  "output_directory_created_but_no_receipt": true,
+  "limits": "Transcribed exec tool failure. Prior sandbox process visibility did not establish host resource quiet; host admission held and no app launched."
+}

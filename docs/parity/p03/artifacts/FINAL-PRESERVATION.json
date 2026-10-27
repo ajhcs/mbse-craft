@@ -1,0 +1,13 @@
+{
+  "native_path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/artifacts/recovered.kernspan",
+  "native_sha256": "2d1d583d57251f14a88dd0e15bf6a41fccc4a1a5979fefec988589fa1970c531",
+  "views_path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/run-199226d5-r01/artifacts/recovered-after-tamper.mbse-views.json",
+  "views_sha256": "1718b4c0c91530d35d7076ebcc26b5e64973656c3598a227e192de13f30cbba0",
+  "native_binding": {
+    "document_id": "recovered:session:stage1-session-e4Voch",
+    "artifact_sha256": "2d1d583d57251f14a88dd0e15bf6a41fccc4a1a5979fefec988589fa1970c531",
+    "snapshot_sha256": "af2f76e93fc49da7bb31a6ab407f9a0719637a3a159691f095e4f19fa17d4e76"
+  },
+  "ui_snapshot_hash": "af2f76e93fc49da7bb31a6ab407f9a0719637a3a159691f095e4f19fa17d4e76",
+  "native_and_views_saved_verified": true
+}

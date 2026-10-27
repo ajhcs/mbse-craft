@@ -1,0 +1,226 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-27T09:04:20.284322+00:00",
+  "job_sha256": "3624972a62860ec82bd9719c58c7dea237c9e326ac8ae864cda90266f9a048fe",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p32c-02/run",
+      "started_utc": "2026-10-27T09:04:20.305133+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 824546,
+          "start_ticks": 46621124
+        },
+        "server_pid": {
+          "pid": 824543,
+          "start_ticks": 46621122
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/build/builderbob/mbse-craft/milestone1/native-p32c-01/run/state-machine-checkpoint.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 824546,
+        "server_pid": 824543,
+        "window": 4194307,
+        "binary_sha256": "87879d4552ccdd75babc443975cf5dec2c6f5c29d4535e5c6a097750f6b916f8"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-27T09:07:53.352925+00:00",
+      "owned_processes_absent": true
+    },
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p32c-02/cold",
+      "started_utc": "2026-10-27T09:08:15.955392+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 826121,
+          "start_ticks": 46644689
+        },
+        "server_pid": {
+          "pid": 826118,
+          "start_ticks": 46644687
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/build/builderbob/mbse-craft/milestone1/native-p32c-02/run/state-machine-final.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 826121,
+        "server_pid": 826118,
+        "window": 4194307,
+        "binary_sha256": "87879d4552ccdd75babc443975cf5dec2c6f5c29d4535e5c6a097750f6b916f8"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-27T09:08:28.580760+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-27T09:04:20.304910+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1372121063424,
+    "available_memory_bytes": 27122876416,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 299500,
+        "start_ticks": 43416915,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      },
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 326
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "corrected_parallel_labels_and_plain_language_fit": true,
+  "native_nudge_pin_hide_history_preserves_native": true,
+  "native_two_diagrams_independent_geometry_and_cameras": true,
+  "action_errors": [
+    {
+      "action": "get_occ=lambda:next(o for o in n.audit()['state_machines']['rendered']['occurrences']if o['element']==7004); old_geom=json.loads(json.dumps(get_occ()['geometry'])); n.click('state-machine-canvas:Move right'); nudged=json.loads(json.dumps(get_occ()['geometry'])); assert nudged['x']==old_geom['x']+40 and n.audit()['snapshot_hash']==hash_before; n.click('state-machine-canvas:Toggle pin'); n.click('state-machine-canvas:Move right'); assert get_occ()['geometry']==nudged; n.click('state-machine-canvas:Toggle visibility'); assert len(n.audit()['state_machines']['rendered']['transitions'])==2; n.click('state-machine-canvas:Diagram Undo'); assert len(n.audit()['state_machines']['rendered']['transitions'])==5; n.click('state-machine-canvas:Diagram Redo'); assert len(n.audit()['state_machines']['rendered']['transitions'])==2; n.click('state-machine-canvas:Diagram Undo'); assert len(n.audit()['state_machines']['rendered']['transitions'])==5; assert n.audit()['snapshot_hash']==hash_before; n.capture('03-nudge-pin-refusal-hide-single-layout-undo-redo'); receipt['native_nudge_pin_hide_history_preserves_native']=True; view45_camera=json.loads(json.dumps(n.audit()['views_camera'])); view45_geometry=json.loads(json.dumps(n.audit()['state_machines']['rendered']['occurrences'])); n.click('view:tab:40'); n.click('camera:Pan right'); n.click('camera:Zoom in'); view40_camera=json.loads(json.dumps(n.audit()['views_camera'])); assert view40_camera['x']==64 and view40_camera['zoom']==1.25; assert next(o for o in n.audit()['state_machines']['rendered']['occurrences']if o['element']==7004)['geometry']==checkpoint_views['state_machine_diagrams']['40']['occurrences']['44']['geometry']; n.capture('04-independent-first-diagram-camera-and-original-geometry'); n.click('view:tab:45'); assert n.audit()['views_camera']==view45_camera and n.audit()['state_machines']['rendered']['occurrences']==view45_geometry and n.audit()['snapshot_hash']==hash_before; receipt['native_two_diagrams_independent_geometry_and_cameras']=True; n.click('state-machine-transition:7008'); assert n.audit()['state_machines']['current']['guard']=='temperature >'; assert n.audit()['state_machines']['proposals']==checkpoint['extensions']['namespaces']['mbse-craft.type-drafts/1']['state_machine_forms']; n.capture('05-derived-ledger-selects-exact-unmodified-invalid-proposal'); n.click('state-machine:edit:machine:7000'); print(n.audit()['state_machines']['current']); print(n.audit()['state_machines']['note'])",
+      "error": "AssertionError('Missing live widget: state-machine:edit:machine:7000')"
+    },
+    {
+      "action": "n.click('state-machine:select:7000'); assert n.audit()['state_machines']['current']['kind']=='Machine'; n.click('state-machine:Remove accepted'); assert not n.audit()['state_machines']['accepted'] and n.audit()['state_machines']['proposals']==checkpoint['extensions']['namespaces']['mbse-craft.type-drafts/1']['state_machine_forms']; n.capture('06-root-removal-retains-all-invalid-proposals'); n.click('state-machine:Close'); assert len(n.audit()['state_machines']['rendered']['occurrences'])==0; n.capture('07-accepted-source-removal-detaches-diagrams'); n.click('state-machine-canvas:Open editor'); n.click('state-machine:Model Undo'); assert n.audit()['state_machines']['accepted']==checkpoint['extensions']['namespaces']['mbse-craft.types/1']['state_machines']; n.click('state-machine:Close'); assert n.audit()['state_machines']['rendered']['occurrences']==view45_geometry; n.click('view:tab:40'); assert len(n.audit()['state_machines']['rendered']['occurrences'])==4 and n.audit()['views_camera']==view40_camera; n.click('view:tab:45'); n.click('state-machine-canvas:Open editor'); n.click('state-machine:Model Redo'); assert not n.audit()['state_machines']['accepted']; n.click('state-machine:Model Undo'); assert n.audit()['state_machines']['proposals']==checkpoint['extensions']['namespaces']['mbse-craft.type-drafts/1']['state_machine_forms']; n.click('state-machine:Close'); assert n.audit()['state_machines']['rendered']['occurrences']==view45_geometry; n.capture('08-fresh-observed-model-inverse-restores-exact-diagram-identities'); receipt['native_root_detach_and_observed_model_inverse_restore_exact_identities']=True; n.clear_adjacent_views_path(); final=n.save('state-machine-final.kernspan'); assert all(final[k]==checkpoint[k]for k in checkpoint if k!='model_revision'); assert final['model_revision']>checkpoint['model_revision']; final_views=json.loads((n.run/'state-machine-final.mbse-views.json').read_text()); assert all(final_views.get(k,{})==checkpoint_views.get(k,{})for k in ['occurrences','edges','typed_ports','connector_edges','activity_diagrams']); assert all(final_views['views'][k]==v for k,v in checkpoint_views['views'].items()if k not in ['40','45']); n.capture('09-native-final-pair-preserves-entire-original-snapshot-and-presentations'); receipt['native_final_snapshot_preserved_except_monotonic_model_revision']=True; receipt['original_five_maps_and_original_view_entries_preserved']=True; n.close(); print(dict(model_revision=final['model_revision'],raw_version=final['raw_version'],next_id=final['next_id']))",
+      "error": "AssertionError('Missing live widget: state-machine:select:7000')"
+    },
+    {
+      "action": "n.click('state-machine:Browse elements'); n.click('state-machine:select:7000'); assert n.audit()['state_machines']['current']['kind']=='Machine'; n.click('state-machine:Remove accepted'); assert not n.audit()['state_machines']['accepted'] and n.audit()['state_machines']['proposals']==checkpoint['extensions']['namespaces']['mbse-craft.type-drafts/1']['state_machine_forms']; n.capture('06-root-removal-retains-all-invalid-proposals'); n.click('state-machine:Close'); assert len(n.audit()['state_machines']['rendered']['occurrences'])==0; n.capture('07-accepted-source-removal-detaches-diagrams'); n.click('state-machine-canvas:Open editor'); n.click('state-machine:Model Undo'); assert n.audit()['state_machines']['accepted']==checkpoint['extensions']['namespaces']['mbse-craft.types/1']['state_machines']; n.click('state-machine:Close'); assert n.audit()['state_machines']['rendered']['occurrences']==view45_geometry; n.click('view:tab:40'); assert len(n.audit()['state_machines']['rendered']['occurrences'])==4 and n.audit()['views_camera']==view40_camera; n.click('view:tab:45'); n.click('state-machine-canvas:Open editor'); n.click('state-machine:Model Redo'); assert not n.audit()['state_machines']['accepted']; n.click('state-machine:Model Undo'); assert n.audit()['state_machines']['proposals']==checkpoint['extensions']['namespaces']['mbse-craft.type-drafts/1']['state_machine_forms']; n.click('state-machine:Close'); assert n.audit()['state_machines']['rendered']['occurrences']==view45_geometry; n.capture('08-fresh-observed-model-inverse-restores-exact-diagram-identities'); receipt['native_root_detach_and_observed_model_inverse_restore_exact_identities']=True; n.clear_adjacent_views_path(); final=n.save('state-machine-final.kernspan'); assert all(final[k]==checkpoint[k]for k in checkpoint if k!='model_revision'); assert final['model_revision']>checkpoint['model_revision']; final_views=json.loads((n.run/'state-machine-final.mbse-views.json').read_text()); assert all(final_views.get(k,{})==checkpoint_views.get(k,{})for k in ['occurrences','edges','typed_ports','connector_edges','activity_diagrams']); assert all(final_views['views'][k]==v for k,v in checkpoint_views['views'].items()if k not in ['40','45']); n.capture('09-native-final-pair-preserves-entire-original-snapshot-and-presentations'); receipt['native_final_snapshot_preserved_except_monotonic_model_revision']=True; receipt['original_five_maps_and_original_view_entries_preserved']=True; n.close(); print(dict(model_revision=final['model_revision'],raw_version=final['raw_version'],next_id=final['next_id']))",
+      "error": "AssertionError('Missing live widget: state-machine:Model Undo')"
+    }
+  ],
+  "native_ledger_selects_exact_retained_invalid_proposal": true,
+  "native_visual_followup": "Parallel label identities corrected, but completion label intersects state caption. After normal closure, extend placement to avoid state bounds; retain this original screenshot.",
+  "native_root_detach_and_observed_model_inverse_restore_exact_identities": true,
+  "missing_source_canvas_editor_refuses_exactly_then_shared_command_retains_history_route": true,
+  "native_final_snapshot_preserved_except_monotonic_model_revision": true,
+  "original_five_maps_and_original_view_entries_preserved": true,
+  "cold_preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-27T09:08:15.955061+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1372116111360,
+    "available_memory_bytes": 27310321664,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 299500,
+        "start_ticks": 43416915,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      },
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 326
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "native_cold_open_no_prior_history_and_raw_selection_preserved": true,
+  "native_cold_save_copy_entire_snapshot_and_seven_maps_exact": true,
+  "all_frozen_inputs_unchanged": true,
+  "authentication_files_absent": true,
+  "ended_utc": "2026-10-27T09:08:46.147420+00:00"
+}

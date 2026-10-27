@@ -1,0 +1,33 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "796c1ba9dfd08b9ce913113bfc5f434fcb11dc7f592ad6114674b46c429db59d",
+    "scripts/verify-m1-native.py": "4e477f78eacdcc32af36c45799d4d50d355b40c0af0636ce5fb8ad9f2f91fb60",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "id": "p17a-product-wording-review",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p17a-product-wording-review-build-20261026T191600Z/mbse-desktop",
+  "binary_sha256": "cdf9a94e0eaf6a148687896bba875a6f5699c57cccb686cde0315fbc57463920",
+  "source_sha256": "1b71881d2890bdbec4de39059fd549b3adb936be5d7b4eefae0a5d52adac60fd",
+  "inputs": {
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p17a-ports-interfaces/docs/parity/p17a/verification/native/run/ports-final.kernspan": "45501ede1b6c6df6e9b3c2bcb9ee0a2b582ff7df0a9b0e5d74ac09ecbf052e32",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p17a-ports-interfaces/docs/parity/p17a/verification/native/run/ports-final.mbse-views.json": "e24cea68ef8741256d6c8684db734ec2c9feb03d5036137f6bcf6dd5d22aa9fa"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17a-wording-01",
+  "argv_extra": [
+    "--open",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p17a-ports-interfaces/docs/parity/p17a/verification/native/run/ports-final.kernspan",
+    "--select",
+    "1003"
+  ],
+  "scenarios": [
+    "Verify current placement limit wording without internal roadmap IDs on actual native port editor; model hash/input bytes unchanged"
+  ],
+  "claim_policy": "One UI display-string correction; original422-test/two-native-run semantic source qualified separately. No full-suite rerun or repeated semantic scenario claimed."
+}

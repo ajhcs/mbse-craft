@@ -1,0 +1,39 @@
+{
+  "result": "bounded_activity_keyed_journals_diagram_core_regression_and_build_passed",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 735,
+  "source_sha256": "d38c8439d4eff1b806817553da954716e2d6686bb5d6cb8d248ec0aee959cf50",
+  "binary_sha256": "25c8aa2f447a8019c3e68006a98128fee140ebea8f7d65c9823bd1b85ca69c2c",
+  "compiler_slice_counts": [
+    [
+      482
+    ],
+    [
+      126,
+      0
+    ],
+    [
+      0
+    ],
+    [
+      13,
+      0
+    ]
+  ],
+  "distinct_case_inventory": 609,
+  "new_distinct_cases": 13,
+  "native_activity_runs": 0,
+  "observations": [
+    "Bounded keyed type Journal proposals for Activity/Partition/Node/Pin/Flow retain unfinished text independently. Explicit Apply migrates older flow proposal, validates atomically under existing Editor; selected discard affects only raw proposal. Canonical slots/strict fields/foreign IDs/global allocator/high-water/count/bytes remain guarded.",
+    "Views profile6 activity diagrams reuse existing ViewId/camera/history/allocator. Stable partition/node/pin occurrence IDs, geometry/visibility/pinning/expected kind/presence stay independent per view. Exact live native flows render only with unique active visible endpoints; no second flow model or execution.",
+    "Joint native/type/presentation budgets and profile6 save/capture/recovery/history/port/connector/viewpoint coexistence checked. Model removal detaches; observed inverse reactivates, cold data cannot mint proof. Native save/cold Snapshot and views bound/recovery DTOs remain exact.",
+    "Review F01 quota reproduced; final Generic Apply consumes selected creation slot inside atomic candidate before staging legacy bridge and restores accepted-ID slot. At128, final128 preserves every other raw proposal and advances allocator exactly once.",
+    "Legacy source inspection/mapping refuses activity presentations before partial inventory; original source bytes preserved. Native-only copy into activity-bearing targets refuses."
+  ],
+  "limits": [
+    "Data/core only; P30c actual native authoring/rendering/selection/save/cold acceptance remains required before P30 parent completion.",
+    "Legacy flow API remains confined to its single proposal; new selected Discard addresses keyed forms.128 effective form slots, existing512 accepted elements/256KiB extensions/8MiB views budgets, no RSS/performance claim.",
+    "All56 broad specs/integrated exits/full NoMagic/SysML/Craft/scale/platform/independent engineering acceptance remain open."
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "profile": "mbse-craft.native-record-impact-job/1",
+  "status": "PreparedNotLaunched",
+  "owner_thread": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+  "cwd": "/workspace/worktrees/builderbob/mbse-craft/native-record-impact",
+  "branch": "feature/native-record-impact",
+  "source_commit": "88d813e19d5eb18fab1b8962aab030a1731ea39d",
+  "source_sha256": "a5665174565063635f3390584da8006b826da6fec876e6b9739981e6584a7874",
+  "source_manifest": "/workspace/build/builderbob/mbse-craft/native-record-impact/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "8a8b2b328107efba2514834aa540f2bb10d2beeccf4f3ebda710b22c4af33428",
+  "cargo_lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-model",
+      "native_record_impact",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop",
+      "ui::policies",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/semantic-v2/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/semantic-v2/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "CARGO_TERM_COLOR": "never",
+    "RUST_TEST_THREADS": "1"
+  },
+  "binary_source": "/workspace/build/builderbob/mbse-craft/semantic-v2/target/debug/mbse-desktop",
+  "disk_budget": {
+    "target_apparent_bytes_before": 5805647217,
+    "workspace_available_bytes_at_preparation": 58481336320,
+    "planned_additional_bytes": 1073741824,
+    "minimum_free_bytes_before_launch": 2147483648,
+    "preserved_binary_max_bytes": 536870912,
+    "prior_native_binary_bytes": 401094944,
+    "notes": "Existing MBSE single-writer target, one bounded binary preservation. New frozen source changes require7newmodel+8affectedUIpolicy tests; prior browser11/build/native qualification is not replayed. No fixture emission. No target duplication/deletion or filesystem quota."
+  },
+  "admission": "Fresh exact-job packet plus explicit same-target sole-writer action allocation required. Allocation must independently pin current host appserver identity; no stale993990 assumption or substitute resource probe.",
+  "target_isolation": "This integrator is sole candidate/target writer; historical exact-owned jobs checked absent in current executor namespace. New host visibility/restart health must be reconciled by coordinator. No idle global mutex.",
+  "gui": false,
+  "uploads": false,
+  "new_agent_contexts": false,
+  "independent_review": "Existing read-only reviewer identified synthetic test-profile/endpoint and weak-success-test issues before execution. Those are corrected at88d813e; final corrected-source review pending, no launch until closed.",
+  "timeout": "No hard timeout in prior reviewed wait-based wrapper; expected bounded incremental work, do not assert estimate as timeout.",
+  "scope": "M2B/CAP015 inspection-only precursor: supported direct native usages/draft counts/all-view occurrences/exact persisted touching visual edges; no semantic deletion, cascade, safe verdict, model/view mutation, allocator/history/wire change. Existing Document validator visibility only.",
+  "expected_tests_unrun": {
+    "native_record_impact": 7,
+    "desktop_policies": 8,
+    "total": 15
+  },
+  "new_tests_authored": 8
+}

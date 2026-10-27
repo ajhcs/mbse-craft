@@ -1,0 +1,313 @@
+{
+  "schema": "mbse-craft.independent-linux-acceptance/1",
+  "date_utc": "2026-10-22T20:34:59.298242+00:00",
+  "build_cwd": "/workspace/worktrees/builderbob/mbse-craft/verification",
+  "source_sha256": "323fe697051fe40a508dcab6d8d3979898a0da8c34a4a2007aa1ec30ee3ac6d7",
+  "source_files": 76,
+  "binary_sha256": "ddefaaaa73675b5e1aacd8aee6288cfdf513049c0e8cad88b15be894a7e4b587",
+  "binary_path": "/workspace/build/builderbob/mbse-craft/target/debug/mbse-desktop",
+  "toolchain": "rustc/cargo1.99.1-x86_64-unknown-linux-gnu",
+  "build_environment": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1"
+  },
+  "commands": [
+    "bash scripts/dev.sh test --locked --offline --workspace",
+    "bash scripts/dev.sh build --locked --offline -p mbse-desktop",
+    "bash scripts/dev.sh tree --locked --offline -i egui",
+    "python3 scripts/source-manifest.py"
+  ],
+  "checks": [
+    {
+      "id": "blank_native_authoring",
+      "status": "pass",
+      "evidence": "logs/gui-blank-events.jsonl",
+      "detail": "No fixture: System purpose/name, Mission1000, Capability1001, Objective1002, Measure1003 authored by real pointer/keyboard events; typed Mission link and Capability subject persisted."
+    },
+    {
+      "id": "blank_calculation_conversion",
+      "status": "pass",
+      "evidence": "screenshots/blank-authored-reopened.png",
+      "detail": "Typed literal2500m, expressionx, outputKilometre produced visible2.5km; criterion2000m remained separate."
+    },
+    {
+      "id": "normal_close_relaunch",
+      "status": "pass",
+      "evidence": "logs/gui-blank-reopened-events.jsonl",
+      "detail": "WM_DELETE_WINDOW returned0 on saved blank-authored model; new process reopened it with matching snapshot hash."
+    },
+    {
+      "id": "typed_undo_redo",
+      "status": "pass",
+      "evidence": "logs/gui-r05-events.jsonl",
+      "detail": "Fixture-assisted real GUI Capability200 link[] -> Undo[100] -> Redo[] verified saved native bytes; earlier binaryee9c8f8c."
+    },
+    {
+      "id": "invalid_raw_preserved",
+      "status": "pass",
+      "evidence": "models/recovered-accepted.kernspan",
+      "detail": "Real GUI criterioninvalid retained separately while accepted criterion95 survived save/reopen/recovery."
+    },
+    {
+      "id": "calculation_numeric_oracles",
+      "status": "pass",
+      "evidence": "logs/test-candidate-final.log",
+      "detail": "Final tests include2km+500m=2500m and1km+250m=1.25km plus dimension/kind/domain/cycle/nonfinite refusal."
+    },
+    {
+      "id": "actual_craft_atomic_failures",
+      "status": "pass",
+      "evidence": "logs/test-candidate-final.log",
+      "detail": "Final tests invoke real Craft write path with StorageFull after partial stage and injected rename refusal; destination bytes preserved/no orphan stage."
+    },
+    {
+      "id": "save_failure_retention",
+      "status": "pass",
+      "evidence": "screenshots/save-failure-preserves-model.png",
+      "detail": "Read-only prior-run save refused visibly, model/raw retained, noSaved claim; corrupt Open input unchanged."
+    },
+    {
+      "id": "failed_open_cancel",
+      "status": "pass",
+      "evidence": "logs/gui-final-events.jsonl",
+      "detail": "Truncated input refused; dirty Open preservationCancel retained current snapshot. Successful Save-and-continue was not established in this scenario because save correctly failed read-only."
+    },
+    {
+      "id": "dirty_graceful_close_recovery",
+      "status": "pass",
+      "evidence": "logs/gui-lifecycle-events.jsonl",
+      "detail": "WM_DELETE_WINDOW prompted; Keep recovery and continue wrote current snapshot and exited0 without loop."
+    },
+    {
+      "id": "corrupt_main_restore",
+      "status": "pass",
+      "evidence": "screenshots/recovered-3point5km.png",
+      "detail": "Saved main preserved then truncated; actual startup returned1 STAGE1_JSON; actual GUI restored independent dirty recovery,3500m ->3.5km and saved fresh owned native copy."
+    },
+    {
+      "id": "dense_ledger_discoverability",
+      "status": "pass",
+      "evidence": "screenshots/selected-typed-relation.png",
+      "detail": "Ten-record12-link fixture and final recovered11-link ledger exposed all relation roles; selected typed relation highlights/popout captured."
+    },
+    {
+      "id": "single_egui_identity",
+      "status": "pass",
+      "evidence": "logs/egui-tree.txt",
+      "detail": "One stock registry egui0.36.2 shared by craft-ui/eframe; no Storytold fork compatibility assertion."
+    },
+    {
+      "id": "final_workspace_tests",
+      "status": "pass",
+      "evidence": "logs/test-candidate-final.log",
+      "detail": "122 unit/integration tests +1 doc test,0failed; not inherited historical counts."
+    },
+    {
+      "id": "final_format",
+      "status": "pass",
+      "evidence": "logs/fmt-final.log",
+      "detail": "rustfmt--check app-authored desktop/lib/fault/recovery source returned0."
+    },
+    {
+      "id": "dirty_save_and_continue_destination_boundary",
+      "status": "pass",
+      "detail": "Final binary saved edited current literal2600m to owned current.kernspan, then refused corrupt Open input unchanged; active model Saved at same current snapshot, preservation prompt dismissed, normal close0.",
+      "evidence": "logs/gui-navigation-events.jsonl"
+    }
+  ],
+  "not_qualified": [
+    "Windows native",
+    "AT-SPI/screen-reader accessibility",
+    "physical FPS/input latency",
+    "general usability/engineering acceptance",
+    "ArtCraft hosted service/fork/file compatibility",
+    "full SysMLv2 conformance",
+    "power-loss durability"
+  ],
+  "known_limitations": [
+    "Canvas routing and viewport usability remain bounded prototype evidence; complete names/typed references remain discoverable through the ledger and scrollable left controls.",
+    "Core backend supports more units/types than limited Measure quantity chooser.",
+    "GUI geometry is application-supplied targeting only; actual XTest events, saved bytes, XGetImage pixels and process status establish observed workflows."
+  ],
+  "artifacts": [
+    {
+      "path": "FINAL_ACCEPTANCE.md",
+      "sha256": "b8b24105344f56f6e9fccd951e94333112081a3e677a5377f397c4677f634726",
+      "bytes": 3541
+    },
+    {
+      "path": "SOURCE_MANIFEST.json",
+      "sha256": "10c482fce8333bcee5352a1dd26fac6d1c9d484fc55f9ceb9214279f489d83fd",
+      "bytes": 13841
+    },
+    {
+      "path": "dependency-inventory.json",
+      "sha256": "975e4b551bfcdc26a0f19cc8545346e88c06945cd019f536a48a57b6a4d6428a",
+      "bytes": 134186
+    },
+    {
+      "path": "logs/build-candidate-final.log",
+      "sha256": "1565a03eb4d4eaa4cf9e55a4eac6d6bd94183ae3063e8d29a74aa1ac4a6e80b9",
+      "bytes": 183
+    },
+    {
+      "path": "logs/corrupt-start.log",
+      "sha256": "e5a9cc56f047ff30586d86c21c6048a7b0f60959550069c05b813eac74e74824",
+      "bytes": 65
+    },
+    {
+      "path": "logs/egui-tree.txt",
+      "sha256": "ac2fa1d570438c694afc9f8dcad30b267ffcf10faf84ff3d4967bdd4ab10c7d0",
+      "bytes": 503
+    },
+    {
+      "path": "logs/fmt-final.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "logs/gui-accepted-events.jsonl",
+      "sha256": "e63ed6ef115133d2dda1902026464786d08e5cd5a3d2440e194e440fe45aa0cd",
+      "bytes": 1146
+    },
+    {
+      "path": "logs/gui-accepted-ui-geometry.json",
+      "sha256": "8f7b9a56d9a62f47c1ee3b34d65b8df375974f351ac07557173bb8c3f1020e4a",
+      "bytes": 5871
+    },
+    {
+      "path": "logs/gui-blank-events.jsonl",
+      "sha256": "fdcfcf77eaca0349069c4e83ba5da1bf2ad178721679f39831a5358766de8f0e",
+      "bytes": 3907
+    },
+    {
+      "path": "logs/gui-blank-reopened-events.jsonl",
+      "sha256": "d044e8d8773e9d3316ac11d8d84745ed480f99657da85862a30fe9145ec56090",
+      "bytes": 693
+    },
+    {
+      "path": "logs/gui-blank-reopened-ui-geometry.json",
+      "sha256": "a1d0b86c0685b8ca834edad17f4f492dc0b2a417799431904ebb05bd938d9492",
+      "bytes": 4615
+    },
+    {
+      "path": "logs/gui-blank-ui-geometry.json",
+      "sha256": "232b2701dfb2ad748cfdd1ca5ca5b821435ca51664338bc8c9ed2ed689392165",
+      "bytes": 4744
+    },
+    {
+      "path": "logs/gui-final-events.jsonl",
+      "sha256": "961ebf25d7458e38c92efcd2fb40e9b16f58e0a2862fbe9affaab4306032e40d",
+      "bytes": 2433
+    },
+    {
+      "path": "logs/gui-final-ui-geometry.json",
+      "sha256": "593dbf32efa11745411a7986f0897887722751bb529895f09cdf3c1859a4f1b3",
+      "bytes": 6231
+    },
+    {
+      "path": "logs/gui-lifecycle-events.jsonl",
+      "sha256": "2cb759c82136f9b71a8f9cd010eaafab238e9b32666d284944d191d927f66726",
+      "bytes": 1476
+    },
+    {
+      "path": "logs/gui-lifecycle-ui-geometry.json",
+      "sha256": "f7b44f0a419786b9ef5a1cdc952e8010cdf332bad2d77449851b082e03fe4b47",
+      "bytes": 5954
+    },
+    {
+      "path": "logs/gui-navigation-events.jsonl",
+      "sha256": "d45c87140eba995b209a25dd1704b67d368f4292e35e8e3a73922e79b469622b",
+      "bytes": 1501
+    },
+    {
+      "path": "logs/gui-navigation-ui-geometry.json",
+      "sha256": "dbb07d42f0174a8e6ed0be8b8477ed483b4c84afd5fe2e7505a42d55f50c5c30",
+      "bytes": 4577
+    },
+    {
+      "path": "logs/gui-r05-events.jsonl",
+      "sha256": "ac278dfc6e4c016311adafb349db7da5e166bea9593e546ce0394511124b707b",
+      "bytes": 2297
+    },
+    {
+      "path": "logs/gui-r05-ui-geometry.json",
+      "sha256": "f924068df4522abb3708ecb1e1b9ef68fa9bb590e997c9f0ba0d88d10d5ba7f7",
+      "bytes": 5710
+    },
+    {
+      "path": "logs/test-candidate-final.log",
+      "sha256": "d56ae8ca2a6592f3cad1cb2e176467da88685f5c12293c843a689a5fdc6f3c73",
+      "bytes": 12882
+    },
+    {
+      "path": "models/blank-authored.kernspan",
+      "sha256": "a4a6b72e175cd49ba853f9de781d56651899bd38bfed99749525dcf6c1abf20b",
+      "bytes": 2276
+    },
+    {
+      "path": "models/close-recovery.kernspan",
+      "sha256": "a702dc0711e9c2159b39790cb608379a7be9bf2ba473ee02c1229aefef8dabe7",
+      "bytes": 3698
+    },
+    {
+      "path": "models/navigation-saved.kernspan",
+      "sha256": "93ebd505e262c357a571bced5f7c38f3d6532894bb0999aabd714fdd81e5674e",
+      "bytes": 2277
+    },
+    {
+      "path": "models/recovered-accepted.kernspan",
+      "sha256": "79bd6bb246865b77b9ab5e25f35e171fed4cc419815dcba9dc12f3a7d5625304",
+      "bytes": 3913
+    },
+    {
+      "path": "screenshots/blank-authored-reopened.png",
+      "sha256": "1e464ca90b8f7c134826555b9393d11007a98ee3127282c72c7961c208e722ac",
+      "bytes": 215969
+    },
+    {
+      "path": "screenshots/blank-authored-saved.png",
+      "sha256": "85b1b76bdc5641db802a74f5db1c0eeb1d049c5f343b9555f18ce4b3affeac7e",
+      "bytes": 219432
+    },
+    {
+      "path": "screenshots/close-preservation.png",
+      "sha256": "a72691b1c69620d73c60db1303d1e5407b8118b9411283efdc0a8fc76febc7ec",
+      "bytes": 268893
+    },
+    {
+      "path": "screenshots/invalid-retained.png",
+      "sha256": "a738c318db6b4b46e5cbda6bc4368242fb5bbff589a8061dfd91c72834685f3f",
+      "bytes": 278120
+    },
+    {
+      "path": "screenshots/recovered-3point5km.png",
+      "sha256": "bccfb63e13283c689c933bbf45171b27752cf6e146e36b405ca6d0861aad8811",
+      "bytes": 246597
+    },
+    {
+      "path": "screenshots/save-failure-preserves-model.png",
+      "sha256": "cf3f0ddeab77d0e9a244677770803f140ca9510dae5ec2d16179b3233f3ff5a9",
+      "bytes": 273087
+    },
+    {
+      "path": "screenshots/saved-current-failed-open-retained.png",
+      "sha256": "95c4ada6c1fa92b137a9f3cd315c8e42bd6d4cbf725562c60af60c66875b26cb",
+      "bytes": 215066
+    },
+    {
+      "path": "screenshots/selected-typed-relation.png",
+      "sha256": "0acf9f09bcd71846e761be7b6d67b250b738afe8b28bf69e57e9ab6f76d85f0b",
+      "bytes": 247317
+    },
+    {
+      "path": "source-identity-adaptation.json",
+      "sha256": "ca33e649c55d1fb75b832b17fef265ca6444f61aecd21fcb2eb4e3dde7e4ed12",
+      "bytes": 482
+    }
+  ],
+  "verification_driver_sha256": "a619709e8d1cd87181ae7948e060470e3b34ccaa309f74e4ea5dc61625140bd2"
+}

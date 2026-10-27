@@ -1,0 +1,36 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "796c1ba9dfd08b9ce913113bfc5f434fcb11dc7f592ad6114674b46c429db59d",
+    "scripts/verify-m1-native.py": "ef4e7c2308323b9023f83a15ddb3b9214d27368fd9a34a42b4245ad44f574a39",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "id": "p30c-native-activity-authoring-diagrams-and-cold",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p30c-fit-placement-02-20261027T060753Z/mbse-desktop",
+  "binary_sha256": "635e5f7b4c1b100c771673c73d8931f26bc616a01eb6cda1f06b796b22daf4ee",
+  "source_sha256": "0e2b2869dbb8d01318fa0f5d3f6ffffa138a464e24ca1648bf71793a708a03e6",
+  "inputs": {
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p30c-native-activities/docs/parity/p30c/fixtures/native.kernspan": "778e35d48ddf38c9c5e539aea0a65fb0cade73f850209f377840e01a913317a1",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p30c-native-activities/docs/parity/p30c/fixtures/native.mbse-views.json": "e793dbe99a639f45d6a35d380bb34e1a6b32fd93b08c3f2d3d394b43e4aebe88"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p30c-01",
+  "argv_extra": [
+    "--open",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p30c-native-activities/docs/parity/p30c/fixtures/native.kernspan",
+    "--select",
+    "1003"
+  ],
+  "scenarios": [
+    "Explicit original native/views Open. Shared Ctrl+Alt+H; widgets author activity/partition/Initial/Action/Decision/Final nodes, Out/In typed pins and control/object flows under nativeSystem1/Value1005. Original Stage1 records/drafts/creation and prior type/opaque data remain exact.",
+    "Distinct existing flow guard proposals invalid1/invalid2 retain raw while accepted true/else arrows stay current; refusal, selection and global model Undo/Redo preserve newer raw. Accepted activity removal detaches diagrams; observed inverse restores exact IDs/presence.",
+    "Create two independent diagrams, actual rendered shapes/flow ledger, drag one layout entry/Undo, nudge/pin/hide and independent cameras/switching preserve semantics. Exact native/views Save and protected inputs unchanged.",
+    "Cold explicit Open restores activity/invalid proposals/diagrams without prior model/layout inverse authority; actual fresh selection/inspect/render/switch/save-copy retains whole Snapshot/all6 maps. Normal owned app/display/PID/startticks/authentication cleanup."
+  ],
+  "claim_policy": "Same-agent bounded Linux synthetic fixture.617 final-source workspace regression cases plus build; original zero-test compile edit-placement failure retained. Finite documentary activity authoring/diagrams only, no execution/general guards/full NoMagic/SysML/Craft/scale/platform/independent engineering acceptance. All56 broad specs/integrated exits remain unaccepted."
+}

@@ -1,0 +1,16 @@
+{
+  "source_native": "docs/parity/p33b/verification/native-02/run/state-execution-cold-copy.kernspan",
+  "source_views": "docs/parity/p33b/verification/native-02/run/state-execution-cold-copy.mbse-views.json",
+  "inputs": {
+    "docs/parity/p34c/fixtures/native.kernspan": "332c3afea8989106c197759079f4da36e73a16bf92acb1ad365b08109d4f8d13",
+    "docs/parity/p34c/fixtures/native.mbse-views.json": "a76821e4653339591e0dec0db97a251d52d3c94cb230fa41a7aa063ebb7a7138"
+  },
+  "initial_counters": {
+    "model_revision": 123,
+    "raw_version": 262,
+    "next_id": 14000
+  },
+  "preauthored_scenarios": 0,
+  "expected": "Complete original native/type/activity/state/raw/opaque and seven presentation maps preserved. Actual widgets add scenario/proposals, two independent sequence diagrams and eighth presentation map. Cold-copy whole Snapshot and all eight maps exact.",
+  "preparation_note": "Initial preparation print used nonexistent model_version key before writing metadata; copied pair bytes unchanged. Correct native field is model_revision."
+}

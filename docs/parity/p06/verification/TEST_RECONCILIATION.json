@@ -1,0 +1,2416 @@
+{
+  "schema": "mbse-craft.p06-test-reconciliation/1",
+  "unique_passed_tests": 319,
+  "total_pass_executions": 332,
+  "repeated_pass_executions": 13,
+  "initial_failure": [
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::occurrence_navigation_busy_and_stale_refusals_publish_no_ephemeral_state",
+      "result": "FAILED"
+    }
+  ],
+  "repeats": [
+    {
+      "suite": "assurance",
+      "test": "aggregate_and_encoded_evidence_budgets_refuse_atomically_and_leave_register_usable",
+      "executions": 2
+    },
+    {
+      "suite": "assurance",
+      "test": "canonical_context_metadata_and_fixed_engine_limits_survive_save_reopen",
+      "executions": 2
+    },
+    {
+      "suite": "assurance",
+      "test": "every_freshness_dimension_and_incomplete_raw_refuses_pass",
+      "executions": 2
+    },
+    {
+      "suite": "assurance",
+      "test": "exact_native_source_anchor_requires_relink_after_native_raw_or_model_changes",
+      "executions": 2
+    },
+    {
+      "suite": "assurance",
+      "test": "failed_unsupported_and_changed_local_artifacts_cannot_pass",
+      "executions": 2
+    },
+    {
+      "suite": "assurance",
+      "test": "lifecycle_dimensions_independent_and_calculation_result_is_not_approval",
+      "executions": 2
+    },
+    {
+      "suite": "assurance",
+      "test": "raw_9e_invalidates_delayed_evidence_and_audit_records_survive_later_reviews_and_undo",
+      "executions": 2
+    },
+    {
+      "suite": "assurance",
+      "test": "saved_history_identity_admission_and_high_water_survive_undone_objects",
+      "executions": 2
+    },
+    {
+      "suite": "assurance",
+      "test": "serialized_stamps_and_coordinated_output_tampering_never_mint_native_authenticity",
+      "executions": 2
+    },
+    {
+      "suite": "assurance",
+      "test": "undo_audit_merge_and_creation_draft_cannot_trap_register_over_budget",
+      "executions": 2
+    },
+    {
+      "suite": "assurance",
+      "test": "unknown_metadata_invalid_raw_and_source_units_survive_native_sidecar_reopen",
+      "executions": 2
+    },
+    {
+      "suite": "assurance",
+      "test": "unrecognized_typed_sibling_fields_refuse_instead_of_disappearing_on_reopen",
+      "executions": 2
+    },
+    {
+      "suite": "assurance",
+      "test": "unrelated_global_failure_is_retained_while_selected_quantity_remains_successful",
+      "executions": 2
+    }
+  ],
+  "outcomes": [
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "assurance",
+      "test": "aggregate_and_encoded_evidence_budgets_refuse_atomically_and_leave_register_usable",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "assurance",
+      "test": "canonical_context_metadata_and_fixed_engine_limits_survive_save_reopen",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "assurance",
+      "test": "every_freshness_dimension_and_incomplete_raw_refuses_pass",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "assurance",
+      "test": "exact_native_source_anchor_requires_relink_after_native_raw_or_model_changes",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "assurance",
+      "test": "failed_unsupported_and_changed_local_artifacts_cannot_pass",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "assurance",
+      "test": "lifecycle_dimensions_independent_and_calculation_result_is_not_approval",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "assurance",
+      "test": "raw_9e_invalidates_delayed_evidence_and_audit_records_survive_later_reviews_and_undo",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "assurance",
+      "test": "saved_history_identity_admission_and_high_water_survive_undone_objects",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "assurance",
+      "test": "serialized_stamps_and_coordinated_output_tampering_never_mint_native_authenticity",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "assurance",
+      "test": "undo_audit_merge_and_creation_draft_cannot_trap_register_over_budget",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "assurance",
+      "test": "unknown_metadata_invalid_raw_and_source_units_survive_native_sidecar_reopen",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "assurance",
+      "test": "unrecognized_typed_sibling_fields_refuse_instead_of_disappearing_on_reopen",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "assurance",
+      "test": "unrelated_global_failure_is_retained_while_selected_quantity_remains_successful",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "admission",
+      "test": "changed_model_and_duplicate_metadata_are_refused",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "admission",
+      "test": "count_and_byte_limits_refuse_without_partial_success",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "admission",
+      "test": "malformed_and_unsupported_checksum_are_explicit",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "admission",
+      "test": "preview_retains_exact_unknown_metadata_and_sources",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "admission",
+      "test": "symlinks_are_not_source",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "admission",
+      "test": "untrusted_index_paths_never_escape",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "assurance_ui::tests::delayed_attachment_keeps_new_requirement_selection_and_evidence",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "assurance_ui::tests::delayed_evidence_cannot_apply_to_changed_bytes_with_unchanged_revisions",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "assurance_ui::tests::delayed_load_does_not_replace_newer_register_edits",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "assurance_ui::tests::disconnected_worker_clears_pending_without_acknowledging_save",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "assurance_ui::tests::older_save_ack_keeps_new_edits_dirty_and_close_permission_is_exact",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "assurance_ui::tests::unadmitted_form_text_binds_dirty_close_and_delayed_open",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "exchange_ui::tests::member_identity_never_silently_chooses_first_global_id",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "preferences::tests::actual_store_failure_reports_backoff_and_retries",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "preferences::tests::defaults_off_and_actual_store_debounces_while_preserving_unknowns",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "preferences::tests::newer_schema_stays_byte_exact_and_read_only",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "preferences::worker_adapter_tests::actual_worker_retries_same_generation_after_local_write_failure",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "preferences::worker_adapter_tests::older_saved_generation_cannot_clear_latest_pending_worker_change",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "semantic_ui::source_name_tests::selecting_another_scoped_node_retains_name_proposal_and_blocks_source_open",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "source_edit_ui::tests::delayed_preparation_cannot_replace_changed_raw_or_source",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "source_edit_ui::tests::existing_draft_binding_survives_other_node_begin_and_close",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "source_edit_ui::tests::matching_copy_ack_clears_only_its_draft_and_exposes_exact_digest_open",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "source_edit_ui::tests::pending_write_refuses_discard_close_and_source_replacement",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "source_edit_ui::tests::stale_copy_ack_and_created_output_error_preserve_draft_and_destination",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "ui::policies::browser_reveal_tracks_explicit_selection_and_runtime_without_model_edits",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "ui::policies::close_requires_current_preservation_even_while_hidden",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "ui::policies::detached_occurrence_navigation_preserves_focused_incomplete_native_field_and_browser_reveal",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "ui::policies::impact_navigation_and_original_target_refresh_preserve_live_state_and_clear_failed_rows",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "ui::policies::native_search_draft_changes_clear_results_and_navigation_preserves_dirty_target",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "ui::policies::native_usages_navigation_preserves_dirty_target_and_refuses_stale_rows",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "ui::policies::native_worker_start_failure_clears_only_own_pair_and_retains_live_state",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "ui::policies::occurrence_navigation_changes_real_native_and_view_selection_without_showing_hidden",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "ui::policies::ordinary_text_and_focus_transitions_do_not_undo_model",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "ui::policies::source_inspection_shortcuts_never_undo_or_save_the_live_target",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::camera_and_layout_history_refuse_during_an_occurrence_gesture",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::camera_commands_are_per_view_and_preserve_native_meaning_and_geometry",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::camera_edit_during_save_is_not_acknowledged_by_an_older_frozen_pair",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::camera_noops_and_rejected_bounds_preserve_revision_history_and_redo",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::deferred_native_ack_keeps_original_destination_and_refuses_open_while_pending",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::injected_worker_start_failure_clears_only_owned_pending_and_keeps_geometry",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::mapping_rehearsal_preserves_pending_pair_destination_selection_and_histories",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::native_success_alone_and_stale_layout_ack_cannot_authorize_continuation",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::native_validation_failure_clears_exact_pair_and_allows_recovery_retry",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::occurrence_navigation_busy_and_stale_refusals_publish_no_ephemeral_state",
+      "result": "FAILED"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::occurrence_navigation_switches_view_without_show_camera_history_or_route_leak",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::periodic_both_dirty_preserves_native_and_layout_independently",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::periodic_busy_manual_pair_coalesces_without_replacing_ticket_or_destination",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::periodic_disabled_navigation_and_origin_change_reset_quiet_observation",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::periodic_due_time_rechecks_layout_recovery_and_preserves_damaged_evidence",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::periodic_due_time_rechecks_removed_truncated_and_tampered_bound_artifacts",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::periodic_frozen_destination_failure_never_overwrites_foreign_leaf",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::periodic_held_pointer_gesture_and_release_wait_for_persisted_quiet_layout",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::periodic_layout_edit_during_write_leaves_new_revision_due",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::periodic_layout_only_clean_native_creates_verified_pair_without_repeating",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::periodic_native_edit_during_recovery_cannot_ack_newer_snapshot",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::periodic_native_failure_does_not_start_or_ack_views",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::periodic_native_only_edit_is_eligible_without_layout_mutation",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::periodic_recovery_worker_failure_keeps_native_success_and_retries_later",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::periodic_verified_noop_checks_are_interval_bounded_and_native_loss_is_due",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::read_only_source_inspection_is_disjoint_from_dirty_target_and_destination",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::redo_close_selected_view_reconciles_and_keeps_primary",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::refused_sidecar_open_preserves_history_active_selection_and_route_endpoints",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::stale_native_cancel_or_ack_cannot_clear_newer_paired_request",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::tampered_recovery_hint_cannot_authorize_navigation",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::two_view_cameras_round_trip_only_after_explicit_bound_sidecar_open",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-execution.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::undo_selected_new_view_reconciles_to_primary_without_panicking",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 0,
+      "suite": "mbse_desktop",
+      "test": "views_ui::tests::occurrence_navigation_busy_and_stale_refusals_publish_no_ephemeral_state",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "assurance",
+      "test": "aggregate_and_encoded_evidence_budgets_refuse_atomically_and_leave_register_usable",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "assurance",
+      "test": "canonical_context_metadata_and_fixed_engine_limits_survive_save_reopen",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "assurance",
+      "test": "every_freshness_dimension_and_incomplete_raw_refuses_pass",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "assurance",
+      "test": "exact_native_source_anchor_requires_relink_after_native_raw_or_model_changes",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "assurance",
+      "test": "failed_unsupported_and_changed_local_artifacts_cannot_pass",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "assurance",
+      "test": "lifecycle_dimensions_independent_and_calculation_result_is_not_approval",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "assurance",
+      "test": "raw_9e_invalidates_delayed_evidence_and_audit_records_survive_later_reviews_and_undo",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "assurance",
+      "test": "saved_history_identity_admission_and_high_water_survive_undone_objects",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "assurance",
+      "test": "serialized_stamps_and_coordinated_output_tampering_never_mint_native_authenticity",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "assurance",
+      "test": "undo_audit_merge_and_creation_draft_cannot_trap_register_over_budget",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "assurance",
+      "test": "unknown_metadata_invalid_raw_and_source_units_survive_native_sidecar_reopen",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "assurance",
+      "test": "unrecognized_typed_sibling_fields_refuse_instead_of_disappearing_on_reopen",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "assurance",
+      "test": "unrelated_global_failure_is_retained_while_selected_quantity_remains_successful",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_exchange",
+      "test": "new_copy::tests::dangling_symlink_and_late_symlink_never_create_target",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_exchange",
+      "test": "new_copy::tests::existing_destination_and_late_arrival_are_preserved",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_exchange",
+      "test": "new_copy::tests::private_success_cleans_stage",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "projection",
+      "test": "capella_explicit_components_ports_exchange_and_no_sidecar_fetch",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "projection",
+      "test": "lexical_reference_resolution_is_scoped_and_ambiguity_stays_explicit",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "projection",
+      "test": "mdzip_projects_actual_named_core_and_retains_unknown_members_without_extraction",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "projection",
+      "test": "namespace_false_friends_and_wrong_versions_remain_unknown",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "projection",
+      "test": "textual_ast_has_declared_spans_and_explicit_unresolved_typing",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "projection",
+      "test": "uml_nodes_id_endpoints_stereotypes_unknown_unit_strings_and_exact_copy",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "projection",
+      "test": "xml_refuses_dtd_duplicate_ids_depth_and_encoding",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "projection",
+      "test": "zip_refuses_paths_duplicate_candidates_and_high_ratio",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "semantic_v2",
+      "test": "aggregate_per_node_and_text_limits_refuse_typed_output_but_keep_bytes",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "semantic_v2",
+      "test": "capella_stored_roles_containment_defaults_and_unevaluated_bodies",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "semantic_v2",
+      "test": "child_namespace_declarations_obey_per_value_and_scope_limits",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "semantic_v2",
+      "test": "content_dispatch_ignores_misleading_suffix_and_keeps_v2_text_refusal",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "semantic_v2",
+      "test": "duplicate_ids_archive_paths_and_missing_members_refuse_without_losing_primary",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "semantic_v2",
+      "test": "exact_json_expansion_limit_and_diagnostic_truncation_preserve_raw_source",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "semantic_v2",
+      "test": "exact_namespaces_wrong_version_and_uml_falsefriends_remain_unsupported",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "semantic_v2",
+      "test": "identity_carrier_policy_is_order_independent_and_does_not_impose_ncname_on_estring",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "semantic_v2",
+      "test": "inherited_involved_role_accepts_audited_function_and_rejects_known_wrong_kind",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "semantic_v2",
+      "test": "native_preview_refuses_with_actionable_exact_selection_and_new_copy_is_exact",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "semantic_v2",
+      "test": "ordered_slots_unknown_namespace_features_and_global_aggregation_are_bounded",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "semantic_v2",
+      "test": "profile_layers_keep_exact_base_metaclass_and_coverage_gaps",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "semantic_v2",
+      "test": "reference_uri_policy_is_literal_local_subset_with_no_percent_decode_or_invalidity_claim",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "semantic_v2",
+      "test": "semantic_endpoints_cannot_resolve_to_a_reference_proxy_mention",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "semantic_v2",
+      "test": "source_digest_excludes_physical_directory_and_includes_opaque_archive_member",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "semantic_v2",
+      "test": "typed_aird_and_uml_href_mentions_are_proxies_not_owned_domain_elements",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "source_edit",
+      "test": "anonymous_foreign_namespace_and_archive_elements_refuse_name_edits",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "source_edit",
+      "test": "bom_no_declaration_quotes_and_original_whitespace_keep_exact_other_bytes",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "source_edit",
+      "test": "missing_name_unknown_class_proxy_and_invalid_characters_refuse",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "source_edit",
+      "test": "rename_preserves_other_bytes_original_and_reference_spellings",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "source_edit",
+      "test": "source_edit_and_frozen_raw_copy_refuse_dangling_symlink_without_target_creation",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "source_edit",
+      "test": "stale_source_and_forged_range_refuse_before_destination_creation",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "source_edit",
+      "test": "supplied_byte_reader_matches_disk_and_refuses_oversize",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "source_edit",
+      "test": "supported_classes_preserve_original_ids_references_and_unit_lexical_values",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "source_edit",
+      "test": "unsupported_xml_declarations_refuse_before_output_creation",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "local_input::tests::exact_bytes_limits_directories_and_missing_paths",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "local_input::tests::replacement_between_metadata_and_open_cannot_block_or_follow_link",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "local_input::tests::windows_lexical_namespace_and_stream_classification_never_accesses_filesystem",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "local_input::tests::writerless_fifo_socket_device_and_symlink_rejected_before_read",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_navigation::tests::calculation_consumer_uses_producer_under_named_bindings_not_the_reverse",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_navigation::tests::exact_authored_reference_roles_preserve_owner_direction_and_distinct_ids",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_navigation::tests::selection_is_navigation_and_does_not_change_report_freshness_or_histories",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_navigation::tests::stale_runtime_raw_and_layout_refuse_navigation_without_mutation",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_record_impact::tests::all_views_hidden_and_detached_occurrences_and_exact_touching_edges",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_record_impact::tests::calculation_output_usage_retains_consumer_direction_and_named_bindings",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_record_impact::tests::counts_all_stored_owner_drafts_and_pending_creation_drafts_without_text_copy",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_record_impact::tests::detached_occurrence_location_never_aliases_current_native_kind",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_record_impact::tests::direct_roles_remain_normalized_and_inspection_does_not_mutate_state",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_record_impact::tests::label_limits_high_ids_and_truncated_rows_keep_exact_totals",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_record_impact::tests::minted_occurrence_location_refuses_intervening_raw_model_layout_or_runtime_change",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_record_impact::tests::mismatched_document_and_record_key_fail_explicitly",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_record_impact::tests::occurrence_location_is_exact_for_hidden_cross_view_and_selection_preserves_report",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_record_impact::tests::stale_native_raw_layout_and_runtime_refuse_but_selection_is_navigation",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_search::tests::duplicate_labels_keep_exact_ids_kind_and_actual_system_scope",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_search::tests::name_digits_and_canonical_full_width_id_are_separate_modes",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_search::tests::result_and_label_prefix_budgets_are_explicit_and_count_all_matches",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_search::tests::sealed_navigation_stales_on_runtime_raw_layout_and_preserves_target_on_selection",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_search::tests::unknown_or_wrong_kind_scope_refuses_and_empty_supported_query_is_distinct",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_system_browser::tests::exact_membership_keeps_duplicate_names_and_typed_relations_distinct",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_system_browser::tests::group_and_member_labels_are_bounded_without_shortening_ids",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_system_browser::tests::malformed_scope_and_key_refuse_without_partial_projection_or_repair",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_system_browser::tests::projection_is_deterministic_and_preserves_native_values_and_raw_state",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views::tests::budgets_refuse_without_mutation_and_detached_counts",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views::tests::canonical_u64_wire_future_unknown_duplicate_and_corrupt_refused",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views::tests::checked_camera_uses_the_existing_finite_wire_limits",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views::tests::detached_occurrences_share_per_view_budget_and_oversized_input_refuses",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views::tests::duplicate_occurrence_edge_restores_exact_pair_and_three_keys_are_checked",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views::tests::history_budget_evicts_and_proof_churn_prunes_orphans",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views::tests::invalid_camera_refuses_layout_and_source_restore_without_mutation",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views::tests::layout_undo_missing_target_refuses_atomically_and_does_not_discard_native_redo",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views::tests::model_text_layout_histories_interleave_without_semantic_delete",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views::tests::native_ids_beyond_js_precision_round_trip_without_expanding_core_range",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views::tests::native_undo_detaches_and_only_observed_redo_reactivates",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views::tests::reopened_detached_has_no_runtime_redo_authority",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views::tests::same_element_two_views_move_hide_and_non_reused_ids",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views::tests::same_wire_sidecar_revision_geometry_or_record_cannot_reuse_runtime_stamp",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views::tests::stale_command_and_nonfinite_refuse_without_history_or_allocator_change",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_inspect::tests::changed_or_missing_source_refuses_recheck_without_replacing_preview",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_inspect::tests::encoded_payload_expansion_is_bounded_independently_of_raw_input",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_inspect::tests::explicit_source_inspection_retains_bytes_and_never_changes_target",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_inspect::tests::explicit_source_reader_refuses_symlink_without_following_it",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_inspect::tests::future_unknown_duplicate_and_corrupt_source_preserve_original_bytes",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_inspect::tests::nested_duplicates_invalid_endpoints_and_allocator_never_admit_a_preview",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_inspect::tests::raw_boundary_and_collection_budget_are_enforced_before_typed_preview",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_inspect::tests::source_claims_are_not_target_admission_or_native_binding_proof",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_inspect::tests::source_inspection_cannot_bless_a_forged_bound_checkpoint",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_inspect::tests::structurally_invalid_geometry_and_profile_binding_are_refused",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_io::tests::acknowledged_saved_and_recovery_delete_truncate_tamper_blocks_continuation",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_io::tests::bound_save_requires_actual_native_ack_and_round_trips_two_views",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_io::tests::failed_native_completion_does_not_mint_checkpoint_and_old_ack_is_historical",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_io::tests::foreign_presentation_origin_refuses_capture_and_ack_without_clearing_pending",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_io::tests::imported_revision_one_has_no_runtime_pristine_replacement_capability",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_io::tests::local_replacement_rechecks_deleted_truncated_and_tampered_bound_or_recovery_artifact",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_io::tests::missing_future_unknown_duplicate_corrupt_inputs_preserve_default_and_original",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_io::tests::native_and_views_freeze_together_and_old_start_token_cannot_clear_new_job",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_io::tests::native_checkpoint_detects_on_disk_change_and_open_is_sealed_without_request",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_io::tests::noncanonical_recovery_tracks_exact_disk_hash_and_canonical_content_separately",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_io::tests::partial_native_success_views_failure_retains_live_layout_and_native_saved",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_io::tests::recovered_native_document_id_refuses_old_bound_and_unbound_views",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_io::tests::recovery_to_bound_replacement_clears_recovery_ack_and_pending_refuses_all_replacement",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_io::tests::replacement_clears_opposite_ack_and_revision_collision_cannot_discard_recovery_edits",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_io::tests::same_revision_different_bound_files_replace_ack_content_not_just_counter",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_io::tests::same_snapshot_different_artifact_is_refused_and_original_bytes_retained",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_io::tests::stale_views_and_recovery_ack_cannot_preserve_new_layout",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_plan::tests::combined_choices_and_report_reason_copies_are_bounded_before_choice_mutation",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_plan::tests::exact_duplicate_endpoints_and_authored_target_relationship_control_edge_proposals",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_plan::tests::identical_numbers_never_autofill_and_rehearsal_leaves_all_target_state_untouched",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_plan::tests::raw_draft_freshness_alone_stales_rehearsal",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_plan::tests::same_byte_reopen_and_same_id_revision_target_replacement_refuse",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_plan::tests::whitespace_change_missing_source_and_native_or_layout_change_refuse_without_mutation",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "native_views_plan::tests::wrong_kind_missing_target_bad_skip_and_foreign_occurrence_refuse_atomically",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "recovery::read_budget_tests::failed_grown_file_reserves_detection_byte_within_total_budget",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "recovery::read_budget_tests::grown_file_is_charged_by_actual_open_bytes_not_previous_metadata",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1::tests::accepted_numeric_and_exact_text_history_are_independent",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1::tests::create_and_link_is_one_undoable_transaction_and_allocators_never_rewind",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1::tests::detached_selected_raw_and_creation_journals_survive_undo_and_reopen",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1::tests::every_freshness_component_refuses_atomically",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1::tests::fixture_preserves_all_record_properties_and_nested_bytes_as_json_values",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1::tests::initial_measure_metadata_selection_retains_reopened_incomplete_criterion",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1::tests::invalid_criterion_refuses_units_and_valid_units_convert_raw_with_history",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1::tests::malformed_fixture_or_native_snapshot_is_refused_without_repair",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1::tests::model_undo_groups_a_field_session_and_navigation_closes_the_group",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1::tests::model_unit_undo_converts_only_current_valid_raw",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1::tests::native_raw_validity_cannot_contradict_a_known_field_classifier",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1::tests::new_document_is_blank_and_reopen_resets_only_interactive_history",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1::tests::numeric_range_and_incomplete_inputs_never_replace_accepted_value",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1::tests::purpose_and_nested_context_edits_do_not_alias_other_fields",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1::tests::revision_exhaustion_refuses_without_mutating_records_or_journals",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1::tests::text_unit_conversion_overflow_refuses_with_all_history_unchanged",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1::tests::unsupported_expression_is_retained_and_never_evaluated_or_accepted",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1::tests::wrong_kind_wrong_system_and_missing_reference_mutations_are_atomic",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1_graph::tests::authored_edges_are_exact_and_do_not_invent_invocation_ownership",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1_graph::tests::calculation_dependencies_coalesce_named_uses_without_criterion_edges",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1_graph::tests::chooser_filters_are_views_and_cross_scope_or_wrong_typed_edges_refuse",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1_io::tests::autosave_known_destination_uses_actual_save_protocol_and_toggle_has_no_io",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1_io::tests::cooperative_lock_failure_is_not_saved_and_retry_preserves_input",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1_io::tests::external_conflict_and_unknown_target_preserve_live_input_and_source",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1_io::tests::failed_native_worker_start_token_cannot_clear_a_newer_request",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1_io::tests::failed_or_truncated_recovery_never_acknowledges_live_input",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1_io::tests::foreign_and_duplicate_ack_never_clear_active_request",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1_io::tests::frozen_older_save_acknowledges_actual_bytes_but_live_remains_dirty",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1_io::tests::full_snapshot_roundtrip_keeps_opaque_fields_invalid_raw_and_creation_draft",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1_io::tests::older_recovery_does_not_acknowledge_later_input",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1_io::tests::original_source_path_hash_pairs_survive_recovery_copy_reopen_generations",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1_io::tests::reader_refuses_nonzero_numeric_underflow_without_changing_source",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1_io::tests::reader_rejects_duplicates_unknown_profiles_and_oversize_before_open",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1_io::tests::recovery_current_rechecks_acknowledged_bytes_before_lifecycle_permission",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1_io::tests::recovery_is_actual_independent_dirty_copy_with_protected_original",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "mbse_model",
+      "test": "stage1_io::tests::retained_lock_injection_preserves_existing_file_and_allows_fresh_copy",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "context_recovery",
+      "test": "context_and_affiliation_are_typed_undoable_preserve_opaque_and_roundtrip",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "context_recovery",
+      "test": "inventory_is_explicitly_bounded",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "context_recovery",
+      "test": "native_context_name_retains_unsupported_exchange_text_through_undo_and_reopen",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "context_recovery",
+      "test": "recovery_inventory_file_count_and_aggregate_byte_caps_are_independent",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "context_recovery",
+      "test": "recovery_inventory_refuses_file_symlink_and_native_save_envelope",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "context_recovery",
+      "test": "restart_inventory_refuses_corrupt_main_unknown_and_symlink_and_restores_copy",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "craft_faults",
+      "test": "actual_craft_rename_refusal_keeps_previous_bytes",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "craft_faults",
+      "test": "actual_craft_stream_failure_keeps_previous_bytes",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "craft_recovery",
+      "test": "actual_craft_save_and_recovery_survive_corrupt_main",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "active_generation_filter_preserves_removed_and_reused_binding_drafts",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "c01_count_ratio_is_real_output_not_a_criterion",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "c02_output_reference_converts_ratio_scale_once",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "c03_explicit_times_100_is_not_heuristically_removed",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "c04_mixed_length_scales_have_known_reference",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "c05_length_duration_dependency_yields_speed",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "c06_speed_duration_dependency_yields_distance",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "c07_speed_output_scale_and_astra_reference",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "c08_nominal_kind_distinguishes_equal_dimensions",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "c09_wrong_physical_dimensions_are_unit_errors",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "c10_both_signs_of_zero_refuse_division",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "c11_domain_and_count_exactness_are_enforced_before_rounding",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "c12_overflow_underflow_and_authored_zero_are_distinct",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "c13_missing_output_and_unbound_name_are_not_zero",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "c14_cycle_members_sorted_downstream_blocked_independent_value_survives",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "c15_incomplete_formula_blocks_old_accepted_program",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "c16_invalid_or_incomplete_literal_never_falls_back_to_accepted_input",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "c17_closed_functions_and_algebra_refuse_unsupported_forms",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "c18_unrelated_snapshot_edit_invalidates_receipt_but_not_formula_number",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "c19_native_definition_raw_serialization_preserves_text_and_does_not_persist_current_receipt",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "c20_late_receipt_and_changed_definitions_or_raw_cannot_be_current",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "c21_resources_refuse_without_success_and_report_truncation",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "definitions_reject_unknown_structural_keys_and_bad_attachment_identity",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "exact_raw_validity_claims_and_detached_fields_are_not_trusted",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "historic_unit_context_classifies_itself_but_blocks_execution_after_undo",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "parser_precedence_functions_spans_and_formatter_roundtrip",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "resource_refusal_is_current_for_exact_document_but_never_a_current_computation",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_calculation",
+      "test": "thousand_output_chain_is_deterministic_and_bounded",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "actual_export_has_separate_receipt_never_acknowledges_save_or_live_edits_and_refuses_existing_copy",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "actual_v1_open_preserves_unknown_properties_raw_and_native_saved_until_explicit_v2_write",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "binding_generation_query_covers_output_targets_and_imported_zero_without_literal_raw_fields",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "calculation_definition_and_incomplete_raw_survive_actual_save_reopen_and_independent_recovery",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "compatible_literal_unit_conversion_and_model_history_preserve_physical_value_and_raw_context",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "configuration_collisions_and_noncurrent_field_bindings_refuse_without_mutation",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "configuration_generation_removal_recreate_and_model_history_never_adopt_old_scratch",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "configuration_text_fallback_and_key_scoped_undo_redo_do_not_change_accepted_model",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "desktop_import_refusal_retains_exact_bounded_invalid_bytes_independent_of_later_disk_change",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "exported_copy_completion_does_not_consume_pending_native_save_and_disk_conflicts_never_approve_export",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "genuine_import_is_independent_dirty_and_exact_source_survives_native_recovery_generations",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "measure_relink_is_one_undoable_edit_and_preserves_partial_criterion",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "noncanonical_literal_spelling_returns_exactly_after_unit_model_undo_and_redo",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "omitted_literal_context_on_open_is_captured_before_history_and_never_reinterpreted_after_conversion",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "removed_and_recreated_binding_does_not_adopt_old_raw_and_model_undo_restores_exact_generation",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "rename_and_same_name_output_rebind_keep_old_drafts_inactive_and_undo_restores_their_owner",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "schema1_configuration_journal_prefix_collisions_refuse_migration_unchanged",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "source_identity_binds_vendor_contents_membership_and_directory_watches",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "source_identity_is_portable_across_workspace_roots_and_creation_order",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "text_undo_is_scoped_to_binding_generation_and_keeps_previous_journal",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "unfinished_add_replace_rename_configuration_survives_actual_save_open_and_keep_draft_recovery",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "unit_model_undo_never_overwrites_a_later_raw_value_with_restored_accepted_spelling",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "unsupported_import_and_export_refuse_atomically_with_original_bytes_and_native_status_preserved",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "v1_reserved_typed_key_collisions_are_not_promoted_and_original_files_are_unchanged",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_completion_foundation",
+      "test": "wrong_kind_missing_and_cross_system_relinks_preserve_exact_document_and_history",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_interchange",
+      "test": "aggregate_calculation_ast_limit_is_an_exchange_admission_boundary",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_interchange",
+      "test": "calculation_attachment_map_cycle_and_missing_dependency_cannot_disagree",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_interchange",
+      "test": "complete_baseline_accepted_meaning_roundtrips_without_native_raw_promotion",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_interchange",
+      "test": "duplicate_ids_symbols_and_numeric_tag_mismatch_are_atomic_refusals",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_interchange",
+      "test": "every_modified_prefix_default_ontology_and_import_is_explicitly_refused",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_interchange",
+      "test": "exact_source_unicode_duplicate_labels_and_qualified_references_keep_identities_and_spans",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_interchange",
+      "test": "genuine_calc_quantities_dependencies_and_scalar_function_preserve_numeric_oracles",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_interchange",
+      "test": "imported_members_namespace_roots_and_path_segments_cannot_be_shadowed",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_interchange",
+      "test": "invalid_utf8_and_resource_failures_retain_or_explicitly_leave_caller_originals",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_interchange",
+      "test": "native_generation_metadata_and_original_archive_are_excluded_without_mutation",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_interchange",
+      "test": "native_valid_result_binding_refuses_exchange_return_feature_collision_atomically",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_interchange",
+      "test": "opaque_values_nonempty_unqualified_observations_and_physical_ast_literals_refuse",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_interchange",
+      "test": "original_positive_fixture_and_standard_construct_refusals_are_distinct",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_interchange",
+      "test": "parser_body_superset_does_not_admit_unsupported_native_record_behaviors",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_interchange",
+      "test": "scientific_scalar_extremes_preserve_unary_minus_and_bounded_semantic_roundtrip",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_interchange",
+      "test": "signed_scalar_literals_and_optional_absence_have_declared_semantic_normalization",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_interchange",
+      "test": "unknown_units_types_and_unreviewed_functions_are_not_strings_of_success",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "stage1_interchange",
+      "test": "wrong_kind_missing_and_cross_scope_references_refuse_without_label_guessing",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "sysmlv2_syntax",
+      "test": "ast::spelling_tests::buffered_spelling_matches_the_allocating_one",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "sysmlv2_syntax",
+      "test": "name::tests::basic_names_print_bare",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "sysmlv2_syntax",
+      "test": "name::tests::canonical_names_split_and_respell",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "sysmlv2_syntax",
+      "test": "name::tests::canonical_spelling_round_trips_through_the_lexer",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "sysmlv2_syntax",
+      "test": "name::tests::either_dialect_spelling_quotes_the_union",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "sysmlv2_syntax",
+      "test": "name::tests::empty_is_illegal",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "sysmlv2_syntax",
+      "test": "name::tests::non_basic_names_are_quoted_with_escapes",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "sysmlv2_syntax",
+      "test": "name::tests::paths_spell_per_segment",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "sysmlv2_syntax",
+      "test": "name::tests::reserved_words_are_quoted_per_dialect",
+      "result": "ok"
+    },
+    {
+      "receipt": "p06-scoped-remainder.json",
+      "command": 1,
+      "suite": "doctest:sysmlv2_syntax",
+      "test": "crates/mbse-model/vendor/sysmlv2-syntax/src/visit.rs - visit (line 14)",
+      "result": "ok"
+    }
+  ],
+  "note": "78 original passes plus corrected failed test plus253 remainder passes. Incomplete exclusion accidentally reran13 assurance tests; retained and deduplicated, not claimed as new coverage. Test-only filename correction separates source epochs. No single clean319-test run on the final closure is claimed."
+}

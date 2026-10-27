@@ -1,0 +1,546 @@
+warning: patch `egui_extras v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui_extras)` was not used in the crate graph
+warning: patch `egui_inspection v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui_inspection)` was not used in the crate graph
+warning: patch `egui_kittest v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui_kittest)` was not used in the crate graph
+help: Check that the patched package version and available features are compatible
+      with the dependency requirements. If the patch has a different version from
+      what is locked in the Cargo.lock file, run `cargo update` to use the new
+      version. This may also occur with an optional dependency that is not enabled.
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.26
+   Compiling quote v1.0.47
+   Compiling syn v3.0.6
+   Compiling cfg-if v1.0.5
+   Compiling bitflags v2.13.2
+   Compiling once_cell v1.21.4
+   Compiling libc v0.2.190
+   Compiling rustix v1.1.5
+   Compiling linux-raw-sys v0.12.1
+   Compiling serde_core v1.0.229
+   Compiling serde v1.0.229
+   Compiling serde_derive v1.0.229
+   Compiling version_check v0.9.5
+   Compiling log v0.4.34
+   Compiling fastrand v2.5.0
+   Compiling syn v2.0.119
+   Compiling smallvec v1.16.2
+   Compiling autocfg v1.5.1
+   Compiling pin-project-lite v0.2.17
+   Compiling generic-array v0.14.7
+   Compiling pkg-config v0.3.34
+   Compiling typenum v1.20.1
+   Compiling winnow v1.0.4
+   Compiling libloading v0.8.9
+   Compiling equivalent v1.0.2
+   Compiling zmij v1.0.23
+   Compiling getrandom v0.4.3
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.7
+   Compiling toml_parser v1.1.3+spec-1.1.0
+   Compiling bytemuck_derive v1.12.1
+   Compiling serde_json v1.0.151
+   Compiling bytemuck v1.25.2
+   Compiling digest v0.10.7
+   Compiling shlex v2.0.1
+   Compiling cpufeatures v0.2.17
+   Compiling memchr v2.8.3
+   Compiling hashbrown v0.17.1
+   Compiling find-msvc-tools v0.1.14
+   Compiling itoa v1.0.18
+   Compiling craft-atomic v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/craft-libs/crates/atomic)
+   Compiling sysmlv2-syntax v0.10.2 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-model/vendor/sysmlv2-syntax)
+   Compiling cc v1.6.0
+   Compiling indexmap v2.14.2
+   Compiling sha2 v0.10.9
+   Compiling tempfile v3.27.0
+   Compiling dlib v0.5.3
+   Compiling wayland-sys v0.31.11
+   Compiling toml_datetime v1.1.1+spec-1.1.0
+   Compiling toml_edit v0.25.15+spec-1.1.0
+   Compiling wayland-backend v0.3.17
+   Compiling enumflags2_derive v0.7.12
+   Compiling polling v3.11.0
+   Compiling proc-macro-crate v3.5.0
+   Compiling mbse-model v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-model)
+   Compiling zvariant_utils v4.2.0
+   Compiling scoped-tls v1.0.1
+   Compiling parking v2.2.1
+   Compiling downcast-rs v1.2.1
+   Compiling quick-xml v0.41.0
+   Compiling zvariant_derive v5.15.0
+   Compiling endi v1.1.1
+   Compiling wayland-client v0.31.15
+   Compiling slab v0.4.12
+   Compiling futures-core v0.3.34
+   Compiling wayland-scanner v0.31.11
+   Compiling crossbeam-utils v0.8.23
+   Compiling foldhash v0.2.0
+   Compiling num-traits v0.2.19
+   Compiling tracing-attributes v0.1.31
+   Compiling uuid v1.27.0
+   Compiling tracing-core v0.1.36
+   Compiling futures-io v0.3.34
+   Compiling tracing v0.1.44
+   Compiling concurrent-queue v2.5.0
+   Compiling event-listener v5.4.2
+   Compiling enumflags2 v0.7.12
+   Compiling zcheapstr v1.1.0
+   Compiling simd-adler32 v0.3.10
+   Compiling zvariant v5.15.0
+   Compiling event-listener-strategy v0.5.4
+   Compiling futures-lite v2.6.1
+   Compiling crc32fast v1.5.2
+   Compiling thiserror v2.0.21
+   Compiling getrandom v0.3.4
+   Compiling adler2 v2.0.1
+   Compiling zerocopy v0.8.60
+   Compiling zbus_names v4.3.4
+   Compiling async-io v2.6.0
+   Compiling ahash v0.8.12
+   Compiling thiserror-impl v2.0.21
+   Compiling arrayvec v0.7.8
+   Compiling polycool v0.4.0
+   Compiling miniz_oxide v0.9.1
+   Compiling wayland-protocols v0.32.13
+   Compiling errno v0.3.14
+   Compiling cfg_aliases v0.2.2
+   Compiling parking_lot_core v0.9.12
+   Compiling khronos_api v3.1.0
+   Compiling async-task v4.7.1
+   Compiling signal-hook-registry v1.4.8
+   Compiling flate2 v1.1.10
+   Compiling kurbo v0.13.1
+   Compiling async-channel v2.5.0
+   Compiling euclid v0.22.14
+   Compiling accesskit v0.24.1
+   Compiling font-types v0.12.6
+   Compiling color v0.3.3
+   Compiling atomic-waker v1.1.2
+   Compiling scopeguard v1.2.0
+   Compiling linebender_resource_handle v0.1.1
+   Compiling peniko v0.6.1
+   Compiling lock_api v0.4.14
+   Compiling piper v0.2.5
+   Compiling read-fonts v0.41.0
+   Compiling guillotiere v0.7.0
+   Compiling async-signal v0.2.14
+   Compiling zbus_xml v5.2.1
+   Compiling async-lock v3.4.2
+   Compiling rustix v0.38.44
+   Compiling unicode-general-category v1.1.0
+   Compiling fearless_simd v0.4.1
+   Compiling thiserror v1.0.69
+   Compiling siphasher v1.0.4
+   Compiling xml-rs v0.8.29
+   Compiling gl_generator v0.14.0
+   Compiling vello_common v0.1.0
+   Compiling async-process v2.5.0
+   Compiling zbus-lockstep v0.5.2
+   Compiling parking_lot v0.12.5
+   Compiling blocking v1.7.0
+   Compiling async-executor v1.14.0
+   Compiling zbus_macros v5.19.0
+   Compiling async-broadcast v0.7.2
+   Compiling ordered-stream v0.2.0
+   Compiling emath v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/emath)
+   Compiling x11-dl v2.21.0
+   Compiling thiserror-impl v1.0.69
+   Compiling async-trait v0.1.92
+   Compiling serde_repr v0.1.21
+   Compiling async-recursion v1.2.0
+   Compiling xkeysym v0.2.1
+   Compiling linux-raw-sys v0.4.15
+   Compiling hex v0.4.3
+   Compiling cursor-icon v1.2.0
+   Compiling xcursor v0.3.11
+   Compiling wayland-cursor v0.31.14
+   Compiling wayland-csd-frame v0.3.0
+   Compiling zbus v5.19.0
+   Compiling ecolor v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/ecolor)
+   Compiling zbus-lockstep-macros v0.5.2
+   Compiling vello_cpu v0.1.0
+   Compiling phf_shared v0.13.1
+   Compiling skrifa v0.44.0
+   Compiling harfrust v0.12.0
+   Compiling wayland-protocols-wlr v0.3.12
+   Compiling memmap2 v0.9.11
+   Compiling profiling v1.0.18
+   Compiling unicode-segmentation v1.13.3
+   Compiling static_assertions v1.1.0
+   Compiling either v1.19.0
+   Compiling self_cell v1.3.0
+   Compiling nohash-hasher v0.2.0
+   Compiling epaint_default_fonts v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/epaint_default_fonts)
+   Compiling epaint v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/epaint)
+   Compiling itertools v0.15.0
+   Compiling atspi-common v0.13.0
+   Compiling phf_generator v0.13.1
+   Compiling calloop v0.13.0
+   Compiling gethostname v1.1.0
+   Compiling as-raw-xcb-connection v1.0.1
+   Compiling smithay-client-toolkit v0.19.2
+   Compiling x11rb-protocol v0.13.2
+   Compiling x11rb v0.13.2
+   Compiling calloop-wayland-source v0.3.0
+   Compiling phf_macros v0.13.1
+   Compiling egui v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui)
+warning: use of deprecated constant `std::f32::EPSILON`: replaced by the `EPSILON` associated constant on `f32`
+  --> vendor/egui-fork/crates/egui/src/containers/scene.rs:79:42
+   |
+79 |             zoom_range: Rangef::new(f32::EPSILON, 1.0),
+   |                                          ^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: `egui` (lib) generated 1 warning
+   Compiling winit v0.30.13 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/winit-fork)
+   Compiling hashbrown v0.16.1
+   Compiling byteorder v1.5.0
+   Compiling raw-window-handle v0.6.2
+   Compiling percent-encoding v2.3.2
+   Compiling zip v0.6.6
+   Compiling accesskit_consumer v0.36.0
+   Compiling phf v0.13.1
+   Compiling atspi-proxies v0.13.0
+   Compiling xkbcommon-dl v0.4.2
+   Compiling glutin_egl_sys v0.7.1
+   Compiling glutin_glx_sys v0.6.1
+   Compiling wayland-protocols-plasma v0.3.12
+   Compiling miniz_oxide v0.8.9
+   Compiling fdeflate v0.3.7
+   Compiling calloop v0.14.5
+   Compiling futures-macro v0.3.34
+   Compiling smithay-client-toolkit v0.20.0
+   Compiling smol_str v0.2.2
+   Compiling pxfm v0.1.30
+   Compiling roxmltree v0.19.0
+   Compiling futures-task v0.3.34
+   Compiling dpi v0.1.2
+   Compiling futures-util v0.3.34
+   Compiling moxcms v0.8.1
+   Compiling calloop-wayland-source v0.4.1
+   Compiling png v0.18.1
+   Compiling atspi v0.29.0
+   Compiling accesskit_atspi_common v0.18.1
+   Compiling glutin v0.32.3
+   Compiling wayland-protocols-misc v0.3.12
+   Compiling wayland-protocols-experimental v20250721.0.1
+   Compiling craft-docpath v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/craft-libs/crates/docpath)
+   Compiling byteorder-lite v0.1.0
+   Compiling image v0.25.10
+   Compiling accesskit_unix v0.21.1
+   Compiling mbse-exchange v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-exchange)
+   Compiling glutin-winit v0.5.0
+   Compiling option-ext v0.2.0
+   Compiling dirs-sys v0.5.0
+   Compiling accesskit_winit v0.32.2
+   Compiling smithay-clipboard v0.7.3
+   Compiling arboard v3.6.1
+   Compiling mbse-catalog v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-catalog)
+   Compiling mbse-assurance v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-assurance)
+   Compiling serde_spanned v1.1.2
+   Compiling glow v0.17.0
+   Compiling litrs v1.0.0
+   Compiling web-time v1.1.0
+   Compiling toml_writer v1.1.3+spec-1.1.0
+   Compiling egui-winit v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui-winit)
+   Compiling document-features v0.2.12
+   Compiling egui_glow v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui_glow)
+   Compiling dirs v7.0.0
+   Compiling craft-settings v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/craft-libs/crates/settings)
+   Compiling eframe v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/eframe)
+   Compiling craft-quit v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/craft-libs/crates/quit)
+   Compiling craft-ui v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/craft-libs/crates/ui)
+   Compiling craft-window v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/craft-libs/crates/window)
+   Compiling mbse-desktop v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-desktop)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 46s
+     Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/paired-fork/target/debug/deps/mbse_assurance-f946738386b81913)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/assurance.rs (/workspace/build/builderbob/mbse-craft/paired-fork/target/debug/deps/assurance-be5ad440f67810b8)
+
+running 13 tests
+test unrelated_global_failure_is_retained_while_selected_quantity_remains_successful ... ok
+test exact_native_source_anchor_requires_relink_after_native_raw_or_model_changes ... ok
+test failed_unsupported_and_changed_local_artifacts_cannot_pass ... ok
+test lifecycle_dimensions_independent_and_calculation_result_is_not_approval ... ok
+test raw_9e_invalidates_delayed_evidence_and_audit_records_survive_later_reviews_and_undo ... ok
+test every_freshness_dimension_and_incomplete_raw_refuses_pass ... ok
+test saved_history_identity_admission_and_high_water_survive_undone_objects ... ok
+test canonical_context_metadata_and_fixed_engine_limits_survive_save_reopen ... ok
+test serialized_stamps_and_coordinated_output_tampering_never_mint_native_authenticity ... ok
+test unknown_metadata_invalid_raw_and_source_units_survive_native_sidecar_reopen ... ok
+test unrecognized_typed_sibling_fields_refuse_instead_of_disappearing_on_reopen ... ok
+test undo_audit_merge_and_creation_draft_cannot_trap_register_over_budget ... ok
+test aggregate_and_encoded_evidence_budgets_refuse_atomically_and_leave_register_usable ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.36s
+
+     Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/paired-fork/target/debug/deps/mbse_catalog-56baa8ac75baf5b8)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/admission.rs (/workspace/build/builderbob/mbse-craft/paired-fork/target/debug/deps/admission-2f0a09791852240e)
+
+running 6 tests
+test changed_model_and_duplicate_metadata_are_refused ... ok
+test symlinks_are_not_source ... ok
+test preview_retains_exact_unknown_metadata_and_sources ... ok
+test malformed_and_unsupported_checksum_are_explicit ... ok
+test untrusted_index_paths_never_escape ... ok
+test count_and_byte_limits_refuse_without_partial_success ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (/workspace/build/builderbob/mbse-craft/paired-fork/target/debug/deps/mbse_desktop-6e10dfd69791db7c)
+
+running 13 tests
+test exchange_ui::tests::member_identity_never_silently_chooses_first_global_id ... ok
+test ui::policies::close_requires_current_preservation_even_while_hidden ... ok
+test ui::policies::ordinary_text_and_focus_transitions_do_not_undo_model ... ok
+test assurance_ui::tests::delayed_evidence_cannot_apply_to_changed_bytes_with_unchanged_revisions ... ok
+test assurance_ui::tests::unadmitted_form_text_binds_dirty_close_and_delayed_open ... ok
+test preferences::tests::newer_schema_stays_byte_exact_and_read_only ... ok
+test assurance_ui::tests::delayed_load_does_not_replace_newer_register_edits ... ok
+test assurance_ui::tests::disconnected_worker_clears_pending_without_acknowledging_save ... ok
+test assurance_ui::tests::older_save_ack_keeps_new_edits_dirty_and_close_permission_is_exact ... ok
+test preferences::tests::actual_store_failure_reports_backoff_and_retries ... ok
+test preferences::tests::defaults_off_and_actual_store_debounces_while_preserving_unknowns ... ok
+test preferences::worker_adapter_tests::older_saved_generation_cannot_clear_latest_pending_worker_change ... ok
+test preferences::worker_adapter_tests::actual_worker_retries_same_generation_after_local_write_failure ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.11s
+
+     Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/paired-fork/target/debug/deps/mbse_exchange-432665fee9d7d4ef)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/projection.rs (/workspace/build/builderbob/mbse-craft/paired-fork/target/debug/deps/projection-d664daaf05b32b5c)
+
+running 8 tests
+test capella_explicit_components_ports_exchange_and_no_sidecar_fetch ... ok
+test textual_ast_has_declared_spans_and_explicit_unresolved_typing ... ok
+test namespace_false_friends_and_wrong_versions_remain_unknown ... ok
+test lexical_reference_resolution_is_scoped_and_ambiguity_stays_explicit ... ok
+test mdzip_projects_actual_named_core_and_retains_unknown_members_without_extraction ... ok
+test xml_refuses_dtd_duplicate_ids_depth_and_encoding ... ok
+test zip_refuses_paths_duplicate_candidates_and_high_ratio ... ok
+test uml_nodes_id_endpoints_stereotypes_unknown_unit_strings_and_exact_copy ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/paired-fork/target/debug/deps/mbse_model-6547fb3e0c866ec2)
+
+running 41 tests
+test local_input::tests::windows_lexical_namespace_and_stream_classification_never_accesses_filesystem ... ok
+test local_input::tests::exact_bytes_limits_directories_and_missing_paths ... ok
+test recovery::read_budget_tests::failed_grown_file_reserves_detection_byte_within_total_budget ... ok
+test local_input::tests::replacement_between_metadata_and_open_cannot_block_or_follow_link ... ok
+test local_input::tests::writerless_fifo_socket_device_and_symlink_rejected_before_read ... ok
+test stage1::tests::detached_selected_raw_and_creation_journals_survive_undo_and_reopen ... ok
+test recovery::read_budget_tests::grown_file_is_charged_by_actual_open_bytes_not_previous_metadata ... ok
+test stage1::tests::model_undo_groups_a_field_session_and_navigation_closes_the_group ... ok
+test stage1::tests::every_freshness_component_refuses_atomically ... ok
+test stage1::tests::new_document_is_blank_and_reopen_resets_only_interactive_history ... ok
+test stage1::tests::create_and_link_is_one_undoable_transaction_and_allocators_never_rewind ... ok
+test stage1::tests::accepted_numeric_and_exact_text_history_are_independent ... ok
+test stage1::tests::initial_measure_metadata_selection_retains_reopened_incomplete_criterion ... ok
+test stage1::tests::revision_exhaustion_refuses_without_mutating_records_or_journals ... ok
+test stage1::tests::purpose_and_nested_context_edits_do_not_alias_other_fields ... ok
+test stage1::tests::unsupported_expression_is_retained_and_never_evaluated_or_accepted ... ok
+test stage1::tests::model_unit_undo_converts_only_current_valid_raw ... ok
+test stage1::tests::invalid_criterion_refuses_units_and_valid_units_convert_raw_with_history ... ok
+test stage1::tests::fixture_preserves_all_record_properties_and_nested_bytes_as_json_values ... ok
+test stage1::tests::malformed_fixture_or_native_snapshot_is_refused_without_repair ... ok
+test stage1::tests::native_raw_validity_cannot_contradict_a_known_field_classifier ... ok
+test stage1::tests::text_unit_conversion_overflow_refuses_with_all_history_unchanged ... ok
+test stage1::tests::numeric_range_and_incomplete_inputs_never_replace_accepted_value ... ok
+test stage1::tests::wrong_kind_wrong_system_and_missing_reference_mutations_are_atomic ... ok
+test stage1_graph::tests::authored_edges_are_exact_and_do_not_invent_invocation_ownership ... ok
+test stage1_graph::tests::chooser_filters_are_views_and_cross_scope_or_wrong_typed_edges_refuse ... ok
+test stage1_graph::tests::calculation_dependencies_coalesce_named_uses_without_criterion_edges ... ok
+test stage1_io::tests::reader_rejects_duplicates_unknown_profiles_and_oversize_before_open ... ok
+test stage1_io::tests::failed_or_truncated_recovery_never_acknowledges_live_input ... ok
+test stage1_io::tests::cooperative_lock_failure_is_not_saved_and_retry_preserves_input ... ok
+test stage1_io::tests::full_snapshot_roundtrip_keeps_opaque_fields_invalid_raw_and_creation_draft ... ok
+test stage1_io::tests::recovery_current_rechecks_acknowledged_bytes_before_lifecycle_permission ... ok
+test stage1_io::tests::reader_refuses_nonzero_numeric_underflow_without_changing_source ... ok
+test stage1_io::tests::external_conflict_and_unknown_target_preserve_live_input_and_source ... ok
+test stage1_io::tests::retained_lock_injection_preserves_existing_file_and_allows_fresh_copy ... ok
+test stage1_io::tests::older_recovery_does_not_acknowledge_later_input ... ok
+test stage1_io::tests::autosave_known_destination_uses_actual_save_protocol_and_toggle_has_no_io ... ok
+test stage1_io::tests::frozen_older_save_acknowledges_actual_bytes_but_live_remains_dirty ... ok
+test stage1_io::tests::recovery_is_actual_independent_dirty_copy_with_protected_original ... ok
+test stage1_io::tests::foreign_and_duplicate_ack_never_clear_active_request ... ok
+test stage1_io::tests::original_source_path_hash_pairs_survive_recovery_copy_reopen_generations ... ok
+
+test result: ok. 41 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.25s
+
+     Running tests/context_recovery.rs (/workspace/build/builderbob/mbse-craft/paired-fork/target/debug/deps/context_recovery-92da181d7d4c75c5)
+
+running 6 tests
+test inventory_is_explicitly_bounded ... ok
+test restart_inventory_refuses_corrupt_main_unknown_and_symlink_and_restores_copy ... ok
+test recovery_inventory_refuses_file_symlink_and_native_save_envelope ... ok
+test native_context_name_retains_unsupported_exchange_text_through_undo_and_reopen ... ok
+test recovery_inventory_file_count_and_aggregate_byte_caps_are_independent ... ok
+test context_and_affiliation_are_typed_undoable_preserve_opaque_and_roundtrip ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+     Running tests/craft_faults.rs (/workspace/build/builderbob/mbse-craft/paired-fork/target/debug/deps/craft_faults-43d0fd4b437c1363)
+
+running 2 tests
+test actual_craft_stream_failure_keeps_previous_bytes ... ok
+test actual_craft_rename_refusal_keeps_previous_bytes ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/craft_recovery.rs (/workspace/build/builderbob/mbse-craft/paired-fork/target/debug/deps/craft_recovery-1622d6e65ee7ec18)
+
+running 1 test
+test actual_craft_save_and_recovery_survive_corrupt_main ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s
+
+     Running tests/stage1_calculation.rs (/workspace/build/builderbob/mbse-craft/paired-fork/target/debug/deps/stage1_calculation-7aa4f929cf24d2e6)
+
+running 28 tests
+test c01_count_ratio_is_real_output_not_a_criterion ... ok
+test active_generation_filter_preserves_removed_and_reused_binding_drafts ... ok
+test c02_output_reference_converts_ratio_scale_once ... ok
+test c03_explicit_times_100_is_not_heuristically_removed ... ok
+test c04_mixed_length_scales_have_known_reference ... ok
+test c11_domain_and_count_exactness_are_enforced_before_rounding ... ok
+test c08_nominal_kind_distinguishes_equal_dimensions ... ok
+test c12_overflow_underflow_and_authored_zero_are_distinct ... ok
+test c06_speed_duration_dependency_yields_distance ... ok
+test c05_length_duration_dependency_yields_speed ... ok
+test c14_cycle_members_sorted_downstream_blocked_independent_value_survives ... ok
+test c07_speed_output_scale_and_astra_reference ... ok
+test c13_missing_output_and_unbound_name_are_not_zero ... ok
+test c09_wrong_physical_dimensions_are_unit_errors ... ok
+test c18_unrelated_snapshot_edit_invalidates_receipt_but_not_formula_number ... ok
+test c10_both_signs_of_zero_refuse_division ... ok
+test c16_invalid_or_incomplete_literal_never_falls_back_to_accepted_input ... ok
+test definitions_reject_unknown_structural_keys_and_bad_attachment_identity ... ok
+test historic_unit_context_classifies_itself_but_blocks_execution_after_undo ... ok
+test c15_incomplete_formula_blocks_old_accepted_program ... ok
+test exact_raw_validity_claims_and_detached_fields_are_not_trusted ... ok
+test c17_closed_functions_and_algebra_refuse_unsupported_forms ... ok
+test parser_precedence_functions_spans_and_formatter_roundtrip ... ok
+test c19_native_definition_raw_serialization_preserves_text_and_does_not_persist_current_receipt ... ok
+test c20_late_receipt_and_changed_definitions_or_raw_cannot_be_current ... ok
+test c21_resources_refuse_without_success_and_report_truncation ... ok
+test thousand_output_chain_is_deterministic_and_bounded ... ok
+test resource_refusal_is_current_for_exact_document_but_never_a_current_computation ... ok
+
+test result: ok. 28 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.12s
+
+     Running tests/stage1_completion_foundation.rs (/workspace/build/builderbob/mbse-craft/paired-fork/target/debug/deps/stage1_completion_foundation-089300d63d46ae1f)
+
+running 25 tests
+test desktop_import_refusal_retains_exact_bounded_invalid_bytes_independent_of_later_disk_change ... ok
+test measure_relink_is_one_undoable_edit_and_preserves_partial_criterion ... ok
+test binding_generation_query_covers_output_targets_and_imported_zero_without_literal_raw_fields ... ok
+test source_identity_is_portable_across_workspace_roots_and_creation_order ... ok
+test configuration_collisions_and_noncurrent_field_bindings_refuse_without_mutation ... ok
+test wrong_kind_missing_and_cross_system_relinks_preserve_exact_document_and_history ... ok
+test noncanonical_literal_spelling_returns_exactly_after_unit_model_undo_and_redo ... ok
+test source_identity_binds_vendor_contents_membership_and_directory_watches ... ok
+test unit_model_undo_never_overwrites_a_later_raw_value_with_restored_accepted_spelling ... ok
+test removed_and_recreated_binding_does_not_adopt_old_raw_and_model_undo_restores_exact_generation ... ok
+test compatible_literal_unit_conversion_and_model_history_preserve_physical_value_and_raw_context ... ok
+test rename_and_same_name_output_rebind_keep_old_drafts_inactive_and_undo_restores_their_owner ... ok
+test configuration_generation_removal_recreate_and_model_history_never_adopt_old_scratch ... ok
+test configuration_text_fallback_and_key_scoped_undo_redo_do_not_change_accepted_model ... ok
+test text_undo_is_scoped_to_binding_generation_and_keeps_previous_journal ... ok
+test actual_export_has_separate_receipt_never_acknowledges_save_or_live_edits_and_refuses_existing_copy ... ok
+test unsupported_import_and_export_refuse_atomically_with_original_bytes_and_native_status_preserved ... ok
+test omitted_literal_context_on_open_is_captured_before_history_and_never_reinterpreted_after_conversion ... ok
+test exported_copy_completion_does_not_consume_pending_native_save_and_disk_conflicts_never_approve_export ... ok
+test calculation_definition_and_incomplete_raw_survive_actual_save_reopen_and_independent_recovery ... ok
+test genuine_import_is_independent_dirty_and_exact_source_survives_native_recovery_generations ... ok
+test schema1_configuration_journal_prefix_collisions_refuse_migration_unchanged ... ok
+test actual_v1_open_preserves_unknown_properties_raw_and_native_saved_until_explicit_v2_write ... ok
+test v1_reserved_typed_key_collisions_are_not_promoted_and_original_files_are_unchanged ... ok
+test unfinished_add_replace_rename_configuration_survives_actual_save_open_and_keep_draft_recovery ... ok
+
+test result: ok. 25 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.46s
+
+     Running tests/stage1_interchange.rs (/workspace/build/builderbob/mbse-craft/paired-fork/target/debug/deps/stage1_interchange-74484b3aede576d6)
+
+running 18 tests
+test calculation_attachment_map_cycle_and_missing_dependency_cannot_disagree ... ok
+test opaque_values_nonempty_unqualified_observations_and_physical_ast_literals_refuse ... ok
+test original_positive_fixture_and_standard_construct_refusals_are_distinct ... ok
+test exact_source_unicode_duplicate_labels_and_qualified_references_keep_identities_and_spans ... ok
+test native_valid_result_binding_refuses_exchange_return_feature_collision_atomically ... ok
+test parser_body_superset_does_not_admit_unsupported_native_record_behaviors ... ok
+test complete_baseline_accepted_meaning_roundtrips_without_native_raw_promotion ... ok
+test signed_scalar_literals_and_optional_absence_have_declared_semantic_normalization ... ok
+test wrong_kind_missing_and_cross_scope_references_refuse_without_label_guessing ... ok
+test native_generation_metadata_and_original_archive_are_excluded_without_mutation ... ok
+test duplicate_ids_symbols_and_numeric_tag_mismatch_are_atomic_refusals ... ok
+test imported_members_namespace_roots_and_path_segments_cannot_be_shadowed ... ok
+test every_modified_prefix_default_ontology_and_import_is_explicitly_refused ... ok
+test genuine_calc_quantities_dependencies_and_scalar_function_preserve_numeric_oracles ... ok
+test invalid_utf8_and_resource_failures_retain_or_explicitly_leave_caller_originals ... ok
+test unknown_units_types_and_unreviewed_functions_are_not_strings_of_success ... ok
+test scientific_scalar_extremes_preserve_unary_minus_and_bounded_semantic_roundtrip ... ok
+test aggregate_calculation_ast_limit_is_an_exchange_admission_boundary ... ok
+
+test result: ok. 18 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.20s
+
+     Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/paired-fork/target/debug/deps/sysmlv2_syntax-528ca1377b05820e)
+
+running 9 tests
+test ast::spelling_tests::buffered_spelling_matches_the_allocating_one ... ok
+test name::tests::canonical_names_split_and_respell ... ok
+test name::tests::either_dialect_spelling_quotes_the_union ... ok
+test name::tests::basic_names_print_bare ... ok
+test name::tests::empty_is_illegal ... ok
+test name::tests::canonical_spelling_round_trips_through_the_lexer ... ok
+test name::tests::non_basic_names_are_quoted_with_escapes ... ok
+test name::tests::paths_spell_per_segment ... ok
+test name::tests::reserved_words_are_quoted_per_dialect ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests mbse_assurance
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests mbse_catalog
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests mbse_exchange
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests mbse_model
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests sysmlv2_syntax
+
+running 1 test
+test crates/mbse-model/vendor/sysmlv2-syntax/src/visit.rs - visit (line 14) ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+

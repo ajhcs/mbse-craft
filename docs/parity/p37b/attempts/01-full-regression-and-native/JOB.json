@@ -1,0 +1,65 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m6-p37b-native-explicit-scope-metrics-01",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m6-p37b-native-metrics",
+  "source_manifest": "docs/parity/p37b/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "a702e289a1a55925a963d49ad7c55993f5e1677f9da38cf681d9b4690471941f",
+  "source_sha256": "26d6fd816614e7f399229f4c0df34baee3c8be0fa9f1a148d8409410264c83fa",
+  "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "--workspace"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "run",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-assurance",
+      "--example",
+      "prepare_metrics",
+      "--",
+      "/workspace/repos/builderbob/mbse-craft/work/m6-p37b-native-metrics/docs/parity/p37b/fixtures/native-prepared-01"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "P37b explicit metrics section in existing Requirements/evidencewindow/sharedcommand, no newmenudispatch. ModelAll/System and optionalworkingregisterAll/exactIDscopes, empty/unavailable/refusal/current/historical metadata/copy/clear. EightnewGUI/parsercases incl2System/5trace fixedtopology, empty/absent/legacy, missing/invalidscope, fullsource/register/raw/counter staleness, sameframecompletedregisterload, pendingIO/unadmittedtext/close/replaceguard, exactcopyandruntimeclear, windowreopen/coldnewsession. Expected779distinct=771prior+8new. Sharedsource-only factory/preparer addsoneemptySystem60082toP36nativebase, fixed3requirement/5trace separate register; retainsoriginalmeaning/eightmaps, neverqueriesmetrics. Fullworkspace once, preparefreshsourcepair/register, desktopbuild. Nativeactualacceptancefollows. No dependencies/licenses/buildscripts/sourceauthoritieschanged.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p37b-native-metrics/docs/parity/p36b/verification/native-02/run/analysis-final-cold-copy.kernspan": "a27759c60802c90c1343eb925474a74dd76d5aa84efb18d555d1db7f4d4951f8",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p37b-native-metrics/docs/parity/p36b/verification/native-02/run/analysis-final-cold-copy.mbse-views.json": "0565299e57ffac9d90ed2b3f46e8fb06fb0bd2e629e188494e3219471046beff",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p37b-native-metrics/docs/parity/p37a/review/TEST_RESULTS.json": "403b188c153c4fd54bd9d7d05b22bbcecd518cad6f65fa6b3fb70f7a1166f435"
+  }
+}

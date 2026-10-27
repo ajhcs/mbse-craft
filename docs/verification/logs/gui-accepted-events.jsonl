@@ -1,0 +1,10 @@
+{"ready": true, "app_pid": 451689, "server_pid": 451686, "window": 4194307, "binary_sha256": "ddefaaaa73675b5e1aacd8aee6288cfdf513049c0e8cad88b15be894a7e4b587"}
+{"op": "capture", "name": "recovery-final-build", "sha256": "7ff691449860e78d954484ca814251014139c55868632c4a3341ae10651331e2", "app_returncode": null}
+{"op": "scroll", "x": 250, "y": 850, "steps": 6, "app_returncode": null}
+{"op": "capture", "name": "calculation-recovered-3point5km", "sha256": "bccfb63e13283c689c933bbf45171b27752cf6e146e36b405ca6d0861aad8811", "app_returncode": null}
+{"op": "click", "widget": "save-path", "x": 784, "y": 74, "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/evidence/gui-accepted/accepted.kernspan", "app_returncode": null}
+{"op": "click", "widget": "action:Save", "x": 503, "y": 12, "app_returncode": null}
+{"op": "click", "widget": "relation:Subject:300:200", "x": 648, "y": 949, "app_returncode": null}
+{"op": "capture", "name": "selected-typed-relation", "sha256": "0acf9f09bcd71846e761be7b6d67b250b738afe8b28bf69e57e9ab6f76d85f0b", "app_returncode": null}
+{"op": "close", "pause": 2, "app_returncode": 0}

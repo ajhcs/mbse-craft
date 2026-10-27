@@ -1,0 +1,53 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m4-p17b-session-camera-drag-corrected",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m4-p17b-port-occurrences",
+  "source_manifest": "docs/parity/p17b/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "f614d078503c912d11e9149ccfe8223916d810d00957705bdba070b9ca36e2f9",
+  "source_sha256": "bbc971481cd9adb2db85658dc74646cd80bbac3056937aa669c5a96a43c9073b",
+  "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "--workspace",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "Correct native/views test fixture to retain Session editor instance identity; checkpoint guard remains intact. Static review adds typed geometry to Fit and shared checked drag path; ninth regression checks visible/hidden typed Fit without semantic changes. Failed317-pass/one-failed receipt retained separately.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p17b-port-occurrences/docs/parity/p17b/fixtures/ports.kernspan": "dfb4c4eca6d69a8e718e30fa340eb75472f33009e9f66bfcf0752cc124653386",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p17b-port-occurrences/docs/parity/p17b/fixtures/core-views.json": "78d1601d6f4e5500c71925f3380e90aa847233a635e8793e7db445d426396d1a"
+  }
+}

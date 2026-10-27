@@ -1,0 +1,72 @@
+[
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p30b-activity-forms-views/work/p30b-01.json",
+    "path": "compiler-01/RECEIPT.json",
+    "bytes": 54531,
+    "sha256": "07a0da54a19a5cb491ef6b09c67dd4f2306632672fceb2ef0a835abd7564234d",
+    "stored_sha256": "07a0da54a19a5cb491ef6b09c67dd4f2306632672fceb2ef0a835abd7564234d"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p30b-activity-journals-diagrams-01-20261027T051649Z/00.log",
+    "path": "compiler-01/00.log.gz",
+    "bytes": 61464,
+    "sha256": "9430dd30ed03a89556ff19c685b0044b518923857175178f93d32fe183354419",
+    "stored_sha256": "ac2594c379d5b93fe9d968baa4f6aef70a64d1d2b56d13d9cc12612fb206da38"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p30b-activity-forms-views/work/p30b-02.json",
+    "path": "compiler-02/RECEIPT.json",
+    "bytes": 76558,
+    "sha256": "e4ee98b9bf27307da5c76c9e4186701fe615aba1aa7211d42135b363b2db867b",
+    "stored_sha256": "e4ee98b9bf27307da5c76c9e4186701fe615aba1aa7211d42135b363b2db867b"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p30b-session-instance-remainder-02-20261027T052023Z/00.log",
+    "path": "compiler-02/00.log.gz",
+    "bytes": 21971,
+    "sha256": "e9e9c6cc032065c6f05dc47786417b25a51a148a4429653d123176c29a9bc75a",
+    "stored_sha256": "04178839bd4c799aa9563a7493624e41559386ca1d105e311c3091779717778e"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p30b-session-instance-remainder-02-20261027T052023Z/01.log",
+    "path": "compiler-02/01.log.gz",
+    "bytes": 3847,
+    "sha256": "1411a6007597b9508b592941a6e4dc1156c061840772f8d4882c8dee41ad6cf6",
+    "stored_sha256": "21b1f6260f25e9e282ee6ceb9e6e032c06f623d546324b997ddccc0a44eaf53b"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p30b-activity-forms-views/work/p30b-03.json",
+    "path": "compiler-03/RECEIPT.json",
+    "bytes": 5543,
+    "sha256": "995299b9676ec36e1baa799097090b6c4529519ecf5121827a836a4d560afd5f",
+    "stored_sha256": "995299b9676ec36e1baa799097090b6c4529519ecf5121827a836a4d560afd5f"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p30b-quota-repro-03-20261027T052313Z/00.log",
+    "path": "compiler-03/00.log.gz",
+    "bytes": 2751,
+    "sha256": "43510cfceb3f685ed3f0861504559df7a5e077dd386bea1b41e102475aba78a2",
+    "stored_sha256": "8bcf6b9028dd77ed2aeb8763db0652ec9b0d1f9bb3a9ff51e6e35714ee5b1c0d"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p30b-activity-forms-views/work/p30b-04.json",
+    "path": "compiler-04/RECEIPT.json",
+    "bytes": 9889,
+    "sha256": "e529a3a778f020351ddadf9fdc87aa9934e40b4b7d5d409ba15fec4e209fd307",
+    "stored_sha256": "e529a3a778f020351ddadf9fdc87aa9934e40b4b7d5d409ba15fec4e209fd307"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p30b-quota-and-source-disclosure-04-20261027T052504Z/00.log",
+    "path": "compiler-04/00.log.gz",
+    "bytes": 3331,
+    "sha256": "56bb9da0f12d2913c8f9166bb29e69a7f084b0389d64996ceeca834ef0e25498",
+    "stored_sha256": "9a6c8aa66ebdc61e20a651cb25f682ac1863a97591c74053679acdf43a3593cd"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p30b-quota-and-source-disclosure-04-20261027T052504Z/01.log",
+    "path": "compiler-04/01.log.gz",
+    "bytes": 4361,
+    "sha256": "c98b709fe20a44da3976158e59733822009d06ce2abd6eb55566859c473df147",
+    "stored_sha256": "520ee5b6e6e82cc97bb096f6fb1082e32c373179448cb2ba0471eb4922bcd7c1"
+  }
+]

@@ -1,0 +1,6 @@
+{"ready": true, "app_pid": 452283, "server_pid": 452280, "window": 4194307, "binary_sha256": "ddefaaaa73675b5e1aacd8aee6288cfdf513049c0e8cad88b15be894a7e4b587"}
+{"op": "scroll", "x": 250, "y": 850, "steps": 5, "app_returncode": null}
+{"op": "capture", "name": "blank-authored-reopened", "sha256": "1e464ca90b8f7c134826555b9393d11007a98ee3127282c72c7961c208e722ac", "app_returncode": null}
+{"op": "click", "widget": "relation:Subject:1002:1001", "x": 660, "y": 845, "app_returncode": null}
+{"op": "capture", "name": "typed-subject-highlight", "sha256": "7962b7c8b0a7bd70d8f79bdf1ec2e564e0bf4b05fcd7c919c5051ca3fa6569b3", "app_returncode": null}
+{"op": "close", "pause": 2, "app_returncode": 0}

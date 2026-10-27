@@ -1,0 +1,41 @@
+{
+  "scope": "Read-only normal builderbob context manifest and sample-file confirmation; no payload copied or source modified",
+  "uid": 1000,
+  "files": [
+    {
+      "path": "/workspace/repos/builderbob/kernspan/work/references/catia-workflow-20261022/README.md",
+      "bytes": 2300,
+      "sha256": "d8e83448661664c3158b57032160c9d100f9e344a7617c6fe71a7d192f61f728"
+    },
+    {
+      "path": "/workspace/repos/builderbob/kernspan/work/references/catia-workflow-20261022/TRANSFER-VERIFICATION.json",
+      "bytes": 1829,
+      "sha256": "23f5b1f8955c29fd0e0cf081e400ea9f28a7c0d2f86fa1e6312caf53f6566284"
+    },
+    {
+      "path": "/workspace/repos/builderbob/kernspan/work/references/catia-workflow-20261022/destination-manifest.json",
+      "bytes": 316450,
+      "sha256": "9f0f7db923a99ec24335be0470c63fd6dd856231341d398cfcba48ee07df6c6c"
+    },
+    {
+      "path": "/workspace/repos/builderbob/kernspan/work/references/catia-workflow-20261022/_transfer/source-manifest.json",
+      "bytes": 286200,
+      "sha256": "592e13588a892cfd7401d158a6a3a8305e02c69c2b96f440165ad44985c85625"
+    },
+    {
+      "path": "/workspace/repos/builderbob/kernspan/work/references/catia-workflow-20261022/model-outputs/MCOAE Incident Coordination.mdzip",
+      "bytes": 230071,
+      "sha256": "7beaf024aee883c5a1117b6e55bd4e2898c26d4ddbfc308dcd08fd3839c07f8a"
+    },
+    {
+      "path": "/workspace/repos/builderbob/kernspan/work/references/catia-workflow-20261022/model-outputs/MCOAE Incident Coordination.mdzip.bak",
+      "bytes": 229452,
+      "sha256": "dba0267f9149a0d63cf7729bfb1af25f88d6497e136455e18651756171e7c94c"
+    },
+    {
+      "path": "/workspace/repos/builderbob/kernspan/work/references/catia-workflow-20261022/curated-study/index.csv",
+      "bytes": 148214,
+      "sha256": "87f759c6129c34849855e78db83d7d9c74a5e639ec62835138e6b4d2c52ecc0e"
+    }
+  ]
+}

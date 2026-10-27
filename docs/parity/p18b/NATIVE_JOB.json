@@ -1,0 +1,35 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "796c1ba9dfd08b9ce913113bfc5f434fcb11dc7f592ad6114674b46c429db59d",
+    "scripts/verify-m1-native.py": "ef4e7c2308323b9023f83a15ddb3b9214d27368fd9a34a42b4245ad44f574a39",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "id": "p18b-visible-viewport-final-remainder",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p18b-viewport-label-fix-20261026T212210Z/mbse-desktop",
+  "binary_sha256": "b53ce4b8bb82839570396339a2a929fc089ac0a176a0ef77f4195a204cfa8706",
+  "source_sha256": "c4244cacfe42b001d02f48352582df1c164424e099f682be6dd05e335c484177",
+  "inputs": {
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p18b-03/run/qualified-routes.kernspan": "69337eafb28ddeaa38df039741efe6223e2ebe095fdf026ff1c9b394f463c156",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p18b-03/run/qualified-routes.mbse-views.json": "d61281289f7cd2cc5f92296afa84c5b97cba4493d90984b8e53dfcb3eee176a1"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p18b-04",
+  "argv_extra": [
+    "--open",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p18b-03/run/qualified-routes.kernspan",
+    "--select",
+    "1003"
+  ],
+  "scenarios": [
+    "Open actual captured native/views4 pair with moved qualified endpoint and two parallel semantic routes",
+    "Verify complete captions avoid cards/other captions AND lie inside actual visible canvas clip in both views",
+    "One new pointer drag recomputes visible captions while preserving model, route identities and other-view geometry; save corrected presentation"
+  ],
+  "claim_policy": "Final visible-viewport renderer remainder on unchanged model/schema/history/IO source. Earlier448-test semantics and captured two-run cold reopen remain separate qualified evidence; final focused2 renderer tests and native visual/drag check. No prior failures relabeled; same-agent Linux evidence only."
+}

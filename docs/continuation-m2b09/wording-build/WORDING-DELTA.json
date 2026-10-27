@@ -1,0 +1,17 @@
+{
+  "profile": "mbse-craft.reviewed-wording-delta/1",
+  "base_source": "88d813e19d5eb18fab1b8962aab030a1731ea39d",
+  "wording_source": "f1b6c71681b221aba446f4b308d847fe08aef2eb",
+  "compiled_file_changes": [
+    "crates/mbse-desktop/src/ui.rs"
+  ],
+  "exact_old_text": "pending creation drafts owned here",
+  "exact_new_text": "stored creation draft entries owned here",
+  "only_literal_replacement_verified": true,
+  "prior15tests_source": "88d813e19d5eb18fab1b8962aab030a1731ea39d",
+  "prior_native_receipt": "/workspace/build/builderbob/mbse-craft/native-record-impact/native-gate/NATIVE-RECEIPT.json",
+  "prior_native_receipt_sha256": "c43fc87884892e94a09f92553cd88651511b403a4be4820d648e926af286552c",
+  "prior_independent_review": "/workspace/build/builderbob/mbse-craft/native-record-impact/INDEPENDENT-ACTUAL-NATIVE-REVIEW.json",
+  "prior_independent_review_sha256": "dbf025442a14a34c897b7713cfa21510d7672df358aaece693a9491b15f8fad6",
+  "replay_prior_tests_or_workflow": false
+}

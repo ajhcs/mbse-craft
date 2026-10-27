@@ -1,0 +1,16 @@
+{
+  "result": "bounded_scenario_authority_regression_and_build_passed",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 753,
+  "source_sha256": "dad877f6c6b39a3194707a89760de44be6399732180e93e0d9031a3a3f4d9920",
+  "binary_sha256": "49359b71f36f7e5b9f04ffcf400a7c9fc7a0c94e02db198bd65a92502de400ac",
+  "distinct_case_inventory": 690,
+  "new_cases": 12,
+  "native_scenario_runs": 0,
+  "limits": [
+    "P34b independent presentation and P34c actual native authoring/rendering/diagnostics/history/save/cold acceptance remain required for parent closure.",
+    "Documentary native/component/usage participants; no inferred runtime instances, operations/signals registry, hierarchy/executable paths/guard evaluation/timing/concurrency/verification/fullparity/independentengineering/platform/scale/production.",
+    "All56broadspecs/integratedexits remain open."
+  ]
+}

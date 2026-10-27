@@ -1,0 +1,30 @@
+[
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m7-p39a-editable-subset/docs/parity/p39a/JOB.json",
+    "path": "compiler-01/JOB.json",
+    "bytes": 3565,
+    "sha256": "664139094ba1cdc3af48d83f487cd46f012ca2a1abdd82762cc1bd5a74b9bdc3",
+    "stored_sha256": "664139094ba1cdc3af48d83f487cd46f012ca2a1abdd82762cc1bd5a74b9bdc3"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m7-p39a-editable-subset/work/p39a-01.json",
+    "path": "compiler-01/RECEIPT.json",
+    "bytes": 92136,
+    "sha256": "6b42c38fe36dd062c3ac1dd7c3375baf5a9d4f6f27267726f350957298c66702",
+    "stored_sha256": "6b42c38fe36dd062c3ac1dd7c3375baf5a9d4f6f27267726f350957298c66702"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m7-p39a-sealed-native-component-admission-01-20261027T161700Z/00.log",
+    "path": "compiler-01/00.log.gz",
+    "bytes": 103419,
+    "sha256": "3f8defb97eed0dc607d218a8a9f79f89a045abc037b758f1efb2f6779c0a542b",
+    "stored_sha256": "eab62f411eae5b0f70d3951880bee5a41ec6d425ee4f432df6fe59d7b4341176"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m7-p39a-sealed-native-component-admission-01-20261027T161700Z/01.log",
+    "path": "compiler-01/01.log.gz",
+    "bytes": 5489,
+    "sha256": "bfa4c6614c2d9c4af4b49509f5a16ee27400eafc3863d2a4cf000cb15e64ac9d",
+    "stored_sha256": "2c90207656bdc4228f9f3d8b20bc30111ae23b432af8d3799de9dcb72c8d6df9"
+  }
+]

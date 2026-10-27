@@ -1,0 +1,226 @@
+{
+  "items": [
+    {
+      "default_shortcut": "Ctrl+N",
+      "enabled": true,
+      "id": "file.new",
+      "keyboard_scope": "workspace; existing command prerequisites apply",
+      "label": "New",
+      "menu": "File",
+      "reason": null,
+      "shortcut": "Ctrl+N"
+    },
+    {
+      "default_shortcut": "Ctrl+O",
+      "enabled": true,
+      "id": "file.open",
+      "keyboard_scope": "workspace; existing command prerequisites apply",
+      "label": "Open",
+      "menu": "File",
+      "reason": null,
+      "shortcut": "Ctrl+O"
+    },
+    {
+      "default_shortcut": "Ctrl+Shift+O",
+      "enabled": true,
+      "id": "file.recover",
+      "keyboard_scope": "workspace; existing command prerequisites apply",
+      "label": "Recover",
+      "menu": "File",
+      "reason": null,
+      "shortcut": "Ctrl+Shift+O"
+    },
+    {
+      "default_shortcut": "Ctrl+I",
+      "enabled": true,
+      "id": "file.import_sysml",
+      "keyboard_scope": "workspace; existing command prerequisites apply",
+      "label": "Import SysML",
+      "menu": "File",
+      "reason": null,
+      "shortcut": "Ctrl+I"
+    },
+    {
+      "default_shortcut": "Ctrl+S",
+      "enabled": true,
+      "id": "file.save",
+      "keyboard_scope": "workspace; existing command prerequisites apply",
+      "label": "Save",
+      "menu": "File",
+      "reason": null,
+      "shortcut": "Ctrl+S"
+    },
+    {
+      "default_shortcut": "Ctrl+Shift+S",
+      "enabled": true,
+      "id": "file.recovery_copy",
+      "keyboard_scope": "workspace; existing command prerequisites apply",
+      "label": "Recovery copy",
+      "menu": "File",
+      "reason": null,
+      "shortcut": "Ctrl+Shift+S"
+    },
+    {
+      "default_shortcut": "Ctrl+E",
+      "enabled": true,
+      "id": "file.export_sysml",
+      "keyboard_scope": "workspace; existing command prerequisites apply",
+      "label": "Export SysML copy",
+      "menu": "File",
+      "reason": null,
+      "shortcut": "Ctrl+E"
+    },
+    {
+      "default_shortcut": "Ctrl+Shift+R",
+      "enabled": true,
+      "id": "file.review_recoveries",
+      "keyboard_scope": "workspace; existing command prerequisites apply",
+      "label": "Review recovery copies",
+      "menu": "File",
+      "reason": null,
+      "shortcut": "Ctrl+Shift+R"
+    },
+    {
+      "default_shortcut": "Ctrl+Q",
+      "enabled": true,
+      "id": "file.quit",
+      "keyboard_scope": "workspace; existing command prerequisites apply",
+      "label": "Quit",
+      "menu": "File",
+      "reason": null,
+      "shortcut": "Ctrl+Q"
+    },
+    {
+      "default_shortcut": "Ctrl+Z",
+      "enabled": false,
+      "id": "edit.undo",
+      "keyboard_scope": "model; fixed native-field Ctrl/Cmd+Z and Ctrl/Cmd+Shift+Z",
+      "label": "Undo",
+      "menu": "Edit",
+      "reason": "No model history available.",
+      "shortcut": "Ctrl+Z"
+    },
+    {
+      "default_shortcut": "Ctrl+Shift+Z",
+      "enabled": false,
+      "id": "edit.redo",
+      "keyboard_scope": "model; fixed native-field Ctrl/Cmd+Z and Ctrl/Cmd+Shift+Z",
+      "label": "Redo",
+      "menu": "Edit",
+      "reason": "No model history available.",
+      "shortcut": "Ctrl+Alt+Shift+U"
+    },
+    {
+      "default_shortcut": "Ctrl+Alt+Z",
+      "enabled": false,
+      "id": "view.layout_undo",
+      "keyboard_scope": "canvas; inactive while editing text or an auxiliary window",
+      "label": "Layout Undo",
+      "menu": "View",
+      "reason": "No layout history available in this direction.",
+      "shortcut": "Ctrl+Alt+L"
+    },
+    {
+      "default_shortcut": "Ctrl+Alt+Shift+Z",
+      "enabled": false,
+      "id": "view.layout_redo",
+      "keyboard_scope": "canvas; inactive while editing text or an auxiliary window",
+      "label": "Layout Redo",
+      "menu": "View",
+      "reason": "No layout history available in this direction.",
+      "shortcut": "Ctrl+Alt+Shift+L"
+    },
+    {
+      "default_shortcut": "Ctrl+F",
+      "enabled": true,
+      "id": "edit.search",
+      "keyboard_scope": "workspace; existing command prerequisites apply",
+      "label": "Search native records",
+      "menu": "Edit",
+      "reason": null,
+      "shortcut": "Ctrl+F"
+    },
+    {
+      "default_shortcut": "Ctrl+Shift+U",
+      "enabled": true,
+      "id": "edit.usages",
+      "keyboard_scope": "workspace; existing command prerequisites apply",
+      "label": "Find usages",
+      "menu": "Edit",
+      "reason": null,
+      "shortcut": "Ctrl+Shift+U"
+    },
+    {
+      "default_shortcut": "Ctrl+Shift+I",
+      "enabled": true,
+      "id": "edit.impact",
+      "keyboard_scope": "workspace; existing command prerequisites apply",
+      "label": "Inspect record impact",
+      "menu": "Edit",
+      "reason": null,
+      "shortcut": "Ctrl+Shift+I"
+    },
+    {
+      "default_shortcut": "Ctrl+Shift+P",
+      "enabled": true,
+      "id": "view.presentation_source",
+      "keyboard_scope": "workspace; existing command prerequisites apply",
+      "label": "Inspect presentation source\u2026",
+      "menu": "View",
+      "reason": null,
+      "shortcut": "Ctrl+Shift+P"
+    },
+    {
+      "default_shortcut": "Ctrl+Shift+E",
+      "enabled": true,
+      "id": "tools.external_projection",
+      "keyboard_scope": "workspace; existing command prerequisites apply",
+      "label": "Open external projection",
+      "menu": "Tools",
+      "reason": null,
+      "shortcut": "Ctrl+Shift+E"
+    },
+    {
+      "default_shortcut": "Ctrl+Shift+A",
+      "enabled": true,
+      "id": "tools.assurance",
+      "keyboard_scope": "workspace; existing command prerequisites apply",
+      "label": "Requirements and evidence",
+      "menu": "Tools",
+      "reason": null,
+      "shortcut": "Ctrl+Shift+A"
+    },
+    {
+      "default_shortcut": "Ctrl+Shift+L",
+      "enabled": true,
+      "id": "tools.library",
+      "keyboard_scope": "workspace; existing command prerequisites apply",
+      "label": "Browse library folder",
+      "menu": "Tools",
+      "reason": null,
+      "shortcut": "Ctrl+Shift+L"
+    },
+    {
+      "default_shortcut": "Ctrl+Comma",
+      "enabled": true,
+      "id": "tools.recovery_settings",
+      "keyboard_scope": "workspace; existing command prerequisites apply",
+      "label": "Recovery settings",
+      "menu": "Tools",
+      "reason": null,
+      "shortcut": "Ctrl+Comma"
+    },
+    {
+      "default_shortcut": "Ctrl+Alt+Comma",
+      "enabled": true,
+      "id": "tools.shortcuts",
+      "keyboard_scope": "workspace; existing command prerequisites apply",
+      "label": "Keyboard shortcuts",
+      "menu": "Tools",
+      "reason": null,
+      "shortcut": "Ctrl+Alt+Comma"
+    }
+  ],
+  "last": null,
+  "schema": "mbse-craft.command-catalog/1"
+}

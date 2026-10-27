@@ -1,0 +1,233 @@
+[
+  {
+    "original": "work/p15-review-corrected-execution.json",
+    "path": "COMPILER_RECEIPT.json",
+    "bytes": 46214,
+    "sha256": "51a5a564200d3bfd838484806366ce57a94b9a60d5e8f164a1b3f9a4ee8d3c3a",
+    "stored_sha256": "51a5a564200d3bfd838484806366ce57a94b9a60d5e8f164a1b3f9a4ee8d3c3a"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p15-definition-journal-corrected-20261026T184615Z/00.log",
+    "path": "compiler/00.log.gz",
+    "bytes": 47626,
+    "sha256": "6f4099c73f360181a1c42618dd8e293ee37d6dd8ab9da6e3fd1761eab40c020f",
+    "stored_sha256": "a5491b4aa5bbe53ec78c73414d21c922ea4ec36eb6f4c8d769577570fb34b8ed"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p15-definition-journal-corrected-20261026T184615Z/01.log",
+    "path": "compiler/01.log.gz",
+    "bytes": 3389,
+    "sha256": "d844404604781ca1cc0b69428ccceb034ee694b27a9d3955449d8b93e5c05eee",
+    "stored_sha256": "61bd1fb19846e2e95714023500f3b2b6531254330471aa3b58a7131edc30ca87"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/CONTROLLER_ACTIONS.py",
+    "path": "native/CONTROLLER_ACTIONS.py",
+    "bytes": 5548,
+    "sha256": "5fcf9072e3f5dfff8971779957b36cd19fc6f8557405847aed38fb7fb757099f",
+    "stored_sha256": "5fcf9072e3f5dfff8971779957b36cd19fc6f8557405847aed38fb7fb757099f"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/RECEIPT.json",
+    "path": "native/RECEIPT.json",
+    "bytes": 8306,
+    "sha256": "38e3783b7be9413b89452069c1f5d045997acc67cc31e21c8647dab2aa054ac2",
+    "stored_sha256": "38e3783b7be9413b89452069c1f5d045997acc67cc31e21c8647dab2aa054ac2"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/reopen/07-cold-reopen-both-drafts-and-accepted-property.png",
+    "path": "native/reopen/07-cold-reopen-both-drafts-and-accepted-property.png",
+    "bytes": 278945,
+    "sha256": "c244099388db7764d92a34e8e55d8e4b1cecafd6e26e6190cf76ebdd1b004830",
+    "stored_sha256": "c244099388db7764d92a34e8e55d8e4b1cecafd6e26e6190cf76ebdd1b004830"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/reopen/07-cold-reopen-both-drafts-and-accepted-property.ui.json",
+    "path": "native/reopen/07-cold-reopen-both-drafts-and-accepted-property.ui.json",
+    "bytes": 28700,
+    "sha256": "2ae80786ae5d059a24a4357ddea4cc05021071d497c5792f3b37ed03bfa2a3e2",
+    "stored_sha256": "2ae80786ae5d059a24a4357ddea4cc05021071d497c5792f3b37ed03bfa2a3e2"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/reopen/08-cold-reopen-original-native-values.png",
+    "path": "native/reopen/08-cold-reopen-original-native-values.png",
+    "bytes": 363674,
+    "sha256": "14b4fe9403f954b6a67fb522e04412669c5fa761e54a12ebc2da8367166bb098",
+    "stored_sha256": "14b4fe9403f954b6a67fb522e04412669c5fa761e54a12ebc2da8367166bb098"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/reopen/08-cold-reopen-original-native-values.ui.json",
+    "path": "native/reopen/08-cold-reopen-original-native-values.ui.json",
+    "bytes": 24241,
+    "sha256": "66d74728e138b1be3fc0ac0a653643c4e5b1fb999ec39a758ab97fad08f8c469",
+    "stored_sha256": "66d74728e138b1be3fc0ac0a653643c4e5b1fb999ec39a758ab97fad08f8c469"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/reopen/app.log",
+    "path": "native/reopen/app.log.gz",
+    "bytes": 48,
+    "sha256": "0cce862dc4913be2cce3fd531146652899fa528e6bef4c0cc05a1632efdac18e",
+    "stored_sha256": "94e4dd023a62bec4d641e8996e9d854e58601c954020cf040c1f0e0191cf7866"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/reopen/events.jsonl",
+    "path": "native/reopen/events.jsonl.gz",
+    "bytes": 1440,
+    "sha256": "6e2c24a359878e816736087836f2c20777274b27c79d39b9cb8c18c81fd074e7",
+    "stored_sha256": "e7cf73d258be8df18fda9c7d353283eea46fa4d167417f8fbc58c75181e0dbbb"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/reopen/state/ui-geometry.json",
+    "path": "native/reopen/state/ui-geometry.json",
+    "bytes": 24228,
+    "sha256": "8d5b165ef9d4c463d8ceacdbcc946f784f7d4f9fe5c6f8d5280d559c96e3a21f",
+    "stored_sha256": "8d5b165ef9d4c463d8ceacdbcc946f784f7d4f9fe5c6f8d5280d559c96e3a21f"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/reopen/xvfb.log",
+    "path": "native/reopen/xvfb.log.gz",
+    "bytes": 1321,
+    "sha256": "00971f516769b092bd50063ca4a82f63a4395d9ed9ff57eab62626162f51b9ed",
+    "stored_sha256": "fdda054423b6f7162c79062d661ff1e7c458c6fd848bc9913bbe480d6a657d81"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/reopen-driver.log",
+    "path": "native/reopen-driver.log.gz",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/run/01-accepted-typed-property.png",
+    "path": "native/run/01-accepted-typed-property.png",
+    "bytes": 274956,
+    "sha256": "accffd0105f7843ab933927c27975f1bee30fccf5eea4325c9e949cc5a8b1d23",
+    "stored_sha256": "accffd0105f7843ab933927c27975f1bee30fccf5eea4325c9e949cc5a8b1d23"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/run/01-accepted-typed-property.ui.json",
+    "path": "native/run/01-accepted-typed-property.ui.json",
+    "bytes": 28704,
+    "sha256": "f1a133f47eca70f768d90faab6474d19fb9a629cb98ce5f4de3a47dba3bfe555",
+    "stored_sha256": "f1a133f47eca70f768d90faab6474d19fb9a629cb98ce5f4de3a47dba3bfe555"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/run/02-definition-journal-and-property.png",
+    "path": "native/run/02-definition-journal-and-property.png",
+    "bytes": 276798,
+    "sha256": "0c2602f4383a02c87bb1797c291dc7934d7e35431f3cea5ea475bce798b309eb",
+    "stored_sha256": "0c2602f4383a02c87bb1797c291dc7934d7e35431f3cea5ea475bce798b309eb"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/run/02-definition-journal-and-property.ui.json",
+    "path": "native/run/02-definition-journal-and-property.ui.json",
+    "bytes": 28750,
+    "sha256": "4d3f28ff8ecb3cec4019e4248f8026537550fb01fbcf4802809e9505f0ebb6ae",
+    "stored_sha256": "4d3f28ff8ecb3cec4019e4248f8026537550fb01fbcf4802809e9505f0ebb6ae"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/run/03-wrong-kind-refused-with-both-drafts.png",
+    "path": "native/run/03-wrong-kind-refused-with-both-drafts.png",
+    "bytes": 280656,
+    "sha256": "e931074766ce5c146be7db3871f90cc8330df15fa400f516cae89e8f76b24246",
+    "stored_sha256": "e931074766ce5c146be7db3871f90cc8330df15fa400f516cae89e8f76b24246"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/run/03-wrong-kind-refused-with-both-drafts.ui.json",
+    "path": "native/run/03-wrong-kind-refused-with-both-drafts.ui.json",
+    "bytes": 28750,
+    "sha256": "f57fc253ad9aee350219280c251be5f599f481f6a69786f03844b89d6d2d4a43",
+    "stored_sha256": "f57fc253ad9aee350219280c251be5f599f481f6a69786f03844b89d6d2d4a43"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/run/04-model-undo-retains-definition-and-property.png",
+    "path": "native/run/04-model-undo-retains-definition-and-property.png",
+    "bytes": 274024,
+    "sha256": "33008e96be6b138759985adf7afeb07f9b3b58198be252d1177f05299a03f76e",
+    "stored_sha256": "33008e96be6b138759985adf7afeb07f9b3b58198be252d1177f05299a03f76e"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/run/04-model-undo-retains-definition-and-property.ui.json",
+    "path": "native/run/04-model-undo-retains-definition-and-property.ui.json",
+    "bytes": 28146,
+    "sha256": "88a867687b0a49cc6b779c20569d32e5accc8de4c8261d80d124a1400690c29e",
+    "stored_sha256": "88a867687b0a49cc6b779c20569d32e5accc8de4c8261d80d124a1400690c29e"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/run/05-both-unfinished-forms-before-save.png",
+    "path": "native/run/05-both-unfinished-forms-before-save.png",
+    "bytes": 283636,
+    "sha256": "2d37b689603aa73003acec1ef23893850b5c2233b959a52eb262abfe9b502e41",
+    "stored_sha256": "2d37b689603aa73003acec1ef23893850b5c2233b959a52eb262abfe9b502e41"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/run/05-both-unfinished-forms-before-save.ui.json",
+    "path": "native/run/05-both-unfinished-forms-before-save.ui.json",
+    "bytes": 28780,
+    "sha256": "bca449db958be295031cb9f72d0592f24e25420c972df77bf6934272d9e870f3",
+    "stored_sha256": "bca449db958be295031cb9f72d0592f24e25420c972df77bf6934272d9e870f3"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/run/06-typed-pair-saved-native-draft-retained.png",
+    "path": "native/run/06-typed-pair-saved-native-draft-retained.png",
+    "bytes": 357908,
+    "sha256": "6853b78c4cf8520947d1ee8dc3b13edeb44697209919fb1b43fcb4f8d9f9e834",
+    "stored_sha256": "6853b78c4cf8520947d1ee8dc3b13edeb44697209919fb1b43fcb4f8d9f9e834"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/run/06-typed-pair-saved-native-draft-retained.ui.json",
+    "path": "native/run/06-typed-pair-saved-native-draft-retained.ui.json",
+    "bytes": 24252,
+    "sha256": "98359aeea1f705aca78e25f353d4c0cf955a2571039a172f3c13c84258893e40",
+    "stored_sha256": "98359aeea1f705aca78e25f353d4c0cf955a2571039a172f3c13c84258893e40"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/run/app.log",
+    "path": "native/run/app.log.gz",
+    "bytes": 48,
+    "sha256": "0cce862dc4913be2cce3fd531146652899fa528e6bef4c0cc05a1632efdac18e",
+    "stored_sha256": "94e4dd023a62bec4d641e8996e9d854e58601c954020cf040c1f0e0191cf7866"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/run/events.jsonl",
+    "path": "native/run/events.jsonl.gz",
+    "bytes": 5625,
+    "sha256": "91f9f82aad4131a2506d99bd0ef1ee86444b0e38cd9ee8bcafd4dab38d31060a",
+    "stored_sha256": "c926661aa86dac8a386451c170e84496790b282dd674c9f1202d67b3ab02260d"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/run/state/ui-geometry.json",
+    "path": "native/run/state/ui-geometry.json",
+    "bytes": 24235,
+    "sha256": "b675b2df1bfba49bb53adc29f50593855b16d0ac33589383a67222854846a7cd",
+    "stored_sha256": "b675b2df1bfba49bb53adc29f50593855b16d0ac33589383a67222854846a7cd"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/run/typed-final.kernspan",
+    "path": "native/run/typed-final.kernspan",
+    "bytes": 3840,
+    "sha256": "8506fa2bb9ce04d3e76d74d5e9a3f0e61349bb6ea89572f19dad18076ca74b8f",
+    "stored_sha256": "8506fa2bb9ce04d3e76d74d5e9a3f0e61349bb6ea89572f19dad18076ca74b8f"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/run/typed-final.mbse-views.json",
+    "path": "native/run/typed-final.mbse-views.json",
+    "bytes": 2792,
+    "sha256": "f73c8775965d46f768a69818ab0c181dbb04f5788ff333d0a0cc4705484f0f3e",
+    "stored_sha256": "f73c8775965d46f768a69818ab0c181dbb04f5788ff333d0a0cc4705484f0f3e"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/run/xvfb.log",
+    "path": "native/run/xvfb.log.gz",
+    "bytes": 1321,
+    "sha256": "00971f516769b092bd50063ca4a82f63a4395d9ed9ff57eab62626162f51b9ed",
+    "stored_sha256": "fdda054423b6f7162c79062d661ff1e7c458c6fd848bc9913bbe480d6a657d81"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-p15-review-01/run-driver.log",
+    "path": "native/run-driver.log.gz",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+  }
+]

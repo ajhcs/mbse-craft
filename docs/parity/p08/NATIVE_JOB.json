@@ -1,0 +1,36 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "id": "p08-independent-recovery-live-copy",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m2-p08-live-copy-final-20261025T232737Z/mbse-desktop",
+  "binary_sha256": "5af8856bc9a7dbac33108837ea9486871074cdaacb10ef887ea6d397a3240033",
+  "source_sha256": "b8fc1fc9b70d98d05f5fc3c0f90a19de0b05773d20d96f506623dfb33cba757c",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "3b7f668763ac85a195af7cac3c61425518c7a28008a13779823dcc464cb14b91",
+    "scripts/verify-m1-native.py": "e0e14f8c37f0fa5686ba2bae7fb71adfc068d7ca11a748ffb123e49aac058aba",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "inputs": {
+    "/workspace/repos/builderbob/mbse-craft/work/m2-p08-live-copy/docs/parity/p08/fixtures/old-presentation.mbse-views.json": "c7a5b5fbb193eaaec6d6351f39cf90c680bffa27990a2f65f247c6e94984a83c",
+    "/workspace/repos/builderbob/mbse-craft/work/m2-p08-live-copy/docs/parity/p08/fixtures/original.kernspan": "eefc3606af8a0e31bf8a513f942fc9bbe5122fb1417c5c98789af941cbc1c1fd"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p08-01",
+  "argv_extra": [
+    "--open",
+    "/workspace/repos/builderbob/mbse-craft/work/m2-p08-live-copy/docs/parity/p08/fixtures/original.kernspan",
+    "--select",
+    "1003"
+  ],
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "scenarios": [
+    "Actual independent native recovery with raw9e retained",
+    "Explicit source mappings, skip/unselected rows and target/source stale refusals",
+    "One live Apply, single Layout Undo and Redo without native mutation",
+    "Owned v1 SaveAs refusal and fresh v2 native/views Save and normal reopen"
+  ],
+  "claim_policy": "P08 bounded native recovered-presentation copy only; original synthetic inputs remain immutable. Source/private QA variants and all epochs are retained. No full parity or engineering acceptance claim."
+}

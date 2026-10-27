@@ -1,0 +1,21 @@
+{
+  "checked_utc": "2026-10-27T16:03:56.680368+00:00",
+  "candidate": "3574d81762d85fc1911f739fedd882ecc3e2f99f",
+  "base": "857f3da749718a7a01ff2e950184152d9b2cb0eb",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 781,
+  "source_sha256": "98d25e55bc005cbc898a591dca9f2aae7f6eb860fce1060f6de6efb5c90022b3",
+  "source_qualified_cases": 799,
+  "new_cases": 6,
+  "artifacts": 74,
+  "native_runs": 2,
+  "native_controller_errors": 0,
+  "whole_snapshot_and_eight_maps_exact": true,
+  "portable_digest_and_qualified_identity_exact": true,
+  "available_checkouts_unchanged": 108,
+  "user_removed_registered_heads_retained": 18,
+  "bounded_blocking_findings": [],
+  "new_source_changes": false,
+  "new_compiler_or_native_runs": false
+}

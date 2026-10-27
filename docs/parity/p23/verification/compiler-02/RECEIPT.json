@@ -1,0 +1,368 @@
+{
+  "schema": "mbse-craft.m1-local-job-receipt/1",
+  "job_sha256": "d83333d06ecb30a697b9b7da5f1bce67e50789d8dd56cbbfb22288242dd4d5b4",
+  "started_utc": "2026-10-27T00:03:12.543148+00:00",
+  "status": "passed",
+  "commands": [
+    {
+      "index": 0,
+      "argv": [
+        "bash",
+        "scripts/dev.sh",
+        "test",
+        "--locked",
+        "--offline",
+        "-p",
+        "mbse-assurance",
+        "--",
+        "--test-threads=1"
+      ],
+      "started_utc": "2026-10-27T00:03:12.623199+00:00",
+      "preflight": {
+        "schema": "mbse-craft.builderbob-local-preflight/1",
+        "checked_utc": "2026-10-27T00:03:12.623170+00:00",
+        "uid": 1000,
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+        "pid_namespace": "pid:[4026531836]",
+        "workspace": {
+          "detail": "",
+          "device": {
+            "device": "/dev/nvme0n1p1",
+            "major_minor": "259:1",
+            "model": "Samsung SSD 990 PRO 2TB",
+            "parent": "nvme0n1",
+            "partition": "nvme0n1p1",
+            "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+            "serial": "S7L9NS0L303989X",
+            "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+            "wwn": "eui.00253843614122d4"
+          },
+          "mount": {
+            "fstype": "ext4",
+            "major_minor": "259:1",
+            "mount_id": "50",
+            "options": [
+              "nodev",
+              "nosuid",
+              "relatime",
+              "rw"
+            ],
+            "root": "/",
+            "source": "/dev/nvme0n1p1",
+            "target": "/workspace"
+          },
+          "operation": "workspace-status",
+          "outcome": "ok",
+          "policy_ref": "builderbob-operator-amendment-1",
+          "reason": "OK",
+          "schema": "bob-admin-result-v1",
+          "target": "/workspace",
+          "version": "builderbob-autonomy-v1.1-candidate"
+        },
+        "free_workspace_bytes": 1405820043264,
+        "available_memory_bytes": 26740391936,
+        "conflicting_processes": [],
+        "other_project_compilers": [],
+        "appservers": [
+          {
+            "pid": 2062133,
+            "start_ticks": 33243439,
+            "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+            "soft_nofile": 1024,
+            "fd_count": 604
+          },
+          {
+            "pid": 2912202,
+            "start_ticks": 40560687,
+            "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+            "soft_nofile": 1024,
+            "fd_count": 11
+          }
+        ],
+        "observer_started": false,
+        "original_observer_admission_claimed": false
+      },
+      "log": "/workspace/build/builderbob/mbse-craft/milestone1/m5-p23-draft-validity-review-02-20261027T000312Z/00.log",
+      "pid": 293719,
+      "start_ticks": 43374350,
+      "exit_code": 0,
+      "ended_utc": "2026-10-27T00:03:29.427491+00:00",
+      "log_sha256": "51b20af5be283f475051d0340fd0df6f1c53b75ec91245941db36bf2c2fa819a",
+      "passed_tests": [
+        "aggregate_and_encoded_evidence_budgets_refuse_atomically_and_leave_register_usable",
+        "canonical_context_metadata_and_fixed_engine_limits_survive_save_reopen",
+        "every_freshness_dimension_and_incomplete_raw_refuses_pass",
+        "exact_native_source_anchor_requires_relink_after_native_raw_or_model_changes",
+        "failed_unsupported_and_changed_local_artifacts_cannot_pass",
+        "lifecycle_dimensions_independent_and_calculation_result_is_not_approval",
+        "raw_9e_invalidates_delayed_evidence_and_audit_records_survive_later_reviews_and_undo",
+        "saved_history_identity_admission_and_high_water_survive_undone_objects",
+        "serialized_stamps_and_coordinated_output_tampering_never_mint_native_authenticity",
+        "undo_audit_merge_and_creation_draft_cannot_trap_register_over_budget",
+        "unknown_metadata_invalid_raw_and_source_units_survive_native_sidecar_reopen",
+        "unrecognized_typed_sibling_fields_refuse_instead_of_disappearing_on_reopen",
+        "unrelated_global_failure_is_retained_while_selected_quantity_remains_successful",
+        "atomic_child_identity_parent_and_preorder_have_independent_initial_states",
+        "deep_hierarchy_and_cycle_check_are_iterative_and_preserve_budget_limits",
+        "duplicate_or_invalid_id_state_never_overwrites_existing_records",
+        "failed_child_admission_and_parent_raw_limits_do_not_allocate_or_clear_work",
+        "invalid_parent_statement_and_new_statement_drafts_survive_atomic_save_cold_open",
+        "moving_subtree_and_promoting_root_are_atomic_register_history_edits",
+        "reader_refuses_duplicate_json_id_aliases_missing_parent_and_cycles_without_relabeling",
+        "reparenting_stales_existing_requirement_evidence_without_status_inheritance",
+        "self_descendant_missing_noncanonical_and_incomplete_parent_proposals_remain_raw",
+        "serialized_valid_draft_flags_cannot_promote_cycles_missing_parent_or_unaccepted_statement"
+      ]
+    },
+    {
+      "index": 1,
+      "argv": [
+        "bash",
+        "scripts/dev.sh",
+        "test",
+        "--locked",
+        "--offline",
+        "-p",
+        "mbse-desktop",
+        "assurance_ui::",
+        "--",
+        "--test-threads=1"
+      ],
+      "started_utc": "2026-10-27T00:03:29.462514+00:00",
+      "preflight": {
+        "schema": "mbse-craft.builderbob-local-preflight/1",
+        "checked_utc": "2026-10-27T00:03:29.462484+00:00",
+        "uid": 1000,
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+        "pid_namespace": "pid:[4026531836]",
+        "workspace": {
+          "detail": "",
+          "device": {
+            "device": "/dev/nvme0n1p1",
+            "major_minor": "259:1",
+            "model": "Samsung SSD 990 PRO 2TB",
+            "parent": "nvme0n1",
+            "partition": "nvme0n1p1",
+            "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+            "serial": "S7L9NS0L303989X",
+            "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+            "wwn": "eui.00253843614122d4"
+          },
+          "mount": {
+            "fstype": "ext4",
+            "major_minor": "259:1",
+            "mount_id": "50",
+            "options": [
+              "nodev",
+              "nosuid",
+              "relatime",
+              "rw"
+            ],
+            "root": "/",
+            "source": "/dev/nvme0n1p1",
+            "target": "/workspace"
+          },
+          "operation": "workspace-status",
+          "outcome": "ok",
+          "policy_ref": "builderbob-operator-amendment-1",
+          "reason": "OK",
+          "schema": "bob-admin-result-v1",
+          "target": "/workspace",
+          "version": "builderbob-autonomy-v1.1-candidate"
+        },
+        "free_workspace_bytes": 1405683351552,
+        "available_memory_bytes": 26676109312,
+        "conflicting_processes": [],
+        "other_project_compilers": [],
+        "appservers": [
+          {
+            "pid": 2062133,
+            "start_ticks": 33243439,
+            "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+            "soft_nofile": 1024,
+            "fd_count": 604
+          },
+          {
+            "pid": 2912202,
+            "start_ticks": 40560687,
+            "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+            "soft_nofile": 1024,
+            "fd_count": 11
+          }
+        ],
+        "observer_started": false,
+        "original_observer_admission_claimed": false
+      },
+      "log": "/workspace/build/builderbob/mbse-craft/milestone1/m5-p23-draft-validity-review-02-20261027T000312Z/01.log",
+      "pid": 294410,
+      "start_ticks": 43376034,
+      "exit_code": 0,
+      "ended_utc": "2026-10-27T00:03:32.533915+00:00",
+      "log_sha256": "8e9553ffde7b6aef6911e62a360f9000d9323f1c702374032e052f59508ed138",
+      "passed_tests": [
+        "assurance_ui::hierarchy_tests::rendered_root_child_cycle_draft_and_register_history_preserve_native_model",
+        "assurance_ui::tests::delayed_attachment_keeps_new_requirement_selection_and_evidence",
+        "assurance_ui::tests::delayed_evidence_cannot_apply_to_changed_bytes_with_unchanged_revisions",
+        "assurance_ui::tests::delayed_load_does_not_replace_newer_register_edits",
+        "assurance_ui::tests::disconnected_worker_clears_pending_without_acknowledging_save",
+        "assurance_ui::tests::older_save_ack_keeps_new_edits_dirty_and_close_permission_is_exact",
+        "assurance_ui::tests::unadmitted_form_text_binds_dirty_close_and_delayed_open"
+      ]
+    },
+    {
+      "index": 2,
+      "argv": [
+        "bash",
+        "scripts/dev.sh",
+        "build",
+        "--locked",
+        "--offline",
+        "-p",
+        "mbse-desktop"
+      ],
+      "started_utc": "2026-10-27T00:03:32.568391+00:00",
+      "preflight": {
+        "schema": "mbse-craft.builderbob-local-preflight/1",
+        "checked_utc": "2026-10-27T00:03:32.568360+00:00",
+        "uid": 1000,
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+        "pid_namespace": "pid:[4026531836]",
+        "workspace": {
+          "detail": "",
+          "device": {
+            "device": "/dev/nvme0n1p1",
+            "major_minor": "259:1",
+            "model": "Samsung SSD 990 PRO 2TB",
+            "parent": "nvme0n1",
+            "partition": "nvme0n1p1",
+            "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+            "serial": "S7L9NS0L303989X",
+            "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+            "wwn": "eui.00253843614122d4"
+          },
+          "mount": {
+            "fstype": "ext4",
+            "major_minor": "259:1",
+            "mount_id": "50",
+            "options": [
+              "nodev",
+              "nosuid",
+              "relatime",
+              "rw"
+            ],
+            "root": "/",
+            "source": "/dev/nvme0n1p1",
+            "target": "/workspace"
+          },
+          "operation": "workspace-status",
+          "outcome": "ok",
+          "policy_ref": "builderbob-operator-amendment-1",
+          "reason": "OK",
+          "schema": "bob-admin-result-v1",
+          "target": "/workspace",
+          "version": "builderbob-autonomy-v1.1-candidate"
+        },
+        "free_workspace_bytes": 1405737463808,
+        "available_memory_bytes": 26581221376,
+        "conflicting_processes": [],
+        "other_project_compilers": [],
+        "appservers": [
+          {
+            "pid": 2062133,
+            "start_ticks": 33243439,
+            "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+            "soft_nofile": 1024,
+            "fd_count": 604
+          },
+          {
+            "pid": 2912202,
+            "start_ticks": 40560687,
+            "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+            "soft_nofile": 1024,
+            "fd_count": 11
+          }
+        ],
+        "observer_started": false,
+        "original_observer_admission_claimed": false
+      },
+      "log": "/workspace/build/builderbob/mbse-craft/milestone1/m5-p23-draft-validity-review-02-20261027T000312Z/02.log",
+      "pid": 294806,
+      "start_ticks": 43376345,
+      "exit_code": 0,
+      "ended_utc": "2026-10-27T00:03:35.116122+00:00",
+      "log_sha256": "e5f6c471ab26672c5f130b5cfa4cdcc7dc435c345f483a212ae8748e33881a22",
+      "passed_tests": []
+    }
+  ],
+  "owned_jobs": [],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-27T00:03:12.578517+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1405820055552,
+    "available_memory_bytes": 26738237440,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 604
+      },
+      {
+        "pid": 2912202,
+        "start_ticks": 40560687,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "output_directory": "/workspace/build/builderbob/mbse-craft/milestone1/m5-p23-draft-validity-review-02-20261027T000312Z",
+  "checkout_commit": "41d846de69273100e4f2bb1cd2d0757082e72c28",
+  "binary_sha256": "648e3863cc87b460dd09534128a1579da68c91e51de0e3c991c61530349218ab",
+  "binary_bytes": 440141952,
+  "preserved_binary": "/workspace/build/builderbob/mbse-craft/milestone1/m5-p23-draft-validity-review-02-20261027T000312Z/mbse-desktop",
+  "ended_utc": "2026-10-27T00:03:35.426046+00:00"
+}

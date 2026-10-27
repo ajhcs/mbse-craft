@@ -1,0 +1,143 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-25T21:19:33.909198+00:00",
+  "job_sha256": "b33014c23992a251480558115da3ba08d3306900c8a7cd0f1f686c5716cdcf00",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p06-completion-01/run",
+      "started_utc": "2026-10-25T21:19:37.495521+00:00",
+      "ready": {
+        "ready": true,
+        "app_pid": 2196590,
+        "server_pid": 2196587,
+        "window": 4194307,
+        "binary_sha256": "4b14d96f30d387ab21a1bb736444b062c155a59ad4e6e9170447ef2054c7bf0c"
+      },
+      "identities": {
+        "app_pid": {
+          "pid": 2196590,
+          "start_ticks": 33752504
+        },
+        "server_pid": {
+          "pid": 2196587,
+          "start_ticks": 33752485
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/build/builderbob/mbse-craft/milestone1/native-p06-01/reopen/final-blank-authored.kernspan",
+        "--select",
+        "1000"
+      ],
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-25T21:22:27.327909+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-25T21:19:33.929409+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 30860963840,
+    "available_memory_bytes": 30862934016,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 442
+      },
+      {
+        "pid": 2064687,
+        "start_ticks": 33257528,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "reuse_oracle": {
+    "same_native_record": 1000,
+    "views": [
+      "1",
+      "2"
+    ],
+    "occurrences": [
+      "5",
+      "6"
+    ],
+    "native_records": 5,
+    "native_name": "Shared Mission edited once",
+    "measure_and_raw_retained": true
+  },
+  "action_errors": [
+    {
+      "action": "n.send(op='click',x=180,y=535); n.send(op='click',x=100,y=369); n.capture('10-two-explicit-mappings-checked'); a=n.audit(); assert a['views_mapping_rehearsal']['checked_preview_retained']; assert a['views_mapping_rehearsal']['choices']==['target:1','target:1000']; assert a['snapshot_hash']==stable['snapshot_hash']; assert a['views_occurrence_navigation']==stable['views_occurrence_navigation']; receipt['presentation_oracle']={'read_sha256':a['views_inspection_sha256'],'mapping':a['views_mapping_rehearsal'],'native_and_layout_and_history_and_allocator_unchanged':True}; print(json.dumps(receipt['presentation_oracle']))",
+      "error": "AssertionError()"
+    }
+  ],
+  "presentation_oracle": {
+    "read_sha256": "160d7470395063b790a1af8c0a3d4edede8858d462e9703f763f5b51cd0712e6",
+    "mapping": {
+      "checked_preview_retained": true,
+      "choices": [
+        "target",
+        "target"
+      ],
+      "note": "Checked point-in-time preview: 2 mapped, 0 skipped/unselected, 0 proposed edges, 0 skipped edges. Capacity, SaveAs and live Apply remain deferred.",
+      "target_current": true
+    },
+    "explicit_targets_from_recorded_menu_and_pixels": [
+      1,
+      1000
+    ],
+    "native_and_layout_and_history_and_allocator_unchanged": true
+  },
+  "source_recheck_cleared_preview": true,
+  "all_input_hashes_unchanged": true,
+  "ended_utc": "2026-10-25T21:22:27.328120+00:00"
+}

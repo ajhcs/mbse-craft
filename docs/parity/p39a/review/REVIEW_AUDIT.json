@@ -1,0 +1,17 @@
+{
+  "checked_utc": "2026-10-27T16:24:18.036893+00:00",
+  "candidate": "a7bee15d199b2c98c1ae091572a76cfc0e3786ef",
+  "base": "51e11b88dfc2c5c6131423f15dc5f0c4732f2394",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 783,
+  "source_sha256": "044056d21236d9b274ed70d1acca37104622c449b2a9a261a6967a55e3a2c847",
+  "workspace_tests": 809,
+  "new_cases": 10,
+  "artifacts": 4,
+  "available_checkouts_unchanged": 110,
+  "user_removed_registered_heads_retained": 18,
+  "bounded_blocking_findings": [],
+  "new_source_changes": false,
+  "new_compiler_or_native_runs": false
+}

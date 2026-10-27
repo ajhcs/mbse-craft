@@ -1,0 +1,22 @@
+{
+  "status": "StaticGuardedCloseReadyNotExecutionAdmission",
+  "recorded_utc": "2026-10-23T20:14:49.635998+00:00",
+  "reviewer": "/root/periodic_actual_review",
+  "job_sha256": "165a0c00e1d77e5e0dbcff53f70debfc9d4e59271cc7d9148ba7d344b8f36296",
+  "launcher_sha256": "7113f9c1a4fdbd565368e81a7378746d2416ee782f8b152f75e9e069aa6a2c51",
+  "route_sha256": "9e85a9e7b2d38464f06e5e2652b4e907835a1450e7f6c65a2cc5ad31ae9ee154",
+  "driver_sha256": "204e7b62bca6ba713af39234dd24f99728b097c5c250e0db4eee532ed6578aba",
+  "stager_sha256": "5a383d025d6b7377f826371276080b9f391ba83dfa1614e870d050c45b937121",
+  "source_files_verified": 668,
+  "verified": [
+    "Cleanf1b6c716source/binary/fixture/receipt/delta/chain pins match",
+    "Driverchangesprivatepaths only, TTYguard beforechild",
+    "BothfreshQA destinations before existingSave-and-continueonce",
+    "Noauthoring/layoutedits oroldworkflow/test/buildreplay"
+  ],
+  "critical_execution_condition": "Retainstdin andobserveactualapp exit0 afterSave-and-continue before sendingstop; driverfinallyterminatesa still-runningapp.",
+  "first_attempt_started": false,
+  "owned_jobs": [],
+  "reviewer_execution": false,
+  "reviewer_changes": false
+}

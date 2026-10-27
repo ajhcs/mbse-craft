@@ -1,0 +1,29 @@
+{
+  "recorded_utc": "2026-10-23T15:24:06.126525+00:00",
+  "status": "SourceReviewedFrozenExecutionAndPublicationBlocked",
+  "source_commit": "933e8718dbce90ae85d10dc8329a23e2599905ae",
+  "worktree_clean": true,
+  "owner": "Existing sole MBSE integrator01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+  "workspace": "Host bob-admin verified Samsung990PRO UUIDdcb87552-b22f-411c-bd86-4e2da80f1c6f rw; sandbox missing alias not treated as failure",
+  "prior_jobs": "Nine exact prior owned PID/start identities absent in current executor; no new compiler or GUI launched",
+  "appserver_identity": "Historical PID993990 not visible in both normal and host-context exact-PID checks. Bootb0688b87 unchanged; no new appserver discovery/probe or restart performed. Independent fresh host identity/health required.",
+  "execution_blocker": "Supported coordinator dispatch failed before turn start: invalid turn/start params: AbsolutePathBuf deserialized without a base path. Fresh action-bound health/allocation unavailable. Historical packets not reused.",
+  "publication_blocker": {
+    "action": "git push origin HEAD:refs/heads/feature/layout-periodic-recovery",
+    "repo": "https://github.com/ajhcs/mbse-craft.git",
+    "result": "Automatic review rejected before CreateProcess; remote branch not created, no alternate route or draft PR creation attempted",
+    "reason": "This pushes private source and history to an external GitHub destination; the transcript contains no trusted user authorization for that specific payload and repository, so sensitive egress must be denied."
+  },
+  "independent_source_review": {
+    "agent": "periodic_actual_review",
+    "reviewed": "Five mechanisms identified in e50b1eb; current candidate fixes reviewed, no additional material blocker under conservative native artifact conflict retention contract",
+    "not_done": "Reviewer did not compile, run tests or inspect a GUI"
+  },
+  "new_tests_authored_not_run": 8,
+  "candidate_tests_build_gui": "Unrun",
+  "historical47_tests_and_d0a0_binary": "Preserved evidence for earlier source only",
+  "job_sha256": "16c649e8f8e85799b3ba45d9699887cf6d0437ef4b1f740e98c02da0001a3a06",
+  "launcher_sha256": "6fbbb2a7ef6bfd7bc36d1d22e662f3aaad463bd969a224a05e251ce16a1023f7",
+  "owned_jobs": [],
+  "notion": "Out of scope; two pre-execution denials/zero POST record preserved; no new upload work"
+}

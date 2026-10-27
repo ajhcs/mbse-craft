@@ -1,0 +1,37 @@
+[
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/review-p32b/work/p32b-03.json",
+    "path": "compiler-03/RECEIPT.json",
+    "bytes": 5542,
+    "sha256": "78fd4f359448948812024fe7692a8bcd23dec18d7e350b8bf7531153ddc306e0",
+    "stored_sha256": "78fd4f359448948812024fe7692a8bcd23dec18d7e350b8bf7531153ddc306e0"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p32b-review-retained-diagram-deletion-repro-03-20261027T080240Z/00.log",
+    "path": "compiler-03/00.log.gz",
+    "bytes": 3628,
+    "sha256": "ad46a4a9003da521622f76b6dc9ace1b2f28f6fb1498a4c62299e62901886caa",
+    "stored_sha256": "00d14e1618c639cb12216ace13ac70fcf804420ee8113c9beda79b3b467a8ca4"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/review-p32b/work/p32b-04.json",
+    "path": "compiler-04/RECEIPT.json",
+    "bytes": 11188,
+    "sha256": "7257cd6b7f1fb065d31580b47de5fe85aa6254395b390fb082a0d4437fcc409d",
+    "stored_sha256": "7257cd6b7f1fb065d31580b47de5fe85aa6254395b390fb082a0d4437fcc409d"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p32b-review-retained-diagram-deletion-fix-04-20261027T080357Z/00.log",
+    "path": "compiler-04/00.log.gz",
+    "bytes": 16983,
+    "sha256": "e0600e8459c85c9b59d72bc8a40eb02ca658872c843b71740245e1e54d7f3e73",
+    "stored_sha256": "7df467e2dad0c40cacbea7f8ea0241126f7d55c4f899dd0d043ec08b4d674e58"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p32b-review-retained-diagram-deletion-fix-04-20261027T080357Z/01.log",
+    "path": "compiler-04/01.log.gz",
+    "bytes": 4026,
+    "sha256": "a3c942dcbd21f14a8edc670ca9de408372dbf22e00bbba834eb285ad5cc0e7eb",
+    "stored_sha256": "cdf0d1ffaac6067bdd0b9da99423873be0bc92307f216ccc3b8ebb1f161f6dd5"
+  }
+]

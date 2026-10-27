@@ -1,0 +1,5 @@
+{
+  "status": "held",
+  "recorded_utc": "2026-10-26T23:08:20.653304+00:00",
+  "error": "ValueError('Existing compiler/native process requires coordination: [{\"pid\": 149580, \"comm\": \"cargo\", \"cwd\": \"/workspace/worktrees/builderbob/kernspan/b06-keyboard-coverage\", \"output_dirs\": []}]')"
+}

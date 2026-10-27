@@ -1,0 +1,123 @@
+{
+  "schema": "mbse-craft.parity-baseline/1",
+  "observed_date": "2026-10-24",
+  "branch": "codex/parity-matrix",
+  "base_commit": "5b907c333d423df60de7d539da2a0900941825aa",
+  "target_branch": "implementation/native-alpha",
+  "user_authorization": "Save agreed roadmap; begin Milestone 1 in an isolated worktree; open draft PR for parity matrix and acceptance fixtures.",
+  "assigned_paths": [
+    "docs/PARITY_ROADMAP.md",
+    "docs/parity/",
+    "scripts/check-parity.py",
+    "README.md"
+  ],
+  "excluded_actions": [
+    "merge existing PRs",
+    "integrate local product continuations",
+    "Cargo/build/GUI execution",
+    "service/provider/release/signing workflows"
+  ],
+  "existing_prs": [
+    {
+      "number": 1,
+      "head": "5b907c333d423df60de7d539da2a0900941825aa",
+      "base": "main",
+      "state": "open_draft"
+    },
+    {
+      "number": 2,
+      "head": "557ee47e0bb7237a5064c8e51718506431f8f825",
+      "base": "implementation/native-alpha",
+      "state": "open_draft"
+    },
+    {
+      "number": 3,
+      "head": "a0079d5232996e9e6350f5bae71138a9b2d276ed",
+      "base": "feature/native-views-m2b01",
+      "state": "open_draft"
+    }
+  ],
+  "local_continuations": [
+    {
+      "branch": "feature/recovery-layout-preview",
+      "commit": "358443099827c854b023194383add51c520ea01e",
+      "state": "qualified_bounded"
+    },
+    {
+      "branch": "feature/recovery-layout-mapping",
+      "commit": "7308d2ba00a98f2ed5f0a830e13b58b2420a50fe",
+      "state": "qualified_bounded"
+    },
+    {
+      "branch": "feature/native-find-usages",
+      "commit": "9196d702e8a3ac6cea668621903614a211a0dbca",
+      "state": "qualified_bounded"
+    },
+    {
+      "branch": "feature/native-scoped-search",
+      "commit": "643f97bb6e84325d77fb924543784a8733eb7b22",
+      "state": "qualified_bounded"
+    },
+    {
+      "branch": "feature/native-camera-controls",
+      "commit": "b5e7d2c437748a2334fd4f0c3881ee1c501ba076",
+      "state": "qualified_bounded"
+    },
+    {
+      "branch": "feature/native-system-browser",
+      "commit": "cb58e13881231139f493eb5f0415427d02bf91d1",
+      "state": "qualified_bounded"
+    },
+    {
+      "branch": "feature/native-record-impact",
+      "commit": "a985205ca8a77c5f051dadc71ae2d83c1470a4ee",
+      "state": "qualified_bounded"
+    },
+    {
+      "branch": "feature/native-occurrence-navigation",
+      "commit": "7cb7876ee182872d1a2bf41f5b7707c9a04e04a0",
+      "state": "source_reviewed_unrun"
+    }
+  ],
+  "evidence_policy": "Only reference frozen receipts for their actual source. No historical counts are summed or relabeled as this candidate passing.",
+  "comparison_targets": [
+    {
+      "id": "NOMAGIC-MBSE",
+      "product": "CATIA Magic Cyber-Systems Engineer / Cameo Systems Modeler",
+      "version": "2026x documentation",
+      "status": "documentation_target_installed_build_unverified"
+    },
+    {
+      "id": "NOMAGIC-SOSA",
+      "product": "Magic Systems of Systems Architect",
+      "version": "2026x documentation; UAF 1.3 vendor page",
+      "status": "documentation_target_installed_build_unverified"
+    },
+    {
+      "id": "NOMAGIC-EXEC",
+      "product": "Magic Model Analyst",
+      "version": "edition/build unresolved",
+      "status": "scope_unresolved"
+    },
+    {
+      "id": "NOMAGIC-COLLAB",
+      "product": "Magic Collaboration Studio",
+      "version": "edition/build unresolved",
+      "status": "scope_unresolved"
+    }
+  ],
+  "platforms": {
+    "initial_native_target": "Linux X11/OpenGL, 96 and 144 DPI virtual displays; prior qualification only",
+    "unqualified_targets": [
+      "Windows",
+      "macOS",
+      "Wayland",
+      "real IME",
+      "WGPU/tablet",
+      "physical mixed-DPI monitors",
+      "assistive technology",
+      "physical performance"
+    ]
+  },
+  "declaration": "P01 is started, not full parity-scope freeze: unresolved target builds and full portfolio/construct coverage are explicit blockers."
+}

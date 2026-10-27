@@ -1,0 +1,146 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-26T21:22:44.828421+00:00",
+  "job_sha256": "95ab305b07c60fd3672fa9a9d90a379f8a0199d82c14ea9275bf3ef0defc5efb",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p18b-04/run",
+      "started_utc": "2026-10-26T21:22:44.848500+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 4097837,
+          "start_ticks": 42411578
+        },
+        "server_pid": {
+          "pid": 4097834,
+          "start_ticks": 42411576
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/build/builderbob/mbse-craft/milestone1/native-p18b-03/run/qualified-routes.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 4097837,
+        "server_pid": 4097834,
+        "window": 4194307,
+        "binary_sha256": "b53ce4b8bb82839570396339a2a929fc089ac0a176a0ef77f4195a204cfa8706"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-26T21:24:04.379865+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-26T21:22:44.848285+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1424484843520,
+    "available_memory_bytes": 28705992704,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 618
+      },
+      {
+        "pid": 2912202,
+        "start_ticks": 40560687,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "actual_drag_midpoint": {
+    "gesture_active": true,
+    "response": {
+      "button_down_on": true,
+      "contains_pointer": true,
+      "dock_blocked": true,
+      "drag_started": false,
+      "drag_stopped": false,
+      "dragged": true,
+      "enabled": true,
+      "hovered": true,
+      "layer": "LayerId { Background Id::new(\"background\") }",
+      "pointer": [
+        952.0,
+        1196.0
+      ],
+      "pointer_down": true,
+      "response_id": "Id::new(\"mbse-owned-workspace-docking\").with((\"body\", Canvas)).with(IdSalt::new(\"child\")).with(IdSalt::new(\"child\")).with((\"port-occurrence\", 15))",
+      "ui_id": "Id::new(\"mbse-owned-workspace-docking\").with((\"body\", Canvas)).with(IdSalt::new(\"child\")).with(IdSalt::new(\"child\"))"
+    }
+  },
+  "actual_drag_geometry": {
+    "before": {
+      "height": 112.0,
+      "width": 270.0,
+      "x": 455.0,
+      "y": 355.0
+    },
+    "after": {
+      "height": 112.0,
+      "width": 270.0,
+      "x": 495.0,
+      "y": 375.0
+    },
+    "other_view_unchanged": true,
+    "semantic_hash_and_route_ids_unchanged": true
+  },
+  "visible_captions_in_both_views_and_after_pointer_drag": true,
+  "model_route_ids_and_other_view_unchanged": true,
+  "actual_final_native_views4_save_exact": true,
+  "original_inputs_unchanged": true,
+  "authentication_files_absent": true,
+  "ended_utc": "2026-10-26T21:24:56.112560+00:00"
+}

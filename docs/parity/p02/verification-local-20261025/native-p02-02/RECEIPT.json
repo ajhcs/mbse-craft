@@ -1,0 +1,202 @@
+{
+  "schema": "mbse-craft.p02-native-acceptance/1",
+  "started_utc": "2026-10-25T20:23:56.554090+00:00",
+  "status": "scripted_checks_passed_pixels_review_pending",
+  "binary": "/workspace/build/builderbob/mbse-craft/p02-readiness/local-attempt-20261025T201845Z/mbse-desktop",
+  "binary_sha256": "75bdb7b6df792d1426259d70039ec021afd942d8667a3c11e74d6b90f277a458",
+  "action_script_sha256": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+  "driver_sha256": "a619709e8d1cd87181ae7948e060470e3b34ccaa309f74e4ea5dc61625140bd2",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/p02-readiness/native-p02-02/blank",
+      "started_utc": "2026-10-25T20:24:00.107587+00:00",
+      "ready": {
+        "ready": true,
+        "app_pid": 2090002,
+        "server_pid": 2089999,
+        "window": 4194307,
+        "binary_sha256": "75bdb7b6df792d1426259d70039ec021afd942d8667a3c11e74d6b90f277a458"
+      },
+      "identities": {
+        "app_pid": {
+          "pid": 2090002,
+          "start_ticks": 33418767
+        },
+        "server_pid": {
+          "pid": 2089999,
+          "start_ticks": 33418765
+        }
+      },
+      "argv_extra": [],
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-25T20:24:32.713069+00:00",
+      "owned_processes_absent": true
+    },
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/p02-readiness/native-p02-02/reopen",
+      "started_utc": "2026-10-25T20:24:36.105936+00:00",
+      "ready": {
+        "ready": true,
+        "app_pid": 2090175,
+        "server_pid": 2090172,
+        "window": 4194307,
+        "binary_sha256": "75bdb7b6df792d1426259d70039ec021afd942d8667a3c11e74d6b90f277a458"
+      },
+      "identities": {
+        "app_pid": {
+          "pid": 2090175,
+          "start_ticks": 33422367
+        },
+        "server_pid": {
+          "pid": 2090172,
+          "start_ticks": 33422365
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/build/builderbob/mbse-craft/p02-readiness/native-p02-02/blank/blank-authored.kernspan",
+        "--select",
+        "1003"
+      ],
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-25T20:24:39.260664+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "original_observer_admission_claimed": false,
+  "preflight_blank": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-25T20:23:56.734399+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 40806359040,
+    "conflicting_processes": [],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 301
+      },
+      {
+        "pid": 2064687,
+        "start_ticks": 33257528,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "speed_saved_definition_checked": true,
+  "preflight_reopen": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-25T20:24:32.730591+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 40804241408,
+    "conflicting_processes": [],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 299
+      },
+      {
+        "pid": 2064687,
+        "start_ticks": 33257528,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "saved_snapshot_sha256": "b06fece2e6bc277470a6c9bfe931f258ba14eb12f3d7696c30324e455708f0c3",
+  "saved_file_sha256": "c200117a6d8e48ccd0491d313063fd6d4723af38b1f295f5eea992a413e61626",
+  "snapshot_equal_after_reopen": true,
+  "limits": [
+    "Actual captured pixels require review before numeric UI result claims.",
+    "Same-agent workflow; independent reviewer acceptance remains separate."
+  ],
+  "ended_utc": "2026-10-25T20:24:39.260870+00:00"
+}

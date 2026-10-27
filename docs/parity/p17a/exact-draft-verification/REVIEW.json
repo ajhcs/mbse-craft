@@ -1,0 +1,33 @@
+{
+  "schema": "mbse-craft.exact-invalid-native-draft-review/1",
+  "reviewer": "Codex, same implementing agent",
+  "independent_review": false,
+  "result": "exact_invalid_usage_port_and_interface_forms_passed",
+  "supersedes_claims": "P16/P17a earlier native invalid trailing-question-mark claims only; raw historical receipts remain unchanged.",
+  "source_sha256": "1b71881d2890bdbec4de39059fd549b3adb936be5d7b4eefae0a5d52adac60fd",
+  "binary_sha256": "cdf9a94e0eaf6a148687896bba875a6f5699c57cccb686cde0315fbc57463920",
+  "driver_sha256": "ef4e7c2308323b9023f83a15ddb3b9214d27368fd9a34a42b4245ad44f574a39",
+  "native_runs": 2,
+  "action_errors": 0,
+  "exact_inputs": {
+    "usage.target": "incomplete",
+    "port1015.assignment": "1013?",
+    "interface.payload": "1005?"
+  },
+  "pixels_reviewed": [
+    "native/run/03-exact-question-mark-input-and-invalid-forms.png",
+    "native/reopen/07-cold-exact-invalid-usage-form.png"
+  ],
+  "observations": [
+    "Immediate requested-text equality assertions pass before refusal/history/Save checks",
+    "Part1009 real move owner1008 to1004 then Undo/Redo retains newer incomplete target; same semantic ID and accepted target1007",
+    "Port1015 real rename then Undo/Redo retains exact assignment1013? and interface payload1005?/InOut forms without replacing accepted data",
+    "Exact saved journal and cold app retain all three invalid forms; pixels show red refusals/disabled Apply and accepted Part/Port data side by side",
+    "Native core records/document ID/raw9e/creation journal/P15 property text and paired views hash exact; reopened view history empty",
+    "Two normal app/display exits, original native/views inputs unchanged, exact owned-process/auth cleanup"
+  ],
+  "limits": [
+    "Same-agent bounded Linux descendant evidence; not a retroactive execution on the original P16 binary",
+    "Cross-view port reuse remains P17b; full NoMagic/Craft/domain/platform/independent acceptance remains open"
+  ]
+}

@@ -1,0 +1,5 @@
+# retained future configuration
+schema_version = 99
+periodic_recovery = false
+recovery_interval_seconds = 60
+keep_me = "exact future bytes"

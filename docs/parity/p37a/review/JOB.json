@@ -1,0 +1,68 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m6-p37a-review-bidirectional-parent-boundary-01",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/review-p37a",
+  "source_manifest": "docs/parity/p37a/review/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "7c56077608b31908d5aba9b043f240ceeb0dae541d87c054e3860210f42e9b27",
+  "source_sha256": "5121510e713d739b9ef6bda9d62b41933ae2145d40c50a3b77096746a8059d72",
+  "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-assurance",
+      "--test",
+      "metrics",
+      "metrics_parent_links_crossing_scope_count_both_selected_child_and_selected_parent_directions"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-assurance",
+      "--test",
+      "metrics",
+      "metrics_trace_subset_keeps_boundary_links_separate_and_uses_existing_exact_endpoint_projection"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "Isolated PR56review finds parent_links_crossing_scope counts onlyselectedchild->unselectedparent, silentlyomitting incomingcontainmentwhenonlyparentselected. CountXORofbothendpoints acrossallacceptedparentedges; stillwithinScopebothselected. Run1newbidirectionalparentboundarycase and1affectedtrace-subsetcase/build. Prior770distinctqualifiedcaseinventory retained, expected771distinctafternewcase; no finalfullsuiteclaim. No dependencies/upstream/nativeengine changes.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p37a-scoped-metrics/docs/parity/p37a/fixtures/expected-counts.json": "d94352f98186abdc9d2fe657c6858354a8a806e11e85476d12b78f4e9e9f109f",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p37a-scoped-metrics/docs/parity/p36b/verification/native-02/run/analysis-final-cold-copy.kernspan": "a27759c60802c90c1343eb925474a74dd76d5aa84efb18d555d1db7f4d4951f8",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p37a-scoped-metrics/docs/parity/p36b/verification/native-02/run/analysis-final-cold-copy.mbse-views.json": "0565299e57ffac9d90ed2b3f46e8fb06fb0bd2e629e188494e3219471046beff"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "result": "bounded_native_finite_execution_and_cold_passed",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 741,
+  "source_sha256": "e3ac3498c960e22191218c18ed2160b03d8f3416d4de04041d1a61436b836c6e",
+  "binary_sha256": "c9ba254b7e41c71c97678be0978c37d3a9c9b1c3e077996cd058f427e115d07d",
+  "distinct_case_inventory": 632,
+  "new_cases": 4,
+  "native_runs": 2,
+  "native_controller_errors": 0,
+  "cancelled_cycle_visits": 5,
+  "observations": [
+    "Native Open validates static fixture graph DTOs/materialized from independent P31a tables; native authoring is separately established in P30c, not inferred here. Existing activity1033/typed payloads/invalid9e/x >/else ?/wrong pin target and all6 presentation maps retained.",
+    "Actual CtrlAltH/Prepare/Step true2000 and Run Else3000 traces match independent node/flow tables. False-only4000 and incomplete5000 deadlock; cycle6000 exhausts exact5visits.",
+    "Prepared close refuses; actual automatic4096-budget cycle Cancel stops before further visits. Cancelled trace independently verified as exact prefix of fixed cycle table, not a generated oracle.",
+    "Bad budget0 and existing typed payload activity1033 refuse while prior result/full Snapshot remain exact. Paused activity2000 raw-name edit stales live trace with one prior visit retained and accepted name unchanged.",
+    "Native checkpoint complete Snapshot equals fixture except explicitly added activity:2000 raw proposal and raw_version213to214; model_revision104 and every original field unchanged. All6 presentation maps exact.",
+    "Fresh preflight cold Open preserves complete checkpoint/native/views and no live authority. New Prepare starts empty/new runtime; actual Step first node2001/flow2006 and Cancel leave source unchanged. Cold saved copy complete Snapshot/all6 maps exact.",
+    "Both owned app/display runs normal exit0, PID/starttick absence and exact Xauthority cleanup verified; protected inputs unchanged."
+  ],
+  "limits": [
+    "Same-agent bounded Linux synthetic control-only subset; no independent engineering/platform/scale/performance/production/full NoMagic/SysML/Craft acceptance.",
+    "Pins/object payloads/forks/join/concurrency/arbitrary guards/action code/solver/verification unsupported. Actions are visited without code execution; partition membership is documentary.",
+    "Clipboard Copy action exercised; no external clipboard consumer or persisted live authority claim. Runtime reports remain session-only/historical JSON.",
+    "All56 broad specs/integrated exits remain unaccepted."
+  ]
+}

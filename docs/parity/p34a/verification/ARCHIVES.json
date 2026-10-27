@@ -1,0 +1,23 @@
+[
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p34a-scenario-core/work/p34a-01.json",
+    "path": "compiler-01/RECEIPT.json",
+    "bytes": 77250,
+    "sha256": "d15273c4ebe311dc6232b1358e375c70d6c83a4ebc6b9e8302476e28f5f2cb77",
+    "stored_sha256": "d15273c4ebe311dc6232b1358e375c70d6c83a4ebc6b9e8302476e28f5f2cb77"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p34a-bounded-scenario-authoring-core-01-20261027T100534Z/00.log",
+    "path": "compiler-01/00.log.gz",
+    "bytes": 85418,
+    "sha256": "96d6b7db5d014316a4e194bacd2a705332bfedae429560ea8dfa3d5a6b96be6f",
+    "stored_sha256": "52b7d5ada1271db7f2cc7fa3b65dbab55c96a45538d79c5bd89c2749b7870a3d"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p34a-bounded-scenario-authoring-core-01-20261027T100534Z/01.log",
+    "path": "compiler-01/01.log.gz",
+    "bytes": 4066,
+    "sha256": "3ca73f783652713dbe1b353e01791966d0aae528dd5d84fde7cf55da9467a2a9",
+    "stored_sha256": "ba4a44bc78d579375776529ecd7124a034f56cb88307fb86b3baa148014877f1"
+  }
+]

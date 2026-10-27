@@ -1,0 +1,86 @@
+[
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/review-m1-pr4-9/work/review-execution.json",
+    "path": "execution/RECEIPT.json",
+    "bytes": 38799,
+    "sha256": "d0ed6ba758de436f8b91e75fa0cc377673eebd8bae32c459986aaa3a3aa44610",
+    "stored_sha256": "d0ed6ba758de436f8b91e75fa0cc377673eebd8bae32c459986aaa3a3aa44610"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m1-pr4-9-review-20261025T213644Z/00.log",
+    "path": "execution/00.log.gz",
+    "bytes": 40033,
+    "sha256": "e33ce371fb68bb8e1da4254414fcd1d92fca68504b6aefaae32ef354a21e8ab4",
+    "stored_sha256": "7645a14c56d3f4261377a8c08d5c9fef8375c86b0ed3dc7708ac4c2c64cbfdbb"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m1-pr4-9-review-20261025T213644Z/01.log",
+    "path": "execution/01.log.gz",
+    "bytes": 3402,
+    "sha256": "e329b4e662c03b07818faebf8af0f25b6c352c409185abdce93f69a904b4a278",
+    "stored_sha256": "0143eae8f753b1b359c5a65f94ef345097ae6d034cbfd9cbb55ded19753d97b9"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-review-controller-01/CONTROLLER_ACTIONS.py",
+    "path": "native-partial/CONTROLLER_ACTIONS.py",
+    "bytes": 1337,
+    "sha256": "a3a68a43eda61e710fc4dc609af79fc7183abad3a4c20ba1f4e1ad668b75da15",
+    "stored_sha256": "a3a68a43eda61e710fc4dc609af79fc7183abad3a4c20ba1f4e1ad668b75da15"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-review-controller-01/RECEIPT.json",
+    "path": "native-partial/RECEIPT.json",
+    "bytes": 5283,
+    "sha256": "3a91d76532d241bc9719fd1dd95b5eabdee16f1e28d2b885454d6abba51ce0e3",
+    "stored_sha256": "3a91d76532d241bc9719fd1dd95b5eabdee16f1e28d2b885454d6abba51ce0e3"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-review-controller-01/run/00-first-opened-pair.png",
+    "path": "native-partial/run/00-first-opened-pair.png",
+    "bytes": 298339,
+    "sha256": "5a817ba798f9eaa8dafd2176c5aa5c4ed7d520468b8aee66ce242b076f741c2d",
+    "stored_sha256": "5a817ba798f9eaa8dafd2176c5aa5c4ed7d520468b8aee66ce242b076f741c2d"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-review-controller-01/run/00-first-opened-pair.ui.json",
+    "path": "native-partial/run/00-first-opened-pair.ui.json",
+    "bytes": 7201,
+    "sha256": "d9a343f3cc10f547115dbef23b2e77eeed9f46674872ed2aea595b4a7c0c2abf",
+    "stored_sha256": "d9a343f3cc10f547115dbef23b2e77eeed9f46674872ed2aea595b4a7c0c2abf"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-review-controller-01/run/app.log",
+    "path": "native-partial/run/app.log.gz",
+    "bytes": 48,
+    "sha256": "0cce862dc4913be2cce3fd531146652899fa528e6bef4c0cc05a1632efdac18e",
+    "stored_sha256": "94e4dd023a62bec4d641e8996e9d854e58601c954020cf040c1f0e0191cf7866"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-review-controller-01/run/events.jsonl",
+    "path": "native-partial/run/events.jsonl.gz",
+    "bytes": 454,
+    "sha256": "bac2df028c436d211ae247288415ccecb6ae1a9c89489c8ff0f95fcea2ff578c",
+    "stored_sha256": "83516460dd24d4d2f3eff56091a37f1b144234dc0519eaf0eaa6c95f82ce53ae"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-review-controller-01/run/state/ui-geometry.json",
+    "path": "native-partial/run/state/ui-geometry.json",
+    "bytes": 7200,
+    "sha256": "45c7323c4c9fad04681c2620e116d500ddffd0718d423236e548c777e2c6b708",
+    "stored_sha256": "45c7323c4c9fad04681c2620e116d500ddffd0718d423236e548c777e2c6b708"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-review-controller-01/run/xvfb.log",
+    "path": "native-partial/run/xvfb.log.gz",
+    "bytes": 1321,
+    "sha256": "00971f516769b092bd50063ca4a82f63a4395d9ed9ff57eab62626162f51b9ed",
+    "stored_sha256": "fdda054423b6f7162c79062d661ff1e7c458c6fd848bc9913bbe480d6a657d81"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/native-review-controller-01/run-driver.log",
+    "path": "native-partial/run-driver.log.gz",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stored_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+  }
+]

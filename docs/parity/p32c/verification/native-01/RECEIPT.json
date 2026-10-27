@@ -1,0 +1,119 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-27T08:40:37.473113+00:00",
+  "job_sha256": "68eb3c46976a5d48ea89c8482d926ad18c030b434dd1fbc67d00bd0b368debb5",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p32c-01/run",
+      "started_utc": "2026-10-27T08:40:37.492536+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 817595,
+          "start_ticks": 46478843
+        },
+        "server_pid": {
+          "pid": 817592,
+          "start_ticks": 46478841
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/repos/builderbob/mbse-craft/work/m6-p32c-native-state-machines/docs/parity/p32c/fixtures/native.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 817595,
+        "server_pid": 817592,
+        "window": 4194307,
+        "binary_sha256": "b20be566578ee8eeb0a6e3f798d2184732f0844a7b5bb773e6148ac66bfcae0f"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-27T08:56:49.278764+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-27T08:40:37.492317+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1372665393152,
+    "available_memory_bytes": 27229405184,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 299500,
+        "start_ticks": 43416915,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      },
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 324
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "native_shortcut_and_machine_authoring": true,
+  "native_states_and_exact_owned_events_authoring": true,
+  "native_completion_event_literal_transition_authoring": true,
+  "native_ambiguity_ids_distinct_invalid_guards_and_raw_preserving_model_history": true,
+  "native_invalid_target_and_foreign_event_refuse_preserve_accepted": true,
+  "native_two_state_diagrams_actual_glyphs_derived_event_guard_routes": true,
+  "native_drag_single_layout_transaction_undo_redo_preserves_native": true,
+  "native_visual_findings": [
+    "Parallel transitions7009/7011 paint overlapping Event/guard labels; ledger remains exact. Separate readable labels with transition identities before final visual acceptance.",
+    "Camera toolbar emits debug Ok(true) status; replace with plain language before final native acceptance."
+  ],
+  "checkpoint_preserves_entire_original_snapshot_data_except_explicit_machine_forms_and_counters": true,
+  "checkpoint_original_six_maps_and_view_entries_preserved": true,
+  "all_frozen_inputs_unchanged": true,
+  "authentication_files_absent": true,
+  "ended_utc": "2026-10-27T08:58:32.091509+00:00"
+}

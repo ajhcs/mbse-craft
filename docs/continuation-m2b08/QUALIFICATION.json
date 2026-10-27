@@ -1,0 +1,16 @@
+{
+  "status": "BoundedSystemMembershipBrowserQualifiedLocally",
+  "source_commit": "ee12a79f2f644def4d8a565f6ad1890e3f1d9a11",
+  "source_sha256": "9b2fab814a4a2ed49d285a810dc3e903f1fc3b1b0174e8aa6fc7c9dafa3c3cf2",
+  "unique_tests_passed": 11,
+  "build_receipt_sha256": "e12bea7e0cd75e4fc35d2e5d61880357b0232295c5cbbf26bf02d08b2c0e07fb",
+  "fixture_sha256": "e449ee6a15b9586c4e6e09c8cca68b6700da101d7568b3e6f32d9d4f1580ad17",
+  "native_receipt_sha256": "1be4fe1d1e703bbea6e8d52e6b578e3b2bfc8dd2c029af5ae2fc037ae51502e8",
+  "independent_actual_review_sha256": "b35d86c418668a87f1af2bdc48610d829bf4a1dcc2f51e190f945e76333d23c1",
+  "native_receipt_status_note": "Original observation receipt retains PendingIndependentReview; this separate frozen qualification records subsequent completed independent review.",
+  "first_attempt_status": "NotQualifiedInputEOF; retained, zero captures, appSIGTERM, clean exact6ownership cleanup",
+  "local_only": true,
+  "new_publication": false,
+  "merge": false,
+  "owned_jobs": []
+}

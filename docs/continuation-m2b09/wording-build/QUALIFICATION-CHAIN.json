@@ -1,0 +1,12 @@
+{
+  "source_commit": "f1b6c71681b221aba446f4b308d847fe08aef2eb",
+  "source_sha256": "00ef25c2e92305c2d1d1e386dc778c3582324f5b278f9330a2ad82831611e9e4",
+  "receipts": [
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-record-impact-wording/attempt-20261023T200015450428Z/RECEIPT.json",
+      "sha256": "aa9f7c56b157e95dc73c695500eca0f8cea695a0c8b85fd4830bc93a51238cc9"
+    }
+  ],
+  "unique_passed_tests": [],
+  "qualification": "New wording source build only, no tests replayed. Prior15tests/28frames remainat88d813e; exactliteral delta separatelyverified."
+}

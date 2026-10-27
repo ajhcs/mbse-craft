@@ -1,0 +1,110 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-26T15:45:40.517616+00:00",
+  "job_sha256": "697330945c7b7bed901081de039202a667429106e495f20561cad600c6032c29",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p10-01/run",
+      "started_utc": "2026-10-26T15:45:40.538213+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 2876677,
+          "start_ticks": 40389150
+        },
+        "server_pid": {
+          "pid": 2876674,
+          "start_ticks": 40389145
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/repos/builderbob/mbse-craft/work/m3-p10-scoped-shortcuts/docs/parity/p10/fixtures/original.kernspan",
+        "--select",
+        "1003",
+        "--config-dir",
+        "/workspace/build/builderbob/mbse-craft/milestone1/p10-config-20261026-01"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 2876677,
+        "server_pid": 2876674,
+        "window": 4194307,
+        "binary_sha256": "4133267cef9eaf94d2404571983e37a706277f5467cb1444e23bce8d87272a89"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-26T15:49:31.969256+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-26T15:45:40.537901+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 374935994368,
+    "available_memory_bytes": 28879159296,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 574
+      },
+      {
+        "pid": 2673458,
+        "start_ticks": 39793976,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "initial_config_sha256": "3bacdd48bf35c02b0bfdeb5a32e106815fd8be1c72cd382fc2ae4380223042df",
+  "conflict_refused_without_model_or_settings_mutation": true,
+  "session_only_readonly_scope_observed": true,
+  "deferred_persistence_checks": "Initial config was outside driver owned writable run; OS EROFS correctly made settings session-only. Persistence and restart scenarios deferred to fresh seeded config inside owned run; no writable-root expansion.",
+  "ended_utc": "2026-10-26T15:49:31.969410+00:00"
+}

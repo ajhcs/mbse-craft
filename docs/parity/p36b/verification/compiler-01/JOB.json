@@ -1,0 +1,53 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m6-p36b-native-analysis-controls-01",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m6-p36b-native-analysis",
+  "source_manifest": "docs/parity/p36b/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "057a268a285759815c410e6176a63ccfa934cee27b57733b40d791c6361db370",
+  "source_sha256": "151da6bc587c0de2f0a328202fdc8b37ad55be702cfada0a3fae91bf4628c632",
+  "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "--workspace"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "P36b explicit native Prepare/Run/result/quantity/criterion/source/diagnostic/copy/clear/staleness controls over merged P36a. Six new actualGUI behavior cases incl16independent contexts; expected761distinct=755prior+6new. Fullworkspace once, desktopbuild. Existing pending/foreignowner/file/history/source-reset guards retained; sessionauthority/result nonpersistent. No dependencies/license/buildscript/nativeengine changes. Rendered native acceptance follows separately.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p36b-native-analysis/docs/parity/p36a/fixtures/quantities-and-thresholds.json": "5f898722d74f8226d0e0a5360ff604b4efcef0af14ebf68ea30c3f5ddfd84ade",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p36b-native-analysis/docs/parity/p36a/fixtures/native-prepared-01/native.kernspan": "d3bd330b9317ed6a6450632528887d253c0b17b098bb62c60ffb28f529cef9d1",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p36b-native-analysis/docs/parity/p36a/fixtures/native-prepared-01/native.mbse-views.json": "50381f037f980381f9ca118e7ce77b1e282c3059921e113f43df1df05f87b3b7",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p36b-native-analysis/docs/parity/p36a/fixtures/native-prepared-01/EXPECTED.json": "26d113bffad4421938c365d067ff38b8653d8386e43baf028348fb12860a034a"
+  }
+}

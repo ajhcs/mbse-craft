@@ -1,0 +1,58 @@
+[
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/review-p39b/docs/parity/p39b/attempts/02-review-output-hypothesis/JOB.json",
+    "path": "compiler-02/JOB.json",
+    "bytes": 3272,
+    "sha256": "0fb07544699aacedf3c187ee4d96ee325f6436ba7b22a16301298d0fb883818b",
+    "stored_sha256": "0fb07544699aacedf3c187ee4d96ee325f6436ba7b22a16301298d0fb883818b"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/review-p39b/work/p39b-review-02.json",
+    "path": "compiler-02/RECEIPT.json",
+    "bytes": 5593,
+    "sha256": "39c69eedbe6b204bd79fae2f14b557f8e112cc1ea16224bed8f23fe3b770f313",
+    "stored_sha256": "39c69eedbe6b204bd79fae2f14b557f8e112cc1ea16224bed8f23fe3b770f313"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m7-p39b-review-summary-output-budget-boundary-02-20261027T164739Z/00.log",
+    "path": "compiler-02/00.log.gz",
+    "bytes": 4005,
+    "sha256": "2a223b1577b9ca8037af9ff323b51bd69fdf5d1184805a120ee0d3d33c9a94fb",
+    "stored_sha256": "7b8f99279dd1f539726f8935a95728bbcd11a812f5165bcf2ae5181e39b9dbd8"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/review-p39b/docs/parity/p39b/JOB.json",
+    "path": "compiler-03/JOB.json",
+    "bytes": 3775,
+    "sha256": "115b6736bd9b58287480fb168ebfdbab1e528242350410557ccab3825e7352b6",
+    "stored_sha256": "115b6736bd9b58287480fb168ebfdbab1e528242350410557ccab3825e7352b6"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/review-p39b/work/p39b-review-03.json",
+    "path": "compiler-03/RECEIPT.json",
+    "bytes": 12148,
+    "sha256": "2c0578d0d134c3012ad6d78f49111a7dffa2f5b6caab453dffffc97862d9b4fb",
+    "stored_sha256": "2c0578d0d134c3012ad6d78f49111a7dffa2f5b6caab453dffffc97862d9b4fb"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m7-p39b-review-explicit-existing-loss-truncation-counts-03-20261027T165026Z/00.log",
+    "path": "compiler-03/00.log.gz",
+    "bytes": 2928,
+    "sha256": "1418f08058dec417550cca81fd94cacd6ddfe044ba40dffd9f13b17f0569db59",
+    "stored_sha256": "e5de69ab16e3962bfa25800713b6ba58d2339ecf88de8679c00e9219eb798dc0"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m7-p39b-review-explicit-existing-loss-truncation-counts-03-20261027T165026Z/01.log",
+    "path": "compiler-03/01.log.gz",
+    "bytes": 2834,
+    "sha256": "5cc9450e4845e2516df7f4f741b0435b8b222e217777ae41ac59babc0a60bc8c",
+    "stored_sha256": "31e7385d5efb2a494bcca0e897db553634bf896366a72482810fcafe63a7b23a"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m7-p39b-review-explicit-existing-loss-truncation-counts-03-20261027T165026Z/02.log",
+    "path": "compiler-03/02.log.gz",
+    "bytes": 7770,
+    "sha256": "e467460a4d7bc789d3b7b1bf0ad3b30a820cb0ccf39b85c02d72bbc4378dfa43",
+    "stored_sha256": "51c064ece0fc4b62c87e4ba52c8841b72c32ede559aee38be3994dd782235396"
+  }
+]

@@ -1,0 +1,62 @@
+{
+  "profile": "mbse-craft.layout-periodic-recovery-tests/1",
+  "status": "PreparedNotLaunched",
+  "owner_thread": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+  "cwd": "/workspace/worktrees/builderbob/mbse-craft/layout-periodic-recovery",
+  "branch": "feature/layout-periodic-recovery",
+  "source_commit": "cfe7b4b306d673d72b36d008537e55f980877363",
+  "source_sha256": "7bdf94d6ff6c342a457218ee037c9b708759903a8bac1d2eafd2fe4220bc4145",
+  "source_manifest": "/workspace/build/builderbob/mbse-craft/layout-periodic-recovery/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "761ef03ad9aea08d526526b36d0b29271cfdf5f1ac7c76f6f064cdeb4007e1f5",
+  "cargo_lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-model",
+      "native_views",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop",
+      "views_ui::tests",
+      "--",
+      "--test-threads=1"
+    ]
+  ],
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/semantic-v2/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/semantic-v2/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "CARGO_TERM_COLOR": "never",
+    "RUST_TEST_THREADS": "1"
+  },
+  "admission": "Fresh exact-job health and action allocation required; no launch authorized by this file",
+  "target_isolation": "Existing MBSE-only incremental target; allocation must confirm no other writer. Other projects may use disjoint targets under parent-qualified concurrency. No global mutex asserted.",
+  "runtime_estimate": "Prior source:10.9s model+23.1s desktop; nine new controller tests unmeasured",
+  "peak_rss": "Unknown",
+  "gui": false,
+  "binary": "No desktop binary build/launch in this test job",
+  "network": false,
+  "new_agent_contexts": false,
+  "uploads": false,
+  "owned_jobs": [],
+  "expected_tests_unrun": {
+    "model_native_views": 30,
+    "desktop_existing": 8,
+    "desktop_new_periodic": 9
+  }
+}

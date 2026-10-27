@@ -1,0 +1,20 @@
+{
+  "result": "bounded_sealed_native_component_admission_core_passed",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 783,
+  "source_sha256": "044056d21236d9b274ed70d1acca37104622c449b2a9a261a6967a55e3a2c847",
+  "binary_sha256": "b87aa0da1a1486dbb13851e9839ff09d2d0ead2db6fde4ad3a96bfdc98bf9001",
+  "distinct_case_inventory": 809,
+  "new_distinct_cases": 10,
+  "native_rendered_runs": 0,
+  "limits": [
+    "Explicit caller-declared payload only; no file reads, source verification, XML parser or automatic source admission. Strict source/loss adapter P39b and native Apply/Undo P39c remain required.",
+    "Uses existing component definitions, Part/Reference usages, profile declarations, global allocator and Editor model history; no second semantic/evaluation engine.",
+    "One sealed whole-model transaction; full native runtime/hash freshness, all prior meaning/raw/opaque preserved. Single Undo/Redo retains newer raw and does not rewind IDs.",
+    "Model maps explicitly to selected existing System without rename; root source ID/name retained on every new correspondence. Block declarations are documentary metadata, not full SysML reclassification.",
+    "64 source identities/128KiB encoded request, plus existing type/profile/extension/allocator limits. Logical limits are not RSS/performance qualification.",
+    "All56 broad specifications and integrated exits remain open. No full NoMagic/SysML/Craft/independent engineering/platform/scale/production acceptance.",
+    "Same-agent isolated PR review remains required."
+  ]
+}

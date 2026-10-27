@@ -1,0 +1,21 @@
+{
+  "controlled_native_sha256": "31f79134057415fc3847e2cab2795c94cff90aa3dbb62d9a84471fbf214a7bca",
+  "controlled_views_sha256": "a3316c41da763c5f9b18fadd8e150fc2c167781051f1b91e5af20bf4afe77e3e",
+  "handoff": "explicit unbound recovery/4 followed by new session and actual native checkpoint plus captured bound views/4 Save",
+  "purpose": "Explicit synthetic derivative for positive deletion checks; original opaque metadata remains a blocking case. No source acceptance or repair claim.",
+  "removed_field": "records[1].fields.opaque.p14.future",
+  "removed_value": {
+    "retained": [
+      null,
+      1,
+      false,
+      {
+        "unknown": "unchanged"
+      }
+    ]
+  },
+  "schema": "mbse-craft.controlled-fixture/1",
+  "source_native_sha256": "e834399ddebc22c392af17f01e761bb8d591f69f5cbe0852608877e10635bd7b",
+  "source_views_sha256": "799d826e4ae8179762298673dcea9fffd96b843f124827b316432517c2811b03",
+  "unbound_recovery_sha256": "ade0c2ae045f1a73562b36cd24e22c1b7b3b3571da917614bef21edecbf13512"
+}

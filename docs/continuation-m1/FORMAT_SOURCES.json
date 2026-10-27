@@ -1,0 +1,27 @@
+{
+  "scope": "Read-only actual header/container inspection and source dossier references; not application import/runtime qualification",
+  "files": [
+    {
+      "path": "/workspace/repos/builderbob/kernspan/work/references/catia-workflow-20261022/model-outputs/MCOAE Incident Coordination.mdzip",
+      "bytes": 230071,
+      "sha256": "7beaf024aee883c5a1117b6e55bd4e2898c26d4ddbfc308dcd08fd3839c07f8a"
+    },
+    {
+      "path": "/workspace/repos/builderbob/kernspan/work/references/capella-workflow-20261022/model-outputs/MCOAE/MCOAE.capella",
+      "bytes": 54602,
+      "sha256": "2d83896463118c73e815937b2f5fa10906d8d46a4e8b96f2b8656a2f3f0cc7cd"
+    },
+    {
+      "path": "/workspace/repos/builderbob/kernspan/work/references/capella-workflow-20261022/model-outputs/MCOAE/MCOAE.aird",
+      "bytes": 210833,
+      "sha256": "5f20882b4ed3af279921d3838a4930bf5a2c975357c2b9131a5fd80f7fcf7632"
+    },
+    {
+      "path": "/workspace/repos/builderbob/kernspan/work/references/capella-workflow-20261022/model-outputs/MCOAE/MCOAE.afm",
+      "bytes": 347,
+      "sha256": "3217a4df3f318f1b3a40956187648b142b45e383b7b31f263b31498bfce8a8d8"
+    }
+  ],
+  "sysand_proposal": "/workspace/repos/builderbob/sysand-research-20261022/reports/INTEGRATION_PROPOSAL.md",
+  "library_dossier": "/workspace/repos/builderbob/sysand-projects-research-20261022/reports/architecture-design.md"
+}

@@ -1,0 +1,37 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "796c1ba9dfd08b9ce913113bfc5f434fcb11dc7f592ad6114674b46c429db59d",
+    "scripts/verify-m1-native.py": "ef4e7c2308323b9023f83a15ddb3b9214d27368fd9a34a42b4245ad44f574a39",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "id": "p21a-controlled-typed-delete-undo-cold",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p21a-typed-deletion-03-20261026T224202Z/mbse-desktop",
+  "binary_sha256": "b128b297031da3fc2caf3f8eafd7bb0b5a49323b2a0af381c09396732a2fa1a1",
+  "source_sha256": "96ce8af77be694cde32beb5c94c2378b53adc434b86e490d0443482fb0db49b0",
+  "inputs": {
+    "/workspace/build/builderbob/mbse-craft/milestone1/controlled-p21a-01/controlled.kernspan": "31f79134057415fc3847e2cab2795c94cff90aa3dbb62d9a84471fbf214a7bca",
+    "/workspace/build/builderbob/mbse-craft/milestone1/controlled-p21a-01/controlled.mbse-views.json": "a3316c41da763c5f9b18fadd8e150fc2c167781051f1b91e5af20bf4afe77e3e",
+    "/workspace/build/builderbob/mbse-craft/milestone1/controlled-p21a-01/PROVENANCE.json": "60f5745717621ea75b856ac80790f5035c76b138057442baaf0194fcfd8e0bcf"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p21a-01",
+  "argv_extra": [
+    "--open",
+    "/workspace/build/builderbob/mbse-craft/milestone1/controlled-p21a-01/controlled.kernspan",
+    "--select",
+    "1003"
+  ],
+  "scenarios": [
+    "Open actual fresh controlled native/views4 with documented single opaque-field removal; create clone-Part-qualified port pairs and connector1025 routes in two views",
+    "Prepare exact six-record clone deletion/override cleanup and four-occurrence/two-route impact; Cancel unchanged; Apply through coupled views; source accepted members/values/routes retained",
+    "Newer invalid1021? raw form retained through Undo/Redo/Undo/Redo with exact same presentation identities/geometry; accepted allocator monotonic1027",
+    "Actual captured native/views4 Save and cold second Save preserve whole snapshot, all raw forms and detached presentations without cold history/preview authority; source inputs unchanged; normal cleanup"
+  ],
+  "claim_policy": "Controlled synthetic positive test data with provenance; not repair/acceptance of original opaque source. Same-agent Linux bounded typed deletion only; native-core P21b remains open and all56 broad specs NOT_RUN."
+}

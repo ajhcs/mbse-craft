@@ -1,0 +1,39 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "796c1ba9dfd08b9ce913113bfc5f434fcb11dc7f592ad6114674b46c429db59d",
+    "scripts/verify-m1-native.py": "ef4e7c2308323b9023f83a15ddb3b9214d27368fd9a34a42b4245ad44f574a39",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "id": "p33b-native-cold-fresh-runtime-machine-scope-and-readable-trace-02",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p33b-native-trace-text-and-machine-scope-02-20261027T094145Z/mbse-desktop",
+  "binary_sha256": "fd70f9da8e51c9c81fc1b9dd62464ccecd9661b33d27b6e476c40275f74f4b52",
+  "source_sha256": "2661d8cf91de11407310610fadce058a19320fbc612259a9bcc0fa2aefaebb9f",
+  "inputs": {
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p33b-native-state-execution/docs/parity/p33b/fixtures/state-fixture.kernspan": "9e89a4cc401e8ebda4769dbcc5a8e1ab6b5ddcb1a21beb2f5361c6e5561b6dd8",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p33b-native-state-execution/docs/parity/p33b/fixtures/state-fixture.mbse-views.json": "ef88d5e4310f2f15aea7249f53c857f929ee8d9729736a736238527e70efc71d",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p33b-native-state-execution/docs/parity/p33b/fixtures/EXPECTED.json": "9b055e63e2a95b6ab14967099b997638ca431ba3a2c0186a6ece2c2a9737bebb",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p33b-native-state-execution/docs/parity/p33a/fixtures/state-traces.json": "59e4eac4b3bd6c36920d566113e5087a33b79dc7290cda0db8440e7814dbaf64",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p33b-native-state-execution/docs/parity/p32c/verification/native-03/run/state-machine-final-qualified-copy.kernspan": "b1914935cc684e67ff8281b0e1de8b644e85f889e27b85e142a768c43807361e",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p33b-01/run/state-execution-checkpoint.kernspan": "332c3afea8989106c197759079f4da36e73a16bf92acb1ad365b08109d4f8d13",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p33b-01/run/state-execution-checkpoint.mbse-views.json": "a76821e4653339591e0dec0db97a251d52d3c94cb230fa41a7aa063ebb7a7138"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p33b-02",
+  "argv_extra": [
+    "--open",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p33b-01/run/state-execution-checkpoint.kernspan",
+    "--select",
+    "1003"
+  ],
+  "scenarios": [
+    "Continue unexecuted cold remainder from native01 owned checkpoint. Explicit native/views Open retains exact complete Snapshot/allsevenmaps and rawMachine8000name; no old runtime/automatic state restored. Actual CtrlAltS and select8000/Prepare yields fresh empty/current runtime; actual Step first fixed transition has readable State #8001 to State #8002 text.",
+    "Affected cross-machine scope fix: while paused prepared execution try selecting9000; explicit refusal retains current8000/report/raw/source. Actual Cancel permits switching9000 and keeps previous report tied8000, no rebinding. Save-copy entireSnapshot/sevenmaps exact. Normal owned cleanup and protected inputs unchanged. Do not replay completed original ten trace/cancel/refusal/staleness checks."
+  ],
+  "claim_policy": "Original677fullworkspace/build and native01alltenfixedtraces retained; final5affectedGUIcases/build (one new scope case) and cold/fix native remainder on exact751-file source.678distinctinventory, no summed final-source fullsuite claim. Same-agent bounded Linux only; broad specs/exits/fullparity/independentengineering/platform/scale/production remain open."
+}

@@ -1,0 +1,89 @@
+{
+  "schema": "builderbob.job-bound-health/1",
+  "checked_utc": "2026-10-23T18:02:39.7228575+00:00",
+  "owner_thread_id": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+  "job_label": "MBSE camera private native zoom pan history persistence explicit reopen workflow",
+  "expected_job_manifest_sha256": "2c762f89a3cbe9946ff3bd6f369037e7001680d1e0c702f27b849d9fc6e5255d",
+  "job_hash_verification": "Caller supplies frozen SHA; existing owner must verify actual manifest/source and scoped permission at action time. This checker does not access the remote job.",
+  "resource_admission": "PASS",
+  "expires_utc": "2026-10-23T18:04:39.3028160+00:00",
+  "sample_age_seconds": 0.4,
+  "watchdog_age_seconds": 29.0,
+  "watchdog_identity_matches": true,
+  "health": {
+    "schema": "builderbob.fd-watch-health/1",
+    "checked_utc": "2026-10-23T18:02:39.6872661+00:00",
+    "observation_route": "AVAILABLE",
+    "observer_pid": 15648,
+    "exact_process_start_matches": true,
+    "status_pid_matches": true,
+    "observer_state": "RUNNING",
+    "completed_samples": 196,
+    "planned_samples": 1440,
+    "planned_last_sample_utc": "2026-10-24T14:46:36.5991315+00:00",
+    "monitor_status": "OK",
+    "reasons": [],
+    "trend_matches_latest_observation": true,
+    "growth_fds_per_minute": 3.0,
+    "recent_peak_positive_fds_per_minute": 36,
+    "forecast_seconds_to_90_percent_with_64_fd_reserve": 939.0,
+    "heartbeat_age_seconds": 2.8,
+    "successful_sample_age_seconds": 0.4,
+    "latest_observation": {
+      "fd_count": 294,
+      "fd_types": {
+        "anon_inode": 9,
+        "file_or_device": 71,
+        "pidfd": 47,
+        "pipe": 141,
+        "socket": 26
+      },
+      "hard_nofile": 1048576,
+      "headroom": 730,
+      "identity": {
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "pid": 1072280,
+        "pid_namespace": "pid:[4026531836]",
+        "start_ticks": 14235850,
+        "uid": 1000
+      },
+      "max_fd": 347,
+      "mutations": false,
+      "occupied_below_soft": 294,
+      "pidfd_targets": {
+        "live": 47
+      },
+      "schema": "builderbob.fd-observation/1",
+      "soft_nofile": 1024,
+      "status": "OK",
+      "thresholds": {
+        "critical_free_fds": 64,
+        "critical_percent": 90,
+        "warning_free_fds": 128,
+        "warning_percent": 80
+      },
+      "used_percent": 28.7109375,
+      "utc": "2026-10-23T14:02:39.302816-04:00"
+    },
+    "log_path": "C:\\Users\\colet\\Documents\\Codex\\2026-10-22\\task-16\\evidence\\FD-WATCH-20261023T144736Z.jsonl",
+    "alert_path": "C:\\Users\\colet\\Documents\\Codex\\2026-10-22\\task-16\\evidence\\FD-ALERTS-20261023T144736Z.jsonl",
+    "automatic_remediation": false
+  },
+  "watchdog": {
+    "checked_utc": "2026-10-23T18:02:10.7716777+00:00",
+    "decision": {
+      "level": "OK",
+      "hold_new_launches": false,
+      "reasons": [],
+      "seconds_to_observer_end": 74665.8,
+      "automatic_remediation": false
+    },
+    "console_window_handle": 0,
+    "notification_hold": false
+  },
+  "permission_or_job_allocation_granted": false,
+  "remote_commands_executed": 0,
+  "target_launches": 0,
+  "automatic_remediation": false
+}

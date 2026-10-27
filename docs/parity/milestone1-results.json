@@ -1,0 +1,153 @@
+{
+  "schema": "mbse-craft.milestone1-results/1",
+  "recorded_utc": "2026-10-25T22:30:45.549362+00:00",
+  "milestone": "M01",
+  "state": "merged_into_implementation_native_alpha",
+  "prs": [
+    {
+      "position": "P01",
+      "title": "Freeze the parity matrix and acceptance fixtures",
+      "branch": "codex/parity-matrix",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/4",
+      "implementation_state": "verified_with_stated_limits",
+      "review_state": "same_agent_followup_review_completed",
+      "merge_state": "merged",
+      "evidence": "PR4_REVIEW.md",
+      "source_commit": "725e28c1c852429449a5f7303ba981db66f775fc",
+      "merge_commit": "2fb0c373997e8bcf6e3144b21b62d2ba13a3d2c9",
+      "merged_head": "725e28c1c852429449a5f7303ba981db66f775fc"
+    },
+    {
+      "position": "P02",
+      "title": "Complete readiness review of existing draft PR #1",
+      "branch": "codex/p02-readiness",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/5",
+      "implementation_state": "verified_with_stated_limits",
+      "review_state": "same_agent_followup_review_completed",
+      "merge_state": "merged",
+      "evidence": "p02/RUN_RESULTS.md",
+      "source_commit": "7f3cbfb8fb8976fcf563eae5ffd10d02f5b2f910",
+      "merge_commit": "7f64de3df1aee2c6c19982e41b4e3f3f689e5396",
+      "merged_head": "7f3cbfb8fb8976fcf563eae5ffd10d02f5b2f910"
+    },
+    {
+      "position": "P03",
+      "title": "Complete native acceptance of existing draft PR #2",
+      "branch": "codex/m1-p03-views",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/6",
+      "implementation_state": "verified_with_stated_limits",
+      "review_state": "same_agent_followup_review_completed",
+      "merge_state": "merged",
+      "evidence": "p03/README.md",
+      "source_commit": "486a95b156ed4619123633703a6d25833cb865b5",
+      "merge_commit": "2935e4eb37231bb536b27bd60e2a531df9b45384",
+      "merged_head": "486a95b156ed4619123633703a6d25833cb865b5"
+    },
+    {
+      "position": "P04",
+      "title": "Integrate existing draft PR #3 layout recovery",
+      "branch": "codex/m1-p04-recovery",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/7",
+      "implementation_state": "verified_with_stated_limits",
+      "review_state": "same_agent_followup_review_completed",
+      "merge_state": "merged",
+      "evidence": "p04/README.md",
+      "source_commit": "73b2c8df938a7fdda65fc056aa8ad727a83bc1ee",
+      "merge_commit": "c4e46ca3e94d548a1c312587ffdd288fda2f9daf",
+      "merged_head": "73b2c8df938a7fdda65fc056aa8ad727a83bc1ee"
+    },
+    {
+      "position": "P05",
+      "title": "Integrate qualified local navigation continuations",
+      "branch": "codex/m1-p05-navigation",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/8",
+      "implementation_state": "verified_with_stated_limits",
+      "review_state": "same_agent_followup_review_completed",
+      "merge_state": "merged",
+      "evidence": "p05/README.md",
+      "source_commit": "c815d0a364e120c5f97bb70bddf597be7820403d",
+      "merge_commit": "c7cd858951ce7d6bfbf731ada65e54f8f3c72084",
+      "merged_head": "c815d0a364e120c5f97bb70bddf597be7820403d"
+    },
+    {
+      "position": "P06",
+      "title": "Finish exact report-row occurrence navigation",
+      "branch": "codex/m1-p06-occurrence",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/9",
+      "implementation_state": "verified_with_stated_limits",
+      "review_state": "same_agent_followup_review_completed",
+      "merge_state": "merged",
+      "evidence": "p06/README.md",
+      "source_commit": "eccc4181539a2af532b7024669756d70d906e5d1",
+      "commit_scope": "Runtime, harness and frozen jobs before documentation-only evidence commits",
+      "merge_commit": "c61d3379a136c56afc531e80936376922f2ea98a",
+      "merged_head": "ec0b6c3942472ddec9ae59d898693a103985581f"
+    }
+  ],
+  "admission": {
+    "route": "new bounded BuilderBob-local preflight plus exclusive target lease",
+    "original_observer_grant_claimed": false,
+    "observer_or_service_started": false,
+    "other_job_holds_released": false
+  },
+  "review_limits": [
+    "Requested same-agent follow-up review is complete; one controller finding fixed with six regressions. No new external independent review claim.",
+    "Full 319-test workspace run and desktop build passed on unchanged 669-file source closure. Original source-specific native evidence remains separately pinned.",
+    "Extra native controller retry completed two normal app/driver runs with zero action errors; live-second-run completion refusal and final FINISH were observed.",
+    "Earlier source-specific reviews and model/controller-only race assertions retain their scopes.",
+    "Original six baseline vectors and 56 full-capability declarations remain frozen prospective specifications."
+  ],
+  "remaining": {
+    "milestones": 9,
+    "roadmap_positions": 52,
+    "first": "P07",
+    "last": "P58",
+    "decomposition_children_additional": true,
+    "full_parity_accepted": false
+  },
+  "preservation": "review-pr4-9/PRESERVATION_AFTER.json",
+  "integration_branch": "implementation/native-alpha",
+  "original_p06_verification": {
+    "source_files": 669,
+    "source_sha256": "8b43545d4033edf12c69e86e7d1f32a650c55b867911347542f2ac1d99f30e2b",
+    "binary_sha256": "4b14d96f30d387ab21a1bb736444b062c155a59ad4e6e9170447ef2054c7bf0c",
+    "test_evidence": "p06/verification/TEST_RECONCILIATION.json",
+    "distinct_passed_tests": 319,
+    "passing_test_executions": 332,
+    "repeated_passes": 13,
+    "resolved_earlier_failures": 1,
+    "single_final_closure_full_run": false,
+    "native_sessions": [
+      "p06/verification/native/RECEIPT.json",
+      "p06/verification/native-completion/RECEIPT.json"
+    ]
+  },
+  "review_verification": {
+    "evidence": "review-pr4-9/REVIEW.md",
+    "execution": "review-pr4-9/execution/RECEIPT.json",
+    "source_sha256": "8b43545d4033edf12c69e86e7d1f32a650c55b867911347542f2ac1d99f30e2b",
+    "single_final_source_workspace_tests_passed": 319,
+    "controller_regressions_passed": 6,
+    "build_exit": 0,
+    "binary_sha256": "90dfe7eb3709d7ca57e174bfdbd06942d140f8c21f823e74d1bf3b58abe7f844",
+    "additional_native_smoke": {
+      "state": "passed_on_fresh_retry",
+      "completed_normal_runs": 2,
+      "requested_runs": 2,
+      "action_errors": 0,
+      "receipt": "review-pr4-9/native-retry-02/evidence/RECEIPT.json",
+      "review": "review-pr4-9/native-retry-02/REVIEW.json",
+      "prior_partial": "review-pr4-9/native-partial/RECEIPT.json"
+    },
+    "merge_results": "review-pr4-9/MERGES.json",
+    "previous_additional_native_smoke": {
+      "state": "partial_second_run_held_by_resource_preflight",
+      "completed_normal_runs": 1,
+      "requested_runs": 2,
+      "reason": "Less than8GiB workspace reserve before second run",
+      "available_workspace_bytes_at_followup": 7413981184,
+      "original_receipt": "native-partial/RECEIPT.json",
+      "harness_assertion_correction": "The controller tried the two-run negative assertion after the preflight had refused the second run. The one completed run legitimately satisfies finish_runs. This was an expectation error, not a product defect; original action errors retained."
+    }
+  }
+}

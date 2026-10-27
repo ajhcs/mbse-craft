@@ -1,0 +1,30 @@
+[
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/review-p34b/work/p34b-03.json",
+    "path": "compiler-03/RECEIPT.json",
+    "bytes": 12013,
+    "sha256": "1318756f3c17a1e42a66fed024461de4d39f0af3db94b24807fd9bcf8acd013e",
+    "stored_sha256": "1318756f3c17a1e42a66fed024461de4d39f0af3db94b24807fd9bcf8acd013e"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p34b-review-individual-lifeline-eight-map-recovery-03-20261027T105409Z/00.log",
+    "path": "compiler-03/00.log.gz",
+    "bytes": 2318,
+    "sha256": "cc59ac455c25bb8efcab96b85e4023d1f3e6d03ade9913e9529695b0bf83a9e1",
+    "stored_sha256": "57298422aa8de53e124c3aa6da36d209e7adae953e575b55fa8c41cec1a9c48c"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p34b-review-individual-lifeline-eight-map-recovery-03-20261027T105409Z/01.log",
+    "path": "compiler-03/01.log.gz",
+    "bytes": 1947,
+    "sha256": "1994b12b2a4e1cc34061107531214970d0971e87195f74f44db71a3469cc2994",
+    "stored_sha256": "520971f3463064cbbcac1da204435ee47e238c396de991fae5671a95ae6ce5a6"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p34b-review-individual-lifeline-eight-map-recovery-03-20261027T105409Z/02.log",
+    "path": "compiler-03/02.log.gz",
+    "bytes": 6355,
+    "sha256": "15b9ec107f52eac837806c5a5a05266d0f1b87bfdaefe51f06197910ddfbd25f",
+    "stored_sha256": "7c0a6580ae76f2b58e3b4f467972e13ccc8aa171cad625e14be455f3c51d0f72"
+  }
+]

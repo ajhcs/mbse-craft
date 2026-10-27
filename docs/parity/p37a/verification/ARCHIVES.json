@@ -1,0 +1,79 @@
+[
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p37a-scoped-metrics/docs/parity/p37a/attempts/01/JOB.json",
+    "path": "compiler-01/JOB.json",
+    "bytes": 3436,
+    "sha256": "dccbd5fad70ae028d084a46c23667eef979aac595ef73be7a99699c8788489a5",
+    "stored_sha256": "dccbd5fad70ae028d084a46c23667eef979aac595ef73be7a99699c8788489a5"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p37a-scoped-metrics/work/p37a-01.json",
+    "path": "compiler-01/RECEIPT.json",
+    "bytes": 9486,
+    "sha256": "4aacaa9fa36058e5f153aa8b5614c00da97fff7cceb30bad02bfa814c4407f32",
+    "stored_sha256": "4aacaa9fa36058e5f153aa8b5614c00da97fff7cceb30bad02bfa814c4407f32"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p37a-explicit-scoped-model-trace-metrics-01-20261027T140646Z/00.log",
+    "path": "compiler-01/00.log.gz",
+    "bytes": 18159,
+    "sha256": "2e03e6f734bb3fdd97b5d84208c2a5d1e594f5a83c355114a6f111c6dbc14991",
+    "stored_sha256": "e2337b8c44ba6105fc92fbb2bb96dfe4001b77f2cf186f0fc7e5a7d3da76e863"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p37a-scoped-metrics/docs/parity/p37a/attempts/02/JOB.json",
+    "path": "compiler-02/JOB.json",
+    "bytes": 8544,
+    "sha256": "1a45a60b61fd04612ea8b383c41368fdd5b2915bd619fec9c639fe99655b4294",
+    "stored_sha256": "1a45a60b61fd04612ea8b383c41368fdd5b2915bd619fec9c639fe99655b4294"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p37a-scoped-metrics/work/p37a-02.json",
+    "path": "compiler-02/RECEIPT.json",
+    "bytes": 86954,
+    "sha256": "1b1e06b13bf660bceaaaca9604f87cd9e80240ca15f4b7ee0405619b32cf960c",
+    "stored_sha256": "1b1e06b13bf660bceaaaca9604f87cd9e80240ca15f4b7ee0405619b32cf960c"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p37a-explicitly-admitted-type-fixture-remainder-02-20261027T140900Z/00.log",
+    "path": "compiler-02/00.log.gz",
+    "bytes": 89895,
+    "sha256": "cb071ef55a49a10efdefc13c49855aec50a6abda0f9e0b928323ce52dc58886b",
+    "stored_sha256": "eaf23a9e421ded8032016903d9bd1aa944641cc6ae52775fac10afb448bf3d6b"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p37a-explicitly-admitted-type-fixture-remainder-02-20261027T140900Z/01.log",
+    "path": "compiler-02/01.log.gz",
+    "bytes": 5020,
+    "sha256": "8b4fc002bb1d7f379e651651f86c0a317d9f874050dd870c0944194479376869",
+    "stored_sha256": "c3a20c04429584a28d34b736806b8c5f409471902234659cd5d4a24a7eb15efb"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p37a-scoped-metrics/docs/parity/p37a/JOB.json",
+    "path": "compiler-03/JOB.json",
+    "bytes": 3403,
+    "sha256": "4079f65ed19b23a5422b3cc96fa0149e6d1104280b6e3f44eb3f4080156c30ec",
+    "stored_sha256": "4079f65ed19b23a5422b3cc96fa0149e6d1104280b6e3f44eb3f4080156c30ec"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p37a-scoped-metrics/work/p37a-03.json",
+    "path": "compiler-03/RECEIPT.json",
+    "bytes": 9615,
+    "sha256": "5ca058ab3748a8517490ff8350a6b6865455f6738c206c5d50d81e5c31b1a90f",
+    "stored_sha256": "5ca058ab3748a8517490ff8350a6b6865455f6738c206c5d50d81e5c31b1a90f"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p37a-legacy-native-metrics-without-migration-03-20261027T141247Z/00.log",
+    "path": "compiler-03/00.log.gz",
+    "bytes": 3129,
+    "sha256": "9b6d3a297c0367f683f22693322a340712f182348380f3685f01ae1e3d3d4347",
+    "stored_sha256": "8278989dc475f7483ead072f810465f5950624e20dc5089b732fe5b5b99211f3"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p37a-legacy-native-metrics-without-migration-03-20261027T141247Z/01.log",
+    "path": "compiler-03/01.log.gz",
+    "bytes": 5146,
+    "sha256": "c60ae58326715cb51c67e1ba167996fb3f81385a4a194ba2d90a20c91daf0a65",
+    "stored_sha256": "8b7200448150d309a6a9bce84cfc7290eda453621c275a568c91e045f300fa2f"
+  }
+]

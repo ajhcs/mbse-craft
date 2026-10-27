@@ -1,0 +1,107 @@
+[
+  {
+    "name": "craft-docpath",
+    "version": "0.1.0",
+    "license": "MIT OR Apache-2.0",
+    "manifest_sha256": "6928b72b2f95d51c52869d1834b844321f0a6ab8b7e4db1d7eecbe60a867e598",
+    "notices": [],
+    "build_scripts": []
+  },
+  {
+    "name": "craft-quit",
+    "version": "0.1.0",
+    "license": "MIT OR Apache-2.0",
+    "manifest_sha256": "2b9c029e50de4bc207f386a565d2b3b03bb5638d6638f9ea1f0595f325ca9ebc",
+    "notices": [],
+    "build_scripts": []
+  },
+  {
+    "name": "craft-settings",
+    "version": "0.1.0",
+    "license": "MIT OR Apache-2.0",
+    "manifest_sha256": "5a7f36cc4df7cb90f4940e616481792db0c00d58dba6fc8183e54414431bec5d",
+    "notices": [],
+    "build_scripts": []
+  },
+  {
+    "name": "dirs",
+    "version": "7.0.0",
+    "license": "MIT OR Apache-2.0",
+    "manifest_sha256": "8831e98ffb2c19a9e417229b0c3daa38ac7c73cbb6ba9a69731b69b567e2495e",
+    "notices": [
+      {
+        "name": "LICENSE-APACHE",
+        "sha256": "d3174ad63e721d4c9dccb8ad4320848992d314369bc46319720b5802c9153fe9"
+      },
+      {
+        "name": "LICENSE-MIT",
+        "sha256": "6a2e0ade09a7d5f816f11566fee2b151b32235a7fad52b41d49cce96f833c1a9"
+      }
+    ],
+    "build_scripts": []
+  },
+  {
+    "name": "dirs-sys",
+    "version": "0.5.0",
+    "license": "MIT OR Apache-2.0",
+    "manifest_sha256": "7085f746e45a405e7861e7ab3335cb92ecdf836863bd1baa350f961a5f06b04c",
+    "notices": [
+      {
+        "name": "LICENSE-APACHE",
+        "sha256": "d3174ad63e721d4c9dccb8ad4320848992d314369bc46319720b5802c9153fe9"
+      },
+      {
+        "name": "LICENSE-MIT",
+        "sha256": "6a2e0ade09a7d5f816f11566fee2b151b32235a7fad52b41d49cce96f833c1a9"
+      }
+    ],
+    "build_scripts": []
+  },
+  {
+    "name": "option-ext",
+    "version": "0.2.0",
+    "license": "MPL-2.0",
+    "manifest_sha256": "ecd67cb17a0586f1406b7d494ef93191ed8ebf149db46667a7778052d94e1e6c",
+    "notices": [
+      {
+        "name": "LICENSE.txt",
+        "sha256": "66a3107d5ad6a058aab753eaac2047ccb2ed0e39465dd0fe5844da3e300d5172"
+      }
+    ],
+    "build_scripts": []
+  },
+  {
+    "name": "serde_spanned",
+    "version": "1.1.2",
+    "license": "MIT OR Apache-2.0",
+    "manifest_sha256": "4440de0fa3bc67232703561f79dc2d6011c945b2a785422676608e4c0f86c5e9",
+    "notices": [
+      {
+        "name": "LICENSE-APACHE",
+        "sha256": "249fdb6694467dd615b259f7ddde07be3f8ae5a72cecebb0e24f6629af4215fe"
+      },
+      {
+        "name": "LICENSE-MIT",
+        "sha256": "6efb0476a1cc085077ed49357026d8c173bf33017278ef440f222fb9cbcb66e6"
+      }
+    ],
+    "build_scripts": []
+  },
+  {
+    "name": "toml_writer",
+    "version": "1.1.3+spec-1.1.0",
+    "license": "MIT OR Apache-2.0",
+    "manifest_sha256": "996dbddfe3e93e03a0173c12b2ec72293fa48db08bb46f3982bc1af57ac31d37",
+    "notices": [
+      {
+        "name": "LICENSE-APACHE",
+        "sha256": "249fdb6694467dd615b259f7ddde07be3f8ae5a72cecebb0e24f6629af4215fe"
+      },
+      {
+        "name": "LICENSE-MIT",
+        "sha256": "6efb0476a1cc085077ed49357026d8c173bf33017278ef440f222fb9cbcb66e6"
+      }
+    ],
+    "build_scripts": []
+  }
+]

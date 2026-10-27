@@ -1,0 +1,43 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "p05",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m1-p05-navigation",
+  "source_manifest": "docs/continuation-m2b09/wording-build/SOURCE-MANIFEST.json",
+  "source_manifest_sha256": "fbbcad30e18f1675e18cca0c59e7969c616ea6c200d3e840eb52a8281e2da2e8",
+  "source_sha256": "00ef25c2e92305c2d1d1e386dc778c3582324f5b278f9330a2ad82831611e9e4",
+  "cargo_lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+  "runner_sha256": "ebff1e0b6522826b118817f390c54f269dc56b637882e2f02479b33b9cd5b5dc",
+  "preflight_module_sha256": "38efc089eda12310b89fa5115718d5c6c18a9b7b23931567241a7c57bb0af6c0",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "--workspace",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "New integrated P05 baseline includes all prior continuations after P02-P04; a full workspace regression gate qualifies the combined contracts, rather than repeating a prior focused wave for status. Native baseline follows separately.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service."
+}

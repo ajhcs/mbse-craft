@@ -1,0 +1,26 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts",
+    "-p",
+    "test_m1_native_session.py",
+    "-v"
+  ],
+  "env": {
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "tests_passed": 12,
+  "new_seed_tests": 6,
+  "exit_code": 0,
+  "log_sha256": "bb048c590252aead2f2ea27bd20a4bedd894979dd6550f053cb796ee5c45884b",
+  "script_hashes": {
+    "scripts/test_m1_native_session.py": "99f9e7c5ecfde69fa5a6b903b88a1769f8545d561897be18a5a62efc5b5590b6",
+    "scripts/m1_native_session.py": "796c1ba9dfd08b9ce913113bfc5f434fcb11dc7f592ad6114674b46c429db59d",
+    "scripts/verify-m1-native.py": "4e477f78eacdcc32af36c45799d4d50d355b40c0af0636ce5fb8ad9f2f91fb60"
+  }
+}

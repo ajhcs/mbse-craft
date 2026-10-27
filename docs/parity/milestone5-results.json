@@ -1,0 +1,146 @@
+{
+  "schema": "mbse-craft.milestone5-results/1",
+  "state": "implementation_positions_merged_exit_unaccepted",
+  "milestone_exit_accepted": false,
+  "full_parity_accepted": false,
+  "p23": {
+    "state": "merged",
+    "base_commit": "24cb464749e82f28f6199a4a2341ced21bfae421",
+    "contract": "p23/CONTRACT.md",
+    "authority": "existing mbse-assurance Board; native snapshot and views unchanged",
+    "execution_results": "p23/README.md",
+    "native_runs": 2,
+    "new_distinct_cases": 14,
+    "pr_number": 29,
+    "review": "p23/REVIEW.md",
+    "merge_commit": "1ae74f4f841b9d1c3d9b6c62b7e8fe4b072246af"
+  },
+  "remaining_prs": [],
+  "p24": {
+    "state": "merged",
+    "base_commit": "1ae74f4f841b9d1c3d9b6c62b7e8fe4b072246af",
+    "execution_results": "p24/README.md",
+    "workspace_tests": 519,
+    "new_distinct_cases": 11,
+    "native_runs": 3,
+    "pr_number": 30,
+    "review": "p24/REVIEW.md",
+    "merge_commit": "0c528b7ddb49d6a2662f3d77698ca030c9bbb745"
+  },
+  "p25": {
+    "state": "merged",
+    "base_commit": "0c528b7ddb49d6a2662f3d77698ca030c9bbb745",
+    "execution_results": "p25/README.md",
+    "workspace_tests": 531,
+    "new_distinct_cases": 13,
+    "native_runs": 3,
+    "pr_number": 31,
+    "review": "p25/REVIEW.md",
+    "merge_commit": "885dbb21d6f9f95ae51c1e509dcad208f60ca52f"
+  },
+  "p26": {
+    "state": "merged",
+    "base_commit": "885dbb21d6f9f95ae51c1e509dcad208f60ca52f",
+    "children": [
+      "P26a",
+      "P26b"
+    ],
+    "p26a": {
+      "state": "merged",
+      "execution_results": "p26a/README.md",
+      "new_distinct_cases": 11,
+      "native_ui": false,
+      "parent_complete": false,
+      "pr_number": 32,
+      "review": "p26a/REVIEW.md",
+      "merge_commit": "517fc3e10ffd44e19f30bc5cb9c45c0314651385"
+    },
+    "p26b": {
+      "state": "merged",
+      "base_commit": "517fc3e10ffd44e19f30bc5cb9c45c0314651385",
+      "execution_results": "p26b/README.md",
+      "new_distinct_cases": 8,
+      "distinct_case_inventory": 551,
+      "native_runs": 2,
+      "pr_number": 33,
+      "review": "p26b/REVIEW.md",
+      "merge_commit": "1c49d7ac4139388f10a172eed95e6cdf84b01068"
+    }
+  },
+  "p27": {
+    "state": "merged",
+    "base_commit": "1c49d7ac4139388f10a172eed95e6cdf84b01068",
+    "children": [
+      "P27a",
+      "P27b"
+    ],
+    "p27a": {
+      "state": "merged",
+      "execution_results": "p27a/README.md",
+      "workspace_tests": 559,
+      "new_distinct_cases": 8,
+      "native_ui": false,
+      "pr_number": 34,
+      "review": "p27a/REVIEW.md",
+      "merge_commit": "422d1b8972f2e2e07730a538d642a76b37e71524"
+    },
+    "p27b": {
+      "state": "merged",
+      "base_commit": "422d1b8972f2e2e07730a538d642a76b37e71524",
+      "execution_results": "p27b/README.md",
+      "workspace_tests": 563,
+      "new_distinct_cases": 4,
+      "native_runs": 3,
+      "findings": [],
+      "pr_number": 35,
+      "review": "p27b/REVIEW.md",
+      "final_source_full_workspace_claim": false,
+      "merge_commit": "894e00b8359422e250f670a2b971d11a666b93b3"
+    }
+  },
+  "p28": {
+    "state": "merged",
+    "base_commit": "894e00b8359422e250f670a2b971d11a666b93b3",
+    "execution_results": "p28/README.md",
+    "distinct_case_inventory": 572,
+    "new_distinct_cases": 9,
+    "native_runs": 3,
+    "findings": [],
+    "pr_number": 36,
+    "review": "p28/REVIEW.md",
+    "final_source_full_workspace_claim": false,
+    "merge_commit": "5fa7c05e6c341943553bb536b555e843c9aeca1e"
+  },
+  "p29": {
+    "state": "merged",
+    "base_commit": "5fa7c05e6c341943553bb536b555e843c9aeca1e",
+    "children": [
+      "P29a",
+      "P29b"
+    ],
+    "p29a": {
+      "state": "merged",
+      "execution_results": "p29a/README.md",
+      "new_distinct_cases": 8,
+      "distinct_case_inventory": 580,
+      "native_ui": false,
+      "pr_number": 37,
+      "review": "p29a/REVIEW.md",
+      "merge_commit": "8a893d13614429e6d0c904bf5c58c6c210ef5bf8"
+    },
+    "p29b": {
+      "state": "merged",
+      "base_commit": "8a893d13614429e6d0c904bf5c58c6c210ef5bf8",
+      "execution_results": "p29b/README.md",
+      "new_distinct_cases": 6,
+      "distinct_case_inventory": 586,
+      "native_runs": 3,
+      "source_sha256": "c3f76bf03f58d1eba40111b4727d01a71c959f2ac1ba3edbce1bcf5b32658261",
+      "final_source_full_workspace_claim": false,
+      "pr_number": 38,
+      "review": "p29b/REVIEW.md",
+      "merge_commit": "7d7247b64585cdd4d1ae8dfdfeaa2c244277f867"
+    },
+    "merge_commit": "7d7247b64585cdd4d1ae8dfdfeaa2c244277f867"
+  }
+}

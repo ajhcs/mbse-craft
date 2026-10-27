@@ -1,0 +1,211 @@
+{
+  "status": "FINISHED_NOT_AUTOMATIC_ACCEPTANCE",
+  "started_utc": "2026-10-23T15:55:36.188955+00:00",
+  "job_sha256": "30807a94befa898bc2ab0b7a61e1b3b6d40ef7692d3774f728a4119779f7ba3b",
+  "job": {
+    "profile": "mbse-craft.layout-status-label-native-job/1",
+    "status": "PreparedNotLaunched",
+    "owner_thread": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+    "source_commit": "8937db779410a4c0fe81d99b907ead77f070d508",
+    "source_sha256": "0735b58512f11edeb07d9fc49b3c14afbda3cb15698bb3a3e1c7b79635565239",
+    "source_manifest": "/workspace/build/builderbob/mbse-craft/layout-recovery-status-label/SOURCE_MANIFEST.json",
+    "source_manifest_sha256": "1f2ab08e1fd1a8a4de20da0e1d6f88176e592f462a872cb527afd87674633041",
+    "cargo_lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+    "binary": "/workspace/build/builderbob/mbse-craft/layout-recovery-status-label/attempt-20261023T155039636307Z/mbse-desktop",
+    "binary_sha256": "998b2b4b81e3f2fcc109e4bd43b482671ea234d6b6172e7ad994a950a3a7d731",
+    "binary_bytes": 398415120,
+    "executable_copy": "/workspace/build/builderbob/mbse-craft/layout-recovery-status-label/native-gate/bin/mbse-desktop",
+    "build_receipt": "/workspace/build/builderbob/mbse-craft/layout-recovery-status-label/attempt-20261023T155039636307Z/RECEIPT.json",
+    "build_receipt_sha256": "aa6cb4c25f741e80789b5e1931772a46590ff22759915a4b261e318eb1309a93",
+    "run_dir": "/workspace/build/builderbob/mbse-craft/layout-recovery-status-label/native-gate/run-status-label",
+    "state_dir": "/workspace/build/builderbob/mbse-craft/layout-recovery-status-label/native-gate/state",
+    "config_dir": "/workspace/build/builderbob/mbse-craft/layout-recovery-status-label/native-gate/config",
+    "workflow": [
+      "actual Save model/views clean",
+      "edit ONLY layout; enable ordinary15second timer; no manual Recovery copy",
+      "verify actual unbound recovery bytes/geometry and updated bound-Save wording alongside recovery state",
+      "Save pair and close normally; exact cleanup"
+    ],
+    "runtime_budget_seconds": 600,
+    "isolation": "Existing reviewed aa-exec builderbob-codex/bwrap unshare-net/private tmp, exclusive fresh run directory, Xvfb displayfd, ephemeral0600Xauthority. r09 simultaneous isolated renderer scope; no global slot reservation.",
+    "native_admission": "Fresh exact-job packet and explicit action allocation pin current independent host identity before Xvfb/app launch",
+    "compiler": false,
+    "uploads": false,
+    "new_agent_contexts": false,
+    "base_qualified_tests": 71
+  },
+  "route": {
+    "profile": "mbse-craft.private-native-route/1",
+    "native_job_sha256": "30807a94befa898bc2ab0b7a61e1b3b6d40ef7692d3774f728a4119779f7ba3b",
+    "driver": "/workspace/build/builderbob/mbse-craft/layout-recovery-status-label/native-gate/driver.py",
+    "driver_sha256": "9f17f8eee6da87204d4cc2d024b612cfe8b7e6044fc22465ad5ac25674e63a7d",
+    "run_dir": "/workspace/build/builderbob/mbse-craft/layout-recovery-status-label/native-gate/run-status-label",
+    "state_dir": "/workspace/build/builderbob/mbse-craft/layout-recovery-status-label/native-gate/state",
+    "config_dir": "/workspace/build/builderbob/mbse-craft/layout-recovery-status-label/native-gate/config",
+    "screen": "2400x1800x24",
+    "dpi": 96,
+    "display_protocol": "private Xvfb displayfd, no ambient DISPLAY",
+    "authentication": "per-run0600cookie removed by owned cleanup; cookie never logged",
+    "actual_input": "XTest keyboard/pointer, pointer down/move/up for held gesture",
+    "compiler": false,
+    "uploads": false,
+    "runtime_budget_seconds": 600
+  },
+  "launcher_sha256": "203ca1e45041e2281bca56b95702926a66f377a6bdbf44ed7f7b313039e28989",
+  "allocation": {
+    "owner_thread_id": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+    "job_manifest_sha256": "30807a94befa898bc2ab0b7a61e1b3b6d40ef7692d3774f728a4119779f7ba3b",
+    "renderer_allocated": true,
+    "native_launch_authorized": true,
+    "expected_appserver_identity": {
+      "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+      "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+      "pid": 1072280,
+      "pid_namespace": "pid:[4026531836]",
+      "start_ticks": 14235850,
+      "uid": 1000
+    },
+    "authority": "Authorized small status wording native check; coordinator exact-job health and workflow direction",
+    "isolation": "Exclusive new private run/status display/auth; previous exact owned identities absent, no other MBSE renderer",
+    "compiler_allocated": false,
+    "uploads": false
+  },
+  "health": {
+    "schema": "builderbob.job-bound-health/1",
+    "checked_utc": "2026-10-23T15:54:51.1777837+00:00",
+    "owner_thread_id": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+    "job_label": "MBSE status label native visual check exact998b2b4b binary",
+    "expected_job_manifest_sha256": "30807a94befa898bc2ab0b7a61e1b3b6d40ef7692d3774f728a4119779f7ba3b",
+    "job_hash_verification": "Caller supplies frozen SHA; existing owner must verify actual manifest/source and scoped permission at action time. This checker does not access the remote job.",
+    "resource_admission": "PASS",
+    "expires_utc": "2026-10-23T15:56:39.1875480+00:00",
+    "sample_age_seconds": 12.0,
+    "watchdog_age_seconds": 40.4,
+    "watchdog_identity_matches": true,
+    "health": {
+      "schema": "builderbob.fd-watch-health/1",
+      "checked_utc": "2026-10-23T15:54:51.1418312+00:00",
+      "observation_route": "AVAILABLE",
+      "observer_pid": 15648,
+      "exact_process_start_matches": true,
+      "status_pid_matches": true,
+      "observer_state": "RUNNING",
+      "completed_samples": 68,
+      "planned_samples": 1440,
+      "planned_last_sample_utc": "2026-10-24T14:46:36.5991315+00:00",
+      "monitor_status": "OK",
+      "reasons": [],
+      "trend_matches_latest_observation": true,
+      "growth_fds_per_minute": 0.0,
+      "recent_peak_positive_fds_per_minute": 39,
+      "forecast_seconds_to_90_percent_with_64_fd_reserve": 887.0,
+      "heartbeat_age_seconds": 14.2,
+      "successful_sample_age_seconds": 12.0,
+      "latest_observation": {
+        "fd_count": 281,
+        "fd_types": {
+          "anon_inode": 9,
+          "file_or_device": 63,
+          "pidfd": 36,
+          "pipe": 108,
+          "socket": 65
+        },
+        "hard_nofile": 1048576,
+        "headroom": 743,
+        "identity": {
+          "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+          "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+          "pid": 1072280,
+          "pid_namespace": "pid:[4026531836]",
+          "start_ticks": 14235850,
+          "uid": 1000
+        },
+        "max_fd": 307,
+        "mutations": false,
+        "occupied_below_soft": 281,
+        "pidfd_targets": {
+          "live": 36
+        },
+        "schema": "builderbob.fd-observation/1",
+        "soft_nofile": 1024,
+        "status": "OK",
+        "thresholds": {
+          "critical_free_fds": 64,
+          "critical_percent": 90,
+          "warning_free_fds": 128,
+          "warning_percent": 80
+        },
+        "used_percent": 27.44140625,
+        "utc": "2026-10-23T11:54:39.187548-04:00"
+      },
+      "log_path": "C:\\Users\\colet\\Documents\\Codex\\2026-10-22\\task-16\\evidence\\FD-WATCH-20261023T144736Z.jsonl",
+      "alert_path": "C:\\Users\\colet\\Documents\\Codex\\2026-10-22\\task-16\\evidence\\FD-ALERTS-20261023T144736Z.jsonl",
+      "automatic_remediation": false
+    },
+    "watchdog": {
+      "checked_utc": "2026-10-23T15:54:10.7861468+00:00",
+      "decision": {
+        "level": "OK",
+        "hold_new_launches": false,
+        "reasons": [],
+        "seconds_to_observer_end": 82345.8,
+        "automatic_remediation": false
+      },
+      "console_window_handle": 0,
+      "notification_hold": false
+    },
+    "permission_or_job_allocation_granted": false,
+    "remote_commands_executed": 0,
+    "target_launches": 0,
+    "automatic_remediation": false
+  },
+  "command": [
+    "/usr/bin/python3",
+    "-B",
+    "/workspace/build/builderbob/mbse-craft/layout-recovery-status-label/native-gate/driver.py",
+    "--dpi",
+    "96",
+    "--exe",
+    "/workspace/build/builderbob/mbse-craft/layout-recovery-status-label/native-gate/bin/mbse-desktop",
+    "--run-dir",
+    "/workspace/build/builderbob/mbse-craft/layout-recovery-status-label/native-gate/run-status-label",
+    "--state-dir",
+    "/workspace/build/builderbob/mbse-craft/layout-recovery-status-label/native-gate/state",
+    "--config-dir",
+    "/workspace/build/builderbob/mbse-craft/layout-recovery-status-label/native-gate/config"
+  ],
+  "launcher_identity": {
+    "pid": 1114999,
+    "start_ticks": 14528620,
+    "uid": 1000,
+    "exe": "/usr/bin/python3.12",
+    "pid_namespace": "pid:[4026531836]",
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+  },
+  "executable_copy": "/workspace/build/builderbob/mbse-craft/layout-recovery-status-label/native-gate/bin/mbse-desktop",
+  "executable_copy_sha256": "998b2b4b81e3f2fcc109e4bd43b482671ea234d6b6172e7ad994a950a3a7d731",
+  "compiler": false,
+  "uploads": false,
+  "driver_identity": {
+    "pid": 1115002,
+    "start_ticks": 14528730,
+    "uid": 1000,
+    "exe": "/usr/bin/python3.12",
+    "pid_namespace": "pid:[4026531836]",
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+  },
+  "driver_exit_code": 0,
+  "ended_utc": "2026-10-23T15:57:21.137984+00:00",
+  "executable_sha256_after": "998b2b4b81e3f2fcc109e4bd43b482671ea234d6b6172e7ad994a950a3a7d731",
+  "driver_after_wait": {
+    "owned": {
+      "pid": 1115002,
+      "start_ticks": 14528730,
+      "uid": 1000,
+      "exe": "/usr/bin/python3.12",
+      "pid_namespace": "pid:[4026531836]",
+      "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+    },
+    "original_identity_absent": true
+  }
+}

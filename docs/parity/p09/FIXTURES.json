@@ -1,0 +1,10 @@
+{
+  "qualification": "Original synthetic native document emitted through prior actual Session path; raw9e/accepted95/2.5km; immutable input, no engineering acceptance",
+  "files": [
+    {
+      "path": "docs/parity/p09/fixtures/original.kernspan",
+      "sha256": "eefc3606af8a0e31bf8a513f942fc9bbe5122fb1417c5c98789af941cbc1c1fd",
+      "origin": "docs/parity/p08/fixtures/original.kernspan"
+    }
+  ]
+}

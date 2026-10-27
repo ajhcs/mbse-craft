@@ -1,0 +1,7 @@
+{
+  "checked_utc": "2026-10-23T17:10:53.758659+00:00",
+  "native_sha256": "3f8810d18b21dea3fe2dae87b80fc3e1d06e790f3f5f54b456f4782edc8f9e9e",
+  "views_sha256": "1b1e90bd6a1b7cc367b29859eb67acfac99e6d90c0a94a6ca3661be32e8ad799",
+  "unchanged_from_initial_save": true,
+  "actual_sample": "after all navigation/stale/refresh interactions and before intentional finalSave"
+}

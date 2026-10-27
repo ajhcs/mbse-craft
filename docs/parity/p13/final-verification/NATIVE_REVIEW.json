@@ -1,0 +1,23 @@
+{
+  "schema": "mbse-craft.p13-final-native-review/1",
+  "reviewer": "Codex, same implementing/reviewing agent",
+  "independent_review": false,
+  "raw_receipt_status": "actions_completed_review_pending",
+  "result": "final_candidate_bounded_live_flow_passed",
+  "native_runs": 1,
+  "action_errors": 0,
+  "pixels_reviewed": [
+    "native/run/05-final-native-and-views-exact.png"
+  ],
+  "observations": [
+    "Explicit chooser Cancel and actual empty/indeterminate remain distinct on final binary",
+    "Chooser Save writes exact native snapshot and views; missing background read fails preserving originals",
+    "Successful background Open and exact persisted views reopen retain selected1003/raw9e/accepted95metre/2.5km",
+    "Normal app/display exit with exact owned process and authentication cleanup"
+  ],
+  "limits": [
+    "Same-agent Linux private display; no OS picker, independent/full-platform/domain acceptance",
+    "Queued text and Cancel-release races qualified by two actual egui frame controller tests, not a fabricated native timing test",
+    "Earlier389/390 candidate receipts and one initial native harness error retained separately; totals are not summed"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "raw_status": "active",
+  "normal_exit_claimed": false,
+  "interrupted_driver_cleanup": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-01/run",
+      "normal_app_exit_claimed": false,
+      "driver_exit": 0
+    }
+  ],
+  "owned_processes": [
+    {
+      "role": "app_pid",
+      "pid": 3819671,
+      "start_ticks": 41843369,
+      "owned_identity_absent": true
+    },
+    {
+      "role": "server_pid",
+      "pid": 3819666,
+      "start_ticks": 41843364,
+      "owned_identity_absent": true
+    }
+  ],
+  "authentication_files_absent": true,
+  "qualification": "partial failed native attempt; first model/save pair not qualified; no passed status substituted"
+}

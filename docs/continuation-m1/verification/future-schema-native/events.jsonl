@@ -1,0 +1,8 @@
+{"ready": true, "app_pid": 617685, "server_pid": 617682, "window": 4194307, "binary_sha256": "10661ca605880be1f1071e1d6fca0a91a1ce386dddc393fd743dd83f95ff9bbd"}
+{"op": "capture", "name": "future-schema-startup-warning", "ui_sha256": "9c19471ed02091f257f4240fa485ccaaafb19130fb98f2c9d0d8c0d1dfe4ef6b", "sha256": "2961c0d94f196e4570bdddeb82706e5311a6c3834e35eeefeda37e91aeda1660", "app_returncode": null}
+{"op": "click", "widget": "settings:Open", "x": 994, "y": 12, "app_returncode": null}
+{"op": "click", "widget": "settings:periodic", "x": 103, "y": 89, "app_returncode": null}
+{"op": "capture", "name": "future-schema-session-only", "ui_sha256": "bb374f2059f01bbfc8ec5ce56ad6908bd63750c9e9030a9c4ce68950bbef77ed", "sha256": "7ccc999c404031d85df2112fdec34817099ebbe6baa2a73b7c11e42cc066fc50", "app_returncode": null}
+{"op": "click", "x": 478, "y": 33, "app_returncode": null}
+{"op": "close", "app_returncode": null}
+{"op": "click", "widget": "preserve:Keep recovery and continue", "pause": 2, "x": 107, "y": 168, "app_returncode": 0}

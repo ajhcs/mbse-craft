@@ -1,0 +1,70 @@
+{
+  "profile": "mbse-craft.native-views/1",
+  "sidecar_id": "views:instance:stage1-session-sL9Mtp",
+  "document_id": "document:session:stage1-session-sL9Mtp",
+  "binding": {
+    "document_id": "document:session:stage1-session-sL9Mtp",
+    "artifact_sha256": "cb8676cdb6ca6d45e03e869f4a32a84454a02511a5072b2294a6d308e220a0fc",
+    "snapshot_sha256": "bc5bda1538ddc471150bde5d6f763175dea0719c986ec730c83e98e7d04dc6c2"
+  },
+  "revision": "1",
+  "next_id": "5",
+  "primary": "1",
+  "views": {
+    "1": {
+      "id": "1",
+      "title": "Primary canvas",
+      "camera": {
+        "x": 0.0,
+        "y": 0.0,
+        "zoom": 1.0
+      }
+    },
+    "2": {
+      "id": "2",
+      "title": "Review view",
+      "camera": {
+        "x": 0.0,
+        "y": 0.0,
+        "zoom": 1.0
+      }
+    }
+  },
+  "occurrences": {
+    "3": {
+      "id": "3",
+      "view": "1",
+      "record": "1",
+      "expected_kind": "System",
+      "geometry": {
+        "x": 25.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "4": {
+      "id": "4",
+      "view": "2",
+      "record": "1",
+      "expected_kind": "System",
+      "geometry": {
+        "x": 25.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    }
+  },
+  "edges": {}
+}

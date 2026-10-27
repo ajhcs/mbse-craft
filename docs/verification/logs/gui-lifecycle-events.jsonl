@@ -1,0 +1,14 @@
+{"ready": true, "app_pid": 450338, "server_pid": 450335, "window": 4194307, "binary_sha256": "a482e92e94fb111bc42efc5a47af3a83023e8f73e8f04945f3937e69a580b19d"}
+{"op": "capture", "name": "restored-independent-draft", "sha256": "bb6752265c152ca39e43764ba093b5f5aa137d1c5ed8e723355667d492bc2dee", "app_returncode": null}
+{"op": "click", "widget": "save-path", "x": 784, "y": 74, "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/evidence/gui-lifecycle/recovered.kernspan", "app_returncode": null}
+{"op": "click", "widget": "action:Save", "x": 503, "y": 12, "app_returncode": null}
+{"op": "click", "widget": "action:Recovery copy", "x": 575, "y": 12, "app_returncode": null}
+{"op": "scroll", "x": 250, "y": 850, "steps": 6, "app_returncode": null}
+{"op": "capture", "name": "restored-saved-result", "sha256": "14b89af1ebfd05ce47df505d1169345a79b4a0615b4693a801933d73d3d1e9b0", "app_returncode": null}
+{"op": "click", "widget": "field:301:calc.input.x1", "x": 168, "y": 625, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "3500", "app_returncode": null}
+{"op": "close", "app_returncode": null}
+{"op": "capture", "name": "close-prompts-preservation", "sha256": "a72691b1c69620d73c60db1303d1e5407b8118b9411283efdc0a8fc76febc7ec", "app_returncode": null}
+{"op": "click", "widget": "preserve:Keep recovery and continue", "pause": 2, "x": 107, "y": 168, "app_returncode": 0}

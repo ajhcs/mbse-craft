@@ -1,0 +1,99 @@
+{
+  "native_recovery_path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/state/stage1-session-Wnm61K/recovery.kernspan",
+  "native_recovery_sha256": "0e3bdbc9391a2833459497a390994d69bafe54a0628c5249e2bb911c83f9bfbc",
+  "native_document_id": "document:session:stage1-session-MI5pyy",
+  "native_before_recovery_load_sha256": "9b57ec7c061b6ca7468d7e2934a5eb9c6802bbb85659490191fb8685df077fe2",
+  "bound_views_sha256": "4b8cb23969f5f47aa175a55c2524b267bce725d764b91e0f5d85fed9a24c6c4b",
+  "next_presentation_id": "10",
+  "occurrences": {
+    "3": {
+      "id": "3",
+      "view": "1",
+      "record": "1",
+      "expected_kind": "System",
+      "geometry": {
+        "x": 25.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "4": {
+      "id": "4",
+      "view": "2",
+      "record": "1",
+      "expected_kind": "System",
+      "geometry": {
+        "x": 25.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "5": {
+      "id": "5",
+      "view": "1",
+      "record": "1000",
+      "expected_kind": "Mission",
+      "geometry": {
+        "x": 478.0,
+        "y": 98.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "6": {
+      "id": "6",
+      "view": "2",
+      "record": "1000",
+      "expected_kind": "Mission",
+      "geometry": {
+        "x": 319.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "9": {
+      "id": "9",
+      "view": "1",
+      "record": "1001",
+      "expected_kind": "Mission",
+      "geometry": {
+        "x": 613.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    }
+  },
+  "views_recovery_path": "/workspace/build/builderbob/mbse-craft/views-origin-paired-save/native-gate/state/views-recovery-session-stage1-session-Wnm61K-1.mbse-views.json",
+  "views_recovery_sha256": "e3d07cfe9457875b1975814f5b1b3776b5c226060e8673a566477c78ff8af990",
+  "views_recovery_binding": null,
+  "views_recovery_profile": "mbse-craft.native-views-recovery/1"
+}

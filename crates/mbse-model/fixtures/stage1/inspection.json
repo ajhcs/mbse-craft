@@ -1,0 +1,126 @@
+{
+  "schema": "kernspan.stage1.qa-fixture/1",
+  "qualification": "Illustrative synthetic inspection fixture; not Cole\u2019s mission, accepted engineering model, calculation or observed behavior.",
+  "basis_sha256": "8b21040c4e75ffbf4def7ac5ae88a1e9cfa459eac7282ed3d53b333ead66d6e6",
+  "records": [
+    {
+      "id": 1,
+      "type": "System",
+      "name": "Inspection support system",
+      "scope": 1,
+      "purpose": "Support reviewable inspection decisions."
+    },
+    {
+      "id": 100,
+      "type": "Mission",
+      "name": "Support dependable inspection decisions.",
+      "scope": 1,
+      "shortLabel": "Support inspection decisions"
+    },
+    {
+      "id": 200,
+      "type": "Capability",
+      "name": "Retain inspection outcomes",
+      "scope": 1,
+      "contributesTo": [
+        100
+      ]
+    },
+    {
+      "id": 300,
+      "type": "Objective",
+      "name": "Keep outcomes reviewable",
+      "scope": 1,
+      "subject": {
+        "kind": "Capability",
+        "id": 200
+      },
+      "outcome": "Keep each inspection outcome reviewable."
+    },
+    {
+      "id": 301,
+      "type": "Measure",
+      "name": "Recorded outcomes / inspected items",
+      "scope": 1,
+      "forObjective": 300,
+      "quantity": "dimensionless",
+      "unit": "percent",
+      "criterion": 95,
+      "comparator": "GreaterOrEqual",
+      "assessmentMethod": "Inspect retained reports",
+      "observations": [],
+      "conditions": "Staffed inspection shifts",
+      "uncertainty": "Coverage of missing records unknown"
+    },
+    {
+      "id": 400,
+      "type": "Stakeholder",
+      "name": "Operator",
+      "scope": 1,
+      "affiliations": {},
+      "actors": []
+    },
+    {
+      "id": 401,
+      "type": "Stakeholder",
+      "name": "Quality reviewer",
+      "scope": 1,
+      "affiliations": {
+        "900": "Internal"
+      },
+      "actors": []
+    },
+    {
+      "id": 500,
+      "type": "Expectation",
+      "name": "Reviewer expectation",
+      "scope": 1,
+      "expressedBy": 401,
+      "concernsSystem": 1,
+      "text": "Find the recorded outcome and evidence."
+    },
+    {
+      "id": 600,
+      "type": "Environment",
+      "name": "Staffed inspection bench",
+      "scope": 1,
+      "context": [
+        {
+          "id": 601,
+          "type": "Context",
+          "name": "Operating context",
+          "scope": 1,
+          "kind": "Description",
+          "text": "Inspection bench during staffed shifts."
+        },
+        {
+          "id": 602,
+          "type": "Context",
+          "name": "Reviewer assumption",
+          "scope": 1,
+          "kind": "Assumption",
+          "text": "A reviewer is available during the shift."
+        }
+      ],
+      "inputs": []
+    },
+    {
+      "id": 900,
+      "type": "Organization",
+      "name": "Operating organization",
+      "scope": 1
+    }
+  ],
+  "rawDrafts": [
+    {
+      "recordId": 301,
+      "field": "criterion",
+      "rawText": "9e",
+      "validity": "incomplete",
+      "acceptedNumeric": 95,
+      "comparator": "GreaterOrEqual",
+      "unitId": "percent",
+      "source": "C14 criterionValue95 then retainedRaw9e in scene_snapshot"
+    }
+  ]
+}

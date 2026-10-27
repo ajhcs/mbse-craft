@@ -1,0 +1,25 @@
+{
+  "memberships": [
+    [
+      "1000",
+      "1"
+    ],
+    [
+      "1001",
+      "2"
+    ]
+  ],
+  "mission_ids": [
+    "1000",
+    "1001"
+  ],
+  "native_sha256": "e449ee6a15b9586c4e6e09c8cca68b6700da101d7568b3e6f32d9d4f1580ad17",
+  "path": "/workspace/build/builderbob/mbse-craft/native-system-browser/fixture/two-systems.kernspan",
+  "qualification": "Public synthetic QA fixture; no engineering acceptance or in-product System creation claim",
+  "snapshot_sha256": "174ec2d63bb687a2be720f67c9a3b379f32a943fa9663fcb6ee6a86ce72dff3f",
+  "status": "WrittenThroughExistingCheckedSessionSave",
+  "system_ids": [
+    "1",
+    "2"
+  ]
+}

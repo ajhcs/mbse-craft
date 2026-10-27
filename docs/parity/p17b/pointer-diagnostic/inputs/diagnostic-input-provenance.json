@@ -1,0 +1,6 @@
+{
+  "live_document_sha256": "be602fbab04a8938b0912a34b429e924ea2f7f661d64b6b0819988a25e1c4caa",
+  "recorded_live_document_sha256": "be602fbab04a8938b0912a34b429e924ea2f7f661d64b6b0819988a25e1c4caa",
+  "derivation": "Exact live document reconstructed from immutable core fixture plus actual UI port/revision/allocator audit; digest equals recorded live document. Diagnostic input changes profile to unbound recovery/3 and clears historical binding; no saved/native checkpoint authority claimed.",
+  "prepared_native": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-01/run/prepared-port-pair.kernspan"
+}

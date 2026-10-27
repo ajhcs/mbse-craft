@@ -1,0 +1,1 @@
+Initial invocation rejected before output directory or application launch: scripts/m1_native_session.py hash copied from P10 historical job differed from current merged source. Historical request retained; new job hashes current unchanged merged scripts. No action or native PASS claimed for the rejected invocation.

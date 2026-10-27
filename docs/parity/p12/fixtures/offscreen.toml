@@ -1,0 +1,6 @@
+schema_version = 1
+# P12 original note
+periodic_recovery = false
+recovery_interval_seconds = 42
+future_key = "retained"
+workspace_layout = "{\"version\":1,\"layout\":{\"root\":{\"Split\":{\"axis\":\"Horizontal\",\"size\":{\"FixedFirst\":340.0},\"first\":{\"Tabs\":{\"panels\":[\"browser\"],\"active\":0}},\"second\":{\"Tabs\":{\"panels\":[\"canvas\"],\"active\":0}}}},\"floating\":[{\"panels\":[\"inspector\"],\"active\":0,\"rect\":[90000.0,-90000.0,540.0,850.0]}]}}"

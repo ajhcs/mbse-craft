@@ -1,0 +1,30 @@
+{
+  "schema": "mbse-craft.p16-native-review/1",
+  "reviewer": "Codex, same implementing agent",
+  "independent_review": false,
+  "result": "bounded_P16_scenarios_passed",
+  "raw_receipt_status": "actions_completed_review_pending",
+  "native_runs": 3,
+  "action_errors": 0,
+  "pixels_reviewed": [
+    "native/run/03-cycle-refused-and-raw-retained.png",
+    "native/run/07-browser-membership-containment-reference-separated.png",
+    "native/browser-remainder/11-browser-scrolled-part-reference-and-system-membership.png"
+  ],
+  "observations": [
+    "Parts1009/1010 target Component1007 with distinct IDs; Reference1011 targets Component1004 without containment",
+    "Converting reverse reference to Part creates a cycle and disables Apply; using Real value1005 as target also refuses with accepted data/model revision unchanged",
+    "Move Part1009 from Component1004 to1008 retains ID/target; Undo/Redo retain newer invalid target1007? form",
+    "Native Save/cold app restores exact usages, current invalid usage journal, original P15 property/form, core records/raw9e/95metre/2.5km/creation journal and exact views hash",
+    "Browser visible rows explicitly distinguish member of System1, Part containment, Reference not containment; third run completes previously clipped lower-row pixel check only",
+    "Three normal exits and exact owned-process/authentication cleanup"
+  ],
+  "limits": [
+    "Same-agent Linux synthetic bounded evidence; no independent/full-platform/domain/full NoMagic/Craft claim",
+    "Component-definition-owned usages with same-System targets; no instance configuration, ports, connectors or typed occurrence diagram claim",
+    "One current usage form; New/Edit explicitly replaces it. Existing per-property and definition journals remain separate",
+    "Linux font renders the arrow separator as a placeholder; relation words and exact owner/target IDs remain visible; full font/platform acceptance remains open"
+  ],
+  "input_fidelity_erratum": "../../p17a/INPUT_FIDELITY_ERRATUM.md",
+  "invalid_question_mark_native_claims_withdrawn": "Actual old driver input omitted trailing question mark. Original audits/events/saved files unchanged. Exact invalid-form native evidence is qualified separately in p17a/exact-draft-verification/REVIEW.json on a reviewed descendant binary. Other refusal/identity/core-data checks retain original scope."
+}

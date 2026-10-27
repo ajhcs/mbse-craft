@@ -1,0 +1,93 @@
+{
+  "profile": "mbse-craft.native-camera-controls-job/1",
+  "status": "PreparedNotLaunched",
+  "owner_thread": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+  "cwd": "/workspace/worktrees/builderbob/mbse-craft/native-camera-controls",
+  "branch": "feature/native-camera-controls",
+  "source_commit": "2425208da6758b734193fdbdc93642b4482df325",
+  "source_sha256": "9a1b92eca6d06f8dc25bcd542c0b70cf69428b44d9e4211c140d6b235b4211bd",
+  "source_manifest": "/workspace/build/builderbob/mbse-craft/native-camera-controls/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "2e7c5f0ef7ee23000de6e35cc61fa6f427a17244a93dd19be4a316a52f9ef198",
+  "cargo_lock_sha256": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-model",
+      "native_views",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop",
+      "views_ui::tests",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop",
+      "ui::policies",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/semantic-v2/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/semantic-v2/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "CARGO_TERM_COLOR": "never",
+    "RUST_TEST_THREADS": "1"
+  },
+  "binary_source": "/workspace/build/builderbob/mbse-craft/semantic-v2/target/debug/mbse-desktop",
+  "disk_budget": {
+    "target_apparent_bytes_before": 5805647217,
+    "workspace_available_bytes_at_preparation": 62422396928,
+    "planned_additional_bytes": 1073741824,
+    "minimum_free_bytes_before_launch": 2147483648,
+    "preserved_binary_max_bytes": 536870912,
+    "prior_native_binary_bytes": 398406064,
+    "notes": "Existing shared MBSE single-writer target plus one bounded binary; no target duplication or cleanup. No enforced filesystem quota."
+  },
+  "admission": "Fresh exact-job packet plus explicit same-target sole-writer action allocation required. Allocation must independently pin current host appserver identity; no stale993990 assumption or substitute resource probe.",
+  "target_isolation": "This integrator is sole candidate/target writer; historical exact-owned jobs checked absent in current executor namespace. New host visibility/restart health must be reconciled by coordinator. No idle global mutex.",
+  "gui": false,
+  "uploads": false,
+  "new_agent_contexts": false,
+  "independent_review": "Existing independentactualsource reviewer closedclean2425208 withoutmaterialblocker; UIgesturestates require actualnativeevidence ifclaimed.",
+  "timeout": "No hard timeout in prior reviewed wait-based wrapper; expected bounded incremental work, do not assert estimate as timeout.",
+  "scope": "M2B CAT011/CAP019 active-view zoom/pan/reset usingexistingCamera/Layout/v1history+preservation; samefinitebounds centralized, no native/model/wirefield change.",
+  "expected_tests_unrun": {
+    "native_views_related": 49,
+    "desktop_views": 30,
+    "desktop_policies": 6,
+    "total": 85
+  },
+  "new_tests_authored": 7
+}

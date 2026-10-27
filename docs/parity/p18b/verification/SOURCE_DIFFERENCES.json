@@ -1,0 +1,7 @@
+{
+  "full_to_final_changed_files": [
+    "crates/mbse-desktop/src/ui.rs",
+    "crates/mbse-desktop/src/ui_connector_routes.rs"
+  ],
+  "model_schema_history_io_identical": true
+}

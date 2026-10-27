@@ -1,0 +1,22 @@
+{"ready": true, "app_pid": 647980, "server_pid": 647977, "window": 4194307, "binary_sha256": "8e6e268edc2ba381059290fbc4ad569a1c6c668a7a3a911782d0324cd9664b81"}
+{"op": "click", "widget": "action:Requirements and evidence", "x": 1047, "y": 12, "app_returncode": null}
+{"op": "click", "widget": "assurance:path", "x": 249, "y": 115, "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/m1/state/assurance-global-data/global-register.json", "app_returncode": null}
+{"op": "click", "widget": "assurance:Open", "pause": 2, "x": 442, "y": 115, "app_returncode": null}
+{"op": "click", "widget": "assurance:calculation", "x": 204, "y": 511, "app_returncode": null}
+{"op": "text", "text": "1004", "app_returncode": null}
+{"op": "click", "widget": "assurance:Evaluate", "pause": 2, "x": 336, "y": 511, "app_returncode": null}
+{"op": "scroll", "x": 1090, "y": 780, "steps": 5, "app_returncode": null}
+{"op": "click", "widget": "assurance:reviewer", "x": 225, "y": 741, "app_returncode": null}
+{"op": "text", "text": "Synthetic QA", "app_returncode": null}
+{"op": "click", "widget": "assurance:decision-rationale", "x": 627, "y": 741, "app_returncode": null}
+{"op": "text", "text": "Selected failing peer negative gate", "app_returncode": null}
+{"op": "click", "widget": "assurance:Review adequate", "pause": 1, "x": 76, "y": 768, "app_returncode": null}
+{"op": "click", "widget": "assurance:Record CompletedPassed", "pause": 1, "x": 709, "y": 794, "app_returncode": null}
+{"op": "scroll", "x": 1090, "y": 300, "steps": -9, "app_returncode": null}
+{"op": "capture", "name": "selected-failed-peer-pass-refused", "ui_sha256": "3197950a62d375bd41aa3491931761746c19c73c3eecac9d1194c0c13d73ec13", "sha256": "f3cbe20577bb465e7f360b2a2b8257cdaaf886b3bb65b319cc8e270caef5cf19", "app_returncode": null}
+{"op": "click", "widget": "assurance:path", "x": 249, "y": 115, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/m1/state/assurance-global-data/failed-peer-register.json", "app_returncode": null}
+{"op": "click", "widget": "assurance:Save fresh", "pause": 2, "x": 636, "y": 115, "app_returncode": null}
+{"op": "close", "pause": 2, "app_returncode": 0}

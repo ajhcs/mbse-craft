@@ -1,0 +1,37 @@
+[
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m7-p39b-source-adapter/docs/parity/p39b/JOB.json",
+    "path": "compiler-01/JOB.json",
+    "bytes": 3541,
+    "sha256": "d375c55eeb4ff5d414b22fa60fa9232295a8f5445fafdc95ca50b898649e2793",
+    "stored_sha256": "d375c55eeb4ff5d414b22fa60fa9232295a8f5445fafdc95ca50b898649e2793"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m7-p39b-source-adapter/work/p39b-01.json",
+    "path": "compiler-01/RECEIPT.json",
+    "bytes": 95988,
+    "sha256": "7708939f24e98cb5b05fbff46a084b6332d12a2adf9ae57380881ed367e2128e",
+    "stored_sha256": "7708939f24e98cb5b05fbff46a084b6332d12a2adf9ae57380881ed367e2128e"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m7-p39b-strict-whole-member-source-adapter-01-20261027T163755Z/00.log",
+    "path": "compiler-01/00.log.gz",
+    "bytes": 105824,
+    "sha256": "22f0820d1c03ea5691d2dfdeeea7e72f216c88df0f31085119a299b2a39ee4dc",
+    "stored_sha256": "d1fb02b8f436012c404792d8f95827606550ebb0a56594403fb8e94be79962ea"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m7-p39b-strict-whole-member-source-adapter-01-20261027T163755Z/01.log",
+    "path": "compiler-01/01.log.gz",
+    "bytes": 2685,
+    "sha256": "090fc0fd9d0db7231e923b84de22fc2cec319e10ff4dc31ddd3d8fbf96ab0e79",
+    "stored_sha256": "895929f943854fb55a1d1872a562e59084604ba9b50c63c6f3a6bdab135f0d86"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m7-p39b-strict-whole-member-source-adapter-01-20261027T163755Z/02.log",
+    "path": "compiler-01/02.log.gz",
+    "bytes": 5485,
+    "sha256": "c6fcbeb938f5b7c4295aab6d66b250355f5abbcf26a997dbc47057f12475b224",
+    "stored_sha256": "63435fd87d7f0655b8819bd45f3d57eeba6ab72b11a4a8a255127e47a75dcf58"
+  }
+]

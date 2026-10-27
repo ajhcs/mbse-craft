@@ -1,0 +1,51 @@
+[
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/review-p30a/work/p30a-review-04.json",
+    "path": "compiler-04/RECEIPT.json",
+    "bytes": 5553,
+    "sha256": "816f6cf12a3d9ea051c9b47503cab145d844c61ee711d72c25d90bf0534e390c",
+    "stored_sha256": "816f6cf12a3d9ea051c9b47503cab145d844c61ee711d72c25d90bf0534e390c"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p30a-review-deletion-repro-04-20261027T045835Z/00.log",
+    "path": "compiler-04/00.log.gz",
+    "bytes": 4354,
+    "sha256": "0b0665c701383b3b61afc1964c4a2ae474ce20ab2e2afce94a38f0be30727d45",
+    "stored_sha256": "1ca77062085791eccdc0eadc25fa7d3b87a5c515a8362263c46095992142c16e"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/review-p30a/work/p30a-review-05.json",
+    "path": "compiler-05/RECEIPT.json",
+    "bytes": 5553,
+    "sha256": "671db99f4b8717f156c35542a328d7fe0bd8aa04af94b70fbc14c058e44768a3",
+    "stored_sha256": "671db99f4b8717f156c35542a328d7fe0bd8aa04af94b70fbc14c058e44768a3"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p30a-review-deletion-repro-05-20261027T045929Z/00.log",
+    "path": "compiler-05/00.log.gz",
+    "bytes": 2638,
+    "sha256": "cbf81cb956a2b5d352c0293c159f3017ac82da8c49d95351cfeff8eab225fc9c",
+    "stored_sha256": "9dda1a1765a710c71bb33698a8154657c0e45789d4e3231920c6dea7f4cc39cd"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/review-p30a/work/p30a-review-06.json",
+    "path": "compiler-06/RECEIPT.json",
+    "bytes": 10832,
+    "sha256": "c1f37a4707e3c2b09322cd02642abcbba5d140d06731cd7553267ba47b3783ab",
+    "stored_sha256": "c1f37a4707e3c2b09322cd02642abcbba5d140d06731cd7553267ba47b3783ab"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p30a-review-deletion-disclosure-06-20261027T050018Z/00.log",
+    "path": "compiler-06/00.log.gz",
+    "bytes": 15359,
+    "sha256": "59683fbdbf2d977d74d8fbe70da099d5eb0d157c9da59ffd45fb8e297a46f4e0",
+    "stored_sha256": "d1bccf81b274e12b354309c1efd1fa54e0d89dba3d8a984da15edef07072ca6d"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p30a-review-deletion-disclosure-06-20261027T050018Z/01.log",
+    "path": "compiler-06/01.log.gz",
+    "bytes": 3779,
+    "sha256": "4db29364c9c91e0d691e2c2c90235dd1b5f3f4aa08f4b85b8751053e81a16653",
+    "stored_sha256": "cf4b14fa289e25d90f354b1bb1fdc662262a09ac425266d33e59b4cdd80d4375"
+  }
+]

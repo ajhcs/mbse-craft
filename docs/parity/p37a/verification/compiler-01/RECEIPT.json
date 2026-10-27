@@ -1,0 +1,206 @@
+{
+  "schema": "mbse-craft.m1-local-job-receipt/1",
+  "job_sha256": "dccbd5fad70ae028d084a46c23667eef979aac595ef73be7a99699c8788489a5",
+  "started_utc": "2026-10-27T14:06:46.076107+00:00",
+  "status": "failed",
+  "commands": [
+    {
+      "index": 0,
+      "argv": [
+        "bash",
+        "scripts/dev.sh",
+        "test",
+        "--locked",
+        "--offline",
+        "--workspace"
+      ],
+      "started_utc": "2026-10-27T14:06:46.162184+00:00",
+      "preflight": {
+        "schema": "mbse-craft.builderbob-local-preflight/1",
+        "checked_utc": "2026-10-27T14:06:46.162143+00:00",
+        "uid": 1000,
+        "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+        "pid_namespace": "pid:[4026531836]",
+        "workspace": {
+          "detail": "",
+          "device": {
+            "device": "/dev/nvme0n1p1",
+            "major_minor": "259:1",
+            "model": "Samsung SSD 990 PRO 2TB",
+            "parent": "nvme0n1",
+            "partition": "nvme0n1p1",
+            "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+            "serial": "S7L9NS0L303989X",
+            "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+            "wwn": "eui.00253843614122d4"
+          },
+          "mount": {
+            "fstype": "ext4",
+            "major_minor": "259:1",
+            "mount_id": "50",
+            "options": [
+              "nodev",
+              "nosuid",
+              "relatime",
+              "rw"
+            ],
+            "root": "/",
+            "source": "/dev/nvme0n1p1",
+            "target": "/workspace"
+          },
+          "operation": "workspace-status",
+          "outcome": "ok",
+          "policy_ref": "builderbob-operator-amendment-1",
+          "reason": "OK",
+          "schema": "bob-admin-result-v1",
+          "target": "/workspace",
+          "version": "builderbob-autonomy-v1.1-candidate"
+        },
+        "free_workspace_bytes": 1347822538752,
+        "available_memory_bytes": 27382255616,
+        "conflicting_processes": [],
+        "other_project_compilers": [],
+        "appservers": [
+          {
+            "pid": 992508,
+            "start_ticks": 48052886,
+            "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+            "soft_nofile": 1024,
+            "fd_count": 11
+          },
+          {
+            "pid": 2062133,
+            "start_ticks": 33243439,
+            "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+            "soft_nofile": 1024,
+            "fd_count": 527
+          }
+        ],
+        "observer_started": false,
+        "original_observer_admission_claimed": false
+      },
+      "log": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p37a-explicit-scoped-model-trace-metrics-01-20261027T140646Z/00.log",
+      "pid": 1163369,
+      "start_ticks": 48435704,
+      "exit_code": 101,
+      "ended_utc": "2026-10-27T14:08:11.082181+00:00",
+      "log_sha256": "2e03e6f734bb3fdd97b5d84208c2a5d1e594f5a83c355114a6f111c6dbc14991",
+      "passed_tests": [
+        "aggregate_and_encoded_evidence_budgets_refuse_atomically_and_leave_register_usable",
+        "canonical_context_metadata_and_fixed_engine_limits_survive_save_reopen",
+        "every_freshness_dimension_and_incomplete_raw_refuses_pass",
+        "exact_native_source_anchor_requires_relink_after_native_raw_or_model_changes",
+        "failed_unsupported_and_changed_local_artifacts_cannot_pass",
+        "lifecycle_dimensions_independent_and_calculation_result_is_not_approval",
+        "raw_9e_invalidates_delayed_evidence_and_audit_records_survive_later_reviews_and_undo",
+        "saved_history_identity_admission_and_high_water_survive_undone_objects",
+        "serialized_stamps_and_coordinated_output_tampering_never_mint_native_authenticity",
+        "undo_audit_merge_and_creation_draft_cannot_trap_register_over_budget",
+        "unknown_metadata_invalid_raw_and_source_units_survive_native_sidecar_reopen",
+        "unrecognized_typed_sibling_fields_refuse_instead_of_disappearing_on_reopen",
+        "unrelated_global_failure_is_retained_while_selected_quantity_remains_successful",
+        "coverage_query_has_explicit_evidence_and_unknown_detail_budgets",
+        "dependency_context_and_stale_reasons_survive_save_cold_open_without_runtime_authentication",
+        "dependency_hash_format_refuses_without_changing_original_import_bytes",
+        "detached_native_link_never_counts_as_satisfaction_or_retargets_by_id",
+        "exact_missing_link_and_isolated_requirement_ids_do_not_confuse_dependency_kinds",
+        "legacy_evidence_without_context_is_not_silently_qualified_after_dependencies_are_added",
+        "query_is_read_only_and_exact_stamp_detects_same_revision_different_register",
+        "supplier_change_stales_consumer_evidence_without_rewriting_consumer_or_old_receipt",
+        "transitive_supplier_parent_and_cycle_context_are_iterative_and_conservative",
+        "unknown_register_native_and_anchor_locations_are_disclosed_and_retained",
+        "custom_rule_grammar_rejects_unsupported_code_fields_duplicate_ids_and_limits",
+        "custom_run_stable_exact_requirement_location_is_read_only_and_missing_scope_disclosed",
+        "custom_suite_requires_explicit_exact_proposal_review_and_refuses_changed_source",
+        "duplicate_identifier_copy_slave_and_invalid_statement_fixes_refuse_without_raw_or_history_change",
+        "fix_proof_rejects_new_raw_same_counters_new_runtime_and_allows_selection_only",
+        "literal_fix_preview_apply_and_single_undo_redo_preserve_native_opaque_and_lifecycle",
+        "pending_target_draft_refuses_fix_and_master_copy_propagation_is_fully_previewed",
+        "saved_custom_data_stays_inert_cold_and_cannot_restore_review_or_fix_authority",
+        "atomic_child_identity_parent_and_preorder_have_independent_initial_states",
+        "deep_hierarchy_and_cycle_check_are_iterative_and_preserve_budget_limits",
+        "duplicate_or_invalid_id_state_never_overwrites_existing_records",
+        "exact_user_identifiers_duplicate_refusal_and_rename_keep_stable_local_links",
+        "failed_child_admission_and_parent_raw_limits_do_not_allocate_or_clear_work",
+        "invalid_parent_statement_and_new_statement_drafts_survive_atomic_save_cold_open",
+        "legacy_unset_identifiers_round_trip_and_invalid_identifier_drafts_keep_accepted_value",
+        "moving_subtree_and_promoting_root_are_atomic_register_history_edits",
+        "reader_refuses_duplicate_json_id_aliases_missing_parent_and_cycles_without_relabeling",
+        "reader_rejects_duplicate_user_identifiers_and_forged_identifier_validity",
+        "reparenting_stales_existing_requirement_evidence_without_status_inheritance",
+        "self_descendant_missing_noncanonical_and_incomplete_parent_proposals_remain_raw",
+        "serialized_valid_draft_flags_cannot_promote_cycles_missing_parent_or_unaccepted_statement",
+        "metrics_native_bound_cold_recovery_and_export_keep_entire_snapshot_eight_maps_and_historical_report_exact",
+        "metrics_original_native_fixture_matches_fixed_independent_family_counts_without_evaluating_invalid_calculations"
+      ]
+    }
+  ],
+  "owned_jobs": [],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-27T14:06:46.112881+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1347822546944,
+    "available_memory_bytes": 27394842624,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 992508,
+        "start_ticks": 48052886,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      },
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 527
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "output_directory": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p37a-explicit-scoped-model-trace-metrics-01-20261027T140646Z",
+  "checkout_commit": "792b5f779a6454e8d5a4730ff029df2126126a17",
+  "ended_utc": "2026-10-27T14:08:11.082660+00:00"
+}

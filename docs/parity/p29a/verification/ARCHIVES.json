@@ -1,0 +1,37 @@
+[
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m5-p29-viewpoints/work/p29a-job-01.json",
+    "path": "compiler-01/RECEIPT.json",
+    "bytes": 61167,
+    "sha256": "28b63be1c97e56bc126967716405ea22e23aeae643c7aa622ed9a70150d4ec1c",
+    "stored_sha256": "28b63be1c97e56bc126967716405ea22e23aeae643c7aa622ed9a70150d4ec1c"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m5-p29a-viewpoint-profile-core-01-20261027T040801Z/00.log",
+    "path": "compiler-01/00.log.gz",
+    "bytes": 69961,
+    "sha256": "d8907f94d5b9c5a2280d509f5be90b72893a812f89d4628fa7439e2accb124d1",
+    "stored_sha256": "43ef193713b8164d21a0b71c0dc02b80809a8b8e9515794d6973a3c764cbb805"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m5-p29-viewpoints/work/p29a-job-02.json",
+    "path": "compiler-02/RECEIPT.json",
+    "bytes": 75265,
+    "sha256": "18e0abcf2a25a5cfadfb521d582646e3845e0129430310e19bda46bea85c6709",
+    "stored_sha256": "18e0abcf2a25a5cfadfb521d582646e3845e0129430310e19bda46bea85c6709"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m5-p29a-recovery-profile-remainder-02-20261027T041044Z/00.log",
+    "path": "compiler-02/00.log.gz",
+    "bytes": 11795,
+    "sha256": "63fbe1d2cedb12462c20e966d06546e38c13a6b4dc04bd905d938a4bd4df8b69",
+    "stored_sha256": "42a66d19d852766bd79494cf41611a00bb30ef902083277d160670578dc0974a"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m5-p29a-recovery-profile-remainder-02-20261027T041044Z/01.log",
+    "path": "compiler-02/01.log.gz",
+    "bytes": 3803,
+    "sha256": "d440b4442ad023045d246c72859ac651058b034a33b435ce068038151c061b88",
+    "stored_sha256": "6afcea2952d0bce1116504c8a8df1592da05f2ce0f497f4dc41c0c5b95e933e6"
+  }
+]

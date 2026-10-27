@@ -1,0 +1,93 @@
+warning: patch `egui_extras v0.36.2 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/vendor/egui-fork/crates/egui_extras)` was not used in the crate graph
+warning: patch `egui_inspection v0.36.2 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/vendor/egui-fork/crates/egui_inspection)` was not used in the crate graph
+warning: patch `egui_kittest v0.36.2 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/vendor/egui-fork/crates/egui_kittest)` was not used in the crate graph
+help: Check that the patched package version and available features are compatible
+      with the dependency requirements. If the patch has a different version from
+      what is locked in the Cargo.lock file, run `cargo update` to use the new
+      version. This may also occur with an optional dependency that is not enabled.
+   Compiling sysmlv2-syntax v0.10.2 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/crates/mbse-model/vendor/sysmlv2-syntax)
+   Compiling craft-atomic v0.1.0 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/vendor/craft-libs/crates/atomic)
+   Compiling mbse-model v0.1.0 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/crates/mbse-model)
+warning: use of deprecated method `std::sync::atomic::Atomic::<u64>::fetch_update`: renamed to `try_update` for consistency
+  --> crates/mbse-model/src/native_views.rs:30:10
+   |
+30 |         .fetch_update(Ordering::Relaxed, Ordering::Relaxed, |n| n.checked_add(1))
+   |          ^^^^^^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+help: replace the use of the deprecated method
+   |
+30 -         .fetch_update(Ordering::Relaxed, Ordering::Relaxed, |n| n.checked_add(1))
+30 +         .try_update(Ordering::Relaxed, Ordering::Relaxed, |n| n.checked_add(1))
+   |
+
+warning: `mbse-model` (lib) generated 1 warning (run `cargo fix --lib -p mbse-model` to apply 1 suggestion)
+   Compiling emath v0.36.2 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/vendor/egui-fork/crates/emath)
+   Compiling ecolor v0.36.2 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/vendor/egui-fork/crates/ecolor)
+   Compiling epaint_default_fonts v0.36.2 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/vendor/egui-fork/crates/epaint_default_fonts)
+   Compiling epaint v0.36.2 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/vendor/egui-fork/crates/epaint)
+   Compiling egui v0.36.2 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/vendor/egui-fork/crates/egui)
+warning: use of deprecated constant `std::f32::EPSILON`: replaced by the `EPSILON` associated constant on `f32`
+  --> vendor/egui-fork/crates/egui/src/containers/scene.rs:79:42
+   |
+79 |             zoom_range: Rangef::new(f32::EPSILON, 1.0),
+   |                                          ^^^^^^^
+   |
+   = note: `#[warn(deprecated)]` on by default
+
+warning: `egui` (lib) generated 1 warning
+   Compiling winit v0.30.13 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/vendor/winit-fork)
+   Compiling mbse-exchange v0.1.0 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/crates/mbse-exchange)
+   Compiling craft-docpath v0.1.0 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/vendor/craft-libs/crates/docpath)
+   Compiling accesskit_winit v0.32.2
+   Compiling mbse-catalog v0.1.0 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/crates/mbse-catalog)
+   Compiling mbse-assurance v0.1.0 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/crates/mbse-assurance)
+   Compiling egui-winit v0.36.2 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/vendor/egui-fork/crates/egui-winit)
+   Compiling egui_glow v0.36.2 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/vendor/egui-fork/crates/egui_glow)
+   Compiling glutin-winit v0.5.0
+   Compiling craft-settings v0.1.0 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/vendor/craft-libs/crates/settings)
+   Compiling eframe v0.36.2 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/vendor/egui-fork/crates/eframe)
+   Compiling craft-window v0.1.0 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/vendor/craft-libs/crates/window)
+   Compiling craft-quit v0.1.0 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/vendor/craft-libs/crates/quit)
+   Compiling craft-ui v0.1.0 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/vendor/craft-libs/crates/ui)
+   Compiling craft-platform v0.1.0 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/vendor/craft-libs/crates/platform)
+   Compiling mbse-desktop v0.1.0 (/workspace/repos/builderbob/mbse-craft/work/m4-p18b-connector-routes/crates/mbse-desktop)
+warning: unused import: `Pos2`
+  --> crates/mbse-desktop/src/ui.rs:25:43
+   |
+25 | use eframe::egui::{self, Color32, FontId, Pos2, Rect, RichText, Stroke, Vec2};
+   |                                           ^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0502]: cannot borrow `*self` as mutable because it is also borrowed as immutable
+  --> crates/mbse-desktop/src/ui_connector_routes.rs:22:422
+   |
+20 | ...oc=self.views.views.document();for connector in store.connectors.values(){let sources:Vec<_>=doc.typed_ports.values().filter(|o|o.view==self.views.active&&o.presence.active()&&o.visible&&o.usage.map(|usage|Endpoint{usage,port:o.port})==Some(connector.source)).collect();let targets:Vec<_>=doc.typed_ports.values().filter(|o|o.view==self.views.active&&o.presence.active()&&o.visible&&o.usage.map(|usage|Endpoint{usage,port:o.port})==Some(connector.target)).collect();ui.label(format!("Connector#{} · {} · conveyed#{...
+   |       ---------------- immutable borrow occurs here
+21 | ...ources.is_empty()||targets.is_empty(){ui.label("Reuse both qualified endpoint ports in this view to route this connector.");}
+22 | ...source in &sources{if route_choices>=128{break}for target in &targets{if route_choices>=128{break}route_choices+=1;let exists=doc.connector_edges.values().any(|e|e.view==self.views.active&&e.connector==connector.id&&e.source==source.id&&e.target==target.id);let r=ui.add_enabled(ready&&!exists,egui::Button::new(format!("Route connector#{} · occurrence {} to {}",connector.id.0,source.id.get(),target.id.get())));self.bound(format!("connectors:route:{}:{}:{}",connector.id.0,source.id.get(),target.id.get()),&r);if...
+   |                                                                                                                                  ------------------- immutable borrow later used here                                                                                                                                                                                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ mutable borrow occurs here
+
+error[E0502]: cannot borrow `*self` as mutable because it is also borrowed as immutable
+  --> crates/mbse-desktop/src/ui_connector_routes.rs:25:104
+   |
+20 | ...oc=self.views.views.document();for connector in store.connectors.values(){let sources:Vec<_>=doc.typed_ports.values().filter(|o|o.view==self.views.active&&o.presence.active()&&o.visible&&o.usage.map(|usage|Endpoint{usage,port:o.port})==Some(connector.source)).collect();let targets:Vec<_>=doc.typed_ports.values().filter(|o|o.view==sel...
+   |       ---------------- immutable borrow occurs here
+...
+25 | ...dge in doc.connector_edges.values().filter(|e|e.view==self.views.active){ui.horizontal_wrapped(|ui|{ui.label(format!("Route {} · connector#{} · {}",edge.id.get(),edge.connector.0,if edge.presence.active(){"active"}else{"detached"}));let r=ui.add_enabled(ready,egui::Button::new(if edge.visible{"Hide route"}else{"Show route"}));self.bo...
+   |           -----------------------------------------------------------------                       ^^^^ mutable borrow occurs here                                                                                                                                                                                                          ---- second borrow occurs due to use of `*self` in closure
+   |           |
+   |           immutable borrow later used here
+
+warning: unused variable: `ctx`
+   --> crates/mbse-desktop/src/ui.rs:505:33
+    |
+505 |     fn finish_writes(&mut self, ctx: &egui::Context) {
+    |                                 ^^^ help: if this is intentional, prefix it with an underscore: `_ctx`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+For more information about this error, try `rustc --explain E0502`.
+warning: `mbse-desktop` (bin "mbse-desktop" test) generated 2 warnings
+error: could not compile `mbse-desktop` (bin "mbse-desktop" test) due to 2 previous errors; 2 warnings emitted

@@ -1,0 +1,646 @@
+{
+  "scope": "Tracked build manifests, crate source/tests/fixtures and selected vendored source/notices; excludes documentation and target outputs",
+  "source_sha256": "cdbbc15271e63be8bdc44750333e71307d502d063577be4732f1acbedaa537d6",
+  "files": [
+    {
+      "path": "Cargo.lock",
+      "bytes": 99689,
+      "sha256": "d1e2c726b95edfb20a52f37442d3ae7504af718419e7cad1a0aff2e1f6b12de0"
+    },
+    {
+      "path": "Cargo.toml",
+      "bytes": 481,
+      "sha256": "40653b66ccc992d82b2bbb0ee6a83d5e823833cf5e3db9a7d60a0b32793f3d7c"
+    },
+    {
+      "path": "crates/mbse-catalog/Cargo.toml",
+      "bytes": 283,
+      "sha256": "74e87680794d307b6fc8fc0cf6ca872986e10a2c41793e9b071f5bee039e5c47"
+    },
+    {
+      "path": "crates/mbse-catalog/src/lib.rs",
+      "bytes": 11652,
+      "sha256": "9359820cbf8a27c22e65e890940e0aa89b24163225458b16a268e78dcf3565d9"
+    },
+    {
+      "path": "crates/mbse-catalog/tests/admission.rs",
+      "bytes": 4077,
+      "sha256": "66c8d6442722ca452e5dd3613404dff8ab00ea10b9d7fee0b244f96f31a70135"
+    },
+    {
+      "path": "crates/mbse-desktop/Cargo.toml",
+      "bytes": 889,
+      "sha256": "1dc563fb6f9cc7383ea2a694655acd771b92890f5322401fe7669f81316197e5"
+    },
+    {
+      "path": "crates/mbse-desktop/src/catalog_ui.rs",
+      "bytes": 5193,
+      "sha256": "70c6a83aa10a1fd6e6db8a2d5fa86f21342c309c4f071f7825505ffc63bb6a28"
+    },
+    {
+      "path": "crates/mbse-desktop/src/main.rs",
+      "bytes": 5347,
+      "sha256": "869e39cff79113195aa982247b644134ef3f7b9383094240b12db97cb04829b3"
+    },
+    {
+      "path": "crates/mbse-desktop/src/preferences.rs",
+      "bytes": 15232,
+      "sha256": "57cca03b9a806889b18198f3da5c1cadcb87eeececf4b6564993fec4c9de7e9b"
+    },
+    {
+      "path": "crates/mbse-desktop/src/ui.rs",
+      "bytes": 86226,
+      "sha256": "5c557c6bbc2c2568cd58a8853259eb67ae7a282574457a188d9ac604efb6de71"
+    },
+    {
+      "path": "crates/mbse-exchange/Cargo.toml",
+      "bytes": 469,
+      "sha256": "a66b3bf73a03ef8a68d11ae6813bf5931ab66f28426eba150636c971eac6ffca"
+    },
+    {
+      "path": "crates/mbse-exchange/examples/inspect.rs",
+      "bytes": 1227,
+      "sha256": "d466efa32fa48e40fd998fac03efde27a8af12d6584e8d2177746484c08c5656"
+    },
+    {
+      "path": "crates/mbse-exchange/src/lib.rs",
+      "bytes": 30626,
+      "sha256": "1577b06f06a2f19a96df2f7ab8952c8801e6e88935a2280aa658e35519f08f28"
+    },
+    {
+      "path": "crates/mbse-exchange/tests/projection.rs",
+      "bytes": 9102,
+      "sha256": "5ee3b0d39f7e2cd5144c92c807600d5b3a2495eacdfa26295d2cc79d181a9202"
+    },
+    {
+      "path": "crates/mbse-model/Cargo.toml",
+      "bytes": 383,
+      "sha256": "5cd32b1e5fc02acff6b657b4de5d137fabca025a79989fb7dedc0ade246963d9"
+    },
+    {
+      "path": "crates/mbse-model/LICENSE",
+      "bytes": 1084,
+      "sha256": "ea9ce658a75c5b3bc2ca4bb374e425ff9725932058042d66dad8ed6f072237f6"
+    },
+    {
+      "path": "crates/mbse-model/fixtures/stage1-interchange/README.md",
+      "bytes": 868,
+      "sha256": "611d79d71d2d15f26c500ddc74ee477dc1b331c58c220b29545c1ae5f62ff46f"
+    },
+    {
+      "path": "crates/mbse-model/fixtures/stage1-interchange/supported-minimal.sysml",
+      "bytes": 2997,
+      "sha256": "82b349edcfbc59517c0a2e5cf4f151b940c23c8899e877fe82d9c09e777ee870"
+    },
+    {
+      "path": "crates/mbse-model/fixtures/stage1-interchange/unsupported-behavior.sysml",
+      "bytes": 3024,
+      "sha256": "2f77eeaf7617f06a139565a42b4cb1fc5955a45e487a648e8db5315d4bffc612"
+    },
+    {
+      "path": "crates/mbse-model/fixtures/stage1-interchange/unsupported-standard-requirement.sysml",
+      "bytes": 3033,
+      "sha256": "37140e704579674687499c130192e0118ef2e7106346705014fcd166a4a3e54d"
+    },
+    {
+      "path": "crates/mbse-model/fixtures/stage1/inspection.json",
+      "bytes": 3145,
+      "sha256": "feddb1b85b3a120937dff452501053408d39a8e139355e70a505d39013a337ca"
+    },
+    {
+      "path": "crates/mbse-model/src/boundary.rs",
+      "bytes": 3096,
+      "sha256": "2b91941a2b8cbd620381aa2333b6bd426a78c9a911e63ed9d5db076d22c7496a"
+    },
+    {
+      "path": "crates/mbse-model/src/lib.rs",
+      "bytes": 302,
+      "sha256": "b1d78c70d456f78df63877b9592ebec579118a173ba0c9a9ab38cc834fe57e14"
+    },
+    {
+      "path": "crates/mbse-model/src/local_input.rs",
+      "bytes": 13059,
+      "sha256": "e13a8482bfa851d7240a884c00d9b25ca07627a1dcdf3c7172e5163bc41dc617"
+    },
+    {
+      "path": "crates/mbse-model/src/recovery.rs",
+      "bytes": 6832,
+      "sha256": "65b84050efb6d3392a1bbf73d991467e4700f1c23e90b4e2879e73657e2a1a86"
+    },
+    {
+      "path": "crates/mbse-model/src/stage1.rs",
+      "bytes": 121428,
+      "sha256": "7b7f4143c89abf746b0cc1e682a9d007f6ea3a054ea5ee60c41782934ac1606a"
+    },
+    {
+      "path": "crates/mbse-model/src/stage1_calc.rs",
+      "bytes": 65525,
+      "sha256": "42c9f5c8f17afc7e2412041c621b1c90734d7f9800c63737f2ad2cd31e7abd9f"
+    },
+    {
+      "path": "crates/mbse-model/src/stage1_graph.rs",
+      "bytes": 11643,
+      "sha256": "91c37ec014ffa8b811b74242a52348334f064cfcacf47c6f849234f3261abc5c"
+    },
+    {
+      "path": "crates/mbse-model/src/stage1_io.rs",
+      "bytes": 66722,
+      "sha256": "e93e83af86babd8028d7be119f18b2a621d5e053d530d0ce2f5dffec270b9920"
+    },
+    {
+      "path": "crates/mbse-model/src/stage1_sysml.rs",
+      "bytes": 119800,
+      "sha256": "a4eaf1ea0f6305b0d7a824fb55881b4ce43a1e1a79bd7336fa85d1c128f821f3"
+    },
+    {
+      "path": "crates/mbse-model/tests/context_recovery.rs",
+      "bytes": 12835,
+      "sha256": "7b7c9eca28ea5670a9a2d57eda3a3c15f8a2acac47f6d8d193da8044fc91117c"
+    },
+    {
+      "path": "crates/mbse-model/tests/craft_faults.rs",
+      "bytes": 2591,
+      "sha256": "d4d4f981a3897eabca39497f427b6c891f813ed5d08c3bc25cca5d5b40fe0bac"
+    },
+    {
+      "path": "crates/mbse-model/tests/craft_recovery.rs",
+      "bytes": 2038,
+      "sha256": "e0cb5fb8bc7f794c623682de075271dfb3e93e378ca1ca061548956289263a6f"
+    },
+    {
+      "path": "crates/mbse-model/tests/stage1_calculation.rs",
+      "bytes": 33286,
+      "sha256": "c238e09cd485e3e1887ca5fa758201b84cf711dd831b49ef84d718866f7afc65"
+    },
+    {
+      "path": "crates/mbse-model/tests/stage1_completion_foundation.rs",
+      "bytes": 49820,
+      "sha256": "a338aafadbbc3f608106216aa5b048548d32316986061e7721f0ad70659cccee"
+    },
+    {
+      "path": "crates/mbse-model/tests/stage1_interchange.rs",
+      "bytes": 25216,
+      "sha256": "0a4c83382ed7b5d9cf59753261a82996b7fee4c3a376f05493e91af0ae2326e7"
+    },
+    {
+      "path": "crates/mbse-model/tests/support/source_identity.rs",
+      "bytes": 2054,
+      "sha256": "dc1d6e3930f068f7e8d0060932a774652eac15859067993963358754960e7bf1"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/Cargo.toml",
+      "bytes": 381,
+      "sha256": "6da97423c2d4ab64e8ffef36a685b068e94562996fd1c5247c9867f235ce0a34"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/LICENSE",
+      "bytes": 11350,
+      "sha256": "c741fcb705b7f3f80058e69560b8ec5a8ba4b1ab9fab255044ddf2b48ae6b800"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/src/ast.rs",
+      "bytes": 36241,
+      "sha256": "a116c9416ebab9735b1a7bb8f96e7ad92798bc7c1d4a326c5eb7a5a8f926e2d8"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/src/check.rs",
+      "bytes": 48970,
+      "sha256": "80dda42883f8cbaa5a2f2e69f5080cb5a15ad8b0c0a5fcb8c2353fc43c84b50f"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/src/diag.rs",
+      "bytes": 4584,
+      "sha256": "cfe3667db603aa5f913b278ae5576e368009c89487a8fec6a6397bdcb29ff9f6"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/src/lexer.rs",
+      "bytes": 13353,
+      "sha256": "15c778003b360759b95a491a8eb195b37eb85bfdb4d626d86ee7bfec9a044244"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/src/lib.rs",
+      "bytes": 523,
+      "sha256": "a0e673da5051d3e3eee2247238d6495f98184440f747d073630bbe1792f04bf3"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/src/name.rs",
+      "bytes": 11472,
+      "sha256": "e0b6ed2c3e0b2058b3e5a1219fad048f9e6334dd0536640042619a095f36f8df"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/src/parser.rs",
+      "bytes": 207967,
+      "sha256": "c99e341ff258b0b28c29b7e63c83d3c228a58dee6813d2c3a6b73f544ed5645b"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/src/print.rs",
+      "bytes": 92395,
+      "sha256": "dae05bbb5712de65d4c9e3251b71ff6d41b7393eb966c28711001ff2ce0f60db"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/src/span.rs",
+      "bytes": 2708,
+      "sha256": "4d2ef475e4a6d7bb01ea7e31396e036c352b3e11e3aaabe37c00523e67d4d9d8"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/src/token.rs",
+      "bytes": 3593,
+      "sha256": "bb41612d3233bae8d6d0f172a7be8c920a94738690a0a626a8a65eaea2cfc426"
+    },
+    {
+      "path": "crates/mbse-model/vendor/sysmlv2-syntax/src/visit.rs",
+      "bytes": 14746,
+      "sha256": "d31ab84d77e0e6c6cdd8a1ec4fdc929746ac1e2062bbe089e56bb84f3508a420"
+    },
+    {
+      "path": "vendor/craft-libs/ATTRIBUTION.md",
+      "bytes": 10303,
+      "sha256": "683f9f3df33476bc51fe80bf83608f490b745582708bb8da00f29ed85defeadb"
+    },
+    {
+      "path": "vendor/craft-libs/Cargo.toml",
+      "bytes": 618,
+      "sha256": "6d02630d527569626b862d9e33dc908286b7490e3412949b731d5aa48dc67cba"
+    },
+    {
+      "path": "vendor/craft-libs/LICENSE-APACHE",
+      "bytes": 10174,
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+    },
+    {
+      "path": "vendor/craft-libs/LICENSE-MIT",
+      "bytes": 1102,
+      "sha256": "2f42c0cafc8ad394d91373fe1f342aee5453850b151a51405c68cae9ada86d26"
+    },
+    {
+      "path": "vendor/craft-libs/NOTICE",
+      "bytes": 7863,
+      "sha256": "8b1fbe6211dada33e1e3536c3218d97767905101b9ce863a255e21937664fbcf"
+    },
+    {
+      "path": "vendor/craft-libs/README.mbse-craft.md",
+      "bytes": 1513,
+      "sha256": "74756b4ad72b5d77fd88dd3358a8507416098fe2db080b59de6a8b5e42c22a91"
+    },
+    {
+      "path": "vendor/craft-libs/SOURCE.json",
+      "bytes": 13884,
+      "sha256": "797abb604c87b672f19676f59f00fe12338801f5a17db7088dd408ca078b77d9"
+    },
+    {
+      "path": "vendor/craft-libs/crates/atomic/Cargo.toml",
+      "bytes": 409,
+      "sha256": "132c06636b8592118aa304f07c3dec0aaf65dd604c68f6d8f76b9561dbc7e1fe"
+    },
+    {
+      "path": "vendor/craft-libs/crates/atomic/README.md",
+      "bytes": 8576,
+      "sha256": "d64e0b37e3c57166669ea0293009a3bf6f97d148bd5230bd329102e3f20cbca5"
+    },
+    {
+      "path": "vendor/craft-libs/crates/atomic/src/lib.rs",
+      "bytes": 52329,
+      "sha256": "a2dce3d4125cc26dfbe26a387f2d033264ccc3ea25e64b39b63a7cd1805f431a"
+    },
+    {
+      "path": "vendor/craft-libs/crates/atomic/tests/atomic_tests.rs",
+      "bytes": 8986,
+      "sha256": "883a61d02af5d5f358f40158d0563babf0b95d1b9c5d471f85167316c9938ed6"
+    },
+    {
+      "path": "vendor/craft-libs/crates/atomic/tests/permissions.rs",
+      "bytes": 6309,
+      "sha256": "71cfcf79669b3acba2bdac6292ad0aa86437fc2be89fcc85cfdf333f134743fc"
+    },
+    {
+      "path": "vendor/craft-libs/crates/docpath/Cargo.toml",
+      "bytes": 292,
+      "sha256": "6928b72b2f95d51c52869d1834b844321f0a6ab8b7e4db1d7eecbe60a867e598"
+    },
+    {
+      "path": "vendor/craft-libs/crates/docpath/src/lib.rs",
+      "bytes": 25931,
+      "sha256": "88c58c4e1e8447805913d190315cb152c6c7853ca64e3b7c573df157c7a773a1"
+    },
+    {
+      "path": "vendor/craft-libs/crates/docpath/tests/docpath.rs",
+      "bytes": 14317,
+      "sha256": "bc4bd7324b2bfb4d500ee1362991ebdba81b337a736f53d5071927b434f24d0b"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/Cargo.toml",
+      "bytes": 1366,
+      "sha256": "cb7d148dc3d382196b020b5728abab69cea33aa636c87df779c3313a3dc3deeb"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/LICENSE-APACHE",
+      "bytes": 10174,
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/LICENSE-MIT",
+      "bytes": 1102,
+      "sha256": "2f42c0cafc8ad394d91373fe1f342aee5453850b151a51405c68cae9ada86d26"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/NOTICE",
+      "bytes": 1164,
+      "sha256": "b4628bbe7b9d307ba985d59d73b715df38d5d2319159034c996f38045075343a"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/README.md",
+      "bytes": 5744,
+      "sha256": "5885a09b89f106cda13a5249150ba2d33b746e2788e70213c4850419c1c78675"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/src/appearance.rs",
+      "bytes": 29717,
+      "sha256": "34795f485d28d1495cbbe7975d8f8841e7d24a80563a0fadda9b4d78f11e7c68"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/src/appearance/portal/appearance_bus_tests.rs",
+      "bytes": 7492,
+      "sha256": "2502c7e3b9b9d7e2295634e0c76ffc5e68dae3e0ea25acd6dcac5ea3b40fbe89"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/src/browser.rs",
+      "bytes": 4381,
+      "sha256": "bef1329378d5ac05100bc3b8d1ec1e8ff0ed5796c9a469c6ea891a0acb743349"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/src/dialog_outcome.rs",
+      "bytes": 4110,
+      "sha256": "48acc3e0b427f269ea3a2770e55edb7ee83ec29f490aa087d1c103c77900faca"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/src/dialogs.rs",
+      "bytes": 11913,
+      "sha256": "2ead6e6bbe97e9181c47d220ec67a7ee6738ef48254b4799f74b7348bb1c58f7"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/src/lib.rs",
+      "bytes": 558,
+      "sha256": "7f5c36b7342cf7e5b16c6234e36e17183c1ac4bbfe8f841cf6b4713adb8c8a74"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/src/process.rs",
+      "bytes": 2148,
+      "sha256": "d527a2c10d0ae332ccb69ceebb676b65fb678f94c16946c017978aa81ced3ace"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/tests/browser_downloads.rs",
+      "bytes": 3281,
+      "sha256": "a3c9897633c467b3f73da0bd7875820f01e71e903f7d59f43ea43a42140175ef"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/tests/browser_harness.js",
+      "bytes": 2432,
+      "sha256": "34fda5aca406dd4aca9152de999456f05e65e163aa94fae32439e54d7d73890f"
+    },
+    {
+      "path": "vendor/craft-libs/crates/platform/tests/dialog_lifecycle.rs",
+      "bytes": 10281,
+      "sha256": "ac8fac7b860006c4ffd92dd848ee58279878bf959c7427d0531f40391ffa5684"
+    },
+    {
+      "path": "vendor/craft-libs/crates/quit/Cargo.toml",
+      "bytes": 1110,
+      "sha256": "2b9c029e50de4bc207f386a565d2b3b03bb5638d6638f9ea1f0595f325ca9ebc"
+    },
+    {
+      "path": "vendor/craft-libs/crates/quit/src/close.rs",
+      "bytes": 8909,
+      "sha256": "f45dbce1e4f90778ef9e642ee75a412088a0d160527e4f522b373b2fb0b3eba5"
+    },
+    {
+      "path": "vendor/craft-libs/crates/quit/src/lib.rs",
+      "bytes": 4990,
+      "sha256": "62d291344e1200ab6717cb94c5d665ef3a00b144ef57148c310792511ab0ddd9"
+    },
+    {
+      "path": "vendor/craft-libs/crates/quit/src/macos.rs",
+      "bytes": 901,
+      "sha256": "2ec2092cf2a91db04d2a5b5a8d5207eea5e569bb050a9e240bcb7019d9a6b898"
+    },
+    {
+      "path": "vendor/craft-libs/crates/quit/src/menu.rs",
+      "bytes": 2061,
+      "sha256": "27ca52c8d16431d1409b517fdb3fdea3653ca87b481a42a29ec497dfa3b1e33f"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/Cargo.toml",
+      "bytes": 582,
+      "sha256": "5a7f36cc4df7cb90f4940e616481792db0c00d58dba6fc8183e54414431bec5d"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/README.md",
+      "bytes": 8465,
+      "sha256": "81bcff31dc5a79cffaa3611bcd7d1a9f90af8eebdd5ef79993fecfb39299b8a8"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/src/document.rs",
+      "bytes": 4216,
+      "sha256": "a436b5617cdc78cc6ba17820e28488506c57db101345982c92df8a2c81baf06b"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/src/error.rs",
+      "bytes": 5344,
+      "sha256": "761e2d9ef4b3e7f2d70ac89d7295421db664023849e1949f912e23fdceda237b"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/src/lib.rs",
+      "bytes": 3557,
+      "sha256": "91859aa5dd89e8b1199dda6bb70ca49baaa9a8bddf084dce74f5409b4047374c"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/src/migrate.rs",
+      "bytes": 2484,
+      "sha256": "953e10443235b86bcef1bf9fc8c372803a2be20c3da69cd4dad3b67302729e5e"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/src/paths.rs",
+      "bytes": 6664,
+      "sha256": "51f6344d55456667a38a25ff2357f338e1922ac0729963c583e32cb137f97e5b"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/src/recovery.rs",
+      "bytes": 3170,
+      "sha256": "d0c0d7a73623cc283b981bc56826941672e60c31e88de8c02ed286875de41789"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/src/store.rs",
+      "bytes": 16215,
+      "sha256": "cc81307cab697590a60a520e5e15bbb84cda4a15eccce042e9ef1366c8882c70"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/tests/common/mod.rs",
+      "bytes": 2881,
+      "sha256": "4d0e4c4a8b42121f6e3885b791592e1e045513868baf3bf84b492f1e827f7171"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/tests/memory.rs",
+      "bytes": 3240,
+      "sha256": "1b1f9e0db6b6506876ab09eda776e512f6c28c6202e0c2f2de95f9b5eb1c8111"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/tests/migrate.rs",
+      "bytes": 4501,
+      "sha256": "31d475f3f5f57e68ffc31be636fe2a5fb6938dfb7318f3f3e8c49a5ee7f48fcb"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/tests/paths.rs",
+      "bytes": 6320,
+      "sha256": "dc05b7452834ebe7dd1f006a56d5f08dcfd2fb5f409f7ec6f7bb503b1021bbf1"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/tests/recovery.rs",
+      "bytes": 8254,
+      "sha256": "3426b1c0f7ad7431094253ae37bf9ba83baafd456634994e95438ba9909b24f0"
+    },
+    {
+      "path": "vendor/craft-libs/crates/settings/tests/store.rs",
+      "bytes": 11607,
+      "sha256": "ce69b5c19b6867b3f4d7edce028221c1c7bdd94b3401329cf0c2437a2af28a63"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/Cargo.toml",
+      "bytes": 716,
+      "sha256": "88159b4eaacfa21ca796d419fe1acad81c2780db8ac033303de6ff46083be90d"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/README.md",
+      "bytes": 14380,
+      "sha256": "6d0895339dda68982cf5ba371b5f82a414bf3e21a21a03f2f9126f1a1a2ceae5"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/buttons/mod.rs",
+      "bytes": 5082,
+      "sha256": "31c5b78e75fc9aacbf1c9b01e728dbf301ff5eceab02215bcf997d2de66c6c3a"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/buttons/tests.rs",
+      "bytes": 10525,
+      "sha256": "4407d99340493d3b216e3a8b0c72a303e88ddd8e17c9934ac1bf18fc2a7dd201"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/docking/mod.rs",
+      "bytes": 850,
+      "sha256": "a375ec1fc9363deaaca9154930cdba4948a70d5fe61a7e408b410d24fc372187"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/docking/model.rs",
+      "bytes": 32718,
+      "sha256": "1184fe72595ea4d7d820fb900e6105cdf25bc8f4921116a84250ebe68f90d344"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/docking/surface.rs",
+      "bytes": 45381,
+      "sha256": "6d94cebcbd053f527c9da8c98f8d522b0343a58a88e322482cbd926a1f750f38"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/docking/targets.rs",
+      "bytes": 4465,
+      "sha256": "223eeb50894d42a13a2b3fd8dfae5f21dd74a0688344623b317c04c740171cd6"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/docking/tests.rs",
+      "bytes": 46356,
+      "sha256": "217d4fe02d0e8298eb0e64049ce723247fd80f1c838b93f4d56c477f2c3e318c"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/icons/mod.rs",
+      "bytes": 3730,
+      "sha256": "389872630f1668d48c29a09d15e3100a663d04fabf98b5d8ca02c00712d7f0f0"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/icons/tests.rs",
+      "bytes": 3874,
+      "sha256": "c2c35b8aa6448826fc140493001d25b4f6e3d586e52c917f89d179621726f609"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/layout/geometry.rs",
+      "bytes": 5265,
+      "sha256": "e5b35a34d89ca1d9e54364a7e2c1b2d0cd0ffabf7314339da3f9e912be72e4e4"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/layout/mod.rs",
+      "bytes": 562,
+      "sha256": "31f0f2afde706a85b1b2f863bcd5d63a190715017421c94dc28feefaa0c43d97"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/layout/resize.rs",
+      "bytes": 8127,
+      "sha256": "278d221cd08aa1f860747dd66df7e49504da5d8b711b9a787a527e461ecd2fd3"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/layout/tests.rs",
+      "bytes": 11395,
+      "sha256": "42f4b5b1d14e42980b91883e1b8e4a294b37d3c2d1d09d70aa448c33ade1655d"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/layout/toolbar.rs",
+      "bytes": 7176,
+      "sha256": "5b3f3f81d135f9d2b09c595c2ffe517ae90cd763e8574964b5c11c1e5a180d83"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/lib.rs",
+      "bytes": 493,
+      "sha256": "1fc10e08f50038f178860c4ce9960115ec736fda9090e3f56383b02ae93d05e6"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/printing.rs",
+      "bytes": 9728,
+      "sha256": "adc75056dd67c9e502f6c42896a16248023eb20632e1de218f246e6ea292dbb1"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/printing/tests.rs",
+      "bytes": 8571,
+      "sha256": "01fad8055b7624133d95dccc197ea98ae10353ec86a43e44747ff1ce3ad4e1fc"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/tabs/mod.rs",
+      "bytes": 7874,
+      "sha256": "8cdf333b38f6b6f2a7f48f5517328dd070500443f8a69cf08a5ce0e654b71e44"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/tabs/tests.rs",
+      "bytes": 9283,
+      "sha256": "43bd4e6b131850361b7d4db78ca361e733180bb20d31cf1da8e46076448b9aad"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/src/theme/mod.rs",
+      "bytes": 4267,
+      "sha256": "48ba3e6f55415f0d4392208d51bb8f9223c8fb90ea56a6c04d0cad606a5e797a"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/tests/docking_workflows.rs",
+      "bytes": 11682,
+      "sha256": "60347371e463a7156e7a05be4e4c3221c777e41222edc219646970ede0562a43"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/tests/visual/fixtures.rs",
+      "bytes": 12179,
+      "sha256": "c3bda942e405b9513d7318e4902aa9f6538568532d524562cc72582946b5e077"
+    },
+    {
+      "path": "vendor/craft-libs/crates/ui/tests/visual_regression.rs",
+      "bytes": 19441,
+      "sha256": "ec80a3cb5a64b3baf6dae59230b77742059ad2ee3f8b5a96ea7f79929ce47008"
+    },
+    {
+      "path": "vendor/craft-libs/crates/window/Cargo.toml",
+      "bytes": 787,
+      "sha256": "a563245aa835e13cf608613124f418353c59700bf78028dd273be4ed8e485595"
+    },
+    {
+      "path": "vendor/craft-libs/crates/window/README.md",
+      "bytes": 3077,
+      "sha256": "2a95730934a301e3ca3606ef4daf7bc362665dd85059f464ef734ae9dd94a52f"
+    },
+    {
+      "path": "vendor/craft-libs/crates/window/src/lib.rs",
+      "bytes": 19546,
+      "sha256": "40fedba0ae22fd97b4694323425e0fdef1ddceaec7795fa0e96b9f9ad8741e8e"
+    }
+  ]
+}

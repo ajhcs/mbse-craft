@@ -1,0 +1,22 @@
+{
+  "result": "bounded_state_machine_profile7_data_regression_and_build_passed",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 745,
+  "source_sha256": "32aaba49222309724f790077c1fa6a5b1b6424cb72f63905a6d5e3275c466789",
+  "binary_sha256": "73e6eb91be1ad84bb4840a6271c4e0c5a94fda2345cb2f9384b7f65292724c0b",
+  "distinct_case_inventory": 653,
+  "new_cases": 10,
+  "native_state_machine_runs": 0,
+  "observations": [
+    "Independent views/cameras, stable state occurrence IDs and exact current native transitions/events/guards; no second semantic model. Unique active visible endpoints only, missing/ambiguous counts explicit.",
+    "Shared layout history/stamps/allocator, profile7 strict wire/identity/geometry/source/mixed-payload guards and joint4096occurrences/1024per-view/16views/8MiB encoded bounds. No RSS/performance claim.",
+    "Source removal/kind change detaches exact identities; observed inverse only reactivates. Cold serialized data cannot mint history proof.",
+    "Profile7 survives native ports/connectors/viewpoints/activity creation/clear/close, bound native checkpoint/decode and actual unbound Capture/I/O/recovery. All existing presentation maps/native Snapshot preserved.",
+    "Legacy source inspection/copy refuses before partial inventory; frozen source bytes retained. Copy-origin IDs include state-machine occurrences."
+  ],
+  "limits": [
+    "Data/core only; P32c actual native authoring/diagnostics/rendering/interaction/save/cold remains required for P32 parent closure.",
+    "All56 broad specs/integrated exits/full parity/independent engineering/platform/scale/production remain unaccepted."
+  ]
+}

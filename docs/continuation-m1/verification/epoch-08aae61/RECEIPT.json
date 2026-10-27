@@ -1,0 +1,206 @@
+{
+  "source_commit": "08aae61b3ecfdb67d02e1ddc6a63db01856b7014",
+  "source_sha256": "6730a6da6ec959d347f5175bc28c9d6087682348007230a4a9c4956992dbfabb",
+  "binary_sha256": "8e6e268edc2ba381059290fbc4ad569a1c6c668a7a3a911782d0324cd9664b81",
+  "build_cwd": "/workspace/worktrees/builderbob/mbse-craft/verification",
+  "cargo_environment": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/m1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/m1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin"
+  },
+  "commands": [
+    "bash scripts/dev.sh test --workspace --locked --offline",
+    "bash scripts/dev.sh build -p mbse-desktop --locked --offline",
+    "bash scripts/dev.sh fmt --all -- --check"
+  ],
+  "scenarios": [
+    {
+      "id": "native_selected_pass",
+      "status": "pass",
+      "observation": "actual1003 2500m ->2.5km; explicit synthetic reviewer adequacy then Passed; maturityDraft/implementationUnderReview"
+    },
+    {
+      "id": "selected_pass_global_failure",
+      "status": "pass",
+      "observation": "actualpeer1004 x/0; selected1003 valid; global unsuccessful receipt and redwarning retained; explicit selected-output Passed allowed by contract"
+    },
+    {
+      "id": "selected_failed_refuses_pass",
+      "status": "pass",
+      "observation": "actual1004 Failed, explicit Adequate, Passed refused"
+    },
+    {
+      "id": "native_register_close_cancel_chain",
+      "status": "pass",
+      "observation": "register discard permit, secondWMclose nativeguard, nativeCancel revokespermit, thirdWMclose registerguard"
+    },
+    {
+      "id": "recovery_write_failure",
+      "status": "pass",
+      "observation": "owned empty-directory blocker; real async write refusal; KeepRecovery does notclose; Cancel retains snapshot; restore original then close0"
+    },
+    {
+      "id": "unknown_typed_sibling_refusal",
+      "status": "pass",
+      "observation": "direct Board tests actualunknown siblings refused; explicitunknown maps retained"
+    },
+    {
+      "id": "workspace_tests",
+      "status": "pass",
+      "observation": "168 passed"
+    },
+    {
+      "id": "workspace_fmt",
+      "status": "fail",
+      "observation": "formatting-only existing model test differences; no source changed"
+    },
+    {
+      "id": "fresh_copy_pending_close_timing",
+      "status": "not_run",
+      "observation": "specific pending-I/O close race not induced"
+    },
+    {
+      "id": "windows_accessibility_physicalfps_engineeringacceptance",
+      "status": "not_run",
+      "observation": "bounded Linux Xvfb qualification only"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "build.log",
+      "sha256": "3f9c5039e7f1ae6882107b52a2d4373c0184e9d42b2aebd30166cb2d863a5671",
+      "bytes": 183
+    },
+    {
+      "path": "cancel-after-failed-recovery.png",
+      "sha256": "12b31330f06f227314b63c3d0e1578d1edd4d45aff8609c84cc8fb9ffedd40a3",
+      "bytes": 219719
+    },
+    {
+      "path": "cancel-after-failed-recovery.ui.json",
+      "sha256": "1eba49e9b6a9f870c40e5296954508c1b2704f036f98a2c3add5322f99f0fc40",
+      "bytes": 5567
+    },
+    {
+      "path": "failed-recovery-does-not-close.png",
+      "sha256": "b6fc5a2799f99e1be8a1feec5827649e79b0d0dd87768ea1e3ff26181cd0163f",
+      "bytes": 219354
+    },
+    {
+      "path": "failed-recovery-does-not-close.ui.json",
+      "sha256": "878288230c5b809b2978d558a872cd607e3c1bcc8eb3ea28f7eb98e9f5921fcd",
+      "bytes": 5814
+    },
+    {
+      "path": "fmt-check.log",
+      "sha256": "961e0991c6790c4e8e31b71f1053bdfdd4820641b9950f4e01b8720d9933026a",
+      "bytes": 603695
+    },
+    {
+      "path": "gui-assurance-global-events.jsonl",
+      "sha256": "4d29496d15f2b0fcdf8eeb7a128fcd275816708be4cce7f4129d1af891db863e",
+      "bytes": 4076
+    },
+    {
+      "path": "gui-assurance-strict-events.jsonl",
+      "sha256": "800b5b155dcc586fde2fe925567a8d8349ca9a324b5e710420d380b0107f6c72",
+      "bytes": 5742
+    },
+    {
+      "path": "gui-authored-peer.kernspan",
+      "sha256": "d52dc5a73dceb6c2e0b36620deeac43e06227219126fb1164e4461b0e95572c1",
+      "bytes": 3051
+    },
+    {
+      "path": "gui-recovery-refusal-final-events.jsonl",
+      "sha256": "ae493df35b33300c84f93b754ab258f1f776781208df15162c4ef39c05536283",
+      "bytes": 2004
+    },
+    {
+      "path": "gui-selected-failed-events.jsonl",
+      "sha256": "8017ff189c1550cc23356eb2de5cf5a4aee26a1c7268b9af8d572b661bbc3f68",
+      "bytes": 2278
+    },
+    {
+      "path": "native-preserve-after-register-permit.png",
+      "sha256": "222a0c8560adc299edc14733437a5167003bbfb61dc221a8b718499e0b7711c9",
+      "bytes": 236501
+    },
+    {
+      "path": "native-preserve-after-register-permit.ui.json",
+      "sha256": "568cceb4aa3d369ffc248e4ddbb986dd19bc45f3f243980838bf702f59ae1930",
+      "bytes": 8858
+    },
+    {
+      "path": "recovered-invalid-draft.kernspan",
+      "sha256": "bf6c831401867e95fe37fa6006e1c5e1d71fcf981692dc07553b44a1b39257bd",
+      "bytes": 2419
+    },
+    {
+      "path": "register-reprompt-after-native-cancel.png",
+      "sha256": "e65febcac2be607a3e4131e6331fee794ba3ef8a406508d8149a96d8d7d25cd9",
+      "bytes": 237901
+    },
+    {
+      "path": "register-reprompt-after-native-cancel.ui.json",
+      "sha256": "4266e74c47fd11a1a81dcb4a8c0c9f9ef8d3af8304e47f48a0b449fd7f3d8b13",
+      "bytes": 8793
+    },
+    {
+      "path": "selected-failed-peer-pass-refused.png",
+      "sha256": "f3cbe20577bb465e7f360b2a2b8257cdaaf886b3bb65b319cc8e270caef5cf19",
+      "bytes": 241974
+    },
+    {
+      "path": "selected-failed-peer-pass-refused.ui.json",
+      "sha256": "3197950a62d375bd41aa3491931761746c19c73c3eecac9d1194c0c13d73ec13",
+      "bytes": 9141
+    },
+    {
+      "path": "selected-failed-register.json",
+      "sha256": "bf7ae3057d3b03aa5d6dea4b9ac517b86d7df74528e7700614cebe6d3f823606",
+      "bytes": 25323
+    },
+    {
+      "path": "selected-valid-global-failed-qualified-pass.png",
+      "sha256": "7d456a5ffe23757b0af0fe64d68b365da04f79582fd739fd402d0194eb45f78e",
+      "bytes": 233837
+    },
+    {
+      "path": "selected-valid-global-failed-qualified-pass.ui.json",
+      "sha256": "26f64245170ea08d86d4765e4e9937aab83635a9450611e6f6e13790ce4eebad",
+      "bytes": 9002
+    },
+    {
+      "path": "selected-valid-global-failed-register.json",
+      "sha256": "237294c74cb26d2e05441d027ef3fd46ebeccdbf1829b3aae7c87f2f2d0a6457",
+      "bytes": 19698
+    },
+    {
+      "path": "source-manifest.json",
+      "sha256": "5faa99923a0b96f2e7dba60b50fef7b4638e5499949fb93a021115318c31f40d",
+      "bytes": 24067
+    },
+    {
+      "path": "synthetic-passed-register.json",
+      "sha256": "f619935e2eb38b5e05cf9342be9bcc4c2beea98ee3b997ecdce0bb3c15c54402",
+      "bytes": 13178
+    },
+    {
+      "path": "synthetic-selected-pass.png",
+      "sha256": "2a8b319dbd2db62cede425e778401d4e37789bf7a7988ef7d097d0b8ec505111",
+      "bytes": 223419
+    },
+    {
+      "path": "synthetic-selected-pass.ui.json",
+      "sha256": "a00df3bb40554843d36e44874e4da1998b1249ab1456bbb497e3950052a81396",
+      "bytes": 8600
+    },
+    {
+      "path": "tests.log",
+      "sha256": "3783c94a6056f69b2215650a7b13432e9089b734e110f3304621d45c5bda01a7",
+      "bytes": 18774
+    }
+  ]
+}

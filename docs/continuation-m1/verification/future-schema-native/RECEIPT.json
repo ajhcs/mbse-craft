@@ -1,0 +1,34 @@
+{
+  "scope": "actual intermediate10661ca6 native future-schema refusal; no global configuration",
+  "binary_sha256": "10661ca605880be1f1071e1d6fca0a91a1ce386dddc393fd743dd83f95ff9bbd",
+  "source_manifest": "../intermediate-catalog-settings/source-catalog-fixed.json",
+  "pass": true,
+  "original_bytes_unchanged_sha256": "d8736aa2efdd6d7d104c8f76593d0fc231e24ea68b99b881320bbaad16cc3e5a",
+  "observed": "Startup future-schema warning visible; periodic toggle explicitly session-only/read-only; schema99configbyteexactafterclose0",
+  "artifacts": [
+    {
+      "path": "future-schema-startup-warning.ui.json",
+      "sha256": "9c19471ed02091f257f4240fa485ccaaafb19130fb98f2c9d0d8c0d1dfe4ef6b"
+    },
+    {
+      "path": "future-schema-startup-warning.png",
+      "sha256": "2961c0d94f196e4570bdddeb82706e5311a6c3834e35eeefeda37e91aeda1660"
+    },
+    {
+      "path": "future-schema-session-only.png",
+      "sha256": "7ccc999c404031d85df2112fdec34817099ebbe6baa2a73b7c11e42cc066fc50"
+    },
+    {
+      "path": "future-schema-session-only.ui.json",
+      "sha256": "bb374f2059f01bbfc8ec5ce56ad6908bd63750c9e9030a9c4ce68950bbef77ed"
+    },
+    {
+      "path": "events.jsonl",
+      "sha256": "61cb654aca64d9f247c05a16323f495663084ec75c4c36f21d8a1f7c6dec6f91"
+    },
+    {
+      "path": "preserved-config.toml",
+      "sha256": "d8736aa2efdd6d7d104c8f76593d0fc231e24ea68b99b881320bbaad16cc3e5a"
+    }
+  ]
+}

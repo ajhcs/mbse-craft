@@ -1,0 +1,22 @@
+{
+  "schema": "mbse-craft.p14-cli-job/1",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m4-p14-extension-schema-20261026T172828Z/mbse-desktop",
+  "binary_sha256": "86801ed83fc1106d1d72be0a59eeece1cc482d240acb1e0af2cb9298a00b8b68",
+  "source_sha256": "baaad0a3e9f002c971ec6a3ce57200cf6cd48243d4dea95a1f3645e634ce6c58",
+  "verifier_sha256": "1d83c44ff40671a0a889be60454f7f958fb0fa959132f08bd3c9eb428107f174",
+  "fixture_directory": "/workspace/repos/builderbob/mbse-craft/work/m4-p14-extension-schema/docs/parity/p14/fixtures",
+  "inputs": {
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p14-extension-schema/docs/parity/p14/fixtures/legacy.kernspan": "81782e07f2366faf95beed9c20691e54eda013e161a3f2150bd298a785402d3c",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p14-extension-schema/docs/parity/p14/fixtures/required-future.kernspan": "e8220661ebf6b76ec6feb948b0054c2286c346807378421a2fdfba63377d7707",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p14-extension-schema/docs/parity/p14/fixtures/original.kernspan": "eefc3606af8a0e31bf8a513f942fc9bbe5122fb1417c5c98789af941cbc1c1fd",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p14-extension-schema/docs/parity/p14/fixtures/opaque-drafts.kernspan": "be6588e4113e400bba76542ecd5348793a3f9669b7ec1c7563d7bfeea1e4e01d",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p14-extension-schema/docs/parity/p14/fixtures/future.kernspan": "e5a91cd58f59a6f936cbf1f09002d33e66cfa3a0d0c720947f52a4bae21e0aa0",
+    "/workspace/repos/builderbob/mbse-craft/work/m4-p14-extension-schema/docs/parity/p14/fixtures/PROVENANCE.json": "d8f99b8aaad7d3987a604b4115cdb0313932c533562434c11b0fd691a0c78cbe"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/cli-p14-01",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ]
+}

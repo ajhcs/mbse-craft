@@ -1,0 +1,77 @@
+{
+  "status": "PAUSED_HEALTH_RECEIPT_EXPIRED",
+  "started_utc": "2026-10-23T00:48:50.883687+00:00",
+  "wrapper_pid": 783449,
+  "worktree": "/workspace/worktrees/builderbob/mbse-craft/integration-m1",
+  "base_head": "0dfa6f1341b26f955777b15d3f743f4f39c0a9ef",
+  "patch_sha256": "6800a3d1d51cb9f7a487a1cfde594a0394d52182cf79db71668f397a7375389d",
+  "source_files": [
+    {
+      "path": "crates/mbse-exchange/src/lib.rs",
+      "bytes": 30611,
+      "sha256": "e5dfa36cee6b29f2852d60323dae9fd57f2a54639f1c39d7c1d1fd1649f6d582"
+    },
+    {
+      "path": "crates/mbse-exchange/src/v2.rs",
+      "bytes": 27222,
+      "sha256": "a7763daf475c4001ecfe13fa4167e16e0403cd2d9bb7dfee3e2ffe879e6a7e3b"
+    },
+    {
+      "path": "crates/mbse-exchange/src/new_copy.rs",
+      "bytes": 4961,
+      "sha256": "b4956527f10cebf5d6e67c6badba32498b417f7b049aff32a83be8d0e42f55de"
+    },
+    {
+      "path": "crates/mbse-exchange/src/source_edit.rs",
+      "bytes": 13611,
+      "sha256": "0529fcd82750cb5b405c04d93ea76a956a520d170966851db14e17c0b1b4b742"
+    },
+    {
+      "path": "crates/mbse-exchange/tests/source_edit.rs",
+      "bytes": 11756,
+      "sha256": "2bd05279b2b6e40c0dcedbd63145f36ed2335df33e9828514ea23798c1948f49"
+    },
+    {
+      "path": "docs/continuation-m2/SOURCE_EDIT_V1_PLAN.md",
+      "bytes": 6008,
+      "sha256": "faf38b8cb14dd3c569741fdf424b33ee41ec43dc5a6c4240f24f04d428501eb8"
+    }
+  ],
+  "cargo_lock_sha256_before": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+  "health_sample_utc": "2026-10-23T00:46:53.671555+00:00",
+  "health_sample_fd_count": 409,
+  "health_sample_free": 615,
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/semantic-v2/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/semantic-v2/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1"
+  },
+  "ui_7df3b76_integrated": false,
+  "commands": [
+    {
+      "command": [
+        "bash",
+        "scripts/dev.sh",
+        "test",
+        "--locked",
+        "--offline",
+        "-p",
+        "mbse-exchange",
+        "-p",
+        "mbse-desktop"
+      ],
+      "started_utc": "2026-10-23T00:48:50.883841+00:00",
+      "log": "/workspace/build/builderbob/mbse-craft/source-edit/verification/wave-20261023T0048Z/command-0.log",
+      "pid": 783450,
+      "exit_code": 0,
+      "ended_utc": "2026-10-23T00:48:59.811542+00:00",
+      "log_sha256": "8c0845fe74604e2ab76f1851f60754e476502c15bd198e5997a02cafcce20e69"
+    }
+  ],
+  "GUI": false,
+  "ended_utc": "2026-10-23T00:48:59.811995+00:00",
+  "cargo_lock_sha256_after": "475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a",
+  "source_files_unchanged": true
+}

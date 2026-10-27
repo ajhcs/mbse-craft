@@ -1,0 +1,9 @@
+   Compiling mbse-model v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-model)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.21s
+     Running tests/context_recovery.rs (/workspace/build/builderbob/mbse-craft/m1/target/debug/deps/context_recovery-d94832736fc9a834)
+
+running 1 test
+test recovery_inventory_file_count_and_aggregate_byte_caps_are_independent ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 5 filtered out; finished in 0.05s
+

@@ -1,0 +1,21 @@
+{
+  "profile": "mbse-craft.independent-crop-review/1",
+  "source": "Parent coordinator 01a1653c-31a7-76e2-83ad-f8887cabb035 direct delegated report",
+  "native_receipt_sha256": "6a480622298b71750fba58081064ff9ec4ae34a1d409cc99179644dbb45916b2",
+  "review": "Four lossless PNG crops decoded, exact hashes matched and pixels independently viewed at original resolution. No inconsistency in four narrow claims.",
+  "confirmed": [
+    "Shared Mission1000 label in Primary occurrence5 and Review occurrence6",
+    "Controlled partial-save note: independent native/views status, VIEWS_BUSY, geometry retained",
+    "Corrected29b current canvas retained with VIEWS_DOCUMENT_MISMATCH"
+  ],
+  "limits": [
+    "Crop-only; no full-window, accessibility, edge, or performance acceptance",
+    "Geometry supported by actual retained files/operator captures, not inferred from tight label crops",
+    "Earlier28/29 misdirected attempts uncredited"
+  ],
+  "parent_review_path": "m2b-01/native-pixel-review/REVIEW.md (parent-local; report received, not read remotely)",
+  "renderer_released": true,
+  "owned_jobs": [],
+  "original_png_count": 35,
+  "uploads": false
+}

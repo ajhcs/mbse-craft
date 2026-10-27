@@ -1,0 +1,38 @@
+{
+  "epoch": "217c977c-plus-core-6800a3d1",
+  "head_at_execution": "217c977cb12ff7de86e2748877886618becbdfcd",
+  "core_patch_sha256": "6800a3d1d51cb9f7a487a1cfde594a0394d52182cf79db71668f397a7375389d",
+  "code_record_commit": "3f07a52bbb08db3b946581ed671f46cdf2fd0f2f",
+  "source_sha256": "fe2c135180c5489306ff46f139c6fad5b5553b72749169bc25edea70b3dfca04",
+  "binary_sha256": "4df50cf94f84200b9461fbb64f00f07b36d7a493dec1a5abb90e8e89264a901f",
+  "core_tests_passed": 50,
+  "ui_tests_passed": 6,
+  "ui_actual_test_names": [
+    "semantic_ui::source_name_tests::selecting_another_scoped_node_retains_name_proposal_and_blocks_source_open",
+    "source_edit_ui::tests::delayed_preparation_cannot_replace_changed_raw_or_source",
+    "source_edit_ui::tests::existing_draft_binding_survives_other_node_begin_and_close",
+    "source_edit_ui::tests::matching_copy_ack_clears_only_its_draft_and_exposes_exact_digest_open",
+    "source_edit_ui::tests::pending_write_refuses_discard_close_and_source_replacement",
+    "source_edit_ui::tests::stale_copy_ack_and_created_output_error_preserve_draft_and_destination"
+  ],
+  "native_status": "BOUNDED_LINUX_NATIVE_WF03_WF04_PASSED",
+  "native_receipt_sha256": "4d8dd1648269348fbce50ff21ea2788d92172fe46612393f4d53e02c2cd4e040",
+  "selected_capture_files": [
+    {
+      "path": "14-renamed-mission-reopened.png",
+      "bytes": 200170,
+      "sha256": "81a215ddea9e6ab8d2b0576cecc8cb5216256464b1a8ea50ffbded0c0fbb9a77"
+    },
+    {
+      "path": "15b-collision-message-and-retained-draft.png",
+      "bytes": 221998,
+      "sha256": "1fbbaa335ed88b756c3d218654274bbcb4ab435208fc4f9afc10eb8f14067558"
+    }
+  ],
+  "private_reference_payloads_committed": false,
+  "selected_application_capture_documentation_authorized": true,
+  "GUI_or_tests_replayed_for_commit": false,
+  "later_commit_does_not_change_tested_epoch": true,
+  "log_archives_manifest": "LOG_ARCHIVES.json",
+  "packaging_validation_note": "Initial raw-log EOF whitespace check failed; byte-exact gzip archives resolved packaging without source/test changes"
+}

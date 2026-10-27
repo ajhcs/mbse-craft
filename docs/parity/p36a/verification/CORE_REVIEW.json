@@ -1,0 +1,20 @@
+{
+  "result": "bounded_parametric_analysis_core_regression_and_build_passed",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 766,
+  "source_sha256": "b53a835007f34bf2945881bc79f729b199341a50e96ac4a4ea26734ac457d117",
+  "binary_sha256": "67f6abe5f98752807d32cf81161ce149d4294918ab32511c60bc4ddb1e3d03f0",
+  "distinct_case_inventory": 755,
+  "new_distinct_cases": 24,
+  "native_rendered_runs": 0,
+  "source_only_native_prepared_contexts": 16,
+  "production_source_unchanged_after_original_freeze": true,
+  "limits": [
+    "Existing native calculation parser/engine/units/criteria only; frozen overrides leave source and verification unchanged. No solver or new quantity algebra.",
+    "Typed-expression scratch is not executed. Native criterion subset metre/one/percent; missing/invalid/raw/unsupported criterion is separately unassessed.",
+    "Numeric expectations are independent hand-fixed fixtures; two diagnostic label corrections are explicit and original oracle retained.",
+    "P36b rendered preparation/run/staleness/save/cold acceptance remains required. All56broad specs and integrated exits remain open.",
+    "Same-agent isolated PR review still required; no independent engineering/platform/scale/production/fullNoMagic/SysML/Craft acceptance."
+  ]
+}

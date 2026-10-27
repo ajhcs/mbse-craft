@@ -1,0 +1,66 @@
+{
+  "schema": "mbse-craft.parity-ui-spec/1",
+  "qualification": "Original synthetic UI acceptance specification; thresholds below are proposed until benchmark target review.",
+  "strings": {
+    "english": "Synthetic recorder",
+    "arabic": "مسجل تجريبي",
+    "japanese": "合成レコーダー",
+    "pseudo": "[Šýñţħéţîç ŕéçöŕđéŕ — 1234567890]",
+    "duplicate_names": [
+      "Sensor",
+      "Sensor"
+    ],
+    "raw_criterion": "9e"
+  },
+  "control_states": [
+    "enabled",
+    "disabled",
+    "focused",
+    "selected",
+    "invalid",
+    "pending"
+  ],
+  "themes": [
+    "light",
+    "dark",
+    "high_contrast"
+  ],
+  "windows": [
+    {
+      "width": 1280,
+      "height": 800,
+      "scale": 1.0
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "scale": 1.5
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "scale": 2.0
+    }
+  ],
+  "model_tiers": [
+    {
+      "name": "small",
+      "semantic_records": 100
+    },
+    {
+      "name": "medium",
+      "semantic_records": 1000
+    },
+    {
+      "name": "large",
+      "semantic_records": 10000
+    }
+  ],
+  "benchmark": {
+    "state": "proposal_requires_target_review",
+    "interaction_p95_ms": 100,
+    "cancel_acknowledgment_ms": 500,
+    "methodology": "Pin release/debug mode, physical machine, OS/backend, viewport, graph generator, warm-up and sample count before measurement; virtual display results do not prove physical latency."
+  },
+  "capacity_rule": "Desired tiers exceeding current model/view limits are explicit future targets; no current limit may be silently raised or workload silently truncated."
+}

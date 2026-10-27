@@ -1,0 +1,54 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m5-p26a-validation-core-02",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m5-p26-validation-suites",
+  "source_manifest": "docs/parity/p26a/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "f2243fee385e303973073a6ba794f4f4ed744ca2cab9b0598bac881e2f1f4912",
+  "source_sha256": "1314df4e9cd636f20bad50b431c34c976746c78ad882df582f14a97fed7258c8",
+  "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "--workspace",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "P26a adds named suite data and sealed read-only issue/field locations over existing type/containment/calculation/draft validators. Full offline workspace regression/build includes P25 reviewed source; one Cargo job/test thread, no dependency/license/notice/build-script changes. Native UI selection is separate P26b, not claimed here.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/m5-p26-validation-suites/docs/parity/p26a/fixtures/coverage-register.json": "febc53f9aa74ce85bed0b7d4801da71a24a21e0b23b5269882aba32e2e49f2a4",
+    "/workspace/repos/builderbob/mbse-craft/work/m5-p26-validation-suites/docs/parity/p26a/fixtures/native.mbse-views.json": "e793dbe99a639f45d6a35d380bb34e1a6b32fd93b08c3f2d3d394b43e4aebe88",
+    "/workspace/repos/builderbob/mbse-craft/work/m5-p26-validation-suites/docs/parity/p26a/fixtures/native.kernspan": "778e35d48ddf38c9c5e539aea0a65fb0cade73f850209f377840e01a913317a1"
+  }
+}

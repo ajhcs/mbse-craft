@@ -1,0 +1,13 @@
+[
+  "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin/rustc",
+  "--edition=2021",
+  "docs/continuation-m2/verification/inspect-v2.rs",
+  "--extern",
+  "mbse_exchange=/workspace/build/builderbob/mbse-craft/semantic-v2/target/debug/deps/libmbse_exchange-e82b0c0439ed96f0.rlib",
+  "--extern",
+  "serde_json=/workspace/build/builderbob/mbse-craft/semantic-v2/target/debug/deps/libserde_json-fecf92f85e85b621.rlib",
+  "-L",
+  "dependency=/workspace/build/builderbob/mbse-craft/semantic-v2/target/debug/deps",
+  "-o",
+  "/workspace/build/builderbob/mbse-craft/semantic-v2/inspect-v2"
+]

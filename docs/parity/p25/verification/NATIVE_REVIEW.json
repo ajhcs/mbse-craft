@@ -1,0 +1,29 @@
+{
+  "result": "bounded_coverage_upstream_context_staleness_and_cold_query_passed",
+  "reviewer": "Codex same implementing agent",
+  "independent_review": false,
+  "source_files": 717,
+  "source_sha256": "5a0ac04348d1cfc69849b4eda3230bfe5ae500a66695ef354dee74af74c0f227",
+  "binary_sha256": "503951e240b609bc6a03ff20826eb4734be948aa5ad1277440fa0b4ed2167c1b",
+  "workspace_tests": 531,
+  "new_distinct_cases": 12,
+  "native_runs": 2,
+  "action_errors": 0,
+  "pixels_reviewed": [
+    "native/run/01-exact-missing-links-orphan-and-unknown-disclosure.png",
+    "native/reopen/06-cold-query-staleness-and-no-runtime-proof.png"
+  ],
+  "observations": [
+    "Actual preserved register Open, deliberate Verify10 removal, new R-ORPHAN12, accepted parent4 draft restoration and native calculation1003 receipt attached as evidence13 to requirement2 with captured dependency hash.",
+    "Actual background query identifies missing Satisfy for requirement2, missing Verify for requirement1 and orphan12. Declared future.trace/1 remains uninterpreted and disclosed; no completeness/fulfillment/verdict promotion.",
+    "Current query navigation selects exact requirement2 while retaining register/native state and original impact root1.",
+    "Supplier1 accepted statement changes and Copy5 follows. Old query becomes stale with navigation hidden until explicit Run. Consumer2 whole record and old evidence13 remain exact. New report gives only requirement dependency context changed in warm session; potential review requirements1/2/3/5 and evidence13 remain distinct from actual changes.",
+    "Actual initial/final register Saves verify old evidence/consumer/opaque metadata retained. Cold entire register equals final; no query/runtime proof recovered. Explicit cold query includes dependency change, missing native runtime proof and current-context stamp mismatch because native instance_id changed, while full Snapshot hash remains exact.",
+    "Cold fresh register copy and both native whole-Snapshot/view/occurrence/edge/typed-port/connector maps equal accepted values. All frozen inputs unchanged; two normal app/display exits and process/auth cleanup."
+  ],
+  "limits": [
+    "Local declared-link inventory and conservative review impact only, not engineering satisfaction or verification proof. Uninterpreted reference data discloses incomplete impact.",
+    "Evidence assessment first256,128 UI/detail/impact rows; unexamined/total explicit. No large-model performance qualification.",
+    "All56 broad parity specifications/integrated milestone exits/platform/independent engineering/full NoMagic/SysML/Craft acceptance remain open."
+  ]
+}

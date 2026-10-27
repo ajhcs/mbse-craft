@@ -1,0 +1,212 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-26T19:12:03.185581+00:00",
+  "job_sha256": "e5a22c6d98b95f2a0bd7bb96f6278759b55a751f767e0ac1b4d6063cc73f7a5f",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17a-01/run",
+      "started_utc": "2026-10-26T19:12:03.205716+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 3655573,
+          "start_ticks": 41627414
+        },
+        "server_pid": {
+          "pid": 3655570,
+          "start_ticks": 41627412
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/repos/builderbob/mbse-craft/work/m4-p17a-ports-interfaces/docs/parity/p17a/fixtures/structure.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 3655573,
+        "server_pid": 3655570,
+        "window": 4194307,
+        "binary_sha256": "2aea49ae4c98925c0a43d34a4f18b748de9123491e87c5dc365a4855dd5843a7"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-26T19:14:26.260521+00:00",
+      "owned_processes_absent": true
+    },
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17a-01/reopen",
+      "started_utc": "2026-10-26T19:14:26.281939+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 3656943,
+          "start_ticks": 41641722
+        },
+        "server_pid": {
+          "pid": 3656940,
+          "start_ticks": 41641720
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/build/builderbob/mbse-craft/milestone1/native-p17a-01/run/ports-final.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 3656943,
+        "server_pid": 3656940,
+        "window": 4194307,
+        "binary_sha256": "2aea49ae4c98925c0a43d34a4f18b748de9123491e87c5dc365a4855dd5843a7"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-26T19:15:10.634630+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-26T19:12:03.205422+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1438858575872,
+    "available_memory_bytes": 28090060800,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 523
+      },
+      {
+        "pid": 2912202,
+        "start_ticks": 40560687,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "action_errors": [
+    {
+      "action": "accepted_revision=n.audit()['model_revision']; n.fill('ports:port:assignment',str(incompatible)); n.click('ports:apply-port'); a=n.audit(); assert a['ports']['store']==accepted and a['model_revision']==accepted_revision; n.capture('02-incompatible-direction-refused'); n.fill('ports:port:assignment','1004'); n.click('ports:apply-port'); assert n.audit()['ports']['store']==accepted and n.audit()['model_revision']==accepted_revision; n.capture('03-component-as-interface-refused'); n.fill('ports:port:assignment',str(compatible)+'?'); n.fill('ports:interface:name','Pending interface'); n.fill('ports:interface:payload','1005?'); n.click('ports:direction:InOut'); raw_port=n.audit()['ports']['forms']; raw_interface=n.audit()['ports']['interface_form']; n.click('ports:undo-model'); a=n.audit(); assert not a['ports']['store']['ports'] and a['ports']['forms']==raw_port and a['ports']['interface_form']==raw_interface; n.capture('04-model-undo-keeps-both-invalid-forms'); n.click('ports:redo-model'); a=n.audit(); assert a['ports']['store']==accepted and a['ports']['forms']==raw_port and a['ports']['interface_form']==raw_interface; n.capture('05-redo-same-port-identity-with-newer-raw-text'); n.click('ports:close'); n.clear_adjacent_views_path(); final=n.save('ports-final.kernspan'); assert all(final[k]==original[k] for k in ['records','drafts','creation_drafts','document_id']); assert all(final['extensions']['namespaces']['mbse-craft.types/1'][key]==original['extensions']['namespaces']['mbse-craft.types/1'][key] for key in ['definitions','properties','usages']); n.send(op='wait',seconds=1); assert n.audit()['views_saved_hint']; n.capture('06-ports-pair-saved-native-raw-retained'); final_path=n.run/'ports-final.kernspan'; views_path=n.run/'ports-final.mbse-views.json'; n.close(); receipt['preflight_reopen']=check.local_preflight(); j=json.loads((Path.cwd()/'docs/parity/p17a/NATIVE_JOB.json').read_text()); n2=type(n)(Path(j['binary']),output/'reopen',['--open',str(final_path),'--select','1003'],receipt['runs'])",
+      "error": "KeyError('ports')"
+    }
+  ],
+  "helper_expectation_correction": "Undo correctly omits the empty ports map for backward-compatible serialization; original direct dictionary access KeyError retained. Corrected assertion treats absent map as empty.",
+  "preflight_reopen": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-26T19:14:26.281640+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1438678769664,
+    "available_memory_bytes": 27866062848,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 534
+      },
+      {
+        "pid": 2912202,
+        "start_ticks": 40560687,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "original_inputs_unchanged": true,
+  "compatible_assignment_and_incompatible_refusals": true,
+  "model_undo_redo_keeps_newer_interface_and_port_forms": true,
+  "native_pair_roundtrip_exact": true,
+  "original_native_and_p15_p16_data_and_forms_unchanged": true,
+  "authentication_files_absent": true,
+  "ended_utc": "2026-10-26T19:15:10.634880+00:00"
+}

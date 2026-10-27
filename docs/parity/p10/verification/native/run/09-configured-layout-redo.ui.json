@@ -1,0 +1,863 @@
+{
+  "command_catalog": {
+    "items": [
+      {
+        "default_shortcut": "Ctrl+N",
+        "enabled": true,
+        "id": "file.new",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "New",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+N"
+      },
+      {
+        "default_shortcut": "Ctrl+O",
+        "enabled": true,
+        "id": "file.open",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Open",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+O"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+O",
+        "enabled": true,
+        "id": "file.recover",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Recover",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+O"
+      },
+      {
+        "default_shortcut": "Ctrl+I",
+        "enabled": true,
+        "id": "file.import_sysml",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Import SysML",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+I"
+      },
+      {
+        "default_shortcut": "Ctrl+S",
+        "enabled": true,
+        "id": "file.save",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Save",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+S"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+S",
+        "enabled": true,
+        "id": "file.recovery_copy",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Recovery copy",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+S"
+      },
+      {
+        "default_shortcut": "Ctrl+E",
+        "enabled": true,
+        "id": "file.export_sysml",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Export SysML copy",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+E"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+R",
+        "enabled": true,
+        "id": "file.review_recoveries",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Review recovery copies",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+R"
+      },
+      {
+        "default_shortcut": "Ctrl+Q",
+        "enabled": true,
+        "id": "file.quit",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Quit",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+Q"
+      },
+      {
+        "default_shortcut": "Ctrl+Z",
+        "enabled": true,
+        "id": "edit.undo",
+        "keyboard_scope": "model; fixed native-field Ctrl/Cmd+Z and Ctrl/Cmd+Shift+Z",
+        "label": "Undo",
+        "menu": "Edit",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+U"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+Z",
+        "enabled": false,
+        "id": "edit.redo",
+        "keyboard_scope": "model; fixed native-field Ctrl/Cmd+Z and Ctrl/Cmd+Shift+Z",
+        "label": "Redo",
+        "menu": "Edit",
+        "reason": "No model history available.",
+        "shortcut": "Ctrl+Alt+Shift+U"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+Z",
+        "enabled": true,
+        "id": "view.layout_undo",
+        "keyboard_scope": "canvas; inactive while editing text or an auxiliary window",
+        "label": "Layout Undo",
+        "menu": "View",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+L"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+Shift+Z",
+        "enabled": false,
+        "id": "view.layout_redo",
+        "keyboard_scope": "canvas; inactive while editing text or an auxiliary window",
+        "label": "Layout Redo",
+        "menu": "View",
+        "reason": "No layout history available in this direction.",
+        "shortcut": "Ctrl+Alt+Shift+L"
+      },
+      {
+        "default_shortcut": "Ctrl+F",
+        "enabled": true,
+        "id": "edit.search",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Search native records",
+        "menu": "Edit",
+        "reason": null,
+        "shortcut": "Ctrl+F"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+U",
+        "enabled": true,
+        "id": "edit.usages",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Find usages",
+        "menu": "Edit",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+U"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+I",
+        "enabled": true,
+        "id": "edit.impact",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Inspect record impact",
+        "menu": "Edit",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+I"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+P",
+        "enabled": true,
+        "id": "view.presentation_source",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Inspect presentation source\u2026",
+        "menu": "View",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+P"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+E",
+        "enabled": true,
+        "id": "tools.external_projection",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Open external projection",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+E"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+A",
+        "enabled": true,
+        "id": "tools.assurance",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Requirements and evidence",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+A"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+L",
+        "enabled": true,
+        "id": "tools.library",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Browse library folder",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+L"
+      },
+      {
+        "default_shortcut": "Ctrl+Comma",
+        "enabled": true,
+        "id": "tools.recovery_settings",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Recovery settings",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Comma"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+Comma",
+        "enabled": true,
+        "id": "tools.shortcuts",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Keyboard shortcuts",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+Comma"
+      }
+    ],
+    "last": {
+      "id": "view.layout_redo",
+      "reason": null,
+      "refused": false,
+      "scope": "model",
+      "surface": "keyboard"
+    },
+    "schema": "mbse-craft.command-catalog/1"
+  },
+  "error": false,
+  "external_copy_pending": false,
+  "feedback": "Model history applied. Raw drafts remain separately retained.",
+  "frame_override": null,
+  "frame_policy": "Desktop",
+  "layout_recovery_status": "awaiting timer check",
+  "model_revision": 28,
+  "native_record_impact": {
+    "note": "",
+    "open": false,
+    "report": null,
+    "target": null
+  },
+  "native_recovery_status": "awaiting timer check",
+  "native_search": {
+    "note": "",
+    "open": false,
+    "query_mode": "NameContains",
+    "report": null
+  },
+  "native_system_browser": {
+    "open_groups": {
+      "1": true
+    }
+  },
+  "native_usages": null,
+  "periodic_recovery": false,
+  "pixels_per_point": 1.0,
+  "preferences_status": "Preferences saved.",
+  "profile": "mbse-craft.ui-geometry/1",
+  "raw_version": 22,
+  "recovery_interval_seconds": 60,
+  "recovery_path": null,
+  "save_status": "Unsaved",
+  "selected": 1,
+  "shortcut_configuration": {
+    "draft": {
+      "edit.redo": "Primary+Alt+Shift+U",
+      "edit.search": "Default",
+      "edit.undo": "Primary+Alt+U",
+      "future.command": "future syntax preserved",
+      "view.layout_redo": "Primary+Alt+Shift+L",
+      "view.layout_undo": "Primary+Alt+L"
+    },
+    "draft_errors": [],
+    "load_errors": [],
+    "note": "Shortcuts active. Persistence is confirmed only by the preferences status below.",
+    "open": false,
+    "pending": false,
+    "persistent": true,
+    "read_only": false,
+    "schema": "mbse-craft.shortcut-configuration/1",
+    "status": "Preferences saved.",
+    "stored_overrides": {
+      "edit.redo": "Primary+Alt+Shift+U",
+      "edit.search": "Default",
+      "edit.undo": "Primary+Alt+U",
+      "future.command": "future syntax preserved",
+      "view.layout_redo": "Primary+Alt+Shift+L",
+      "view.layout_undo": "Primary+Alt+L"
+    }
+  },
+  "snapshot_hash": "56846acbf0a3f8c1dda7ed8e0b61eed4caf14fe3104dbfa7672f9f0ce16b4d81",
+  "source_edit_dirty": false,
+  "source_edit_pending": false,
+  "views_active": "1",
+  "views_camera": {
+    "view": "1",
+    "x": 64.0,
+    "y": 0.0,
+    "zoom": 1.0
+  },
+  "views_gesture_active": false,
+  "views_inspection_copy_origin": null,
+  "views_inspection_note": "Choose an explicit local presentation source to inspect read only.",
+  "views_inspection_profile": null,
+  "views_inspection_sha256": null,
+  "views_inspection_visible": false,
+  "views_mapping_rehearsal": {
+    "checked_preview_retained": false,
+    "choices": null,
+    "copy_note": "",
+    "copy_title": "Recovered presentation",
+    "last_applied_view": null,
+    "note": "",
+    "target_current": false
+  },
+  "views_note": "Ok(true)",
+  "views_occurrence_navigation": {
+    "active_view": "1",
+    "document_sha256": "61d0a31d38e324eef06f7bb5913d7fb1201a982a5982956322306bee49451ec0",
+    "history_usage": [
+      1,
+      2549
+    ],
+    "next_id": "9",
+    "occurrence": null,
+    "selected_occurrence": null
+  },
+  "views_pair_pending": false,
+  "views_pending": false,
+  "views_recovery_current_hint": false,
+  "views_revision": "4",
+  "views_saved_hint": false,
+  "widgets": {
+    "action:Add Actor": [
+      101.375,
+      673.9375,
+      167.59375,
+      691.9375
+    ],
+    "action:Add Capability": [
+      94.9375,
+      647.9375,
+      186.375,
+      665.9375
+    ],
+    "action:Add Environment": [
+      8.0,
+      699.9375,
+      116.96875,
+      717.9375
+    ],
+    "action:Add Expectation": [
+      8.0,
+      725.9375,
+      111.6875,
+      743.9375
+    ],
+    "action:Add Measure": [
+      8.0,
+      673.9375,
+      92.375,
+      691.9375
+    ],
+    "action:Add Mission": [
+      8.0,
+      647.9375,
+      85.9375,
+      665.9375
+    ],
+    "action:Add Objective": [
+      195.375,
+      647.9375,
+      285.125,
+      665.9375
+    ],
+    "action:Add Organization": [
+      125.96875,
+      699.9375,
+      235.5,
+      717.9375
+    ],
+    "action:Add Stakeholder": [
+      176.59375,
+      673.9375,
+      280.625,
+      691.9375
+    ],
+    "action:Browse library folder": [
+      1122.5,
+      29.5,
+      1251.90625,
+      47.5
+    ],
+    "action:Export SysML copy": [
+      1380.46875,
+      29.5,
+      1496.59375,
+      47.5
+    ],
+    "action:Find usages": [
+      8.0,
+      444.0,
+      83.5,
+      462.0
+    ],
+    "action:Import SysML": [
+      390.96875,
+      29.5,
+      477.46875,
+      47.5
+    ],
+    "action:Inspect presentation source\u2026": [
+      542.21875,
+      176.0,
+      723.875,
+      194.0
+    ],
+    "action:Inspect record impact": [
+      8.0,
+      470.0,
+      141.3125,
+      488.0
+    ],
+    "action:New": [
+      234.46875,
+      29.5,
+      268.875,
+      47.5
+    ],
+    "action:Open": [
+      277.875,
+      29.5,
+      318.03125,
+      47.5
+    ],
+    "action:Open external projection": [
+      782.46875,
+      29.5,
+      935.78125,
+      47.5
+    ],
+    "action:Recover": [
+      327.03125,
+      29.5,
+      381.96875,
+      47.5
+    ],
+    "action:Recovery copy": [
+      530.15625,
+      29.5,
+      621.78125,
+      47.5
+    ],
+    "action:Redo": [
+      1558.59375,
+      28.0,
+      1602.59375,
+      56.0
+    ],
+    "action:Requirements and evidence": [
+      944.78125,
+      29.5,
+      1113.5,
+      47.5
+    ],
+    "action:Save": [
+      486.46875,
+      29.5,
+      521.15625,
+      47.5
+    ],
+    "action:Search native records": [
+      8.0,
+      170.0,
+      139.65625,
+      188.0
+    ],
+    "action:Undo": [
+      1505.59375,
+      28.0,
+      1549.59375,
+      56.0
+    ],
+    "camera:100%": [
+      488.8125,
+      255.0,
+      529.625,
+      273.0
+    ],
+    "camera:Fit": [
+      959.8125,
+      228.5,
+      982.6875,
+      246.5
+    ],
+    "camera:Pan down": [
+      790.4375,
+      255.0,
+      855.625,
+      273.0
+    ],
+    "camera:Pan left": [
+      602.59375,
+      255.0,
+      655.53125,
+      273.0
+    ],
+    "camera:Pan right": [
+      664.53125,
+      255.0,
+      724.90625,
+      273.0
+    ],
+    "camera:Pan up": [
+      733.90625,
+      255.0,
+      781.4375,
+      273.0
+    ],
+    "camera:Reset camera": [
+      864.625,
+      255.0,
+      950.875,
+      273.0
+    ],
+    "camera:Zoom in": [
+      538.625,
+      255.0,
+      593.59375,
+      273.0
+    ],
+    "camera:Zoom out": [
+      415.34375,
+      255.0,
+      479.8125,
+      273.0
+    ],
+    "command:toolbar:edit.impact": [
+      8.0,
+      470.0,
+      141.3125,
+      488.0
+    ],
+    "command:toolbar:edit.redo": [
+      1558.59375,
+      28.0,
+      1602.59375,
+      56.0
+    ],
+    "command:toolbar:edit.search": [
+      8.0,
+      170.0,
+      139.65625,
+      188.0
+    ],
+    "command:toolbar:edit.undo": [
+      1505.59375,
+      28.0,
+      1549.59375,
+      56.0
+    ],
+    "command:toolbar:edit.usages": [
+      8.0,
+      444.0,
+      83.5,
+      462.0
+    ],
+    "command:toolbar:file.export_sysml": [
+      1380.46875,
+      29.5,
+      1496.59375,
+      47.5
+    ],
+    "command:toolbar:file.import_sysml": [
+      390.96875,
+      29.5,
+      477.46875,
+      47.5
+    ],
+    "command:toolbar:file.new": [
+      234.46875,
+      29.5,
+      268.875,
+      47.5
+    ],
+    "command:toolbar:file.open": [
+      277.875,
+      29.5,
+      318.03125,
+      47.5
+    ],
+    "command:toolbar:file.recover": [
+      327.03125,
+      29.5,
+      381.96875,
+      47.5
+    ],
+    "command:toolbar:file.recovery_copy": [
+      530.15625,
+      29.5,
+      621.78125,
+      47.5
+    ],
+    "command:toolbar:file.review_recoveries": [
+      630.78125,
+      29.5,
+      773.46875,
+      47.5
+    ],
+    "command:toolbar:file.save": [
+      486.46875,
+      29.5,
+      521.15625,
+      47.5
+    ],
+    "command:toolbar:tools.assurance": [
+      944.78125,
+      29.5,
+      1113.5,
+      47.5
+    ],
+    "command:toolbar:tools.external_projection": [
+      782.46875,
+      29.5,
+      935.78125,
+      47.5
+    ],
+    "command:toolbar:tools.library": [
+      1122.5,
+      29.5,
+      1251.90625,
+      47.5
+    ],
+    "command:toolbar:tools.recovery_settings": [
+      1260.90625,
+      29.5,
+      1371.46875,
+      47.5
+    ],
+    "command:toolbar:view.layout_redo": [
+      452.65625,
+      176.0,
+      533.21875,
+      194.0
+    ],
+    "command:toolbar:view.layout_undo": [
+      362.0,
+      176.0,
+      443.65625,
+      194.0
+    ],
+    "command:toolbar:view.presentation_source": [
+      542.21875,
+      176.0,
+      723.875,
+      194.0
+    ],
+    "field:1:name": [
+      8.0,
+      519.0,
+      345.0,
+      538.0
+    ],
+    "field:1:purpose": [
+      8.0,
+      569.0,
+      345.0,
+      602.9375
+    ],
+    "menu:Edit": [
+      41.28125,
+      2.0,
+      68.0625,
+      20.0
+    ],
+    "menu:File": [
+      8.0,
+      2.0,
+      32.28125,
+      20.0
+    ],
+    "menu:Tools": [
+      118.46875,
+      2.0,
+      153.03125,
+      20.0
+    ],
+    "menu:View": [
+      77.0625,
+      2.0,
+      109.46875,
+      20.0
+    ],
+    "occurrence:3": [
+      362.0,
+      532.0,
+      593.0,
+      616.0
+    ],
+    "occurrence:4": [
+      617.0,
+      532.0,
+      887.0,
+      616.0
+    ],
+    "occurrence:5": [
+      911.0,
+      532.0,
+      1181.0,
+      616.0
+    ],
+    "occurrence:6": [
+      362.0,
+      687.0,
+      593.0,
+      771.0
+    ],
+    "occurrence:7": [
+      617.0,
+      687.0,
+      887.0,
+      771.0
+    ],
+    "path": [
+      202.6875,
+      64.0,
+      2192.0,
+      83.0
+    ],
+    "recovery:Review copies": [
+      630.78125,
+      29.5,
+      773.46875,
+      47.5
+    ],
+    "relation:ContributesTo:1001:1000": [
+      362.0,
+      1295.0,
+      1016.59375,
+      1313.0
+    ],
+    "relation:ForObjective:1003:1002": [
+      362.0,
+      1347.0,
+      1075.0625,
+      1365.0
+    ],
+    "relation:Scope:1:1000": [
+      362.0,
+      1191.40625,
+      924.5625,
+      1209.0
+    ],
+    "relation:Scope:1:1001": [
+      362.0,
+      1217.0,
+      970.96875,
+      1235.0
+    ],
+    "relation:Scope:1:1002": [
+      362.0,
+      1243.0,
+      1014.28125,
+      1261.0
+    ],
+    "relation:Scope:1:1003": [
+      362.0,
+      1269.0,
+      948.8125,
+      1287.0
+    ],
+    "relation:Subject:1002:1001": [
+      362.0,
+      1321.0,
+      1065.875,
+      1339.0
+    ],
+    "save-path": [
+      137.46875,
+      91.0,
+      2192.0,
+      110.0
+    ],
+    "settings:Open": [
+      1260.90625,
+      29.5,
+      1371.46875,
+      47.5
+    ],
+    "tree:1": [
+      26.0,
+      263.0,
+      132.6875,
+      281.0
+    ],
+    "tree:1000": [
+      26.0,
+      289.0,
+      272.125,
+      307.0
+    ],
+    "tree:1001": [
+      26.0,
+      315.0,
+      318.53125,
+      333.0
+    ],
+    "tree:1002": [
+      26.0,
+      341.0,
+      297.96875,
+      373.0
+    ],
+    "tree:1003": [
+      26.0,
+      381.0,
+      296.375,
+      399.0
+    ],
+    "tree:system:1:header": [
+      8.0,
+      237.0,
+      345.0,
+      255.0
+    ],
+    "view:Layout Redo": [
+      452.65625,
+      176.0,
+      533.21875,
+      194.0
+    ],
+    "view:Layout Undo": [
+      362.0,
+      176.0,
+      443.65625,
+      194.0
+    ],
+    "view:tab:1": [
+      362.0,
+      202.0,
+      456.15625,
+      220.0
+    ],
+    "view:tab:2": [
+      465.15625,
+      202.0,
+      544.3125,
+      220.0
+    ],
+    "views:Open views": [
+      766.53125,
+      281.5,
+      841.75,
+      299.5
+    ]
+  },
+  "write_pending": false
+}

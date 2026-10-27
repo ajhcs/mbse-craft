@@ -1,0 +1,23 @@
+[
+  {
+    "original_path": "/workspace/build/builderbob/mbse-craft/p02-readiness/local-attempt-20261025T201845Z/00.log",
+    "original_bytes": 8492,
+    "original_sha256": "0a8dfbc6a994d6c5755713a55fe8eefe54430374b2850abcae064c6da848266c",
+    "archive": "00.log.gz",
+    "archive_sha256": "97139d7d2c95701b9c0743cc246bc8ad1a1079ae5580c15c8f71e220bb19cb08"
+  },
+  {
+    "original_path": "/workspace/build/builderbob/mbse-craft/p02-readiness/local-attempt-20261025T201845Z/01.log",
+    "original_bytes": 11018,
+    "original_sha256": "1c21daddb5763cf7150ab9bff39427f662a5e2aa39e27debcb6a69b549b0ec36",
+    "archive": "01.log.gz",
+    "archive_sha256": "e567d4f10c3352268ebf4957a942160319ceac2dec379ce3fb989e363aff1296"
+  },
+  {
+    "original_path": "/workspace/build/builderbob/mbse-craft/p02-readiness/local-attempt-20261025T201845Z/02.log",
+    "original_bytes": 1803,
+    "original_sha256": "332ed445a848d570d94e24e27024531faf4c9fa4cd4a8b731a9a3e95e3dd7ca9",
+    "archive": "02.log.gz",
+    "archive_sha256": "c97878df973c56ec77d3b2cb1f7fdcea66df9497bbf8df7153807cb4e7e6bc7c"
+  }
+]

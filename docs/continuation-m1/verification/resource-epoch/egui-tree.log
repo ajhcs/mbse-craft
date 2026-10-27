@@ -1,0 +1,13 @@
+egui v0.36.2
+├── craft-quit v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/craft-libs/crates/quit)
+│   └── mbse-desktop v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-desktop)
+├── craft-ui v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/craft-libs/crates/ui)
+│   └── mbse-desktop v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-desktop)
+├── craft-window v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/craft-libs/crates/window)
+│   └── mbse-desktop v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-desktop)
+├── eframe v0.36.2
+│   └── mbse-desktop v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-desktop)
+├── egui-winit v0.36.2
+│   └── eframe v0.36.2 (*)
+└── egui_glow v0.36.2
+    └── eframe v0.36.2 (*)

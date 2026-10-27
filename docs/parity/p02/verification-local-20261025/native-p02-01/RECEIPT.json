@@ -1,0 +1,99 @@
+{
+  "schema": "mbse-craft.p02-native-acceptance/1",
+  "started_utc": "2026-10-25T20:22:24.466440+00:00",
+  "status": "failed_or_partial",
+  "binary": "/workspace/build/builderbob/mbse-craft/p02-readiness/local-attempt-20261025T201845Z/mbse-desktop",
+  "binary_sha256": "75bdb7b6df792d1426259d70039ec021afd942d8667a3c11e74d6b90f277a458",
+  "action_script_sha256": "21ab4138e9e656fde6c6cd4d8db502eb60dd20303bb3ab03f0184fec80257e60",
+  "driver_sha256": "a619709e8d1cd87181ae7948e060470e3b34ccaa309f74e4ea5dc61625140bd2",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/p02-readiness/native-p02-01/blank",
+      "started_utc": "2026-10-25T20:22:28.203287+00:00",
+      "ready": {
+        "ready": true,
+        "app_pid": 2089100,
+        "server_pid": 2089097,
+        "window": 4194307,
+        "binary_sha256": "75bdb7b6df792d1426259d70039ec021afd942d8667a3c11e74d6b90f277a458"
+      },
+      "identities": {
+        "app_pid": {
+          "pid": 2089100,
+          "start_ticks": 33409576
+        },
+        "server_pid": {
+          "pid": 2089097,
+          "start_ticks": 33409557
+        }
+      },
+      "argv_extra": []
+    }
+  ],
+  "original_observer_admission_claimed": false,
+  "preflight_blank": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-25T20:22:24.646868+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 40807456768,
+    "conflicting_processes": [],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 302
+      },
+      {
+        "pid": 2064687,
+        "start_ticks": 33257528,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "error": "AssertionError('Cannot reveal live widget: output-unit-option:1003:MetrePerSecond')",
+  "failure_cleanup": "Driver stopped; no normal app-exit claim for interrupted run.",
+  "ended_utc": "2026-10-25T20:22:53.691267+00:00"
+}

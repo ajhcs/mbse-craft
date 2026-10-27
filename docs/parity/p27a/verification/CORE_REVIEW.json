@@ -1,0 +1,25 @@
+{
+  "result": "bounded_declarative_rules_and_atomic_fix_core_passed",
+  "reviewer": "Codex same implementing agent",
+  "independent_review": false,
+  "source_files": 723,
+  "source_sha256": "952e19b60858ee323e590970c68529114048eb1627b3b671024cc13ef29a7ae9",
+  "binary_sha256": "a32b84ad6415aeb1460eb371c9e36bb3a7083ab165395bfe57e08a613a3a0968",
+  "workspace_tests": 559,
+  "new_distinct_cases": 8,
+  "native_ui_run": false,
+  "p27_parent_complete": false,
+  "observations": [
+    "Strict finite requirement-Identifier/Statement rules with exact local ID and NonBlank/StartsWith/Equals literal predicates; optional explicit replacement, bounds/unknown-code refusal.",
+    "Custom form Save refuses until explicit exact-proposal runtime preview/admission. Register changes stale review. External accepted data is inert until manual Run; no persisted execution/review authority.",
+    "Stable custom issue location and missing-scope disclosure; read-only checks/preview leave native/register/lifecycle/decisions unchanged.",
+    "Existing identifier/statement authority refuses duplicate/blank/Copy-slave changes. Invalid target drafts refuse; master Copy propagation appears in full before/after and preserves invalid slave proposal.",
+    "Exact native/register/runtime guards refuse stale preview, including same counters/different bytes and cold runtime. Selection-only changes preserve proof. One Board Apply transaction and atomic Undo/Redo, original opaque data retained.",
+    "Actual independent register save/open retains whole data and runs no fix; cold runtime needs fresh report/preview."
+  ],
+  "limits": [
+    "Finite local text predicates/literal replacements, not OCL/scripts/general custom validation.",
+    "P27a core/data only. Actual native review/preview/Apply/Undo belongs to P27b; P27 parent incomplete.",
+    "All56 broad specs/integrated exits/full NoMagic/SysML/Craft/platform/independent engineering acceptance remain open."
+  ]
+}

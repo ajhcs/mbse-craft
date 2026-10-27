@@ -1,0 +1,260 @@
+{
+  "scope": "read-only M1 shared lifecycle interoperability research",
+  "upstream_execution": false,
+  "new_builds_or_tests": false,
+  "local_pinned_primary_files": [
+    {
+      "repository": "https://github.com/storytold/craft-libs",
+      "revision": "b1401e33b105ca2861575ede90f67f4d54449001",
+      "path": "docs/settings-storage.md",
+      "source_url": "https://github.com/storytold/craft-libs/blob/b1401e33b105ca2861575ede90f67f4d54449001/docs/settings-storage.md",
+      "sha256": "a02e39af2c844cae7f79a0630f8d35086b8dc256ecd28e44fcc8a8a17bf05a38",
+      "bytes": 6489,
+      "read_only_review_path": "/workspace/worktrees/builderbob/mbse-craft/upstream-review-b1401e3/docs/settings-storage.md"
+    },
+    {
+      "repository": "https://github.com/storytold/craft-libs",
+      "revision": "b1401e33b105ca2861575ede90f67f4d54449001",
+      "path": "crates/settings/src/lib.rs",
+      "source_url": "https://github.com/storytold/craft-libs/blob/b1401e33b105ca2861575ede90f67f4d54449001/crates/settings/src/lib.rs",
+      "sha256": "91859aa5dd89e8b1199dda6bb70ca49baaa9a8bddf084dce74f5409b4047374c",
+      "bytes": 3557,
+      "read_only_review_path": "/workspace/worktrees/builderbob/mbse-craft/upstream-review-b1401e3/crates/settings/src/lib.rs"
+    },
+    {
+      "repository": "https://github.com/storytold/craft-libs",
+      "revision": "b1401e33b105ca2861575ede90f67f4d54449001",
+      "path": "crates/settings/src/paths.rs",
+      "source_url": "https://github.com/storytold/craft-libs/blob/b1401e33b105ca2861575ede90f67f4d54449001/crates/settings/src/paths.rs",
+      "sha256": "51f6344d55456667a38a25ff2357f338e1922ac0729963c583e32cb137f97e5b",
+      "bytes": 6664,
+      "read_only_review_path": "/workspace/worktrees/builderbob/mbse-craft/upstream-review-b1401e3/crates/settings/src/paths.rs"
+    },
+    {
+      "repository": "https://github.com/storytold/craft-libs",
+      "revision": "b1401e33b105ca2861575ede90f67f4d54449001",
+      "path": "crates/quit/src/close.rs",
+      "source_url": "https://github.com/storytold/craft-libs/blob/b1401e33b105ca2861575ede90f67f4d54449001/crates/quit/src/close.rs",
+      "sha256": "f45dbce1e4f90778ef9e642ee75a412088a0d160527e4f522b373b2fb0b3eba5",
+      "bytes": 8909,
+      "read_only_review_path": "/workspace/worktrees/builderbob/mbse-craft/upstream-review-b1401e3/crates/quit/src/close.rs"
+    },
+    {
+      "repository": "https://github.com/storytold/craft-libs",
+      "revision": "b1401e33b105ca2861575ede90f67f4d54449001",
+      "path": "crates/platform/README.md",
+      "source_url": "https://github.com/storytold/craft-libs/blob/b1401e33b105ca2861575ede90f67f4d54449001/crates/platform/README.md",
+      "sha256": "5885a09b89f106cda13a5249150ba2d33b746e2788e70213c4850419c1c78675",
+      "bytes": 5744,
+      "read_only_review_path": "/workspace/worktrees/builderbob/mbse-craft/upstream-review-b1401e3/crates/platform/README.md"
+    },
+    {
+      "repository": "https://github.com/storytold/craft-libs",
+      "revision": "b1401e33b105ca2861575ede90f67f4d54449001",
+      "path": "crates/window/README.md",
+      "source_url": "https://github.com/storytold/craft-libs/blob/b1401e33b105ca2861575ede90f67f4d54449001/crates/window/README.md",
+      "sha256": "2a95730934a301e3ca3606ef4daf7bc362665dd85059f464ef734ae9dd94a52f",
+      "bytes": 3077,
+      "read_only_review_path": "/workspace/worktrees/builderbob/mbse-craft/upstream-review-b1401e3/crates/window/README.md"
+    },
+    {
+      "repository": "https://github.com/storytold/craft-libs",
+      "revision": "b1401e33b105ca2861575ede90f67f4d54449001",
+      "path": "crates/docpath/src/lib.rs",
+      "source_url": "https://github.com/storytold/craft-libs/blob/b1401e33b105ca2861575ede90f67f4d54449001/crates/docpath/src/lib.rs",
+      "sha256": "88c58c4e1e8447805913d190315cb152c6c7853ca64e3b7c573df157c7a773a1",
+      "bytes": 25931,
+      "read_only_review_path": "/workspace/worktrees/builderbob/mbse-craft/upstream-review-b1401e3/crates/docpath/src/lib.rs"
+    },
+    {
+      "repository": "https://github.com/storytold/figcraft",
+      "revision": "80f916326fb94f3a88cb24e64f396f564a0ebc06",
+      "path": "Cargo.toml",
+      "source_url": "https://github.com/storytold/figcraft/blob/80f916326fb94f3a88cb24e64f396f564a0ebc06/Cargo.toml",
+      "sha256": "31904c47090bb6f25197895fb353d39444d610a5b7cf9fe7e17ef5d55b70c2a6",
+      "bytes": 4775,
+      "read_only_review_path": "/workspace/worktrees/builderbob/mbse-craft/upstream-figcraft-review/Cargo.toml"
+    },
+    {
+      "repository": "https://github.com/storytold/figcraft",
+      "revision": "80f916326fb94f3a88cb24e64f396f564a0ebc06",
+      "path": "Cargo.lock",
+      "source_url": "https://github.com/storytold/figcraft/blob/80f916326fb94f3a88cb24e64f396f564a0ebc06/Cargo.lock",
+      "sha256": "5d919e095f8d64473e481f8dc336f21e7090f0fc03285a89581fab9a26aa0de1",
+      "bytes": 150202,
+      "read_only_review_path": "/workspace/worktrees/builderbob/mbse-craft/upstream-figcraft-review/Cargo.lock"
+    },
+    {
+      "repository": "https://github.com/storytold/figcraft",
+      "revision": "80f916326fb94f3a88cb24e64f396f564a0ebc06",
+      "path": "apps/figcraft/src/main.rs",
+      "source_url": "https://github.com/storytold/figcraft/blob/80f916326fb94f3a88cb24e64f396f564a0ebc06/apps/figcraft/src/main.rs",
+      "sha256": "aa755219323f954d8df4fd4404de423402947474812250e4049819c5a350b017",
+      "bytes": 18118,
+      "read_only_review_path": "/workspace/worktrees/builderbob/mbse-craft/upstream-figcraft-review/apps/figcraft/src/main.rs"
+    },
+    {
+      "repository": "https://github.com/storytold/figcraft",
+      "revision": "80f916326fb94f3a88cb24e64f396f564a0ebc06",
+      "path": "apps/figcraft/src/services.rs",
+      "source_url": "https://github.com/storytold/figcraft/blob/80f916326fb94f3a88cb24e64f396f564a0ebc06/apps/figcraft/src/services.rs",
+      "sha256": "f59ec38b256ad6c077d0a9fed2b137116656f18587c555861c7546cb60d5f03b",
+      "bytes": 15464,
+      "read_only_review_path": "/workspace/worktrees/builderbob/mbse-craft/upstream-figcraft-review/apps/figcraft/src/services.rs"
+    },
+    {
+      "repository": "https://github.com/storytold/figcraft",
+      "revision": "80f916326fb94f3a88cb24e64f396f564a0ebc06",
+      "path": "crates/engine/src/library_server.rs",
+      "source_url": "https://github.com/storytold/figcraft/blob/80f916326fb94f3a88cb24e64f396f564a0ebc06/crates/engine/src/library_server.rs",
+      "sha256": "f2b7a18ca258c00920a065e535533d5fe61e11d893b009c8cac9f67f61008300",
+      "bytes": 10991,
+      "read_only_review_path": "/workspace/worktrees/builderbob/mbse-craft/upstream-figcraft-review/crates/engine/src/library_server.rs"
+    },
+    {
+      "repository": "https://github.com/storytold/figcraft",
+      "revision": "80f916326fb94f3a88cb24e64f396f564a0ebc06",
+      "path": "crates/text/build.rs",
+      "source_url": "https://github.com/storytold/figcraft/blob/80f916326fb94f3a88cb24e64f396f564a0ebc06/crates/text/build.rs",
+      "sha256": "7abd5853ef7dd2d66dd8504a615b9edeb035b614ad14d16ce8256a2bb247a27f",
+      "bytes": 4310,
+      "read_only_review_path": "/workspace/worktrees/builderbob/mbse-craft/upstream-figcraft-review/crates/text/build.rs"
+    },
+    {
+      "repository": "https://github.com/storytold/cadcraft",
+      "revision": "8f988f630dd63ce5d9c997f5ef28a09dd1bdfcde",
+      "path": "Cargo.toml",
+      "source_url": "https://github.com/storytold/cadcraft/blob/8f988f630dd63ce5d9c997f5ef28a09dd1bdfcde/Cargo.toml",
+      "sha256": "bc5a66ef0f3bd68a092cfc7fcfb362ba31f02ed1fff2ac5b030210c786a32111",
+      "bytes": 2630,
+      "read_only_review_path": "/workspace/worktrees/builderbob/mbse-craft/upstream-cadcraft-review/Cargo.toml"
+    },
+    {
+      "repository": "https://github.com/storytold/cadcraft",
+      "revision": "8f988f630dd63ce5d9c997f5ef28a09dd1bdfcde",
+      "path": "Cargo.lock",
+      "source_url": "https://github.com/storytold/cadcraft/blob/8f988f630dd63ce5d9c997f5ef28a09dd1bdfcde/Cargo.lock",
+      "sha256": "6279c40fe7949b026daf0db2d6261bdf0ebc0db815a6203fab53deb3ebece0e1",
+      "bytes": 124248,
+      "read_only_review_path": "/workspace/worktrees/builderbob/mbse-craft/upstream-cadcraft-review/Cargo.lock"
+    },
+    {
+      "repository": "https://github.com/storytold/cadcraft",
+      "revision": "8f988f630dd63ce5d9c997f5ef28a09dd1bdfcde",
+      "path": "apps/cadcraft/src/main.rs",
+      "source_url": "https://github.com/storytold/cadcraft/blob/8f988f630dd63ce5d9c997f5ef28a09dd1bdfcde/apps/cadcraft/src/main.rs",
+      "sha256": "21b15477433f9ae72dc8dee8e1616bb4e9d6d33d087b008b7e41ef9c3063e4ce",
+      "bytes": 22138,
+      "read_only_review_path": "/workspace/worktrees/builderbob/mbse-craft/upstream-cadcraft-review/apps/cadcraft/src/main.rs"
+    },
+    {
+      "repository": "https://github.com/storytold/cadcraft",
+      "revision": "8f988f630dd63ce5d9c997f5ef28a09dd1bdfcde",
+      "path": "crates/fonts/build.rs",
+      "source_url": "https://github.com/storytold/cadcraft/blob/8f988f630dd63ce5d9c997f5ef28a09dd1bdfcde/crates/fonts/build.rs",
+      "sha256": "56fa97bf21224f9ac173082f59f1bfe53b7cc23aeacb67e036242475b4cf839f",
+      "bytes": 3734,
+      "read_only_review_path": "/workspace/worktrees/builderbob/mbse-craft/upstream-cadcraft-review/crates/fonts/build.rs"
+    }
+  ],
+  "remote_pinned_primary_reads": [
+    {
+      "repository": "https://github.com/storytold/egui",
+      "revision": "767b1cad294120689a514bb4bd68c077e46679b9",
+      "branch": "craft/0.36.2",
+      "upstream_base": "49682f8baa058bf49e011035cfbd6e825f88a5ef",
+      "read_via": "public GitHub REST branches/commit/contents/compare GET",
+      "paths": [
+        "PATCHES.md",
+        "Cargo.toml",
+        "crates/egui-winit/src/clipboard.rs"
+      ],
+      "patch_commits": [
+        "e7e37ad580bd2e6cd1e3be80f5f8c78af9c0c9d8",
+        "b02321d7405585d2ab76076d3bc2b199fedb4d0a",
+        "c01acc2acd2514f8830ba779dbbfc901b9931ff5"
+      ]
+    },
+    {
+      "repository": "https://github.com/storytold/winit",
+      "revision": "ffae5198770d7730e718043f035a772b7dbc3b1b",
+      "branch": "craft/0.30.13",
+      "read_via": "public GitHub REST contents GET",
+      "paths": [
+        "PATCHES.md"
+      ],
+      "note": "W15 supplies Wayland Clipboard API required by egui E4; W5/W11 apply to X11."
+    },
+    {
+      "repository": "https://github.com/storytold/pdfcraft",
+      "revision": "39844f06b58bc96bae72d3fb56faaa3b6201c945",
+      "read_via": "public GitHub REST contents GET",
+      "paths": [
+        "Cargo.toml",
+        "crates/platform/Cargo.toml",
+        "crates/ui-egui/src/lib.rs",
+        "apps/pdfcraft/src/main.rs"
+      ],
+      "note": "logic/on_close_request/menu observed; platform is local crate, not proof shared platform adoption."
+    },
+    {
+      "repository": "https://github.com/storytold/craft-fonts",
+      "revision": "43a994403242b287ab4c78499b7ff7d943ea6dba",
+      "paths": [
+        "docs/integration.md"
+      ],
+      "read_via": "public GitHub REST contents GET"
+    },
+    {
+      "repository": "https://github.com/storytold/craft-i18n",
+      "revision": "554df2c4d8345de6b084adeabca8ff8117f910e3",
+      "paths": [
+        "docs/integration.md"
+      ],
+      "read_via": "public GitHub REST contents GET"
+    }
+  ],
+  "secondary_research_reads": [
+    {
+      "path": "/workspace/repos/builderbob/sysand-projects-research-20261022/SYNTHESIS.md",
+      "sha256": "b4e9ccf307e6e5c92fec70bc1e674d4c6b7e787d5f32fbda56bcc11284142ba1",
+      "kind": "existing source-investigation dossier; not new package/runtime verification"
+    },
+    {
+      "path": "/workspace/repos/builderbob/sysand-projects-research-20261022/reports/architecture-design.md",
+      "sha256": "b5310fd4d407b818b3a5bf00ace42602fffc172533cda0afcc2ededd5787b3c8",
+      "kind": "existing source-investigation dossier; not new package/runtime verification"
+    },
+    {
+      "path": "/workspace/repos/builderbob/sysand-projects-research-20261022/reports/requirements-management.md",
+      "sha256": "9f441295c592378d6149a61e8d5f2d5e6327968c8d4321d4e3cc884fbd3ea5d2",
+      "kind": "existing source-investigation dossier; not new package/runtime verification"
+    },
+    {
+      "path": "/workspace/repos/builderbob/sysand-projects-research-20261022/reports/simulation-and-analysis.md",
+      "sha256": "5de0cbd718a570c6b462d7707bf8db95afbfefca21f10d529269bbe76cba3261",
+      "kind": "existing source-investigation dossier; not new package/runtime verification"
+    },
+    {
+      "path": "/workspace/repos/builderbob/sysand-projects-research-20261022/reports/syside-views.md",
+      "sha256": "c6f3a06a2f9f796466ec02b24f2f956f612aa97672252544e969ad08edc754a0",
+      "kind": "existing source-investigation dossier; not new package/runtime verification"
+    },
+    {
+      "path": "/workspace/repos/builderbob/sysand-projects-research-20261022/reports/syside-reqif.md",
+      "sha256": "080973688a14f9cf90a8312930acf0be0fa9c275fc53a15109d2b8f707409f30",
+      "kind": "existing source-investigation dossier; not new package/runtime verification"
+    },
+    {
+      "path": "/workspace/repos/builderbob/sysand-projects-research-20261022/reports/detect.md",
+      "sha256": "29e7bd8e8a2ea930aa89e612a92d299eede48f5814a8352573bf44746cc1e7e6",
+      "kind": "existing source-investigation dossier; not new package/runtime verification"
+    }
+  ],
+  "limits": [
+    "Search indexing may omit consumers.",
+    "Remote source reads not assigned invented content hashes.",
+    "No proprietary reference or Sysand package assets copied.",
+    "Shared SOURCE.json separately hashes all vendored inputs."
+  ]
+}

@@ -1,0 +1,212 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-25T22:28:31.031708+00:00",
+  "job_sha256": "170ecd556a98acec0e754f1df222c51f51e66214e6080375c96a5aaf15e64bca",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-review-controller-02/run",
+      "started_utc": "2026-10-25T22:28:31.052033+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 2267654,
+          "start_ticks": 34166216
+        },
+        "server_pid": {
+          "pid": 2267651,
+          "start_ticks": 34166197
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/build/builderbob/mbse-craft/milestone1/native-p06-01/reopen/final-blank-authored.kernspan",
+        "--select",
+        "1000"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 2267654,
+        "server_pid": 2267651,
+        "window": 4194307,
+        "binary_sha256": "90dfe7eb3709d7ca57e174bfdbd06942d140f8c21f823e74d1bf3b58abe7f844"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-25T22:28:55.437244+00:00",
+      "owned_processes_absent": true
+    },
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-review-controller-02/second",
+      "started_utc": "2026-10-25T22:28:55.457573+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 2267960,
+          "start_ticks": 34168640
+        },
+        "server_pid": {
+          "pid": 2267957,
+          "start_ticks": 34168638
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/build/builderbob/mbse-craft/milestone1/native-p06-01/reopen/final-blank-authored.kernspan",
+        "--select",
+        "1000"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 2267960,
+        "server_pid": 2267957,
+        "window": 4194307,
+        "binary_sha256": "90dfe7eb3709d7ca57e174bfdbd06942d140f8c21f823e74d1bf3b58abe7f844"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-25T22:29:36.715623+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-25T22:28:31.051790+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 23984549888,
+    "available_memory_bytes": 29580668928,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 496
+      },
+      {
+        "pid": 2064687,
+        "start_ticks": 33257528,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "preflight_second": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-25T22:28:55.457265+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 20787539968,
+    "available_memory_bytes": 29090234368,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 500
+      },
+      {
+        "pid": 2064687,
+        "start_ticks": 33257528,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "second_live_after_first_closed": true,
+  "live_run_status": [
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-review-controller-02/second"
+  ],
+  "finish_refused_live_second": "Close every app normally and stop every driver first: /workspace/build/builderbob/mbse-craft/milestone1/native-review-controller-02/second",
+  "all_inputs_unchanged": true,
+  "all_auth_files_absent": true,
+  "completed_scenarios": [
+    "Two actual sequential app runs reopened the same exact native/views pair without mutation",
+    "After first app/driver closed0, controller reported only the second run as live",
+    "Actual FINISH helper refused while the second driver was live and retained active status",
+    "Both app/driver runs closed0 normally; exact owned process identities and auth files absent; original inputs unchanged"
+  ],
+  "ended_utc": "2026-10-25T22:29:36.716042+00:00"
+}

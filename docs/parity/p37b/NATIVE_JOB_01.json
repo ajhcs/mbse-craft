@@ -1,0 +1,38 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "796c1ba9dfd08b9ce913113bfc5f434fcb11dc7f592ad6114674b46c429db59d",
+    "scripts/verify-m1-native.py": "ef4e7c2308323b9023f83a15ddb3b9214d27368fd9a34a42b4245ad44f574a39",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "id": "p37b-native-explicit-model-requirement-scope-metrics-save-01",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p37b-native-explicit-scope-metrics-01-20261027T143022Z/mbse-desktop",
+  "binary_sha256": "c423920a09d3af2b24bd01dfff24618ef83c141b757b93a49a4b79abea4097c1",
+  "source_sha256": "26d6fd816614e7f399229f4c0df34baee3c8be0fa9f1a148d8409410264c83fa",
+  "inputs": {
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p37b-native-metrics/docs/parity/p37b/fixtures/native-prepared-01/EXPECTED.json": "f0cca2be91d637ea67619b5a3b72d2d2351976a327b4317324ee7c3778dee944",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p37b-native-metrics/docs/parity/p37b/fixtures/native-prepared-01/native.kernspan": "76308c47303441f4dc6575399a85a9d842143c9784d442709a0402226cb670dc",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p37b-native-metrics/docs/parity/p37b/fixtures/native-prepared-01/native.mbse-views.json": "bc5e0519f10a956e8110c496c783c51f5521bae0279a86dc60c1a956b6dbeb2b",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p37b-native-metrics/docs/parity/p37b/fixtures/native-prepared-01/requirements.json": "bd712f6adc7981f51b261fc7cbe7fbbc2e660acf3a8189ae8f11980941e7c291"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p37b-01",
+  "argv_extra": [
+    "--open",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p37b-native-metrics/docs/parity/p37b/fixtures/native-prepared-01/native.kernspan",
+    "--select",
+    "1003"
+  ],
+  "scenarios": [
+    "ActualCtrlShiftA sharedRequirements/evidence route andmetricsection; explicit native/profile8/source-workingregister Open. Initialmodel253/516/60083/all8maps andregister3req/5traces/invalidstatement2/unknownmetadata retained. Queryglobal21native/2Systems/16calculations,3requirements/5traces/4active/1detached; System60082native1/typedzero butregisterallunchanged; System1native20.",
+    "Explicitrequirement2 ->1req/2internalactive/2boundary/1parentboundary; parent1 ->0internal/1traceboundary/1parentboundary; emptyexactsubset0; excludedregisterunavailable; providedemptyworkingregister qualifiedGUI. WrongSystem1003/missingrequirement999999/alias01 refuseswitholdhistoricalreport/filtertext retained, nozero fallback.",
+    "Actualregisterchild2invalidstatement edittooneblankspace retainsacceptedtext, stalespriorreport. FreshquerythenCopyhistoricalJSONgesture(readonly; actualGUIpayloadchecked,nativeOSclipboardnotread), sessionClear, windowClose/reopen retainsfilters/report. Savefreshworkingregister/modelpair withoriginalnative/type/behavior/parametric/raw/opaque andall8maps preserved; onlyintentionalregisterraw/revisionchange.",
+    "Normalownedcleanup; freshcoldjobcoversreportabsence/nativepair/registerreopen/exactcopy/new-runtimequery, withoutreplayingpassednative01cases."
+  ],
+  "claim_policy": "Final774-file26d6fd816614e7f399229f4c0df34baee3c8be0fa9f1a148d8409410264c83fa full779workspace/source-onlyfixturepreparation/desktopbuild. EightnewGUI/parsercases, explicitlegacytypedunavailable/noregistervsworkingempty/scope/pending/sameframe/stale/copy/clear/session. Metricsquerydoesnotruncalculations; existingStage1/evidenceassessmentbaselinebehaviorremainsseparate. Source-onlyfixturepreparationisnotnativeauthoring. No fullparity/automaticverification/independentengineering/platform/scale/production; all56specs/integratedM06exitremainopen."
+}

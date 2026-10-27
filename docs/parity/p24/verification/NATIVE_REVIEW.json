@@ -1,0 +1,30 @@
+{
+  "result": "bounded_five_typed_dependencies_copy_history_and_cold_register_passed",
+  "reviewer": "Codex same implementing agent",
+  "independent_review": false,
+  "source_files": 714,
+  "source_sha256": "46c81de892fda36ee547c083e6a94fd077bbbc7fb3f8a5dc04fa8cf2f74dd7cc",
+  "binary_sha256": "107cfdf4b35484588874a19ce6cc2e8a9a2e4524d0098b3b913fe6e2224beb20",
+  "workspace_tests": 519,
+  "new_distinct_cases": 11,
+  "native_runs": 2,
+  "action_errors": 0,
+  "pixels_reviewed": [
+    "native/run/06-five-persisted-types-and-active-endpoints.png",
+    "native/reopen/09-cold-read-only-copy-and-invalid-draft.png"
+  ],
+  "observations": [
+    "Derive6 requirement2 -> requirement1, Refine7 native Objective1002 -> requirement1, Satisfy8 ComponentDefinition1021 -> requirement1, Verify10 documentary case9 -> requirement1, Copy11 slave5 -> master1.",
+    "Requirement and Measure Satisfy proposals refused with accepted records/traces/allocation/raw forms unchanged. Duplicate Copy refused.",
+    "Derive6 display label changed to Copy display label; exact kind/endpoints unchanged. Test specification has procedure/expected text; no evidence, decision or Passed generated.",
+    "Copy5 direct statement override stays invalid raw, master1 statement edits propagate exact accepted text. Register Undo/Redo preserves copy consistency; remove11/Undo restores whole prior trace/requirement/raw state. Root Approved/Implemented and slave Draft remain independent with verification NotStarted.",
+    "Actual register Save, invalid CompletedPassed trace kind Open refusal, cold Open/fresh-copy entire register equality, no cold history. Incomplete native:1021? and slave override raw remain exact.",
+    "Native actual Save and cold second Save equal complete original Snapshot and all view/occurrence/edge/typed-port/connector maps. All frozen inputs unchanged and two normal app/display exits/process/auth cleanup."
+  ],
+  "retained_failure": "Initial attempt stopped before tests on conflicting mutable/immutable statement borrow. Compared through existing selected-field borrow; corrected full519/build passed.",
+  "review_finding_pending": "Rendered dependency rows expose Rust Debug endpoint wrappers and unsupported arrow glyphs. Fix presentation in isolated PR review and record final-binary rendered evidence; semantic tests/native evidence remain exact to this source.",
+  "limits": [
+    "Local typed endpoint subset, documentary case specification without execution or UML metaclass engine. No full NoMagic/SysML/Craft/platform or independent engineering acceptance.",
+    "All56 broad parity specs and integrated milestone exits remain unaccepted."
+  ]
+}

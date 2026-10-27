@@ -1,0 +1,103 @@
+{
+  "baseline": "36f4d1c",
+  "platform": "x86_64-unknown-linux-gnu",
+  "stage": "resolved graph; runtime-tree records actual selected normal/build graph separately",
+  "newly_reachable": [
+    {
+      "name": "ecolor",
+      "version": "0.36.2",
+      "source": null,
+      "manifest": "/workspace/worktrees/builderbob/mbse-craft/integration-m1/vendor/egui-fork/crates/ecolor/Cargo.toml",
+      "manifest_sha256": "bee5fdb0424d91fea20147e5798d2524c4296f7deb9ac64afd5a81f7ff91f598",
+      "license": "MIT OR Apache-2.0",
+      "build_scripts": []
+    },
+    {
+      "name": "eframe",
+      "version": "0.36.2",
+      "source": null,
+      "manifest": "/workspace/worktrees/builderbob/mbse-craft/integration-m1/vendor/egui-fork/crates/eframe/Cargo.toml",
+      "manifest_sha256": "b188c9a0c645d1614e33539e97ec2849459a322a98d4bd9acaff644569d5d442",
+      "license": "MIT OR Apache-2.0",
+      "build_scripts": []
+    },
+    {
+      "name": "egui",
+      "version": "0.36.2",
+      "source": null,
+      "manifest": "/workspace/worktrees/builderbob/mbse-craft/integration-m1/vendor/egui-fork/crates/egui/Cargo.toml",
+      "manifest_sha256": "a5173fa59f387b619749b7893abed9d240175102d230375315a95876d3807c48",
+      "license": "MIT OR Apache-2.0",
+      "build_scripts": []
+    },
+    {
+      "name": "egui-wgpu",
+      "version": "0.36.2",
+      "source": null,
+      "manifest": "/workspace/worktrees/builderbob/mbse-craft/integration-m1/vendor/egui-fork/crates/egui-wgpu/Cargo.toml",
+      "manifest_sha256": "70b8dc7ec418a004997cb3c039c707a430c00942952ec143cd093a49146c2146",
+      "license": "MIT OR Apache-2.0",
+      "build_scripts": []
+    },
+    {
+      "name": "egui-winit",
+      "version": "0.36.2",
+      "source": null,
+      "manifest": "/workspace/worktrees/builderbob/mbse-craft/integration-m1/vendor/egui-fork/crates/egui-winit/Cargo.toml",
+      "manifest_sha256": "32c8381166bc165d53f67a6f7a58aec719d1d7cf6f41cc12459673912bc3c8a2",
+      "license": "MIT OR Apache-2.0",
+      "build_scripts": []
+    },
+    {
+      "name": "egui_glow",
+      "version": "0.36.2",
+      "source": null,
+      "manifest": "/workspace/worktrees/builderbob/mbse-craft/integration-m1/vendor/egui-fork/crates/egui_glow/Cargo.toml",
+      "manifest_sha256": "564dd3bbcea2305f4a7ef538c82da0b22e230d658a34637e6179ac4cfca565a8",
+      "license": "MIT OR Apache-2.0",
+      "build_scripts": []
+    },
+    {
+      "name": "emath",
+      "version": "0.36.2",
+      "source": null,
+      "manifest": "/workspace/worktrees/builderbob/mbse-craft/integration-m1/vendor/egui-fork/crates/emath/Cargo.toml",
+      "manifest_sha256": "f3313d8da517d91b5546b8a00198da70f5533601bd14a3498ec3c4be129f36f0",
+      "license": "MIT OR Apache-2.0",
+      "build_scripts": []
+    },
+    {
+      "name": "epaint",
+      "version": "0.36.2",
+      "source": null,
+      "manifest": "/workspace/worktrees/builderbob/mbse-craft/integration-m1/vendor/egui-fork/crates/epaint/Cargo.toml",
+      "manifest_sha256": "7f65e4cb08405d3b3da0f107fb2fe3936552cbe16c340ac9a73a2c6a8f623691",
+      "license": "MIT OR Apache-2.0",
+      "build_scripts": []
+    },
+    {
+      "name": "epaint_default_fonts",
+      "version": "0.36.2",
+      "source": null,
+      "manifest": "/workspace/worktrees/builderbob/mbse-craft/integration-m1/vendor/egui-fork/crates/epaint_default_fonts/Cargo.toml",
+      "manifest_sha256": "9fe94d6195b72ba92b22f425bb00ed9134f51a4042ecd6fb9e9fc0159248284a",
+      "license": "(MIT OR Apache-2.0) AND OFL-1.1 AND Ubuntu-font-1.0",
+      "build_scripts": []
+    },
+    {
+      "name": "winit",
+      "version": "0.30.13",
+      "source": null,
+      "manifest": "/workspace/worktrees/builderbob/mbse-craft/integration-m1/vendor/winit-fork/Cargo.toml",
+      "manifest_sha256": "ffad3e216fdd5f94ae000c01f09c6e5db3d3d83af4713550adcd00cfbc86f328",
+      "license": "Apache-2.0",
+      "build_scripts": [
+        {
+          "path": "/workspace/worktrees/builderbob/mbse-craft/integration-m1/vendor/winit-fork/build.rs",
+          "sha256": "eda62c3ebf765708bf1608b51ccf77501b4aa0253214c419f813c6d08d640b1a"
+        }
+      ]
+    }
+  ],
+  "new_registry_name_versions": []
+}

@@ -1,0 +1,3 @@
+schema_version = 1
+periodic_recovery = true
+recovery_interval_seconds = 15

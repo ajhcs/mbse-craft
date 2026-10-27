@@ -1,0 +1,21 @@
+{"ready": true, "xft_dpi": 144, "screen_pixels": [2400, 1800], "screen_mm": [423, 318], "app_pid": 695384, "server_pid": 695381, "window": 4194307, "binary_sha256": "cb598cc054ae0f05b9a2366dd6d8f9197485ec8841e23fb4b77274858badbb71"}
+{"op": "click", "widget": "field:1003:criterion", "x": 253, "y": 831, "app_returncode": null, "window_map_state": 2}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null, "window_map_state": 2}
+{"op": "text", "text": "2400", "app_returncode": null, "window_map_state": 2}
+{"op": "key", "key": "Return", "app_returncode": null, "window_map_state": 2}
+{"op": "capture", "name": "edited-144-before-hidden-close", "ui_sha256": "f2408f21c35c9cd4e26ce1f8de3be7c8ab9c304565a368dea3b1ab0f663559ed", "capture_pixels": [2160, 1500], "sha256": "f7969ff5f1f04d1527733bdc01c35af2d03b22d5993a25b30a6c420c0d930eff", "app_returncode": null, "window_map_state": 2}
+{"op": "hide", "pause": 1, "app_returncode": null, "window_map_state": 0}
+{"op": "close", "pause": 2, "app_returncode": null, "window_map_state": 0}
+{"op": "show", "pause": 1, "app_returncode": null, "window_map_state": 2}
+{"op": "capture", "name": "hidden-dirty-close-guard", "ui_sha256": "8c224df9b683e92a45c4d616c77855ddc2d43f35af1eff4f34c1a2e060b3dc38", "capture_pixels": [2160, 1500], "sha256": "e7205ab2dd3013836a762d4560d4dac23a387f63a727d42db34d36187eb54904", "app_returncode": null, "window_map_state": 2}
+{"op": "click", "widget": "preserve:Cancel", "pause": 1, "x": 69, "y": 288, "app_returncode": null, "window_map_state": 2}
+{"op": "capture", "name": "hidden-close-cancel-retained", "ui_sha256": "b3c35da7b56dac5832b3d2758bc313e24fc44845faf02c9b807b4f713508a4d6", "capture_pixels": [2160, 1500], "sha256": "0f30f374f1ebfec3591ed6da8fd44d6dedacaf9894879663ea9df540f97b05ca", "app_returncode": null, "window_map_state": 2}
+{"op": "click", "widget": "frame:Minimize window", "pause": 1, "x": 1981, "y": 24, "app_returncode": null, "window_map_state": 2}
+{"op": "show", "pause": 1, "app_returncode": null, "window_map_state": 2}
+{"op": "capture", "name": "app-frame-minimize-dispatch-no-wm", "ui_sha256": "b3c35da7b56dac5832b3d2758bc313e24fc44845faf02c9b807b4f713508a4d6", "capture_pixels": [2160, 1500], "sha256": "df12b0239f20297f306244c3f577ae7eece51c27e19722ebdd0b717607915930", "app_returncode": null, "window_map_state": 2}
+{"op": "click", "widget": "save-path", "x": 1177, "y": 204, "app_returncode": null, "window_map_state": 2}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null, "window_map_state": 2}
+{"op": "text", "text": "/workspace/build/builderbob/mbse-craft/paired-fork/state/lifecycle144-r2/paired144.kernspan", "app_returncode": null, "window_map_state": 2}
+{"op": "click", "widget": "frame:Close window", "pause": 1, "x": 2110, "y": 24, "app_returncode": null, "window_map_state": 2}
+{"op": "capture", "name": "app-frame-close-preserve", "ui_sha256": "5f906ca125d25656083066e219d3cb9905b18e93e6df6ae8cc4883da2af15994", "capture_pixels": [2160, 1500], "sha256": "f38b3ff3425f2b738303bf72dcd5fdff5c676930b82c2294623b27742467d144", "app_returncode": null, "window_map_state": 2}
+{"op": "click", "widget": "preserve:Save and continue", "pause": 3, "x": 119, "y": 210, "app_returncode": 0}

@@ -1,0 +1,20 @@
+{
+  "scope": "Read-only final transfer seal confirmation; original initial access receipt preserved as historical snapshot",
+  "files": [
+    {
+      "path": "/workspace/repos/builderbob/kernspan/work/references/catia-workflow-20261022/TRANSFER-VERIFICATION.json",
+      "bytes": 2520,
+      "sha256": "6b2636f68730d9bb46c361d8463017eb8902772a682e7cdafd537a0e9bf0915d"
+    },
+    {
+      "path": "/workspace/repos/builderbob/kernspan/work/references/catia-workflow-20261022/DELIVERY-SEAL.json",
+      "bytes": 2096,
+      "sha256": "ce1e855e4604ed65c4779ea4e9e2970852911b8cabd88c81f07bb5e2439d5f91"
+    },
+    {
+      "path": "/workspace/repos/builderbob/kernspan/work/references/catia-workflow-20261022/TEAM-ACCESS.json",
+      "bytes": 1938,
+      "sha256": "6bc391966e8523beaeef01a82ba8e8a092a34834f1900af4b29e49cb0a485161"
+    }
+  ]
+}

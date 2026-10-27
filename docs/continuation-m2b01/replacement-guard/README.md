@@ -1,0 +1,17 @@
+# P1 local views replacement guard: source fixed, retest HELD
+
+Source commit `fdae8dfa94bf5bef18944243612a04cbf3047fda`; complete660-file source SHA256`b57c7bad8773ec6c68fc1c5b26d139e36e5022398421d42ba60db21c75b5dfb3`; Cargo.lock SHA256`475828c2023805c7f168af22aaa116b7f536ed6d09dfb090f3390a6b68c8454a`. Prepared workspace job `/workspace/build/builderbob/mbse-craft/views-replacement-guard/JOB.json`, SHA256`93a32172508d84cf896ae42768cba6268f53a976dab2e164e32132fc7e264969`. The committed JOB.json copy has those exact bytes. No Cargo, tests, build, GUI or upload ran for this source. SysON owns compiler, Kernspan renderer; MBSE is queued.
+
+## Finding and fix
+
+At old source eb80c0c, opening recoveryB could retain boundA's acknowledgment. A later edit toB could collide withA's revision, make a cached saved hint true, and allow local Open to discard unsavedB. A deserialized revision1 also bypassed the toolbar gate. Cached status did not verify that a current artifact still existed.
+
+`Io::open` now checks the layout being left at the shared adoption boundary before reading/replacing another sidecar. It requires exact current artifact/content verification of either a bound save or an explicit recovery, or a private untouched runtime-default capability created only by `Views::new`. `decode`/`restore` never create that capability. Native/view monotonic stamps ensure Undo cannot recreate the initial capability. Successful replacement clears both acknowledgment ledgers before installing only the new acknowledgment. Refusal retains live views/history and bytes; the controller also retains active/selected/route/drag state and gives Save/recovery/fresh-destination/cancel guidance. Successful adoption resets ephemeral route/drag selections even when IDs numerically coincide across files.
+
+The toolbar offers Open attempts without interpreting wire revisions as permission; the shared checked boundary decides. Per-frame saved hints remain hints. Current-source tests are authored, UNRUN: boundA revision5/recoveryB revision4→5 collision; same-revision distinct bound files; delete/truncate/tamper of bound or recovery files before local Open; imported revision1 without a pristine capability; opposite-kind ledger reset and pending refusal; controller history/selection/route retention. Together with existing tests, the held gate expects28 model/persistence tests and6 desktop controller tests, then the desktop build.
+
+## Held execution
+
+Use exact commands/environment in JOB.json serially under a newly allocated compiler slot and fresh independent health packet bound to this job SHA. Verify the source/lock before and after; preserve all stdout/stderr, per-command PID/time/exit, actual test names and resulting exact binary. Ordinary scoped failures need immutable attempt manifests. Do not run the old launcher against this job: its old hardcoded source/job digests intentionally do not admit this candidate.
+
+Old source5bebe92, 28-pass logs, source20f9b9aa, binary1b3cb0ab and earlier sealed milestones remain unchanged. Their passing status does not qualify this fix. The old native workflow plan must use a new retested exact binary before qualifying the replacement guard; the28-pass binary cannot prove it. After retest, add native boundA→recoveryB/edit/Open refusal, tampered-current-artifact/Open refusal and imported revision1 cases to the queued two-view walkthrough. No renderer or upload authority is implied.

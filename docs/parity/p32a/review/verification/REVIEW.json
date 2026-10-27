@@ -1,0 +1,13 @@
+{
+  "result": "bounded_state_machine_authoring_evidence_strengthened_passed",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 743,
+  "source_sha256": "9f1beddd3c0d7fc2bf904c344e11e7b680d638132bef7612b050c7aeb8fedbd4",
+  "binary_sha256": "0cd05c0c0badbb783228b3d5e80bac991977d12dd6bf6cb9b11033655cf4efb4",
+  "distinct_case_inventory": 643,
+  "new_review_cases": 1,
+  "affected_cases": 2,
+  "production_source_byte_identical": true,
+  "native_state_machine_checks": 0
+}

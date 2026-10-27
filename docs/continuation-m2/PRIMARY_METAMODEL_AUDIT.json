@@ -1,0 +1,1915 @@
+{
+  "repository": "https://github.com/eclipse-capella/capella",
+  "tag": "v7.1.0",
+  "commit": "3153b930a4284f6c82952658f1e8d8d6d8c8f340",
+  "license": "EPL-2.0",
+  "execution": "none; source reads only",
+  "vendored_upstream_source": false,
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "url": "https://raw.githubusercontent.com/eclipse-capella/capella/3153b930a4284f6c82952658f1e8d8d6d8c8f340/LICENSE.md",
+      "bytes": 14198,
+      "sha256": "0becf16567beb77fa252b7664631dd177c8f9a1889e48995b45379c7130e5303"
+    },
+    {
+      "path": "NOTICE.md",
+      "url": "https://raw.githubusercontent.com/eclipse-capella/capella/3153b930a4284f6c82952658f1e8d8d6d8c8f340/NOTICE.md",
+      "bytes": 2368,
+      "sha256": "25f9acd1be4aeece5ba12320fa31dd8f37a044e396309492c2ca83a5ff71cb1d"
+    },
+    {
+      "path": "core/plugins/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore",
+      "url": "https://raw.githubusercontent.com/eclipse-capella/capella/3153b930a4284f6c82952658f1e8d8d6d8c8f340/core/plugins/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore",
+      "bytes": 80556,
+      "sha256": "6d0e13ec78141a6c156832904bab682d094663a4f10404bbaf51cab1f12df5b9"
+    },
+    {
+      "path": "core/plugins/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore",
+      "url": "https://raw.githubusercontent.com/eclipse-capella/capella/3153b930a4284f6c82952658f1e8d8d6d8c8f340/core/plugins/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore",
+      "bytes": 183111,
+      "sha256": "881e329b226682bb2f9704f8c472e2cabc80955b4abbb8a56d6ca91b07c0d7f2"
+    },
+    {
+      "path": "core/plugins/org.polarsys.capella.core.data.gen/model/FunctionalAnalysis.ecore",
+      "url": "https://raw.githubusercontent.com/eclipse-capella/capella/3153b930a4284f6c82952658f1e8d8d6d8c8f340/core/plugins/org.polarsys.capella.core.data.gen/model/FunctionalAnalysis.ecore",
+      "bytes": 247085,
+      "sha256": "938fc4e82c6bf44ebe563a6891a31a808e4c7a3c8c2b5edbf75fde0ca5bd5a18"
+    },
+    {
+      "path": "core/plugins/org.polarsys.capella.core.data.gen/model/CapellaCore.ecore",
+      "url": "https://raw.githubusercontent.com/eclipse-capella/capella/3153b930a4284f6c82952658f1e8d8d6d8c8f340/core/plugins/org.polarsys.capella.core.data.gen/model/CapellaCore.ecore",
+      "bytes": 128560,
+      "sha256": "d00364ca5a4b8c843cbe68c49d466ed5b8db176b3fc39effa7a1d89e7e292451"
+    },
+    {
+      "path": "core/plugins/org.polarsys.capella.core.data.gen/model/Information.ecore",
+      "url": "https://raw.githubusercontent.com/eclipse-capella/capella/3153b930a4284f6c82952658f1e8d8d6d8c8f340/core/plugins/org.polarsys.capella.core.data.gen/model/Information.ecore",
+      "bytes": 385095,
+      "sha256": "cf579dd09bd24a87c18a48be224912492386ce8cf1e5107d0ff887750b196f63"
+    },
+    {
+      "path": "common/plugins/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore",
+      "url": "https://raw.githubusercontent.com/eclipse-capella/capella/3153b930a4284f6c82952658f1e8d8d6d8c8f340/common/plugins/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore",
+      "bytes": 71300,
+      "sha256": "fd547944b0d6096c378c62e66e887beccfc0be7024d0c15203d3f1782ca61c20"
+    },
+    {
+      "path": "core/plugins/org.polarsys.capella.core.data.helpers/src/org/polarsys/capella/core/data/helpers/ctx/delegates/MissionInvolvementHelper.java",
+      "url": "https://raw.githubusercontent.com/eclipse-capella/capella/3153b930a4284f6c82952658f1e8d8d6d8c8f340/core/plugins/org.polarsys.capella.core.data.helpers/src/org/polarsys/capella/core/data/helpers/ctx/delegates/MissionInvolvementHelper.java",
+      "bytes": 2333,
+      "sha256": "fe1e77f2472d7dfeb0b3a04cbfe81cf099917d6051909c7875e49dad4b25d2bc",
+      "use": "read-only derived-role confirmation; no source copied"
+    },
+    {
+      "path": "core/plugins/org.polarsys.capella.core.data.helpers/src/org/polarsys/capella/core/data/helpers/ctx/delegates/CapabilityExploitationHelper.java",
+      "url": "https://raw.githubusercontent.com/eclipse-capella/capella/3153b930a4284f6c82952658f1e8d8d6d8c8f340/core/plugins/org.polarsys.capella.core.data.helpers/src/org/polarsys/capella/core/data/helpers/ctx/delegates/CapabilityExploitationHelper.java",
+      "bytes": 1828,
+      "sha256": "ced4f2a11e34d1f1ebb3fedb9fc4da64461b1c0d1c913c9b66feb8b847b825ac",
+      "use": "read-only derived-role confirmation; no source copied"
+    },
+    {
+      "path": "core/plugins/org.polarsys.capella.core.data.helpers/src/org/polarsys/capella/core/data/helpers/capellacore/delegates/InvolvementHelper.java",
+      "url": "https://raw.githubusercontent.com/eclipse-capella/capella/3153b930a4284f6c82952658f1e8d8d6d8c8f340/core/plugins/org.polarsys.capella.core.data.helpers/src/org/polarsys/capella/core/data/helpers/capellacore/delegates/InvolvementHelper.java",
+      "bytes": 1717,
+      "sha256": "7cdc973366dc51a327ec93c292466894d99d047360f8ebf632322da65ead38df",
+      "use": "read-only derived-role confirmation; no source copied"
+    },
+    {
+      "path": "common/plugins/org.polarsys.capella.common.data.activity.gen/model/Activity.ecore",
+      "url": "https://raw.githubusercontent.com/eclipse-capella/capella/3153b930a4284f6c82952658f1e8d8d6d8c8f340/common/plugins/org.polarsys.capella.common.data.activity.gen/model/Activity.ecore",
+      "bytes": 103966,
+      "sha256": "de66078ec28f8788d0e9e150e039d173f6e1401b03d1217cc4ee9e11fdc68541"
+    }
+  ],
+  "schema_cases": [
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/ctx/7.0.0",
+      "name": "MissionInvolvement",
+      "super_types": "CapellaCore.ecore#//Involvement",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "systemComponent",
+          "lowerBound": "1",
+          "eType": "#//SystemComponent",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "mission",
+          "lowerBound": "1",
+          "eType": "#//Mission",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/ctx/7.0.0",
+      "name": "Mission",
+      "super_types": "CapellaCore.ecore#//NamedElement CapellaCore.ecore#//InvolverElement",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "ownedMissionInvolvements",
+          "upperBound": "-1",
+          "eType": "#//MissionInvolvement",
+          "containment": "true",
+          "resolveProxies": "false"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "involvedSystemComponents",
+          "upperBound": "-1",
+          "eType": "#//SystemComponent",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "ownedCapabilityExploitations",
+          "upperBound": "-1",
+          "eType": "#//CapabilityExploitation",
+          "containment": "true",
+          "resolveProxies": "false"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "exploitedCapabilities",
+          "upperBound": "-1",
+          "eType": "#//Capability",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/ctx/7.0.0",
+      "name": "Capability",
+      "super_types": "Interaction.ecore#//AbstractCapability",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "ownedCapabilityInvolvements",
+          "upperBound": "-1",
+          "eType": "#//CapabilityInvolvement",
+          "containment": "true",
+          "resolveProxies": "false"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "involvedSystemComponents",
+          "upperBound": "-1",
+          "eType": "#//SystemComponent",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "purposes",
+          "upperBound": "-1",
+          "eType": "#//CapabilityExploitation",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "purposeMissions",
+          "upperBound": "-1",
+          "eType": "#//Mission",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "realizedOperationalCapabilities",
+          "upperBound": "-1",
+          "eType": "ecore:EClass OperationalAnalysis.ecore#//OperationalCapability",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "realizingCapabilityRealizations",
+          "upperBound": "-1",
+          "eType": "ecore:EClass LogicalArchitecture.ecore#//CapabilityRealization",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/ctx/7.0.0",
+      "name": "CapabilityExploitation",
+      "super_types": "CapellaCore.ecore#//Relationship",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "mission",
+          "lowerBound": "1",
+          "eType": "#//Mission",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "capability",
+          "lowerBound": "1",
+          "eType": "#//Capability"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/ContextArchitecture.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/ctx/7.0.0",
+      "name": "SystemComponent",
+      "super_types": "CompositeStructure.ecore#//Component CapellaCore.ecore#//InvolvedElement",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "ownedSystemComponents",
+          "upperBound": "-1",
+          "eType": "#//SystemComponent",
+          "containment": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "ownedSystemComponentPkgs",
+          "upperBound": "-1",
+          "eType": "#//SystemComponentPkg",
+          "containment": "true"
+        },
+        {
+          "type": "ecore:EAttribute",
+          "name": "dataComponent",
+          "eType": "ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "dataType",
+          "upperBound": "-1",
+          "eType": "ecore:EClass CapellaCore.ecore#//Classifier"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "involvingCapabilities",
+          "upperBound": "-1",
+          "eType": "#//Capability",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "capabilityInvolvements",
+          "upperBound": "-1",
+          "eType": "#//CapabilityInvolvement",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "involvingMissions",
+          "upperBound": "-1",
+          "eType": "#//Mission",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "missionInvolvements",
+          "upperBound": "-1",
+          "eType": "#//MissionInvolvement",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "realizedEntities",
+          "upperBound": "-1",
+          "eType": "ecore:EClass OperationalAnalysis.ecore#//Entity",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "realizingLogicalComponents",
+          "upperBound": "-1",
+          "eType": "ecore:EClass LogicalArchitecture.ecore#//LogicalComponent",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "allocatedSystemFunctions",
+          "upperBound": "-1",
+          "eType": "#//SystemFunction",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/cs/7.0.0",
+      "name": "Block",
+      "super_types": "CapellaCore.ecore#//ModellingBlock FunctionalAnalysis.ecore#//AbstractFunctionalBlock",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "ownedAbstractCapabilityPkg",
+          "eType": "ecore:EClass CapellaCommon.ecore#//AbstractCapabilityPkg",
+          "containment": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "ownedInterfacePkg",
+          "eType": "#//InterfacePkg",
+          "containment": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "ownedDataPkg",
+          "eType": "ecore:EClass Information.ecore#//DataPkg",
+          "containment": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "ownedStateMachines",
+          "upperBound": "-1",
+          "eType": "ecore:EClass CapellaCommon.ecore#//StateMachine",
+          "containment": "true"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/CompositeStructure.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/cs/7.0.0",
+      "name": "Component",
+      "super_types": "#//Block CapellaCore.ecore#//Classifier #//InterfaceAllocator Information.ecore#//communication/CommunicationLinkExchanger",
+      "features": [
+        {
+          "type": "ecore:EAttribute",
+          "name": "actor",
+          "lowerBound": "1",
+          "eType": "ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean",
+          "defaultValueLiteral": "false"
+        },
+        {
+          "type": "ecore:EAttribute",
+          "name": "human",
+          "lowerBound": "1",
+          "eType": "ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean",
+          "defaultValueLiteral": "false"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "ownedInterfaceUses",
+          "upperBound": "-1",
+          "eType": "#//InterfaceUse",
+          "containment": "true",
+          "resolveProxies": "false"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "usedInterfaceLinks",
+          "upperBound": "-1",
+          "eType": "#//InterfaceUse",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "usedInterfaces",
+          "upperBound": "-1",
+          "eType": "#//Interface",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "ownedInterfaceImplementations",
+          "upperBound": "-1",
+          "eType": "#//InterfaceImplementation",
+          "containment": "true",
+          "resolveProxies": "false"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "implementedInterfaceLinks",
+          "upperBound": "-1",
+          "eType": "#//InterfaceImplementation",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "implementedInterfaces",
+          "upperBound": "-1",
+          "eType": "#//Interface",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "ownedComponentRealizations",
+          "upperBound": "-1",
+          "eType": "#//ComponentRealization",
+          "containment": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "realizedComponents",
+          "upperBound": "-1",
+          "eType": "#//Component",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "realizingComponents",
+          "upperBound": "-1",
+          "eType": "#//Component",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "providedInterfaces",
+          "upperBound": "-1",
+          "eType": "#//Interface",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "requiredInterfaces",
+          "upperBound": "-1",
+          "eType": "#//Interface",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "containedComponentPorts",
+          "upperBound": "-1",
+          "eType": "ecore:EClass FunctionalAnalysis.ecore#//ComponentPort",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "containedParts",
+          "upperBound": "-1",
+          "eType": "#//Part",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "containedPhysicalPorts",
+          "upperBound": "-1",
+          "eType": "#//PhysicalPort",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "ownedPhysicalPath",
+          "upperBound": "-1",
+          "eType": "#//PhysicalPath",
+          "containment": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "ownedPhysicalLinks",
+          "upperBound": "-1",
+          "eType": "#//PhysicalLink",
+          "containment": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "ownedPhysicalLinkCategories",
+          "upperBound": "-1",
+          "eType": "#//PhysicalLinkCategory",
+          "containment": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "representingParts",
+          "upperBound": "-1",
+          "eType": "#//Part",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/FunctionalAnalysis.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/fa/7.0.0",
+      "name": "FunctionInputPort",
+      "super_types": "#//FunctionPort ../../org.polarsys.capella.common.data.activity.gen/model/Activity.ecore#//InputPin",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "incomingExchangeItems",
+          "upperBound": "-1",
+          "eType": "ecore:EClass Information.ecore#//ExchangeItem"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "incomingFunctionalExchanges",
+          "upperBound": "-1",
+          "eType": "#//FunctionalExchange",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/FunctionalAnalysis.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/fa/7.0.0",
+      "name": "FunctionOutputPort",
+      "super_types": "#//FunctionPort ../../org.polarsys.capella.common.data.activity.gen/model/Activity.ecore#//OutputPin",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "outgoingExchangeItems",
+          "upperBound": "-1",
+          "eType": "ecore:EClass Information.ecore#//ExchangeItem"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "outgoingFunctionalExchanges",
+          "upperBound": "-1",
+          "eType": "#//FunctionalExchange",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/FunctionalAnalysis.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/fa/7.0.0",
+      "name": "AbstractFunctionAllocation",
+      "super_types": "CapellaCore.ecore#//Allocation",
+      "features": []
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/FunctionalAnalysis.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/fa/7.0.0",
+      "name": "ComponentFunctionalAllocation",
+      "super_types": "#//AbstractFunctionAllocation",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "function",
+          "lowerBound": "1",
+          "eType": "#//AbstractFunction",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "block",
+          "lowerBound": "1",
+          "eType": "#//AbstractFunctionalBlock",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/FunctionalAnalysis.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/fa/7.0.0",
+      "name": "FunctionalExchange",
+      "super_types": "CapellaCore.ecore#//NamedElement CapellaCore.ecore#//Relationship CapellaCore.ecore#//InvolvedElement ../../org.polarsys.capella.common.data.activity.gen/model/Activity.ecore#//ObjectFlow ../../org.polarsys.capella.common.data.behavior.gen/model/Behavior.ecore#//AbstractEvent Information.ecore#//AbstractEventOperation",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "exchangeSpecifications",
+          "upperBound": "-1",
+          "eType": "#//FunctionalExchangeSpecification"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "involvingFunctionalChains",
+          "upperBound": "-1",
+          "eType": "#//FunctionalChain",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "exchangedItems",
+          "upperBound": "-1",
+          "eType": "ecore:EClass Information.ecore#//ExchangeItem"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "allocatingComponentExchanges",
+          "upperBound": "-1",
+          "eType": "#//ComponentExchange",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "incomingComponentExchangeFunctionalExchangeRealizations",
+          "upperBound": "-1",
+          "eType": "#//ComponentExchangeFunctionalExchangeAllocation",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "incomingFunctionalExchangeRealizations",
+          "upperBound": "-1",
+          "eType": "#//FunctionalExchangeRealization",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "outgoingFunctionalExchangeRealizations",
+          "upperBound": "-1",
+          "eType": "#//FunctionalExchangeRealization",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "categories",
+          "upperBound": "-1",
+          "eType": "#//ExchangeCategory",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "ownedFunctionalExchangeRealizations",
+          "upperBound": "-1",
+          "eType": "#//FunctionalExchangeRealization",
+          "containment": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "sourceFunctionOutputPort",
+          "eType": "#//FunctionOutputPort",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "targetFunctionInputPort",
+          "eType": "#//FunctionInputPort",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "realizedFunctionalExchanges",
+          "upperBound": "-1",
+          "eType": "#//FunctionalExchange",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "realizingFunctionalExchanges",
+          "upperBound": "-1",
+          "eType": "#//FunctionalExchange",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/FunctionalAnalysis.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/fa/7.0.0",
+      "name": "ComponentExchange",
+      "super_types": "../../org.polarsys.capella.common.data.behavior.gen/model/Behavior.ecore#//AbstractEvent Information.ecore#//AbstractEventOperation CapellaCore.ecore#//NamedElement #//ExchangeSpecification",
+      "features": [
+        {
+          "type": "ecore:EAttribute",
+          "name": "kind",
+          "eType": "#//ComponentExchangeKind"
+        },
+        {
+          "type": "ecore:EAttribute",
+          "name": "oriented",
+          "eType": "ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean",
+          "defaultValueLiteral": "false"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "allocatedFunctionalExchanges",
+          "upperBound": "-1",
+          "eType": "#//FunctionalExchange",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "incomingComponentExchangeRealizations",
+          "upperBound": "-1",
+          "eType": "#//ComponentExchangeRealization",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "outgoingComponentExchangeRealizations",
+          "upperBound": "-1",
+          "eType": "#//ComponentExchangeRealization",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "outgoingComponentExchangeFunctionalExchangeAllocations",
+          "upperBound": "-1",
+          "eType": "#//ComponentExchangeFunctionalExchangeAllocation",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "ownedComponentExchangeFunctionalExchangeAllocations",
+          "upperBound": "-1",
+          "eType": "#//ComponentExchangeFunctionalExchangeAllocation",
+          "containment": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "ownedComponentExchangeRealizations",
+          "upperBound": "-1",
+          "eType": "#//ComponentExchangeRealization",
+          "containment": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "ownedComponentExchangeEnds",
+          "upperBound": "-1",
+          "eType": "#//ComponentExchangeEnd",
+          "containment": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "sourcePort",
+          "eType": "ecore:EClass Information.ecore#//Port",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "sourcePart",
+          "eType": "ecore:EClass CompositeStructure.ecore#//Part",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "targetPort",
+          "eType": "ecore:EClass Information.ecore#//Port",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "targetPart",
+          "eType": "ecore:EClass CompositeStructure.ecore#//Part",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "categories",
+          "upperBound": "-1",
+          "eType": "#//ComponentExchangeCategory",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "allocatorPhysicalLinks",
+          "upperBound": "-1",
+          "eType": "ecore:EClass CompositeStructure.ecore#//PhysicalLink",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "realizedComponentExchanges",
+          "upperBound": "-1",
+          "eType": "#//ComponentExchange",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "realizingComponentExchanges",
+          "upperBound": "-1",
+          "eType": "#//ComponentExchange",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/FunctionalAnalysis.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/fa/7.0.0",
+      "name": "ComponentExchangeEnd",
+      "super_types": "../../org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//InformationsExchanger CapellaCore.ecore#//CapellaElement",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "port",
+          "eType": "ecore:EClass Information.ecore#//Port"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "part",
+          "eType": "ecore:EClass CompositeStructure.ecore#//Part"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/FunctionalAnalysis.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/fa/7.0.0",
+      "name": "ComponentExchangeFunctionalExchangeAllocation",
+      "super_types": "#//AbstractFunctionAllocation",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "allocatedFunctionalExchange",
+          "lowerBound": "1",
+          "eType": "#//FunctionalExchange",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "allocatingComponentExchange",
+          "lowerBound": "1",
+          "eType": "#//ComponentExchange",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/FunctionalAnalysis.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/fa/7.0.0",
+      "name": "ComponentPort",
+      "super_types": "Information.ecore#//Port ../../org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//InformationsExchanger Information.ecore#//Property",
+      "features": [
+        {
+          "type": "ecore:EAttribute",
+          "name": "orientation",
+          "eType": "#//OrientationPortKind"
+        },
+        {
+          "type": "ecore:EAttribute",
+          "name": "kind",
+          "eType": "#//ComponentPortKind"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "componentExchanges",
+          "upperBound": "-1",
+          "eType": "#//ComponentExchange",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "allocatedFunctionPorts",
+          "upperBound": "-1",
+          "eType": "#//FunctionPort",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "delegatedComponentPorts",
+          "upperBound": "-1",
+          "eType": "#//ComponentPort",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "delegatingComponentPorts",
+          "upperBound": "-1",
+          "eType": "#//ComponentPort",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "allocatingPhysicalPorts",
+          "upperBound": "-1",
+          "eType": "ecore:EClass CompositeStructure.ecore#//PhysicalPort",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "realizedComponentPorts",
+          "upperBound": "-1",
+          "eType": "#//ComponentPort",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "realizingComponentPorts",
+          "upperBound": "-1",
+          "eType": "#//ComponentPort",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/CapellaCore.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/core/7.0.0",
+      "name": "Constraint",
+      "super_types": "#//NamedElement ../../org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractConstraint",
+      "features": []
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/CapellaCore.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/core/7.0.0",
+      "name": "Involvement",
+      "super_types": "#//Relationship",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "involver",
+          "lowerBound": "1",
+          "eType": "#//InvolverElement",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "involved",
+          "lowerBound": "1",
+          "eType": "#//InvolvedElement"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/CapellaCore.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/core/7.0.0",
+      "name": "InvolverElement",
+      "super_types": "#//CapellaElement",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "involvedInvolvements",
+          "upperBound": "-1",
+          "eType": "#//Involvement",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/CapellaCore.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/core/7.0.0",
+      "name": "AbstractPropertyValue",
+      "super_types": "#//NamedElement",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "involvedElements",
+          "upperBound": "-1",
+          "eType": "#//CapellaElement"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "valuedElements",
+          "upperBound": "-1",
+          "eType": "#//CapellaElement",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/CapellaCore.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/core/7.0.0",
+      "name": "StringPropertyValue",
+      "super_types": "#//AbstractPropertyValue",
+      "features": [
+        {
+          "type": "ecore:EAttribute",
+          "name": "value",
+          "eType": "ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/CapellaCore.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/core/7.0.0",
+      "name": "IntegerPropertyValue",
+      "super_types": "#//AbstractPropertyValue",
+      "features": [
+        {
+          "type": "ecore:EAttribute",
+          "name": "value",
+          "eType": "ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/CapellaCore.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/core/7.0.0",
+      "name": "BooleanPropertyValue",
+      "super_types": "#//AbstractPropertyValue",
+      "features": [
+        {
+          "type": "ecore:EAttribute",
+          "name": "value",
+          "eType": "ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/CapellaCore.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/core/7.0.0",
+      "name": "FloatPropertyValue",
+      "super_types": "#//AbstractPropertyValue",
+      "features": [
+        {
+          "type": "ecore:EAttribute",
+          "name": "value",
+          "eType": "ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/CapellaCore.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/core/7.0.0",
+      "name": "EnumerationPropertyValue",
+      "super_types": "#//AbstractPropertyValue",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "type",
+          "eType": "#//EnumerationPropertyType"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "value",
+          "eType": "#//EnumerationPropertyLiteral"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/CapellaCore.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/core/7.0.0",
+      "name": "EnumerationPropertyType",
+      "super_types": "#//NamedElement",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "ownedLiterals",
+          "upperBound": "-1",
+          "eType": "#//EnumerationPropertyLiteral",
+          "containment": "true"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/CapellaCore.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/core/7.0.0",
+      "name": "EnumerationPropertyLiteral",
+      "super_types": "#//NamedElement",
+      "features": []
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/CapellaCore.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/core/7.0.0",
+      "name": "PropertyValueGroup",
+      "super_types": "#//Namespace",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "valuedElements",
+          "upperBound": "-1",
+          "eType": "#//CapellaElement",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/Information.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/information/datavalue/7.0.0",
+      "name": "OpaqueExpression",
+      "super_types": "CapellaCore.ecore#//CapellaElement ../../org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//ValueSpecification",
+      "features": [
+        {
+          "type": "ecore:EAttribute",
+          "name": "bodies",
+          "unique": "false",
+          "upperBound": "-1",
+          "eType": "ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        },
+        {
+          "type": "ecore:EAttribute",
+          "name": "languages",
+          "upperBound": "-1",
+          "eType": "ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        }
+      ]
+    },
+    {
+      "file": "common/plugins/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore",
+      "namespace": "http://www.polarsys.org/capella/common/core/7.0.0",
+      "name": "AbstractRelationship",
+      "super_types": "#//ModelElement",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "realizedFlow",
+          "eType": "#//AbstractInformationFlow"
+        }
+      ]
+    },
+    {
+      "file": "common/plugins/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore",
+      "namespace": "http://www.polarsys.org/capella/common/core/7.0.0",
+      "name": "AbstractConstraint",
+      "super_types": "#//ModelElement",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "constrainedElements",
+          "upperBound": "-1",
+          "eType": "#//ModelElement"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "ownedSpecification",
+          "eType": "#//ValueSpecification",
+          "containment": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "context",
+          "eType": "#//ModelElement",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/CapellaCore.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/core/7.0.0",
+      "name": "Trace",
+      "super_types": "#//Relationship ../../org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractTrace",
+      "features": []
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/CapellaCore.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/core/7.0.0",
+      "name": "Allocation",
+      "super_types": "#//Relationship ../../org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractTrace",
+      "features": []
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/FunctionalAnalysis.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/fa/7.0.0",
+      "name": "AbstractFunctionalBlock",
+      "super_types": "CapellaCore.ecore#//ModellingBlock",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "ownedFunctionalAllocation",
+          "upperBound": "-1",
+          "eType": "#//ComponentFunctionalAllocation",
+          "containment": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "ownedComponentExchanges",
+          "upperBound": "-1",
+          "eType": "#//ComponentExchange",
+          "containment": "true",
+          "resolveProxies": "false"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "ownedComponentExchangeCategories",
+          "upperBound": "-1",
+          "eType": "#//ComponentExchangeCategory",
+          "containment": "true",
+          "resolveProxies": "false"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "functionalAllocations",
+          "upperBound": "-1",
+          "eType": "#//ComponentFunctionalAllocation",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "allocatedFunctions",
+          "upperBound": "-1",
+          "eType": "#//AbstractFunction",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "inExchangeLinks",
+          "upperBound": "-1",
+          "eType": "#//ExchangeLink"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "outExchangeLinks",
+          "upperBound": "-1",
+          "eType": "#//ExchangeLink"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/FunctionalAnalysis.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/fa/7.0.0",
+      "name": "AbstractFunction",
+      "super_types": "CapellaCore.ecore#//Namespace CapellaCore.ecore#//InvolvedElement Information.ecore#//AbstractInstance #//AbstractFunctionalChainContainer ../../org.polarsys.capella.common.data.activity.gen/model/Activity.ecore#//CallBehaviorAction ../../org.polarsys.capella.common.data.behavior.gen/model/Behavior.ecore#//AbstractEvent",
+      "features": [
+        {
+          "type": "ecore:EAttribute",
+          "name": "kind",
+          "eType": "#//FunctionKind"
+        },
+        {
+          "type": "ecore:EAttribute",
+          "name": "condition",
+          "eType": "ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "ownedFunctions",
+          "upperBound": "-1",
+          "eType": "#//AbstractFunction",
+          "containment": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "ownedFunctionRealizations",
+          "upperBound": "-1",
+          "eType": "#//FunctionRealization",
+          "containment": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "ownedFunctionalExchanges",
+          "upperBound": "-1",
+          "eType": "#//FunctionalExchange",
+          "containment": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "subFunctions",
+          "upperBound": "-1",
+          "eType": "#//AbstractFunction",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "outFunctionRealizations",
+          "upperBound": "-1",
+          "eType": "#//FunctionRealization",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "inFunctionRealizations",
+          "upperBound": "-1",
+          "eType": "#//FunctionRealization",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "componentFunctionalAllocations",
+          "upperBound": "-1",
+          "eType": "#//ComponentFunctionalAllocation",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "allocationBlocks",
+          "upperBound": "-1",
+          "eType": "#//AbstractFunctionalBlock",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "availableInStates",
+          "upperBound": "-1",
+          "eType": "ecore:EClass CapellaCommon.ecore#//State"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "involvingCapabilities",
+          "upperBound": "-1",
+          "eType": "ecore:EClass ContextArchitecture.ecore#//Capability",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "involvingCapabilityRealizations",
+          "upperBound": "-1",
+          "eType": "ecore:EClass LogicalArchitecture.ecore#//CapabilityRealization",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "involvingFunctionalChains",
+          "upperBound": "-1",
+          "eType": "#//FunctionalChain",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "linkedStateMachine",
+          "eType": "ecore:EClass CapellaCommon.ecore#//StateMachine",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true",
+          "resolveProxies": "false"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "linkedFunctionSpecification",
+          "eType": "#//FunctionSpecification",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true",
+          "resolveProxies": "false"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/Information.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/information/7.0.0",
+      "name": "Port",
+      "super_types": "CapellaCore.ecore#//NamedElement",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "incomingPortRealizations",
+          "upperBound": "-1",
+          "eType": "#//PortRealization",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "outgoingPortRealizations",
+          "upperBound": "-1",
+          "eType": "#//PortRealization",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "ownedProtocols",
+          "upperBound": "-1",
+          "eType": "ecore:EClass CapellaCommon.ecore#//StateMachine",
+          "containment": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "incomingPortAllocations",
+          "upperBound": "-1",
+          "eType": "#//PortAllocation",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "outgoingPortAllocations",
+          "upperBound": "-1",
+          "eType": "#//PortAllocation",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "providedInterfaces",
+          "upperBound": "-1",
+          "eType": "ecore:EClass CompositeStructure.ecore#//Interface"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "requiredInterfaces",
+          "upperBound": "-1",
+          "eType": "ecore:EClass CompositeStructure.ecore#//Interface"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "ownedPortRealizations",
+          "upperBound": "-1",
+          "eType": "#//PortRealization",
+          "containment": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "ownedPortAllocations",
+          "upperBound": "-1",
+          "eType": "#//PortAllocation",
+          "containment": "true"
+        }
+      ]
+    },
+    {
+      "file": "common/plugins/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore",
+      "namespace": "http://www.polarsys.org/capella/common/core/7.0.0",
+      "name": "AbstractTrace",
+      "super_types": "#//TraceableElement",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "targetElement",
+          "lowerBound": "1",
+          "eType": "#//TraceableElement"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "sourceElement",
+          "lowerBound": "1",
+          "eType": "#//TraceableElement"
+        }
+      ]
+    },
+    {
+      "file": "common/plugins/org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore",
+      "namespace": "http://www.polarsys.org/capella/common/core/7.0.0",
+      "name": "AbstractInformationFlow",
+      "super_types": "#//AbstractNamedElement #//AbstractRelationship",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "realizations",
+          "upperBound": "-1",
+          "eType": "#//AbstractRelationship"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "convoyedInformations",
+          "upperBound": "-1",
+          "eType": "#//AbstractExchangeItem"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "source",
+          "lowerBound": "1",
+          "eType": "#//InformationsExchanger"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "target",
+          "lowerBound": "1",
+          "eType": "#//InformationsExchanger"
+        }
+      ]
+    },
+    {
+      "file": "common/plugins/org.polarsys.capella.common.data.activity.gen/model/Activity.ecore",
+      "namespace": "http://www.polarsys.org/capella/common/activity/7.0.0",
+      "name": "ActivityEdge",
+      "super_types": "../../org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractRelationship",
+      "features": [
+        {
+          "type": "ecore:EAttribute",
+          "name": "kindOfRate",
+          "eType": "ecore:EEnum ../../org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//RateKind"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "inActivityPartition",
+          "eType": "#//ActivityPartition",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "inInterruptibleRegion",
+          "eType": "#//InterruptibleActivityRegion",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "inStructuredNode",
+          "eType": "#//StructuredActivityNode",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "rate",
+          "eType": "ecore:EClass ../../org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//ValueSpecification",
+          "containment": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "probability",
+          "eType": "ecore:EClass ../../org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//ValueSpecification",
+          "containment": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "target",
+          "lowerBound": "1",
+          "eType": "#//ActivityNode"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "source",
+          "lowerBound": "1",
+          "eType": "#//ActivityNode"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "guard",
+          "eType": "ecore:EClass ../../org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//ValueSpecification",
+          "containment": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "weight",
+          "eType": "ecore:EClass ../../org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//ValueSpecification",
+          "containment": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "interrupts",
+          "eType": "#//InterruptibleActivityRegion"
+        }
+      ]
+    },
+    {
+      "file": "common/plugins/org.polarsys.capella.common.data.activity.gen/model/Activity.ecore",
+      "namespace": "http://www.polarsys.org/capella/common/activity/7.0.0",
+      "name": "ObjectFlow",
+      "super_types": "#//ActivityEdge",
+      "features": [
+        {
+          "type": "ecore:EAttribute",
+          "name": "isMulticast",
+          "eType": "ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        },
+        {
+          "type": "ecore:EAttribute",
+          "name": "isMultireceive",
+          "eType": "ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "transformation",
+          "eType": "ecore:EClass ../../org.polarsys.capella.common.data.behavior.gen/model/Behavior.ecore#//AbstractBehavior"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "selection",
+          "eType": "ecore:EClass ../../org.polarsys.capella.common.data.behavior.gen/model/Behavior.ecore#//AbstractBehavior"
+        }
+      ]
+    },
+    {
+      "file": "common/plugins/org.polarsys.capella.common.data.activity.gen/model/Activity.ecore",
+      "namespace": "http://www.polarsys.org/capella/common/activity/7.0.0",
+      "name": "Pin",
+      "super_types": "#//ObjectNode",
+      "features": [
+        {
+          "type": "ecore:EAttribute",
+          "name": "isControl",
+          "eType": "ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        }
+      ]
+    },
+    {
+      "file": "common/plugins/org.polarsys.capella.common.data.activity.gen/model/Activity.ecore",
+      "namespace": "http://www.polarsys.org/capella/common/activity/7.0.0",
+      "name": "InputPin",
+      "super_types": "#//Pin",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "inputEvaluationAction",
+          "eType": "#//AbstractAction"
+        }
+      ]
+    },
+    {
+      "file": "common/plugins/org.polarsys.capella.common.data.activity.gen/model/Activity.ecore",
+      "namespace": "http://www.polarsys.org/capella/common/activity/7.0.0",
+      "name": "OutputPin",
+      "super_types": "#//Pin",
+      "features": []
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/FunctionalAnalysis.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/fa/7.0.0",
+      "name": "ExchangeSpecification",
+      "super_types": "CapellaCore.ecore#//NamedElement ../../org.polarsys.capella.common.data.activity.gen/model/Activity.ecore#//ActivityExchange",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "containingLink",
+          "eType": "#//ExchangeLink",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "link",
+          "eType": "#//ExchangeContainment"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "outgoingExchangeSpecificationRealizations",
+          "upperBound": "-1",
+          "eType": "#//ExchangeSpecificationRealization",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "incomingExchangeSpecificationRealizations",
+          "upperBound": "-1",
+          "eType": "#//ExchangeSpecificationRealization",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        }
+      ]
+    },
+    {
+      "file": "core/plugins/org.polarsys.capella.core.data.gen/model/FunctionalAnalysis.ecore",
+      "namespace": "http://www.polarsys.org/capella/core/fa/7.0.0",
+      "name": "FunctionPort",
+      "super_types": "Information.ecore#//Port CapellaCore.ecore#//TypedElement ../../org.polarsys.capella.common.data.behavior.gen/model/Behavior.ecore#//AbstractEvent",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "representedComponentPort",
+          "eType": "#//ComponentPort"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "allocatorComponentPorts",
+          "upperBound": "-1",
+          "eType": "#//ComponentPort",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "realizedFunctionPorts",
+          "upperBound": "-1",
+          "eType": "#//FunctionPort",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        },
+        {
+          "type": "ecore:EReference",
+          "name": "realizingFunctionPorts",
+          "upperBound": "-1",
+          "eType": "#//FunctionPort",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        }
+      ]
+    },
+    {
+      "file": "common/plugins/org.polarsys.capella.common.data.activity.gen/model/Activity.ecore",
+      "namespace": "http://www.polarsys.org/capella/common/activity/7.0.0",
+      "name": "ActivityExchange",
+      "super_types": "../../org.polarsys.capella.common.data.core.gen/model/ModellingCore.ecore#//AbstractInformationFlow",
+      "features": [
+        {
+          "type": "ecore:EReference",
+          "name": "realizingActivityFlows",
+          "upperBound": "-1",
+          "eType": "#//ActivityEdge",
+          "changeable": "false",
+          "volatile": "true",
+          "transient": "true",
+          "derived": "true"
+        }
+      ]
+    }
+  ]
+}

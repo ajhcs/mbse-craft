@@ -1,0 +1,443 @@
+{
+  "cases": [
+    {
+      "calculation": 60000,
+      "expected": {
+        "criterion": {
+          "comparator": "GreaterOrEqual",
+          "decimal": "3000",
+          "unit": "metre"
+        },
+        "expected_assessment": false,
+        "expected_value": 2.5,
+        "expression": "d",
+        "inputs": {
+          "d": {
+            "decimal": "2500",
+            "unit": "Metre"
+          }
+        },
+        "name": "length_conversion",
+        "output": "Kilometre"
+      },
+      "name": "length_conversion",
+      "parameters_and_bindings": {
+        "d": [
+          60002,
+          60003
+        ]
+      },
+      "specification": 60001
+    },
+    {
+      "calculation": 60004,
+      "expected": {
+        "criterion": null,
+        "expected_value": 2.0,
+        "expression": "t",
+        "inputs": {
+          "t": {
+            "decimal": "120",
+            "unit": "Second"
+          }
+        },
+        "name": "duration_conversion",
+        "output": "Minute"
+      },
+      "name": "duration_conversion",
+      "parameters_and_bindings": {
+        "t": [
+          60006,
+          60007
+        ]
+      },
+      "specification": 60005
+    },
+    {
+      "calculation": 60008,
+      "expected": {
+        "criterion": null,
+        "expected_value": 1125.0,
+        "expression": "d / t",
+        "inputs": {
+          "d": {
+            "decimal": "2500",
+            "unit": "Metre"
+          },
+          "t": {
+            "decimal": "8",
+            "unit": "Second"
+          }
+        },
+        "name": "speed",
+        "output": "KilometrePerHour"
+      },
+      "name": "speed",
+      "parameters_and_bindings": {
+        "d": [
+          60010,
+          60011
+        ],
+        "t": [
+          60012,
+          60013
+        ]
+      },
+      "specification": 60009
+    },
+    {
+      "calculation": 60014,
+      "expected": {
+        "criterion": {
+          "comparator": "GreaterOrEqual",
+          "decimal": "25",
+          "unit": "percent"
+        },
+        "expected_assessment": true,
+        "expected_value": 0.5,
+        "expression": "r",
+        "inputs": {
+          "r": {
+            "decimal": "50",
+            "unit": "Percent"
+          }
+        },
+        "name": "ratio_percent",
+        "output": "RatioOne"
+      },
+      "name": "ratio_percent",
+      "parameters_and_bindings": {
+        "r": [
+          60016,
+          60017
+        ]
+      },
+      "specification": 60015
+    },
+    {
+      "calculation": 60018,
+      "expected": {
+        "criterion": {
+          "comparator": "Equal",
+          "decimal": "6",
+          "unit": "one"
+        },
+        "expected_assessment": true,
+        "expected_value": 6.0,
+        "expression": "a * b",
+        "inputs": {
+          "a": {
+            "decimal": "2",
+            "unit": "ScalarOne"
+          },
+          "b": {
+            "decimal": "3",
+            "unit": "ScalarOne"
+          }
+        },
+        "name": "scalar_equal",
+        "output": "ScalarOne"
+      },
+      "name": "scalar_equal",
+      "parameters_and_bindings": {
+        "a": [
+          60020,
+          60021
+        ],
+        "b": [
+          60022,
+          60023
+        ]
+      },
+      "specification": 60019
+    },
+    {
+      "calculation": 60024,
+      "expected": {
+        "criterion": null,
+        "expected_value": 4.0,
+        "expression": "n",
+        "inputs": {
+          "n": {
+            "decimal": "4",
+            "unit": "Count"
+          }
+        },
+        "name": "count_literal",
+        "output": "Count"
+      },
+      "name": "count_literal",
+      "parameters_and_bindings": {
+        "n": [
+          60026,
+          60027
+        ]
+      },
+      "specification": 60025
+    },
+    {
+      "calculation": 60028,
+      "expected": {
+        "criterion": {
+          "comparator": "Equal",
+          "decimal": "2500",
+          "unit": "metre"
+        },
+        "expected_assessment": true,
+        "expected_value": 2.5,
+        "expression": "d",
+        "inputs": {
+          "d": {
+            "decimal": "2500",
+            "unit": "Metre"
+          }
+        },
+        "name": "length_equal",
+        "output": "Kilometre"
+      },
+      "name": "length_equal",
+      "parameters_and_bindings": {
+        "d": [
+          60030,
+          60031
+        ]
+      },
+      "specification": 60029
+    },
+    {
+      "calculation": 60032,
+      "expected": {
+        "criterion": {
+          "comparator": "LessOrEqual",
+          "decimal": "3000",
+          "unit": "metre"
+        },
+        "expected_assessment": true,
+        "expected_value": 2.5,
+        "expression": "d",
+        "inputs": {
+          "d": {
+            "decimal": "2500",
+            "unit": "Metre"
+          }
+        },
+        "name": "length_upper",
+        "output": "Kilometre"
+      },
+      "name": "length_upper",
+      "parameters_and_bindings": {
+        "d": [
+          60034,
+          60035
+        ]
+      },
+      "specification": 60033
+    },
+    {
+      "calculation": 60036,
+      "expected": {
+        "criterion": null,
+        "expected_failure": "DivisionByZero",
+        "expression": "d / t",
+        "inputs": {
+          "d": {
+            "decimal": "2500",
+            "unit": "Metre"
+          },
+          "t": {
+            "decimal": "0",
+            "unit": "Second"
+          }
+        },
+        "name": "zero_denominator",
+        "output": "MetrePerSecond"
+      },
+      "name": "zero_denominator",
+      "parameters_and_bindings": {
+        "d": [
+          60038,
+          60039
+        ],
+        "t": [
+          60040,
+          60041
+        ]
+      },
+      "specification": 60037
+    },
+    {
+      "calculation": 60042,
+      "expected": {
+        "criterion": null,
+        "expected_failure": "UnitMismatch",
+        "expression": "d + t",
+        "inputs": {
+          "d": {
+            "decimal": "2",
+            "unit": "Metre"
+          },
+          "t": {
+            "decimal": "3",
+            "unit": "Second"
+          }
+        },
+        "name": "quantity_mismatch",
+        "output": "Metre"
+      },
+      "name": "quantity_mismatch",
+      "parameters_and_bindings": {
+        "d": [
+          60044,
+          60045
+        ],
+        "t": [
+          60046,
+          60047
+        ]
+      },
+      "specification": 60043
+    },
+    {
+      "calculation": 60048,
+      "expected": {
+        "criterion": null,
+        "expected_failure": "DomainError",
+        "expression": "sqrt(x)",
+        "inputs": {
+          "x": {
+            "decimal": "-1",
+            "unit": "ScalarOne"
+          }
+        },
+        "name": "sqrt_domain",
+        "output": "ScalarOne"
+      },
+      "name": "sqrt_domain",
+      "parameters_and_bindings": {
+        "x": [
+          60050,
+          60051
+        ]
+      },
+      "specification": 60049
+    },
+    {
+      "calculation": 60052,
+      "expected": {
+        "criterion": null,
+        "expected_failure": "Overflow",
+        "expression": "x * y",
+        "inputs": {
+          "x": {
+            "decimal": "1e308",
+            "unit": "ScalarOne"
+          },
+          "y": {
+            "decimal": "1e308",
+            "unit": "ScalarOne"
+          }
+        },
+        "name": "overflow",
+        "output": "ScalarOne"
+      },
+      "name": "overflow",
+      "parameters_and_bindings": {
+        "x": [
+          60054,
+          60055
+        ],
+        "y": [
+          60056,
+          60057
+        ]
+      },
+      "specification": 60053
+    },
+    {
+      "calculation": 60058,
+      "expected": {
+        "criterion": null,
+        "expected_failure": "Underflow",
+        "expression": "x * y",
+        "inputs": {
+          "x": {
+            "decimal": "1e-308",
+            "unit": "ScalarOne"
+          },
+          "y": {
+            "decimal": "1e-308",
+            "unit": "ScalarOne"
+          }
+        },
+        "name": "underflow",
+        "output": "ScalarOne"
+      },
+      "name": "underflow",
+      "parameters_and_bindings": {
+        "x": [
+          60060,
+          60061
+        ],
+        "y": [
+          60062,
+          60063
+        ]
+      },
+      "specification": 60059
+    },
+    {
+      "calculation": 60064,
+      "expected": {
+        "criterion": {
+          "comparator": "GreaterOrEqual",
+          "decimal": "50",
+          "unit": "percent"
+        },
+        "expected_assessment_failure": "UnitMismatch",
+        "expected_value": 2.5,
+        "expression": "d",
+        "inputs": {
+          "d": {
+            "decimal": "2500",
+            "unit": "Metre"
+          }
+        },
+        "name": "criterion_quantity_mismatch",
+        "output": "Kilometre"
+      },
+      "name": "criterion_quantity_mismatch",
+      "parameters_and_bindings": {
+        "d": [
+          60066,
+          60067
+        ]
+      },
+      "specification": 60065
+    },
+    {
+      "calculation": 60068,
+      "expected": {
+        "expected_failure": "Cycle"
+      },
+      "name": "cycle",
+      "specification": 60069
+    },
+    {
+      "calculation": 1003,
+      "expected": {
+        "expected_assessment_failure": "IncompleteInput",
+        "expected_value": 2.5
+      },
+      "name": "pending_original_criterion",
+      "specification": 60074
+    }
+  ],
+  "counters": {
+    "model_revision": 249,
+    "next_id": 60079,
+    "raw_version": 506
+  },
+  "preparation": "Source data only, never evaluates its oracle or parametric programs. Numeric expectations copied from the pre-implementation hand-fixed fixture.",
+  "preserved_original_records_raw_opaque_and_eight_maps": true,
+  "schema": "mbse-craft.parametric-native-fixtures/1"
+}

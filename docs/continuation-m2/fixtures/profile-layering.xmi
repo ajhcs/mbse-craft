@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Original MIT synthetic profile/base layering; no proprietary profile definition copied. -->
+<xmi:XMI xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.omg.org/spec/UML/20131001"
+ xmlns:sysml="http://www.omg.org/spec/SysML/20181001/SysML" xmlns:uaf="https://www.omg.org/spec/UAF/20211201/UAF"
+ xmlns:unknown="urn:mbse-craft:synthetic:unknown-profile">
+ <uml:Model xmi:id="SYN-UML-M"><packagedElement xmi:type="uml:Class" xmi:id="SYN-BASE" name="Synthetic class"/></uml:Model>
+ <sysml:Block xmi:id="SYN-BLOCK" base_Class="SYN-BASE"/>
+ <uaf:OperationalPerformer xmi:id="SYN-UAF" base_Class="SYN-BASE"/>
+ <unknown:CustomOverlay xmi:id="SYN-UNKNOWN" base_Class="SYN-BASE" marker="Opaque synthetic metadata"/>
+</xmi:XMI>

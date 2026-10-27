@@ -1,0 +1,26 @@
+{
+  "contract": "read-only-normal-builderbob-access",
+  "files": [
+    {
+      "relative_path": "_transfer/addendum-source-manifest-r02.json",
+      "bytes": 3947,
+      "sha256": "4fe0ddfc897689c1bacb9259b3989c6f46775bebeb1810ffba07c81b4ea4b444"
+    },
+    {
+      "relative_path": "destination-manifest-r02.json",
+      "bytes": 3189,
+      "sha256": "ed922d992d22ac0853012f2fc003dc15374ccfd303410aaa417ff97f3ca8259c"
+    },
+    {
+      "relative_path": "updates/r02/capella-native-format-inventory.json",
+      "bytes": 8266,
+      "sha256": "af650c93fc096ea00070f0a6dea4611413dc1eafb1da3bc7414e798a13ad0b13"
+    },
+    {
+      "relative_path": "ADDITIVE-VERIFICATION-r02.json",
+      "bytes": 1329,
+      "sha256": "56c39213f3c0c2c56d7cc85f8e65f2a4247e40e508a68a1da1bd4a3406512349"
+    }
+  ],
+  "scope": "Hashes confirm readable supplied bytes; no model execution, compatibility, engineering or runtime acceptance implied."
+}

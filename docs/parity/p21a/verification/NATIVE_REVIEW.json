@@ -1,0 +1,33 @@
+{
+  "reviewer": "Codex, same implementing agent",
+  "independent_review": false,
+  "result": "bounded_P21a_typed_delete_unknown_hold_inverse_history_and_cold_save_passed",
+  "source_files": 705,
+  "workspace_tests": 476,
+  "new_tests": 11,
+  "native_runs": 4,
+  "controller_errors_retained": 1,
+  "observations": [
+    "Original opaque.p14.future blocks supported-reference completeness and Delete. Original sidecar explicitly hash-loaded in separate previously unexecuted preservation remainder; original accepted records/all four presentation maps exact after captured Save.",
+    "Controlled synthetic derivative removes only opaque.p14.future; original pair byte-exact; explicit unbound recovery4 to new native session and actual fresh native/views4 captured Save, provenance retained.",
+    "Clone1021 cascade removes1021..1026 and only override1023.property1020. Original sourceParts1009/1010 connectors1018/1019 default17 override23 and source presentation maps retained. Allocator stays1027.",
+    "Qualified clonePart1023/Port1017 ->Part1024/Port1015 uses occurrences18/19 route20 in view1 and21/22 route23 in view2. Apply detaches all six presentation records; Undo/Redo/Undo/Redo restores/detaches exact IDs/geometry/maps and keeps1021? newer invalid form.",
+    "Actual captured native/views4 Save/cold second Save equals full deleted snapshot, native9e draft,2.5km definition, all prior typed journals and detached state retained; cold preview/history absent.",
+    "Four normal app/display exits and owned process/auth cleanup; all frozen input hashes unchanged."
+  ],
+  "preserved_failures": [
+    "Two zero-test compilation failures: fixture include typo then test-only path borrow. Both original job/manifests/logs/receipts retained.",
+    "One controller AttributeError for Python Path.with_extension before sending sidecar text; corrected to with_suffix, successful explicit sidecar hash asserted; raw action error retained, no blanket zero-error claim.",
+    "Initial original semantic-hold run did not load sidecar. Separate original-views remainder qualifies that previously unexecuted presentation check; no relabeling of first run."
+  ],
+  "pixels_reviewed": [
+    "original-hold/run/01-original-unknown-impact-blocks-delete.png",
+    "native/run/05-undo-restores-exact-presentations-keeps-invalid-form.png"
+  ],
+  "limits": [
+    "Typed accepted member deletion only; native-core record deletion P21b and P21 parent remain open.",
+    "Same-agent bounded Linux evidence; not independent/full SysML/NoMagic/Craft/platform or engineering acceptance. All56 broad specs NOT_RUN.",
+    "Unknown metadata blocks Apply; positive controlled derivative is owned synthetic test data, not source-model repair.",
+    "At most64roots/128records/128value entries/512references; old raw forms retained detached. Cold restore does not invent runtime inverse history authority."
+  ]
+}

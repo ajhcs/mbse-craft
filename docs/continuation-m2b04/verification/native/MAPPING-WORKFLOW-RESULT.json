@@ -1,0 +1,371 @@
+{
+  "status": "ObservedNativeWorkflowCompletedPendingIndependentPixelReview",
+  "job_sha256": "5563fadfcd7df86091480245758fedb73174b62d444a50b5a8724d0c13d2bedc",
+  "source_commit": "0c89780e9e5591b2d02ff0e5b6c288d7921584f8",
+  "binary_sha256": "191799dae9008377a5c46a83d7cb5414138fa9728a6035e221ec4b25fb69c49d",
+  "audit_comparisons": [
+    {
+      "capture": "00-clean-target-pair.ui",
+      "audit_sha256": "91ac52040fd77f645a2eee456ba05149fb8d2dcd014d87890f0a502a6945aa78",
+      "model_revision": 0,
+      "raw_version": 0,
+      "views_revision": "1",
+      "mapping": {
+        "checked_preview_retained": false,
+        "choices": null,
+        "note": "",
+        "target_current": false
+      }
+    },
+    {
+      "capture": "01-dirty-target-baseline.ui",
+      "audit_sha256": "048cdf44beacb854a938bf29f5ad616aeb752de9324c8a197b823db86a894214",
+      "model_revision": 1,
+      "raw_version": 1,
+      "views_revision": "2",
+      "mapping": {
+        "checked_preview_retained": false,
+        "choices": null,
+        "note": "",
+        "target_current": false
+      }
+    },
+    {
+      "capture": "02-source-inspected.ui",
+      "audit_sha256": "a621c35b31a415259e6587c796c1fd232ffe14486d482c218712446a89fda273",
+      "model_revision": 1,
+      "raw_version": 1,
+      "views_revision": "2",
+      "mapping": {
+        "checked_preview_retained": false,
+        "choices": null,
+        "note": "",
+        "target_current": false
+      }
+    },
+    {
+      "capture": "03-default-unselected-rehearsal.ui",
+      "audit_sha256": "a621c35b31a415259e6587c796c1fd232ffe14486d482c218712446a89fda273",
+      "model_revision": 1,
+      "raw_version": 1,
+      "views_revision": "2",
+      "mapping": {
+        "checked_preview_retained": false,
+        "choices": null,
+        "note": "",
+        "target_current": false
+      }
+    },
+    {
+      "capture": "04-started-unselected.ui",
+      "audit_sha256": "e560fd43dab79c93baf6316d9c9fb12da3b9d895fddae58c3c1eecf68a3fe225",
+      "model_revision": 1,
+      "raw_version": 1,
+      "views_revision": "2",
+      "mapping": {
+        "checked_preview_retained": false,
+        "choices": [
+          "unselected"
+        ],
+        "note": "Every source occurrence starts unselected. Choose target identities explicitly.",
+        "target_current": true
+      }
+    },
+    {
+      "capture": "05-unselected-preview.ui",
+      "audit_sha256": "2bc1cabb9a54c14f5bfd12150ebe7a3c7e32a74e2c93ff888df2a3ee186ed64f",
+      "model_revision": 1,
+      "raw_version": 1,
+      "views_revision": "2",
+      "mapping": {
+        "checked_preview_retained": true,
+        "choices": [
+          "unselected"
+        ],
+        "note": "Checked point-in-time preview: 0 mapped, 1 skipped/unselected, 0 proposed edges, 0 skipped edges. Capacity, SaveAs and live Apply remain deferred.",
+        "target_current": true
+      }
+    },
+    {
+      "capture": "06-explicit-target-options.ui",
+      "audit_sha256": "2bc1cabb9a54c14f5bfd12150ebe7a3c7e32a74e2c93ff888df2a3ee186ed64f",
+      "model_revision": 1,
+      "raw_version": 1,
+      "views_revision": "2",
+      "mapping": {
+        "checked_preview_retained": true,
+        "choices": [
+          "unselected"
+        ],
+        "note": "Checked point-in-time preview: 0 mapped, 1 skipped/unselected, 0 proposed edges, 0 skipped edges. Capacity, SaveAs and live Apply remain deferred.",
+        "target_current": true
+      }
+    },
+    {
+      "capture": "07-explicit-target-preview.ui",
+      "audit_sha256": "de69cd63106527efdc357205686e4d625b337e0b025a1c04c5b3371196f0ba8c",
+      "model_revision": 1,
+      "raw_version": 1,
+      "views_revision": "2",
+      "mapping": {
+        "checked_preview_retained": true,
+        "choices": [
+          "target"
+        ],
+        "note": "Checked point-in-time preview: 1 mapped, 0 skipped/unselected, 0 proposed edges, 0 skipped edges. Capacity, SaveAs and live Apply remain deferred.",
+        "target_current": true
+      }
+    },
+    {
+      "capture": "08-explicit-skip-reason-preview.ui",
+      "audit_sha256": "a61082b4a708e29828fe28eef4f5e4ebb7d49eb1dd05b64bf3d374b56a2d06de",
+      "model_revision": 1,
+      "raw_version": 1,
+      "views_revision": "2",
+      "mapping": {
+        "checked_preview_retained": true,
+        "choices": [
+          "skip"
+        ],
+        "note": "Checked point-in-time preview: 0 mapped, 1 skipped/unselected, 0 proposed edges, 0 skipped edges. Capacity, SaveAs and live Apply remain deferred.",
+        "target_current": true
+      }
+    },
+    {
+      "capture": "09-reset-unselected-preview.ui",
+      "audit_sha256": "2bc1cabb9a54c14f5bfd12150ebe7a3c7e32a74e2c93ff888df2a3ee186ed64f",
+      "model_revision": 1,
+      "raw_version": 1,
+      "views_revision": "2",
+      "mapping": {
+        "checked_preview_retained": true,
+        "choices": [
+          "unselected"
+        ],
+        "note": "Checked point-in-time preview: 0 mapped, 1 skipped/unselected, 0 proposed edges, 0 skipped edges. Capacity, SaveAs and live Apply remain deferred.",
+        "target_current": true
+      }
+    },
+    {
+      "capture": "10-mapped-shortcuts-retain-target.ui",
+      "audit_sha256": "c7548669db8ea879e6e03ce26aa52759a8fcd80f945861d1b84bc7a7b059e62b",
+      "model_revision": 1,
+      "raw_version": 1,
+      "views_revision": "2",
+      "mapping": {
+        "checked_preview_retained": true,
+        "choices": [
+          "target"
+        ],
+        "note": "Checked point-in-time preview: 1 mapped, 0 skipped/unselected, 0 proposed edges, 0 skipped edges. Capacity, SaveAs and live Apply remain deferred.",
+        "target_current": true
+      }
+    },
+    {
+      "capture": "11-changed-source-refusal.ui",
+      "audit_sha256": "1bfec2d14815fd969d2e4467ee8837714c1d1517b829b66aef26b5167b59d476",
+      "model_revision": 1,
+      "raw_version": 1,
+      "views_revision": "2",
+      "mapping": {
+        "checked_preview_retained": false,
+        "choices": [
+          "target"
+        ],
+        "note": "VIEWS_SOURCE_CHANGED: inspect the source again; previous preview retained",
+        "target_current": true
+      }
+    },
+    {
+      "capture": "12-fresh-read-clears-mappings.ui",
+      "audit_sha256": "412e188378c09ae52b9ccc4758c627d798c764e230676c7d191290f96336e6bc",
+      "model_revision": 1,
+      "raw_version": 1,
+      "views_revision": "2",
+      "mapping": {
+        "checked_preview_retained": false,
+        "choices": null,
+        "note": "",
+        "target_current": false
+      }
+    },
+    {
+      "capture": "13-fresh-rehearsal-default-unselected.ui",
+      "audit_sha256": "ebff42a241dd44a029f8b19aa5fde11c223112464db688feff77dc70eae935f0",
+      "model_revision": 1,
+      "raw_version": 1,
+      "views_revision": "2",
+      "mapping": {
+        "checked_preview_retained": true,
+        "choices": [
+          "unselected"
+        ],
+        "note": "Checked point-in-time preview: 0 mapped, 1 skipped/unselected, 0 proposed edges, 0 skipped edges. Capacity, SaveAs and live Apply remain deferred.",
+        "target_current": true
+      }
+    },
+    {
+      "capture": "14-explicit-target-layout-edit.ui",
+      "audit_sha256": "b792bf76e5817c69731594d8d8f1009517a0d767020c6497967f91d735376d3f",
+      "model_revision": 1,
+      "raw_version": 1,
+      "views_revision": "2",
+      "mapping": {
+        "checked_preview_retained": true,
+        "choices": [
+          "unselected"
+        ],
+        "note": "Checked point-in-time preview: 0 mapped, 1 skipped/unselected, 0 proposed edges, 0 skipped edges. Capacity, SaveAs and live Apply remain deferred.",
+        "target_current": true
+      }
+    },
+    {
+      "capture": "15-target-stale-rehearsal.ui",
+      "audit_sha256": "ebff42a241dd44a029f8b19aa5fde11c223112464db688feff77dc70eae935f0",
+      "model_revision": 1,
+      "raw_version": 1,
+      "views_revision": "2",
+      "mapping": {
+        "checked_preview_retained": true,
+        "choices": [
+          "unselected"
+        ],
+        "note": "Checked point-in-time preview: 0 mapped, 1 skipped/unselected, 0 proposed edges, 0 skipped edges. Capacity, SaveAs and live Apply remain deferred.",
+        "target_current": true
+      }
+    },
+    {
+      "capture": "16-actual-target-layout-edit.ui",
+      "audit_sha256": "0777c05ff0673ea15bcf5c1442cf68a63e4d23f0b2b3c6c0cac0f9c2cfcd7247",
+      "model_revision": 1,
+      "raw_version": 1,
+      "views_revision": "3",
+      "mapping": {
+        "checked_preview_retained": true,
+        "choices": [
+          "unselected"
+        ],
+        "note": "Checked point-in-time preview: 0 mapped, 1 skipped/unselected, 0 proposed edges, 0 skipped edges. Capacity, SaveAs and live Apply remain deferred.",
+        "target_current": false
+      }
+    },
+    {
+      "capture": "17-target-stale-refusal.ui",
+      "audit_sha256": "6f06baa5e461af5b22f7cd6ffb405e506bccb47abf63f8be38068e0b67d369d1",
+      "model_revision": 1,
+      "raw_version": 1,
+      "views_revision": "3",
+      "mapping": {
+        "checked_preview_retained": false,
+        "choices": [
+          "unselected"
+        ],
+        "note": "VIEWS_PLAN_TARGET_STALE: start a new rehearsal",
+        "target_current": false
+      }
+    },
+    {
+      "capture": "18-explicit-new-rehearsal-after-target-edit.ui",
+      "audit_sha256": "334e655a94386a88d6860a1233cb37e5e5ed1356b55a62b22dbed4e2b2080229",
+      "model_revision": 1,
+      "raw_version": 1,
+      "views_revision": "3",
+      "mapping": {
+        "checked_preview_retained": false,
+        "choices": [
+          "unselected"
+        ],
+        "note": "Every source occurrence starts unselected. Choose target identities explicitly.",
+        "target_current": true
+      }
+    },
+    {
+      "capture": "19-final-target-pair-preserved.ui",
+      "audit_sha256": "88cbdd380a48b6b456aa81898446be55c69f12ad8bdf354b857bbc545779882c",
+      "model_revision": 1,
+      "raw_version": 1,
+      "views_revision": "3",
+      "mapping": {
+        "checked_preview_retained": false,
+        "choices": [
+          "unselected"
+        ],
+        "note": "Every source occurrence starts unselected. Choose target identities explicitly.",
+        "target_current": true
+      }
+    }
+  ],
+  "unchanged_target_until_intentional_layout_edit": true,
+  "exact_source_refusal": true,
+  "explicit_fresh_read_resets_choices": true,
+  "target_stale_after_actual_layout_revision3": true,
+  "final_native_sha256": "0322ec6b4bfe13bd2557b0ce8865cbafc97f6d5a58b3d01f0e8f4a6f1ffcefe3",
+  "final_views_sha256": "27776645a66d0ed46d8c510b268b263db17c70ce6d930144418564234d209506",
+  "final_geometry": {
+    "x": 124.0,
+    "y": 82.0,
+    "width": 270.0,
+    "height": 112.0
+  },
+  "strict_v1_keys_unchanged": true,
+  "source_original_unchanged": true,
+  "native_keys": [
+    "profile",
+    "schema_version",
+    "kind",
+    "snapshot",
+    "provenance"
+  ],
+  "limits": [
+    "Single System unbound-source GUI workflow; edge/budget behavior tested only",
+    "No live copy/apply, v2migration or general platform acceptance"
+  ],
+  "preserved_misses": [
+    "Capture03 occurred after resizing while the first Start click missed; actual Start is04",
+    "First attempted target drag at14 missed, so15 is not stale evidence; actual edit16 and stale refusal17 establish that case"
+  ],
+  "cleanup": {
+    "checked_utc": "2026-10-23T16:54:46.919151+00:00",
+    "started_utc": "2026-10-23T16:50:18.478362+00:00",
+    "ended_utc": "2026-10-23T16:54:05.170393+00:00",
+    "identities": [
+      {
+        "pid": 1145374,
+        "start_ticks": 14856875,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1145382,
+        "start_ticks": 14856958,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1145383,
+        "start_ticks": 14856983,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1145384,
+        "start_ticks": 14856983,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1145385,
+        "start_ticks": 14857007,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1145388,
+        "start_ticks": 14857009,
+        "original_identity_absent": true
+      }
+    ],
+    "owned_jobs": [],
+    "auth_absent": true,
+    "renderer_released": true,
+    "app_exit_code": 0,
+    "driver_exit_code": 0,
+    "source_binary_unchanged": true,
+    "original_pngs": 20
+  }
+}

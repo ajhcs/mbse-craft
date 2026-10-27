@@ -1,0 +1,92 @@
+warning: patch `egui_extras v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui_extras)` was not used in the crate graph
+warning: patch `egui_inspection v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui_inspection)` was not used in the crate graph
+warning: patch `egui_kittest v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui_kittest)` was not used in the crate graph
+help: Check that the patched package version and available features are compatible
+      with the dependency requirements. If the patch has a different version from
+      what is locked in the Cargo.lock file, run `cargo update` to use the new
+      version. This may also occur with an optional dependency that is not enabled.
+   Compiling version_check v0.9.5
+   Compiling generic-array v0.14.7
+   Compiling cfg-if v1.0.5
+   Compiling proc-macro2 v1.0.107
+   Compiling typenum v1.20.1
+   Compiling unicode-ident v1.0.26
+   Compiling quote v1.0.47
+   Compiling serde_core v1.0.229
+   Compiling libc v0.2.190
+   Compiling getrandom v0.4.3
+   Compiling rustix v1.1.5
+   Compiling zmij v1.0.23
+   Compiling crc32fast v1.5.2
+   Compiling syn v3.0.6
+   Compiling crypto-common v0.1.7
+   Compiling block-buffer v0.10.4
+   Compiling serde_json v1.0.151
+   Compiling simd-adler32 v0.3.10
+   Compiling adler2 v2.0.1
+   Compiling linux-raw-sys v0.12.1
+   Compiling bitflags v2.13.2
+   Compiling serde v1.0.229
+   Compiling miniz_oxide v0.9.1
+   Compiling digest v0.10.7
+   Compiling serde_derive v1.0.229
+   Compiling cpufeatures v0.2.17
+   Compiling fastrand v2.5.0
+   Compiling itoa v1.0.18
+   Compiling memchr v2.8.3
+   Compiling once_cell v1.21.4
+   Compiling tempfile v3.27.0
+   Compiling sha2 v0.10.9
+   Compiling flate2 v1.1.10
+   Compiling sysmlv2-syntax v0.10.2 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-model/vendor/sysmlv2-syntax)
+   Compiling byteorder v1.5.0
+   Compiling craft-atomic v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/craft-libs/crates/atomic)
+   Compiling mbse-model v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-model)
+   Compiling zip v0.6.6
+   Compiling roxmltree v0.19.0
+   Compiling mbse-exchange v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-exchange)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 12.22s
+     Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/semantic-v2/target/debug/deps/mbse_exchange-411f96714aa6aeda)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/projection.rs (/workspace/build/builderbob/mbse-craft/semantic-v2/target/debug/deps/projection-5e074555dab8b4ff)
+
+running 8 tests
+test namespace_false_friends_and_wrong_versions_remain_unknown ... ok
+test lexical_reference_resolution_is_scoped_and_ambiguity_stays_explicit ... ok
+test capella_explicit_components_ports_exchange_and_no_sidecar_fetch ... ok
+test textual_ast_has_declared_spans_and_explicit_unresolved_typing ... ok
+test mdzip_projects_actual_named_core_and_retains_unknown_members_without_extraction ... ok
+test xml_refuses_dtd_duplicate_ids_depth_and_encoding ... ok
+test zip_refuses_paths_duplicate_candidates_and_high_ratio ... ok
+test uml_nodes_id_endpoints_stereotypes_unknown_unit_strings_and_exact_copy ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests/semantic_v2.rs (/workspace/build/builderbob/mbse-craft/semantic-v2/target/debug/deps/semantic_v2-bd109e00cd17fab3)
+
+running 12 tests
+test duplicate_ids_archive_paths_and_missing_members_refuse_without_losing_primary ... ok
+test child_namespace_declarations_obey_per_value_and_scope_limits ... ok
+test capella_stored_roles_containment_defaults_and_unevaluated_bodies ... ok
+test profile_layers_keep_exact_base_metaclass_and_coverage_gaps ... ok
+test content_dispatch_ignores_misleading_suffix_and_keeps_v2_text_refusal ... ok
+test exact_namespaces_wrong_version_and_uml_falsefriends_remain_unsupported ... ok
+test source_digest_excludes_physical_directory_and_includes_opaque_archive_member ... ok
+test inherited_involved_role_accepts_audited_function_and_rejects_known_wrong_kind ... ok
+test native_preview_refuses_with_actionable_exact_selection_and_new_copy_is_exact ... ok
+test aggregate_per_node_and_text_limits_refuse_typed_output_but_keep_bytes ... ok
+test exact_json_expansion_limit_and_diagnostic_truncation_preserve_raw_source ... ok
+test ordered_slots_unknown_namespace_features_and_global_aggregation_are_bounded ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.40s
+
+   Doc-tests mbse_exchange
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

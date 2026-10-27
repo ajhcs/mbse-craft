@@ -1,0 +1,36 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "796c1ba9dfd08b9ce913113bfc5f434fcb11dc7f592ad6114674b46c429db59d",
+    "scripts/verify-m1-native.py": "ef4e7c2308323b9023f83a15ddb3b9214d27368fd9a34a42b4245ad44f574a39",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "id": "p24-readable-traces-final-inspection",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m5-p24-readable-traces-03-20261027T003935Z/mbse-desktop",
+  "binary_sha256": "5f47fc2c33ff057296bb27584ccb2f4fd6797560964f4b7e78d792373bcf668d",
+  "source_sha256": "774d91a2fb26f1682dbd7cd5b90aa6a0562ca81c2274ff62091de9f3bc694106",
+  "inputs": {
+    "/workspace/repos/builderbob/mbse-craft/work/review-p24/docs/parity/p24/fixtures/native.kernspan": "778e35d48ddf38c9c5e539aea0a65fb0cade73f850209f377840e01a913317a1",
+    "/workspace/repos/builderbob/mbse-craft/work/review-p24/docs/parity/p24/fixtures/native.mbse-views.json": "e793dbe99a639f45d6a35d380bb34e1a6b32fd93b08c3f2d3d394b43e4aebe88",
+    "/workspace/repos/builderbob/mbse-craft/work/review-p24/docs/parity/p24/verification/native/reopen/cold-requirement-traces.json": "dc944142fa9b7dde791926d0e69a4e47fe202b63e865dd3e94c762720402f37c"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p24-02",
+  "argv_extra": [
+    "--open",
+    "/workspace/repos/builderbob/mbse-craft/work/review-p24/docs/parity/p24/fixtures/native.kernspan",
+    "--select",
+    "1003"
+  ],
+  "scenarios": [
+    "Actual Open preserved native/views4 and exact accepted register from first native run; display all five existing links with readable endpoint labels and ASCII direction.",
+    "Select Copy slave and inspect retained invalid raw/accepted statement/status; actual Save fresh register equals previous exact register; native whole Snapshot and maps unchanged.",
+    "No semantic authoring replay. Final-binary display/persistence inspection only; prior full519/build/two native sessions remain separately qualified. Normal owned app/display/auth cleanup."
+  ],
+  "claim_policy": "Bounded same-agent local subset; documentary test specification is not UML behavior/test execution or evidence proof. Native typed endpoint identity preserved. No full SysML/NoMagic/Craft/platform/independent engineering claim; broad AC-CAT-018 remains NOT_RUN."
+}

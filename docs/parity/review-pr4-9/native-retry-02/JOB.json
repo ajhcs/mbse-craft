@@ -1,0 +1,38 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "id": "review-controller-multiple-native-runs-retry-02",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m1-pr4-9-review-20261025T213644Z/mbse-desktop",
+  "binary_sha256": "90dfe7eb3709d7ca57e174bfdbd06942d140f8c21f823e74d1bf3b58abe7f844",
+  "source_sha256": "8b43545d4033edf12c69e86e7d1f32a650c55b867911347542f2ac1d99f30e2b",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "3b7f668763ac85a195af7cac3c61425518c7a28008a13779823dcc464cb14b91",
+    "scripts/verify-m1-native.py": "e0e14f8c37f0fa5686ba2bae7fb71adfc068d7ca11a748ffb123e49aac058aba",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "inputs": {
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p06-01/reopen/final-blank-authored.kernspan": "eefc3606af8a0e31bf8a513f942fc9bbe5122fb1417c5c98789af941cbc1c1fd",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p06-01/reopen/final-blank-authored.mbse-views.json": "d3e046c92cb84bc124191141758e729343dd3e5166e574cb09dc2f6a10592ec0"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-review-controller-02",
+  "argv_extra": [
+    "--open",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p06-01/reopen/final-blank-authored.kernspan",
+    "--select",
+    "1000"
+  ],
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "scenarios": [
+    "Actual two sequential normally closed app runs; second driver reported live after first is closed; FINISH verifies both owned records."
+  ],
+  "claim_policy": "Controller lifecycle smoke only. Original feature native acceptance remains bound to its original exact binary and script hashes.",
+  "retry_of": {
+    "job_sha256": "2b9dca263d63a391f929686d762da65cda84b5301a46ad3ac812c90d2882e87f",
+    "receipt": "docs/parity/review-pr4-9/native-partial/RECEIPT.json",
+    "reason": "Fresh workspace reserve now exceeds the unchanged8GiB gate. Original partial receipt remains intact."
+  }
+}

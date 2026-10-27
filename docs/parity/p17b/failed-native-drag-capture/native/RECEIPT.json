@@ -1,0 +1,162 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-26T19:48:02.699152+00:00",
+  "job_sha256": "984b8ffa70d0339a81186822af82379fa008cf5821e5e7a938eaefaf62e2e058",
+  "status": "active",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-01/run",
+      "started_utc": "2026-10-26T19:48:02.719980+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 3819671,
+          "start_ticks": 41843369
+        },
+        "server_pid": {
+          "pid": 3819666,
+          "start_ticks": 41843364
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/repos/builderbob/mbse-craft/work/m4-p17b-port-occurrences/docs/parity/p17b/fixtures/ports.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 3819671,
+        "server_pid": 3819666,
+        "window": 4194307,
+        "binary_sha256": "4836631e4ac695652781d53bd5c2095d132b24edcb5dc90657d92211baff7d56"
+      }
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-26T19:48:02.719688+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1434340057088,
+    "available_memory_bytes": 28323344384,
+    "conflicting_processes": [],
+    "other_project_compilers": [
+      {
+        "pid": 3818779,
+        "comm": "cargo",
+        "cwd": "/workspace/worktrees/builderbob/kernspan/b03-operation-completion",
+        "output_dirs": []
+      },
+      {
+        "pid": 3819633,
+        "comm": "rustc",
+        "cwd": "/workspace/worktrees/builderbob/kernspan/b03-operation-completion",
+        "output_dirs": [
+          "/workspace/repos/builderbob/kernspan/work/b03-operation-completion/build/target/debug/deps"
+        ]
+      }
+    ],
+    "appservers": [
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 539
+      },
+      {
+        "pid": 2912202,
+        "start_ticks": 40560687,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "action_errors": [
+    {
+      "action": "original=json.loads((Path.cwd()/'docs/parity/p17b/fixtures/ports.kernspan').read_text())['snapshot']; core_path=Path.cwd()/'docs/parity/p17b/fixtures/core-views.json'; rect=n.audit()['widgets']['views:Open views']; n.send(op='click',x=int(rect[0]-100),y=int((rect[1]+rect[3])/2)); n.send(op='key',key='a',mods=['Control_L']); n.send(op='text',text=str(core_path)); n.click('views:Open views'); assert n.audit()['views_occurrence_navigation']['document_sha256']==base.digest(core_path); n.send(op='key',key='i',mods=['Control_L','Alt_L']); n.click('ports:owner:1007'); n.click('ports:new-port'); port=n.audit()['ports']['port']; n.fill('ports:port:name','cross-view input'); n.fill('ports:port:contract','1012'); n.fill('ports:port:assignment','1013'); n.click('ports:apply-port'); accepted=n.audit()['ports']['store']; assert accepted['ports'][str(port)]['owner']==1007; n.click('ports:close'); semantic_hash=n.audit()['snapshot_hash']; n.click('ports:reuse:'+str(port)); a=n.audit(); first=max(int(id) for id in a['port_presentation']['occurrences']); assert a['port_presentation']['occurrences'][str(first)]['port']==str(port) and a['port_presentation']['occurrences'][str(first)]['view']=='1' and a['snapshot_hash']==semantic_hash; n.capture('01-primary-view-port-occurrence'); n.click('view:tab:2'); n.click('ports:reuse:'+str(port)); a=n.audit(); second=max(int(id) for id in a['port_presentation']['occurrences']); assert first!=second and a['port_presentation']['occurrences'][str(second)]['view']=='2' and a['port_presentation']['occurrences'][str(second)]['port']==str(port) and a['snapshot_hash']==semantic_hash; n.capture('02-second-view-reuses-same-semantic-port'); print('port',port,'occurrences',first,second)",
+      "error": "AssertionError()"
+    },
+    {
+      "action": "n.send(op='key',key='i',mods=['Control_L','Alt_L']); n.click('ports:form:'+str(port)); n.fill('ports:port:assignment','unapplied'); a=n.audit(); assert a['ports']['forms'][str(port)]['assignment']=='unapplied'; raw_ports=a['ports']['forms']; n.click('ports:undo-model'); a=n.audit(); assert str(port) not in a['ports']['store']['ports'] and all(o['presence']!='Active' for o in a['port_presentation']['occurrences'].values()) and a['ports']['forms']==raw_ports; n.capture('03-model-undo-detaches-both-port-occurrences'); n.click('ports:redo-model'); a=n.audit(); assert a['ports']['store']==accepted and all(o['presence']=='Active' for o in a['port_presentation']['occurrences'].values()) and a['ports']['forms']==raw_ports; n.capture('04-model-redo-restores-occurrences-keeps-invalid-form'); n.click('ports:close'); model_hash=n.audit()['snapshot_hash']; a=n.audit(); rect=a['widgets']['port-occurrence:'+str(second)]; scale=a['pixels_per_point']; x=int((rect[0]+rect[2])/2*scale); y=int((rect[1]+rect[3])/2*scale); before_drag=a['port_presentation']['occurrences'][str(second)]['geometry']; other_geometry=a['port_presentation']['occurrences'][str(first)]['geometry']; n.send(op='pointer',x=x,y=y,down=True,pause=.2); n.send(op='pointer',x=x+10,y=y,pause=.2); n.send(op='pointer',x=x+50,y=y+20,pause=.2); n.send(op='pointer',x=x+50,y=y+20,down=False,pause=.4); a=n.audit(); dragged=a['port_presentation']['occurrences'][str(second)]['geometry']; assert dragged['x']>before_drag['x'] and dragged['y']>before_drag['y'] and a['port_presentation']['occurrences'][str(first)]['geometry']==other_geometry and a['snapshot_hash']==model_hash; n.capture('05-actual-port-card-drag-independent-geometry'); print('before',before_drag,'after',dragged)",
+      "error": "AssertionError()"
+    },
+    {
+      "action": "undo_capture=json.loads((n.run/'03-model-undo-detaches-both-port-occurrences.ui.json').read_text()); assert str(port) not in undo_capture['ports']['store']['ports'] and all(o['presence']['state']=='Detached' for o in undo_capture['port_presentation']['occurrences'].values()) and undo_capture['ports']['forms']==raw_ports; a=n.audit(); assert a['ports']['store']==accepted and all(o['presence']['state']=='Active' for o in a['port_presentation']['occurrences'].values()) and a['ports']['forms']==raw_ports; receipt['presence_helper_correction']='Presence serializes as tagged object {state:Active|Detached}, not enum string. Original helper assertion retained; immutable Undo capture and current Redo audit now checked using exact wire shape.'; n.capture('04-model-redo-restores-occurrences-keeps-invalid-form'); n.click('ports:close'); model_hash=n.audit()['snapshot_hash']; a=n.audit(); rect=a['widgets']['port-occurrence:'+str(second)]; scale=a['pixels_per_point']; x=int((rect[0]+rect[2])/2*scale); y=int((rect[1]+rect[3])/2*scale); before_drag=a['port_presentation']['occurrences'][str(second)]['geometry']; other_geometry=a['port_presentation']['occurrences'][str(first)]['geometry']; n.send(op='pointer',x=x,y=y,down=True,pause=.2); n.send(op='pointer',x=x+10,y=y,pause=.2); n.send(op='pointer',x=x+50,y=y+20,pause=.2); n.send(op='pointer',x=x+50,y=y+20,down=False,pause=.4); a=n.audit(); dragged=a['port_presentation']['occurrences'][str(second)]['geometry']; assert dragged['x']>before_drag['x'] and dragged['y']>before_drag['y'] and a['port_presentation']['occurrences'][str(first)]['geometry']==other_geometry and a['snapshot_hash']==model_hash; n.capture('05-actual-port-card-drag-independent-geometry'); print('before',before_drag,'after',dragged)",
+      "error": "AssertionError()"
+    },
+    {
+      "action": "n.clear_adjacent_views_path(); prepared=n.save('prepared-port-pair.kernspan'); n.send(op='wait',seconds=1); assert n.audit()['views_saved_hint']; assert all(prepared[k]==original[k] for k in ['records','drafts','creation_drafts','document_id']); prepared_views=n.run/'prepared-port-pair.mbse-views.json'; prepared_doc=json.loads(prepared_views.read_text()); assert prepared_doc['profile']=='mbse-craft.native-views/3' and len(prepared_doc['typed_ports'])==2; n.capture('partial-cross-view-pair-preserved-before-drag-diagnosis'); n.close(); j=json.loads((Path.cwd()/'docs/parity/p17b/NATIVE_JOB.json').read_text()); receipt['original_inputs_unchanged']=all(base.digest(Path(p))==h for p,h in j['inputs'].items()); receipt['qualification_incomplete_due_to_drag_failure']=True; receipt['known_drag_failure']='Both controlled pointer attempts left port geometry unchanged and views_gesture_active false; move-right control changed x25 to45. Other cross-view and model history checks passed; no full native PASS claimed.'; receipt['prepared_native_path']=str(n.run/'prepared-port-pair.kernspan'); receipt['prepared_views_path']=str(prepared_views); receipt['authentication_files_absent']=all(not (Path(r['run'])/'Xauthority').exists() for r in receipt['runs'])",
+      "error": "AssertionError()"
+    }
+  ],
+  "staged_core_input": {
+    "path": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-01/run/input-core.mbse-views.json",
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m4-p17b-port-occurrences/docs/parity/p17b/fixtures/core-views.json",
+    "sha256": "78d1601d6f4e5500c71925f3380e90aa847233a635e8793e7db445d426396d1a",
+    "reason": "Original test fixture basename core-views.json correctly failed UI .mbse-views.json extension admission before any model mutation; original assertion retained."
+  },
+  "presence_helper_correction": "Presence serializes as tagged object {state:Active|Detached}, not enum string. Original helper assertion retained; immutable Undo capture and current Redo audit now checked using exact wire shape.",
+  "drag_diagnostic_started": false,
+  "move_control_probe": {
+    "before": {
+      "height": 112.0,
+      "width": 270.0,
+      "x": 25.0,
+      "y": 160.0
+    },
+    "after": {
+      "height": 112.0,
+      "width": 270.0,
+      "x": 45.0,
+      "y": 160.0
+    }
+  },
+  "interrupted_cleanup": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p17b-01/run",
+      "normal_app_exit_claimed": false,
+      "driver_exit": 0
+    }
+  ],
+  "ended_utc": "2026-10-26T20:02:08.548809+00:00"
+}

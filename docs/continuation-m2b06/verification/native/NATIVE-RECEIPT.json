@@ -1,0 +1,190 @@
+{
+  "profile": "mbse-craft.native-scoped-search-native-receipt/1",
+  "status": "BoundedScopedSearchWorkflowCompletedAndIndependentlyReviewed",
+  "source_commit": "83f000139379789b15a4855940edff02e7af7ae6",
+  "source_sha256": "b08746df59ca882937b0438ba10ce026a37a355be742fbad9d958c4adf7a29eb",
+  "binary_sha256": "b0c1ae6d64bd3489f7a1ef50329d9b99636251cce4275b3aec45a6f159143ee7",
+  "job_sha256": "c2cf240a69d8cdd90b62f708d4fa7f886e98468255e7728b4ac2940dd98ccd7a",
+  "launcher_sha256": "c8184d8c90bdab70bac014c8b2f97788fbe6737dd9dfe03262d3e48e0591322f",
+  "driver_sha256": "60528797a61ae6f6471f90c2b9388044ee5713d91cfd281045b4dafbf3b9378d",
+  "focused_tests_passed": 11,
+  "new_tests_passed": 6,
+  "test_build_receipt_sha256": "4fc3152f77e47e64e62a8e36aa9bccba043dd3a26732ed02b6c4e895dc33bf08",
+  "started_utc": "2026-10-23T17:31:48.848167+00:00",
+  "ended_utc": "2026-10-23T17:35:22.446562+00:00",
+  "workflow_result_sha256": "16fc9c65e2e0244ecd4f8bb801068a2170c576ace97d470be5a6bcf2372a6a43",
+  "review_sha256": "7a2c7ccdbbca8cfae10536aef084034a369cc3fa7acec457f079bc5751cbae17",
+  "cleanup": {
+    "checked_utc": "2026-10-23T17:36:22.028667+00:00",
+    "started_utc": "2026-10-23T17:31:48.848167+00:00",
+    "ended_utc": "2026-10-23T17:35:22.446562+00:00",
+    "identities": [
+      {
+        "pid": 1171074,
+        "start_ticks": 15105913,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1171108,
+        "start_ticks": 15105994,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1171109,
+        "start_ticks": 15106016,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1171110,
+        "start_ticks": 15106017,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1171111,
+        "start_ticks": 15106039,
+        "original_identity_absent": true
+      },
+      {
+        "pid": 1171114,
+        "start_ticks": 15106041,
+        "original_identity_absent": true
+      }
+    ],
+    "owned_jobs": [],
+    "auth_absent": true,
+    "renderer_released": true,
+    "app_exit_code": 0,
+    "driver_exit_code": 0,
+    "source_binary_unchanged": true,
+    "original_pngs": 23
+  },
+  "actual": [
+    "Duplicate accepted names retain IDs1000/1001; exact type/name/ID modes and draft clearing",
+    "Leading-zero refusal; stale disabled selection; explicit refresh and actual native selection",
+    "Empty result; matching physical saved-byte samples; finalSave/exactbinding/normalclose"
+  ],
+  "limits": [
+    "SingleSystem GUI; crossSystem/adversecase/highID/256cap/Unicode tests only",
+    "Physicalhash samples establish matching sampled bytes, not continuous filesystem monitoring",
+    "No fullcontainment/platform/accessibility/migration/fullprogram parity qualification"
+  ],
+  "pngs": [
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search/00-clean-initial-pair.png",
+      "bytes": 205379,
+      "sha256": "9db046e7e778bcf04693160a90b8e985e839d239c0c2ea0eb7376d19d5ddac5e"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search/01-two-distinct-missions-same-name.png",
+      "bytes": 220378,
+      "sha256": "d196c65ad7295efb3a0cc872ad4c5da2a2fdb2b0f19062fe6c649cca39b33fc5"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search/02-empty-name-scoped-list.png",
+      "bytes": 196782,
+      "sha256": "df65e9ce7ac0d53797b5370ef2863c7c07f8ec446e0a0bb734c669c85396110e"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search/03-type-filter-options.png",
+      "bytes": 196656,
+      "sha256": "a624ce811398df92e0f760f6d8a99d3e467271573a87e8bd19f06f65a13c56d9"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search/04-type-draft-clears-results.png",
+      "bytes": 206176,
+      "sha256": "c719c0045014ab17b35c17a2c95119c9fa8e4b28c362754df4a5e95291fe5cf3"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search/05-mission-type-filter-results.png",
+      "bytes": 200972,
+      "sha256": "c25009678cc2451074e63a4b2777cc8358bd0d5a318fa983e2f936e72e8a9975"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search/06-name-draft-clears-results.png",
+      "bytes": 204404,
+      "sha256": "6ff55f1425fb8f8f17757bc21ad557851625d103a0d8eeec829832dfe70ed1d6"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search/07-duplicate-name-distinct-IDs.png",
+      "bytes": 199135,
+      "sha256": "7a37ba8cbafada478e85e4cc3f8e7b716244d0eb08812c0904f139d590ab4d5f"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search/08-select-second-duplicate-native-ID.png",
+      "bytes": 205472,
+      "sha256": "a254c962024e5195140b11cda79d797e973d309f6cdc0a9c2e6ac3fba8b3d21a"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search/09-explicit-mode-options.png",
+      "bytes": 206422,
+      "sha256": "fb6c2d81e97ccc53a8aad48e6b8bbfeeeccf0094051de38a6b4f6a7d8003e7dd"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search/10-mode-change-clears-results.png",
+      "bytes": 211166,
+      "sha256": "7e70a3f90e7e2219dc2e8028ebb3a1e998a562f7ef9ebc6e84ea47562ca6687f"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search/11-canonical-exact-ID-one-result.png",
+      "bytes": 208110,
+      "sha256": "978724992908dca4d67001dab555097754b82a02b99382378ed35ab1ad76cdb9"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search/12-invalid-ID-draft-clears-results.png",
+      "bytes": 211040,
+      "sha256": "30ef9644038ae2ff974ab240590eaca81cc8672744402df9846804dc5daf11af"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search/13-leading-zero-ID-refusal.png",
+      "bytes": 212314,
+      "sha256": "523632c5cdaa43da3546da53165fa3f839c862f7bd46abd650ec0ddb8ea779ab"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search/14-explicit-System-scope-options.png",
+      "bytes": 214111,
+      "sha256": "0b2d0bad96e31aa9ae14854bfe4cd09c8f60422791353055ba52a7e221b9ad3b"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search/15-scope-change-clears-prior-error.png",
+      "bytes": 211028,
+      "sha256": "e5acc7ddfba40980d1023cad4412dc2817180531bcaff2f31419325f6b2e2c51"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search/16-name-query-all-Systems-two-IDs.png",
+      "bytes": 205649,
+      "sha256": "ef7ce264cf41bee4858376bf4bd9ac243aad3b82fc326686db46b7bdaeed1909"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search/17-native-edit-stales-search.png",
+      "bytes": 264534,
+      "sha256": "a0983aebe83fa205f82f5b109c2637188bdb4cba11fc7e3ea7599c6afc90a0ca"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search/18-disabled-stale-selection-retains-target.png",
+      "bytes": 264466,
+      "sha256": "6048e5c467b8fb3b023372eb4a68666aa2e1bd3bd8f7dc416f7a2922f810c67b"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search/19-explicit-search-refresh-one-match.png",
+      "bytes": 255461,
+      "sha256": "658a0c8b7efef981e0bf407df94a23d522893f1df4325e0ad3aa26021cd159f4"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search/20-refreshed-native-selection-transition.png",
+      "bytes": 254793,
+      "sha256": "5a5ed1ceaf3b8120409f5a41006808d91607c56584f9d05a37b1f5beb81d4477"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search/21-explicit-empty-result.png",
+      "bytes": 252047,
+      "sha256": "67ca7f012276453ba48c44a4161fd644dc7b0689b8a130c6761c540339e5f209"
+    },
+    {
+      "path": "/workspace/build/builderbob/mbse-craft/native-scoped-search/native-gate/run-search/22-final-native-pair-preserved.png",
+      "bytes": 222715,
+      "sha256": "bce3759424679cbfb03b9c53a6996dde6b72592741031abe93842935a6076fb3"
+    }
+  ],
+  "owned_jobs": [],
+  "uploads": false
+}

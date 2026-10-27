@@ -1,0 +1,32 @@
+   Compiling mbse-assurance v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-assurance)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.45s
+     Running unittests src/lib.rs (/workspace/build/builderbob/mbse-craft/m1/target/debug/deps/mbse_assurance-353339e004a84035)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/assurance.rs (/workspace/build/builderbob/mbse-craft/m1/target/debug/deps/assurance-aca1775cdb634498)
+
+running 12 tests
+test unrelated_global_failure_is_retained_while_selected_quantity_remains_successful ... ok
+test exact_native_source_anchor_requires_relink_after_native_raw_or_model_changes ... ok
+test failed_unsupported_and_changed_local_artifacts_cannot_pass ... ok
+test lifecycle_dimensions_independent_and_calculation_result_is_not_approval ... ok
+test raw_9e_invalidates_delayed_evidence_and_audit_records_survive_later_reviews_and_undo ... ok
+test every_freshness_dimension_and_incomplete_raw_refuses_pass ... ok
+test saved_history_identity_admission_and_high_water_survive_undone_objects ... ok
+test canonical_context_metadata_and_fixed_engine_limits_survive_save_reopen ... ok
+test serialized_stamps_and_coordinated_output_tampering_never_mint_native_authenticity ... ok
+test unknown_metadata_invalid_raw_and_source_units_survive_native_sidecar_reopen ... ok
+test unrecognized_typed_sibling_fields_refuse_instead_of_disappearing_on_reopen ... ok
+test aggregate_and_encoded_evidence_budgets_refuse_atomically_and_leave_register_usable ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.27s
+
+   Doc-tests mbse_assurance
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

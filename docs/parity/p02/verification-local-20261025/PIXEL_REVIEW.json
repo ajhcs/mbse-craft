@@ -1,0 +1,21 @@
+{
+  "schema": "mbse-craft.p02-pixel-review/1",
+  "recorded_utc": "2026-10-25T20:25:33.630508+00:00",
+  "reviewer": "Same executing Codex agent; not independent review",
+  "result": "No discrepancy in the inspected bounded workflow captures and saved-byte assertions",
+  "inspected": [
+    "native-p02-01/blank/02-field-undo.png: criterion text95/accepted95",
+    "native-p02-01/blank/03-field-redo.png: raw9e/accepted95",
+    "native-p02-02/blank/04-speed-15-metres-per-second.png: actual Derived result15m/s with120 and8 inputs",
+    "native-p02-02/blank/05-distance-2point5-kilometres.png: actual Derived result2.5km and2500 input",
+    "native-p02-02/blank/06-controlled-save-failure.png: STAGE1_PARENT refusal retains graph/raw/calculation",
+    "native-p02-02/blank/07-cancel-retains-work.png: document remains open with same retained state",
+    "native-p02-02/reopen/09-reopened-raw-draft.png: Saved with exact five records/typed links,raw9e,accepted95,Derived result2.5km"
+  ],
+  "limits": [
+    "Linux software-rendered private X11 workflow only",
+    "Independent review/platform/accessibility/performance/engineering acceptance are separate",
+    "Original failed attempt retained; no normal-exit claim for that interrupted run"
+  ],
+  "auth_files_absent": true
+}

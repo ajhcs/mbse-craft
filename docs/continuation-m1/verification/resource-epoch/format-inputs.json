@@ -1,0 +1,20 @@
+[
+  "crates/mbse-assurance/src/lib.rs",
+  "crates/mbse-assurance/tests/assurance.rs",
+  "crates/mbse-catalog/src/lib.rs",
+  "crates/mbse-catalog/tests/admission.rs",
+  "crates/mbse-desktop/src/assurance_ui.rs",
+  "crates/mbse-desktop/src/catalog_ui.rs",
+  "crates/mbse-desktop/src/exchange_ui.rs",
+  "crates/mbse-desktop/src/main.rs",
+  "crates/mbse-desktop/src/preferences.rs",
+  "crates/mbse-desktop/src/ui.rs",
+  "crates/mbse-exchange/examples/inspect.rs",
+  "crates/mbse-exchange/src/lib.rs",
+  "crates/mbse-exchange/tests/projection.rs",
+  "crates/mbse-model/src/lib.rs",
+  "crates/mbse-model/src/recovery.rs",
+  "crates/mbse-model/src/stage1.rs",
+  "crates/mbse-model/src/stage1_io.rs",
+  "crates/mbse-model/tests/context_recovery.rs"
+]

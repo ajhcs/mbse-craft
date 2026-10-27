@@ -1,0 +1,20 @@
+{
+  "result": "bounded_explicit_source_project_set_core_passed",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 777,
+  "source_sha256": "d2251751f9ac4f9273498da8977df95ae4a79a2c5ef118dafe0bd41bc41587d9",
+  "binary_sha256": "c2422d1f926ca88231417dd52c4a2dadc103d0dd07aca9d2521c330454d9359d",
+  "distinct_case_inventory": 793,
+  "new_distinct_cases": 14,
+  "native_rendered_runs": 0,
+  "limits": [
+    "Read-only frozen DTOs; no target admission, cross-project semantic merge, calculation or source mutation.",
+    "Native member keys enumerate top-level records; complete snapshots retain all typed, behavior, parametric, raw and opaque data.",
+    "Existing semantic-set/2 partial/refused stages and unresolved external references remain explicit. Opaque companions are not resolver inputs.",
+    "Hash matches establish captured bytes, not source truth, completeness or engineering acceptance.",
+    "Directory descriptor acquisition is qualified on Unix only. Other platforms explicitly refuse this bounded route. Encoded budgets are not RSS/performance guarantees.",
+    "P38b native browser and acceptance remain required. All 56 broad specifications and integrated milestone exits remain open.",
+    "Same-agent isolated PR review remains required; no independent engineering or full NoMagic/SysML/Craft/platform/scale/production acceptance."
+  ]
+}

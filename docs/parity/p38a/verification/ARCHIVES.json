@@ -1,0 +1,30 @@
+[
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m7-p38a-project-sets/docs/parity/p38a/JOB.json",
+    "path": "compiler-01/JOB.json",
+    "bytes": 3881,
+    "sha256": "e875d913d856624d59949f4bbaa1546ac12a7de2db8b8a44142291d57de28d99",
+    "stored_sha256": "e875d913d856624d59949f4bbaa1546ac12a7de2db8b8a44142291d57de28d99"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m7-p38a-project-sets/work/p38a-01.json",
+    "path": "compiler-01/RECEIPT.json",
+    "bytes": 89214,
+    "sha256": "af0603f5ff1a7a597f2697d8289984dd6b85538423d28969915071b65605fc35",
+    "stored_sha256": "af0603f5ff1a7a597f2697d8289984dd6b85538423d28969915071b65605fc35"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m7-p38a-explicit-hashpinned-source-project-sets-01-20261027T153751Z/00.log",
+    "path": "compiler-01/00.log.gz",
+    "bytes": 101130,
+    "sha256": "d69e1926d447709c4837314e011d74bd09f61758db085be28c7182b2651137f5",
+    "stored_sha256": "90043640931484d49111b465729cd901e21fe9d2e1824b7173dd706a0eb2c3c9"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m7-p38a-explicit-hashpinned-source-project-sets-01-20261027T153751Z/01.log",
+    "path": "compiler-01/01.log.gz",
+    "bytes": 5477,
+    "sha256": "d5333500f5700d03f930208de96e21537df28b748383c83a75c90d9e1b313d1e",
+    "stored_sha256": "7a59eefa1dd10be6ef66872ac5c778f2c8d4137e6ebb8d70a88f48f6830dac22"
+  }
+]

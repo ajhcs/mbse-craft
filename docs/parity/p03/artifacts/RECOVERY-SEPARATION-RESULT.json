@@ -1,0 +1,13 @@
+{
+  "old_document_id": "document:session:stage1-session-MI5pyy",
+  "new_document_id": "recovered:session:stage1-session-e4Voch",
+  "same_native_records": true,
+  "original_native_unchanged": true,
+  "original_views_unchanged": true,
+  "unbound_recovery_unchanged": true,
+  "harness_attempts_not_asserted": [
+    "28-recovered-document-refuses-old-bound-views",
+    "29-recovered-document-refuses-old-unbound-views"
+  ],
+  "harness_correction": "Recovery notice adds23px to main panel; title restored via UI and proper path/button coordinates used"
+}

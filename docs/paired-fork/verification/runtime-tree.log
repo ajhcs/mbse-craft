@@ -1,0 +1,630 @@
+mbse-desktop v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-desktop) []
+craft-docpath v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/craft-libs/crates/docpath) []
+craft-quit v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/craft-libs/crates/quit) [egui]
+egui v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui) [bytemuck,default_fonts]
+accesskit v0.24.1 []
+uuid v1.27.0 [default,serde,std]
+serde_core v1.0.229 [alloc,default,result,std]
+ahash v0.8.12 [default,getrandom,no-rng,runtime-rng,std]
+cfg-if v1.0.5 []
+getrandom v0.3.4 []
+cfg-if v1.0.5 []
+libc v0.2.190 [default,std]
+once_cell v1.21.4 [alloc,default,race,std]
+zerocopy v0.8.60 [simd]
+version_check v0.9.5 []
+bitflags v2.13.2 [std]
+emath v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/emath) [bytemuck]
+bytemuck v1.25.2 [bytemuck_derive,derive,extern_crate_alloc,min_const_generics]
+bytemuck_derive v1.12.1 (proc-macro) []
+proc-macro2 v1.0.107 [default,proc-macro]
+unicode-ident v1.0.26 []
+quote v1.0.47 [default,proc-macro]
+proc-macro2 v1.0.107 [default,proc-macro] (*)
+syn v3.0.6 [clone-impls,default,derive,extra-traits,fold,full,parsing,printing,proc-macro,visit-mut]
+proc-macro2 v1.0.107 [default,proc-macro] (*)
+quote v1.0.47 [default,proc-macro] (*)
+unicode-ident v1.0.26 []
+epaint v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/epaint) [bytemuck,default_fonts,epaint_default_fonts]
+ahash v0.8.12 [default,getrandom,no-rng,runtime-rng,std] (*)
+bytemuck v1.25.2 [bytemuck_derive,derive,extern_crate_alloc,min_const_generics] (*)
+ecolor v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/ecolor) [bytemuck]
+bytemuck v1.25.2 [bytemuck_derive,derive,extern_crate_alloc,min_const_generics] (*)
+emath v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/emath) [bytemuck] (*)
+emath v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/emath) [bytemuck] (*)
+epaint_default_fonts v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/epaint_default_fonts) []
+font-types v0.12.6 [bytemuck,std]
+bytemuck v1.25.2 [bytemuck_derive,derive,extern_crate_alloc,min_const_generics] (*)
+harfrust v0.12.0 [default,std]
+bitflags v2.13.2 [std]
+bytemuck v1.25.2 [bytemuck_derive,derive,extern_crate_alloc,min_const_generics] (*)
+read-fonts v0.41.0 [experimental_font_api,std]
+bytemuck v1.25.2 [bytemuck_derive,derive,extern_crate_alloc,min_const_generics] (*)
+font-types v0.12.6 [bytemuck,std] (*)
+once_cell v1.21.4 [alloc,default,race,std]
+smallvec v1.16.2 [const_generics,const_new,union]
+log v0.4.34 [alloc,std]
+nohash-hasher v0.2.0 [default,std]
+parking_lot v0.12.5 [default]
+lock_api v0.4.14 [atomic_usize,default]
+scopeguard v1.2.0 []
+parking_lot_core v0.9.12 []
+cfg-if v1.0.5 []
+libc v0.2.190 [default,std]
+smallvec v1.16.2 [const_generics,const_new,union]
+profiling v1.0.18 []
+self_cell v1.3.0 []
+skrifa v0.44.0 [autohint_shaping,std]
+bytemuck v1.25.2 [bytemuck_derive,derive,extern_crate_alloc,min_const_generics] (*)
+read-fonts v0.41.0 [experimental_font_api,std] (*)
+smallvec v1.16.2 [const_generics,const_new,union]
+unicode-general-category v1.1.0 []
+unicode-segmentation v1.13.3 []
+vello_cpu v0.1.0 [f32_pipeline,std,u8_pipeline]
+bytemuck v1.25.2 [bytemuck_derive,derive,extern_crate_alloc,min_const_generics] (*)
+hashbrown v0.17.1 [default-hasher]
+foldhash v0.2.0 []
+vello_common v0.1.0 [std]
+bytemuck v1.25.2 [bytemuck_derive,derive,extern_crate_alloc,min_const_generics] (*)
+fearless_simd v0.4.1 [std]
+guillotiere v0.7.0 []
+euclid v0.22.14 []
+num-traits v0.2.19 [default,std]
+autocfg v1.5.1 []
+log v0.4.34 [alloc,std]
+peniko v0.6.1 [bytemuck,std]
+bytemuck v1.25.2 [bytemuck_derive,derive,extern_crate_alloc,min_const_generics] (*)
+color v0.3.3 [bytemuck,std]
+bytemuck v1.25.2 [bytemuck_derive,derive,extern_crate_alloc,min_const_generics] (*)
+kurbo v0.13.1 [std]
+arrayvec v0.7.8 []
+polycool v0.4.0 [std]
+arrayvec v0.7.8 []
+smallvec v1.16.2 [const_generics,const_new,union]
+linebender_resource_handle v0.1.1 [std]
+smallvec v1.16.2 [const_generics,const_new,union]
+smallvec v1.16.2 [const_generics,const_new,union]
+thiserror v2.0.21 [default,std]
+thiserror-impl v2.0.21 (proc-macro) []
+proc-macro2 v1.0.107 [default,proc-macro] (*)
+quote v1.0.47 [default,proc-macro] (*)
+syn v3.0.6 [clone-impls,default,derive,extra-traits,fold,full,parsing,printing,proc-macro,visit-mut] (*)
+itertools v0.15.0 [default,use_alloc,use_std]
+either v1.19.0 [std,use_std]
+log v0.4.34 [alloc,std]
+nohash-hasher v0.2.0 [default,std]
+profiling v1.0.18 []
+smallvec v1.16.2 [const_generics,const_new,union]
+unicode-segmentation v1.13.3 []
+craft-settings v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/craft-libs/crates/settings) []
+craft-atomic v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/craft-libs/crates/atomic) []
+dirs v7.0.0 []
+dirs-sys v0.5.0 []
+libc v0.2.190 [default,std]
+option-ext v0.2.0 []
+serde v1.0.229 [default,derive,serde_derive,std]
+serde_core v1.0.229 [alloc,default,result,std]
+serde_derive v1.0.229 (proc-macro) [default]
+proc-macro2 v1.0.107 [default,proc-macro] (*)
+quote v1.0.47 [default,proc-macro] (*)
+syn v3.0.6 [clone-impls,default,derive,extra-traits,fold,full,parsing,printing,proc-macro,visit-mut] (*)
+toml_edit v0.25.15+spec-1.1.0 [default,display,parse,serde]
+indexmap v2.14.2 [default,std]
+equivalent v1.0.2 []
+hashbrown v0.17.1 [default-hasher] (*)
+serde_core v1.0.229 [alloc,default,result,std]
+serde_spanned v1.1.2 [alloc,default,serde,std]
+serde_core v1.0.229 [alloc,default,result,std]
+toml_datetime v1.1.1+spec-1.1.0 [alloc,default,serde,std]
+serde_core v1.0.229 [alloc,default,result,std]
+toml_parser v1.1.3+spec-1.1.0 [alloc,default,std]
+winnow v1.0.4 [alloc,ascii,binary,default,parser,std]
+toml_writer v1.1.3+spec-1.1.0 [alloc,default,std]
+winnow v1.0.4 [alloc,ascii,binary,default,parser,std]
+craft-ui v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/craft-libs/crates/ui) []
+egui v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui) [bytemuck,default_fonts] (*)
+craft-window v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/craft-libs/crates/window) [egui]
+egui v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui) [bytemuck,default_fonts] (*)
+wayland-client v0.31.15 []
+bitflags v2.13.2 [std]
+rustix v1.1.5 [alloc,default,event,fs,net,pipe,process,shm,std,system,time]
+bitflags v2.13.2 [std]
+linux-raw-sys v0.12.1 [auxvec,elf,errno,general,if_ether,ioctl,net,netlink,no_std,prctl,system,xdp]
+wayland-backend v0.3.17 [client_system,dlopen]
+downcast-rs v1.2.1 [default,std]
+rustix v1.1.5 [alloc,default,event,fs,net,pipe,process,shm,std,system,time] (*)
+scoped-tls v1.0.1 []
+smallvec v1.16.2 [const_generics,const_new,union]
+wayland-sys v0.31.11 [client,dlopen,once_cell]
+dlib v0.5.3 []
+libloading v0.8.9 []
+cfg-if v1.0.5 []
+log v0.4.34 [alloc,std]
+once_cell v1.21.4 [alloc,default,race,std]
+pkg-config v0.3.34 []
+cc v1.6.0 []
+find-msvc-tools v0.1.14 []
+shlex v2.0.1 [default,std]
+wayland-scanner v0.31.11 (proc-macro) []
+proc-macro2 v1.0.107 [default,proc-macro] (*)
+quick-xml v0.41.0 [default]
+memchr v2.8.3 [alloc,default,std]
+quote v1.0.47 [default,proc-macro] (*)
+eframe v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/eframe) [accesskit,default_fonts,glow,x11]
+ahash v0.8.12 [default,getrandom,no-rng,runtime-rng,std] (*)
+document-features v0.2.12 (proc-macro) [default]
+litrs v1.0.0 []
+egui v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui) [bytemuck,default_fonts] (*)
+egui-winit v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui-winit) [accesskit,arboard,bytemuck,clipboard,smithay-clipboard,x11]
+accesskit_winit v0.32.2 [accesskit_unix,async-io,default,rwh_06]
+accesskit v0.24.1 [] (*)
+accesskit_unix v0.21.1 [async-io]
+accesskit v0.24.1 [] (*)
+accesskit_atspi_common v0.18.1 []
+accesskit v0.24.1 [] (*)
+accesskit_consumer v0.36.0 []
+accesskit v0.24.1 [] (*)
+hashbrown v0.16.1 [default-hasher]
+foldhash v0.2.0 []
+atspi-common v0.13.0 [default,wrappers,zbus]
+enumflags2 v0.7.12 [serde]
+enumflags2_derive v0.7.12 (proc-macro) []
+proc-macro2 v1.0.107 [default,proc-macro] (*)
+quote v1.0.47 [default,proc-macro] (*)
+syn v2.0.119 [clone-impls,default,derive,extra-traits,full,parsing,printing,proc-macro,visit-mut]
+proc-macro2 v1.0.107 [default,proc-macro] (*)
+quote v1.0.47 [default,proc-macro] (*)
+unicode-ident v1.0.26 []
+serde v1.0.229 [default,derive,serde_derive,std] (*)
+serde v1.0.229 [default,derive,serde_derive,std] (*)
+static_assertions v1.1.0 []
+zbus v5.19.0 [async-executor,async-fs,async-io,async-lock,async-process,async-task,blocking]
+async-broadcast v0.7.2 []
+event-listener v5.4.2 [default,parking,std]
+parking v2.2.1 []
+pin-project-lite v0.2.17 []
+event-listener-strategy v0.5.4 [default,std]
+event-listener v5.4.2 [default,parking,std] (*)
+pin-project-lite v0.2.17 []
+futures-core v0.3.34 [alloc,default,std]
+pin-project-lite v0.2.17 []
+async-executor v1.14.0 []
+async-task v4.7.1 [default,std]
+concurrent-queue v2.5.0 [default,std]
+crossbeam-utils v0.8.23 []
+fastrand v2.5.0 [alloc,default,std]
+futures-lite v2.6.1 [alloc,default,fastrand,futures-io,parking,race,std]
+fastrand v2.5.0 [alloc,default,std]
+futures-core v0.3.34 [alloc,default,std]
+futures-io v0.3.34 [default,std]
+parking v2.2.1 []
+pin-project-lite v0.2.17 []
+pin-project-lite v0.2.17 []
+slab v0.4.12 [default,std]
+async-io v2.6.0 []
+cfg-if v1.0.5 []
+concurrent-queue v2.5.0 [default,std] (*)
+futures-io v0.3.34 [default,std]
+futures-lite v2.6.1 [alloc,default,fastrand,futures-io,parking,race,std] (*)
+parking v2.2.1 []
+polling v3.11.0 []
+cfg-if v1.0.5 []
+rustix v1.1.5 [alloc,default,event,fs,net,pipe,process,shm,std,system,time] (*)
+rustix v1.1.5 [alloc,default,event,fs,net,pipe,process,shm,std,system,time] (*)
+slab v0.4.12 [default,std]
+autocfg v1.5.1 []
+async-lock v3.4.2 [default,std]
+event-listener v5.4.2 [default,parking,std] (*)
+event-listener-strategy v0.5.4 [default,std] (*)
+pin-project-lite v0.2.17 []
+async-process v2.5.0 []
+async-channel v2.5.0 [default,std]
+concurrent-queue v2.5.0 [default,std] (*)
+event-listener-strategy v0.5.4 [default,std] (*)
+futures-core v0.3.34 [alloc,default,std]
+pin-project-lite v0.2.17 []
+async-io v2.6.0 [] (*)
+async-lock v3.4.2 [default,std] (*)
+async-signal v0.2.14 []
+async-io v2.6.0 [] (*)
+cfg-if v1.0.5 []
+futures-core v0.3.34 [alloc,default,std]
+futures-io v0.3.34 [default,std]
+rustix v1.1.5 [alloc,default,event,fs,net,pipe,process,shm,std,system,time] (*)
+signal-hook-registry v1.4.8 []
+errno v0.3.14 [default,std]
+libc v0.2.190 [default,std]
+libc v0.2.190 [default,std]
+async-task v4.7.1 [default,std]
+cfg-if v1.0.5 []
+event-listener v5.4.2 [default,parking,std] (*)
+futures-lite v2.6.1 [alloc,default,fastrand,futures-io,parking,race,std] (*)
+rustix v1.1.5 [alloc,default,event,fs,net,pipe,process,shm,std,system,time] (*)
+async-recursion v1.2.0 (proc-macro) []
+proc-macro2 v1.0.107 [default,proc-macro] (*)
+quote v1.0.47 [default,proc-macro] (*)
+syn v3.0.6 [clone-impls,default,derive,extra-traits,fold,full,parsing,printing,proc-macro,visit-mut] (*)
+async-task v4.7.1 [default,std]
+async-trait v0.1.92 (proc-macro) []
+proc-macro2 v1.0.107 [default,proc-macro] (*)
+quote v1.0.47 [default,proc-macro] (*)
+syn v3.0.6 [clone-impls,default,derive,extra-traits,fold,full,parsing,printing,proc-macro,visit-mut] (*)
+blocking v1.7.0 []
+async-channel v2.5.0 [default,std] (*)
+async-task v4.7.1 [default,std]
+futures-io v0.3.34 [default,std]
+futures-lite v2.6.1 [alloc,default,fastrand,futures-io,parking,race,std] (*)
+piper v0.2.5 [default,futures-io,std]
+atomic-waker v1.1.2 []
+fastrand v2.5.0 [alloc,default,std]
+futures-io v0.3.34 [default,std]
+enumflags2 v0.7.12 [serde] (*)
+event-listener v5.4.2 [default,parking,std] (*)
+futures-core v0.3.34 [alloc,default,std]
+futures-lite v2.6.1 [alloc,default,fastrand,futures-io,parking,race,std] (*)
+hex v0.4.3 [alloc,default,std]
+libc v0.2.190 [default,std]
+ordered-stream v0.2.0 []
+futures-core v0.3.34 [alloc,default,std]
+pin-project-lite v0.2.17 []
+rustix v1.1.5 [alloc,default,event,fs,net,pipe,process,shm,std,system,time] (*)
+serde v1.0.229 [default,derive,serde_derive,std] (*)
+serde_repr v0.1.21 (proc-macro) []
+proc-macro2 v1.0.107 [default,proc-macro] (*)
+quote v1.0.47 [default,proc-macro] (*)
+syn v3.0.6 [clone-impls,default,derive,extra-traits,fold,full,parsing,printing,proc-macro,visit-mut] (*)
+tracing v0.1.44 [attributes,default,log,std,tracing-attributes]
+log v0.4.34 [alloc,std]
+pin-project-lite v0.2.17 []
+tracing-attributes v0.1.31 (proc-macro) []
+proc-macro2 v1.0.107 [default,proc-macro] (*)
+quote v1.0.47 [default,proc-macro] (*)
+syn v2.0.119 [clone-impls,default,derive,extra-traits,full,parsing,printing,proc-macro,visit-mut] (*)
+tracing-core v0.1.36 [once_cell,std]
+once_cell v1.21.4 [alloc,default,race,std]
+uuid v1.27.0 [default,serde,std] (*)
+winnow v1.0.4 [alloc,ascii,binary,default,parser,std]
+zbus_macros v5.19.0 (proc-macro) [default]
+proc-macro-crate v3.5.0 []
+toml_edit v0.25.15+spec-1.1.0 [parse]
+indexmap v2.14.2 [default,std] (*)
+toml_datetime v1.1.1+spec-1.1.0 [alloc,default,std]
+toml_parser v1.1.3+spec-1.1.0 [alloc,default,std] (*)
+winnow v1.0.4 [alloc,ascii,binary,default,parser,std]
+proc-macro2 v1.0.107 [default,proc-macro] (*)
+quote v1.0.47 [default,proc-macro] (*)
+syn v3.0.6 [clone-impls,default,derive,extra-traits,fold,full,parsing,printing,proc-macro,visit-mut] (*)
+zbus_names v4.3.4 []
+serde v1.0.229 [default,derive,serde_derive,std] (*)
+winnow v1.0.4 [alloc,ascii,binary,default,parser,std]
+zvariant v5.15.0 [default,enumflags2]
+endi v1.1.1 [default,std]
+enumflags2 v0.7.12 [serde] (*)
+serde v1.0.229 [default,derive,serde_derive,std] (*)
+winnow v1.0.4 [alloc,ascii,binary,default,parser,std]
+zcheapstr v1.1.0 [default,serde]
+serde v1.0.229 [default,derive,serde_derive,std] (*)
+zvariant_derive v5.15.0 (proc-macro) [default]
+proc-macro-crate v3.5.0 [] (*)
+proc-macro2 v1.0.107 [default,proc-macro] (*)
+quote v1.0.47 [default,proc-macro] (*)
+syn v3.0.6 [clone-impls,default,derive,extra-traits,fold,full,parsing,printing,proc-macro,visit-mut] (*)
+zvariant_utils v4.2.0 [default]
+proc-macro2 v1.0.107 [default,proc-macro] (*)
+quote v1.0.47 [default,proc-macro] (*)
+serde v1.0.229 [default,derive,serde_derive,std] (*)
+syn v3.0.6 [clone-impls,default,derive,extra-traits,fold,full,parsing,printing,proc-macro,visit-mut] (*)
+winnow v1.0.4 [alloc,ascii,binary,default,parser,std]
+zvariant_utils v4.2.0 [default] (*)
+zvariant v5.15.0 [default,enumflags2] (*)
+zvariant_utils v4.2.0 [default] (*)
+zbus_names v4.3.4 [] (*)
+zvariant v5.15.0 [default,enumflags2] (*)
+zbus-lockstep v0.5.2 []
+zbus_xml v5.2.1 []
+serde v1.0.229 [default,derive,serde_derive,std] (*)
+winnow v1.0.4 [alloc,ascii,binary,default,parser,std]
+zbus_names v4.3.4 [] (*)
+zvariant v5.15.0 [default,enumflags2] (*)
+zvariant v5.15.0 [default,enumflags2] (*)
+zbus-lockstep-macros v0.5.2 (proc-macro) []
+proc-macro2 v1.0.107 [default,proc-macro] (*)
+quote v1.0.47 [default,proc-macro] (*)
+syn v2.0.119 [clone-impls,default,derive,extra-traits,full,parsing,printing,proc-macro,visit-mut] (*)
+zbus-lockstep v0.5.2 [] (*)
+zbus_xml v5.2.1 [] (*)
+zvariant v5.15.0 [default,enumflags2] (*)
+zbus_names v4.3.4 [] (*)
+zvariant v5.15.0 [default,enumflags2] (*)
+phf v0.13.1 [default,macros,phf_macros,std]
+phf_macros v0.13.1 (proc-macro) []
+phf_generator v0.13.1 []
+fastrand v2.5.0 []
+phf_shared v0.13.1 []
+siphasher v1.0.4 [default,std]
+phf_shared v0.13.1 [] (*)
+proc-macro2 v1.0.107 [default,proc-macro] (*)
+quote v1.0.47 [default,proc-macro] (*)
+syn v2.0.119 [clone-impls,default,derive,extra-traits,full,parsing,printing,proc-macro,visit-mut] (*)
+phf_shared v0.13.1 [std]
+siphasher v1.0.4 [default,std]
+serde v1.0.229 [default,derive,serde_derive,std] (*)
+zvariant v5.15.0 [default,enumflags2] (*)
+async-channel v2.5.0 [default,std] (*)
+async-executor v1.14.0 [] (*)
+async-task v4.7.1 [default,std]
+atspi v0.29.0 [proxies]
+atspi-common v0.13.0 [default,wrappers,zbus] (*)
+atspi-proxies v0.13.0 [default,wrappers]
+atspi-common v0.13.0 [default,wrappers,zbus] (*)
+serde v1.0.229 [default,derive,serde_derive,std] (*)
+zbus v5.19.0 [async-executor,async-fs,async-io,async-lock,async-process,async-task,blocking] (*)
+futures-lite v2.6.1 [alloc,default,fastrand,futures-io,parking,race,std] (*)
+futures-util v0.3.34 [alloc,async-await,async-await-macro,default,futures-macro,slab,std]
+futures-core v0.3.34 [alloc,default,std]
+futures-macro v0.3.34 (proc-macro) []
+proc-macro2 v1.0.107 [default,proc-macro] (*)
+quote v1.0.47 [default,proc-macro] (*)
+syn v3.0.6 [clone-impls,default,derive,extra-traits,fold,full,parsing,printing,proc-macro,visit-mut] (*)
+futures-task v0.3.34 [alloc,std]
+pin-project-lite v0.2.17 []
+slab v0.4.12 [default,std]
+serde v1.0.229 [default,derive,serde_derive,std] (*)
+zbus v5.19.0 [async-executor,async-fs,async-io,async-lock,async-process,async-task,blocking] (*)
+raw-window-handle v0.6.2 [alloc,std]
+winit v0.30.13 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/winit-fork) [ahash,bytemuck,memmap2,percent-encoding,rwh_06,sctk,wayland,wayland-backend,wayland-client,wayland-protocols,wayland-protocols-plasma,x11,x11-dl,x11rb]
+ahash v0.8.12 [default,getrandom,no-rng,runtime-rng,std] (*)
+bitflags v2.13.2 [std]
+bytemuck v1.25.2 [bytemuck_derive,derive,extern_crate_alloc,min_const_generics] (*)
+calloop v0.13.0 []
+bitflags v2.13.2 [std]
+log v0.4.34 [alloc,std]
+polling v3.11.0 [] (*)
+rustix v0.38.44 [alloc,default,event,fs,libc-extra-traits,pipe,process,shm,std,system,thread,use-libc-auxv]
+bitflags v2.13.2 [std]
+linux-raw-sys v0.4.15 [elf,errno,general,ioctl,no_std,prctl,system]
+slab v0.4.12 [default,std]
+thiserror v1.0.69 []
+thiserror-impl v1.0.69 (proc-macro) []
+proc-macro2 v1.0.107 [default,proc-macro] (*)
+quote v1.0.47 [default,proc-macro] (*)
+syn v2.0.119 [clone-impls,default,derive,extra-traits,full,parsing,printing,proc-macro,visit-mut] (*)
+cursor-icon v1.2.0 [alloc,default,std]
+dpi v0.1.2 [default,std]
+libc v0.2.190 [default,std]
+memmap2 v0.9.11 []
+libc v0.2.190 [default,std]
+percent-encoding v2.3.2 [alloc,default,std]
+raw-window-handle v0.6.2 [alloc,std]
+rustix v0.38.44 [alloc,default,event,fs,libc-extra-traits,pipe,process,shm,std,system,thread,use-libc-auxv] (*)
+smithay-client-toolkit v0.19.2 [calloop,calloop-wayland-source]
+bitflags v2.13.2 [std]
+calloop v0.13.0 [] (*)
+calloop-wayland-source v0.3.0 []
+calloop v0.13.0 [] (*)
+rustix v0.38.44 [alloc,default,event,fs,libc-extra-traits,pipe,process,shm,std,system,thread,use-libc-auxv] (*)
+wayland-backend v0.3.17 [client_system,dlopen] (*)
+wayland-client v0.31.15 [] (*)
+cursor-icon v1.2.0 [alloc,default,std]
+libc v0.2.190 [default,std]
+log v0.4.34 [alloc,std]
+memmap2 v0.9.11 [] (*)
+rustix v0.38.44 [alloc,default,event,fs,libc-extra-traits,pipe,process,shm,std,system,thread,use-libc-auxv] (*)
+thiserror v1.0.69 [] (*)
+wayland-backend v0.3.17 [client_system,dlopen] (*)
+wayland-client v0.31.15 [] (*)
+wayland-csd-frame v0.3.0 []
+bitflags v2.13.2 [std]
+cursor-icon v1.2.0 [alloc,default,std]
+wayland-backend v0.3.17 [client_system,dlopen] (*)
+wayland-cursor v0.31.14 []
+rustix v1.1.5 [alloc,default,event,fs,net,pipe,process,shm,std,system,time] (*)
+wayland-client v0.31.15 [] (*)
+xcursor v0.3.11 []
+wayland-protocols v0.32.13 [client,staging,unstable,wayland-client]
+bitflags v2.13.2 [std]
+wayland-backend v0.3.17 [client_system,dlopen] (*)
+wayland-client v0.31.15 [] (*)
+wayland-scanner v0.31.11 (proc-macro) [] (*)
+wayland-protocols-wlr v0.3.12 [client,wayland-client]
+bitflags v2.13.2 [std]
+wayland-backend v0.3.17 [client_system,dlopen] (*)
+wayland-client v0.31.15 [] (*)
+wayland-protocols v0.32.13 [client,staging,unstable,wayland-client] (*)
+wayland-scanner v0.31.11 (proc-macro) [] (*)
+wayland-scanner v0.31.11 (proc-macro) [] (*)
+xkeysym v0.2.1 []
+smol_str v0.2.2 [default,std]
+tracing v0.1.44 [attributes,default,log,std,tracing-attributes] (*)
+wayland-backend v0.3.17 [client_system,dlopen] (*)
+wayland-client v0.31.15 [] (*)
+wayland-protocols v0.32.13 [client,staging,unstable,wayland-client] (*)
+wayland-protocols-plasma v0.3.12 [client,wayland-client]
+bitflags v2.13.2 [std]
+wayland-backend v0.3.17 [client_system,dlopen] (*)
+wayland-client v0.31.15 [] (*)
+wayland-protocols v0.32.13 [client,staging,unstable,wayland-client] (*)
+wayland-scanner v0.31.11 (proc-macro) [] (*)
+x11-dl v2.21.0 []
+libc v0.2.190 [default,std]
+once_cell v1.21.4 [alloc,default,race,std]
+pkg-config v0.3.34 []
+x11rb v0.13.2 [allow-unsafe-code,as-raw-xcb-connection,dl-libxcb,libc,libloading,once_cell,randr,render,resource_manager,shape,xfixes,xinput,xkb]
+as-raw-xcb-connection v1.0.1 [alloc,default]
+gethostname v1.1.0 []
+rustix v1.1.5 [alloc,default,event,fs,net,pipe,process,shm,std,system,time] (*)
+libc v0.2.190 [default,std]
+libloading v0.8.9 [] (*)
+once_cell v1.21.4 [alloc,default,race,std]
+rustix v1.1.5 [alloc,default,event,fs,net,pipe,process,shm,std,system,time] (*)
+x11rb-protocol v0.13.2 [randr,render,resource_manager,shape,std,xfixes,xinput,xkb]
+xkbcommon-dl v0.4.2 [x11]
+bitflags v2.13.2 [std]
+dlib v0.5.3 [] (*)
+log v0.4.34 [alloc,std]
+once_cell v1.21.4 [alloc,default,race,std]
+xkeysym v0.2.1 []
+cfg_aliases v0.2.2 []
+arboard v3.6.1 [core-graphics,image,image-data,windows-sys]
+image v0.25.10 [png]
+bytemuck v1.25.2 [bytemuck_derive,derive,extern_crate_alloc,min_const_generics] (*)
+byteorder-lite v0.1.0 [default,std]
+moxcms v0.8.1 [avx,avx_luts,avx_shaper_fixed_point_paths,avx_shaper_paths,default,lut,neon,neon_luts,neon_shaper_fixed_point_paths,neon_shaper_paths,sse,sse_luts,sse_shaper_fixed_point_paths,sse_shaper_paths]
+num-traits v0.2.19 [default,std] (*)
+pxfm v0.1.30 []
+num-traits v0.2.19 [default,std] (*)
+png v0.18.1 []
+bitflags v2.13.2 [std]
+crc32fast v1.5.2 [default,std]
+cfg-if v1.0.5 []
+fdeflate v0.3.7 []
+simd-adler32 v0.3.10 [const-generics,default,std]
+flate2 v1.1.10 [any_impl,default,miniz_oxide,runtime_detection,rust_backend]
+crc32fast v1.5.2 [default,std] (*)
+miniz_oxide v0.9.1 [default,simd,simd-adler32,with-alloc]
+adler2 v2.0.1 []
+simd-adler32 v0.3.10 [const-generics,default,std]
+miniz_oxide v0.8.9 [default,simd,simd-adler32,with-alloc]
+adler2 v2.0.1 []
+simd-adler32 v0.3.10 [const-generics,default,std]
+log v0.4.34 [alloc,std]
+parking_lot v0.12.5 [default] (*)
+percent-encoding v2.3.2 [alloc,default,std]
+x11rb v0.13.2 [allow-unsafe-code,as-raw-xcb-connection,dl-libxcb,libc,libloading,once_cell,randr,render,resource_manager,shape,xfixes,xinput,xkb] (*)
+bytemuck v1.25.2 [bytemuck_derive,derive,extern_crate_alloc,min_const_generics] (*)
+egui v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui) [bytemuck,default_fonts] (*)
+log v0.4.34 [alloc,std]
+profiling v1.0.18 []
+raw-window-handle v0.6.2 [alloc,std]
+smithay-clipboard v0.7.3 [default,dlopen]
+libc v0.2.190 [default,std]
+smithay-client-toolkit v0.20.0 [calloop,calloop-wayland-source]
+bitflags v2.13.2 [std]
+calloop v0.14.5 []
+bitflags v2.13.2 [std]
+polling v3.11.0 [] (*)
+rustix v1.1.5 [alloc,default,event,fs,net,pipe,process,shm,std,system,time] (*)
+tracing v0.1.44 [attributes,default,log,std,tracing-attributes] (*)
+calloop-wayland-source v0.4.1 []
+calloop v0.14.5 [] (*)
+rustix v1.1.5 [alloc,default,event,fs,net,pipe,process,shm,std,system,time] (*)
+wayland-backend v0.3.17 [client_system,dlopen] (*)
+wayland-client v0.31.15 [] (*)
+cursor-icon v1.2.0 [alloc,default,std]
+libc v0.2.190 [default,std]
+log v0.4.34 [alloc,std]
+memmap2 v0.9.11 [] (*)
+rustix v1.1.5 [alloc,default,event,fs,net,pipe,process,shm,std,system,time] (*)
+thiserror v2.0.21 [default,std] (*)
+wayland-backend v0.3.17 [client_system,dlopen] (*)
+wayland-client v0.31.15 [] (*)
+wayland-csd-frame v0.3.0 [] (*)
+wayland-cursor v0.31.14 [] (*)
+wayland-protocols v0.32.13 [client,staging,unstable,wayland-client] (*)
+wayland-protocols-experimental v20250721.0.1 [client,wayland-client]
+bitflags v2.13.2 [std]
+wayland-backend v0.3.17 [client_system,dlopen] (*)
+wayland-client v0.31.15 [] (*)
+wayland-protocols v0.32.13 [client,staging,unstable,wayland-client] (*)
+wayland-scanner v0.31.11 (proc-macro) [] (*)
+wayland-protocols-misc v0.3.12 [client,wayland-client]
+bitflags v2.13.2 [std]
+wayland-backend v0.3.17 [client_system,dlopen] (*)
+wayland-client v0.31.15 [] (*)
+wayland-protocols v0.32.13 [client,staging,unstable,wayland-client] (*)
+wayland-scanner v0.31.11 (proc-macro) [] (*)
+wayland-protocols-wlr v0.3.12 [client,wayland-client] (*)
+wayland-scanner v0.31.11 (proc-macro) [] (*)
+xkeysym v0.2.1 []
+wayland-backend v0.3.17 [client_system,dlopen] (*)
+web-time v1.1.0 []
+winit v0.30.13 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/winit-fork) [ahash,bytemuck,memmap2,percent-encoding,rwh_06,sctk,wayland,wayland-backend,wayland-client,wayland-protocols,wayland-protocols-plasma,x11,x11-dl,x11rb] (*)
+egui_glow v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui_glow) [x11]
+bytemuck v1.25.2 [bytemuck_derive,derive,extern_crate_alloc,min_const_generics] (*)
+egui v0.36.2 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/egui-fork/crates/egui) [bytemuck,default_fonts] (*)
+glow v0.17.0 []
+log v0.4.34 [alloc,std]
+profiling v1.0.18 []
+glow v0.17.0 []
+glutin v0.32.3 [egl,glutin_egl_sys,glutin_glx_sys,glutin_wgl_sys,glx,libloading,wgl,windows-sys,x11,x11-dl]
+bitflags v2.13.2 [std]
+glutin_egl_sys v0.7.1 []
+gl_generator v0.14.0 []
+khronos_api v3.1.0 []
+log v0.4.34 []
+xml-rs v0.8.29 []
+glutin_glx_sys v0.6.1 []
+x11-dl v2.21.0 [] (*)
+gl_generator v0.14.0 [] (*)
+libloading v0.8.9 [] (*)
+once_cell v1.21.4 [alloc,default,race,std]
+raw-window-handle v0.6.2 [alloc,std]
+x11-dl v2.21.0 [] (*)
+cfg_aliases v0.2.2 []
+glutin-winit v0.5.0 [egl,glx,wgl,x11]
+glutin v0.32.3 [egl,glutin_egl_sys,glutin_glx_sys,glutin_wgl_sys,glx,libloading,wgl,windows-sys,x11,x11-dl] (*)
+raw-window-handle v0.6.2 [alloc,std]
+winit v0.30.13 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/winit-fork) [ahash,bytemuck,memmap2,percent-encoding,rwh_06,sctk,wayland,wayland-backend,wayland-client,wayland-protocols,wayland-protocols-plasma,x11,x11-dl,x11rb] (*)
+cfg_aliases v0.2.2 []
+image v0.25.10 [png] (*)
+log v0.4.34 [alloc,std]
+parking_lot v0.12.5 [default] (*)
+profiling v1.0.18 []
+raw-window-handle v0.6.2 [alloc,std]
+static_assertions v1.1.0 []
+web-time v1.1.0 []
+winit v0.30.13 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/winit-fork) [ahash,bytemuck,memmap2,percent-encoding,rwh_06,sctk,wayland,wayland-backend,wayland-client,wayland-protocols,wayland-protocols-plasma,x11,x11-dl,x11rb] (*)
+image v0.25.10 [png] (*)
+mbse-assurance v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-assurance) []
+craft-atomic v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/craft-libs/crates/atomic) []
+mbse-model v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-model) []
+craft-atomic v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/craft-libs/crates/atomic) []
+libc v0.2.190 [default,std]
+serde v1.0.229 [default,derive,serde_derive,std] (*)
+serde_json v1.0.151 [default,std]
+itoa v1.0.18 []
+memchr v2.8.3 [alloc,std]
+serde_core v1.0.229 [alloc,default,result,std]
+zmij v1.0.23 []
+sha2 v0.10.9 [default,std]
+cfg-if v1.0.5 []
+cpufeatures v0.2.17 []
+digest v0.10.7 [alloc,block-buffer,core-api,default,std]
+block-buffer v0.10.4 []
+generic-array v0.14.7 [more_lengths]
+typenum v1.20.1 []
+version_check v0.9.5 []
+crypto-common v0.1.7 [std]
+generic-array v0.14.7 [more_lengths] (*)
+typenum v1.20.1 []
+sysmlv2-syntax v0.10.2 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-model/vendor/sysmlv2-syntax) []
+tempfile v3.27.0 [default,getrandom]
+fastrand v2.5.0 [alloc,default,std]
+getrandom v0.4.3 []
+cfg-if v1.0.5 []
+libc v0.2.190 [default,std]
+once_cell v1.21.4 [alloc,default,race,std]
+rustix v1.1.5 [alloc,default,event,fs,net,pipe,process,shm,std,system,time] (*)
+serde v1.0.229 [default,derive,serde_derive,std] (*)
+serde_json v1.0.151 [default,std] (*)
+sha2 v0.10.9 [default,std] (*)
+mbse-catalog v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-catalog) []
+craft-docpath v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/craft-libs/crates/docpath) []
+mbse-model v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-model) [] (*)
+serde v1.0.229 [default,derive,serde_derive,std] (*)
+serde_json v1.0.151 [default,std] (*)
+sha2 v0.10.9 [default,std] (*)
+mbse-exchange v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-exchange) []
+craft-atomic v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/vendor/craft-libs/crates/atomic) []
+mbse-model v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-model) [] (*)
+roxmltree v0.19.0 [default,positions,std]
+serde v1.0.229 [default,derive,serde_derive,std] (*)
+sha2 v0.10.9 [default,std] (*)
+sysmlv2-syntax v0.10.2 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-model/vendor/sysmlv2-syntax) []
+zip v0.6.6 [deflate,flate2]
+byteorder v1.5.0 [default,std]
+crc32fast v1.5.2 [default,std] (*)
+flate2 v1.1.10 [any_impl,default,miniz_oxide,runtime_detection,rust_backend] (*)
+mbse-model v0.1.0 (/workspace/worktrees/builderbob/mbse-craft/verification/crates/mbse-model) [] (*)
+serde v1.0.229 [default,derive,serde_derive,std] (*)
+serde_json v1.0.151 [default,std] (*)

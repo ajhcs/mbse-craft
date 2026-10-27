@@ -1,0 +1,22 @@
+{"ready": true, "app_pid": 609250, "server_pid": 609247, "window": 4194307, "binary_sha256": "f838d5ac230c0854c752c843171c862a5a4bcc688fbf5e325a3ab531d5977d7f"}
+{"op": "capture", "name": "app-frame-context", "ui_sha256": "6a980d59791fdb3eb5cacd833e07a3bb0794d2fefb703cf75ace607b33229288", "sha256": "6912a99ba42eaeb85d9d0b3e411ce4f655f36b295fc7acfd1aa04e9622fe0ba5", "app_returncode": null}
+{"op": "click", "widget": "path", "x": 817, "y": 80, "app_returncode": null}
+{"op": "key", "key": "a", "mods": ["Control_L"], "app_returncode": null}
+{"op": "text", "text": "/workspace/repos/builderbob/sysand-projects-research-20261022/sources/ode4hera/architecture-design/package", "app_returncode": null}
+{"op": "click", "widget": "action:Browse library folder", "pause": 2, "x": 865, "y": 45, "app_returncode": null}
+{"op": "capture", "name": "actual-mit-catalog-preview", "ui_sha256": "6a980d59791fdb3eb5cacd833e07a3bb0794d2fefb703cf75ace607b33229288", "sha256": "92bd70b3112370ea67d02c7e85dad69b94693a2100e51f9953bc50e6b4289511", "app_returncode": null}
+{"op": "capture", "name": "catalog-preview-ready", "ui_sha256": "6a980d59791fdb3eb5cacd833e07a3bb0794d2fefb703cf75ace607b33229288", "sha256": "92bd70b3112370ea67d02c7e85dad69b94693a2100e51f9953bc50e6b4289511", "app_returncode": null}
+{"op": "click", "x": 1422, "y": 17, "app_returncode": null}
+{"op": "click", "widget": "settings:Open", "x": 994, "y": 45, "app_returncode": null}
+{"op": "click", "widget": "settings:periodic", "pause": 2, "x": 103, "y": 89, "app_returncode": null}
+{"op": "capture", "name": "settings-transient-failure", "ui_sha256": "6c26585c18acd392051dd028f4b402687329572b8a1467a76c5eef57f634274e", "sha256": "2e4f38437ac82762bb692d39e3534d47cb99f0da5c2c55be9551d5f95d11759e", "app_returncode": null}
+{"op": "capture", "name": "settings-failure-observed", "ui_sha256": "6c26585c18acd392051dd028f4b402687329572b8a1467a76c5eef57f634274e", "sha256": "2e4f38437ac82762bb692d39e3534d47cb99f0da5c2c55be9551d5f95d11759e", "app_returncode": null}
+{"op": "capture", "name": "settings-restored-waiting", "pause": 8, "ui_sha256": "6c26585c18acd392051dd028f4b402687329572b8a1467a76c5eef57f634274e", "sha256": "2e4f38437ac82762bb692d39e3534d47cb99f0da5c2c55be9551d5f95d11759e", "app_returncode": null}
+{"op": "capture", "name": "settings-same-generation-retried", "ui_sha256": "6c26585c18acd392051dd028f4b402687329572b8a1467a76c5eef57f634274e", "sha256": "2e4f38437ac82762bb692d39e3534d47cb99f0da5c2c55be9551d5f95d11759e", "app_returncode": null}
+{"op": "click", "widget": "settings:interval", "x": 85, "y": 115, "app_returncode": null}
+{"op": "key", "key": "z", "mods": ["Control_L"], "app_returncode": null}
+{"op": "capture", "name": "prefs-popup-control-z-model-unchanged", "ui_sha256": "24b96aa07cc8d6330e76e4d29359e9305c544ead1d3e4f843115cbf28dae1bf7", "sha256": "86537d36593416605283b085ebd4131d8adf0a9df701dd0c6a609fcb41092d11", "app_returncode": null}
+{"op": "key", "key": "Escape", "app_returncode": null}
+{"op": "capture", "name": "settings-retry-confirmed-durable", "ui_sha256": "e76ad20b1aab529e217f2296e03f4c3a98b4d8dd45561877224ce552c95c81f9", "sha256": "2e8edb8e6c244ef547bcfb39989c93fea76038fd4c947b10bd1c000e068c45c3", "app_returncode": null}
+{"op": "click", "x": 478, "y": 33, "app_returncode": null}
+{"op": "click", "widget": "frame:Close window", "pause": 2, "x": 1407, "y": 16, "app_returncode": 0}

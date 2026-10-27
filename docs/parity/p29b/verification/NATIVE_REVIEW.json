@@ -1,0 +1,44 @@
+{
+  "result": "bounded_native_viewpoint_filter_scope_switch_and_cold_passed",
+  "reviewer": "Codex same implementing agent",
+  "independent_review": false,
+  "source_files": 730,
+  "source_sha256": "c3f76bf03f58d1eba40111b4727d01a71c959f2ac1ba3edbce1bcf5b32658261",
+  "binary_sha256": "3678c1d5f623485c93bebfeb728b5c4cd315d4ac20d14cf3da7d0f8c85c90e2c",
+  "compiler_slice_counts": [
+    [
+      0
+    ],
+    [
+      585,
+      0
+    ],
+    [
+      1,
+      1,
+      0
+    ]
+  ],
+  "distinct_case_inventory": 586,
+  "new_distinct_cases": 6,
+  "native_runs": 3,
+  "original_native_attempts_retained": 2,
+  "controller_assertion_errors_retained": 4,
+  "observations": [
+    "Native01 baseline accepted95/raw9e and distinct Review camera retained. Ctrl+Alt+V failed: pinned egui-winit consumes Command+V even withAlt as Paste; menu works. Closed normally.",
+    "Final defaultCtrl+Alt+L reaches shared native command; actual Apply filters Primary10 cards to Measure301 occurrence7. Actual source/stakeholder401 Qualityreviewer/concern500 Reviewerexpectation/System1/kind inspection visible.",
+    "Actual layoutUndo10 cards/Redo301; invalid raw401? Apply refuses accepted401/filter unchanged. Review has its original System1 occurrence13, camera64,0,1.25; switching back restores301 and raw proposal.",
+    "Whole native Snapshot equals baseline including invalid9e. Occurrence/edge/port/connector maps (absent empty maps normalized), cameras and complete Review view equal baseline; only intentional Primary viewpoint/form/profile/revision changes.",
+    "Cold explicit native/views Open reconstructs scope/raw/filter, actual switching and inspect work. Fresh saved whole Snapshot/all5 maps equal final; no runtime UI note/history restoration claim. Three normal owned app/display exits, PID/startticks and authentication cleanup; all frozen inputs unchanged."
+  ],
+  "retained_errors": [
+    "Native01 shortcut assertion failed; adapter intercept confirmed by vendored source, fixed default.",
+    "Native02 Review mistakenly expected empty, corrected to baseline System1.",
+    "Native02 compared decimal-string wire ID to numeric audit ID, corrected only comparison.",
+    "Native02 expected optional empty typed_ports map present, normalized absent empty maps. Original actions/errors remain; no app source edit for these controller assumptions."
+  ],
+  "limits": [
+    "Same-agent bounded Linux synthetic inspection fixture; broad56 specs/integrated exits/full NoMagic/SysML/Craft/scale/platform/independent engineering acceptance remain open.",
+    "Only native-card rendering filters; typed ports/connectors and complete ledger retain scope. Documentary metadata creates no normative SysML element or engineering verdict."
+  ]
+}

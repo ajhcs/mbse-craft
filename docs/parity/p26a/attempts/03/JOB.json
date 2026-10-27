@@ -1,0 +1,79 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m5-p26a-validation-remainder-03",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m5-p26-validation-suites",
+  "source_manifest": "docs/parity/p26a/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "db482b297eb3b3d404cfa7915b6a502f305c98db2a24d02867afc8043928ed72",
+  "source_sha256": "686907ddb672d69894d168379e94c9b02dd2929c9774711b2c464a8369ca2faa",
+  "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-assurance",
+      "--test",
+      "validation",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "--workspace",
+      "--exclude",
+      "mbse-assurance",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-assurance",
+      "--doc"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "Initial zero-test count typing failure retained; next source passed53 before3 containment assertions failed because prepared Part1023 has connector/value dependencies. Correct synthetic pending Part proposal on unconstrained Reference1011, retain accepted reference. Also scope type loading to selected/available rule families; preserve opaque optional payload for requirement-only validation. Run affected validation suite11 and only unexecuted workspace/docs/build remainder. No replay of passed old assurance groups or summed final-source suite claim.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/m5-p26-validation-suites/docs/parity/p26a/fixtures/coverage-register.json": "febc53f9aa74ce85bed0b7d4801da71a24a21e0b23b5269882aba32e2e49f2a4",
+    "/workspace/repos/builderbob/mbse-craft/work/m5-p26-validation-suites/docs/parity/p26a/fixtures/native.mbse-views.json": "e793dbe99a639f45d6a35d380bb34e1a6b32fd93b08c3f2d3d394b43e4aebe88",
+    "/workspace/repos/builderbob/mbse-craft/work/m5-p26-validation-suites/docs/parity/p26a/fixtures/native.kernspan": "778e35d48ddf38c9c5e539aea0a65fb0cade73f850209f377840e01a913317a1"
+  }
+}

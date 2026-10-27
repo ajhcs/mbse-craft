@@ -1,0 +1,3 @@
+# Independent actual-source review
+
+Existing read-only reviewer /root/periodic_actual_review closed clean16aa9adcfda5f69aea2336209829744922aa6509 with no materialblocker. Role directions, aggregatedbindingnames, fullprivate-originStamp and indexnavigation were consistent. Sessionreplacement clearsreport; stalerowscannotnavigate; selectionusesexistingfocuspath withoutmodel/layout/history mutation. The reviewedUItest nowrequires actualSystem→Mission transition after explicitSystembaseline. Historical rows mayshowcurrentnames under stale warning; names are not frozenreportdata. Tests/nativeworkflow remain separate pending gates at reviewtime. No reviewerexecution/edits/uploads.

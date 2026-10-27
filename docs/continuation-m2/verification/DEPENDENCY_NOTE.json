@@ -1,0 +1,7 @@
+{
+  "delta": "Only existing serde_json package added to mbse-exchange dependency membership",
+  "new_registry_name_versions": [],
+  "new_build_scripts": [],
+  "lock_commit": "ca03cd956fb6c5aad983cb9bd4e22ed9bc9b82c3",
+  "metadata_sha256": "d44c53496510183b711157fd1d5f502e33055e6a57ef781fb66f8d927acac163"
+}

@@ -1,0 +1,14 @@
+{
+  "owner_thread_id": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+  "compiler_allocated": true,
+  "allocation_source": "Direct parent instruction: same owner allocated serial30 model/persistence+8 controller tests+desktop build; retained through normal preparation/scoped repairs",
+  "job_manifest_sha256": "2526d86ff57bde75046b1bd676dba18975ce13f5065fe959f503884593db8e1f",
+  "prior_completed_receipt": "/workspace/build/builderbob/mbse-craft/native-views-m2b01/attempt-20261023T053224977854Z/RECEIPT.json",
+  "prior_completed_receipt_sha256": "3ec6e501fe6c6d080a892bcac252593560fc4fbeb7922c012dd564e0803ed69e",
+  "new_cargo_launches_this_resume_before_gate": 0,
+  "owned_workload_basis": "Previous three explicit children879004/880243/883067 exited0 in completed receipt; this resume has started no Cargo, build, test or GUI; no MBSE launch during outage per coordinator",
+  "compiler_mutex": "None established; parent clarified observer mutex is Windows recovery evidence only",
+  "gui_allocated": false,
+  "uploads_authorized": false,
+  "prepared_utc": "2026-10-23T12:04:46.369038+00:00"
+}

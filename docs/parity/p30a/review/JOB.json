@@ -1,0 +1,53 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m6-p30a-review-deletion-disclosure-06",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/review-p30a",
+  "source_manifest": "docs/parity/p30a/review/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "5cbac610d62c21be9392235c92c118a550a282bd6e795da333a117d07e06891a",
+  "source_sha256": "7c25c23af756c13acca5ccdf9099a0709f506eb635c642bf608b96c34c5146f4",
+  "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "--workspace",
+      "deletion",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "PR39 review F01 reproduced false complete deletion inventory. Activities and retained flow proposals now disclose unknown impact and legacy deletion fails closed. Explicit ClearFlowForm permits intentional draft discard without changing accepted data. Affected deletion family/new case and desktop build only; previous unrelated595 not replayed.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/m5-p29-viewpoints/docs/parity/p29a/fixtures/inspection.json": "feddb1b85b3a120937dff452501053408d39a8e139355e70a505d39013a337ca"
+  }
+}

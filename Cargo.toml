@@ -1,0 +1,23 @@
+[workspace]
+members = ["crates/mbse-model", "crates/mbse-desktop", "crates/mbse-catalog", "crates/mbse-exchange", "crates/mbse-assurance"]
+exclude = ["vendor/egui-fork", "vendor/winit-fork", "vendor/egui-fork/crates/ecolor", "vendor/egui-fork/crates/emath", "vendor/egui-fork/crates/epaint", "vendor/egui-fork/crates/epaint_default_fonts", "vendor/egui-fork/crates/egui", "vendor/egui-fork/crates/egui-winit", "vendor/egui-fork/crates/egui-wgpu", "vendor/egui-fork/crates/egui_glow", "vendor/egui-fork/crates/egui_inspection", "vendor/egui-fork/crates/egui_extras", "vendor/egui-fork/crates/egui_kittest", "vendor/egui-fork/crates/eframe", "vendor/craft-libs", "vendor/craft-libs/crates/atomic", "vendor/craft-libs/crates/ui", "vendor/craft-libs/crates/settings", "vendor/craft-libs/crates/quit", "vendor/craft-libs/crates/docpath", "vendor/craft-libs/crates/window", "vendor/craft-libs/crates/platform", "crates/mbse-model/vendor/sysmlv2-syntax"]
+resolver = "2"
+
+[profile.release]
+opt-level = 2
+
+# Apply at MBSE-Craft workspace root only AFTER the M1 native epoch.
+[patch.crates-io]
+ecolor = { path = "vendor/egui-fork/crates/ecolor" }
+emath = { path = "vendor/egui-fork/crates/emath" }
+epaint = { path = "vendor/egui-fork/crates/epaint" }
+epaint_default_fonts = { path = "vendor/egui-fork/crates/epaint_default_fonts" }
+egui = { path = "vendor/egui-fork/crates/egui" }
+egui-winit = { path = "vendor/egui-fork/crates/egui-winit" }
+egui-wgpu = { path = "vendor/egui-fork/crates/egui-wgpu" }
+egui_glow = { path = "vendor/egui-fork/crates/egui_glow" }
+egui_inspection = { path = "vendor/egui-fork/crates/egui_inspection" }
+egui_extras = { path = "vendor/egui-fork/crates/egui_extras" }
+egui_kittest = { path = "vendor/egui-fork/crates/egui_kittest" }
+eframe = { path = "vendor/egui-fork/crates/eframe" }
+winit = { path = "vendor/winit-fork" }

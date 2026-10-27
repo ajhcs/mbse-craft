@@ -1,0 +1,34 @@
+{
+  "result": "bounded_activity_core_regression_and_desktop_compatibility_build_passed",
+  "reviewer": "Codex same implementing agent",
+  "independent_review": false,
+  "source_files": 732,
+  "source_sha256": "b5aeba29617b437f8461b8c4eb30254a49ab6b3442494e3e803d4686d4fa1c9e",
+  "binary_sha256": "32ddb71cb024ed764e15144d0ed6a064f0aa71c3f10aa74742ff1c276f233e4e",
+  "compiler_slice_counts": [
+    [
+      218
+    ],
+    [
+      251
+    ],
+    [
+      126,
+      0
+    ]
+  ],
+  "distinct_case_inventory": 595,
+  "new_distinct_cases": 9,
+  "native_activity_runs": 0,
+  "observations": [
+    "Existing required type Store/Journal, Editor::Typed allocator/history and native I/O remain authority. Activities own partitions/nodes/pins/flows; native Stage1 records unchanged.",
+    "Shared IDs/count/byte and strict canonical maps/fields/versions checked. System/type/pin/flow ownership, direction and exact payload identity refuse atomically.",
+    "Literal true/false/else guards on Decision control flows only; unsupported raw guard/endpoints remain proposals. Duplicate branches/initial nodes and wrong control direction refuse.",
+    "Model Undo/Redo retains newer raw flow form and high-water; removal refuses remaining references. Save/cold Open exact whole Snapshot; recovery Restore explicitly changes DocumentId and all other fields equal, opaque metadata and invalid guard retained."
+  ],
+  "limits": [
+    "Core currently retains one active flow proposal. P30b must preserve all unfinished native authoring forms across selections and add actual activity diagram/layout/native acceptance.",
+    "No execution, general guards, fork/join, nested partitions or normative SysML equivalence. Activity references validated before type/System deletion; existing impact/refactor UI does not yet inventory/clone activities.",
+    "All56 broad specs/integrated exits/full NoMagic/SysML/Craft/scale/platform/independent engineering acceptance remain open."
+  ]
+}

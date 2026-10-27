@@ -1,0 +1,8 @@
+{
+  "preparation_only": true,
+  "base_native_sha256": "009606603ffdc271c4cbaf5e8bf423ae0edce0914dbc1e60772eaac1ec2537ac",
+  "base_views_sha256": "9acd1b1477d4bf26fac0cc982c5f895cbd296527f94615d75e8cef0dc2b4faab",
+  "fixture_native_sha256": "378c62008e2cc1f7b4c6b760413374082fbfb9878756b2ffef5e1451371ecd97",
+  "fixture_snapshot_sha256": "61b3fb24920a7e82932bace86f24afb3f46d881e3c0d43f431eb4b168306e998",
+  "change": "One explicitly optional opaque JSON namespace and matching views binding; original native/type/activity/raw and six presentation maps retained. No state-machine authoring performed by this script."
+}

@@ -1,0 +1,57 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m6-p35a-review-mixed-shared512-boundary-01",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/review-p35a",
+  "source_manifest": "docs/parity/p35a/review/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "9042a784fbc8602b616629b7960ce8bb69cbb520bcc0d0f413793e5919fd2d17",
+  "source_sha256": "0953707195245ec05f4c70d8c91d0daf4eb67d68baa717668e686b2ca2e0e032",
+  "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-model",
+      "--test",
+      "parametrics",
+      "parametric_raw_utf8_quota_shared512_and_native_binding_limits_refuse_without_partial_acceptance",
+      "--",
+      "--exact"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "Isolated PR52 review finds acceptance-evidence gap: boundary fixture used512parametrics only. Use511specifications plus1existing component at shared512, refuse513rd withoutallocating; allother32/33/raw128subcases retained. Production source unchanged. Rerun1affectedcapacitycase/build only; preserve original723distinctsourcequalifiedinventory; no summedfinalsourcefullsuite/nativeUI/evaluation claim.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/review-p35a/docs/parity/p34c/verification/native-02/run/scenario-final-cold-copy.kernspan": "18958954dc7043d644598c55a28f2e30c496c03b69372e75cce42b7bd51844d0",
+    "/workspace/repos/builderbob/mbse-craft/work/review-p35a/docs/parity/p34c/verification/native-02/run/scenario-final-cold-copy.mbse-views.json": "5561661c8f77c59a81ffb7987b417dab57520efe955185f560bebcfc441ced9e"
+  }
+}

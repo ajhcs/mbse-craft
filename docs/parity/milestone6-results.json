@@ -1,0 +1,278 @@
+{
+  "schema": "mbse-craft.milestone6-results/1",
+  "state": "in_progress",
+  "milestone_exit_accepted": false,
+  "full_parity_accepted": false,
+  "p30": {
+    "state": "merged_bounded_contract",
+    "base_commit": "7d7247b64585cdd4d1ae8dfdfeaa2c244277f867",
+    "children": [
+      "P30a",
+      "P30b",
+      "P30c"
+    ],
+    "p30a": {
+      "state": "merged",
+      "execution_results": "p30a/README.md",
+      "new_distinct_cases": 10,
+      "distinct_case_inventory": 596,
+      "native_activity_runs": 0,
+      "final_source_full_workspace_claim": false,
+      "pr_number": 39,
+      "review": "p30a/REVIEW.md",
+      "review_affected_deletion_cases": 19,
+      "review_source_sha256": "7c25c23af756c13acca5ccdf9099a0709f506eb635c642bf608b96c34c5146f4",
+      "merge_commit": "af4b55c0d4469e297f4003692eb178bf1edab668"
+    },
+    "p30b": {
+      "state": "merged",
+      "base_commit": "af4b55c0d4469e297f4003692eb178bf1edab668",
+      "execution_results": "p30b/README.md",
+      "new_distinct_cases": 13,
+      "distinct_case_inventory": 609,
+      "native_activity_runs": 0,
+      "final_source_full_workspace_claim": false,
+      "pr_number": 40,
+      "review": "p30b/REVIEW.md",
+      "merge_commit": "f8a615b86175b7226d6cacf152b09564bc85f07e"
+    },
+    "p30c": {
+      "state": "merged",
+      "base_commit": "f8a615b86175b7226d6cacf152b09564bc85f07e",
+      "execution_results": "p30c/README.md",
+      "new_distinct_cases": 11,
+      "distinct_case_inventory": 620,
+      "native_completed_action_runs": 3,
+      "final_source_full_workspace_claim": false,
+      "source_sha256": "444d60d701f0f332d74e88313fc968ff19b59be746bae56e04090a3c715c37dd",
+      "pr_number": 41,
+      "review": "p30c/REVIEW.md",
+      "merge_commit": "0054c0c45bbcba758ff1b6e5f86ea1abb5359755"
+    }
+  },
+  "p31": {
+    "state": "merged_bounded_contract",
+    "base_commit": "0054c0c45bbcba758ff1b6e5f86ea1abb5359755",
+    "children": [
+      "P31a",
+      "P31b"
+    ],
+    "p31a": {
+      "state": "merged",
+      "scope": "finite control execution core and independent fixed trace fixtures",
+      "execution_results": "p31a/README.md",
+      "distinct_case_inventory": 628,
+      "new_distinct_cases": 8,
+      "native_execution_checks": 0,
+      "pr_number": 42,
+      "review": "p31a/REVIEW.md",
+      "review_affected_cases": 8,
+      "final_source_full_workspace_claim": false,
+      "review_source_sha256": "7658979103b5011e553237983c4cde37e7d90da37c5b58945224156c98d66438",
+      "merge_commit": "e26b38a45238d42e1dfb88e4e3127c44514025bc"
+    },
+    "p31b": {
+      "state": "merged",
+      "scope": "native explicit execution controls, status/trace/staleness/cancellation acceptance",
+      "base_commit": "e26b38a45238d42e1dfb88e4e3127c44514025bc",
+      "execution_results": "p31b/README.md",
+      "distinct_case_inventory": 632,
+      "new_distinct_cases": 4,
+      "native_execution_runs": 2,
+      "source_sha256": "e3ac3498c960e22191218c18ed2160b03d8f3416d4de04041d1a61436b836c6e",
+      "pr_number": 43,
+      "review": "p31b/REVIEW.md",
+      "merge_commit": "c551195451550c1738ecdc2c02de423c8dbac7e3"
+    }
+  },
+  "p32": {
+    "state": "merged_bounded_contract",
+    "base_commit": "c551195451550c1738ecdc2c02de423c8dbac7e3",
+    "children": [
+      "P32a",
+      "P32b",
+      "P32c"
+    ],
+    "p32a": {
+      "state": "merged",
+      "scope": "flat state/event/transition authority, keyed drafts and diagnostics",
+      "execution_results": "p32a/README.md",
+      "source_sha256": "30e0c9f0af341a4e8204952e2874d05a59308409ca9b0c6c7e2f16b3cf576593",
+      "distinct_case_inventory": 643,
+      "new_distinct_cases": 11,
+      "native_state_machine_runs": 0,
+      "pr_number": 44,
+      "review": "p32a/REVIEW.md",
+      "review_affected_cases": 2,
+      "final_source_full_workspace_claim": false,
+      "review_source_sha256": "9f1beddd3c0d7fc2bf904c344e11e7b680d638132bef7612b050c7aeb8fedbd4",
+      "merge_commit": "8e9e923468278578640af0bd77515052d567ed80"
+    },
+    "p32b": {
+      "state": "merged",
+      "scope": "independent state-machine presentation data and bound/cold integrity",
+      "base_commit": "8e9e923468278578640af0bd77515052d567ed80",
+      "execution_results": "p32b/README.md",
+      "source_sha256": "32aaba49222309724f790077c1fa6a5b1b6424cb72f63905a6d5e3275c466789",
+      "distinct_case_inventory": 655,
+      "new_distinct_cases": 12,
+      "native_state_machine_runs": 0,
+      "final_source_full_workspace_claim": false,
+      "pr_number": 45,
+      "review": "p32b/REVIEW.md",
+      "review_affected_deletion_cases": 22,
+      "review_source_sha256": "6f11b6bff9cf8f67afefb361b29078fee1d41f852c6bfab83118c000c4ebfcee",
+      "merge_commit": "37420112f144d26b9d0f80a65b5c6e25123f2ba5"
+    },
+    "p32c": {
+      "state": "merged",
+      "scope": "native authoring/diagnostics/layout/history/save/cold acceptance",
+      "base_commit": "37420112f144d26b9d0f80a65b5c6e25123f2ba5",
+      "execution_results": "p32c/README.md",
+      "source_sha256": "fed2f1d8c791949670538d249123e0db7c764e07061f6f5f6e67b4d8e0583257",
+      "distinct_case_inventory": 664,
+      "new_distinct_cases": 9,
+      "native_state_machine_runs": 4,
+      "final_source_full_workspace_claim": false,
+      "pr_number": 46,
+      "review": "p32c/REVIEW.md",
+      "merge_commit": "f2153a20cafe6856cd1e0e8ff6bda53688601d20"
+    }
+  },
+  "p33": {
+    "state": "merged_bounded_contract",
+    "base_commit": "f2153a20cafe6856cd1e0e8ff6bda53688601d20",
+    "children": [
+      "P33a",
+      "P33b"
+    ],
+    "p33a": {
+      "state": "merged",
+      "scope": "finite flat execution core and fixed event/trace fixtures",
+      "execution_results": "p33a/README.md",
+      "source_sha256": "f33637b79c00760157b2d8d46d135a084a99f462520f1fd293a4d912b60f6fae",
+      "distinct_case_inventory": 672,
+      "new_distinct_cases": 8,
+      "native_state_execution_checks": 0,
+      "final_source_full_workspace_claim": false,
+      "pr_number": 47,
+      "review": "p33a/REVIEW.md",
+      "merge_commit": "938930a8829576879a4d1bb402bac12f923e9848"
+    },
+    "p33b": {
+      "state": "merged",
+      "scope": "native state execution controls and acceptance",
+      "base_commit": "938930a8829576879a4d1bb402bac12f923e9848",
+      "execution_results": "p33b/README.md",
+      "source_sha256": "2661d8cf91de11407310610fadce058a19320fbc612259a9bcc0fa2aefaebb9f",
+      "distinct_case_inventory": 678,
+      "new_distinct_cases": 6,
+      "native_state_execution_runs": 2,
+      "final_source_full_workspace_claim": false,
+      "pr_number": 48,
+      "review": "p33b/REVIEW.md",
+      "merge_commit": "448a1d1283619918b1a06fd2b5db5c7237e7bd43"
+    }
+  },
+  "p34": {
+    "state": "merged_bounded_contract",
+    "base_commit": "448a1d1283619918b1a06fd2b5db5c7237e7bd43",
+    "children": [
+      "P34a",
+      "P34b",
+      "P34c"
+    ],
+    "p34a": {
+      "state": "merged",
+      "scope": "exact participant/message/guarded-alternative authority and keyed drafts",
+      "execution_results": "p34a/README.md",
+      "source_sha256": "dad877f6c6b39a3194707a89760de44be6399732180e93e0d9031a3a3f4d9920",
+      "distinct_case_inventory": 690,
+      "new_distinct_cases": 12,
+      "native_scenario_runs": 0,
+      "final_source_full_workspace_claim": true,
+      "pr_number": 49,
+      "review": "p34a/REVIEW.md",
+      "merge_commit": "d44f2e9f869176ef4ca94d76c783a6dd2eb0bab2"
+    },
+    "p34b": {
+      "state": "merged",
+      "scope": "independent ordered lifeline/message presentation data",
+      "base_commit": "d44f2e9f869176ef4ca94d76c783a6dd2eb0bab2",
+      "execution_results": "p34b/README.md",
+      "source_sha256": "59e166c475462518c59f2a0a0a9f00582ce843df2debb75dc1271a84d34288da",
+      "distinct_case_inventory": 703,
+      "new_distinct_cases": 13,
+      "native_sequence_runs": 0,
+      "final_source_full_workspace_claim": false,
+      "pr_number": 50,
+      "review": "p34b/REVIEW.md",
+      "review_source_sha256": "431d927352a10c6414ee7bb75cb88a72ec45cf5bfa6b6c302317f708a8ce67e1",
+      "review_cases": 2,
+      "merge_commit": "2feb199e5d9b033b8fa9692f97f412a97e6835fe"
+    },
+    "p34c": {
+      "state": "merged",
+      "scope": "native scenario authoring/diagnostics/rendering/history/save/cold acceptance",
+      "base_commit": "2feb199e5d9b033b8fa9692f97f412a97e6835fe",
+      "execution_results": "p34c/README.md",
+      "source_sha256": "9a1c96fefb6bb6890ac745da0042239ed3f4e2bafe888e4248773f04d3a465b9",
+      "distinct_case_inventory": 711,
+      "new_distinct_cases": 8,
+      "native_scenario_runs": 2,
+      "native_controller_errors": 0,
+      "evidence_artifacts": 94,
+      "final_source_full_workspace_claim": false,
+      "pr_number": 51,
+      "review": "p34c/REVIEW.md",
+      "review_production_source_changes": 0,
+      "review_artifacts_recomputed": 94,
+      "review_available_prior_checkouts_unchanged": 92,
+      "merge_commit": "e388d46d60d2c1fbf7f7cbca889d64b6804f91a7"
+    }
+  },
+  "p35": {
+    "state": "reviewed_ready_to_merge_bounded_contract",
+    "base_commit": "e388d46d60d2c1fbf7f7cbca889d64b6804f91a7",
+    "children": [
+      "P35a",
+      "P35b"
+    ],
+    "p35a": {
+      "state": "merged",
+      "scope": "independent specification/parameter/binding authority over existing native calculation and typed value sources",
+      "execution_results": "p35a/README.md",
+      "source_sha256": "6d0d7da041e56203c4035649b2862aa1b6277fa35bb1345716b45a3dea16f986",
+      "distinct_case_inventory": 723,
+      "new_distinct_cases": 12,
+      "native_parametric_runs": 0,
+      "evaluation_performed": false,
+      "final_source_full_workspace_claim": false,
+      "pr_number": 52,
+      "review": "p35a/REVIEW.md",
+      "review_source_sha256": "0953707195245ec05f4c70d8c91d0daf4eb67d68baa717668e686b2ca2e0e032",
+      "review_affected_cases": 1,
+      "review_production_source_changes": 0,
+      "merge_commit": "42fea872f002b958f6455ce2e0c264c250842905"
+    },
+    "p35b": {
+      "state": "reviewed_ready_to_merge",
+      "scope": "native specification/parameter/binding authoring, diagnostics/report and save/cold acceptance",
+      "base_commit": "42fea872f002b958f6455ce2e0c264c250842905",
+      "execution_results": "p35b/README.md",
+      "source_sha256": "9532f8f76ea2d023ee70f151c22b31f8de19ec62519bbf79c26a6dcd2b2bfb0d",
+      "distinct_case_inventory": 731,
+      "new_distinct_cases": 8,
+      "native_parametric_runs": 2,
+      "native_controller_errors": 0,
+      "evidence_artifacts": 83,
+      "parametric_execution_performed": false,
+      "final_source_full_workspace_claim": false,
+      "pr_number": 53,
+      "review": "p35b/REVIEW.md",
+      "review_production_source_changes": 0,
+      "review_artifacts_recomputed": 83,
+      "review_available_prior_checkouts_unchanged": 96
+    }
+  }
+}

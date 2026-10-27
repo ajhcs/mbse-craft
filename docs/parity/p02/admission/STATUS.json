@@ -1,0 +1,38 @@
+{
+  "schema": "mbse-craft.p02-admission-status/1",
+  "recorded_utc": "2026-10-24T21:11:16.935210+00:00",
+  "status": "blocked_before_launch_capability_unavailable",
+  "job_sha256": "f74c46e5522493e28e59494b2514ee686f49757d2017ceb41054ea472206a750",
+  "job_path": "docs/parity/p02/admission/JOB.json",
+  "workspace_status": "Samsung SSD 990 PRO /workspace rw verified through bob-admin in host context",
+  "original_health_producer": "Existing Windows/Lenovo observer and watchdog owned by Repair BuilderBob handle exhaustion; original output route remains required.",
+  "supported_control_results": {
+    "list_threads": "succeeded with limit 50",
+    "read_resource_coordinator": "succeeded",
+    "read_existing_MBSE_owner": "succeeded",
+    "send_message_to_thread": "absent from current ALL_TOOLS catalog",
+    "handoff_thread": "absent from current ALL_TOOLS catalog",
+    "new_original_resource_packet": "not_obtained",
+    "exact_job_allocation": "not_obtained"
+  },
+  "coordinator_threads": [
+    {
+      "id": "01a165b9-9828-768d-a69d-bcd556fb1032",
+      "title": "Repair BuilderBob handle exhaustion"
+    },
+    {
+      "id": "01a16a72-6411-75b1-8008-fac66220d023",
+      "title": "Resume three MBSE owners"
+    }
+  ],
+  "historical_state": "The retained coordinator report is dated 2026-10-23 and cannot establish current observer freshness, watchdog state or action admission.",
+  "user_authorization": "Current direct request authorizes obtaining fresh admission and completing P02; no additional general permission is needed.",
+  "decision": "No original packet or allocation can be acquired through this chat catalog. Preserve holds; obtain packet via an existing working coordinator/dispatch route. No raw mutation client, replacement observer, old-job stager or substitute resource sampler used.",
+  "regression_commands_started": 0,
+  "new_builds": 0,
+  "native_runs": 0,
+  "owned_jobs": [],
+  "action_denials": [],
+  "infrastructure_changes": false,
+  "minimum_unblock": "A supported route must deliver a genuinely fresh original resource-health packet and exact-job compiler/target allocation bound to job_sha256. Renderer admission follows separately."
+}

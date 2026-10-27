@@ -1,0 +1,20 @@
+{
+  "schema": "mbse-craft.m2-freeze-index/1",
+  "latest_epoch": "217c977c-plus-core-6800a3d1",
+  "entries": [
+    {
+      "epoch": "semantic-v2-initial-core",
+      "receipt": "docs/continuation-m2/verification/CORE_RECEIPT.json",
+      "scope": "Historical initial core before identity/proxy corrections; no native claim"
+    },
+    {
+      "epoch": "217c977c-plus-core-6800a3d1",
+      "receipt": "docs/continuation-m2/verification/epoch-217c977c-source-edit/EPOCH.json",
+      "receipt_sha256": "a0001859f89a886f211f5f45756dd2e9636d9d668370d2740683adac372e5f10",
+      "native_receipt": "docs/continuation-m2/verification/epoch-217c977c-source-edit/NATIVE_RECEIPT.json",
+      "native_receipt_sha256": "4d8dd1648269348fbce50ff21ea2788d92172fe46612393f4d53e02c2cd4e040"
+    }
+  ],
+  "earlier_epochs": "docs/continuation-m1/FREEZE_INDEX.json",
+  "preserve_earlier_receipts": true
+}

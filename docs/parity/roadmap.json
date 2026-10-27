@@ -1,0 +1,1225 @@
+{
+  "schema": "mbse-craft.parity-roadmap/1",
+  "recorded_date": "2026-10-24",
+  "milestones": [
+    {
+      "id": "M01",
+      "title": "Qualified development baseline",
+      "exit_criteria": [
+        "Create/edit, reuse across two views, search/usages/impact, save/recover/reopen on one reproducible candidate."
+      ]
+    },
+    {
+      "id": "M02",
+      "title": "Presentation recovery",
+      "exit_criteria": [
+        "Recover an independent native document, inspect old presentation, map selected occurrences, Apply once, save/reopen, and retain originals."
+      ]
+    },
+    {
+      "id": "M03",
+      "title": "Craft workspace behavior",
+      "exit_criteria": [
+        "Complete baseline by menu and keyboard; rearrange, restart/reset workspace, and cancel operations without losing drafts."
+      ]
+    },
+    {
+      "id": "M04",
+      "title": "Structural modeling semantics",
+      "exit_criteria": [
+        "Author a typed subsystem with two instances, ports and exchange; reuse, override, clone, move and delete with valid references and recovery."
+      ]
+    },
+    {
+      "id": "M05",
+      "title": "Requirements and validation",
+      "exit_criteria": [
+        "Trace a requirement hierarchy to a subsystem and evidence, find a known coverage gap, repair a seeded fault, compare matrix and diagram."
+      ]
+    },
+    {
+      "id": "M06",
+      "title": "Behavior and analysis",
+      "exit_criteria": [
+        "Author/run bounded behavior, evaluate dimensioned constraints and Boolean assessment, attach receipt, and demonstrate input-change staleness."
+      ]
+    },
+    {
+      "id": "M07",
+      "title": "Interchange and reusable outputs",
+      "exit_criteria": [
+        "Inspect an explicit source set, admit/export supported constructs, reopen independently, review library update conflicts, generate diagrams/reports."
+      ]
+    },
+    {
+      "id": "M08",
+      "title": "Shared Craft UI experience",
+      "exit_criteria": [
+        "Complete the engineering workflow across pinned interaction references, themes, locales, keyboard-only and accessibility checks."
+      ]
+    },
+    {
+      "id": "M09",
+      "title": "Review and collaboration",
+      "exit_criteria": [
+        "Two authenticated clients edit offline, reconnect, review conflicts, merge and publish a fixed-revision stakeholder review in a local harness."
+      ]
+    },
+    {
+      "id": "M10",
+      "title": "Target-specific closure",
+      "exit_criteria": [
+        "Every selected edition/version/platform capability passes its independent oracle; missing coverage blocks parity claims. Production acceptance is separate."
+      ]
+    }
+  ],
+  "prs": [
+    {
+      "id": "P01",
+      "milestone": "M01",
+      "title": "Freeze the parity matrix and acceptance fixtures",
+      "depends_on": [],
+      "acceptance": [
+        "Every capability has a source, current status, owner role, scenario and completion condition; unresolved edition/platform scope stays visible."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/MILESTONE1_RESULTS.md"
+    },
+    {
+      "id": "P02",
+      "milestone": "M01",
+      "title": "Complete readiness review of existing draft PR #1",
+      "depends_on": [
+        "P01"
+      ],
+      "acceptance": [
+        "The integrated candidate passes relevant regressions and blank-author, calculate, save and reopen; documentation matches limitations."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/MILESTONE1_RESULTS.md"
+    },
+    {
+      "id": "P03",
+      "milestone": "M01",
+      "title": "Complete native acceptance of existing draft PR #2",
+      "depends_on": [
+        "P02"
+      ],
+      "acceptance": [
+        "One element appears in two views; independent geometry survives reopen; native-success/views-failure retains work; stale acknowledgments cannot save later edits."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/MILESTONE1_RESULTS.md"
+    },
+    {
+      "id": "P04",
+      "milestone": "M01",
+      "title": "Integrate existing draft PR #3 layout recovery",
+      "depends_on": [
+        "P03"
+      ],
+      "acceptance": [
+        "Layout-only edits recover after the timer; held drags defer recovery; disabled recovery stays inactive; partial failures retain geometry."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/MILESTONE1_RESULTS.md"
+    },
+    {
+      "id": "P05",
+      "milestone": "M01",
+      "title": "Integrate qualified local navigation continuations",
+      "depends_on": [
+        "P04"
+      ],
+      "acceptance": [
+        "Inspection, rehearsal, usages, search, cameras, System browsing and impact work together without identity, draft or layout regressions."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/MILESTONE1_RESULTS.md"
+    },
+    {
+      "id": "P06",
+      "milestone": "M01",
+      "title": "Finish exact report-row occurrence navigation",
+      "depends_on": [
+        "P05"
+      ],
+      "acceptance": [
+        "Exact cross-view occurrence selection works; hidden stays hidden; detached preserves native selection; stale and busy requests have no effects; focused and native gates pass."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/MILESTONE1_RESULTS.md"
+    },
+    {
+      "id": "P07",
+      "milestone": "M02",
+      "title": "Version the presentation-copy format and provenance",
+      "depends_on": [
+        "P06"
+      ],
+      "acceptance": [
+        "Old files remain readable; future and unknown versions stay preserved; malformed source-to-target mappings refuse without target mutation."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/p07/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/10",
+      "merge_commit": "7244b562cf0e2de6462feeb70f24c69225c829e2"
+    },
+    {
+      "id": "P08",
+      "milestone": "M02",
+      "title": "Apply a reviewed presentation copy transaction",
+      "depends_on": [
+        "P07"
+      ],
+      "acceptance": [
+        "Only selected occurrences copy; skipped mappings remain visible; stale source or target refuses; one layout Undo reverses the copy."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/p08/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/11",
+      "merge_commit": "d7cca1c17002368f58264e7686e8c71a9b73b6dd"
+    },
+    {
+      "id": "P09",
+      "milestone": "M03",
+      "title": "Introduce a stable command catalog and consistent menus",
+      "depends_on": [
+        "P08"
+      ],
+      "acceptance": [
+        "Menu, toolbar and keyboard paths use identical command checks and outcomes; disabled commands explain their prerequisites."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/p09/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/12",
+      "merge_commit": "55322e62e1ea60973c71c56503e1c5f0c474e747"
+    },
+    {
+      "id": "P10",
+      "milestone": "M03",
+      "title": "Adopt scoped shortcut configuration",
+      "depends_on": [
+        "P09"
+      ],
+      "acceptance": [
+        "Conflicts are visible; overrides persist; field Undo stays in the field; model and layout histories remain separately addressable."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/p10/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/13"
+    },
+    {
+      "id": "P11",
+      "milestone": "M03",
+      "title": "Adopt transactional panel docking",
+      "depends_on": [
+        "P10"
+      ],
+      "acceptance": [
+        "Moving, tabbing and floating preserve panel identity, selection and incomplete text; invalid drops lose no panel or model data."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/p11/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/14"
+    },
+    {
+      "id": "P12",
+      "milestone": "M03",
+      "title": "Persist workspaces and recoverable perspectives",
+      "depends_on": [
+        "P11"
+      ],
+      "acceptance": [
+        "Restart restores arrangements; Reset restores defaults; off-screen panels become reachable; corrupt settings preserve model state."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/p12/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/15"
+    },
+    {
+      "id": "P13",
+      "milestone": "M03",
+      "title": "Standardize file dialogs and long-operation feedback",
+      "depends_on": [
+        "P12"
+      ],
+      "acceptance": [
+        "Cancel, failure and indeterminate outcomes differ; stale replies cannot replace work; background completion cannot discard edits."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/p13/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/16"
+    },
+    {
+      "id": "P14",
+      "milestone": "M04",
+      "title": "Introduce a versioned extension schema and migration",
+      "depends_on": [
+        "P13"
+      ],
+      "acceptance": [
+        "Old documents migrate into a new copy with IDs, opaque fields and drafts intact; newer schemas refuse safely; Stage1 identity is not relabeled."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/p14/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/17"
+    },
+    {
+      "id": "P15",
+      "milestone": "M04",
+      "title": "Add type definitions and typed properties",
+      "depends_on": [
+        "P14"
+      ],
+      "acceptance": [
+        "Wrong-kind references and invalid multiplicities refuse atomically; pending property text survives save and reopen."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "execution_results": "docs/parity/p15/README.md",
+      "evidence": "docs/parity/p15/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/18",
+      "merge_commit": "19cb6516350d180fa3f693034c9acc9dbd2b1821"
+    },
+    {
+      "id": "P16",
+      "milestone": "M04",
+      "title": "Add parts, references and decomposition",
+      "depends_on": [
+        "P15"
+      ],
+      "acceptance": [
+        "Containment cycles refuse; moves preserve identity; the browser distinguishes actual containment from System membership."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "evidence": "docs/parity/p16/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/19",
+      "reviewed_head": "0a364869a135fe1dcd623e1ed19c07258111e7ed",
+      "merge_commit": "4370e879411479aa79b3d5aabbba5f2ff80d47ce"
+    },
+    {
+      "id": "P17",
+      "milestone": "M04",
+      "title": "Add typed ports and interface definitions",
+      "depends_on": [
+        "P16"
+      ],
+      "acceptance": [
+        "Incompatible assignments refuse; port identities survive cross-view reuse, save and reopen."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "children": [
+        {
+          "id": "P17a",
+          "title": "Port and interface semantic contracts and durable authoring",
+          "acceptance": [
+            "Incompatible interface assignments refuse atomically; port/interface identities, raw forms and accepted data survive model history and native cold reopen."
+          ],
+          "state": "merged",
+          "evidence": "docs/parity/p17a/README.md",
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/20",
+          "reviewed_head": "fe594f15c8bac4b30af2e2dab6fad8b81fac9881",
+          "merge_commit": "c6b36918062bfb894df27b88ae9a32357d539bb5"
+        },
+        {
+          "id": "P17b",
+          "title": "Typed port occurrences and cross-view reuse",
+          "depends_on": [
+            "P17a"
+          ],
+          "acceptance": [
+            "Distinct presentation occurrences in two actual views reuse one semantic port ID; save/reopen/layout undo/hide retain semantic identity; existing core views and copy/recovery paths preserve or explicitly refuse unsupported typed content."
+          ],
+          "state": "merged",
+          "evidence": "docs/parity/p17b/README.md",
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/21",
+          "reviewed_head": "b71f07bcee9ce8f65f1f8f929c095c3aef9baf11",
+          "merge_commit": "0694708dd04862c4d2266be2cda36eb4f160374e"
+        }
+      ],
+      "decomposition_reason": "Existing native occurrences require core RecordKind; semantic ports and typed presentation need separately reviewable storage/history adapters. P17 remains open until both children pass.",
+      "evidence": "docs/parity/p17b/README.md",
+      "merge_commit": "0694708dd04862c4d2266be2cda36eb4f160374e"
+    },
+    {
+      "id": "P18",
+      "milestone": "M04",
+      "title": "Add connectors and conveyed items",
+      "depends_on": [
+        "P17"
+      ],
+      "acceptance": [
+        "Wrong endpoints and item types refuse; views update consistently; removing a visual edge does not delete the semantic connector."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "children": [
+        {
+          "id": "P18a",
+          "title": "Instance-qualified connector endpoints and conveyed-type admission",
+          "state": "merged",
+          "acceptance": [
+            "Wrong part/port ownership, direction and conveyed type refuse atomically; exact connector IDs and unfinished forms survive native persistence and model history."
+          ],
+          "branch": "codex/m4-p18a-connectors",
+          "evidence": "docs/parity/p18a/README.md",
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/22",
+          "merge_commit": "8fec6d83108e35dedc018fe5fe7bc0714d4310e9",
+          "reviewed_head": "61cdef9016b4ca844292a8c69fe61bed92d44dfb"
+        },
+        {
+          "id": "P18b",
+          "title": "Qualified port occurrences and semantic connector visual routes",
+          "state": "merged",
+          "depends_on": [
+            "P18a"
+          ],
+          "acceptance": [
+            "Two views show routes bound to exact qualified port occurrences; wrong endpoints refuse; removing a visual edge retains semantic connector; native/views Save and cold reopen preserve identities."
+          ],
+          "branch": "codex/m4-p18b-connector-routes",
+          "evidence": "docs/parity/p18b/README.md",
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/23",
+          "merge_commit": "239d21d1728d51e4ccad70d413e8dffc971f6783",
+          "reviewed_head": "10dda0a6bbe9e6b9c11c8a0076ebb114c7dde53d"
+        }
+      ],
+      "decomposition_reason": "Separate part-qualified semantic endpoint/type rules from presentation context/routing so each identity boundary is reviewable. P18 stays open until both children pass.",
+      "evidence": "docs/parity/p18b/README.md",
+      "merge_commit": "239d21d1728d51e4ccad70d413e8dffc971f6783"
+    },
+    {
+      "id": "P19",
+      "milestone": "M04",
+      "title": "Separate defaults, instance values and derived results",
+      "depends_on": [
+        "P18"
+      ],
+      "acceptance": [
+        "Default changes affect inheriting instances only; overrides remain explicit; results never overwrite authored values."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "branch": "codex/m4-p19-values",
+      "evidence": "docs/parity/p19/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/24",
+      "merge_commit": "3c628b2a20ae979a223f06c6029c731cbee33de2",
+      "reviewed_head": "98b3f49b4ac3d3f4310e163befab4513cef8c2f6"
+    },
+    {
+      "id": "P20",
+      "milestone": "M04",
+      "title": "Add explicit clone and move operations",
+      "depends_on": [
+        "P19"
+      ],
+      "acceptance": [
+        "Preview identifies internal and external reference treatment; moves retain IDs; clones allocate fresh IDs; Cancel and Undo restore state."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "branch": "codex/m4-p20-clone-move",
+      "evidence": "docs/parity/p20/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/25",
+      "merge_commit": "4db52a28edb7851725fb5ce697c5d649ba27caa8",
+      "reviewed_head": "245093aaa814d1f0175baecc4889d893a194e899"
+    },
+    {
+      "id": "P21",
+      "milestone": "M04",
+      "title": "Add semantic deletion with impact preview",
+      "depends_on": [
+        "P20"
+      ],
+      "acceptance": [
+        "Every supported incoming reference is handled; unknown impact prevents an exhaustive verdict; stale previews refuse; Undo restores records and occurrences."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "decomposition_reason": "Review typed dependency/value-entry cascade and inverse presentation-history proof separately from native-core record/calculation references. P21 remains open until both children pass.",
+      "children": [
+        {
+          "id": "P21a",
+          "title": "Typed deletion impact preview, unknown-impact refusal and exact Undo restoration",
+          "state": "merged",
+          "branch": "codex/m4-p21a-typed-deletion",
+          "acceptance": [
+            "Enumerate typed dependencies/value effects; unknown impact blocks Apply; stale/foreign plans refuse; native Undo restores typed records and qualified occurrences/routes; recovery retains drafts."
+          ],
+          "execution_results": "docs/parity/p21a/README.md",
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/26",
+          "review_preservation": "docs/parity/p21a/REVIEW_PRESERVATION.json",
+          "merge_commit": "66a56b04410403ed7c775f02a4256f4eecc11922",
+          "reviewed_head": "cab716dcd5e67c090fc31a25fab0bee0b4e935d7"
+        },
+        {
+          "id": "P21b",
+          "title": "Native-core deletion and incoming-reference treatment",
+          "state": "merged",
+          "depends_on": [
+            "P21a"
+          ],
+          "acceptance": [
+            "Handle supported native-core ownership/links/calculation references in preview and transaction; unknown impact blocks exhaustive verdict; Undo restores native records and presentation; native persistence keeps exact remaining meaning."
+          ],
+          "branch": "codex/m4-p21b-native-deletion",
+          "execution_results": "docs/parity/p21b/README.md",
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/27",
+          "review_preservation": "docs/parity/p21b/REVIEW_PRESERVATION.json",
+          "merge_commit": "e8475982d3586a15b47425c4ba34dffb5c4a5afd",
+          "reviewed_head": "9ec83dd483610fcdbe43c78d62cd809b50fc9c26"
+        }
+      ],
+      "merge_commit": "e8475982d3586a15b47425c4ba34dffb5c4a5afd",
+      "reviewed_head": "9ec83dd483610fcdbe43c78d62cd809b50fc9c26",
+      "evidence": "docs/parity/p21b/README.md"
+    },
+    {
+      "id": "P22",
+      "milestone": "M04",
+      "title": "Add exact profile and extension-tag identity",
+      "depends_on": [
+        "P21"
+      ],
+      "acceptance": [
+        "Namespace/version mismatches stay unknown or refuse; tags round-trip; custom domain records are not silently reclassified."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "branch": "codex/m4-p22-profile-tags",
+      "execution_results": "docs/parity/p22/README.md",
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/28",
+      "review_preservation": "docs/parity/p22/REVIEW_PRESERVATION.json",
+      "merge_commit": "24cb464749e82f28f6199a4a2341ced21bfae421",
+      "reviewed_head": "23bb4a288c599b79cf018416b6f200f7c7655a54"
+    },
+    {
+      "id": "P23",
+      "milestone": "M05",
+      "title": "Add hierarchical requirement authoring",
+      "depends_on": [
+        "P22"
+      ],
+      "acceptance": [
+        "Duplicate IDs and parent cycles refuse; invalid statements persist as drafts; maturity, implementation and verification remain independent."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "branch": "codex/m5-p23-requirement-hierarchy",
+      "execution_results": "docs/parity/p23/README.md",
+      "pr_number": 29,
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/29",
+      "review": "docs/parity/p23/REVIEW.md",
+      "review_preservation": "docs/parity/p23/REVIEW_PRESERVATION.json",
+      "merge_commit": "1ae74f4f841b9d1c3d9b6c62b7e8fe4b072246af",
+      "reviewed_head": "431982cdf7e05e5acb5a4ecb38813698f58387f5"
+    },
+    {
+      "id": "P24",
+      "milestone": "M05",
+      "title": "Add typed requirement traces",
+      "depends_on": [
+        "P23"
+      ],
+      "acceptance": [
+        "Derive, refine, satisfy, verify and copy have distinct endpoint rules; relabeling cannot change meaning; traces survive history and reopen."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "branch": "codex/m5-p24-requirement-traces",
+      "execution_results": "docs/parity/p24/README.md",
+      "pr_number": 30,
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/30",
+      "review": "docs/parity/p24/REVIEW.md",
+      "review_preservation": "docs/parity/p24/REVIEW_PRESERVATION.json",
+      "merge_commit": "0c528b7ddb49d6a2662f3d77698ca030c9bbb745",
+      "reviewed_head": "672fe026a6827f241efb3da05eca10632aaf5920"
+    },
+    {
+      "id": "P25",
+      "milestone": "M05",
+      "title": "Add coverage queries and change impact",
+      "depends_on": [
+        "P24"
+      ],
+      "acceptance": [
+        "Known orphan requirements and missing verification links are found; changed requirements stale affected evidence; unsupported relations are disclosed."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "branch": "codex/m5-p25-coverage-impact",
+      "execution_results": "docs/parity/p25/README.md",
+      "pr_number": 31,
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/31",
+      "review": "docs/parity/p25/REVIEW.md",
+      "review_preservation": "docs/parity/p25/REVIEW_PRESERVATION.json",
+      "merge_commit": "885dbb21d6f9f95ae51c1e509dcad208f60ca52f",
+      "reviewed_head": "075aa169b130eb85d6b30da2277781c275667c03"
+    },
+    {
+      "id": "P26",
+      "milestone": "M05",
+      "title": "Add named validation suites and issue navigation",
+      "depends_on": [
+        "P25"
+      ],
+      "acceptance": [
+        "Seeded type, reference and structural faults produce stable expected rule IDs; issue navigation selects the exact element and property."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "branch": "codex/m5-p26-validation-suites",
+      "children": [
+        {
+          "id": "P26a",
+          "title": "Named validation suites and sealed issue locations",
+          "state": "merged",
+          "contract": "docs/parity/p26a/CONTRACT.md",
+          "execution_results": "docs/parity/p26a/README.md",
+          "pr_number": 32,
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/32",
+          "review": "docs/parity/p26a/REVIEW.md",
+          "review_preservation": "docs/parity/p26a/REVIEW_PRESERVATION.json",
+          "merge_commit": "517fc3e10ffd44e19f30bc5cb9c45c0314651385",
+          "reviewed_head": "348afce0cf8797e39bf663faf616a8d67c97a230"
+        },
+        {
+          "id": "P26b",
+          "title": "Native suite authoring and exact issue/field navigation",
+          "state": "merged",
+          "depends_on": [
+            "P26a"
+          ],
+          "branch": "codex/m5-p26b-validation-navigation",
+          "contract": "docs/parity/p26b/CONTRACT.md",
+          "execution_results": "docs/parity/p26b/README.md",
+          "review": "docs/parity/p26b/REVIEW.md",
+          "review_preservation": "docs/parity/p26b/REVIEW_PRESERVATION.json",
+          "pr_number": 33,
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/33",
+          "merge_commit": "1c49d7ac4139388f10a172eed95e6cdf84b01068",
+          "reviewed_head": "8f15781acea7182494c9be25d6802434c7d3b947"
+        }
+      ],
+      "pr_number": 33,
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/33",
+      "merge_commit": "1c49d7ac4139388f10a172eed95e6cdf84b01068"
+    },
+    {
+      "id": "P27",
+      "milestone": "M05",
+      "title": "Add reviewed custom rules and explicit quick fixes",
+      "depends_on": [
+        "P26"
+      ],
+      "acceptance": [
+        "Unsupported declarative rules refuse; fixes preview changes, reject stale state and Undo atomically; opening projects executes no embedded code."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "children": [
+        {
+          "id": "P27a",
+          "title": "Reviewed declarative requirement rules and atomic fix previews",
+          "state": "merged",
+          "branch": "codex/m5-p27-reviewed-rules",
+          "contract": "docs/parity/p27a/CONTRACT.md",
+          "execution_results": "docs/parity/p27a/README.md",
+          "pr_number": 34,
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/34",
+          "review": "docs/parity/p27a/REVIEW.md",
+          "review_preservation": "docs/parity/p27a/REVIEW_PRESERVATION.json",
+          "merge_commit": "422d1b8972f2e2e07730a538d642a76b37e71524",
+          "reviewed_head": "51aa253c72a613b43568dc3a77244df0f10e9ebd"
+        },
+        {
+          "id": "P27b",
+          "title": "Native rule review and explicit quick-fix preview Apply Undo",
+          "state": "merged",
+          "depends_on": [
+            "P27a"
+          ],
+          "branch": "codex/m5-p27b-native-fixes",
+          "contract": "docs/parity/p27b/CONTRACT.md",
+          "pr_number": 35,
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/35",
+          "execution_results": "docs/parity/p27b/README.md",
+          "review": "docs/parity/p27b/REVIEW.md",
+          "review_preservation": "docs/parity/p27b/REVIEW_PRESERVATION.json",
+          "merge_commit": "894e00b8359422e250f670a2b971d11a666b93b3",
+          "reviewed_head": "49d1230cb2d2423190950818b2dbf3f59b54390e"
+        }
+      ],
+      "pr_number": 35,
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/35",
+      "merge_commit": "894e00b8359422e250f670a2b971d11a666b93b3"
+    },
+    {
+      "id": "P28",
+      "milestone": "M05",
+      "title": "Add editable relation matrices",
+      "depends_on": [
+        "P27"
+      ],
+      "acceptance": [
+        "A cell edit uses the authoritative typed relation command; wrong-kind cells are disabled; matrix and diagram agree after reopen."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "branch": "codex/m5-p28-relation-matrix",
+      "contract": "docs/parity/p28/CONTRACT.md",
+      "pr_number": 36,
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/36",
+      "execution_results": "docs/parity/p28/README.md",
+      "review": "docs/parity/p28/REVIEW.md",
+      "review_preservation": "docs/parity/p28/REVIEW_PRESERVATION.json",
+      "merge_commit": "5fa7c05e6c341943553bb536b555e843c9aeca1e",
+      "reviewed_head": "e70e62b7648f4da0879b97c858d174663a3b8c76"
+    },
+    {
+      "id": "P29",
+      "milestone": "M05",
+      "title": "Add viewpoints, filters and exposed scope",
+      "depends_on": [
+        "P28"
+      ],
+      "acceptance": [
+        "Filters change presentation only; stakeholder concern and viewpoint scope remain inspectable; switching preserves identity and independent layouts."
+      ],
+      "state": "merged",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "children": [
+        {
+          "id": "P29a",
+          "title": "Versioned viewpoint metadata and presentation filter core",
+          "state": "merged",
+          "branch": "codex/m5-p29-viewpoints",
+          "contract": "docs/parity/p29a/CONTRACT.md",
+          "pr_number": 37,
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/37",
+          "execution_results": "docs/parity/p29a/README.md",
+          "review": "docs/parity/p29a/REVIEW.md",
+          "review_preservation": "docs/parity/p29a/REVIEW_PRESERVATION.json",
+          "merge_commit": "8a893d13614429e6d0c904bf5c58c6c210ef5bf8",
+          "reviewed_head": "66e95e84b117d38a074761d357d8ca18a16cfec0"
+        },
+        {
+          "id": "P29b",
+          "title": "Native viewpoint authoring, filtering and scoped switching",
+          "state": "merged",
+          "depends_on": [
+            "P29a"
+          ],
+          "branch": "codex/m5-p29b-native-viewpoints",
+          "contract": "docs/parity/p29b/CONTRACT.md",
+          "execution_results": "docs/parity/p29b/README.md",
+          "pr_number": 38,
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/38",
+          "review": "docs/parity/p29b/REVIEW.md",
+          "review_preservation": "docs/parity/p29b/REVIEW_PRESERVATION.json",
+          "merge_commit": "7d7247b64585cdd4d1ae8dfdfeaa2c244277f867",
+          "reviewed_head": "e8be2ad63ff1eb593c5edfdc2b7ca67ab40827c3"
+        }
+      ],
+      "merge_commit": "7d7247b64585cdd4d1ae8dfdfeaa2c244277f867",
+      "reviewed_head": "e8be2ad63ff1eb593c5edfdc2b7ca67ab40827c3"
+    },
+    {
+      "id": "P30",
+      "milestone": "M06",
+      "title": "Add activity authoring",
+      "depends_on": [
+        "P29"
+      ],
+      "acceptance": [
+        "Actions, partitions, pins, flows, decisions and guards obey endpoint/ownership rules; invalid guards remain drafts; diagrams round-trip without implied execution."
+      ],
+      "state": "in_progress",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "children": [
+        {
+          "id": "P30a",
+          "title": "Bounded activity semantic core and retained guard proposals",
+          "state": "merged",
+          "branch": "codex/m6-p30a-activity-core",
+          "contract": "docs/parity/p30a/CONTRACT.md",
+          "execution_results": "docs/parity/p30a/README.md",
+          "pr_number": 39,
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/39",
+          "review": "docs/parity/p30a/REVIEW.md",
+          "review_preservation": "docs/parity/p30a/REVIEW_PRESERVATION.json",
+          "merge_commit": "af4b55c0d4469e297f4003692eb178bf1edab668",
+          "reviewed_head": "1753cf1e467086f9c13cecc9b5d42963d52b671c"
+        },
+        {
+          "id": "P30b",
+          "title": "Durable activity form journals and independent diagram core",
+          "state": "merged",
+          "depends_on": [
+            "P30a"
+          ],
+          "branch": "codex/m6-p30b-activity-forms-views",
+          "contract": "docs/parity/p30b/CONTRACT.md",
+          "execution_results": "docs/parity/p30b/README.md",
+          "pr_number": 40,
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/40",
+          "review": "docs/parity/p30b/REVIEW.md",
+          "review_preservation": "docs/parity/p30b/REVIEW_PRESERVATION.json",
+          "merge_commit": "f8a615b86175b7226d6cacf152b09564bc85f07e",
+          "reviewed_head": "2723cdebb036cc3e2f34684792479b6722685072"
+        },
+        {
+          "id": "P30c",
+          "title": "Native activity authoring and diagram workflow",
+          "state": "in_progress",
+          "depends_on": [
+            "P30b"
+          ],
+          "branch": "codex/m6-p30c-native-activities",
+          "contract": "docs/parity/p30c/CONTRACT.md"
+        }
+      ]
+    },
+    {
+      "id": "P31",
+      "milestone": "M06",
+      "title": "Execute the first finite activity subset",
+      "depends_on": [
+        "P30"
+      ],
+      "acceptance": [
+        "Branching fixtures match independently specified traces; deadlock, step-budget exhaustion and cancellation terminate visibly."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P32",
+      "milestone": "M06",
+      "title": "Add state-machine authoring",
+      "depends_on": [
+        "P31"
+      ],
+      "acceptance": [
+        "Invalid targets and ambiguous definitions produce diagnostics; authored states, events, guards and layout survive history and reopen."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P33",
+      "milestone": "M06",
+      "title": "Execute the first state-machine subset",
+      "depends_on": [
+        "P32"
+      ],
+      "acceptance": [
+        "Fixed events yield expected states; conflicting transitions expose policy; cancellation and resource limits preserve the model."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P34",
+      "milestone": "M06",
+      "title": "Add sequence and scenario authoring",
+      "depends_on": [
+        "P33"
+      ],
+      "acceptance": [
+        "Lifelines/messages reference exact existing identities; alternative paths retain guards; removed or incompatible participants produce diagnostics."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P35",
+      "milestone": "M06",
+      "title": "Add parametric specifications and bindings",
+      "depends_on": [
+        "P34"
+      ],
+      "acceptance": [
+        "Binding type/dimension errors are actionable; unbound parameters remain visible; specifications persist independently of execution."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P36",
+      "milestone": "M06",
+      "title": "Extend bounded analysis and Boolean assessment",
+      "depends_on": [
+        "P35"
+      ],
+      "acceptance": [
+        "Independent quantity and threshold fixtures pass; zero denominator, cycle and unit errors stay explicit; assessment cannot set verification Passed automatically."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P37",
+      "milestone": "M06",
+      "title": "Add scoped model and trace metrics",
+      "depends_on": [
+        "P36"
+      ],
+      "acceptance": [
+        "Counts match fixed fixtures; filtered versus global scope is explicit; exports retain model revision and rule version."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P38",
+      "milestone": "M07",
+      "title": "Open explicit source project sets",
+      "depends_on": [
+        "P37"
+      ],
+      "acceptance": [
+        "Duplicate IDs in different members stay distinct; missing or changed companions are visible; offline reopen performs no ambient fetch."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P39",
+      "milestone": "M07",
+      "title": "Admit the first editable UML/SysML source subset",
+      "depends_on": [
+        "P38"
+      ],
+      "acceptance": [
+        "Reviewed constructs map predictably; unsupported semantics cause explicit loss/refusal; original bytes stay untouched."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P40",
+      "milestone": "M07",
+      "title": "Export the same semantic subset to XMI",
+      "depends_on": [
+        "P39"
+      ],
+      "acceptance": [
+        "An independent reader reconstructs expected types and relations; unsupported constructs cannot silently disappear; semantic and layout equality differ."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P41",
+      "milestone": "M07",
+      "title": "Add mapped tabular import/export",
+      "depends_on": [
+        "P40"
+      ],
+      "acceptance": [
+        "Duplicate IDs, invalid types and unresolved references appear before Apply; Cancel changes nothing; supported exports reimport equivalently."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P42",
+      "milestone": "M07",
+      "title": "Export authored diagrams",
+      "depends_on": [
+        "P41"
+      ],
+      "acceptance": [
+        "SVG output retains selected scope, labels, geometry and documented hidden-item policy and opens independently; PNG is a separate adapter if needed."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P43",
+      "milestone": "M07",
+      "title": "Generate scoped reports and tables",
+      "depends_on": [
+        "P42"
+      ],
+      "acceptance": [
+        "IDs/counts match the snapshot; stale or historical evidence stays labeled; failure preserves existing outputs."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P44",
+      "milestone": "M07",
+      "title": "Instantiate pinned local libraries",
+      "depends_on": [
+        "P43"
+      ],
+      "acceptance": [
+        "Original libraries stay read-only; copies have fresh identities; reference-versus-copy behavior and dependency hashes are inspectable."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P45",
+      "milestone": "M07",
+      "title": "Preview library updates and preserve attachments",
+      "depends_on": [
+        "P44"
+      ],
+      "acceptance": [
+        "Conflicts precede mutation; declined updates retain overrides; moved project packages reopen with verified attachment references."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P46",
+      "milestone": "M08",
+      "title": "Unify themes and control states",
+      "depends_on": [
+        "P45"
+      ],
+      "acceptance": [
+        "Light, dark and high-contrast fixtures cover enabled, disabled, focused, selected, invalid and pending states; color alone conveys no required meaning."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P47",
+      "milestone": "M08",
+      "title": "Normalize inspectors, icons and numeric editing",
+      "depends_on": [
+        "P46"
+      ],
+      "acceptance": [
+        "Equivalent properties share commit/cancel behavior; Escape cancels only the intended edit; one drag yields one transaction; controls have meaningful accessible labels."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P48",
+      "milestone": "M08",
+      "title": "Add font coverage and localization infrastructure",
+      "depends_on": [
+        "P47"
+      ],
+      "acceptance": [
+        "Non-Latin and RTL fixtures render; translations preserve IDs and shortcuts; missing translations have explicit fallback; exact asset licenses are retained."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P49",
+      "milestone": "M08",
+      "title": "Complete keyboard and assistive-technology workflows",
+      "depends_on": [
+        "P48"
+      ],
+      "acceptance": [
+        "Create, connect, inspect, validate, save and recover without a pointer; focus returns correctly; a real accessibility client operates critical controls."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P50",
+      "milestone": "M08",
+      "title": "Qualify layout scaling and interaction performance",
+      "depends_on": [
+        "P49"
+      ],
+      "acceptance": [
+        "Frozen model tiers meet declared budgets on recorded hardware; target window sizes/scales expose critical controls; dense views retain readable inspection."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P51",
+      "milestone": "M09",
+      "title": "Add immutable local revisions and semantic diff",
+      "depends_on": [
+        "P50"
+      ],
+      "acceptance": [
+        "Rename, relation, value and geometry changes classify correctly; comparing revisions modifies neither input."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P52",
+      "milestone": "M09",
+      "title": "Add reviewed three-way semantic merge",
+      "depends_on": [
+        "P51"
+      ],
+      "acceptance": [
+        "Independent edits merge; competing edits remain conflicts; identity/reference integrity holds; Cancel and failed validation preserve the pre-merge document."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P53",
+      "milestone": "M09",
+      "title": "Generate immutable stakeholder review packages",
+      "depends_on": [
+        "P52"
+      ],
+      "acceptance": [
+        "Comments bind exact revision/element IDs; superseded content is identifiable; stakeholder decisions do not mutate verification."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P54",
+      "milestone": "M09",
+      "title": "Implement repository protocol and revision storage",
+      "depends_on": [
+        "P53"
+      ],
+      "acceptance": [
+        "Conditional push/pull protects revisions; interruptions expose no partial revision; incompatible protocols refuse in a local harness."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P55",
+      "milestone": "M09",
+      "title": "Add repository permissions and lock semantics",
+      "depends_on": [
+        "P54"
+      ],
+      "acceptance": [
+        "Unauthorized access is denied; expired/lost locks cannot authorize changes; audit records identify actor, revision and operation."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P56",
+      "milestone": "M09",
+      "title": "Add remote branches, merge review and offline reconciliation",
+      "depends_on": [
+        "P55"
+      ],
+      "acceptance": [
+        "Two clients edit offline, reconnect and review an actual conflict without silent overwrite; reviewed integration retains attribution/history."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P57",
+      "milestone": "M10",
+      "title": "Add each selected external execution adapter separately",
+      "depends_on": [
+        "P56"
+      ],
+      "acceptance": [
+        "Each adapter pins inputs/tool versions, requires explicit execution, supports bounded cancellation and matches an independent fixture; unsupported mappings refuse."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    },
+    {
+      "id": "P58",
+      "milestone": "M10",
+      "title": "Decompose and close standards, platform and edition coverage",
+      "depends_on": [
+        "P57"
+      ],
+      "acceptance": [
+        "Each missing construct family, diagram, profile, OS path and add-on has an individually reviewable child PR and independent acceptance; open rows block full parity."
+      ],
+      "state": "planned",
+      "owner_role": "existing integrator assigns exclusive paths",
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+    }
+  ],
+  "ordering": "Conservative serial integration order; dependencies can be narrowed only after interface review.",
+  "expansion_rule": "P48, P50, P57 and P58 are decomposition gates: one locale/font adapter, platform/backend, external engine or construct family per child PR. Their children must be enumerated before scheduling implementation."
+}

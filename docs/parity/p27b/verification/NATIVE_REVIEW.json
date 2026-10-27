@@ -1,0 +1,25 @@
+{
+  "result": "bounded_native_rule_review_and_atomic_copy_fix_passed_with_feedback_finding",
+  "reviewer": "Codex same implementing agent",
+  "independent_review": false,
+  "source_files": 724,
+  "source_sha256": "1922f9b926fbd29c069226a76a2f605c8ea5a2033d0fd47f2d38d82d5f1440cf",
+  "binary_sha256": "f4d8b2efeeb5653639564ca12e0320b0b477e973d36c5694cabe0c47d3345048",
+  "workspace_tests": 563,
+  "new_distinct_cases": 4,
+  "native_runs": 2,
+  "action_errors": 0,
+  "observations": [
+    "Actual preserved register Open and custom exact-root Statement rule authoring. Ordinary Save refuses; complete Preview/Cancel/Preview/Admit and manual Run produce stable MBSE.CUSTOM.root-label:requirement1:Statement.",
+    "Complete3-change fix preview lists root accepted/raw and Copy5 accepted text. Cancel preserves source. Explicit subsequent rationale edit stales Apply and disabled click preserves source.",
+    "Fresh Run/preview/Apply changes only declared fields and their existing revision counters; all other register bytes including evidence13, traces, tests, metadata and invalid slave raw remain exact. Single actual Undo and Redo fresh independent copies equal whole before/after registers.",
+    "Unsupported ExecuteShell declarative data refuses, stays raw, accepted known suite unchanged. No code executes on Open.",
+    "Two native sessions: cold Open restores no review/fix/report; explicit saved-suite fresh Run has zero remaining custom issue. Fresh whole register/native Snapshot/five maps equal final. Original native whole Snapshot/five maps stay exact throughout.",
+    "Normal owned app/display exits, auth/process cleanup and original hashes checked."
+  ],
+  "finding": "F01: earlier CUSTOM_RULE_REVIEW_REQUIRED feedback remains visible after successful explicit suite admission. Correct during isolated review and qualify final-source feedback slice.",
+  "limits": [
+    "Same-agent bounded Linux finite exact-requirement text rules/literal fixes. More than128 changes disables native Apply; full text scrollable.",
+    "All56 broad specs/integrated exits/full NoMagic/SysML/Craft/OCL/script/platform/independent engineering acceptance remain open."
+  ]
+}

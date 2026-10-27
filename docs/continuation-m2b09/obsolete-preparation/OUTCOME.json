@@ -1,0 +1,9 @@
+{
+  "status": "ObsoletePreparationNeverLaunched",
+  "recorded_utc": "2026-10-23T19:40:47.779640+00:00",
+  "job_sha256": "faa90366792eb61c9741622e753088ff82b61858ae49e671527cbfef6f72537c",
+  "source_commit": "5851ed0d2b10b27ec833f6a5b605af9d054c7f47",
+  "reason": "Independent pre-execution review corrected synthetic recovery-profile/endpoint bindings and strengthened actual navigation assertion; no tests/build/native were run",
+  "attempts": 0,
+  "owned_jobs": []
+}

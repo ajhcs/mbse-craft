@@ -1,0 +1,55 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m6-p30b-quota-and-source-disclosure-04",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m6-p30b-activity-forms-views",
+  "source_manifest": "docs/parity/p30b/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "488381afb6e8c3d7c42393481fe83ba22153defab5eb522148069e197318401c",
+  "source_sha256": "d38c8439d4eff1b806817553da954716e2d6686bb5d6cb8d248ec0aee959cf50",
+  "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-model",
+      "--test",
+      "activity_forms_views",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "Fix reproduced transient form quota: consume the selected slot inside the atomic candidate before legacy bridge staging, then replace with accepted-ID slot. All13 related activity form/diagram cases and build. Activity source inspection explicitly refuses before legacy UI can omit unhandled activity content; original file bytes retained. Unrelated608 prior successes not replayed.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/m5-p29-viewpoints/docs/parity/p29a/fixtures/inspection.json": "feddb1b85b3a120937dff452501053408d39a8e139355e70a505d39013a337ca"
+  }
+}

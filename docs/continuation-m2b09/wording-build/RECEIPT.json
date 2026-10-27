@@ -1,0 +1,158 @@
+{
+  "profile": "mbse-craft.native-record-impact-wording-build-receipt/1",
+  "status": "Passed",
+  "started_utc": "2026-10-23T20:00:15.450652+00:00",
+  "job_manifest_sha256": "1f3c58de9d20b723d154ca2936a3104c60076aed1953a1b25b22461bb831f793",
+  "source_commit": "f1b6c71681b221aba446f4b308d847fe08aef2eb",
+  "source_sha256": "00ef25c2e92305c2d1d1e386dc778c3582324f5b278f9330a2ad82831611e9e4",
+  "launcher_sha256": "da4238bb151370968d1956bd8dcbd8dfbea5ed9c731ac87f093f1f1f9b2aec9e",
+  "allocation": {
+    "owner_thread_id": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+    "job_manifest_sha256": "1f3c58de9d20b723d154ca2936a3104c60076aed1953a1b25b22461bb831f793",
+    "commands_authorized": [
+      [
+        "bash",
+        "scripts/dev.sh",
+        "build",
+        "--locked",
+        "--offline",
+        "-p",
+        "mbse-desktop"
+      ]
+    ],
+    "target_dir": "/workspace/build/builderbob/mbse-craft/semantic-v2/target",
+    "target_exclusive_confirmed": true,
+    "build_launch_authorized": true,
+    "expected_appserver_identity": {
+      "pid": 1072280,
+      "start_ticks": 14235850,
+      "uid": 1000,
+      "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+      "pid_namespace": "pid:[4026531836]",
+      "boot_id": "b0688b87-f383-4de6-8124-071099ae1547"
+    },
+    "authority": "Existing authorized next scoped native record impact wording-only build; fresh coordinator exact job evidence and normal action review",
+    "writer_confirmation": "Sole MBSE candidate/target writer; previous build/renderer identities absent; separate frozen old worktrees unchanged; no idle global reservation",
+    "gui": false,
+    "uploads": false
+  },
+  "commands": [
+    {
+      "argv": [
+        "bash",
+        "scripts/dev.sh",
+        "build",
+        "--locked",
+        "--offline",
+        "-p",
+        "mbse-desktop"
+      ],
+      "started_utc": "2026-10-23T20:00:15.464024+00:00",
+      "health_packet": {
+        "schema": "builderbob.job-bound-health/1",
+        "checked_utc": "2026-10-23T19:59:46.5152186+00:00",
+        "owner_thread_id": "01a1653d-9c16-76a3-ad80-df98ba1e5c94",
+        "job_label": "MBSE independently reviewed impact wording only offline desktop build no test replay",
+        "expected_job_manifest_sha256": "1f3c58de9d20b723d154ca2936a3104c60076aed1953a1b25b22461bb831f793",
+        "job_hash_verification": "Caller supplies frozen SHA; existing owner must verify actual manifest/source and scoped permission at action time. This checker does not access the remote job.",
+        "resource_admission": "PASS",
+        "expires_utc": "2026-10-23T20:01:39.3247200+00:00",
+        "sample_age_seconds": 7.2,
+        "watchdog_age_seconds": 35.8,
+        "watchdog_identity_matches": true,
+        "health": {
+          "schema": "builderbob.fd-watch-health/1",
+          "checked_utc": "2026-10-23T19:59:46.4827663+00:00",
+          "observation_route": "AVAILABLE",
+          "observer_pid": 15648,
+          "exact_process_start_matches": true,
+          "status_pid_matches": true,
+          "observer_state": "RUNNING",
+          "completed_samples": 313,
+          "planned_samples": 1440,
+          "planned_last_sample_utc": "2026-10-24T14:46:36.5991315+00:00",
+          "monitor_status": "OK",
+          "reasons": [],
+          "trend_matches_latest_observation": true,
+          "growth_fds_per_minute": 77.0,
+          "recent_peak_positive_fds_per_minute": 77,
+          "forecast_seconds_to_90_percent_with_64_fd_reserve": 459.0,
+          "heartbeat_age_seconds": 9.7,
+          "successful_sample_age_seconds": 7.2,
+          "latest_observation": {
+            "fd_count": 269,
+            "fd_types": {
+              "anon_inode": 9,
+              "file_or_device": 64,
+              "pidfd": 40,
+              "pipe": 120,
+              "socket": 36
+            },
+            "hard_nofile": 1048576,
+            "headroom": 755,
+            "identity": {
+              "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+              "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+              "pid": 1072280,
+              "pid_namespace": "pid:[4026531836]",
+              "start_ticks": 14235850,
+              "uid": 1000
+            },
+            "max_fd": 307,
+            "mutations": false,
+            "occupied_below_soft": 269,
+            "pidfd_targets": {
+              "live": 40
+            },
+            "schema": "builderbob.fd-observation/1",
+            "soft_nofile": 1024,
+            "status": "OK",
+            "thresholds": {
+              "critical_free_fds": 64,
+              "critical_percent": 90,
+              "warning_free_fds": 128,
+              "warning_percent": 80
+            },
+            "used_percent": 26.26953125,
+            "utc": "2026-10-23T15:59:39.32472-04:00"
+          },
+          "log_path": "C:\\Users\\colet\\Documents\\Codex\\2026-10-22\\task-16\\evidence\\FD-WATCH-20261023T144736Z.jsonl",
+          "alert_path": "C:\\Users\\colet\\Documents\\Codex\\2026-10-22\\task-16\\evidence\\FD-ALERTS-20261023T144736Z.jsonl",
+          "automatic_remediation": false
+        },
+        "watchdog": {
+          "checked_utc": "2026-10-23T19:59:10.7007442+00:00",
+          "decision": {
+            "level": "OK",
+            "hold_new_launches": false,
+            "reasons": [],
+            "seconds_to_observer_end": 67645.9,
+            "automatic_remediation": false
+          },
+          "console_window_handle": 0,
+          "notification_hold": false
+        },
+        "permission_or_job_allocation_granted": false,
+        "remote_commands_executed": 0,
+        "target_launches": 0,
+        "automatic_remediation": false
+      },
+      "log": "/workspace/build/builderbob/mbse-craft/native-record-impact-wording/attempt-20261023T200015450428Z/00.log",
+      "pid": 1250951,
+      "start_ticks": 15996634,
+      "exit_code": 0,
+      "ended_utc": "2026-10-23T20:00:17.474401+00:00",
+      "log_sha256": "778c5adb99328d62b5bf3087a74c5b2dfe4597380acb097e353fb01cc5884d27",
+      "actual_passed_tests": []
+    }
+  ],
+  "gui": false,
+  "uploads": false,
+  "owned_jobs": [],
+  "binary_path": "/workspace/build/builderbob/mbse-craft/native-record-impact-wording/attempt-20261023T200015450428Z/mbse-desktop",
+  "binary_sha256": "0a53007f1ac2f0c655bb8da6bd77aa053e44d95158ce0a1bf002b05db4096514",
+  "binary_bytes": 402045200,
+  "workspace_free_bytes_after": 56269623296,
+  "source_unchanged": true,
+  "ended_utc": "2026-10-23T20:00:18.287545+00:00"
+}
