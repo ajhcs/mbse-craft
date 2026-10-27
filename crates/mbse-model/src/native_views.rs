@@ -1232,6 +1232,28 @@ fn decode_document(bytes: &[u8]) -> Result<Document, String> {
     serde_json::from_value(unique.0).map_err(|e| format!("VIEWS_SCHEMA: {e}"))
 }
 
+/// Read-only declaration inspection against exact supplied saved-native bytes.
+/// Supports the existing presentation schemas; returns no Views runtime,
+/// checkpoint, inverse proof, target replacement or native I/O authority.
+pub fn inspect_bound_declaration(
+    bytes: &[u8],
+    snapshot: &Snapshot,
+    native_artifact_sha256: &str,
+) -> Result<Document, String> {
+    snapshot.validate()?;
+    let document = decode_document(bytes)?;
+    let expected = NativeBinding {
+        document_id: snapshot.document_id.clone(),
+        artifact_sha256: native_artifact_sha256.into(),
+        snapshot_sha256: snapshot.digest(),
+    };
+    if !bound_profile(&document.profile) || document.binding.as_ref() != Some(&expected) {
+        return Err("VIEWS_EXACT_SUPPLIED_NATIVE_BINDING_REQUIRED".into());
+    }
+    document.validate(snapshot)?;
+    Ok(document)
+}
+
 /// Structural source inspection only: returns a declared DTO, never a Views
 /// runtime, native checkpoint, replacement authority or semantic admission.
 pub(crate) fn inspect_document(bytes: &[u8]) -> Result<Document, String> {
