@@ -171,6 +171,8 @@ struct Journal {
     profile_tags:Option<tags::Form>,
     #[serde(default,skip_serializing_if="Option::is_none")]
     activity_flow:Option<activities::FlowForm>,
+    #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
+    activity_forms:BTreeMap<String,activities::forms::Form>,
 }
 impl Default for Journal {
     fn default() -> Self {
@@ -186,7 +188,7 @@ impl Default for Journal {
             values:BTreeMap::new(),
             refactor:None,
             deletion:None,
-            profile_tags:None,activity_flow:None,
+            profile_tags:None,activity_flow:None,activity_forms:BTreeMap::new(),
         }
     }
 }

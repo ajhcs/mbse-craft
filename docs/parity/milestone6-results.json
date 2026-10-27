@@ -8,10 +8,11 @@
     "base_commit": "7d7247b64585cdd4d1ae8dfdfeaa2c244277f867",
     "children": [
       "P30a",
-      "P30b"
+      "P30b",
+      "P30c"
     ],
     "p30a": {
-      "state": "reviewed_ready_to_merge",
+      "state": "merged",
       "execution_results": "p30a/README.md",
       "new_distinct_cases": 10,
       "distinct_case_inventory": 596,
@@ -20,7 +21,12 @@
       "pr_number": 39,
       "review": "p30a/REVIEW.md",
       "review_affected_deletion_cases": 19,
-      "review_source_sha256": "7c25c23af756c13acca5ccdf9099a0709f506eb635c642bf608b96c34c5146f4"
+      "review_source_sha256": "7c25c23af756c13acca5ccdf9099a0709f506eb635c642bf608b96c34c5146f4",
+      "merge_commit": "af4b55c0d4469e297f4003692eb178bf1edab668"
+    },
+    "p30b": {
+      "state": "in_progress",
+      "base_commit": "af4b55c0d4469e297f4003692eb178bf1edab668"
     }
   }
 }

@@ -1,5 +1,6 @@
 //! Finite documentary activity authoring under the existing native type authority.
 use super::*;
+pub mod forms;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum NodeKind {
     Initial,
@@ -80,6 +81,7 @@ pub struct FlowForm {
 }
 #[derive(Clone, Debug)]
 pub enum Action {
+    Form(forms::Action),
     Activity {
         id: Option<Id>,
         system: RecordId,
@@ -141,6 +143,7 @@ pub fn flow_form(snapshot: &Snapshot) -> Result<Option<FlowForm>, String> {
     Ok(journal(snapshot)?.activity_flow)
 }
 pub(super) fn validate_journal(j: &Journal) -> Result<(), String> {
+    forms::validate_journal(j)?;
     if let Some(f) = &j.activity_flow {
         if f.activity.0 == 0
             || f.id.is_some_and(|id| id.0 == 0)
@@ -287,8 +290,9 @@ pub(super) fn validate_draft_ids(
     if other.into_iter().any(|id| owned.contains(&id)) {
         return Err("ACTIVITY_OTHER_DRAFT_ID_COLLISION".into());
     }
+    let form_high=forms::validate_ids(s,j,native)?;
     let Some(f) = &j.activity_flow else {
-        return Ok(0);
+        return Ok(form_high);
     };
     if let Some(id) = f.id {
         let matching = s
@@ -311,7 +315,7 @@ pub(super) fn validate_draft_ids(
             return Err("ACTIVITY_FLOW_DRAFT_ID_COLLISION".into());
         }
     }
-    Ok(f.activity.0.max(f.id.map_or(0, |id| id.0)))
+    Ok(form_high.max(f.activity.0.max(f.id.map_or(0, |id| id.0))))
 }
 fn reference(raw: &str) -> Result<Id, String> {
     let n = raw
@@ -347,6 +351,7 @@ fn id_for(snapshot: &mut Snapshot, id: Option<Id>, exists: bool) -> Result<Id, S
 pub(super) fn apply_inner(snapshot: &mut Snapshot, action: Action) -> Result<Change, String> {
     let mut s = load(snapshot)?;
     match action {
+        Action::Form(action)=>return forms::apply(snapshot,action),
         Action::Remove { activity, element } => {
             if element == activity {
                 if s.activities.remove(&activity).is_none() {

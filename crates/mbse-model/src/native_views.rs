@@ -38,6 +38,8 @@ pub mod ports;
 pub mod connectors;
 #[path="native_viewpoints.rs"]
 pub mod viewpoints;
+#[path="native_views_activities.rs"]
+pub mod activities;
 pub const PROFILE: &str = "mbse-craft.native-views/1";
 pub const RECOVERY_PROFILE: &str = "mbse-craft.native-views-recovery/1";
 pub const COPY_PROFILE: &str = "mbse-craft.native-views/2";
@@ -46,13 +48,14 @@ pub fn supported_profile(profile: &str) -> bool {
     matches!(profile, PROFILE | RECOVERY_PROFILE | COPY_PROFILE | COPY_RECOVERY_PROFILE) || ports::typed_profile(profile)
 }
 pub fn bound_profile(profile: &str) -> bool {
-    matches!(profile, PROFILE | COPY_PROFILE | ports::PROFILE | connectors::PROFILE | viewpoints::PROFILE)
+    matches!(profile, PROFILE | COPY_PROFILE | ports::PROFILE | connectors::PROFILE | viewpoints::PROFILE | activities::PROFILE)
 }
 pub fn copy_profile(profile: &str) -> bool {
     matches!(profile, COPY_PROFILE | COPY_RECOVERY_PROFILE) || ports::typed_profile(profile)
 }
 fn output_profile(profile:&str,bound:bool)->&'static str{
- if viewpoints::profile(profile){if bound{viewpoints::PROFILE}else{viewpoints::RECOVERY_PROFILE}}
+ if activities::profile(profile){if bound{activities::PROFILE}else{activities::RECOVERY_PROFILE}}
+ else if viewpoints::profile(profile){if bound{viewpoints::PROFILE}else{viewpoints::RECOVERY_PROFILE}}
  else if connectors::qualified_profile(profile){if bound{connectors::PROFILE}else{connectors::RECOVERY_PROFILE}}
  else if ports::typed_profile(profile){if bound{ports::PROFILE}else{ports::RECOVERY_PROFILE}}
  else if copy_profile(profile){if bound{COPY_PROFILE}else{COPY_RECOVERY_PROFILE}}
@@ -311,6 +314,8 @@ pub struct Document {
     pub typed_ports:BTreeMap<OccurrenceId,ports::PortOccurrence>,
     #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
     pub connector_edges:BTreeMap<VisualEdgeId,connectors::ConnectorEdge>,
+    #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
+    pub activity_diagrams:BTreeMap<ViewId,activities::Diagram>,
 }
 fn hash(bytes: &[u8]) -> String {
     format!("{:x}", Sha256::digest(bytes))
@@ -391,7 +396,7 @@ impl Document {
         }
         if self.views.is_empty()
             || self.views.len() > MAX_VIEWS
-            || self.occurrences.len()+self.typed_ports.len() > MAX_OCCURRENCES
+            || self.occurrences.len()+self.typed_ports.len()+activities::count(self) > MAX_OCCURRENCES
             || self.edges.len()+self.connector_edges.len() > MAX_EDGES
             || !self.views.contains_key(&self.primary)
         {
@@ -429,6 +434,7 @@ impl Document {
             check_presence(&o.presence)?;
         }
         ports::validate(self,&mut ids,&mut counts,native.map(|(snapshot,_)|snapshot))?;
+        activities::validate(self,&mut ids,&mut counts,native.map(|(snapshot,_)|snapshot))?;
         if counts.values().any(|n| *n > MAX_PER_VIEW) {
             return Err("VIEWS_PER_VIEW_BUDGET".into());
         }
@@ -497,6 +503,7 @@ pub struct Stamp {
 }
 #[derive(Clone, Debug)]
 pub enum Layout {
+    Activity(activities::Layout),
     Viewpoint(ViewId,viewpoints::Action),
     Connector(connectors::Layout),
     Port(ports::Layout),
@@ -625,7 +632,7 @@ impl Views {
             occurrences: BTreeMap::new(),
             edges: BTreeMap::new(),
             typed_ports:BTreeMap::new(),
-            connector_edges:BTreeMap::new(),
+            connector_edges:BTreeMap::new(),activity_diagrams:BTreeMap::new(),
         };
         for (i, record) in editor.snapshot.records.values().enumerate() {
             if i >= MAX_PER_VIEW {
@@ -747,6 +754,7 @@ impl Views {
             .chain(self.past.iter().chain(&self.future).map(|e| &e.document))
         {
             reachable.extend(doc.occurrences.keys().map(|id| id.0));
+            reachable.extend(doc.activity_diagrams.values().flat_map(|d|d.occurrences.keys()).map(|id|id.0));
             reachable.extend(doc.typed_ports.keys().map(|id|id.0));
             reachable.extend(doc.edges.keys().map(|id| id.0));
             reachable.extend(doc.connector_edges.keys().map(|id|id.0));
@@ -759,6 +767,7 @@ impl Views {
         self.document.validate(&editor.snapshot)?;
         let mut next = self.document.clone();
         match action {
+            Layout::Activity(action)=>activities::apply(&mut next,&editor.snapshot,action)?,
             Layout::Viewpoint(view,action)=>viewpoints::apply(&mut next,editor,view,action)?,
             Layout::Connector(action)=>connectors::apply(&mut next,&editor.snapshot,action)?,
             Layout::Port(action)=>ports::apply(&mut next,&editor.snapshot,action)?,
@@ -790,6 +799,7 @@ impl Views {
                 next.typed_ports.retain(|_,o|o.view!=id);
                 next.connector_edges.retain(|_,e|e.view!=id);
                 next.edges.retain(|_, e| e.view != id);
+                next.activity_diagrams.remove(&id);
             }
             Layout::Camera(id, camera) => {
                 next.views.get_mut(&id).ok_or("VIEWS_NO_VIEW")?.camera = camera;
@@ -905,9 +915,10 @@ impl Views {
         if title.trim().is_empty() || title.len() > 1024 { return Err("VIEWS_COPY_TITLE".into()); }
         if !self.document.typed_ports.is_empty(){return Err("VIEWS_TYPED_COPY_UNSUPPORTED: preserve original typed presentation".into())}
         let declared=source.declared();
+        if !self.document.activity_diagrams.is_empty()||!declared.activity_diagrams.is_empty(){return Err("VIEWS_ACTIVITY_COPY_UNSUPPORTED: preserve original activity presentation".into());}
         let camera=declared.views.get(&source_view).ok_or("VIEWS_COPY_SOURCE_VIEW")?.camera.clone();
         let mut next=self.document.clone();
-        next.profile=if viewpoints::profile(&next.profile)||viewpoints::profile(&declared.profile){if bound_profile(&next.profile){viewpoints::PROFILE}else{viewpoints::RECOVERY_PROFILE}}else if connectors::qualified_profile(&next.profile){if bound_profile(&next.profile){connectors::PROFILE}else{connectors::RECOVERY_PROFILE}}else if ports::typed_profile(&next.profile){if bound_profile(&next.profile){ports::PROFILE}else{ports::RECOVERY_PROFILE}}else if bound_profile(&next.profile) {COPY_PROFILE}else{COPY_RECOVERY_PROFILE}.into();
+        next.profile=if activities::profile(&next.profile)||activities::profile(&declared.profile){output_profile(activities::PROFILE,bound_profile(&next.profile))}else if viewpoints::profile(&next.profile)||viewpoints::profile(&declared.profile){if bound_profile(&next.profile){viewpoints::PROFILE}else{viewpoints::RECOVERY_PROFILE}}else if connectors::qualified_profile(&next.profile){if bound_profile(&next.profile){connectors::PROFILE}else{connectors::RECOVERY_PROFILE}}else if ports::typed_profile(&next.profile){if bound_profile(&next.profile){ports::PROFILE}else{ports::RECOVERY_PROFILE}}else if bound_profile(&next.profile) {COPY_PROFILE}else{COPY_RECOVERY_PROFILE}.into();
         let view=ViewId(next.allocate()?);
         next.views.insert(view,View{id:view,title:title.into(),camera,copy_origin:None,viewpoint:declared.views[&source_view].viewpoint.clone(),viewpoint_form:declared.views[&source_view].viewpoint_form.clone()});
         let mut origin=CopyOrigin{profile:crate::native_views_copy::PROFILE.into(),source_sha256:source.source_sha256().into(),source_profile:declared.profile.clone(),source_document_id:declared.document_id.clone(),source_sidecar_id:declared.sidecar_id.clone(),source_view,declared_native_binding:declared.binding.clone(),occurrences:BTreeMap::new(),edges:BTreeMap::new()};
@@ -1046,6 +1057,7 @@ impl Views {
         }
         ports::reconcile(&mut next,&candidate.snapshot,undo,redo,&proof,&mut proofs)?;
         connectors::reconcile(&mut next,&candidate.snapshot,undo,redo,&proof,&mut proofs)?;
+        activities::reconcile(&mut next,&candidate.snapshot,undo,redo,&proof,&mut proofs)?;
         for edge in next.edges.values_mut() {
             let resolves = next
                 .occurrences
@@ -1170,6 +1182,7 @@ fn decode_document(bytes: &[u8]) -> Result<Document, String> {
     if !supported_profile(profile) { return Err("VIEWS_FUTURE_PROFILE".into()); }
     crate::native_views_copy::check_wire_budget(root, copy_profile(profile))?;
     viewpoints::check_wire(root,profile)?;
+    activities::check_wire(root,profile)?;
     for (key, max) in [
         ("views", MAX_VIEWS),
         ("occurrences", MAX_OCCURRENCES),
@@ -1187,6 +1200,7 @@ fn decode_document(bytes: &[u8]) -> Result<Document, String> {
     }
     if let Some(edges)=root.get("connector_edges"){if edges.as_object().is_none_or(|e|e.len()>MAX_EDGES){return Err("VIEWS_CONNECTOR_EDGE_COUNT_BUDGET".into())}}
     if let Some(ports)=root.get("typed_ports"){if ports.as_object().is_none_or(|p|p.len()>MAX_OCCURRENCES){return Err("VIEWS_TYPED_PORT_COUNT_BUDGET".into())}}
+    if let Some(diagrams)=root.get("activity_diagrams"){let map=diagrams.as_object().ok_or("VIEWS_ACTIVITY_MAP_REQUIRED")?;if map.len()>MAX_VIEWS{return Err("VIEWS_ACTIVITY_COUNT_BUDGET".into());}let mut count=0usize;for d in map.values(){let n=d.get("occurrences").and_then(serde_json::Value::as_object).ok_or("VIEWS_ACTIVITY_OCCURRENCES_REQUIRED")?.len();count=count.saturating_add(n);if count>MAX_OCCURRENCES{return Err("VIEWS_ACTIVITY_COUNT_BUDGET".into());}}}
     serde_json::from_value(unique.0).map_err(|e| format!("VIEWS_SCHEMA: {e}"))
 }
 

@@ -787,21 +787,33 @@
         {
           "id": "P30a",
           "title": "Bounded activity semantic core and retained guard proposals",
-          "state": "reviewed_ready_to_merge",
+          "state": "merged",
           "branch": "codex/m6-p30a-activity-core",
           "contract": "docs/parity/p30a/CONTRACT.md",
           "execution_results": "docs/parity/p30a/README.md",
           "pr_number": 39,
           "pr_url": "https://github.com/ajhcs/mbse-craft/pull/39",
           "review": "docs/parity/p30a/REVIEW.md",
-          "review_preservation": "docs/parity/p30a/REVIEW_PRESERVATION.json"
+          "review_preservation": "docs/parity/p30a/REVIEW_PRESERVATION.json",
+          "merge_commit": "af4b55c0d4469e297f4003692eb178bf1edab668",
+          "reviewed_head": "1753cf1e467086f9c13cecc9b5d42963d52b671c"
         },
         {
           "id": "P30b",
-          "title": "Native activity authoring and independent activity diagrams",
-          "state": "planned",
+          "title": "Durable activity form journals and independent diagram core",
+          "state": "in_progress",
           "depends_on": [
             "P30a"
+          ],
+          "branch": "codex/m6-p30b-activity-forms-views",
+          "contract": "docs/parity/p30b/CONTRACT.md"
+        },
+        {
+          "id": "P30c",
+          "title": "Native activity authoring and diagram workflow",
+          "state": "planned",
+          "depends_on": [
+            "P30b"
           ]
         }
       ]

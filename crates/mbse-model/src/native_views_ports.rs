@@ -130,7 +130,7 @@ pub(super) fn apply(doc: &mut Document, snapshot: &Snapshot, action: Layout) -> 
             {
                 return Err("VIEWS_OCCURRENCE_BUDGET".into());
             }
-            doc.profile = if viewpoints::profile(&doc.profile){if bound_profile(&doc.profile){viewpoints::PROFILE}else{viewpoints::RECOVERY_PROFILE}} else if connectors::qualified_profile(&doc.profile) {
+            doc.profile = if activities::profile(&doc.profile){if bound_profile(&doc.profile){activities::PROFILE}else{activities::RECOVERY_PROFILE}}else if viewpoints::profile(&doc.profile){if bound_profile(&doc.profile){viewpoints::PROFILE}else{viewpoints::RECOVERY_PROFILE}} else if connectors::qualified_profile(&doc.profile) {
                 if bound_profile(&doc.profile) {
                     connectors::PROFILE
                 } else {
