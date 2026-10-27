@@ -1,0 +1,24 @@
+{
+  "result": "reviewed_bounded_ready_to_merge",
+  "same_agent": true,
+  "independent_review": false,
+  "source_sha256": "cce9f01ddba09019d146607d815f3a43115bdf06db9391b7a05e93c2069b99ea",
+  "binary_sha256": "17c0ddfc5f00bbefa1a0c92273d079ff342229e60735e3d3a59beb43910cdf8d",
+  "source_delta_from_531_test_candidate": [
+    "crates/mbse-desktop/src/assurance_ui.rs",
+    "crates/mbse-desktop/src/assurance_ui/coverage_ui.rs"
+  ],
+  "full_regression_on_prior_semantic_source": 531,
+  "review_regression_failed_before_fix": 1,
+  "final_affected_assurance_ui_tests": 11,
+  "desktop_build_passed": true,
+  "distinct_new_p25_cases_across_sources": 13,
+  "prior_native_authoring_cold_runs": 2,
+  "final_native_open_freshness_runs": 1,
+  "action_errors": 0,
+  "finding_fixed": "Completed register Open could replace source after pre-frame freshness poll, leaving old navigation enabled for one frame. Revalidate at query draw/navigation and after editor mutations; regression reproduces failure and passes fix.",
+  "pixels_reviewed": [
+    "native/run/00-open-new-source-disables-old-query-navigation.png"
+  ],
+  "limits": "No summed final-source full-workspace-run claim. Same-agent bounded Linux only; broad56 specs/integrated exits/platform/full NoMagic/SysML/Craft/independent acceptance open."
+}

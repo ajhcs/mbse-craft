@@ -34,11 +34,13 @@
     "merge_commit": "0c528b7ddb49d6a2662f3d77698ca030c9bbb745"
   },
   "p25": {
-    "state": "implemented_bounded_review_pending",
+    "state": "reviewed_bounded_ready_to_merge",
     "base_commit": "0c528b7ddb49d6a2662f3d77698ca030c9bbb745",
     "execution_results": "p25/README.md",
     "workspace_tests": 531,
-    "new_distinct_cases": 12,
-    "native_runs": 2
+    "new_distinct_cases": 13,
+    "native_runs": 3,
+    "pr_number": 31,
+    "review": "p25/REVIEW.md"
   }
 }

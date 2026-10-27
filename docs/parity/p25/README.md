@@ -16,15 +16,35 @@ prospective evidence size counting now includes P24 trace/test-case maps.
 | Save and cold behavior | Actual initial/final register Saves preserve the original consumer/evidence and opaque metadata. Cold exact register reopen restores no query/runtime proof; explicit rerun discloses dependency change, absent evaluator proof and a context-stamp mismatch from the new native instance_id. Whole native Snapshot hash/data remain unchanged. Cold fresh register and native Saves preserve all accepted values/maps. |
 | Preservation |51 prior available checkouts retain exact heads/status;18 user-removed directories retain registered heads, removed contents unverifiable. Inputs unchanged; two normal app/display exits, owned process/auth cleanup. |
 
-Final717-file source `5a0ac04348d1cfc69849b4eda3230bfe5ae500a66695ef354dee74af74c0f227`
+Initial semantic717-file source `5a0ac04348d1cfc69849b4eda3230bfe5ae500a66695ef354dee74af74c0f227`
 passed all531 workspace tests and desktop build, including12 new cases. Binary
 `503951e240b609bc6a03ff20826eb4734be948aa5ad1277440fa0b4ed2167c1b`
 drove both native runs with zero controller errors. All prior case names reconcile.
-No compiler/application failure. [38-artifact index](verification/ARCHIVES.json)
+No compiler/application/controller failure in the initial workflow. [38-artifact index](verification/ARCHIVES.json)
 verifies original/stored bytes and losslessly compressed logs/actions/audits.
 [Same-agent evidence interpretation](verification/NATIVE_REVIEW.json) is separate
 from unchanged raw review-pending receipts. No dependency/license/notice/build-script
 changes from the reviewed baseline.
+
+Isolated review found a source-freshness ordering bug: a completed register Open
+could replace source after pre-frame polling and leave old navigation enabled for
+one frame. One targeted regression reproduced it (0 passes/1 failure, retained).
+The fix revalidates at query draw/navigation after completions/forms and after
+editor mutations for audit. Only two assurance UI files changed; final717-file
+source `cce9f01ddba09019d146607d815f3a43115bdf06db9391b7a05e93c2069b99ea`
+passed all11 affected assurance UI tests/build. Binary
+`17c0ddfc5f00bbefa1a0c92273d079ff342229e60735e3d3a59beb43910cdf8d`
+passed a separate actual Open/replacement/native preservation inspection. A valid
+alternate register reused local IDs/revision counters but changed requirement4
+rationale: old navigation disabled, explicit rerun changed register hash with the
+same native hash. Original register restored by actual Open and fresh Save equals
+original; native whole Snapshot/maps remain exact. Three native sessions total,
+zero controller errors. Original531/core/native evidence remains source-qualified,
+with13 distinct new P25 cases across sources; no summed final-source whole-suite
+claim. [Review correction](verification/review/FINAL_REVIEW.json) and separate
+[archive index](verification/review/ARCHIVES.json) retain the original38 artifacts.
+All52 prior available checkouts including original candidate remain exact;18
+user-removed directories remain registered and absent.
 
 Queries inventory local declared links and possible review work; they never prove
 satisfaction, execute a new test engine or record verification Passed. At most256

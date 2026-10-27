@@ -586,11 +586,15 @@
       "acceptance": [
         "Known orphan requirements and missing verification links are found; changed requirements stale affected evidence; unsupported relations are disclosed."
       ],
-      "state": "implemented_bounded_review_pending",
+      "state": "reviewed_bounded_ready_to_merge",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "branch": "codex/m5-p25-coverage-impact",
-      "execution_results": "docs/parity/p25/README.md"
+      "execution_results": "docs/parity/p25/README.md",
+      "pr_number": 31,
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/31",
+      "review": "docs/parity/p25/REVIEW.md",
+      "review_preservation": "docs/parity/p25/REVIEW_PRESERVATION.json"
     },
     {
       "id": "P26",
