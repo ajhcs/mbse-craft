@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m7-p39c-window-close-borrow-correction-02",
+  "id": "m7-p39c-readable-mapping-separator-03",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m7-p39c-native-source-import",
   "source_manifest": "docs/parity/p39c/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "419147f5f446f7a76807b060101b2dd552bbe01f10d8a274c2d55cc318ddf368",
-  "source_sha256": "f4d23a2f3eeb5aeb95fc899b98310a7cf2366db6cdc9d144b3ba9b943c041761",
+  "source_manifest_sha256": "2028e22ddb468f23dcb0a9a80189f34e2bfe5c694008c61c5a36515f5fc433ae",
+  "source_sha256": "aa2923866bcbae9b002e298f74c1a5d57ca8806f296a4d350ae603bad706f789",
   "cargo_lock_sha256": "26687453bfdee99d59a404b010c9fcdda95c1d77462c08e387ccebae3b14347b",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -21,14 +21,6 @@
     [
       "bash",
       "scripts/dev.sh",
-      "test",
-      "--locked",
-      "--offline",
-      "--workspace"
-    ],
-    [
-      "bash",
-      "scripts/dev.sh",
       "build",
       "--locked",
       "--offline",
@@ -36,7 +28,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "P39c existingprojectbrowser emitsfrozenmember request to separate native review window: explicit System, asyncpurePrepare, exactdisclosures, asyncoriginal-listcheck/private5secondtoken, existingViews/EditoratomicApply/history. QueuedCancel/Close and appclose cancel beforelatepublication; raw/scope/nativeIO/gesture/stale guards. EightnewGUI/workspacecases plusbrowser entryone andcheckedViewsbridge/expiry two; expected835=824prior+11new. Fullworkspace once then desktopbuild. Existing P39b source-only fixtures reused unchanged; actual private native acceptance follows separately. No new deps/licenses/upstream/buildscripts/provider/service/release workflows. Original789-file696ddcd0 stops at compile before any tests: dialog mutably borrows open flag into egui Window and also writes it inside closure. Collect explicit Close intent separately, apply after window show; no workflow semantics change. Preserve failed attempt; all835workspace cases/build remain unexecuted.",
+  "rationale": "Native01 actual complete Apply/Undo/Redo/edit/refusal/save workflow on corrected789-filef4d23a2f; all835workspace cases and build already passed. Native visual QA finds missing right-arrow separator glyph in mapping rows. Change display separator only to ASCII word to; no mapping/review/sourcecheck/apply/history logic changes. Build desktop only, no unnecessary test/workflow replay or final-source full-suite claim. Remaining cold/duplicate-source/readability checks use fresh native job after build. Retain one controller read-after-text publication timing error and exact failed/unexecuted remainder.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",
