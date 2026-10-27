@@ -490,7 +490,7 @@ fn rendered_sequence_drag_publishes_one_layout_entry_and_single_undo_preserves_e
     let stamp = a.views.views.stamp(&a.session.editor);
     a.sc_create_diagram(&stamp, m).unwrap();
     let view = a.views.active;
-    a.sequences.open = false;
+    a.scenarios.open = false;
     settle(&mut a, &ctx);
     let id = a.views.views.document().scenario_diagrams[&view]
         .occurrences

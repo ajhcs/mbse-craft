@@ -87,14 +87,14 @@ impl Workspace {
         ui.heading(format!("Sequence diagram · view #{}", view.get()));
         if let Some(a) = store.scenarios.get(&diagram.scenario) {
             ui.label(format!(
-                "Machine #{} · {} · System #{}",
+                "Scenario #{} · {} · System #{}",
                 a.id.0, a.name, a.system.0
             ));
         } else {
             ui.colored_label(
                 ERROR,
                 format!(
-                    "Machine #{} missing; original presentation is retained.",
+                    "Scenario #{} missing; original presentation is retained.",
                     diagram.scenario.0
                 ),
             );
@@ -518,7 +518,7 @@ impl Workspace {
                             egui::Sense::click_and_drag(),
                         )
                         .on_hover_text(format!(
-                            "Machine #{} · element #{} · {label}",
+                            "Scenario #{} · element #{} · {label}",
                             diagram.scenario.0, o.element.0
                         ));
                     self.bound(format!("scenario-occurrence:{}", o.id.get()), &r);
