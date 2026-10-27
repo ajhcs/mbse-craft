@@ -102,7 +102,14 @@
     }
   },
   "p28": {
-    "state": "in_progress",
-    "base_commit": "894e00b8359422e250f670a2b971d11a666b93b3"
+    "state": "review_pending",
+    "base_commit": "894e00b8359422e250f670a2b971d11a666b93b3",
+    "execution_results": "p28/README.md",
+    "distinct_case_inventory": 571,
+    "new_distinct_cases": 8,
+    "native_runs": 2,
+    "findings": [
+      "F01 bind queued axis selection to original report"
+    ]
   }
 }
