@@ -1,8 +1,8 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m6-p33a-finite-state-execution-01",
-  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m6-p32c-native-state-machines",
-  "source_manifest": "docs/parity/p32c/SOURCE_MANIFEST.json",
+  "id": "m6-p33a-finite-state-execution-02",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m6-p33a-state-execution",
+  "source_manifest": "docs/parity/p33a/SOURCE_MANIFEST.json",
   "source_manifest_sha256": "b3cc724f88024e7c529773cc6894b439a858e1299597fc71018f796356bc31d1",
   "source_sha256": "e76cc871153d832f3153d0d485878eeb063cd1ae67a497c18ee36d08adb6f1f7",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
