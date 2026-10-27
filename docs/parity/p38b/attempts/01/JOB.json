@@ -1,0 +1,65 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m7-p38b-native-project-set-browser-01",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m7-p38b-native-project-sets",
+  "source_manifest": "docs/parity/p38b/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "600d3cc52b8cbbc05090a15bb0b9a80e9dd3e20f5a5fb37381d2dadab07b1b64",
+  "source_sha256": "fe8f186a6d969c330f1d1f2f24aebc1cc6a701b688d653cfb6da2602e55cb156",
+  "cargo_lock_sha256": "26687453bfdee99d59a404b010c9fcdda95c1d77462c08e387ccebae3b14347b",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "--workspace"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "run",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-exchange",
+      "--example",
+      "prepare_project_set",
+      "--",
+      "/workspace/repos/builderbob/mbse-craft/work/m7-p38b-native-project-sets/docs/parity/p38b/fixtures/native-prepared-01"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "P38b native read-only project-set browser via existing External command, explicit manifest button and .mbse-projects.json route. Shared source-only fixture factory preserves P37 native/profile8 bytes and prepares duplicate native/external IDs plus missing/changed companions and unsupplied URI. Six new GUI/workspace cases plus strengthened retained-name-proposal guard. Expected799=793prior+6new; one full workspace regression, source-only fixture preparation, desktop build. Only existing pinned sha2 added to desktop dev-dependencies for shared fixture hashing; no new package/version/license/build-script/runtime dependency. Native acceptance follows separately.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p38b-native-project-sets/docs/parity/p37b/verification/native-02/run/metrics-final-cold-copy.kernspan": "76308c47303441f4dc6575399a85a9d842143c9784d442709a0402226cb670dc",
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p38b-native-project-sets/docs/parity/p37b/verification/native-02/run/metrics-final-cold-copy.mbse-views.json": "bc5e0519f10a956e8110c496c783c51f5521bae0279a86dc60c1a956b6dbeb2b",
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p38b-native-project-sets/docs/parity/p38a/verification/TEST_RESULTS.json": "c5dfa125681c5c8684c4cb9c263f16cce49d2b61b562f5791bd36584fcb53128"
+  }
+}

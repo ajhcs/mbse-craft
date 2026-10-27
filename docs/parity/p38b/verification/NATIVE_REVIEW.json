@@ -1,0 +1,71 @@
+{
+  "result": "bounded_native_explicit_source_project_sets_passed",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 781,
+  "source_sha256": "98d25e55bc005cbc898a591dca9f2aae7f6eb860fce1060f6de6efb5c90022b3",
+  "binary_sha256": "8517bd7fbbdbe4eac4901c08295ef0547642e5c9bf4c44fed08c9be2f4fe308e",
+  "distinct_case_inventory": 799,
+  "new_distinct_cases": 6,
+  "native_jobs": 1,
+  "native_runs": 2,
+  "native_controller_errors": 0,
+  "whole_prior_native_and_all_eight_maps_preserved": true,
+  "all_protected_source_files_unchanged": true,
+  "saved_counters": {
+    "model_revision": 253,
+    "raw_version": 516,
+    "next_id": 60083
+  },
+  "portable_source_set_digest": "a7c790edc23b4b7eee8a3113685f990d2a05c272de0ab209c87fc851f5d14b5a",
+  "qualified_keys": {
+    "native_left": {
+      "identity": {
+        "NativeRecord": 1
+      },
+      "member": "left",
+      "primary_sha256": "76308c47303441f4dc6575399a85a9d842143c9784d442709a0402226cb670dc"
+    },
+    "native_right": {
+      "identity": {
+        "NativeRecord": 1
+      },
+      "member": "right",
+      "primary_sha256": "e13fd37836e846500389e9a6c5bdaff28a054f5bf1ca064cb59625cf47c7108f"
+    },
+    "supplier": {
+      "identity": {
+        "External": {
+          "asset_sha256": "c50882d4a4dbb1a9a441a45bcf2c91eda675e196e520c792a22f18052b94da6c",
+          "identity": {
+            "Original": "dup"
+          },
+          "member_path": "primary/external/source.xmi"
+        }
+      },
+      "member": "supplier",
+      "primary_sha256": "c50882d4a4dbb1a9a441a45bcf2c91eda675e196e520c792a22f18052b94da6c"
+    },
+    "consumer": {
+      "identity": {
+        "External": {
+          "asset_sha256": "c50882d4a4dbb1a9a441a45bcf2c91eda675e196e520c792a22f18052b94da6c",
+          "identity": {
+            "Original": "dup"
+          },
+          "member_path": "primary/external/source.xmi"
+        }
+      },
+      "member": "consumer",
+      "primary_sha256": "c50882d4a4dbb1a9a441a45bcf2c91eda675e196e520c792a22f18052b94da6c"
+    }
+  },
+  "limits": [
+    "Read-only frozen source browser; no target admission, semantic merge, calculation or source editing.",
+    "Two failed test-harness attempts retained; final failed/unexecuted remainder only. No final-source full-suite claim.",
+    "Private network-isolated native runs use owned copied input mutation only; protected originals unchanged. OS clipboard not read; GUI output tests check JSON payload.",
+    "Same frozen target model253/raw516/next60083 and all eight maps retained. Portable cold folder copy retains the source digest and exact qualified identity.",
+    "BuilderBob Linux exercises the Unix reader. Other platforms and performance/scale remain unqualified. All56 broad specifications and integrated exits remain open.",
+    "Same-agent isolated PR review remains required; no independent engineering or full NoMagic/SysML/Craft/production acceptance."
+  ]
+}

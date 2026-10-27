@@ -1,0 +1,64 @@
+{
+  "profile": "mbse-craft.source-project-set/1",
+  "schema_version": 1,
+  "members": [
+    {
+      "key": "left",
+      "format": "NativeSaved",
+      "primary": {
+        "path": "left/native.kernspan",
+        "sha256": "76308c47303441f4dc6575399a85a9d842143c9784d442709a0402226cb670dc"
+      },
+      "companions": [
+        {
+          "role": "NativeViews",
+          "file": {
+            "path": "left/native.mbse-views.json",
+            "sha256": "bc5e0519f10a956e8110c496c783c51f5521bae0279a86dc60c1a956b6dbeb2b"
+          }
+        },
+        {
+          "role": "Opaque",
+          "file": {
+            "path": "left/missing.txt",
+            "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+          }
+        },
+        {
+          "role": "Opaque",
+          "file": {
+            "path": "left/changed.txt",
+            "sha256": "cd899eb82d532a89cdb376c2d03ac86a2dda404acd030cc2d7ca9ee2c006e7f4"
+          }
+        }
+      ]
+    },
+    {
+      "key": "right",
+      "format": "NativeSaved",
+      "primary": {
+        "path": "right/native.kernspan",
+        "sha256": "e13fd37836e846500389e9a6c5bdaff28a054f5bf1ca064cb59625cf47c7108f"
+      },
+      "companions": []
+    },
+    {
+      "key": "supplier",
+      "format": "SemanticV2",
+      "primary": {
+        "path": "external/source.xmi",
+        "sha256": "c50882d4a4dbb1a9a441a45bcf2c91eda675e196e520c792a22f18052b94da6c"
+      },
+      "companions": []
+    },
+    {
+      "key": "consumer",
+      "format": "SemanticV2",
+      "primary": {
+        "path": "external/source.xmi",
+        "sha256": "c50882d4a4dbb1a9a441a45bcf2c91eda675e196e520c792a22f18052b94da6c"
+      },
+      "companions": []
+    }
+  ]
+}

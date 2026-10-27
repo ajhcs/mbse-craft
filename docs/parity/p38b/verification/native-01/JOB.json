@@ -1,0 +1,39 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "796c1ba9dfd08b9ce913113bfc5f434fcb11dc7f592ad6114674b46c429db59d",
+    "scripts/verify-m1-native.py": "ef4e7c2308323b9023f83a15ddb3b9214d27368fd9a34a42b4245ad44f574a39",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "id": "p38b-native-explicit-project-sets-and-portable-cold-01",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m7-p38b-retained-test-bounds-failed-unexecuted-remainder-03-20261027T155454Z/mbse-desktop",
+  "binary_sha256": "8517bd7fbbdbe4eac4901c08295ef0547642e5c9bf4c44fed08c9be2f4fe308e",
+  "source_sha256": "98d25e55bc005cbc898a591dca9f2aae7f6eb860fce1060f6de6efb5c90022b3",
+  "inputs": {
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p38b-native-project-sets/docs/parity/p38b/fixtures/native-prepared-01/external/source.xmi": "c50882d4a4dbb1a9a441a45bcf2c91eda675e196e520c792a22f18052b94da6c",
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p38b-native-project-sets/docs/parity/p38b/fixtures/native-prepared-01/left/changed.txt": "a6d672e83a3603449896682e5c947beae18cc5d361d01b9e458b9db71d432324",
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p38b-native-project-sets/docs/parity/p38b/fixtures/native-prepared-01/left/native.kernspan": "76308c47303441f4dc6575399a85a9d842143c9784d442709a0402226cb670dc",
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p38b-native-project-sets/docs/parity/p38b/fixtures/native-prepared-01/left/native.mbse-views.json": "bc5e0519f10a956e8110c496c783c51f5521bae0279a86dc60c1a956b6dbeb2b",
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p38b-native-project-sets/docs/parity/p38b/fixtures/native-prepared-01/right/native.kernspan": "e13fd37836e846500389e9a6c5bdaff28a054f5bf1ca064cb59625cf47c7108f",
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p38b-native-project-sets/docs/parity/p38b/fixtures/native-prepared-01/set.mbse-projects.json": "acc4016010551dffe5a8dbb7405a2c8f54957ab8a9f2d93b619a18ec1e077917"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p38b-01",
+  "argv_extra": [
+    "--open",
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p38b-native-project-sets/docs/parity/p38b/fixtures/native-prepared-01/left/native.kernspan",
+    "--select",
+    "1003"
+  ],
+  "scenarios": [
+    "Actual existing External shortcut routes an explicit manifest suffix to the read-only project window; explicit Open worker captures four members, equal native/external local IDs remain distinct under member/name filters and pointer selection. Missing/changed companions and exact bound native declaration visible; no target mutation or ambient reference acquisition.",
+    "Explicit original-list recheck unchanged, then controller mutates only a copied owned fixture primary and recheck reports changed without replacing frozen data/keys. Editing path and failed replacement retain original source; documentary JSON copy, window close/reopen and Clear behave explicitly. Ctrl+S/Ctrl+Z while project window open leave target/save/history unchanged.",
+    "After first normal close and fresh preflight, a separate cold owned session opens a portable complete fixture folder copy offline, has no project inspection before explicit Open and reconstructs identical source digest/qualified keys. Exact target Snapshot and all eight presentation maps survive fresh copy saves. Normal process/Xauthority cleanup for both sessions."
+  ],
+  "claim_policy": "Compile-only fe8f186a first attempt failed before tests; ca8c9e15 passes290 cases then five new GUI cases fail due discarded test bounds; final test-only correction runs five failed and unexecuted remainder skipping290, then preparer/build. No final-source full-suite claim. Source-only fixture preparation never inspects project sets. Two sequential private native sessions, one at a time; no source edits/compiler while live. Only controller mutates an owned copied fixture for staleness. External URI remains unresolved; app network namespace isolated. Copy payload verified by GUI tests, OS clipboard not read. No target admission, model execution or full parity/independent engineering/platform/scale/production claim. All56specs/integratedexits remain open."
+}

@@ -1652,6 +1652,7 @@ dependencies = [
  "mbse-model",
  "serde",
  "serde_json",
+ "sha2",
  "tempfile",
 ]
 
