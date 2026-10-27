@@ -1,0 +1,35 @@
+{
+  "result": "bounded_viewpoint_profile5_and_native_card_projection_core_passed",
+  "reviewer": "Codex same implementing agent",
+  "independent_review": false,
+  "source_files": 729,
+  "source_sha256": "afe77fa619129755c9064428fd672b9d8fa79618ecb9367d57ab139301f5ef11",
+  "binary_sha256": "45dbf0deac7376ef8b424051022effd677a7c27549bf6fa8b63769e3edd7f191",
+  "compiler_slice_counts": [
+    [
+      569
+    ],
+    [
+      11,
+      0
+    ]
+  ],
+  "distinct_case_inventory": 580,
+  "new_distinct_cases": 8,
+  "native_ui_run": false,
+  "p29_parent_complete": false,
+  "observations": [
+    "Profile5 stores documentary accepted viewpoint and independent raw form, exact source document, typed Stakeholder/Expectation/System IDs, kind set/name substring and enabled flag. Canonical string IDs, bounds, legacy-null fields/unknown-schema refusal tested.",
+    "Guarded Layout actions do not mutate native meaning/raw or model history; independent layout Undo/Redo/recovery retain metadata and invalid proposals.",
+    "Projection is presentation-only over accepted native record fields. Per-view filter retains identities, geometry/manual visibility/camera; unresolved/foreign context preserves declarations and fails open without retargeting.",
+    "Concern must be expressed by declared Stakeholder/for declared System; missing/wrong context refuses Apply. Foreign form needs explicit source rebind.",
+    "Reviewed copy preserves exact source scope/raw and foreign filter remains inactive. Profile5 survives typed port/connector operations, cold recovery and stale same-counter native source refusal.",
+    "All original input hashes and63 prior available heads/status retained;18 user-removed registered heads retained."
+  ],
+  "retained_failure": "Typed coexistence fixture starts from recovery4; initial assertion incorrectly expected bound5. Correct expected recovery5 only, preserving569 successes and failed log;11 remainder/build pass.",
+  "limits": [
+    "P29a core/data only. Native controls/rendering and exact switching acceptance belong to P29b; P29 parent incomplete.",
+    "Filters apply native record cards only; typed ports/connectors/full ledger retain current scope. Documentary references do not prevent native deletion or claim complete impact.",
+    "All56 broad specs/integrated exits/full NoMagic/SysML/Craft/platform/scale/independent engineering acceptance remain open."
+  ]
+}
