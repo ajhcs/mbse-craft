@@ -678,7 +678,7 @@ fn parametric_raw_utf8_quota_shared512_and_native_binding_limits_refuse_without_
     let mut n = Snapshot::new(DocumentId("parametric:capacity".into()));
     n.extensions = Some(Extensions::default());
     let mut s = t::Store::default();
-    for i in 2..514 {
+    for i in 2..513 {
         s.parametrics.insert(
             Id(i),
             p::Specification {
@@ -691,6 +691,15 @@ fn parametric_raw_utf8_quota_shared512_and_native_binding_limits_refuse_without_
             },
         );
     }
+    s.definitions.insert(
+        Id(513),
+        t::Definition {
+            id: Id(513),
+            system: RecordId(1),
+            name: "Existing component shares the same capacity".into(),
+            kind: t::Kind::Component,
+        },
+    );
     s.validate().unwrap();
     let ext = n.extensions.as_mut().unwrap();
     ext.required_namespaces.push(t::NAMESPACE.into());
