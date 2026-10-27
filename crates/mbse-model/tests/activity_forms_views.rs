@@ -709,3 +709,51 @@ fn activity_v6_coexists_with_typed_ports_connectors_and_viewpoints_without_downg
         &recovered
     );
 }
+#[test]
+fn applying_creation_at_form_quota_reuses_its_slot_without_transient_overflow_or_raw_loss() {
+    let (mut e, a, start, _, end) = graph();
+    e.snapshot.next_id = 10000;
+    let initial = f::load(&e.snapshot).unwrap().len();
+    for n in 2000..2000 + (127 - initial) as u64 {
+        set(
+            &mut e,
+            Form::Activity {
+                id: Some(Id(n)),
+                system: "?".into(),
+                name: format!("Retained detached {n}"),
+            },
+        );
+    }
+    let key = set(
+        &mut e,
+        Form::Flow {
+            form: a::FlowForm {
+                activity: a,
+                id: None,
+                name: "Direct control".into(),
+                kind: a::FlowKind::Control,
+                source: start.0.to_string(),
+                target: end.0.to_string(),
+                guard: "".into(),
+            },
+        },
+    );
+    let before = f::load(&e.snapshot).unwrap();
+    assert_eq!(before.len(), 128);
+    let created = Id(e.snapshot.next_id);
+    apply(&mut e, &key).unwrap();
+    let after = f::load(&e.snapshot).unwrap();
+    assert_eq!(after.len(), 128);
+    assert!(!after.contains_key(&key));
+    for (k, v) in before {
+        if k != key {
+            assert_eq!(after[&k], v);
+        }
+    }
+    assert!(
+        t::load(&e.snapshot).unwrap().activities[&a]
+            .flows
+            .contains_key(&created)
+    );
+    assert_eq!(e.snapshot.next_id, created.0 + 1);
+}
