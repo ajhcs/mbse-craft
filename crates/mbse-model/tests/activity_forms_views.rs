@@ -476,7 +476,9 @@ fn native_activity_removal_detaches_and_observed_inverse_reactivates_but_cold_da
 fn activity_profile6_cold_forms_diagrams_and_viewpoint_actions_preserve_all_maps_and_native_meaning()
  {
     let area = tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap();
+    let mut session = Session::new(area.path()).unwrap();
     let (mut e, a, _, n, _) = graph();
+    e = Editor::new(e.snapshot.clone(), session.editor.freshness().instance_id).unwrap();
     let mut v = Views::new(&e).unwrap();
     let view = diagram(&e, &mut v, a);
     let mut proposal = v::viewpoints::Form::new(&e);
@@ -501,7 +503,6 @@ fn activity_profile6_cold_forms_diagrams_and_viewpoint_actions_preserve_all_maps
     let expected = e.snapshot.clone();
     let recovery = v.recovery(&e).unwrap();
     assert_eq!(recovery.profile, va::RECOVERY_PROFILE);
-    let mut session = Session::new(area.path()).unwrap();
     session.editor = e;
     let path = area.path().join("native.kernspan");
     let job = session.begin_save(&path).unwrap();
