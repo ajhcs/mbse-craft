@@ -12,22 +12,22 @@
     "/workspace/build/builderbob/mbse-craft/milestone1"
   ],
   "id": "p30c-corrected-arrows-and-unexecuted-cold",
-  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p30c-native-symbol-anchors-03-20261027T064643Z/mbse-desktop",
-  "binary_sha256": "931f6d43bcca9c820715c5d38e718cde159354c0d5944c2ba39d6605fbc0137c",
-  "source_sha256": "ddcd0b16cf7ff19df503e37dd86190f44d4c930ac90cb708a6ae93f1e0b0c874",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p30c-bounded-arrowheads-04-20261027T065219Z/mbse-desktop",
+  "binary_sha256": "7795da9a03124da9b1e6894d45292bc12c7fe0cd8ef7247f80db75f43183c593",
+  "source_sha256": "444d60d701f0f332d74e88313fc968ff19b59be746bae56e04090a3c715c37dd",
   "inputs": {
-    "/workspace/build/builderbob/mbse-craft/milestone1/native-p30c-01/run/activity-checkpoint.kernspan": "d8373934338cb5e7369bcb8264958927fda3890a3283cef7cd8616ebcb389c69",
-    "/workspace/build/builderbob/mbse-craft/milestone1/native-p30c-01/run/activity-checkpoint.mbse-views.json": "95cb1ff99b198ce69adf0ca7e933004ea47889eec8bb4498bd459fc7371de7a4"
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p30c-03/run/activity-final.kernspan": "d8373934338cb5e7369bcb8264958927fda3890a3283cef7cd8616ebcb389c69",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p30c-03/run/activity-final.mbse-views.json": "6cbde4162947be75097fa0b0688504170409cbff15f61d00f461f03060df33d3"
   },
-  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p30c-03",
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p30c-04",
   "argv_extra": [
     "--open",
-    "/workspace/build/builderbob/mbse-craft/milestone1/native-p30c-01/run/activity-checkpoint.kernspan",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p30c-03/run/activity-final.kernspan",
     "--select",
     "1003"
   ],
   "scenarios": [
-    "Corrected circle/diamond/rounded-box flow contour anchors and disclosed overlap; presentation-only move apart; exact full native Snapshot checkpoint preserved; save owned final pair.",
+    "Bounded arrowheads on long control flows and short typed-pin links, exact actual symbol endpoints; cold checkpoint already includes explicit presentation-only separation. Whole Snapshot/six maps exact, raw invalid proposals preserved.",
     "Fresh preflight cold native/views Open; exact activity/proposals/two diagram maps/cameras; no old Undo authority; actual selection/render/save-copy; normal process/startticks/Xauthority cleanup."
   ],
   "claim_policy": "Same-agent bounded Linux synthetic native remainder. Earlier successful authoring checks retained on their qualified source; current source has prior617 regression and2 new contour cases with affected drag rerun and build. No final-source full suite or independent/full-parity acceptance."
