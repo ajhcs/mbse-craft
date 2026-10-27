@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m7-p39b-strict-whole-member-source-adapter-01",
-  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m7-p39b-source-adapter",
+  "id": "m7-p39b-review-summary-output-budget-boundary-02",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/review-p39b",
   "source_manifest": "docs/parity/p39b/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "fecdc9cf862b349ff072d867960931ba78ff9079f6dcb1f3a6ab9ed0ec28a645",
-  "source_sha256": "0897f8a3c4e307642e01a589bbe91b8494e36d070eac00ddebc821732b5c2e81",
+  "source_manifest_sha256": "b1c52370cdb13e7ecedac8fdd71e758090ee8fb3504d21d4c69a7f4637d85666",
+  "source_sha256": "846ad3f611ef61370938cfad1ef964313182384b4ab3eea92e7cd66aaec61271",
   "cargo_lock_sha256": "26687453bfdee99d59a404b010c9fcdda95c1d77462c08e387ccebae3b14347b",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -24,20 +24,13 @@
       "test",
       "--locked",
       "--offline",
-      "--workspace"
-    ],
-    [
-      "bash",
-      "scripts/dev.sh",
-      "run",
-      "--locked",
-      "--offline",
       "-p",
       "mbse-exchange",
-      "--example",
-      "prepare_source_admission",
+      "--test",
+      "source_admission",
+      "source_admission_oversized_inspection_detail_refuses_review_with_original_loss_counts_and_no_partial_candidate",
       "--",
-      "/workspace/repos/builderbob/mbse-craft/work/m7-p39b-source-adapter/docs/parity/p39b/fixtures/native-prepared-01"
+      "--exact"
     ],
     [
       "bash",
@@ -49,7 +42,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "P39b strict whole-member source adapter reuses frozen P38 SemanticV2 projection keys/spans/reference resolution and P39a native authority. Flat explicit concrete UML Class, one-to-one composite/none Property, optional documentary SysML Block declaration; every XML element/attribute/text accounted, unknown/untyped/URI/default/extension semantics refuse. Exact sealed disclosure review plus original-list point-in-time/native freshness recheck before one native Apply. Fourteen new integration cases, source-only fixture preparation and desktop build; expected823=809prior+14new. No new deps/license/upstream/build-script/provider/service/release or native UI acceptance. P39c follows separately.",
+  "rationale": "Isolated PR61 review adds one missing boundary case for 2MiB summary output refusal: retained XML <=1MiB creates untruncated existing projection losses >2MiB through exact large original IDs and40unresolved references. New adapter must refuse review, preserve original loss counts, label detailed-output omission explicitly, expose no candidate/mappings and leave native data unchanged. Production source unchanged. Prior full823source0897f8a3/preparer/build stays qualified; run only the new case plus desktop build, no final-source full-suite claim.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",
