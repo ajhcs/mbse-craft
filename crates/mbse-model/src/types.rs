@@ -7,6 +7,7 @@ use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use std::collections::{BTreeMap, BTreeSet};
 pub mod activities;
+pub mod state_machines;
 pub mod connectors;
 pub mod ports;
 pub mod values;
@@ -104,6 +105,8 @@ pub struct Store {
     #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
     pub activities:BTreeMap<Id,activities::Activity>,
     #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
+    pub state_machines:BTreeMap<Id,state_machines::Machine>,
+    #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
     pub defaults:BTreeMap<Id,values::Literal>,
     #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
     pub overrides:BTreeMap<Id,BTreeMap<Id,values::Literal>>,
@@ -124,6 +127,7 @@ impl Default for Store {
             ports: BTreeMap::new(),
             connectors: BTreeMap::new(),
             activities:BTreeMap::new(),
+            state_machines:BTreeMap::new(),
             defaults:BTreeMap::new(),overrides:BTreeMap::new(),profiles:BTreeMap::new(),profile_applications:BTreeMap::new(),
         }
     }
@@ -173,6 +177,8 @@ struct Journal {
     activity_flow:Option<activities::FlowForm>,
     #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
     activity_forms:BTreeMap<String,activities::forms::Form>,
+    #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
+    state_machine_forms:BTreeMap<String,state_machines::Form>,
 }
 impl Default for Journal {
     fn default() -> Self {
@@ -188,7 +194,7 @@ impl Default for Journal {
             values:BTreeMap::new(),
             refactor:None,
             deletion:None,
-            profile_tags:None,activity_flow:None,activity_forms:BTreeMap::new(),
+            profile_tags:None,activity_flow:None,activity_forms:BTreeMap::new(),state_machine_forms:BTreeMap::new(),
         }
     }
 }
@@ -209,6 +215,7 @@ fn canonical(value: &Value, field: &str) -> Result<(), String> {
 fn parse(value: &Value) -> Result<Store, String> {
     values::canonical_maps(value)?;
     activities::canonical_maps(value)?;
+    state_machines::canonical_maps(value)?;
     canonical(value, "definitions")?;
     canonical(value, "properties")?;
     if value.get("usages").is_some() {
@@ -267,6 +274,7 @@ fn parse_journal(value: &Value) -> Result<Journal, String> {
     deletion::validate_journal(&j)?;
     tags::validate_journal(&j)?;
     activities::validate_journal(&j)?;
+    state_machines::validate_journal(&j)?;
     Ok(j)
 }
 pub fn validate_namespace(name: &str, value: &Value) -> Result<(), String> {
@@ -384,6 +392,7 @@ impl Store {
                 + self.ports.len()
                 + self.connectors.len()
                 + activities::count(self)
+                + state_machines::ids(self).count()
                 > 512
         {
             return Err("TYPE_VERSION_OR_LIMIT".into());
@@ -439,6 +448,7 @@ impl Store {
         ports::validate_store(self, &mut ids)?;
         connectors::validate_store(self, &mut ids)?;
         activities::validate_store(self,&mut ids)?;
+        state_machines::validate_store(self,&mut ids)?;
         values::validate_store(self)?;
         tags::validate_store(self)?;
         // Topological admission bounds work to definitions plus Part edges;
@@ -498,6 +508,7 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
     };
     tags::validate_targets(snapshot,&store)?;
     activities::validate_targets(snapshot,&store)?;
+    state_machines::validate_targets(snapshot,&store)?;
     for d in store.definitions.values() {
         let system = snapshot
             .records
@@ -515,7 +526,7 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
         .chain(store.interfaces.keys())
         .chain(store.ports.keys())
         .chain(store.connectors.keys())
-        .copied().chain(activities::ids(&store))
+        .copied().chain(activities::ids(&store)).chain(state_machines::ids(&store))
     {
         if !ids.insert(id.0) {
             return Err("TYPE_NATIVE_ID_COLLISION".into());
@@ -525,6 +536,7 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
     if e.required_namespaces.iter().any(|n| n == DRAFTS) {
         let j = journal(snapshot)?;
         high=high.max(activities::validate_draft_ids(&store,&j,&native_reserved)?);
+        high=high.max(state_machines::validate_draft_ids(&store,&j,&native_reserved)?);
         high=high.max(values::draft_high(&j));
         if let Some(form) = j.interface {
             high = high.max(form.system.0);
@@ -598,6 +610,7 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
 }
 #[derive(Clone, Debug)]
 pub enum Action {
+    StateMachine(state_machines::Action),
     Activity(activities::Action),
     ProfileTag(tags::Action),
     Deletion(deletion::Action),
@@ -648,6 +661,7 @@ pub fn apply(snapshot: &mut Snapshot, action: Action) -> Result<Change, String> 
 fn apply_inner(snapshot: &mut Snapshot, action: Action) -> Result<Change, String> {
     let mut store = load(snapshot)?;
     match action {
+        Action::StateMachine(action)=>state_machines::apply_inner(snapshot,action),
         Action::Activity(action)=>activities::apply_inner(snapshot,action),
         Action::ProfileTag(action)=>tags::apply_inner(snapshot,action),
         Action::Deletion(action)=>deletion::apply_inner(snapshot,action),

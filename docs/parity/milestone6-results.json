@@ -51,7 +51,7 @@
     }
   },
   "p31": {
-    "state": "reviewed_native_contract_ready_for_merge",
+    "state": "merged_bounded_contract",
     "base_commit": "0054c0c45bbcba758ff1b6e5f86ea1abb5359755",
     "children": [
       "P31a",
@@ -72,7 +72,7 @@
       "merge_commit": "e26b38a45238d42e1dfb88e4e3127c44514025bc"
     },
     "p31b": {
-      "state": "reviewed_ready_for_merge",
+      "state": "merged",
       "scope": "native explicit execution controls, status/trace/staleness/cancellation acceptance",
       "base_commit": "e26b38a45238d42e1dfb88e4e3127c44514025bc",
       "execution_results": "p31b/README.md",
@@ -81,7 +81,29 @@
       "native_execution_runs": 2,
       "source_sha256": "e3ac3498c960e22191218c18ed2160b03d8f3416d4de04041d1a61436b836c6e",
       "pr_number": 43,
-      "review": "p31b/REVIEW.md"
+      "review": "p31b/REVIEW.md",
+      "merge_commit": "c551195451550c1738ecdc2c02de423c8dbac7e3"
+    }
+  },
+  "p32": {
+    "state": "in_progress",
+    "base_commit": "c551195451550c1738ecdc2c02de423c8dbac7e3",
+    "children": [
+      "P32a",
+      "P32b",
+      "P32c"
+    ],
+    "p32a": {
+      "state": "in_progress",
+      "scope": "flat state/event/transition authority, keyed drafts and diagnostics"
+    },
+    "p32b": {
+      "state": "planned",
+      "scope": "independent state-machine presentation data and bound/cold integrity"
+    },
+    "p32c": {
+      "state": "planned",
+      "scope": "native authoring/diagnostics/layout/history/save/cold acceptance"
     }
   }
 }
