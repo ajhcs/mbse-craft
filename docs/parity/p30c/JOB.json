@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m6-p30c-fit-placement-02",
+  "id": "m6-p30c-native-symbol-anchors-03",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m6-p30c-native-activities",
   "source_manifest": "docs/parity/p30c/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "4e2d4d2f3f711f4e80df27d8509426eefea50618d6d9e325933a143f2550c05b",
-  "source_sha256": "0e2b2869dbb8d01318fa0f5d3f6ffffa138a464e24ca1648bf71793a708a03e6",
+  "source_manifest_sha256": "643d2d9ebd3858349dbbc560787ce1f0abc60d5579b71b6f1524171384ea7e98",
+  "source_sha256": "ddcd0b16cf7ff19df503e37dd86190f44d4c930ac90cb708a6ae93f1e0b0c874",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -24,7 +24,21 @@
       "test",
       "--locked",
       "--offline",
-      "--workspace",
+      "-p",
+      "mbse-desktop",
+      "ui::activity_canvas::tests::",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop",
+      "rendered_activity_drag_publishes_one_layout_entry_and_single_undo_keeps_entire_native",
       "--",
       "--test-threads=1"
     ],
@@ -38,7 +52,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "P30c native activity authoring/rendering/shared command and lifecycle, stale/opaque/unadmitted guards, exact model/layout history, independent diagrams and actual gesture regression plus desktop build. One job/thread, future native acceptance separate.",
+  "rationale": "Native screenshot08 finding F01: card anchors missed circular glyphs and arrows went behind opaque symbols. Use actual circle/diamond/rounded-rectangle contours, self-loop arrowheads and explicit overlap refusal/ledger counts. New geometry2 and affected rendered drag1 plus build; prior617 not replayed. Fresh native corrected rendering/cold remainder from saved checkpoint follows.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",

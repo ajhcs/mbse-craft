@@ -34,6 +34,8 @@ pub(super) struct Rendered {
     pub stamp: Stamp,
     pub occurrences: Vec<(OccurrenceId, Id, nv::Geometry)>,
     pub flows: Vec<Id>,
+    pub endpoints: Vec<(Id, [f32; 2], [f32; 2])>,
+    pub overlapping_flows: usize,
     pub preview: bool,
 }
 #[derive(Default)]
@@ -519,7 +521,7 @@ impl Workspace {
                         .unwrap_or_else(|| f.clone())
                 })
             });
-        serde_json::json!({"open":self.activities.open,"owner_current":owner_current,"activity":self.activities.activity,"current":current,"form_admitted":self.activities.pending.is_none(),"note":self.activities.note,"accepted":ty::load(&self.session.editor.snapshot).ok().map(|s|s.activities),"proposals":forms,"gesture_active":self.activity_gesture_active(),"selected":self.activities.selected,"rendered":self.activities.rendered.as_ref().map(|r|serde_json::json!({"view":r.view,"current":r.view==self.views.active&&r.stamp==self.views.views.stamp(&self.session.editor),"preview_only":r.preview,"occurrences":r.occurrences.iter().map(|(id,element,geometry)|serde_json::json!({"occurrence":id,"element":element,"geometry":geometry})).collect::<Vec<_>>(),"flows":r.flows}))})
+        serde_json::json!({"open":self.activities.open,"owner_current":owner_current,"activity":self.activities.activity,"current":current,"form_admitted":self.activities.pending.is_none(),"note":self.activities.note,"accepted":ty::load(&self.session.editor.snapshot).ok().map(|s|s.activities),"proposals":forms,"gesture_active":self.activity_gesture_active(),"selected":self.activities.selected,"rendered":self.activities.rendered.as_ref().map(|r|serde_json::json!({"view":r.view,"current":r.view==self.views.active&&r.stamp==self.views.views.stamp(&self.session.editor),"preview_only":r.preview,"occurrences":r.occurrences.iter().map(|(id,element,geometry)|serde_json::json!({"occurrence":id,"element":element,"geometry":geometry})).collect::<Vec<_>>(),"flows":r.flows,"endpoints":r.endpoints,"overlapping_flows":r.overlapping_flows}))})
     }
 }
 pub(super) fn guard_text(guard: Option<ac::Guard>) -> String {

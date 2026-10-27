@@ -291,6 +291,8 @@ impl Workspace {
         }
         let scale = camera.zoom as f32;
         let mut rendered_flows = Vec::new();
+        let mut endpoints = Vec::new();
+        let mut overlapping_flows = 0usize;
         let height = (ui.available_height() * 0.66).max(320.);
         egui::ScrollArea::both()
             .id_salt(("activity-diagram", view.get()))
@@ -347,21 +349,38 @@ impl Workspace {
                         } else {
                             Color32::from_rgb(36, 115, 86)
                         };
-                        let start = a.center_bottom();
-                        let end = b.center_top();
-                        if flow.source == flow.target {
-                            let loop_rect =
-                                Rect::from_min_size(a.right_top(), egui::vec2(55., a.height()));
-                            ui.painter().rect_stroke(
-                                loop_rect,
-                                8.,
+                        let source_kind = diagram.occurrences[&flow.source].expected;
+                        let target_kind = diagram.occurrences[&flow.target].expected;
+                        let (start, end) = if flow.source == flow.target {
+                            let start = a.right_center();
+                            let end = a.center_top();
+                            let upper = egui::pos2(a.right() + 50., a.top() - 35.);
+                            ui.painter().line_segment(
+                                [start, egui::pos2(upper.x, start.y)],
                                 Stroke::new(1.5, color),
-                                egui::StrokeKind::Middle,
                             );
+                            ui.painter().line_segment(
+                                [egui::pos2(upper.x, start.y), upper],
+                                Stroke::new(1.5, color),
+                            );
+                            let last = egui::pos2(end.x, upper.y);
+                            ui.painter()
+                                .line_segment([upper, last], Stroke::new(1.5, color));
+                            ui.painter()
+                                .arrow(last, end - last, Stroke::new(1.5, color));
+                            (start, end)
                         } else {
+                            let Some((start, end)) =
+                                flow_endpoints(*a, source_kind, *b, target_kind, scale)
+                            else {
+                                overlapping_flows += 1;
+                                continue;
+                            };
                             ui.painter()
                                 .arrow(start, end - start, Stroke::new(1.5, color));
-                        }
+                            (start, end)
+                        };
+                        endpoints.push((flow.flow, [start.x, start.y], [end.x, end.y]));
                         let guard = guard_text(flow.guard);
                         if !guard.is_empty() {
                             ui.painter().text(
@@ -396,14 +415,19 @@ impl Workspace {
                             ));
                         }
                         va::Kind::Node(ac::NodeKind::Initial | ac::NodeKind::Final) => {
-                            let center = rect.center_top() + egui::vec2(0., 30. * scale);
-                            ui.painter().circle_filled(center, 13. * scale, INK);
+                            let (center, radius) = circle_glyph(rect, o.expected, scale);
+                            ui.painter().circle_filled(
+                                center,
+                                if o.expected == va::Kind::Node(ac::NodeKind::Final) {
+                                    (radius - 6. * scale).max(1.)
+                                } else {
+                                    radius
+                                },
+                                INK,
+                            );
                             if o.expected == va::Kind::Node(ac::NodeKind::Final) {
-                                ui.painter().circle_stroke(
-                                    center,
-                                    19. * scale,
-                                    Stroke::new(2., ACCENT),
-                                );
+                                ui.painter()
+                                    .circle_stroke(center, radius, Stroke::new(2., ACCENT));
                             }
                         }
                         _ => {
@@ -509,14 +533,16 @@ impl Workspace {
                 .iter()
                 .map(|o| (o.id, o.element, o.geometry.clone()))
                 .collect(),
-            flows: rendered_flows,
+            flows: rendered_flows.clone(),
+            endpoints,
+            overlapping_flows,
             preview,
         });
         ui.separator();
         ui.label(format!(
-            "Activity flow ledger · {} shown · {} without unique visible endpoints",
-            projection.routes.len(),
-            projection.unshown_flows
+            "Activity flow ledger · {} arrows shown · {} without unique visible endpoints · {} overlapping symbol pairs (move them apart)",
+            rendered_flows.len(),
+            projection.unshown_flows,overlapping_flows
         ));
         if let Some(a) = source_activity {
             for flow in a.flows.values() {
@@ -586,5 +612,149 @@ fn kind_label(kind: va::Kind) -> &'static str {
         va::Kind::Node(ac::NodeKind::Final) => "Final",
         va::Kind::Pin(ac::Direction::In) => "Input pin",
         va::Kind::Pin(ac::Direction::Out) => "Output pin",
+    }
+}
+
+fn circle_glyph(rect: Rect, kind: va::Kind, scale: f32) -> (egui::Pos2, f32) {
+    let final_node = kind == va::Kind::Node(ac::NodeKind::Final);
+    let radius = (if final_node { 19. } else { 13. }) * scale;
+    let radius = radius
+        .min(rect.width() * 0.45)
+        .min(rect.height() * if final_node { 0.24 } else { 0.20 });
+    (
+        rect.center_top() + egui::vec2(0., (30. * scale).min(rect.height() * 0.45)),
+        radius,
+    )
+}
+fn symbol_center(rect: Rect, kind: va::Kind, scale: f32) -> egui::Pos2 {
+    if matches!(
+        kind,
+        va::Kind::Node(ac::NodeKind::Initial | ac::NodeKind::Final)
+    ) {
+        circle_glyph(rect, kind, scale).0
+    } else {
+        rect.center()
+    }
+}
+fn symbol_boundary(rect: Rect, kind: va::Kind, scale: f32, direction: egui::Vec2) -> egui::Pos2 {
+    let center = symbol_center(rect, kind, scale);
+    if matches!(
+        kind,
+        va::Kind::Node(ac::NodeKind::Initial | ac::NodeKind::Final)
+    ) {
+        return center + direction * circle_glyph(rect, kind, scale).1;
+    }
+    let half = rect.size() / 2.;
+    let ax = direction.x.abs();
+    let ay = direction.y.abs();
+    let distance = if matches!(
+        kind,
+        va::Kind::Node(ac::NodeKind::Decision | ac::NodeKind::Merge)
+    ) {
+        1. / (ax / half.x + ay / half.y)
+    } else {
+        let distance = (if ax > 0. { half.x / ax } else { f32::INFINITY }).min(if ay > 0. {
+            half.y / ay
+        } else {
+            f32::INFINITY
+        });
+        let radius = if kind == va::Kind::Partition {
+            0.
+        } else {
+            7_f32.min(half.x).min(half.y)
+        };
+        let hit = direction * distance;
+        if radius > 0. && hit.x.abs() > half.x - radius && hit.y.abs() > half.y - radius {
+            let corner = egui::vec2(
+                direction.x.signum() * (half.x - radius),
+                direction.y.signum() * (half.y - radius),
+            );
+            let q = -corner;
+            let dot = q.dot(direction);
+            let discriminant = dot * dot - (q.length_sq() - radius * radius);
+            if discriminant >= 0. {
+                -dot + discriminant.sqrt()
+            } else {
+                distance
+            }
+        } else {
+            distance
+        }
+    };
+    center + direction * distance
+}
+fn flow_endpoints(
+    a: Rect,
+    ak: va::Kind,
+    b: Rect,
+    bk: va::Kind,
+    scale: f32,
+) -> Option<(egui::Pos2, egui::Pos2)> {
+    if ![
+        a.min.x, a.min.y, a.max.x, a.max.y, b.min.x, b.min.y, b.max.x, b.max.y, scale,
+    ]
+    .iter()
+    .all(|v| v.is_finite())
+        || a.width() <= 0.
+        || a.height() <= 0.
+        || b.width() <= 0.
+        || b.height() <= 0.
+        || scale <= 0.
+    {
+        return None;
+    }
+    let delta = symbol_center(b, bk, scale) - symbol_center(a, ak, scale);
+    if delta.length_sq() < 0.0001 {
+        return None;
+    }
+    let direction = delta.normalized();
+    let start = symbol_boundary(a, ak, scale, direction);
+    let end = symbol_boundary(b, bk, scale, -direction);
+    ((end - start).dot(direction) > 0.01).then_some((start, end))
+}
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn flow_endpoints_touch_visible_circle_diamond_and_rounded_rectangle_contours() {
+        let a = Rect::from_min_max(egui::pos2(0., 0.), egui::pos2(100., 100.));
+        let b = a.translate(egui::vec2(200., 0.));
+        let action = va::Kind::Node(ac::NodeKind::Action);
+        let (s, e) = flow_endpoints(a, action, b, action, 1.).unwrap();
+        assert_eq!(s, egui::pos2(100., 50.));
+        assert_eq!(e, egui::pos2(200., 50.));
+        for kind in [
+            va::Kind::Node(ac::NodeKind::Initial),
+            va::Kind::Node(ac::NodeKind::Final),
+        ] {
+            let (s, e) = flow_endpoints(a, kind, b, action, 1.).unwrap();
+            let expected = if kind == va::Kind::Node(ac::NodeKind::Final) {
+                19.
+            } else {
+                13.
+            };
+            assert!((s.distance(egui::pos2(50., 30.)) - expected).abs() < 0.01);
+            assert!((e.x - 200.).abs() < 0.01 && e.y > 0. && e.y < 100.);
+        }
+        let target = a.translate(egui::vec2(200., 200.));
+        let (s, e) = flow_endpoints(
+            a,
+            va::Kind::Node(ac::NodeKind::Decision),
+            target,
+            action,
+            1.,
+        )
+        .unwrap();
+        assert!(s.distance(egui::pos2(75., 75.)) < 0.01);
+        let corner = 207. - 7. / 2_f32.sqrt();
+        assert!(e.distance(egui::pos2(corner, corner)) < 0.02);
+    }
+    #[test]
+    fn overlapping_symbol_pairs_and_invalid_geometry_refuse_an_occluded_or_nan_arrow() {
+        let a = Rect::from_min_size(egui::Pos2::ZERO, egui::vec2(100., 100.));
+        let k = va::Kind::Node(ac::NodeKind::Action);
+        assert!(flow_endpoints(a, k, a, k, 1.).is_none());
+        assert!(flow_endpoints(a, k, a.translate(egui::vec2(25., 0.)), k, 1.).is_none());
+        assert!(flow_endpoints(a, k, a.translate(egui::vec2(200., 0.)), k, f32::NAN).is_none());
     }
 }
