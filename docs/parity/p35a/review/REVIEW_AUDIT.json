@@ -1,0 +1,20 @@
+{
+  "result": "pass_bounded_same_agent_isolated_review",
+  "candidate_commit": "50ab1aed4fc93b76d6891ad71622c8f6cecb2035",
+  "base_commit": "e388d46d60d2c1fbf7f7cbca889d64b6804f91a7",
+  "source_files": 760,
+  "source_sha256": "0953707195245ec05f4c70d8c91d0daf4eb67d68baa717668e686b2ca2e0e032",
+  "production_source_changes": 0,
+  "review_fixture_changes": 1,
+  "original_artifacts_recomputed": 10,
+  "review_artifacts": 4,
+  "affected_cases": 1,
+  "desktop_build_passed": true,
+  "distinct_case_inventory": 723,
+  "native_parametric_runs": 0,
+  "evaluation_performed": false,
+  "available_prior_checkouts_unchanged": 94,
+  "user_removed_directories_heads_retained": 18,
+  "independent_review": false,
+  "checked_utc": "2026-10-27T11:56:44.532553+00:00"
+}

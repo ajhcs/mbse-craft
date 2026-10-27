@@ -239,7 +239,7 @@
       "P35b"
     ],
     "p35a": {
-      "state": "draft_candidate_review_pending",
+      "state": "reviewed_ready_to_merge",
       "scope": "independent specification/parameter/binding authority over existing native calculation and typed value sources",
       "execution_results": "p35a/README.md",
       "source_sha256": "6d0d7da041e56203c4035649b2862aa1b6277fa35bb1345716b45a3dea16f986",
@@ -247,7 +247,12 @@
       "new_distinct_cases": 12,
       "native_parametric_runs": 0,
       "evaluation_performed": false,
-      "final_source_full_workspace_claim": false
+      "final_source_full_workspace_claim": false,
+      "pr_number": 52,
+      "review": "p35a/REVIEW.md",
+      "review_source_sha256": "0953707195245ec05f4c70d8c91d0daf4eb67d68baa717668e686b2ca2e0e032",
+      "review_affected_cases": 1,
+      "review_production_source_changes": 0
     },
     "p35b": {
       "state": "planned",

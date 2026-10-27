@@ -1,0 +1,30 @@
+[
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/review-p35a/docs/parity/p35a/review/JOB.json",
+    "path": "JOB.json",
+    "bytes": 3106,
+    "sha256": "c78b0466ea047008e70e45663d51504f80b76963b0c7395df4611d2caaceb2dd",
+    "stored_sha256": "c78b0466ea047008e70e45663d51504f80b76963b0c7395df4611d2caaceb2dd"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/review-p35a/work/p35a-review-01.json",
+    "path": "RECEIPT.json",
+    "bytes": 8807,
+    "sha256": "590b7f4634193c204b5766fd34c506edee9816285a85812c702a07d622944f5f",
+    "stored_sha256": "590b7f4634193c204b5766fd34c506edee9816285a85812c702a07d622944f5f"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p35a-review-mixed-shared512-boundary-01-20261027T115440Z/00.log",
+    "path": "00.log.gz",
+    "bytes": 2302,
+    "sha256": "041cd7252fc987e08bcf8e68bc1e04c52ef77311a54a04a1fd33d22c2e81751a",
+    "stored_sha256": "674befb372200cfa4e54b1d3e9db52f213825b5862ea44056fc837f306797698"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p35a-review-mixed-shared512-boundary-01-20261027T115440Z/01.log",
+    "path": "01.log.gz",
+    "bytes": 6520,
+    "sha256": "8fd5dec0e785db2ff02a339b6460b5c02105c0cf6364efb0f4740b2810b7cf04",
+    "stored_sha256": "d3389f526d10975a846c03506985c44a33ff506e2015daaf71c7665481b16bc7"
+  }
+]
