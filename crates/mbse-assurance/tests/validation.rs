@@ -48,8 +48,8 @@ fn faults(b: &mut Board, e: &mut Editor) {
         e,
         types::Action::SetUsageForm {
             form: types::UsageForm {
-                id: Some(Id(1023)),
-                name: "primary device".into(),
+                id: Some(Id(1011)),
+                name: "reference to assembly".into(),
                 owner: "1021".into(),
                 target: "1021".into(),
                 kind: types::UsageKind::Part,
@@ -112,6 +112,41 @@ fn legacy_native_requirement_suite_does_not_require_type_extension_migration() {
     assert_eq!(e.snapshot, native);
 }
 #[test]
+fn requirement_only_suite_preserves_opaque_optional_type_payload_without_parsing_it() {
+    let (mut b, mut e) = setup();
+    let ext = e.snapshot.extensions.as_mut().unwrap();
+    ext.required_namespaces
+        .retain(|n| n != types::NAMESPACE && n != types::DRAFTS);
+    e.snapshot.validate().unwrap();
+    assert!(
+        !b.edit_field(RequirementId(1), "statement", " ".into())
+            .unwrap()
+    );
+    b.set_validation_suite(
+        "Requirements only".into(),
+        Suite {
+            rules: BTreeSet::from([RuleFamily::RequirementDrafts]),
+        },
+    )
+    .unwrap();
+    let before = e.snapshot.clone();
+    let r = b.run_validation("Requirements only", &e).unwrap();
+    assert_eq!(r.issue_total(), 1);
+    assert_eq!(e.snapshot, before);
+    let all = b.run_validation(BUILTIN_NAME, &e).unwrap();
+    assert!(
+        all.limitations()
+            .iter()
+            .any(|l| l.contains("TYPE_OPAQUE_NAMESPACE_COLLISION"))
+    );
+    assert!(
+        all.issues()
+            .iter()
+            .any(|i| i.rule == "MBSE.REQUIREMENT.DRAFT")
+    );
+    assert_eq!(e.snapshot, before);
+}
+#[test]
 fn seeded_type_reference_containment_and_unit_faults_have_stable_exact_rule_targets() {
     let (mut b, mut e) = setup();
     faults(&mut b, &mut e);
@@ -119,7 +154,8 @@ fn seeded_type_reference_containment_and_unit_faults_have_stable_exact_rule_targ
     let register = b.register.clone();
     let accepted = types::load(&e.snapshot).unwrap();
     assert_eq!(accepted.properties[&Id(1020)].value_type, Id(1005));
-    assert_eq!(accepted.usages[&Id(1023)].target, Id(1007));
+    assert_eq!(accepted.usages[&Id(1011)].target, Id(1004));
+    assert_eq!(accepted.usages[&Id(1011)].kind, types::UsageKind::Reference);
     let r = b.run_validation(BUILTIN_NAME, &e).unwrap();
     for (id, target) in [
         (
@@ -130,9 +166,9 @@ fn seeded_type_reference_containment_and_unit_faults_have_stable_exact_rule_targ
             },
         ),
         (
-            "MBSE.STRUCT.PART_CONTAINMENT:usage1023:Target",
+            "MBSE.STRUCT.PART_CONTAINMENT:usage1011:Target",
             Target::Usage {
-                usage: Some(Id(1023)),
+                usage: Some(Id(1011)),
                 field: UsageField::Target,
             },
         ),
@@ -176,8 +212,8 @@ fn containment_route_identifies_changed_owner_when_target_is_unchanged() {
         &mut e,
         types::Action::SetUsageForm {
             form: types::UsageForm {
-                id: Some(Id(1023)),
-                name: "primary device".into(),
+                id: Some(Id(1011)),
+                name: "reference to assembly".into(),
                 owner: "1007".into(),
                 target: "1007".into(),
                 kind: types::UsageKind::Part,
@@ -188,10 +224,10 @@ fn containment_route_identifies_changed_owner_when_target_is_unchanged() {
     assert!(
         r.issues()
             .iter()
-            .any(|i| i.id == "MBSE.STRUCT.PART_CONTAINMENT:usage1023:Owner"
+            .any(|i| i.id == "MBSE.STRUCT.PART_CONTAINMENT:usage1011:Owner"
                 && i.target
                     == Target::Usage {
-                        usage: Some(Id(1023)),
+                        usage: Some(Id(1011)),
                         field: UsageField::Owner
                     })
     );

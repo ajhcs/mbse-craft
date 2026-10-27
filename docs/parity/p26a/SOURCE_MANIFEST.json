@@ -38,8 +38,8 @@
     },
     {
       "path": "crates/mbse-assurance/src/validation.rs",
-      "bytes": 16266,
-      "sha256": "6b08736942bf638115b9ea5cb9c26feeb8328195f45c07bb2ce9d9df72eb9c43"
+      "bytes": 16752,
+      "sha256": "7184e028002e94f6bc48d8ccc4d51274fb8b677c91fe8610d777d54a5bc28f47"
     },
     {
       "path": "crates/mbse-assurance/tests/assurance.rs",
@@ -63,8 +63,8 @@
     },
     {
       "path": "crates/mbse-assurance/tests/validation.rs",
-      "bytes": 14051,
-      "sha256": "493baf3190c4c8228bd40c6d350918df057f76991fe5d354a594391a0c20cb77"
+      "bytes": 15267,
+      "sha256": "2ee5a92b985b2f606ca9cd977aa8e7a656562ff67af5869748d649a109679405"
     },
     {
       "path": "crates/mbse-catalog/Cargo.toml",
@@ -3597,5 +3597,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "1314df4e9cd636f20bad50b431c34c976746c78ad882df582f14a97fed7258c8"
+  "source_sha256": "686907ddb672d69894d168379e94c9b02dd2929c9774711b2c464a8369ca2faa"
 }

@@ -270,18 +270,29 @@ impl Board {
                 });
             }
         };
-        let typed_available = e.snapshot.extensions.is_some();
-        let store = if typed_available {
-            types::load(&e.snapshot)?
+        let typed_requested = suite.rules.contains(&RuleFamily::PropertyDraft)
+            || suite.rules.contains(&RuleFamily::PartContainment);
+        let mut typed_available = false;
+        let store = if typed_requested {
+            match types::load(&e.snapshot) {
+                Ok(store) => {
+                    typed_available = true;
+                    store
+                }
+                Err(error) => {
+                    limit(if e.snapshot.extensions.is_none() {
+                        "Type working-draft scope unavailable: native extensions are not migrated; other selected rule families remain available.".into()
+                    } else {
+                        format!(
+                            "Type working-draft scope unavailable: {error}; original optional data retained without interpretation."
+                        )
+                    });
+                    types::Store::default()
+                }
+            }
         } else {
             types::Store::default()
         };
-        if !typed_available
-            && (suite.rules.contains(&RuleFamily::PropertyDraft)
-                || suite.rules.contains(&RuleFamily::PartContainment))
-        {
-            limit("Type working-draft scope unavailable: native extensions are not migrated; other selected rule families remain available.".into());
-        }
         if typed_available && suite.rules.contains(&RuleFamily::PropertyDraft) {
             for (id, form) in types::forms(&e.snapshot)? {
                 if let Err(error) = types::preview(&e.snapshot, id) {
