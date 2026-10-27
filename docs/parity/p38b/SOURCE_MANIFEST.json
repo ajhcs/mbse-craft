@@ -198,8 +198,8 @@
     },
     {
       "path": "crates/mbse-desktop/src/project_set_ui_tests.rs",
-      "bytes": 6482,
-      "sha256": "dbf8873ffda2a94afaa7c4ce632e1ccaf945efeaf326a78203e26aad52aaefa7"
+      "bytes": 6491,
+      "sha256": "81ba82fa3634f96d5177a2e693e7ea28950fa29851ce4476dd18ebbee7d13cde"
     },
     {
       "path": "crates/mbse-desktop/src/semantic_ui.rs",
@@ -3907,5 +3907,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "ca8c9e152073d65bda0c7ce6619a28753ef2d721e15941790be3d5e4af9de91f"
+  "source_sha256": "98d25e55bc005cbc898a591dca9f2aae7f6eb860fce1060f6de6efb5c90022b3"
 }
