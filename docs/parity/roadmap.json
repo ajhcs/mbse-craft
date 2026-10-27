@@ -564,11 +564,15 @@
       "acceptance": [
         "Derive, refine, satisfy, verify and copy have distinct endpoint rules; relabeling cannot change meaning; traces survive history and reopen."
       ],
-      "state": "implemented_bounded_review_pending",
+      "state": "reviewed_bounded_ready_to_merge",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "branch": "codex/m5-p24-requirement-traces",
-      "execution_results": "docs/parity/p24/README.md"
+      "execution_results": "docs/parity/p24/README.md",
+      "pr_number": 30,
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/30",
+      "review": "docs/parity/p24/REVIEW.md",
+      "review_preservation": "docs/parity/p24/REVIEW_PRESERVATION.json"
     },
     {
       "id": "P25",

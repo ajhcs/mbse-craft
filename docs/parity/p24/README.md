@@ -24,11 +24,18 @@ was replayed after the zero-test failure. No dependencies/licenses/notices/build
 scripts changed from the reviewed pinned baseline. [48-artifact index](verification/ARCHIVES.json)
 verifies original/stored bytes and lossless log compression.
 
-Rendered review found endpoint rows exposing Rust Debug wrappers and unsupported
-arrow glyphs. The isolated PR review will replace these with readable endpoint
-labels and ASCII direction, recording final-binary evidence separately from the
-existing semantic/native qualification. [Evidence interpretation](verification/NATIVE_REVIEW.json)
-is same-agent; raw receipts remain review-pending, not relabeled.
+Isolated review fixed Rust Debug endpoint wrappers and unsupported arrow glyphs in
+one UI file. Final714-file source `774d91a2fb26f1682dbd7cd5b90aa6a0562ca81c2274ff62091de9f3bc694106`
+passed the affected rendered control case/build; binary
+`5f47fc2c33ff057296bb27584ccb2f4fd6797560964f4b7e78d792373bcf668d`
+passed a separate native display/persistence inspection. Readable labels/ASCII
+arrows are captured; register fresh Save and whole native Snapshot/maps equal
+prior accepted bytes/values. No authoring replay or summed final-source whole-suite
+claim. [Final review](verification/review/FINAL_REVIEW.json) and its separate
+[archive index](verification/review/ARCHIVES.json) preserve original48 artifacts and
+add the focused correction. All50 prior available checkouts including original
+candidate retain heads/status;18 removed directories remain registered. Raw
+receipts retain review-pending state; interpretation is same-agent.
 
 Local subset only: Refine targets requirements; Satisfy accepts actual System,
 component definition or Part; Verify uses a documentary specification without test

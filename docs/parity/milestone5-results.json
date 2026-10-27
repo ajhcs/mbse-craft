@@ -24,11 +24,13 @@
     "P29"
   ],
   "p24": {
-    "state": "implemented_bounded_review_pending",
+    "state": "reviewed_bounded_ready_to_merge",
     "base_commit": "1ae74f4f841b9d1c3d9b6c62b7e8fe4b072246af",
     "execution_results": "p24/README.md",
     "workspace_tests": 519,
     "new_distinct_cases": 11,
-    "native_runs": 2
+    "native_runs": 3,
+    "pr_number": 30,
+    "review": "p24/REVIEW.md"
   }
 }
