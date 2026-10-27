@@ -44,7 +44,7 @@ impl Workspace {
   let mut panel=std::mem::take(&mut self.source_import);
   let done=panel.pending.as_ref().and_then(|p|match p.receiver.try_recv(){Ok(r)=>Some(r),Err(mpsc::TryRecvError::Empty)=>None,Err(mpsc::TryRecvError::Disconnected)=>Some(Err("Source worker disconnected; native work retained.".into()))});
   if panel.pending(){ctx.request_repaint_after(std::time::Duration::from_millis(100));}
-  let busy=self.source_import_busy();let mut open=panel.open;let mut cancel=false;let mut prepare=false;let mut apply=false;let mut history=None;
+  let busy=self.source_import_busy();let mut open=panel.open;let mut cancel=false;let mut close=false;let mut prepare=false;let mut apply=false;let mut history=None;
   let old_prepared=panel.prepared.take();
   if open{
    egui::Window::new("Review native source import").id(egui::Id::new("native-source-import")).open(&mut open).default_size(egui::vec2(1050.,850.)).vscroll(true).show(ctx,|ui|{
@@ -59,7 +59,7 @@ impl Workspace {
      let r=ui.add_enabled(!busy&&!panel.pending()&&!edited&&system_valid&&panel.source.is_some(),egui::Button::new("Prepare mapping"));self.bound("import:Prepare",&r);prepare=r.clicked();
      let r=ui.add_enabled(!busy&&!panel.pending()&&self.session.editor.can_undo(),egui::Button::new("Undo model"));self.bound("import:Undo",&r);if r.clicked(){history=Some(false);}
      let r=ui.add_enabled(!busy&&!panel.pending()&&self.session.editor.can_redo(),egui::Button::new("Redo model"));self.bound("import:Redo",&r);if r.clicked(){history=Some(true);}
-     let r=ui.button("Cancel review");self.bound("import:Cancel",&r);cancel=r.clicked();let r=ui.button("Close");self.bound("import:Close",&r);if r.clicked(){open=false;}
+     let r=ui.button("Cancel review");self.bound("import:Cancel",&r);cancel=r.clicked();let r=ui.button("Close");self.bound("import:Close",&r);if r.clicked(){close=true;}
     });
     let r=ui.colored_label(if panel.error{ERROR}else{INK},&panel.note);self.bound("import:status",&r);
     if busy{ui.label("Finish pending native file work or a gesture before preparing, applying or changing model history.");}
@@ -83,7 +83,7 @@ impl Workspace {
     if let Some(receipt)=&panel.applied{let current=receipt.target_snapshot_sha256==self.session.editor.snapshot.digest();ui.strong(if current{"Native import applied · receipt matches current model"}else{"Historical native import receipt · model has changed"});ui.label(format!("Applied model revision {} · source files checked at Unix millisecond {}",receipt.target_model_revision,receipt.checked_unix_milliseconds));}
    });
   }
-  panel.prepared=old_prepared;panel.open=open;
+  panel.prepared=old_prepared;open&=!close;panel.open=open;
   // Process queued Cancel/Close before publishing an already-ready completion.
   if cancel||!open{if let Some(p)=&mut panel.pending{p.cancelled=true;}if cancel{panel.prepared=None;panel.acknowledgements.clear();panel.note="Review canceled; native work and source files unchanged.".into();panel.error=false;panel.open=false;}}
   if let Some(done)=done{

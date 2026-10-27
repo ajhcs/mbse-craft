@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m7-p39c-native-reviewed-apply-undo-01",
+  "id": "m7-p39c-window-close-borrow-correction-02",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m7-p39c-native-source-import",
   "source_manifest": "docs/parity/p39c/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "f10c06215dd8497d021b3aac1b34cdee3967d68a6a8bd3513029e3d02e0ff2e1",
-  "source_sha256": "696ddcd018befd5c2f833b25cbde699f722868b15babf12a1cced4dc1a3e24dc",
+  "source_manifest_sha256": "419147f5f446f7a76807b060101b2dd552bbe01f10d8a274c2d55cc318ddf368",
+  "source_sha256": "f4d23a2f3eeb5aeb95fc899b98310a7cf2366db6cdc9d144b3ba9b943c041761",
   "cargo_lock_sha256": "26687453bfdee99d59a404b010c9fcdda95c1d77462c08e387ccebae3b14347b",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -36,7 +36,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "P39c existingprojectbrowser emitsfrozenmember request to separate native review window: explicit System, asyncpurePrepare, exactdisclosures, asyncoriginal-listcheck/private5secondtoken, existingViews/EditoratomicApply/history. QueuedCancel/Close and appclose cancel beforelatepublication; raw/scope/nativeIO/gesture/stale guards. EightnewGUI/workspacecases plusbrowser entryone andcheckedViewsbridge/expiry two; expected835=824prior+11new. Fullworkspace once then desktopbuild. Existing P39b source-only fixtures reused unchanged; actual private native acceptance follows separately. No new deps/licenses/upstream/buildscripts/provider/service/release workflows.",
+  "rationale": "P39c existingprojectbrowser emitsfrozenmember request to separate native review window: explicit System, asyncpurePrepare, exactdisclosures, asyncoriginal-listcheck/private5secondtoken, existingViews/EditoratomicApply/history. QueuedCancel/Close and appclose cancel beforelatepublication; raw/scope/nativeIO/gesture/stale guards. EightnewGUI/workspacecases plusbrowser entryone andcheckedViewsbridge/expiry two; expected835=824prior+11new. Fullworkspace once then desktopbuild. Existing P39b source-only fixtures reused unchanged; actual private native acceptance follows separately. No new deps/licenses/upstream/buildscripts/provider/service/release workflows. Original789-file696ddcd0 stops at compile before any tests: dialog mutably borrows open flag into egui Window and also writes it inside closure. Collect explicit Close intent separately, apply after window show; no workflow semantics change. Preserve failed attempt; all835workspace cases/build remain unexecuted.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",
