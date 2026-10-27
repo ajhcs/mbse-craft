@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m6-p37b-native-explicit-scope-metrics-01",
+  "id": "m6-p37b-readable-model-requirement-scope-labels-02",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m6-p37b-native-metrics",
   "source_manifest": "docs/parity/p37b/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "a702e289a1a55925a963d49ad7c55993f5e1677f9da38cf681d9b4690471941f",
-  "source_sha256": "26d6fd816614e7f399229f4c0df34baee3c8be0fa9f1a148d8409410264c83fa",
+  "source_manifest_sha256": "20ce56e425a5de258ab319831664084cfad0abfdb941905089baee542ed0440d",
+  "source_sha256": "b5279680ed752890383471c19a107c080dd28bea080b149edd12916802f8d7b8",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -21,27 +21,6 @@
     [
       "bash",
       "scripts/dev.sh",
-      "test",
-      "--locked",
-      "--offline",
-      "--workspace"
-    ],
-    [
-      "bash",
-      "scripts/dev.sh",
-      "run",
-      "--locked",
-      "--offline",
-      "-p",
-      "mbse-assurance",
-      "--example",
-      "prepare_metrics",
-      "--",
-      "/workspace/repos/builderbob/mbse-craft/work/m6-p37b-native-metrics/docs/parity/p37b/fixtures/native-prepared-01"
-    ],
-    [
-      "bash",
-      "scripts/dev.sh",
       "build",
       "--locked",
       "--offline",
@@ -49,7 +28,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "P37b explicit metrics section in existing Requirements/evidencewindow/sharedcommand, no newmenudispatch. ModelAll/System and optionalworkingregisterAll/exactIDscopes, empty/unavailable/refusal/current/historical metadata/copy/clear. EightnewGUI/parsercases incl2System/5trace fixedtopology, empty/absent/legacy, missing/invalidscope, fullsource/register/raw/counter staleness, sameframecompletedregisterload, pendingIO/unadmittedtext/close/replaceguard, exactcopyandruntimeclear, windowreopen/coldnewsession. Expected779distinct=771prior+8new. Sharedsource-only factory/preparer addsoneemptySystem60082toP36nativebase, fixed3requirement/5trace separate register; retainsoriginalmeaning/eightmaps, neverqueriesmetrics. Fullworkspace once, preparefreshsourcepair/register, desktopbuild. Nativeactualacceptancefollows. No dependencies/licenses/buildscripts/sourceauthoritieschanged.",
+  "rationale": "Native visualreview finds scope caption exposing Rust wrappers System(RecordId(1))/RequirementId(2) and machine-style typed-category names. Display-only fix renders System #id/plain numericrequirementIDs and spaces in typed-categorylabels. Model/scope/count/reportJSON/sourceguardsemantics unchanged; retainoriginal774-file26d6fd81full779/source-preparer/build and completednative01workflow. Freshdesktopbuild only; no unnecessarytest replay for reversiblelabel change. New-source native02 unexecutedcold/label/exactcopyremainder follows. No finalsourcefullsuiteclaim.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",
