@@ -109,7 +109,7 @@
       "merge_commit": "8e9e923468278578640af0bd77515052d567ed80"
     },
     "p32b": {
-      "state": "reviewed_ready_for_merge",
+      "state": "merged",
       "scope": "independent state-machine presentation data and bound/cold integrity",
       "base_commit": "8e9e923468278578640af0bd77515052d567ed80",
       "execution_results": "p32b/README.md",
@@ -121,11 +121,13 @@
       "pr_number": 45,
       "review": "p32b/REVIEW.md",
       "review_affected_deletion_cases": 22,
-      "review_source_sha256": "6f11b6bff9cf8f67afefb361b29078fee1d41f852c6bfab83118c000c4ebfcee"
+      "review_source_sha256": "6f11b6bff9cf8f67afefb361b29078fee1d41f852c6bfab83118c000c4ebfcee",
+      "merge_commit": "37420112f144d26b9d0f80a65b5c6e25123f2ba5"
     },
     "p32c": {
-      "state": "planned",
-      "scope": "native authoring/diagnostics/layout/history/save/cold acceptance"
+      "state": "in_progress",
+      "scope": "native authoring/diagnostics/layout/history/save/cold acceptance",
+      "base_commit": "37420112f144d26b9d0f80a65b5c6e25123f2ba5"
     }
   }
 }

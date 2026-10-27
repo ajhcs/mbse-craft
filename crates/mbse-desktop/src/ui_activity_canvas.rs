@@ -613,7 +613,7 @@ fn kind_label(kind: va::Kind) -> &'static str {
     }
 }
 
-fn circle_glyph(rect: Rect, kind: va::Kind, scale: f32) -> (egui::Pos2, f32) {
+pub(super) fn circle_glyph(rect: Rect, kind: va::Kind, scale: f32) -> (egui::Pos2, f32) {
     let final_node = kind == va::Kind::Node(ac::NodeKind::Final);
     let radius = (if final_node { 19. } else { 13. }) * scale;
     let radius = radius
@@ -634,7 +634,7 @@ fn symbol_center(rect: Rect, kind: va::Kind, scale: f32) -> egui::Pos2 {
         rect.center()
     }
 }
-fn symbol_boundary(rect: Rect, kind: va::Kind, scale: f32, direction: egui::Vec2) -> egui::Pos2 {
+pub(super) fn symbol_boundary(rect: Rect, kind: va::Kind, scale: f32, direction: egui::Vec2) -> egui::Pos2 {
     let center = symbol_center(rect, kind, scale);
     if matches!(
         kind,
@@ -691,14 +691,14 @@ fn arrow_wings(start: egui::Pos2, end: egui::Pos2) -> Option<[egui::Pos2; 2]> {
     let normal = egui::vec2(-unit.y, unit.x) * head * 0.5;
     Some([base + normal, base - normal])
 }
-fn paint_flow_arrow(painter: &egui::Painter, start: egui::Pos2, end: egui::Pos2, stroke: Stroke) {
+pub(super) fn paint_flow_arrow(painter: &egui::Painter, start: egui::Pos2, end: egui::Pos2, stroke: Stroke) {
     if let Some(wings) = arrow_wings(start, end) {
         painter.line_segment([start, end], stroke);
         painter.line_segment([wings[0], end], stroke);
         painter.line_segment([wings[1], end], stroke);
     }
 }
-fn flow_endpoints(
+pub(super) fn flow_endpoints(
     a: Rect,
     ak: va::Kind,
     b: Rect,
