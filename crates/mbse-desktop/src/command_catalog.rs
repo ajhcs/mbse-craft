@@ -37,6 +37,7 @@ pub enum Id {
     ProfileTags,
     Matrix,
     Viewpoints,
+    Activities,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Surface {
@@ -77,6 +78,7 @@ macro_rules! spec {
 }
 pub const MENUS: &[&str] = &["File", "Edit", "View", "Tools"];
 pub const ALL: &[Spec] = &[
+    spec!(Activities,"tools.activities","Activities and diagrams","Tools",ALT,H),
     spec!(Viewpoints,"view.viewpoints","Viewpoints and native card filters","View",ALT,L),
     spec!(Matrix,"tools.relation_matrix","Native relation matrix","Tools",ALT,M),
     spec!(ProfileTags,"tools.profile_tags","Exact profiles and literal tags","Tools",ALT,J),
