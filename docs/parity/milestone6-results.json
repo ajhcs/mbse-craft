@@ -183,8 +183,14 @@
       "P34c"
     ],
     "p34a": {
-      "state": "in_progress",
-      "scope": "exact participant/message/guarded-alternative authority and keyed drafts"
+      "state": "draft_review",
+      "scope": "exact participant/message/guarded-alternative authority and keyed drafts",
+      "execution_results": "p34a/README.md",
+      "source_sha256": "dad877f6c6b39a3194707a89760de44be6399732180e93e0d9031a3a3f4d9920",
+      "distinct_case_inventory": 690,
+      "new_distinct_cases": 12,
+      "native_scenario_runs": 0,
+      "final_source_full_workspace_claim": true
     },
     "p34b": {
       "state": "planned",
