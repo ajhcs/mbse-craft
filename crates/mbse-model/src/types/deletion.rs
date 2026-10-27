@@ -273,6 +273,8 @@ pub fn unknown_impact(e: &Editor) -> UnknownImpact {
     }
     if let Ok(s)=load(&e.snapshot){for activity in s.activities.values(){unknown.add(format!("Activity#{} references are outside this deletion inventory; use activity authoring and preserve the original.",activity.id.0));}}
     if journal(&e.snapshot).is_ok_and(|j|j.activity_flow.is_some()||!j.activity_forms.is_empty()){unknown.add("Retained activity proposals have uninterpreted deletion impact; preserve or explicitly discard it.".into());}
+    if let Ok(s)=load(&e.snapshot){for spec in s.parametrics.values(){unknown.add(format!("ParametricSpecification#{} references are outside this deletion inventory; preserve exact calculation, parameter and value binding identities.",spec.id.0));}}
+    if journal(&e.snapshot).is_ok_and(|j|!j.parametric_forms.is_empty()){unknown.add("Retained parametric proposals have uninterpreted deletion impact; preserve or explicitly discard them.".into());}
     if let Ok(s)=load(&e.snapshot){for scenario in s.scenarios.values(){unknown.add(format!("Scenario#{} references are outside this deletion inventory; preserve original participant/message/guard identities.",scenario.id.0));}}
     if journal(&e.snapshot).is_ok_and(|j|!j.scenario_forms.is_empty()){unknown.add("Retained scenario proposals have uninterpreted deletion impact; preserve or explicitly discard them.".into());}
     if let Ok(s)=load(&e.snapshot){for machine in s.state_machines.values(){unknown.add(format!("StateMachine#{} references are outside this deletion inventory; use state-machine authoring and preserve the original.",machine.id.0));}}
@@ -467,6 +469,7 @@ pub fn prepare(e: &Editor, v: &Views) -> Result<Prepared, String> {
         + j.activity_forms.len()
         + j.state_machine_forms.len()
         + j.scenario_forms.len()
+        + j.parametric_forms.len()
         + 1;
     let affected_ports: BTreeSet<_> = v
         .document()
