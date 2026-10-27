@@ -174,7 +174,7 @@
         }
       },
       "output": "Metre",
-      "expected_failure": "QuantityKindMismatch",
+      "expected_failure": "UnitMismatch",
       "criterion": null
     },
     {
@@ -240,7 +240,7 @@
         "unit": "percent",
         "comparator": "GreaterOrEqual"
       },
-      "expected_assessment_failure": "QuantityKindMismatch"
+      "expected_assessment_failure": "UnitMismatch"
     }
   ]
 }
