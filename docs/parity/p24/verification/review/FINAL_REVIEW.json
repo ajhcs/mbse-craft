@@ -1,0 +1,22 @@
+{
+  "result": "reviewed_bounded_ready_to_merge",
+  "same_agent": true,
+  "independent_review": false,
+  "source_sha256": "774d91a2fb26f1682dbd7cd5b90aa6a0562ca81c2274ff62091de9f3bc694106",
+  "binary_sha256": "5f47fc2c33ff057296bb27584ccb2f4fd6797560964f4b7e78d792373bcf668d",
+  "source_delta_from_519_test_candidate": [
+    "crates/mbse-desktop/src/assurance_ui/traces_ui.rs"
+  ],
+  "full_regression_on_prior_semantic_source": 519,
+  "final_affected_rendered_case": 1,
+  "desktop_build_passed": true,
+  "prior_native_authoring_cold_runs": 2,
+  "final_native_display_persistence_runs": 1,
+  "action_errors": 0,
+  "original_failure_preserved": "zero-test borrow compile error",
+  "finding_fixed": "Readable requirement/documentary-case/native-kind endpoint labels replace Rust Debug wrappers; ASCII direction renders instead of missing glyphs.",
+  "pixels_reviewed": [
+    "native/run/00-readable-five-types-and-direction.png"
+  ],
+  "limits": "Same-agent bounded Linux local subset. No final-source summed full-workspace-run, independent engineering, platform or full NoMagic/SysML/Craft acceptance. Broad56 specs and integrated exits open."
+}

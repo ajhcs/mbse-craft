@@ -1,4 +1,5 @@
 //! Native authoring and explicit review of an independent requirements sidecar.
+mod traces_ui;
 use eframe::egui;
 use mbse_assurance::{
     Adequacy, Board, EvidenceContext, EvidenceId, EvidenceOutcome, ImplementationStatus, Maturity,
@@ -71,7 +72,7 @@ impl AssuranceWorkspace {
         self.audit.clone()
     }
     pub fn authoring_audit(&self)->serde_json::Value {
-        serde_json::json!({"schema":"mbse-craft.requirement-authoring-ui/1","visible":self.visible,"selected":self.selected.map(|id|id.0),"requirements":self.board.register.requirements,"drafts":self.board.register.drafts,"next_id":self.board.register.next_id,"revision":self.board.register.revision,"hierarchy":self.board.hierarchy().ok(),"pending":self.pending.is_some(),"dirty":self.dirty(),"feedback":self.feedback})
+        serde_json::json!({"schema":"mbse-craft.requirement-authoring-ui/1","visible":self.visible,"selected":self.selected.map(|id|id.0),"requirements":self.board.register.requirements,"traces":self.board.register.traces,"test_cases":self.board.register.test_cases,"drafts":self.board.register.drafts,"next_id":self.board.register.next_id,"revision":self.board.register.revision,"hierarchy":self.board.hierarchy().ok(),"pending":self.pending.is_some(),"dirty":self.dirty(),"feedback":self.feedback})
     }
     pub fn open_window(&mut self) {
         self.visible = true;
@@ -422,9 +423,10 @@ impl AssuranceWorkspace {
             });
             ui.collapsing("Exact source anchor and independent status claims",|ui|{ui.monospace(format!("Exact maturity: {:?}\nExact implementation: {:?}\nExact verification: {:?}",req.maturity,req.implementation,req.verification));match &self.board.register.requirements.get(&id).and_then(|r|r.anchor.as_ref()){Some(anchor)=>{ui.monospace(serde_json::to_string_pretty(anchor).unwrap_or_else(|error|error.to_string()));},None=>{ui.label("No source anchor recorded; no native or external normative classification inferred.");}}});
 
+            if let Some(master)=self.board.copy_master(id){ui.label(format!("Copy slave: accepted statement is read-only and follows master requirement local #{}. Attempts remain raw drafts.",master.0));}
             for(field,label,value)in[("statement","Statement",req.statement.clone()),("rationale","Rationale",req.rationale.clone()),("source","Source",req.source.clone()),("owner","Owner",req.owner.clone()),("user_version","Version",req.user_version.clone())]{
                 let mut text=self.board.register.drafts.get(&format!("{}:{field}",id.0)).map(|d|d.text.clone()).unwrap_or(value);
-                ui.horizontal(|ui|{ui.label(label);if mark(&mut audit,format!("assurance:field:{field}"),ui.add(egui::TextEdit::singleline(&mut text).desired_width(720.).id(egui::Id::new(("requirement-field",id.0,field))))).changed(){let result=self.board.edit_field(id,field,text);let message=if matches!(&result,Ok(false)){"Unapplied invalid statement draft retained; accepted statement is unchanged."}else{"Requirement text updated; existing evidence may be stale."};self.result(result,message);}});
+                ui.horizontal(|ui|{ui.label(label);if mark(&mut audit,format!("assurance:field:{field}"),ui.add(egui::TextEdit::singleline(&mut text).desired_width(720.).id(egui::Id::new(("requirement-field",id.0,field))))).changed(){let result=self.board.edit_field(id,field,text);let message=if matches!(&result,Ok(false)){"Unapplied statement draft retained; blank or Copy slave edits leave accepted statement unchanged."}else{"Requirement text updated; existing evidence may be stale."};self.result(result,message);}});
             }
             if self.board.register.drafts.get(&format!("{}:statement",id.0)).is_some_and(|d|!d.valid){ui.colored_label(egui::Color32::DARK_RED,format!("Unapplied statement draft. Accepted statement remains: {}",req.statement));}
             ui.horizontal_wrapped(|ui|{
@@ -457,6 +459,7 @@ impl AssuranceWorkspace {
                 ui.horizontal_wrapped(|ui|{for (label,adequacy) in [("Review adequate",Adequacy::Adequate),("Review inadequate",Adequacy::Inadequate)]{if mark(&mut audit,format!("assurance:{label}"),ui.add_enabled(self.pending.is_none(),egui::Button::new(label)).on_hover_text(adequacy_hint(adequacy))).clicked(){let reviewer=self.reviewer.clone();let rationale=self.rationale.clone();self.update_worker(editor,move|board,_,_|{board.review_evidence(eid,adequacy,reviewer,rationale)?;Ok((Some(eid),"Explicit evidence review appended; native provenance and current applicability remain separate.".into()))});}}});
                 ui.horizontal_wrapped(|ui|{for status in [VerificationStatus::InProgress,VerificationStatus::Completed,VerificationStatus::CompletedUnsuccessful,VerificationStatus::CompletedFailed,VerificationStatus::CompletedPassed]{if mark(&mut audit,format!("assurance:Record {status:?}"),ui.add_enabled(self.pending.is_none(),egui::Button::new(format!("Record {}",verification_label(status)))).on_hover_text(verification_hint(status))).clicked(){let reviewer=self.reviewer.clone();let rationale=self.rationale.clone();self.update_worker(editor,move|board,editor,config|{let context=EvidenceContext::from_editor(editor,config)?;board.record_verification(id,eid,status,&context,reviewer,rationale)?;Ok((Some(eid),"Verification decision appended; current applicability is derived from exact source/proof checks.".into()))});}}});
             }}
+            traces_ui::show(self,ui,editor,id,&mut audit);
             ui.collapsing("Immutable review and verification record history",|ui|{
                 for review in &self.board.register.review_history {ui.label(format!("Review #{} · E{} · {} · {} · {}",review.review_id,review.evidence.0,adequacy_label(review.adequacy),review.reviewer,review.rationale));}
                 for decision in self.board.register.decision_history.iter().filter(|d|d.requirement==id) {ui.label(format!("Decision #{} · E{} · {} · {} · {}",decision.decision_id,decision.evidence.0,verification_label(decision.status),decision.reviewer,decision.rationale));}

@@ -11,6 +11,8 @@ use std::{
     path::{Path, PathBuf},
 };
 mod hierarchy;
+pub mod traces;
+pub use traces::{TraceKind, TraceEndpoint, RequirementTrace, TestCase};
 pub use hierarchy::HierarchyRow;
 
 pub const PROFILE: &str = "mbse-craft.requirements-evidence/1";
@@ -192,6 +194,10 @@ pub struct RawDraft {
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
 pub struct Register {
+    #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
+    pub traces:BTreeMap<u64,RequirementTrace>,
+    #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
+    pub test_cases:BTreeMap<u64,TestCase>,
     pub requirements: BTreeMap<RequirementId, Requirement>,
     pub evidence: BTreeMap<EvidenceId, Evidence>,
     pub decisions: BTreeMap<RequirementId, VerificationDecision>,
@@ -265,6 +271,8 @@ impl Board {
     pub fn new() -> Self {
         Self {
             register: Register {
+                traces:BTreeMap::new(),
+                test_cases:BTreeMap::new(),
                 requirements: BTreeMap::new(),
                 evidence: BTreeMap::new(),
                 decisions: BTreeMap::new(),
@@ -365,6 +373,7 @@ impl Board {
         text: String,
     ) -> Result<bool, String> {
         self.transaction(|state| {
+            let read_only=field=="statement" && traces::is_copy(state,id);
             let req = state
                 .requirements
                 .get_mut(&id)
@@ -377,7 +386,7 @@ impl Board {
                 "user_version" => &mut req.user_version,
                 _ => return Err("ASSURANCE_UNSUPPORTED_FIELD".into()),
             };
-            let valid = field != "statement" || !text.trim().is_empty();
+            let valid = field != "statement" || (!text.trim().is_empty() && (!read_only || text==*value));
             state.drafts.insert(
                 format!("{}:{field}", id.0),
                 RawDraft {
@@ -392,6 +401,7 @@ impl Board {
                     .checked_add(1)
                     .ok_or("ASSURANCE_REVISION_LIMIT")?;
             }
+            if valid && field=="statement"{traces::propagate_statement(state,id)?;}
             Ok(valid)
         })
     }
@@ -1080,6 +1090,11 @@ fn validate_register(s: &Register) -> Result<(), String> {
         max = max.max(id.0);
     }
     hierarchy::validate(s)?;
+    traces::validate(s)?;
+    for id in s.traces.keys().chain(s.test_cases.keys()){
+        if *id==0||!used.insert(*id){return Err("TRACE_SHARED_ID_COLLISION".into());}
+        max=max.max(*id);
+    }
     for (id, e) in &s.evidence {
         if *id != e.id
             || id.0 == 0
