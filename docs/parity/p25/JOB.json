@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m5-p25-open-frame-regression-02",
+  "id": "m5-p25-open-frame-fix-03",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/review-p25",
   "source_manifest": "docs/parity/p25/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "6268b3e994b703933c1fc190775fc91981d28f6d8cef94f07ee722082882b02e",
-  "source_sha256": "c0daa625987fdefcd41401448c5de700a2b61ba42dc6fb6416968e05c7ec5197",
+  "source_manifest_sha256": "bbf643d93b85ccaef7e4d916dcc5257461ffc7d6ce6192ff6e4133a0d24e02d8",
+  "source_sha256": "cce9f01ddba09019d146607d815f3a43115bdf06db9391b7a05e93c2069b99ea",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -26,12 +26,21 @@
       "--offline",
       "-p",
       "mbse-desktop",
-      "completed_register_open_invalidates_coverage_before_same_frame_navigation",
+      "assurance_ui::",
       "--",
       "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
     ]
   ],
-  "rationale": "Isolated PR31 review found coverage freshness computed before same-frame completed register Open. Run one new failing regression before fix; preserve original531/build/native evidence, do not replay unrelated groups.",
+  "rationale": "New targeted regression reproduced stale coverage after same-frame admitted Open (0 pass/1 fail). Revalidate source at coverage draw/navigation after completions/forms and again after editor mutations for current audit. Only two assurance UI files changed; run all affected assurance UI tests/build, retain original531/core/native qualification separately.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",

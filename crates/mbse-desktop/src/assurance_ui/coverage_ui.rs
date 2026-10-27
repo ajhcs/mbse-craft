@@ -41,14 +41,17 @@ pub(super) fn poll(w: &mut AssuranceWorkspace, ctx: &egui::Context, e: &Editor) 
             Err(mpsc::TryRecvError::Empty) => (),
         }
     }
+    refresh(w, e);
+    if w.coverage.pending.is_some() {
+        ctx.request_repaint_after(Duration::from_millis(100));
+    }
+}
+pub(super) fn refresh(w: &mut AssuranceWorkspace, e: &Editor) {
     w.coverage.current = w
         .coverage
         .result
         .as_ref()
         .is_some_and(|r| Some(&r.key) == key(w, e).as_ref());
-    if w.coverage.pending.is_some() {
-        ctx.request_repaint_after(Duration::from_millis(100));
-    }
 }
 fn shortened(s: &str) -> String {
     s.chars().take(256).collect()
@@ -59,6 +62,8 @@ pub(super) fn show(
     e: &Editor,
     audit: &mut BTreeMap<String, [f32; 4]>,
 ) {
+    // Register Open/evidence completions and new forms may change source after polling.
+    refresh(w, e);
     let section=egui::CollapsingHeader::new("Requirement coverage and change impact").id_salt("requirement-coverage").show(ui,|ui|{
         ui.label("Read-only local query. Links declare intent; coverage does not prove fulfillment or verification. Impact lists possible review work; evidence reasons identify known changes or missing provenance.");
         if mark(audit,"coverage:Run",ui.add_enabled(w.coverage.pending.is_none(),egui::Button::new("Run coverage and selected requirement impact"))).clicked(){

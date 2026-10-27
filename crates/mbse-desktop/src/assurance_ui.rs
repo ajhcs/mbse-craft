@@ -478,6 +478,7 @@ impl AssuranceWorkspace {
         if self.replace_prompt {
             egui::Window::new("Open another register?").collapsible(false).show(ctx,|ui|{ui.label("Opening replaces unsaved register edits only after successful admission. Native model is retained.");if mark(&mut audit,"assurance:Keep current",ui.button("Keep current register")).clicked(){self.replace_prompt=false;}if mark(&mut audit,"assurance:Discard and open",ui.button("Discard and open register")).clicked(){self.load();}});
         }
+        coverage_ui::refresh(self,editor);
         self.audit = audit;
     }
 }
