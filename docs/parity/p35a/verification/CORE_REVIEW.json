@@ -1,0 +1,19 @@
+{
+  "result": "bounded_parametric_core_regression_and_build_passed",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 760,
+  "source_sha256": "6d0d7da041e56203c4035649b2862aa1b6277fa35bb1345716b45a3dea16f986",
+  "binary_sha256": "8b61417ef45cbad5ee56025748702db2df6f6c771ef397916703b0f4d1625950",
+  "distinct_case_inventory": 723,
+  "new_distinct_cases": 12,
+  "native_parametric_runs": 0,
+  "evaluation_performed": false,
+  "production_source_unchanged_after_original_freeze": true,
+  "limits": [
+    "No expression/valuecopy/newgrammar/numericalengine/evaluation/solving/verificationwrites. Existing Stage1 calculation/quantity and typed scalar value authorities retained.",
+    "Accepted-type links only; no currentraw/cycle/executionreadiness/fullSysML/NoMagic/Craft/independentengineering/platform/scale/production acceptance. Typed-value units explicitlyauthored onbinding.",
+    "P35b nativeauthoring/report/save/cold still requiredforP35closure. All56broadspecs/integratedexits remainopen.",
+    "Same-agent isolated PR review still required."
+  ]
+}
