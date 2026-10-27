@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m5-p25-coverage-impact-01",
-  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m5-p25-coverage-impact",
+  "id": "m5-p25-open-frame-regression-02",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/review-p25",
   "source_manifest": "docs/parity/p25/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "1d81f55618a20c2dad44c8eae3a4072ef7928742deee370348a3327ff5568c14",
-  "source_sha256": "5a0ac04348d1cfc69849b4eda3230bfe5ae500a66695ef354dee74af74c0f227",
+  "source_manifest_sha256": "6268b3e994b703933c1fc190775fc91981d28f6d8cef94f07ee722082882b02e",
+  "source_sha256": "c0daa625987fdefcd41401448c5de700a2b61ba42dc6fb6416968e05c7ec5197",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -24,21 +24,14 @@
       "test",
       "--locked",
       "--offline",
-      "--workspace",
+      "-p",
+      "mbse-desktop",
+      "completed_register_open_invalidates_coverage_before_same_frame_navigation",
       "--",
       "--test-threads=1"
-    ],
-    [
-      "bash",
-      "scripts/dev.sh",
-      "build",
-      "--locked",
-      "--offline",
-      "-p",
-      "mbse-desktop"
     ]
   ],
-  "rationale": "P25 read-only coverage/impact and persistent dependency freshness stamps extend existing assurance authority. Full offline workspace regression/build on changed evidence paths, one Cargo job/test thread. No dependency/license/notice/build-script changes from reviewed pinned baseline.",
+  "rationale": "Isolated PR31 review found coverage freshness computed before same-frame completed register Open. Run one new failing regression before fix; preserve original531/build/native evidence, do not replay unrelated groups.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",

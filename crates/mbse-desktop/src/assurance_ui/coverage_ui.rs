@@ -106,6 +106,57 @@ mod tests {
         (w, editor)
     }
     #[test]
+    fn completed_register_open_invalidates_coverage_before_same_frame_navigation() {
+        let (mut w, e) = setup();
+        let ctx = egui::Context::default();
+        let key = key(&w, &e).unwrap();
+        let report = w.board.coverage(&e, &key.config, w.selected).unwrap();
+        w.coverage.result = Some(ResultMessage {
+            key,
+            result: Ok(report),
+        });
+        let frozen = w.close_state().unwrap();
+        let mut loaded = w.board.clone();
+        loaded
+            .register
+            .requirements
+            .get_mut(&RequirementId(1))
+            .unwrap()
+            .statement =
+            "Different admitted register with reused local identity and counters".into();
+        let expected = loaded.register.clone();
+        let path = PathBuf::from(
+            "/workspace/build/builderbob/mbse-craft/milestone1/mock-completed-register.json",
+        );
+        w.path = path.to_string_lossy().into_owned();
+        let (tx, rx) = mpsc::channel();
+        w.pending = Some(rx);
+        tx.send(Completion::Loaded(
+            Ok((loaded, "synthetic-valid-worker-hash".into())),
+            path,
+            frozen,
+        ))
+        .unwrap();
+        ctx.run_ui(
+            egui::RawInput {
+                screen_rect: Some(egui::Rect::from_min_size(
+                    egui::Pos2::ZERO,
+                    egui::vec2(2200., 1600.),
+                )),
+                focused: true,
+                ..Default::default()
+            },
+            |_| w.show(&ctx, &e),
+        )
+        .drop_without_applying_deltas();
+        assert_eq!(w.board.register, expected);
+        assert!(
+            !w.coverage.current,
+            "Loaded register replaced source after pre-frame coverage poll; old navigation must already be stale in this same frame"
+        );
+        assert!(!w.audit.contains_key("coverage:select:1"));
+    }
+    #[test]
     fn delayed_coverage_cannot_match_same_revision_but_changed_register_bytes() {
         let (mut w, e) = setup();
         let ctx = egui::Context::default();

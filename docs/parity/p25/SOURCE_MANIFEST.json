@@ -83,8 +83,8 @@
     },
     {
       "path": "crates/mbse-desktop/src/assurance_ui/coverage_ui.rs",
-      "bytes": 10746,
-      "sha256": "7a097c482587dbcc1324964501a65c31e19f788c00a462e7e65af09c52adc7c5"
+      "bytes": 12647,
+      "sha256": "75a54401e2291a15bec33de72bb40b69490262ead60eacd00ee394d5f487c839"
     },
     {
       "path": "crates/mbse-desktop/src/assurance_ui/traces_ui.rs",
@@ -3587,5 +3587,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "5a0ac04348d1cfc69849b4eda3230bfe5ae500a66695ef354dee74af74c0f227"
+  "source_sha256": "c0daa625987fdefcd41401448c5de700a2b61ba42dc6fb6416968e05c7ec5197"
 }
