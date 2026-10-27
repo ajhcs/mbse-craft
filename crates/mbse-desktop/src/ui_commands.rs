@@ -839,7 +839,7 @@ mod tests {
                 assert!(!app.session.pending());
             }
             assert!(!dest.exists());
-            assert_eq!(app.command_audit()["items"].as_array().unwrap().len(), 31);
+            assert_eq!(app.command_audit()["items"].as_array().unwrap().len(), catalog::ALL.len());
         }
     }
 }
