@@ -1,0 +1,70 @@
+{
+  "profile": "mbse-craft.native-views/1",
+  "sidecar_id": "views:instance:stage1-session-ssQlmN",
+  "document_id": "document:session:stage1-session-ssQlmN",
+  "binding": {
+    "document_id": "document:session:stage1-session-ssQlmN",
+    "artifact_sha256": "2b98a678d215fecc53287cd072a3eba191c93b175515c48760da56113aa153c4",
+    "snapshot_sha256": "7ac701a5e65df682a34d9470a75abf1f59ad88772e4457a316bc6b765d7f408f"
+  },
+  "revision": "1",
+  "next_id": "5",
+  "primary": "1",
+  "views": {
+    "1": {
+      "id": "1",
+      "title": "Primary canvas",
+      "camera": {
+        "x": 0.0,
+        "y": 0.0,
+        "zoom": 1.0
+      }
+    },
+    "2": {
+      "id": "2",
+      "title": "Review view",
+      "camera": {
+        "x": 0.0,
+        "y": 0.0,
+        "zoom": 1.0
+      }
+    }
+  },
+  "occurrences": {
+    "3": {
+      "id": "3",
+      "view": "1",
+      "record": "1",
+      "expected_kind": "System",
+      "geometry": {
+        "x": 25.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "4": {
+      "id": "4",
+      "view": "2",
+      "record": "1",
+      "expected_kind": "System",
+      "geometry": {
+        "x": 25.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    }
+  },
+  "edges": {}
+}

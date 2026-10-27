@@ -1,0 +1,29 @@
+{
+  "result": "bounded_native_scoped_metrics_query_filter_historical_copy_persistence_cold_legacy_passed",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 774,
+  "source_sha256": "b5279680ed752890383471c19a107c080dd28bea080b149edd12916802f8d7b8",
+  "binary_sha256": "5e2a9161bd421d0d858cfab7c6e451cab566eac8a57e7889af14841e8ec158ac",
+  "distinct_case_inventory": 779,
+  "new_distinct_cases": 8,
+  "native_jobs": 2,
+  "native_runs": 3,
+  "native_controller_errors": 0,
+  "whole_prior_native_and_all_eight_maps_preserved": true,
+  "register_only_intentional_raw_and_revision_change": true,
+  "saved_counters": {
+    "model_revision": 253,
+    "raw_version": 516,
+    "next_id": 60083
+  },
+  "register_revision": 10,
+  "legacy_without_migration": true,
+  "limits": [
+    "Metrics query accepted-data inventory only; modelSystem and requirementregister scopes independent. No currentverification/fulfillment/adequacy/evaluator execution. ExistingStage1/evidenceassessment remains separatebaselinebehavior.",
+    "Native01zeroerrors validatesallrichscope/refusal/stale/copy/clear/session/save checks atoriginal26dsource. DisplayonlyB527 fix removesRustwrappers andspaces typedlabels; finalsourcecold andfreshlegacy checks addno semantic/count/reportJSONchanges. No finalsourcefullsuiteclaim.",
+    "Nativecopy gesturesreadonly; exactJSONpayload verifiedby actualGUIoutputtest, nativeOSclipboardnotread. Legacyprovidedempty andexcludedregister distinct, typedunavailable/nativecountssupported withoutmigration.",
+    "Three normal sequential ownednative sessions intwofreshjobs, no independentengineering/fullparity/platform/scale/production acceptance. P37closesboundedmetricscontractonlyafterisolatedreview/merge; all56broadspecs/integratedM06exitremainopen.",
+    "Same-agentisolatedPRreviewstillrequired."
+  ]
+}
