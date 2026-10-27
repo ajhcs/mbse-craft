@@ -42,6 +42,8 @@ pub mod viewpoints;
 pub mod activities;
 #[path="native_views_state_machines.rs"]
 pub mod state_machines;
+#[path="native_views_scenarios.rs"]
+pub mod scenarios;
 pub const PROFILE: &str = "mbse-craft.native-views/1";
 pub const RECOVERY_PROFILE: &str = "mbse-craft.native-views-recovery/1";
 pub const COPY_PROFILE: &str = "mbse-craft.native-views/2";
@@ -50,13 +52,14 @@ pub fn supported_profile(profile: &str) -> bool {
     matches!(profile, PROFILE | RECOVERY_PROFILE | COPY_PROFILE | COPY_RECOVERY_PROFILE) || ports::typed_profile(profile)
 }
 pub fn bound_profile(profile: &str) -> bool {
-    matches!(profile, PROFILE | COPY_PROFILE | ports::PROFILE | connectors::PROFILE | viewpoints::PROFILE | activities::PROFILE | state_machines::PROFILE)
+    matches!(profile, PROFILE | COPY_PROFILE | ports::PROFILE | connectors::PROFILE | viewpoints::PROFILE | activities::PROFILE | state_machines::PROFILE | scenarios::PROFILE)
 }
 pub fn copy_profile(profile: &str) -> bool {
     matches!(profile, COPY_PROFILE | COPY_RECOVERY_PROFILE) || ports::typed_profile(profile)
 }
 fn output_profile(profile:&str,bound:bool)->&'static str{
- if state_machines::profile(profile){if bound{state_machines::PROFILE}else{state_machines::RECOVERY_PROFILE}}
+ if scenarios::profile(profile){if bound{scenarios::PROFILE}else{scenarios::RECOVERY_PROFILE}}
+ else if state_machines::profile(profile){if bound{state_machines::PROFILE}else{state_machines::RECOVERY_PROFILE}}
  else if activities::profile(profile){if bound{activities::PROFILE}else{activities::RECOVERY_PROFILE}}
  else if viewpoints::profile(profile){if bound{viewpoints::PROFILE}else{viewpoints::RECOVERY_PROFILE}}
  else if connectors::qualified_profile(profile){if bound{connectors::PROFILE}else{connectors::RECOVERY_PROFILE}}
@@ -321,6 +324,8 @@ pub struct Document {
     pub activity_diagrams:BTreeMap<ViewId,activities::Diagram>,
     #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
     pub state_machine_diagrams:BTreeMap<ViewId,state_machines::Diagram>,
+    #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
+    pub scenario_diagrams:BTreeMap<ViewId,scenarios::Diagram>,
 }
 fn hash(bytes: &[u8]) -> String {
     format!("{:x}", Sha256::digest(bytes))
@@ -401,7 +406,7 @@ impl Document {
         }
         if self.views.is_empty()
             || self.views.len() > MAX_VIEWS
-            || self.occurrences.len()+self.typed_ports.len()+activities::count(self)+state_machines::count(self) > MAX_OCCURRENCES
+            || self.occurrences.len()+self.typed_ports.len()+activities::count(self)+state_machines::count(self)+scenarios::count(self) > MAX_OCCURRENCES
             || self.edges.len()+self.connector_edges.len() > MAX_EDGES
             || !self.views.contains_key(&self.primary)
         {
@@ -441,6 +446,7 @@ impl Document {
         ports::validate(self,&mut ids,&mut counts,native.map(|(snapshot,_)|snapshot))?;
         activities::validate(self,&mut ids,&mut counts,native.map(|(snapshot,_)|snapshot))?;
         state_machines::validate(self,&mut ids,&mut counts,native.map(|(snapshot,_)|snapshot))?;
+        scenarios::validate(self,&mut ids,&mut counts,native.map(|(snapshot,_)|snapshot))?;
         if counts.values().any(|n| *n > MAX_PER_VIEW) {
             return Err("VIEWS_PER_VIEW_BUDGET".into());
         }
@@ -511,6 +517,7 @@ pub struct Stamp {
 pub enum Layout {
     Activity(activities::Layout),
     StateMachine(state_machines::Layout),
+    Scenario(scenarios::Layout),
     Viewpoint(ViewId,viewpoints::Action),
     Connector(connectors::Layout),
     Port(ports::Layout),
@@ -639,7 +646,7 @@ impl Views {
             occurrences: BTreeMap::new(),
             edges: BTreeMap::new(),
             typed_ports:BTreeMap::new(),
-            connector_edges:BTreeMap::new(),activity_diagrams:BTreeMap::new(),state_machine_diagrams:BTreeMap::new(),
+            connector_edges:BTreeMap::new(),activity_diagrams:BTreeMap::new(),state_machine_diagrams:BTreeMap::new(),scenario_diagrams:BTreeMap::new(),
         };
         for (i, record) in editor.snapshot.records.values().enumerate() {
             if i >= MAX_PER_VIEW {
@@ -763,6 +770,7 @@ impl Views {
             reachable.extend(doc.occurrences.keys().map(|id| id.0));
             reachable.extend(doc.activity_diagrams.values().flat_map(|d|d.occurrences.keys()).map(|id|id.0));
             reachable.extend(doc.state_machine_diagrams.values().flat_map(|d|d.occurrences.keys()).map(|id|id.0));
+            reachable.extend(doc.scenario_diagrams.values().flat_map(|d|d.occurrences.keys()).map(|id|id.0));
             reachable.extend(doc.typed_ports.keys().map(|id|id.0));
             reachable.extend(doc.edges.keys().map(|id| id.0));
             reachable.extend(doc.connector_edges.keys().map(|id|id.0));
@@ -777,6 +785,7 @@ impl Views {
         match action {
             Layout::Activity(action)=>activities::apply(&mut next,&editor.snapshot,action)?,
             Layout::StateMachine(action)=>state_machines::apply(&mut next,&editor.snapshot,action)?,
+            Layout::Scenario(action)=>scenarios::apply(&mut next,&editor.snapshot,action)?,
             Layout::Viewpoint(view,action)=>viewpoints::apply(&mut next,editor,view,action)?,
             Layout::Connector(action)=>connectors::apply(&mut next,&editor.snapshot,action)?,
             Layout::Port(action)=>ports::apply(&mut next,&editor.snapshot,action)?,
@@ -810,6 +819,7 @@ impl Views {
                 next.edges.retain(|_, e| e.view != id);
                 next.activity_diagrams.remove(&id);
                 next.state_machine_diagrams.remove(&id);
+                next.scenario_diagrams.remove(&id);
             }
             Layout::Camera(id, camera) => {
                 next.views.get_mut(&id).ok_or("VIEWS_NO_VIEW")?.camera = camera;
@@ -925,11 +935,12 @@ impl Views {
         if title.trim().is_empty() || title.len() > 1024 { return Err("VIEWS_COPY_TITLE".into()); }
         if !self.document.typed_ports.is_empty(){return Err("VIEWS_TYPED_COPY_UNSUPPORTED: preserve original typed presentation".into())}
         let declared=source.declared();
+        if !self.document.scenario_diagrams.is_empty()||!declared.scenario_diagrams.is_empty(){return Err("VIEWS_SCENARIO_COPY_UNSUPPORTED: preserve original sequence presentation".into());}
         if !self.document.state_machine_diagrams.is_empty()||!declared.state_machine_diagrams.is_empty(){return Err("VIEWS_STATE_MACHINE_COPY_UNSUPPORTED: preserve original state-machine presentation".into());}
         if !self.document.activity_diagrams.is_empty()||!declared.activity_diagrams.is_empty(){return Err("VIEWS_ACTIVITY_COPY_UNSUPPORTED: preserve original activity presentation".into());}
         let camera=declared.views.get(&source_view).ok_or("VIEWS_COPY_SOURCE_VIEW")?.camera.clone();
         let mut next=self.document.clone();
-        next.profile=if state_machines::profile(&next.profile)||state_machines::profile(&declared.profile){output_profile(state_machines::PROFILE,bound_profile(&next.profile))}else if activities::profile(&next.profile)||activities::profile(&declared.profile){output_profile(activities::PROFILE,bound_profile(&next.profile))}else if viewpoints::profile(&next.profile)||viewpoints::profile(&declared.profile){if bound_profile(&next.profile){viewpoints::PROFILE}else{viewpoints::RECOVERY_PROFILE}}else if connectors::qualified_profile(&next.profile){if bound_profile(&next.profile){connectors::PROFILE}else{connectors::RECOVERY_PROFILE}}else if ports::typed_profile(&next.profile){if bound_profile(&next.profile){ports::PROFILE}else{ports::RECOVERY_PROFILE}}else if bound_profile(&next.profile) {COPY_PROFILE}else{COPY_RECOVERY_PROFILE}.into();
+        next.profile=if scenarios::profile(&next.profile)||scenarios::profile(&declared.profile){output_profile(scenarios::PROFILE,bound_profile(&next.profile))}else if state_machines::profile(&next.profile)||state_machines::profile(&declared.profile){output_profile(state_machines::PROFILE,bound_profile(&next.profile))}else if activities::profile(&next.profile)||activities::profile(&declared.profile){output_profile(activities::PROFILE,bound_profile(&next.profile))}else if viewpoints::profile(&next.profile)||viewpoints::profile(&declared.profile){if bound_profile(&next.profile){viewpoints::PROFILE}else{viewpoints::RECOVERY_PROFILE}}else if connectors::qualified_profile(&next.profile){if bound_profile(&next.profile){connectors::PROFILE}else{connectors::RECOVERY_PROFILE}}else if ports::typed_profile(&next.profile){if bound_profile(&next.profile){ports::PROFILE}else{ports::RECOVERY_PROFILE}}else if bound_profile(&next.profile) {COPY_PROFILE}else{COPY_RECOVERY_PROFILE}.into();
         let view=ViewId(next.allocate()?);
         next.views.insert(view,View{id:view,title:title.into(),camera,copy_origin:None,viewpoint:declared.views[&source_view].viewpoint.clone(),viewpoint_form:declared.views[&source_view].viewpoint_form.clone()});
         let mut origin=CopyOrigin{profile:crate::native_views_copy::PROFILE.into(),source_sha256:source.source_sha256().into(),source_profile:declared.profile.clone(),source_document_id:declared.document_id.clone(),source_sidecar_id:declared.sidecar_id.clone(),source_view,declared_native_binding:declared.binding.clone(),occurrences:BTreeMap::new(),edges:BTreeMap::new()};
@@ -1070,6 +1081,7 @@ impl Views {
         connectors::reconcile(&mut next,&candidate.snapshot,undo,redo,&proof,&mut proofs)?;
         activities::reconcile(&mut next,&candidate.snapshot,undo,redo,&proof,&mut proofs)?;
         state_machines::reconcile(&mut next,&candidate.snapshot,undo,redo,&proof,&mut proofs)?;
+        scenarios::reconcile(&mut next,&candidate.snapshot,undo,redo,&proof,&mut proofs)?;
         for edge in next.edges.values_mut() {
             let resolves = next
                 .occurrences
@@ -1196,6 +1208,7 @@ fn decode_document(bytes: &[u8]) -> Result<Document, String> {
     viewpoints::check_wire(root,profile)?;
     activities::check_wire(root,profile)?;
     state_machines::check_wire(root,profile)?;
+    scenarios::check_wire(root,profile)?;
     for (key, max) in [
         ("views", MAX_VIEWS),
         ("occurrences", MAX_OCCURRENCES),
@@ -1213,6 +1226,7 @@ fn decode_document(bytes: &[u8]) -> Result<Document, String> {
     }
     if let Some(edges)=root.get("connector_edges"){if edges.as_object().is_none_or(|e|e.len()>MAX_EDGES){return Err("VIEWS_CONNECTOR_EDGE_COUNT_BUDGET".into())}}
     if let Some(ports)=root.get("typed_ports"){if ports.as_object().is_none_or(|p|p.len()>MAX_OCCURRENCES){return Err("VIEWS_TYPED_PORT_COUNT_BUDGET".into())}}
+    if let Some(diagrams)=root.get("scenario_diagrams"){let map=diagrams.as_object().ok_or("VIEWS_SCENARIO_MAP_REQUIRED")?;if map.len()>MAX_VIEWS{return Err("VIEWS_SCENARIO_COUNT_BUDGET".into());}let mut count=0usize;for d in map.values(){let n=d.get("occurrences").and_then(serde_json::Value::as_object).ok_or("VIEWS_SCENARIO_OCCURRENCES_REQUIRED")?.len();count=count.saturating_add(n);if count>MAX_OCCURRENCES{return Err("VIEWS_SCENARIO_COUNT_BUDGET".into());}}}
     if let Some(diagrams)=root.get("state_machine_diagrams"){let map=diagrams.as_object().ok_or("VIEWS_STATE_MACHINE_MAP_REQUIRED")?;if map.len()>MAX_VIEWS{return Err("VIEWS_STATE_MACHINE_COUNT_BUDGET".into());}let mut count=0usize;for d in map.values(){let n=d.get("occurrences").and_then(serde_json::Value::as_object).ok_or("VIEWS_STATE_MACHINE_OCCURRENCES_REQUIRED")?.len();count=count.saturating_add(n);if count>MAX_OCCURRENCES{return Err("VIEWS_STATE_MACHINE_COUNT_BUDGET".into());}}}
     if let Some(diagrams)=root.get("activity_diagrams"){let map=diagrams.as_object().ok_or("VIEWS_ACTIVITY_MAP_REQUIRED")?;if map.len()>MAX_VIEWS{return Err("VIEWS_ACTIVITY_COUNT_BUDGET".into());}let mut count=0usize;for d in map.values(){let n=d.get("occurrences").and_then(serde_json::Value::as_object).ok_or("VIEWS_ACTIVITY_OCCURRENCES_REQUIRED")?.len();count=count.saturating_add(n);if count>MAX_OCCURRENCES{return Err("VIEWS_ACTIVITY_COUNT_BUDGET".into());}}}
     serde_json::from_value(unique.0).map_err(|e| format!("VIEWS_SCHEMA: {e}"))
@@ -1223,6 +1237,7 @@ fn decode_document(bytes: &[u8]) -> Result<Document, String> {
 pub(crate) fn inspect_document(bytes: &[u8]) -> Result<Document, String> {
     let document = decode_document(bytes)?;
     document.validate_contents(None)?;
+    if !document.scenario_diagrams.is_empty(){return Err("VIEWS_SCENARIO_SOURCE_INSPECTION_UNSUPPORTED: preserve original; legacy mapping does not inventory sequences".into());}
     if !document.state_machine_diagrams.is_empty(){return Err("VIEWS_STATE_MACHINE_SOURCE_INSPECTION_UNSUPPORTED: preserve original; legacy mapping does not inventory state machines".into());}
     if !document.activity_diagrams.is_empty(){return Err("VIEWS_ACTIVITY_SOURCE_INSPECTION_UNSUPPORTED: preserve original activity presentation; legacy mapping does not inventory it".into());}
     if !document.typed_ports.is_empty(){return Err("VIEWS_TYPED_SOURCE_INSPECTION_UNSUPPORTED: retain original typed presentation".into())}

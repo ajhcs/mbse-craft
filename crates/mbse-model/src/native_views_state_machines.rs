@@ -4,7 +4,7 @@ use crate::types::{self as t, state_machines as a};
 pub const PROFILE: &str = "mbse-craft.native-views/7";
 pub const RECOVERY_PROFILE: &str = "mbse-craft.native-views-recovery/7";
 pub fn profile(s: &str) -> bool {
-    matches!(s, PROFILE | RECOVERY_PROFILE)
+    matches!(s, PROFILE | RECOVERY_PROFILE)||super::scenarios::profile(s)
 }
 pub use a::StateKind as Kind;
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
@@ -102,6 +102,7 @@ pub(super) fn validate(
     };
     for (view, d) in &doc.state_machine_diagrams {
         if doc.activity_diagrams.contains_key(view)
+            || doc.scenario_diagrams.contains_key(view)
             || doc.occurrences.values().any(|o| o.view == *view)
             || doc.typed_ports.values().any(|o| o.view == *view)
             || doc.edges.values().any(|o| o.view == *view)
@@ -134,6 +135,7 @@ pub(super) fn validate(
     Ok(())
 }
 fn upgrade(doc: &mut Document) {
+    if super::scenarios::profile(&doc.profile){return;}
     doc.profile = if bound_profile(&doc.profile) {
         PROFILE
     } else {
@@ -158,6 +160,7 @@ pub(super) fn apply(doc: &mut Document, snapshot: &Snapshot, action: Layout) -> 
                 || doc.occurrences.len()
                     + doc.typed_ports.len()
                     + activities::count(doc)
+                    + super::scenarios::count(doc)
                     + count(doc)
                     + elements.len()
                     > MAX_OCCURRENCES
@@ -230,7 +233,7 @@ pub(super) fn apply(doc: &mut Document, snapshot: &Snapshot, action: Layout) -> 
                 .ok_or("VIEWS_STATE_MACHINE_ELEMENT_MISSING_OR_FOREIGN")?;
             let native = doc.occurrences.values().filter(|o| o.view == view).count()
                 + doc.typed_ports.values().filter(|o| o.view == view).count();
-            if doc.occurrences.len() + doc.typed_ports.len() + activities::count(doc) + count(doc)
+            if doc.occurrences.len() + doc.typed_ports.len() + activities::count(doc) + super::scenarios::count(doc) + count(doc)
                 >= MAX_OCCURRENCES
                 || d.occurrences.len() + native >= MAX_PER_VIEW
             {
