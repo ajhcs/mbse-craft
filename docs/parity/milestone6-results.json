@@ -160,7 +160,7 @@
       "merge_commit": "938930a8829576879a4d1bb402bac12f923e9848"
     },
     "p33b": {
-      "state": "draft_review",
+      "state": "reviewed_ready_to_merge",
       "scope": "native state execution controls and acceptance",
       "base_commit": "938930a8829576879a4d1bb402bac12f923e9848",
       "execution_results": "p33b/README.md",
@@ -168,7 +168,9 @@
       "distinct_case_inventory": 678,
       "new_distinct_cases": 6,
       "native_state_execution_runs": 2,
-      "final_source_full_workspace_claim": false
+      "final_source_full_workspace_claim": false,
+      "pr_number": 48,
+      "review": "p33b/REVIEW.md"
     }
   }
 }
