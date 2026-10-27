@@ -147,8 +147,14 @@
       "P33b"
     ],
     "p33a": {
-      "state": "in_progress",
-      "scope": "finite flat execution core and fixed event/trace fixtures"
+      "state": "draft_review",
+      "scope": "finite flat execution core and fixed event/trace fixtures",
+      "execution_results": "p33a/README.md",
+      "source_sha256": "f33637b79c00760157b2d8d46d135a084a99f462520f1fd293a4d912b60f6fae",
+      "distinct_case_inventory": 672,
+      "new_distinct_cases": 8,
+      "native_state_execution_checks": 0,
+      "final_source_full_workspace_claim": false
     },
     "p33b": {
       "state": "planned",

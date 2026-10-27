@@ -1,0 +1,44 @@
+[
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p33a-state-execution/work/p33a-01.json",
+    "path": "compiler-01/RECEIPT.json",
+    "bytes": 365,
+    "sha256": "0cef43302c7286ab2ef3373a515f8664cb99276de3bed69b9d335d28cc08fdaa",
+    "stored_sha256": "0cef43302c7286ab2ef3373a515f8664cb99276de3bed69b9d335d28cc08fdaa"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p33a-state-execution/work/p33a-02.json",
+    "path": "compiler-02/RECEIPT.json",
+    "bytes": 69126,
+    "sha256": "97c46e161f358b196fe327eb5229c549530601d5e5275bc736023acf0b3c11c1",
+    "stored_sha256": "97c46e161f358b196fe327eb5229c549530601d5e5275bc736023acf0b3c11c1"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p33a-finite-state-execution-02-20261027T091839Z/00.log",
+    "path": "compiler-02/00.log.gz",
+    "bytes": 79999,
+    "sha256": "e1686b84b7316f7facc28dd4fe558c5d66f666937d214daf8101eb4ce129bba5",
+    "stored_sha256": "11b6e78af6403a7f51a881343de943c99066d0d6ebe9ae6f76988f6c2138f439"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p33a-state-execution/work/p33a-03.json",
+    "path": "compiler-03/RECEIPT.json",
+    "bytes": 86706,
+    "sha256": "da616ff15fe9a9a439c02376cbc29d736fdd09c815d8d7b1ea17216f8affbffc",
+    "stored_sha256": "da616ff15fe9a9a439c02376cbc29d736fdd09c815d8d7b1ea17216f8affbffc"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p33a-test-harness-corrections-remainder-03-20261027T092118Z/00.log",
+    "path": "compiler-03/00.log.gz",
+    "bytes": 15821,
+    "sha256": "04dc0c4c8532f1cc7304edd07bfa12b8a4c12a0c8aff6e96bbde1782c34ea3b9",
+    "stored_sha256": "626d6e5363d941f4d5afbb5d6553b2fdf1e92db6539f1a8d55bbf053af9df893"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p33a-test-harness-corrections-remainder-03-20261027T092118Z/01.log",
+    "path": "compiler-03/01.log.gz",
+    "bytes": 4074,
+    "sha256": "55dd27f83c75f1d068385635eb3dcf67b296299d7b39e2f6888c65cc943d3bca",
+    "stored_sha256": "e11b54ee854d4b0cba0099795a72e6f6287a0de4a6b6ad825105c95c47fae536"
+  }
+]
