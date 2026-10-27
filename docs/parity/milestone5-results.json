@@ -4,7 +4,7 @@
   "milestone_exit_accepted": false,
   "full_parity_accepted": false,
   "p23": {
-    "state": "reviewed_bounded_ready_to_merge",
+    "state": "merged",
     "base_commit": "24cb464749e82f28f6199a4a2341ced21bfae421",
     "contract": "p23/CONTRACT.md",
     "authority": "existing mbse-assurance Board; native snapshot and views unchanged",
@@ -12,15 +12,19 @@
     "native_runs": 2,
     "new_distinct_cases": 14,
     "pr_number": 29,
-    "review": "p23/REVIEW.md"
+    "review": "p23/REVIEW.md",
+    "merge_commit": "1ae74f4f841b9d1c3d9b6c62b7e8fe4b072246af"
   },
   "remaining_prs": [
-    "P23",
     "P24",
     "P25",
     "P26",
     "P27",
     "P28",
     "P29"
-  ]
+  ],
+  "p24": {
+    "state": "in_progress",
+    "base_commit": "1ae74f4f841b9d1c3d9b6c62b7e8fe4b072246af"
+  }
 }

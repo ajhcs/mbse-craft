@@ -86,7 +86,8 @@ pub(super) fn validate_wire_ids(root: &Value) -> Result<(), String> {
         .get("register")
         .and_then(Value::as_object)
         .ok_or("ASSURANCE_REGISTER_OBJECT_REQUIRED")?;
-    for field in ["requirements", "evidence", "decisions"] {
+    for field in ["requirements", "evidence", "decisions", "traces", "test_cases"] {
+        if matches!(field,"traces"|"test_cases") && s.get(field).is_none(){continue;}
         let map = s
             .get(field)
             .and_then(Value::as_object)
