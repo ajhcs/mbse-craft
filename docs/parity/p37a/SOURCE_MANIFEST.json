@@ -33,8 +33,8 @@
     },
     {
       "path": "crates/mbse-assurance/src/metrics.rs",
-      "bytes": 10586,
-      "sha256": "4a33d9d9b95972253a4bc41e257e511d6eae57597584287dd10edf04c6d144de"
+      "bytes": 11216,
+      "sha256": "78a9efae0cda43fdd05a3173fe73af5cf808019ba79336e857adeafa7bf45257"
     },
     {
       "path": "crates/mbse-assurance/src/traces.rs",
@@ -73,8 +73,8 @@
     },
     {
       "path": "crates/mbse-assurance/tests/metrics.rs",
-      "bytes": 11989,
-      "sha256": "01f3e3eaee2ff94c48a1e9165e40dd1716cf94c6c5159cadeefdc19b0ee18382"
+      "bytes": 13211,
+      "sha256": "4cf710a2fe2466c3c7576ca3fec8791fbf095b922f655d28d9219dbb55405c79"
     },
     {
       "path": "crates/mbse-assurance/tests/traces.rs",
@@ -3852,5 +3852,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "849cb5dd4688a44c09d7c4079c35cc1b46ca2b50c8fc3a00d4dfdf574d64f8d2"
+  "source_sha256": "7ba85419cdc7b2b39e534dcedfdcde08914d51db14197c8bd993c2a8d3b7bc80"
 }
