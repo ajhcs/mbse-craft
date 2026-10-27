@@ -386,7 +386,7 @@ impl Board {
                 "user_version" => &mut req.user_version,
                 _ => return Err("ASSURANCE_UNSUPPORTED_FIELD".into()),
             };
-            let valid = field != "statement" || (!text.trim().is_empty() && (!read_only || text==req.statement));
+            let valid = field != "statement" || (!text.trim().is_empty() && (!read_only || text==*value));
             state.drafts.insert(
                 format!("{}:{field}", id.0),
                 RawDraft {

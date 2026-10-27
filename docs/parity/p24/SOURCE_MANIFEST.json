@@ -23,8 +23,8 @@
     },
     {
       "path": "crates/mbse-assurance/src/lib.rs",
-      "bytes": 43007,
-      "sha256": "881b969b7e64d49343bf620d2e1e39e1ebdb523f7024825840b300110adb76e1"
+      "bytes": 43000,
+      "sha256": "1f0e8a58f934634f2687aff0a5d31d4f39b5920f087d31bfb5f66024e1d60f89"
     },
     {
       "path": "crates/mbse-assurance/src/traces.rs",
@@ -3572,5 +3572,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "4a6f3d9dff9b3c9bb319cb8aaa73862b620d04975ddb26863d0e2386ffeda395"
+  "source_sha256": "46c81de892fda36ee547c083e6a94fd077bbbc7fb3f8a5dc04fa8cf2f74dd7cc"
 }

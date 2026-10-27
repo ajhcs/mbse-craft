@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m5-p24-typed-traces-01",
+  "id": "m5-p24-typed-traces-02",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m5-p24-requirement-traces",
   "source_manifest": "docs/parity/p24/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "ef9ad66c90009045175e978ac49537c0f1c53b37a2659c9c08df04fb5d393045",
-  "source_sha256": "4a6f3d9dff9b3c9bb319cb8aaa73862b620d04975ddb26863d0e2386ffeda395",
+  "source_manifest_sha256": "9fec641a849ff7260b819e5254a878635ceb6d4ea3473e8a53a2e727f6028c91",
+  "source_sha256": "46c81de892fda36ee547c083e6a94fd077bbbc7fb3f8a5dc04fa8cf2f74dd7cc",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
