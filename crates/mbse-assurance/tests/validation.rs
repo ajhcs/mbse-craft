@@ -214,8 +214,8 @@ fn containment_route_identifies_changed_owner_when_target_is_unchanged() {
             form: types::UsageForm {
                 id: Some(Id(1011)),
                 name: "reference to assembly".into(),
-                owner: "1007".into(),
-                target: "1007".into(),
+                owner: "1004".into(),
+                target: "1004".into(),
                 kind: types::UsageKind::Part,
             },
         },

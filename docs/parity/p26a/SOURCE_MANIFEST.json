@@ -64,7 +64,7 @@
     {
       "path": "crates/mbse-assurance/tests/validation.rs",
       "bytes": 15267,
-      "sha256": "2ee5a92b985b2f606ca9cd977aa8e7a656562ff67af5869748d649a109679405"
+      "sha256": "959784ea900a33e9ca8649bccfd362750494628e6ca049e369181a64150851e8"
     },
     {
       "path": "crates/mbse-catalog/Cargo.toml",
@@ -3597,5 +3597,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "686907ddb672d69894d168379e94c9b02dd2929c9774711b2c464a8369ca2faa"
+  "source_sha256": "53014f85d302e096ef36908631cad9de2ee757ffffefe4c1f64d45c713c3683f"
 }
