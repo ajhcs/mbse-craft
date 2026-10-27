@@ -1,0 +1,51 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m6-p35a-parametric-specification-bindings-core-01",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m6-p35a-parametric-core",
+  "source_manifest": "docs/parity/p35a/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "d41015552e7c1528992f9300e1a2d80ed820ec449c83031e4c1c3154cf218591",
+  "source_sha256": "f6bbced1fc7d365021040da810c0329cbcaba193f012d5a5bc0a59386ca77f1c",
+  "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "--workspace"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "P35a optional specification/parameter/binding authority over exact existing Stage1 calculations and typed scalar values. No expression/valuecopy/evaluation/verificationwrites.12newcases: incomplete/unbound and undeclared inputs; exactnativeinput/output units; dimension/type/canonical/duplicate failures; defaults/Partoverrides/unset; boolean/foreignrefusals; missing/changed targets; raw/history/inuse/removal; strictwire/crossfamilyIDs/futurerefreservation; UTF8/family128/shared512; legacy deletion/refactorholds; actualbound/nativecold/modelrecovery/capturedrecovery whole priornative/raw/opaque/all8maps. Full prior711+12workspace/build once; P35b nativeUI separate. No dependency/buildscriptchanges.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p35a-parametric-core/docs/parity/p34c/verification/native-02/run/scenario-final-cold-copy.kernspan": "18958954dc7043d644598c55a28f2e30c496c03b69372e75cce42b7bd51844d0",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p35a-parametric-core/docs/parity/p34c/verification/native-02/run/scenario-final-cold-copy.mbse-views.json": "5561661c8f77c59a81ffb7987b417dab57520efe955185f560bebcfc441ced9e"
+  }
+}

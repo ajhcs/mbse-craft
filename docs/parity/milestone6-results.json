@@ -175,7 +175,7 @@
     }
   },
   "p34": {
-    "state": "reviewed_ready_to_merge_bounded_contract",
+    "state": "merged_bounded_contract",
     "base_commit": "448a1d1283619918b1a06fd2b5db5c7237e7bd43",
     "children": [
       "P34a",
@@ -212,7 +212,7 @@
       "merge_commit": "2feb199e5d9b033b8fa9692f97f412a97e6835fe"
     },
     "p34c": {
-      "state": "reviewed_ready_to_merge",
+      "state": "merged",
       "scope": "native scenario authoring/diagnostics/rendering/history/save/cold acceptance",
       "base_commit": "2feb199e5d9b033b8fa9692f97f412a97e6835fe",
       "execution_results": "p34c/README.md",
@@ -227,7 +227,36 @@
       "review": "p34c/REVIEW.md",
       "review_production_source_changes": 0,
       "review_artifacts_recomputed": 94,
-      "review_available_prior_checkouts_unchanged": 92
+      "review_available_prior_checkouts_unchanged": 92,
+      "merge_commit": "e388d46d60d2c1fbf7f7cbca889d64b6804f91a7"
+    }
+  },
+  "p35": {
+    "state": "in_progress",
+    "base_commit": "e388d46d60d2c1fbf7f7cbca889d64b6804f91a7",
+    "children": [
+      "P35a",
+      "P35b"
+    ],
+    "p35a": {
+      "state": "reviewed_ready_to_merge",
+      "scope": "independent specification/parameter/binding authority over existing native calculation and typed value sources",
+      "execution_results": "p35a/README.md",
+      "source_sha256": "6d0d7da041e56203c4035649b2862aa1b6277fa35bb1345716b45a3dea16f986",
+      "distinct_case_inventory": 723,
+      "new_distinct_cases": 12,
+      "native_parametric_runs": 0,
+      "evaluation_performed": false,
+      "final_source_full_workspace_claim": false,
+      "pr_number": 52,
+      "review": "p35a/REVIEW.md",
+      "review_source_sha256": "0953707195245ec05f4c70d8c91d0daf4eb67d68baa717668e686b2ca2e0e032",
+      "review_affected_cases": 1,
+      "review_production_source_changes": 0
+    },
+    "p35b": {
+      "state": "planned",
+      "scope": "native specification/parameter/binding authoring, diagnostics/report and save/cold acceptance"
     }
   }
 }

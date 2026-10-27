@@ -1,0 +1,30 @@
+{
+  "comments": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "comments": [],
+      "url": "https://github.com/ajhcs/mbse-craft/pull/52",
+      "title": "ajhcs/mbse-craft PR #52 comments",
+      "display_url": "https://github.com/ajhcs/mbse-craft/pull/52",
+      "display_title": "ajhcs/mbse-craft PR #52 comments"
+    },
+    "isError": false
+  },
+  "threads": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Action completed."
+      }
+    ],
+    "structuredContent": {
+      "review_threads": []
+    },
+    "isError": false
+  }
+}

@@ -183,6 +183,8 @@ fn empty_summary(snapshot: &Snapshot, mode: Mode) -> Summary {
                 .map(|k| format!("Opaque namespace {k} retained unchanged")),
         );
     }
+    if let Ok(s)=load(snapshot){for a in s.parametrics.values(){outside.push(format!("ParametricSpecification#{} calculation/parameter/value references retained outside refactor scope; no identity is remapped.",a.id.0));}}
+    if journal(snapshot).is_ok_and(|j|!j.parametric_forms.is_empty()){outside.push("Retained parametric proposals remain outside refactor scope.".into());}
     if let Ok(s)=load(snapshot){for a in s.scenarios.values(){outside.push(format!("Scenario#{} participant/message references retained outside refactor scope; no identity is remapped.",a.id.0));}}
     if journal(snapshot).is_ok_and(|j|!j.scenario_forms.is_empty()){outside.push("Retained scenario proposals remain outside refactor scope.".into());}
     Summary {

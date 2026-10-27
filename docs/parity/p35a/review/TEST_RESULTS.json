@@ -1,0 +1,15 @@
+{
+  "compiler_slice_counts": [
+    1,
+    0
+  ],
+  "distinct_case_inventory": 723,
+  "new_distinct_cases": [],
+  "tests": [
+    {
+      "test": "parametric_raw_utf8_quota_shared512_and_native_binding_limits_refuse_without_partial_acceptance",
+      "slice": "review-01"
+    }
+  ],
+  "qualification": "One affected capacity fixture strengthens mixed511specs+1existing component at shared512; production unchanged; original723distinctcases retained. No summedfinalsourcefullsuite/nativeUI/evaluation claim."
+}

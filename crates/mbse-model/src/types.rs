@@ -9,6 +9,7 @@ use std::collections::{BTreeMap, BTreeSet};
 pub mod activities;
 pub mod state_machines;
 pub mod scenarios;
+pub mod parametrics;
 pub mod connectors;
 pub mod ports;
 pub mod values;
@@ -110,6 +111,8 @@ pub struct Store {
     #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
     pub scenarios:BTreeMap<Id,scenarios::Scenario>,
     #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
+    pub parametrics:BTreeMap<Id,parametrics::Specification>,
+    #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
     pub defaults:BTreeMap<Id,values::Literal>,
     #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
     pub overrides:BTreeMap<Id,BTreeMap<Id,values::Literal>>,
@@ -132,6 +135,7 @@ impl Default for Store {
             activities:BTreeMap::new(),
             state_machines:BTreeMap::new(),
             scenarios:BTreeMap::new(),
+            parametrics:BTreeMap::new(),
             defaults:BTreeMap::new(),overrides:BTreeMap::new(),profiles:BTreeMap::new(),profile_applications:BTreeMap::new(),
         }
     }
@@ -185,6 +189,8 @@ struct Journal {
     state_machine_forms:BTreeMap<String,state_machines::Form>,
     #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
     scenario_forms:BTreeMap<String,scenarios::Form>,
+    #[serde(default,skip_serializing_if="BTreeMap::is_empty")]
+    parametric_forms:BTreeMap<String,parametrics::Form>,
 }
 impl Default for Journal {
     fn default() -> Self {
@@ -200,7 +206,7 @@ impl Default for Journal {
             values:BTreeMap::new(),
             refactor:None,
             deletion:None,
-            profile_tags:None,activity_flow:None,activity_forms:BTreeMap::new(),state_machine_forms:BTreeMap::new(),scenario_forms:BTreeMap::new(),
+            profile_tags:None,activity_flow:None,activity_forms:BTreeMap::new(),state_machine_forms:BTreeMap::new(),scenario_forms:BTreeMap::new(),parametric_forms:BTreeMap::new(),
         }
     }
 }
@@ -223,6 +229,7 @@ fn parse(value: &Value) -> Result<Store, String> {
     activities::canonical_maps(value)?;
     state_machines::canonical_maps(value)?;
     scenarios::canonical_maps(value)?;
+    parametrics::canonical_maps(value)?;
     canonical(value, "definitions")?;
     canonical(value, "properties")?;
     if value.get("usages").is_some() {
@@ -283,6 +290,7 @@ fn parse_journal(value: &Value) -> Result<Journal, String> {
     activities::validate_journal(&j)?;
     state_machines::validate_journal(&j)?;
     scenarios::validate_journal(&j)?;
+    parametrics::validate_journal(&j)?;
     Ok(j)
 }
 pub fn validate_namespace(name: &str, value: &Value) -> Result<(), String> {
@@ -402,6 +410,7 @@ impl Store {
                 + activities::count(self)
                 + state_machines::ids(self).count()
                 + scenarios::ids(self).count()
+                + parametrics::ids(self).count()
                 > 512
         {
             return Err("TYPE_VERSION_OR_LIMIT".into());
@@ -459,6 +468,7 @@ impl Store {
         activities::validate_store(self,&mut ids)?;
         state_machines::validate_store(self,&mut ids)?;
         scenarios::validate_store(self,&mut ids)?;
+        parametrics::validate_store(self,&mut ids)?;
         values::validate_store(self)?;
         tags::validate_store(self)?;
         // Topological admission bounds work to definitions plus Part edges;
@@ -520,6 +530,8 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
     activities::validate_targets(snapshot,&store)?;
     state_machines::validate_targets(snapshot,&store)?;
     scenarios::validate_targets(snapshot,&store)?;
+    parametrics::validate_targets(snapshot,&store)?;
+    high=high.max(parametrics::target_high(&store));
     high=high.max(scenarios::target_high(&store));
     for d in store.definitions.values() {
         let system = snapshot
@@ -538,7 +550,7 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
         .chain(store.interfaces.keys())
         .chain(store.ports.keys())
         .chain(store.connectors.keys())
-        .copied().chain(activities::ids(&store)).chain(state_machines::ids(&store)).chain(scenarios::ids(&store))
+        .copied().chain(activities::ids(&store)).chain(state_machines::ids(&store)).chain(scenarios::ids(&store)).chain(parametrics::ids(&store))
     {
         if !ids.insert(id.0) {
             return Err("TYPE_NATIVE_ID_COLLISION".into());
@@ -550,6 +562,7 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
         high=high.max(activities::validate_draft_ids(&store,&j,&native_reserved)?);
         high=high.max(state_machines::validate_draft_ids(&store,&j,&native_reserved)?);
         high=high.max(scenarios::validate_draft_ids(&store,&j,&native_reserved)?);
+        high=high.max(parametrics::validate_draft_ids(&store,&j,&native_reserved)?);
         high=high.max(values::draft_high(&j));
         if let Some(form) = j.interface {
             high = high.max(form.system.0);
@@ -625,6 +638,7 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
 pub enum Action {
     StateMachine(state_machines::Action),
     Scenario(scenarios::Action),
+    Parametric(parametrics::Action),
     Activity(activities::Action),
     ProfileTag(tags::Action),
     Deletion(deletion::Action),
@@ -677,6 +691,7 @@ fn apply_inner(snapshot: &mut Snapshot, action: Action) -> Result<Change, String
     match action {
         Action::StateMachine(action)=>state_machines::apply_inner(snapshot,action),
         Action::Scenario(action)=>scenarios::apply_inner(snapshot,action),
+        Action::Parametric(action)=>parametrics::apply_inner(snapshot,action),
         Action::Activity(action)=>activities::apply_inner(snapshot,action),
         Action::ProfileTag(action)=>tags::apply_inner(snapshot,action),
         Action::Deletion(action)=>deletion::apply_inner(snapshot,action),
