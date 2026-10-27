@@ -286,3 +286,16 @@ fn finite_activity_missing_initial_foreign_ids_fanout_and_unsupported_payloads_r
         .contains("OBJECT_PINS_OR_FLOWS_UNSUPPORTED"));
     assert_eq!(e.snapshot, before);
 }
+
+#[test]
+fn finite_activity_start_refuses_invalid_native_source_even_if_type_store_parses() {
+    let mut e = graph("true_branch");
+    // Editor exposes its Snapshot for integration. The typed Store alone cannot
+    // establish that an activity's native System still exists.
+    e.snapshot.records.remove(&RecordId(1));
+    assert!(e.snapshot.validate().is_err());
+    assert!(t::load(&e.snapshot).is_ok());
+    let before = e.snapshot.clone();
+    assert!(Execution::start(&e, Id(1000), 8).is_err());
+    assert_eq!(e.snapshot, before);
+}
