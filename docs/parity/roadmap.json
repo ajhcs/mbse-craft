@@ -608,7 +608,7 @@
       "acceptance": [
         "Seeded type, reference and structural faults produce stable expected rule IDs; issue navigation selects the exact element and property."
       ],
-      "state": "review_ready",
+      "state": "merged",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "branch": "codex/m5-p26-validation-suites",
@@ -629,7 +629,7 @@
         {
           "id": "P26b",
           "title": "Native suite authoring and exact issue/field navigation",
-          "state": "review_ready",
+          "state": "merged",
           "depends_on": [
             "P26a"
           ],
@@ -639,9 +639,14 @@
           "review": "docs/parity/p26b/REVIEW.md",
           "review_preservation": "docs/parity/p26b/REVIEW_PRESERVATION.json",
           "pr_number": 33,
-          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/33"
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/33",
+          "merge_commit": "1c49d7ac4139388f10a172eed95e6cdf84b01068",
+          "reviewed_head": "8f15781acea7182494c9be25d6802434c7d3b947"
         }
-      ]
+      ],
+      "pr_number": 33,
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/33",
+      "merge_commit": "1c49d7ac4139388f10a172eed95e6cdf84b01068"
     },
     {
       "id": "P27",
@@ -653,9 +658,26 @@
       "acceptance": [
         "Unsupported declarative rules refuse; fixes preview changes, reject stale state and Undo atomically; opening projects executes no embedded code."
       ],
-      "state": "planned",
+      "state": "in_progress",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "children": [
+        {
+          "id": "P27a",
+          "title": "Reviewed declarative requirement rules and atomic fix previews",
+          "state": "in_progress",
+          "branch": "codex/m5-p27-reviewed-rules",
+          "contract": "docs/parity/p27a/CONTRACT.md"
+        },
+        {
+          "id": "P27b",
+          "title": "Native rule review and explicit quick-fix preview Apply Undo",
+          "state": "planned",
+          "depends_on": [
+            "P27a"
+          ]
+        }
+      ]
     },
     {
       "id": "P28",

@@ -1,5 +1,7 @@
 //! Named, bounded local suites over existing validators; reports are not decisions.
 use super::*;
+mod custom;
+pub use custom::{CustomRule, TextField, TextPredicate, QuickFixPreview, FixChange, SuiteReview};
 use mbse_model::{
     stage1::{Editor, RawKey},
     stage1_calc::{DiagnosticCode, DocumentStamp},
@@ -17,10 +19,13 @@ pub enum RuleFamily {
 #[serde(deny_unknown_fields)]
 pub struct Suite {
     pub rules: BTreeSet<RuleFamily>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub custom: Vec<CustomRule>,
 }
 impl Suite {
     pub fn local() -> Self {
         Self {
+            custom: vec![],
             rules: BTreeSet::from([
                 RuleFamily::PropertyDraft,
                 RuleFamily::PartContainment,
@@ -85,6 +90,7 @@ pub struct Issue {
     pub rule: String,
     pub message: String,
     pub target: Target,
+    pub quick_fix: bool,
 }
 #[derive(Clone, Debug, Serialize)]
 struct Guard {
@@ -127,8 +133,12 @@ pub struct Report {
     unreported_issues: usize,
     limitations: Vec<String>,
     limitation_total: usize,
+    #[serde(skip)]
+    fixes: BTreeMap<String, CustomRule>,
+    custom_rules: Vec<CustomRule>,
 }
 impl Report {
+    pub fn custom_rules(&self) -> &[CustomRule] { &self.custom_rules }
     pub fn suite_name(&self) -> &str {
         &self.suite_name
     }
@@ -184,9 +194,10 @@ pub(super) fn validate_suites(s: &Register) -> Result<(), String> {
     }
     for (name, suite) in &s.validation_suites {
         suite_name(name)?;
-        if name == BUILTIN_NAME || suite.rules.is_empty() {
+        if name == BUILTIN_NAME || (suite.rules.is_empty() && suite.custom.is_empty()) {
             return Err("VALIDATION_RESERVED_OR_EMPTY_SUITE".into());
         }
+        custom::validate_rules(&suite.custom)?;
     }
     Ok(())
 }
@@ -214,10 +225,8 @@ impl Board {
         })
     }
     pub fn set_validation_suite(&mut self, name: String, suite: Suite) -> Result<(), String> {
-        self.transaction(|s| {
-            s.validation_suites.insert(name, suite);
-            Ok(())
-        })
+        if !suite.custom.is_empty() { return Err("CUSTOM_RULE_REVIEW_REQUIRED".into()); }
+        self.admit_suite(name, suite)
     }
     pub fn apply_validation_form(&mut self) -> Result<(), String> {
         let name = self
@@ -267,6 +276,7 @@ impl Board {
                     rule: rule.into(),
                     message,
                     target,
+                    quick_fix: false,
                 });
             }
         };
@@ -442,6 +452,20 @@ impl Board {
                 }
             }
         }
+        let mut fixes = BTreeMap::new();
+        for rule in &suite.custom {
+            match rule.evaluate(&self.register) {
+                Ok(Some((message, target))) => {
+                    let code = format!("MBSE.CUSTOM.{}", rule.id);
+                    let id = format!("{code}:{}", target.key());
+                    add(&code, message, target);
+                    if rule.replacement.is_some() { fixes.insert(id, rule.clone()); }
+                }
+                Ok(None) => (),
+                Err(error) => limit(error),
+            }
+        }
+        for issue in &mut issues { issue.quick_fix = fixes.contains_key(&issue.id); }
         let unknown = mbse_model::types::deletion::unknown_impact(e);
         if unknown.count > 0 {
             limit(format!(
@@ -469,6 +493,8 @@ impl Board {
             unreported_issues,
             limitations,
             limitation_total,
+            fixes,
+            custom_rules: suite.custom,
         })
     }
 }
