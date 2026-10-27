@@ -183,14 +183,16 @@
       "P34c"
     ],
     "p34a": {
-      "state": "draft_review",
+      "state": "reviewed_ready_to_merge",
       "scope": "exact participant/message/guarded-alternative authority and keyed drafts",
       "execution_results": "p34a/README.md",
       "source_sha256": "dad877f6c6b39a3194707a89760de44be6399732180e93e0d9031a3a3f4d9920",
       "distinct_case_inventory": 690,
       "new_distinct_cases": 12,
       "native_scenario_runs": 0,
-      "final_source_full_workspace_claim": true
+      "final_source_full_workspace_claim": true,
+      "pr_number": 49,
+      "review": "p34a/REVIEW.md"
     },
     "p34b": {
       "state": "planned",
