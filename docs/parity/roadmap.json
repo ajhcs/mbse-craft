@@ -608,7 +608,7 @@
       "acceptance": [
         "Seeded type, reference and structural faults produce stable expected rule IDs; issue navigation selects the exact element and property."
       ],
-      "state": "in_progress",
+      "state": "review_ready",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "branch": "codex/m5-p26-validation-suites",
@@ -616,21 +616,30 @@
         {
           "id": "P26a",
           "title": "Named validation suites and sealed issue locations",
-          "state": "reviewed_bounded_ready_to_merge",
+          "state": "merged",
           "contract": "docs/parity/p26a/CONTRACT.md",
           "execution_results": "docs/parity/p26a/README.md",
           "pr_number": 32,
           "pr_url": "https://github.com/ajhcs/mbse-craft/pull/32",
           "review": "docs/parity/p26a/REVIEW.md",
-          "review_preservation": "docs/parity/p26a/REVIEW_PRESERVATION.json"
+          "review_preservation": "docs/parity/p26a/REVIEW_PRESERVATION.json",
+          "merge_commit": "517fc3e10ffd44e19f30bc5cb9c45c0314651385",
+          "reviewed_head": "348afce0cf8797e39bf663faf616a8d67c97a230"
         },
         {
           "id": "P26b",
           "title": "Native suite authoring and exact issue/field navigation",
-          "state": "planned",
+          "state": "review_ready",
           "depends_on": [
             "P26a"
-          ]
+          ],
+          "branch": "codex/m5-p26b-validation-navigation",
+          "contract": "docs/parity/p26b/CONTRACT.md",
+          "execution_results": "docs/parity/p26b/README.md",
+          "review": "docs/parity/p26b/REVIEW.md",
+          "review_preservation": "docs/parity/p26b/REVIEW_PRESERVATION.json",
+          "pr_number": 33,
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/33"
         }
       ]
     },

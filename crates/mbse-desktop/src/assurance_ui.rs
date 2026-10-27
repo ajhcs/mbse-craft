@@ -1,6 +1,8 @@
 //! Native authoring and explicit review of an independent requirements sidecar.
 mod traces_ui;
 mod coverage_ui;
+mod validation_ui;
+pub(crate) use validation_ui::Request as ValidationNavigation;
 use eframe::egui;
 use mbse_assurance::{
     Adequacy, Board, EvidenceContext, EvidenceId, EvidenceOutcome, ImplementationStatus, Maturity,
@@ -46,6 +48,7 @@ struct Assessment {
 pub struct AssuranceWorkspace {
     board: Board,
     coverage:coverage_ui::State,
+    validation:validation_ui::State,
     visible: bool,
     selected: Option<RequirementId>,
     evidence: Option<EvidenceId>,
@@ -73,9 +76,13 @@ impl AssuranceWorkspace {
     pub fn audit(&self) -> BTreeMap<String, [f32; 4]> {
         self.audit.clone()
     }
-    pub fn authoring_audit(&self)->serde_json::Value {
-        serde_json::json!({"schema":"mbse-craft.requirement-authoring-ui/1","coverage":coverage_ui::audit(self),"visible":self.visible,"selected":self.selected.map(|id|id.0),"requirements":self.board.register.requirements,"traces":self.board.register.traces,"test_cases":self.board.register.test_cases,"drafts":self.board.register.drafts,"next_id":self.board.register.next_id,"revision":self.board.register.revision,"hierarchy":self.board.hierarchy().ok(),"pending":self.pending.is_some(),"dirty":self.dirty(),"feedback":self.feedback})
+    pub fn authoring_audit(&self,editor:&Editor,ctx:&egui::Context)->serde_json::Value {
+        serde_json::json!({"schema":"mbse-craft.requirement-authoring-ui/1","coverage":coverage_ui::audit(self),"validation":validation_ui::audit(self,editor,ctx),"visible":self.visible,"selected":self.selected.map(|id|id.0),"requirements":self.board.register.requirements,"traces":self.board.register.traces,"test_cases":self.board.register.test_cases,"drafts":self.board.register.drafts,"next_id":self.board.register.next_id,"revision":self.board.register.revision,"hierarchy":self.board.hierarchy().ok(),"pending":self.pending.is_some(),"dirty":self.dirty(),"feedback":self.feedback})
     }
+    pub(crate) fn take_validation_navigation(&mut self)->Option<ValidationNavigation>{validation_ui::take(self)}
+    pub(crate) fn resolve_validation_navigation(&self,request:&ValidationNavigation,e:&Editor)->Result<mbse_assurance::validation::Target,String>{validation_ui::resolve(self,request,e)}
+    pub(crate) fn validation_navigation_blocked(&self)->bool{self.pending.is_some()||self.close_prompt||self.replace_prompt}
+    pub(crate) fn hide_for_validation_navigation(&mut self){self.visible=false;}
     pub fn open_window(&mut self) {
         self.visible = true;
     }
@@ -337,6 +344,7 @@ impl AssuranceWorkspace {
     }
     pub fn show(&mut self, ctx: &egui::Context, editor: &Editor) {
         coverage_ui::poll(self,ctx,editor);
+        validation_ui::poll(self,ctx);
         let mut disconnected = false;
         let completion = self.pending.as_ref().and_then(|r| match r.try_recv() {
             Ok(v) => Some(v),
@@ -400,15 +408,16 @@ impl AssuranceWorkspace {
                 egui::ScrollArea::vertical().id_salt("requirement-list").max_height(180.).show(&mut columns[0],|ui|{match self.board.hierarchy(){Ok(rows)=>{for row in rows.iter().take(256){let r=&self.board.register.requirements[&row.id];ui.horizontal(|ui|{ui.add_space(row.depth.min(16)as f32*12.);let short:String=r.statement.chars().take(120).collect();let identifier=if r.identifier.is_empty(){"identifier unset"}else{r.identifier.as_str()};let label=format!("{} · local #{} · depth {} · {}{}",identifier,row.id.0,row.depth,short,if r.statement.chars().nth(120).is_some(){" [shortened]"}else{""});if mark(&mut audit,format!("assurance:select:{}",row.id.0),ui.selectable_label(self.selected==Some(row.id),label)).clicked(){self.selected=Some(row.id);self.evidence=None;}});}if rows.len()>256{ui.label(format!("Showing first256 of{} hierarchy rows; complete register retained.",rows.len()));}},Err(e)=>{ui.colored_label(egui::Color32::DARK_RED,e);}}});
                 columns[1].collapsing("Evidence-context metadata (JSON)",|ui|{ui.label("Canonical JSON is retained with its hash for evidence context. These values do not configure the evaluator. Native execution uses the fixed algorithm and Limits::default() recorded with each receipt.");ui.text_edit_multiline(&mut self.config);});
             });
+            validation_ui::show(self,ui,editor,&mut audit);
             coverage_ui::show(self,ui,editor,&mut audit);
             let Some(id)=self.selected else {ui.label("Add or select a requirement to edit and review evidence.");return;};
             let Some(req)=self.board.register.requirements.get(&id).cloned() else{return;};
             ui.heading(format!("Requirement {} · local #{}",if req.identifier.is_empty(){"identifier unset"}else{req.identifier.as_str()},id.0));
-            let identifier_key=format!("{}:identifier",id.0);let mut identifier_text=self.board.register.drafts.get(&identifier_key).map(|d|d.text.clone()).unwrap_or_else(||req.identifier.clone());ui.horizontal(|ui|{ui.label("Exact requirement identifier");if mark(&mut audit,"assurance:field:identifier",ui.add(egui::TextEdit::singleline(&mut identifier_text).char_limit(128).id(egui::Id::new(("requirement-identifier",id.0))))).changed(){let result=self.board.edit_identifier(id,identifier_text);self.result(result,"Identifier draft retained; duplicates/invalid text leave accepted identifier and stable internal links unchanged.");}});if self.board.register.drafts.get(&identifier_key).is_some_and(|d|!d.valid){ui.colored_label(egui::Color32::DARK_RED,format!("Unapplied identifier draft; accepted identifier remains {}",req.identifier));}
+            let identifier_key=format!("{}:identifier",id.0);let mut identifier_text=self.board.register.drafts.get(&identifier_key).map(|d|d.text.clone()).unwrap_or_else(||req.identifier.clone());ui.horizontal(|ui|{ui.label("Exact requirement identifier");let response=ui.add(egui::TextEdit::singleline(&mut identifier_text).char_limit(128).id(egui::Id::new(("requirement-identifier",id.0))));validation_ui::focus(self,editor,&response,mbse_assurance::validation::Target::Requirement{requirement:id,field:mbse_assurance::validation::RequirementField::Identifier});if mark(&mut audit,"assurance:field:identifier",response).changed(){let result=self.board.edit_identifier(id,identifier_text);self.result(result,"Identifier draft retained; duplicates/invalid text leave accepted identifier and stable internal links unchanged.");}});if self.board.register.drafts.get(&identifier_key).is_some_and(|d|!d.valid){ui.colored_label(egui::Color32::DARK_RED,format!("Unapplied identifier draft; accepted identifier remains {}",req.identifier));}
 
             ui.label("Parenting organizes the requirement hierarchy; it does not derive another statement or roll up approval, implementation or verification.");
             let parent_key=format!("{}:parent",id.0);let mut parent_text=self.board.register.drafts.get(&parent_key).map(|d|d.text.clone()).unwrap_or_else(||req.parent.map_or(String::new(),|p|p.0.to_string()));
-            ui.horizontal(|ui|{ui.label("Parent local ID (empty means root)");if mark(&mut audit,"assurance:field:parent",ui.add(egui::TextEdit::singleline(&mut parent_text).char_limit(128).id(egui::Id::new(("requirement-parent",id.0))))).changed(){let result=self.board.edit_parent(id,parent_text);self.result(result,"Parent draft retained; only an existing acyclic parent is accepted. Lifecycle states remain independent.");}});
+            ui.horizontal(|ui|{ui.label("Parent local ID (empty means root)");let response=ui.add(egui::TextEdit::singleline(&mut parent_text).char_limit(128).id(egui::Id::new(("requirement-parent",id.0))));validation_ui::focus(self,editor,&response,mbse_assurance::validation::Target::Requirement{requirement:id,field:mbse_assurance::validation::RequirementField::Parent});if mark(&mut audit,"assurance:field:parent",response).changed(){let result=self.board.edit_parent(id,parent_text);self.result(result,"Parent draft retained; only an existing acyclic parent is accepted. Lifecycle states remain independent.");}});
             if self.board.register.drafts.get(&parent_key).is_some_and(|d|!d.valid){ui.colored_label(egui::Color32::DARK_RED,"Unapplied parent draft: use an existing canonical requirement ID that does not create a cycle, or leave empty for a root.");}
             ui.label(req.parent.map_or("Accepted parent: root".into(),|p|format!("Accepted parent local #{}",p.0)));
 
@@ -430,7 +439,7 @@ impl AssuranceWorkspace {
             if let Some(master)=self.board.copy_master(id){ui.label(format!("Copy slave: accepted statement is read-only and follows master requirement local #{}. Attempts remain raw drafts.",master.0));}
             for(field,label,value)in[("statement","Statement",req.statement.clone()),("rationale","Rationale",req.rationale.clone()),("source","Source",req.source.clone()),("owner","Owner",req.owner.clone()),("user_version","Version",req.user_version.clone())]{
                 let mut text=self.board.register.drafts.get(&format!("{}:{field}",id.0)).map(|d|d.text.clone()).unwrap_or(value);
-                ui.horizontal(|ui|{ui.label(label);if mark(&mut audit,format!("assurance:field:{field}"),ui.add(egui::TextEdit::singleline(&mut text).desired_width(720.).id(egui::Id::new(("requirement-field",id.0,field))))).changed(){let result=self.board.edit_field(id,field,text);let message=if matches!(&result,Ok(false)){"Unapplied statement draft retained; blank or Copy slave edits leave accepted statement unchanged."}else{"Requirement text updated; existing evidence may be stale."};self.result(result,message);}});
+                ui.horizontal(|ui|{ui.label(label);let response=ui.add(egui::TextEdit::singleline(&mut text).desired_width(720.).id(egui::Id::new(("requirement-field",id.0,field))));if field=="statement"{validation_ui::focus(self,editor,&response,mbse_assurance::validation::Target::Requirement{requirement:id,field:mbse_assurance::validation::RequirementField::Statement});}if mark(&mut audit,format!("assurance:field:{field}"),response).changed(){let result=self.board.edit_field(id,field,text);let message=if matches!(&result,Ok(false)){"Unapplied statement draft retained; blank or Copy slave edits leave accepted statement unchanged."}else{"Requirement text updated; existing evidence may be stale."};self.result(result,message);}});
             }
             if self.board.register.drafts.get(&format!("{}:statement",id.0)).is_some_and(|d|!d.valid){ui.colored_label(egui::Color32::DARK_RED,format!("Unapplied statement draft. Accepted statement remains: {}",req.statement));}
             ui.horizontal_wrapped(|ui|{

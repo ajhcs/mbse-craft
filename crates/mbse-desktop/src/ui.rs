@@ -9,6 +9,8 @@ mod panel_docking;
 mod file_operations;
 #[path="ui_types.rs"]
 mod typed_properties;
+#[path="ui_validation.rs"]
+mod validation_navigation;
 #[path="ui_ports.rs"]
 mod port_editor;
 #[path="ui_port_views.rs"]
@@ -90,6 +92,7 @@ pub struct Workspace {
     refactor_panel:refactor_editor::RefactorPanel,
     deletion_panel:deletion_editor::DeletionPanel,
     tag_panel:profile_tags_editor::TagPanel,
+    validation_focus:validation_navigation::State,
     docking_focus: Option<(egui::Id,RawKey,mbse_model::stage1::Freshness,u8)>,
     periodic_recovery: crate::periodic_recovery::PeriodicRecovery,
     feedback: String,
@@ -165,7 +168,7 @@ impl Workspace {
         let periodic_recovery = crate::periodic_recovery::PeriodicRecovery::new(Instant::now(), &session, &views);
         let mut docking=crate::docking::WorkspaceDock::default();
         match crate::perspectives::decode(&preferences.value.workspace_layout){Ok(layout)=>docking.layout=layout,Err(e)=>{preferences.load_warning=true;preferences.report.push_str(&format!("; {e}"));docking.note=e}}
-        let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,shortcuts,docking,perspective_name:String::new(),files:Default::default(),type_panel:Default::default(),port_panel:Default::default(),connector_panel:Default::default(),value_panel:Default::default(),refactor_panel:Default::default(),deletion_panel:Default::default(),tag_panel:Default::default(),docking_focus:None,periodic_recovery, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
+        let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,shortcuts,docking,perspective_name:String::new(),files:Default::default(),type_panel:Default::default(),port_panel:Default::default(),connector_panel:Default::default(),value_panel:Default::default(),refactor_panel:Default::default(),deletion_panel:Default::default(),tag_panel:Default::default(),validation_focus:Default::default(),docking_focus:None,periodic_recovery, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
             creation: None, relation: None, popout: None, usages: None, impact_open:false,impact_target:None,impact_report:None,impact_note:String::new(), search_open:false, search_query:Default::default(), search_report:None, search_note:String::new(), browser_revealed:None,browser_open_groups:BTreeMap::new(), pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new(), menu_scope:None, last_workspace_command:None };
         app.refresh_recoveries();
         app
@@ -419,6 +422,7 @@ impl Workspace {
         );
         response.widget_info(|| egui::WidgetInfo::labeled(egui::WidgetType::TextEdit, true, label));
         self.model_fields.insert(response.id, key.clone());
+        self.validation_focus_response(&mbse_assurance::validation::Target::NativeField(key.clone()),&response);
         if response.changed() {
             self.command(Command::EditText {
                 key: key.clone(),
@@ -1888,6 +1892,7 @@ impl eframe::App for Workspace {
     fn logic(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         self.preferences.poll();
         self.poll_file_ops();
+        self.validation_frame_start();
         self.finish_writes(ctx);
         self.views.poll(&self.session);
         if let Some((action, kind)) = self.pending_continue.clone() {
@@ -2004,6 +2009,7 @@ impl eframe::App for Workspace {
         self.capture(&ctx);
         self.catalog.show(&ctx);
         self.assurance.show(&ctx, &self.session.editor);
+        self.handle_validation_navigation();
         self.audit.extend(self.assurance.audit());
         self.audit.extend(self.exchange.show(&ctx));
         let mut audit = serde_json::json!({"profile":"mbse-craft.ui-geometry/1","frame_policy":format!("{:?}",self.frame_choice.frame()),"frame_override":self.frame_choice.overridden(), "pixels_per_point":ctx.pixels_per_point(),
@@ -2026,7 +2032,8 @@ impl eframe::App for Workspace {
             fields.insert("refactor".into(),self.refactor_audit());
             fields.insert("deletion".into(),self.deletion_audit());
             fields.insert("profile_tags".into(),self.profile_tags_audit());
-            fields.insert("requirements_authoring".into(),self.assurance.authoring_audit());
+            fields.insert("validation_navigation".into(),self.validation_navigation_audit());
+            fields.insert("requirements_authoring".into(),self.assurance.authoring_audit(&self.session.editor,&ctx));
             fields.insert("views_inspection_profile".into(), serde_json::json!(self.views.inspection_profile()));
             fields.insert("views_inspection_copy_origin".into(), self.views.inspection_copy_origin());
         }

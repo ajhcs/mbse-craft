@@ -1,0 +1,49 @@
+{
+  "result": "bounded_named_suite_native_exact_field_navigation_and_cold_checks_passed",
+  "reviewer": "Codex same implementing agent",
+  "independent_review": false,
+  "source_files": 721,
+  "source_sha256": "ad3779d8e5c19310e0e3777530481621739bccccb41fe6478d0f6c3723a94ab5",
+  "binary_sha256": "847fec83f0ff7f329d9aa0a2972a17ab2bf16123a88e3ceb59b5e4aecbf0120b",
+  "compiler_slice_counts": [
+    [
+      195
+    ],
+    [
+      0
+    ],
+    [
+      1
+    ],
+    [
+      355,
+      0
+    ]
+  ],
+  "distinct_case_inventory": 551,
+  "new_distinct_cases": 8,
+  "native_runs": 2,
+  "action_errors": [
+    {
+      "action": "j=json.loads((Path.cwd()/'docs/parity/p26b/NATIVE_JOB.json').read_text()); path=Path(j['argv_extra'][1]); source=json.loads(path.read_text())['snapshot']; sv=json.loads(path.with_suffix('.mbse-views.json').read_text()); original_store=source['extensions']['namespaces']['mbse-craft.types/1']; r=n.audit()['widgets']['views:Open views']; n.send(op='click',x=int(r[0]-100),y=int((r[1]+r[3])/2)); n.send(op='key',key='a',mods=['Control_L']); n.send(op='text',text=str(path.with_suffix('.mbse-views.json'))); n.click('views:Open views'); assert n.audit()['views_occurrence_navigation']['document_sha256']==base.digest(path.with_suffix('.mbse-views.json')); n.send(op='key',key='t',mods=['Control_L','Alt_L']); assert n.audit()['typed_properties']['open']; n.click('types:definition:1007'); n.click('types:edit-property:1020'); n.fill('types:property:value-type','999999'); assert n.audit()['typed_properties']['forms']['1020']['value_type']=='999999'; n.click('types:usage:edit:1011'); n.click('types:usage:kind:Part'); n.fill('types:usage:owner','1021'); n.fill('types:usage:target','1021'); assert n.audit()['typed_properties']['usage_form']['id']==1011 and n.audit()['typed_properties']['usage_form']['kind']=='Part' and n.audit()['typed_properties']['usage_form']['target']=='1021'; assert n.audit()['typed_properties']['store']==original_store; n.capture('00-native-dangling-type-and-containment-proposals'); n.click('types:close'); assert not n.audit()['typed_properties']['open']; n.fill('field:1003:calc.expression','x + x1'); n.capture('01-native-unit-incompatible-expression'); n.clear_adjacent_views_path(); seeded=n.save('seeded-validation.kernspan'); seeded_path=n.run/'seeded-validation.kernspan'; seeded_views=json.loads(seeded_path.with_suffix('.mbse-views.json').read_text()); assert seeded['extensions']['namespaces']['mbse-craft.types/1']==original_store; assert all(seeded_views[k]==sv[k]for k in ('views','occurrences','edges','typed_ports','connector_edges')); assert all(seeded['records'][k]==v for k,v in source['records'].items()if k!='1003'); seeded_hash=n.audit()['snapshot_hash']",
+      "error": "AssertionError()"
+    }
+  ],
+  "observations": [
+    "Actual native editors deliberately seed dangling property1020 type999999, retained Reference1011 pending Part self-cycle, and incompatible calc1003 expression x+x1. Original accepted typed store stays exact; original fixtures unchanged.",
+    "Actual named P26 QA save/run shows exact six stable expected IDs. Actual property ValueType, usage Target, native expression and requirement3 Statement issue clicks focus exact live widgets, with whole seeded Snapshot/register and all five view maps unchanged.",
+    "Explicit subsequent type raw999999? edit invalidates old navigation until fresh Run. Unsupported ExecuteShell suite refuses; accepted four-family suite stays exact while invalid declarative data remains raw.",
+    "Cold native/views/independent register reopen restores no report/proof. Explicit saved P26 QA selection and fresh Run reproduce stable issue IDs and exact live property focus. Fresh copies equal whole final Snapshot/register/all five maps.",
+    "Two normal app/display exits, owned process absence, authentication cleanup and original fixture hashes checked."
+  ],
+  "retained_failures": [
+    "Initial195 successful cases preceded two renderer-driver assertions caused by unsettled layout and offscreen close control.",
+    "Next source failed compilation before tests because pinned egui MouseWheel requires TouchPhase.",
+    "Next source passed one remaining case; other driver still scrolled x160 outside auto-placed Types window. Final test helper scrolls actual target x;355 remainder/build pass.",
+    "Native Close click targeted a one-pixel clipped strip and did not close; original assertion retained. Actual scroll exposed full button; subsequent click closed successfully. No accepted model failure was masked."
+  ],
+  "limits": [
+    "Four local rule families; first128 UI issues/16 limitation details, core256/128 with totals. No full validation, engineering/verification Passed, platform, independent engineering or full NoMagic/SysML/Craft acceptance.",
+    "All56 broad specifications and integrated milestone exits remain unaccepted."
+  ]
+}

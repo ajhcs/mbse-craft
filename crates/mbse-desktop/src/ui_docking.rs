@@ -154,7 +154,9 @@ impl Workspace {
         let revision = self.docking.revision;
         egui::CentralPanel::default().show(root, |ui| {
             let style = DockStyle::from_ui(ui);
-            let out = DockArea::new(Self::dock_id()).show(
+            let area=DockArea::new(Self::dock_id());
+            let area=if self.validation_raise_inspector(){area.raise_panel(Panel::Inspector)}else{area};
+            let out = area.show(
                 ui,
                 &layout,
                 &style,
