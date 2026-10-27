@@ -1,0 +1,79 @@
+[
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p36a-parametric-analysis/docs/parity/p36a/attempts/01/JOB.json",
+    "path": "compiler-01/JOB.json",
+    "bytes": 4332,
+    "sha256": "7d5398ba4600a4c05e4fdccd364f1d688bcbc8993fc9e5baaaf92be9ca1a4d42",
+    "stored_sha256": "7d5398ba4600a4c05e4fdccd364f1d688bcbc8993fc9e5baaaf92be9ca1a4d42"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p36a-parametric-analysis/work/p36a-01.json",
+    "path": "compiler-01/RECEIPT.json",
+    "bytes": 64241,
+    "sha256": "0da8a842334580cc2cd74f1d4b0f1b168701719c71a8276de34e633b4d231059",
+    "stored_sha256": "0da8a842334580cc2cd74f1d4b0f1b168701719c71a8276de34e633b4d231059"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p36a-frozen-native-analysis-and-boolean-assessment-01-20261027T132311Z/00.log",
+    "path": "compiler-01/00.log.gz",
+    "bytes": 84440,
+    "sha256": "94aee60e3c75327741fc161209bec9173d3232b12bcbb0eb0dc6e732e8d3cd83",
+    "stored_sha256": "06f54b0101073dbe15ee89b9c5c6d1495908f2654aa0d72d7ae23846436f0d8f"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p36a-parametric-analysis/docs/parity/p36a/attempts/02/JOB.json",
+    "path": "compiler-02/JOB.json",
+    "bytes": 70654,
+    "sha256": "b7571c0b269e7c52952e6f35f451081a2d52de199d3326186ad2b122785ef385",
+    "stored_sha256": "b7571c0b269e7c52952e6f35f451081a2d52de199d3326186ad2b122785ef385"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p36a-parametric-analysis/work/p36a-02.json",
+    "path": "compiler-02/RECEIPT.json",
+    "bytes": 76117,
+    "sha256": "c42ca9751bf93be041b78b79601c97ea41176d9254c8153b324f799161ea742c",
+    "stored_sha256": "c42ca9751bf93be041b78b79601c97ea41176d9254c8153b324f799161ea742c"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p36a-native-objective-fixture-remainder-02-20261027T132740Z/00.log",
+    "path": "compiler-02/00.log.gz",
+    "bytes": 13996,
+    "sha256": "bfc3d4591fa9bf9cc4dfadb57023ed4597adcc635c9a899e6e9e0d7fd88c78d4",
+    "stored_sha256": "5a33eafeef09ca5d564cbb3612abdcc387e96383d62525be282aa97846dd91aa"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p36a-parametric-analysis/docs/parity/p36a/JOB.json",
+    "path": "compiler-03/JOB.json",
+    "bytes": 72750,
+    "sha256": "0e3ce970ee8931fed26ed134ea835d3f7935a1bff3a7a662434ea61ee7553cd1",
+    "stored_sha256": "0e3ce970ee8931fed26ed134ea835d3f7935a1bff3a7a662434ea61ee7553cd1"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p36a-parametric-analysis/work/p36a-03.json",
+    "path": "compiler-03/RECEIPT.json",
+    "bytes": 98384,
+    "sha256": "5d16fa03ae181c69dfac2ef74945be9e47b6b789e72a74e8e0fc2122106eea34",
+    "stored_sha256": "5d16fa03ae181c69dfac2ef74945be9e47b6b789e72a74e8e0fc2122106eea34"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p36a-native-unit-diagnostic-remainder-03-20261027T132828Z/00.log",
+    "path": "compiler-03/00.log.gz",
+    "bytes": 30258,
+    "sha256": "5a4d6f82d4d28a1ee00d92d8b7eb54e327114df0a84deb2f7d20e81d0a06e011",
+    "stored_sha256": "afb57f8fd2433fe4edb0024901c11a6fc3a676fc43cf1c84a78e77a96756de83"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p36a-native-unit-diagnostic-remainder-03-20261027T132828Z/01.log",
+    "path": "compiler-03/01.log.gz",
+    "bytes": 3355,
+    "sha256": "464fe9d6192c946699da4501733986b8f3632ea31baa8efd5b8db97b0fe90ea7",
+    "stored_sha256": "07ed443668814e013db369de9f73a8daf6ffb9898d9f8b790fe367f6344e5f06"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p36a-native-unit-diagnostic-remainder-03-20261027T132828Z/02.log",
+    "path": "compiler-03/02.log.gz",
+    "bytes": 4255,
+    "sha256": "8ee7de69822cfbaa114d0ee4e11af7e391f39f5cfcec703e1412a9a7d81d9420",
+    "stored_sha256": "771d34f626044b56e717121c3af44ddb0c30d369a5c17b2fb0014c42a40523f3"
+  }
+]
