@@ -723,8 +723,8 @@
     },
     {
       "path": "crates/mbse-model/tests/parametrics.rs",
-      "bytes": 25583,
-      "sha256": "48f88cab6ad58046faba9ded69ce192fbb47ea387905a3c812ccacb20175f357"
+      "bytes": 27474,
+      "sha256": "c31dd6ef2bf7aa96302bc208c698321f1c1bf1b367e5f764cbaa386be8fb2252"
     },
     {
       "path": "crates/mbse-model/tests/relation_matrix.rs",
@@ -3802,5 +3802,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "f6bbced1fc7d365021040da810c0329cbcaba193f012d5a5bc0a59386ca77f1c"
+  "source_sha256": "86c1b1fc412cc36e297ef1de8ba423f3284dd0c401490f95e0837415772f55dd"
 }

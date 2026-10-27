@@ -343,6 +343,28 @@ fn parametric_boolean_text_and_foreign_value_sources_are_actionable_without_coer
             .unwrap_err()
             .contains("NUMERIC_SCALAR")
     );
+    let mut changed = t::load(&e.snapshot).unwrap();
+    changed.definitions.get_mut(&value).unwrap().kind = t::Kind::Value(t::Scalar::Text);
+    put(&mut e, &changed);
+    e.snapshot.validate().unwrap();
+    let key = set(
+        &mut e,
+        Form::Binding {
+            specification: a,
+            id: Some(b),
+            parameter: x.0.to_string(),
+            source: SourceForm::TypedValue {
+                property: prop.0.to_string(),
+                usage: "".into(),
+                unit: c::UnitId::Metre,
+            },
+        },
+    );
+    assert!(
+        run(&mut e, Action::Apply(key))
+            .unwrap_err()
+            .contains("NUMERIC_SCALAR")
+    );
     let mut foreign = e.snapshot.records[&RecordId(1)].clone();
     foreign.id = RecordId(20000);
     foreign.scope = foreign.id;
@@ -470,10 +492,10 @@ fn parametric_model_history_retains_newer_invalid_raw_and_in_use_removals_are_ex
     )
     .unwrap();
     let high = e.snapshot.next_id;
-    e.undo(&e.freshness()).unwrap();
+    e.undo_model(&e.freshness()).unwrap();
     assert_eq!(p::forms(&e.snapshot).unwrap(), forms);
     assert_eq!(e.snapshot.next_id, high);
-    e.redo(&e.freshness()).unwrap();
+    e.redo_model(&e.freshness()).unwrap();
     run(
         &mut e,
         Action::Remove {
@@ -646,6 +668,52 @@ fn parametric_raw_utf8_quota_shared512_and_native_binding_limits_refuse_without_
             system: "1".into(),
             name: "513th".into(),
             calculation: "".into(),
+        },
+    );
+    let before = e.snapshot.clone();
+    assert!(
+        run(&mut e, Action::Apply(key))
+            .unwrap_err()
+            .contains("LIMIT")
+    );
+    assert_eq!(e.snapshot, before);
+    let mut e = editor();
+    let a = spec(&mut e, false);
+    let mut first = None;
+    for i in 0..32 {
+        let id = parameter(&mut e, a, &format!("p{i}"), c::UnitId::Metre);
+        first.get_or_insert(id);
+        binding(&mut e, a, id, input("x"));
+    }
+    assert_eq!(
+        t::load(&e.snapshot).unwrap().parametrics[&a]
+            .parameters
+            .len(),
+        32
+    );
+    let key = set(
+        &mut e,
+        Form::Parameter {
+            specification: a,
+            id: None,
+            name: "p32".into(),
+            quantity: q(c::UnitId::Metre),
+        },
+    );
+    let before = e.snapshot.clone();
+    assert!(
+        run(&mut e, Action::Apply(key))
+            .unwrap_err()
+            .contains("LIMIT")
+    );
+    assert_eq!(e.snapshot, before);
+    let key = set(
+        &mut e,
+        Form::Binding {
+            specification: a,
+            id: None,
+            parameter: first.unwrap().0.to_string(),
+            source: input("x"),
         },
     );
     let before = e.snapshot.clone();
