@@ -58,8 +58,12 @@
       "P31b"
     ],
     "p31a": {
-      "state": "in_progress",
-      "scope": "finite control execution core and independent fixed trace fixtures"
+      "state": "core_checks_passed_review_pending",
+      "scope": "finite control execution core and independent fixed trace fixtures",
+      "execution_results": "p31a/README.md",
+      "distinct_case_inventory": 627,
+      "new_distinct_cases": 7,
+      "native_execution_checks": 0
     },
     "p31b": {
       "state": "planned",

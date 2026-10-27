@@ -1,0 +1,23 @@
+[
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p31-activity-execution/work/p31a-01.json",
+    "path": "compiler-01/RECEIPT.json",
+    "bytes": 70085,
+    "sha256": "17d584490adec38aa8d844c7aaf53808e61a56bb5472c5d65baf208b003e7bbb",
+    "stored_sha256": "17d584490adec38aa8d844c7aaf53808e61a56bb5472c5d65baf208b003e7bbb"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p31a-finite-activity-execution-01-20261027T070151Z/00.log",
+    "path": "compiler-01/00.log.gz",
+    "bytes": 77204,
+    "sha256": "8f4f923c3eca14739e912be60cdeb5ca7ca4a23e51ed3239ebfb4eea7596eb44",
+    "stored_sha256": "7d5e74c28b0757b7ff989f7fce84f541415830c78ce4de26ce152e7cf566fb85"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p31a-finite-activity-execution-01-20261027T070151Z/01.log",
+    "path": "compiler-01/01.log.gz",
+    "bytes": 4082,
+    "sha256": "2245cc1e838a2c7c30ba5bc16a008633bbd60e59a49b54dd1f2f1b3a03cf1022",
+    "stored_sha256": "02281195c0fff100fc75ac68f910f7bd06b799c07c8861b6591cf9ee7d535c7e"
+  }
+]
