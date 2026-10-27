@@ -78,15 +78,21 @@ pub fn parse_endpoint(text: &str, snapshot: &Snapshot) -> Result<TraceEndpoint, 
         _ => Err("TRACE_ENDPOINT_PREFIX_REQUIRED".into()),
     }
 }
-fn native_current(endpoint: &NativeEndpoint, snapshot: &Snapshot) -> Result<(), String> {
-    if endpoint.document != snapshot.document_id.0 {
-        return Err("TRACE_NATIVE_DOCUMENT_MISMATCH".into());
-    }
-    if native_endpoint(snapshot, endpoint.id)? != TraceEndpoint::Native(endpoint.clone()) {
-        return Err("TRACE_NATIVE_KIND_MISMATCH".into());
-    }
+fn native_current_with_store(endpoint:&NativeEndpoint,snapshot:&Snapshot,store:&types::Store)->Result<(),String>{
+    if endpoint.document != snapshot.document_id.0 { return Err("TRACE_NATIVE_DOCUMENT_MISMATCH".into()); }
+    if types::tags::target_kind(snapshot,store,Id(endpoint.id))? != endpoint.expected {return Err("TRACE_NATIVE_KIND_MISMATCH".into());}
     Ok(())
 }
+fn native_current(endpoint:&NativeEndpoint,snapshot:&Snapshot)->Result<(),String>{
+    if endpoint.document != snapshot.document_id.0 {return Err("TRACE_NATIVE_DOCUMENT_MISMATCH".into());}
+    native_current_with_store(endpoint,snapshot,&types::load(snapshot)?)
+}
+/// Same endpoint projection with one already-admitted store, for bounded aggregate queries.
+pub(crate) fn project_with_store(snapshot:&Snapshot,store:&types::Store,register:&Register,t:&RequirementTrace)->TraceProjection{
+    let result=endpoints(register,t).and_then(|_|match &t.source {TraceEndpoint::Native(n)=>native_current_with_store(n,snapshot,store),_=>Ok(())});
+    TraceProjection{trace:t.id,active:result.is_ok(),reason:result.err().unwrap_or_else(||"Declared dependency only; no fulfillment or verification claim".into())}
+}
+
 fn endpoints(s: &Register, t: &RequirementTrace) -> Result<(), String> {
     if !s.requirements.contains_key(&t.target) {
         return Err("TRACE_TARGET_REQUIREMENT_MISSING".into());
