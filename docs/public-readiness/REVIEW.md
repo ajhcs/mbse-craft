@@ -1,0 +1,9 @@
+# Isolated contributor-handoff review
+
+Reviewed candidate `91f41b1df8090d822dea67e46e04440ddab9ff12` against PR #62 merge `2858c353ce2277a76d41b89e29591bb7903e276b` in separate `codex/review-public-handoff`. Same-agent documentary review. Provider comments and inline threads were empty.
+
+The delta contains only README, contributor/roadmap/publication documentation and bounded scan evidence. No Cargo/source/vendor/lock, release, signing, service or provider changes. Read the changed instructions against existing AGENTS.md, scripts/dev.sh, the PR #62 source-specific review and root/upstream notices. Explicit output paths, single Cargo job, shared-host admission, actual branch/default-main distinction and test portability limitations are retained. All changed Markdown local links, diff check and parity-package consistency passed (58 positions,56 NOT_RUN,18 rejected negative cases). No new Cargo/native execution was needed or claimed.
+
+The reports contain empty JSON arrays; all three scans exited0. History scope is local reachable refs after origin fetch; candidate snapshot scope is tracked archive depth2; the new-document scan is separate. No global credential/privacy guarantee is claimed. The publication description explicitly discloses retained machine paths/device identity/worktree inventories and preserves history. The existing main tip is an ancestor of the integration, so promotion introduces the reviewed integration tree without a source conflict; exact-head/tree checks still apply at the later merge.
+
+One wording correction makes the publication document describe the refreshed PR #1 promotion description and records the third scan. No blocking findings remain. Canonical, P39c candidate and P39c review retain clean original heads. The worktrees removed by the user are not restored or pruned. PR #1 promotion and repository visibility are prepared for the operator's go-ahead; neither occurs in this documentation PR.
