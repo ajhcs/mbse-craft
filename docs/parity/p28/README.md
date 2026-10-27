@@ -35,10 +35,16 @@ and pointer/key actions, pixels and cold copies.61 prior available checkouts ret
 heads/status;18 user-removed directories retain registered heads. No reset/recreation/
 prune or dependencies/licenses/build-script changes.
 
-Review follow-up F01: axis callbacks currently retain only an ID and consult the
-latest report at dispatch. Preserve the original report with the queued axis
-selection so a same-frame history/refresh cannot rebind it to newer source. Cell
-edit proofs are already sealed. Correct in isolated review before merge.
+F01 is corrected in [isolated review](REVIEW.md): queued axes retain the original
+report, preventing a same-frame source/history refresh from replacing the guard.
+New delayed-axis refusal and existing affected rendered-axis cases pass (2), plus
+final build/native1. Actual row1002/column1000 selection preserves whole saved
+Snapshot/all5 maps. Final727-file source
+`c657bbfd0d4c0356e75f9091624781b76dfa2aa37ecd2393913651c50465eabc`, binary
+`794e8af3f86094f87d9bbe5e6f1a8f3f805d847074ee175610b45a1803007e80`.
+[Review results](verification/review/RESULTS.json) record16 additional artifacts,
+62 prior available checkouts preserved/18 removed registered heads and distinct572
+inventory (9 new total). No summed final-source full-workspace claim.
 
 Same-agent bounded Linux; native scale/paging performance, all56 broad specs,
 integrated exits/full NoMagic/SysML/Craft/platform/independent engineering acceptance

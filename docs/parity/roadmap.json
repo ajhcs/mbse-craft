@@ -708,11 +708,16 @@
       "acceptance": [
         "A cell edit uses the authoritative typed relation command; wrong-kind cells are disabled; matrix and diagram agree after reopen."
       ],
-      "state": "in_progress",
+      "state": "review_ready",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "branch": "codex/m5-p28-relation-matrix",
-      "contract": "docs/parity/p28/CONTRACT.md"
+      "contract": "docs/parity/p28/CONTRACT.md",
+      "pr_number": 36,
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/36",
+      "execution_results": "docs/parity/p28/README.md",
+      "review": "docs/parity/p28/REVIEW.md",
+      "review_preservation": "docs/parity/p28/REVIEW_PRESERVATION.json"
     },
     {
       "id": "P29",

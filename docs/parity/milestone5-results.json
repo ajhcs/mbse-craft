@@ -102,14 +102,15 @@
     }
   },
   "p28": {
-    "state": "review_pending",
+    "state": "review_ready",
     "base_commit": "894e00b8359422e250f670a2b971d11a666b93b3",
     "execution_results": "p28/README.md",
-    "distinct_case_inventory": 571,
-    "new_distinct_cases": 8,
-    "native_runs": 2,
-    "findings": [
-      "F01 bind queued axis selection to original report"
-    ]
+    "distinct_case_inventory": 572,
+    "new_distinct_cases": 9,
+    "native_runs": 3,
+    "findings": [],
+    "pr_number": 36,
+    "review": "p28/REVIEW.md",
+    "final_source_full_workspace_claim": false
   }
 }
