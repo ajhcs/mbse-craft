@@ -1044,6 +1044,7 @@ impl Editor {
         let mut created = None;
         let accepted = match command {
             Command::Typed(action)=>{
+                if let crate::types::Action::Admission(plan)=&action{plan.check(self)?;}
                 if let crate::types::Action::Deletion(crate::types::deletion::Action::Apply(plan))=&action{plan.check_editor(self)?;}
                 if let crate::types::Action::Refactor(crate::types::refactor::Action::Apply(plan))=&action{plan.check(self)?;}
                 let before=ModelState::capture(&self.snapshot);

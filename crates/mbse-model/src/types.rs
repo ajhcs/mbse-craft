@@ -16,6 +16,7 @@ pub mod values;
 pub mod refactor;
 pub mod deletion;
 pub mod tags;
+pub mod admission;
 mod deletion_native;
 pub const NAMESPACE: &str = "mbse-craft.types/1";
 pub const DRAFTS: &str = "mbse-craft.type-drafts/1";
@@ -636,6 +637,7 @@ pub fn validate_snapshot(snapshot: &Snapshot, native: &BTreeSet<RecordId>) -> Re
 }
 #[derive(Clone, Debug)]
 pub enum Action {
+    Admission(Box<admission::Plan>),
     StateMachine(state_machines::Action),
     Scenario(scenarios::Action),
     Parametric(parametrics::Action),
@@ -689,6 +691,7 @@ pub fn apply(snapshot: &mut Snapshot, action: Action) -> Result<Change, String> 
 fn apply_inner(snapshot: &mut Snapshot, action: Action) -> Result<Change, String> {
     let mut store = load(snapshot)?;
     match action {
+        Action::Admission(plan)=>admission::apply_inner(snapshot,*plan),
         Action::StateMachine(action)=>state_machines::apply_inner(snapshot,action),
         Action::Scenario(action)=>scenarios::apply_inner(snapshot,action),
         Action::Parametric(action)=>parametrics::apply_inner(snapshot,action),
