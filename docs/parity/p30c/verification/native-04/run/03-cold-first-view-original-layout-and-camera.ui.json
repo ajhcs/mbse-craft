@@ -1,0 +1,4641 @@
+{
+  "activities": {
+    "accepted": {
+      "1033": {
+        "flows": {
+          "1042": {
+            "guard": null,
+            "id": 1042,
+            "kind": "Control",
+            "name": "Begin acquisition",
+            "source": 1035,
+            "target": 1036
+          },
+          "1043": {
+            "guard": null,
+            "id": 1043,
+            "kind": "Control",
+            "name": "Review acquired value",
+            "source": 1036,
+            "target": 1037
+          },
+          "1044": {
+            "guard": {
+              "Boolean": true
+            },
+            "id": 1044,
+            "kind": "Control",
+            "name": "Record reviewed distance",
+            "source": 1037,
+            "target": 1038
+          },
+          "1045": {
+            "guard": "Else",
+            "id": 1045,
+            "kind": "Control",
+            "name": "Finish without record",
+            "source": 1037,
+            "target": 1039
+          },
+          "1046": {
+            "guard": null,
+            "id": 1046,
+            "kind": "Control",
+            "name": "Finish recording",
+            "source": 1038,
+            "target": 1039
+          },
+          "1047": {
+            "guard": null,
+            "id": 1047,
+            "kind": "Object",
+            "name": "Convey distance",
+            "source": 1040,
+            "target": 1041
+          }
+        },
+        "id": 1033,
+        "name": "Synthetic inspection sequence",
+        "nodes": {
+          "1035": {
+            "id": 1035,
+            "kind": "Initial",
+            "name": "Start inspection",
+            "partition": null
+          },
+          "1036": {
+            "id": 1036,
+            "kind": "Action",
+            "name": "Acquire distance",
+            "partition": 1034
+          },
+          "1037": {
+            "id": 1037,
+            "kind": "Decision",
+            "name": "Review check",
+            "partition": 1034
+          },
+          "1038": {
+            "id": 1038,
+            "kind": "Action",
+            "name": "Record disposition",
+            "partition": 1034
+          },
+          "1039": {
+            "id": 1039,
+            "kind": "Final",
+            "name": "Finish inspection",
+            "partition": null
+          }
+        },
+        "partitions": {
+          "1034": {
+            "id": 1034,
+            "name": "Reviewer"
+          }
+        },
+        "pins": {
+          "1040": {
+            "direction": "Out",
+            "id": 1040,
+            "name": "Distance result",
+            "owner": 1036,
+            "value_type": 1005
+          },
+          "1041": {
+            "direction": "In",
+            "id": 1041,
+            "name": "Distance input",
+            "owner": 1038,
+            "value_type": 1005
+          }
+        },
+        "system": 1
+      }
+    },
+    "activity": 1033,
+    "current": {
+      "form": {
+        "activity": 1033,
+        "guard": "",
+        "id": 1047,
+        "kind": "Object",
+        "name": "Convey distance",
+        "source": "1040",
+        "target": "1040"
+      },
+      "kind": "Flow"
+    },
+    "form_admitted": true,
+    "gesture_active": false,
+    "note": "",
+    "open": false,
+    "owner_current": true,
+    "proposals": {
+      "activity:1033": {
+        "id": 1033,
+        "kind": "Activity",
+        "name": "Synthetic inspection sequence",
+        "system": "1"
+      },
+      "flow:1033:1042": {
+        "form": {
+          "activity": 1033,
+          "guard": "",
+          "id": 1042,
+          "kind": "Control",
+          "name": "Begin acquisition",
+          "source": "1035",
+          "target": "1036"
+        },
+        "kind": "Flow"
+      },
+      "flow:1033:1043": {
+        "form": {
+          "activity": 1033,
+          "guard": "",
+          "id": 1043,
+          "kind": "Control",
+          "name": "Review acquired value",
+          "source": "1036",
+          "target": "1037"
+        },
+        "kind": "Flow"
+      },
+      "flow:1033:1044": {
+        "form": {
+          "activity": 1033,
+          "guard": "x >",
+          "id": 1044,
+          "kind": "Control",
+          "name": "Record reviewed distance",
+          "source": "1037",
+          "target": "1038"
+        },
+        "kind": "Flow"
+      },
+      "flow:1033:1045": {
+        "form": {
+          "activity": 1033,
+          "guard": "else ?",
+          "id": 1045,
+          "kind": "Control",
+          "name": "Finish without record",
+          "source": "1037",
+          "target": "1039"
+        },
+        "kind": "Flow"
+      },
+      "flow:1033:1046": {
+        "form": {
+          "activity": 1033,
+          "guard": "",
+          "id": 1046,
+          "kind": "Control",
+          "name": "Finish recording",
+          "source": "1038",
+          "target": "1039"
+        },
+        "kind": "Flow"
+      },
+      "flow:1033:1047": {
+        "form": {
+          "activity": 1033,
+          "guard": "",
+          "id": 1047,
+          "kind": "Object",
+          "name": "Convey distance",
+          "source": "1040",
+          "target": "1040"
+        },
+        "kind": "Flow"
+      },
+      "node:1033:1035": {
+        "activity": 1033,
+        "id": 1035,
+        "kind": "Node",
+        "name": "Start inspection",
+        "node_kind": "Initial",
+        "partition": ""
+      },
+      "node:1033:1036": {
+        "activity": 1033,
+        "id": 1036,
+        "kind": "Node",
+        "name": "Acquire distance",
+        "node_kind": "Action",
+        "partition": "1034"
+      },
+      "node:1033:1037": {
+        "activity": 1033,
+        "id": 1037,
+        "kind": "Node",
+        "name": "Review check",
+        "node_kind": "Decision",
+        "partition": "1034"
+      },
+      "node:1033:1038": {
+        "activity": 1033,
+        "id": 1038,
+        "kind": "Node",
+        "name": "Record disposition",
+        "node_kind": "Action",
+        "partition": "1034"
+      },
+      "node:1033:1039": {
+        "activity": 1033,
+        "id": 1039,
+        "kind": "Node",
+        "name": "Finish inspection",
+        "node_kind": "Final",
+        "partition": ""
+      },
+      "partition:1033:1034": {
+        "activity": 1033,
+        "id": 1034,
+        "kind": "Partition",
+        "name": "Reviewer"
+      },
+      "pin:1033:1040": {
+        "activity": 1033,
+        "direction": "Out",
+        "id": 1040,
+        "kind": "Pin",
+        "name": "Distance result",
+        "owner": "1036",
+        "value_type": "1005"
+      },
+      "pin:1033:1041": {
+        "activity": 1033,
+        "direction": "In",
+        "id": 1041,
+        "kind": "Pin",
+        "name": "Distance input",
+        "owner": "1038",
+        "value_type": "1005"
+      }
+    },
+    "rendered": {
+      "current": true,
+      "endpoints": [
+        [
+          1042,
+          [
+            855.6868286132812,
+            665.9315185546875
+          ],
+          [
+            1038.25,
+            682.0765380859375
+          ]
+        ],
+        [
+          1043,
+          [
+            1375.75,
+            697.0
+          ],
+          [
+            1405.75,
+            697.0
+          ]
+        ],
+        [
+          1044,
+          [
+            1455.966796875,
+            717.8306884765625
+          ],
+          [
+            640.75,
+            861.0943603515625
+          ]
+        ],
+        [
+          1045,
+          [
+            1464.1251220703125,
+            721.2149047851562
+          ],
+          [
+            862.6983032226562,
+            853.1605834960938
+          ]
+        ],
+        [
+          1046,
+          [
+            640.75,
+            875.8265380859375
+          ],
+          [
+            815.8423461914062,
+            860.3421630859375
+          ]
+        ],
+        [
+          1047,
+          [
+            1375.75,
+            890.75
+          ],
+          [
+            1405.75,
+            890.75
+          ]
+        ]
+      ],
+      "flows": [
+        1042,
+        1043,
+        1044,
+        1045,
+        1046,
+        1047
+      ],
+      "occurrences": [
+        {
+          "element": 1034,
+          "geometry": {
+            "height": 112.0,
+            "width": 270.0,
+            "x": 25.0,
+            "y": 24.0
+          },
+          "occurrence": "23"
+        },
+        {
+          "element": 1035,
+          "geometry": {
+            "height": 112.0,
+            "width": 270.0,
+            "x": 319.0,
+            "y": 24.0
+          },
+          "occurrence": "24"
+        },
+        {
+          "element": 1036,
+          "geometry": {
+            "height": 112.0,
+            "width": 270.0,
+            "x": 613.0,
+            "y": 24.0
+          },
+          "occurrence": "25"
+        },
+        {
+          "element": 1037,
+          "geometry": {
+            "height": 112.0,
+            "width": 270.0,
+            "x": 907.0,
+            "y": 24.0
+          },
+          "occurrence": "26"
+        },
+        {
+          "element": 1038,
+          "geometry": {
+            "height": 112.0,
+            "width": 270.0,
+            "x": 25.0,
+            "y": 179.0
+          },
+          "occurrence": "27"
+        },
+        {
+          "element": 1039,
+          "geometry": {
+            "height": 112.0,
+            "width": 270.0,
+            "x": 319.0,
+            "y": 179.0
+          },
+          "occurrence": "28"
+        },
+        {
+          "element": 1040,
+          "geometry": {
+            "height": 112.0,
+            "width": 270.0,
+            "x": 613.0,
+            "y": 179.0
+          },
+          "occurrence": "29"
+        },
+        {
+          "element": 1041,
+          "geometry": {
+            "height": 112.0,
+            "width": 270.0,
+            "x": 907.0,
+            "y": 179.0
+          },
+          "occurrence": "30"
+        }
+      ],
+      "overlapping_flows": 0,
+      "preview_only": false,
+      "view": "22"
+    },
+    "selected": null
+  },
+  "command_catalog": {
+    "items": [
+      {
+        "default_shortcut": "Ctrl+Alt+H",
+        "enabled": true,
+        "id": "tools.activities",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Activities and diagrams",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+H"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+L",
+        "enabled": true,
+        "id": "view.viewpoints",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Viewpoints and native card filters",
+        "menu": "View",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+L"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+M",
+        "enabled": true,
+        "id": "tools.relation_matrix",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Native relation matrix",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+M"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+J",
+        "enabled": true,
+        "id": "tools.profile_tags",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Exact profiles and literal tags",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+J"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+G",
+        "enabled": true,
+        "id": "tools.semantic_delete",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Delete model records with impact preview",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+G"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+B",
+        "enabled": true,
+        "id": "tools.clone_move",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Clone and move with reference preview",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+B"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+Y",
+        "enabled": true,
+        "id": "tools.values",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Defaults and instance values",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+Y"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+K",
+        "enabled": true,
+        "id": "tools.connectors",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Connectors and conveyed items",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+K"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+I",
+        "enabled": true,
+        "id": "tools.ports",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Ports and interfaces",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+I"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+T",
+        "enabled": true,
+        "id": "tools.types",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Types and properties",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+T"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+D",
+        "enabled": true,
+        "id": "file.choose",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Choose model file\u2026",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+D"
+      },
+      {
+        "default_shortcut": "Ctrl+N",
+        "enabled": true,
+        "id": "file.new",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "New",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+N"
+      },
+      {
+        "default_shortcut": "Ctrl+O",
+        "enabled": true,
+        "id": "file.open",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Open",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+O"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+O",
+        "enabled": true,
+        "id": "file.recover",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Recover",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+O"
+      },
+      {
+        "default_shortcut": "Ctrl+I",
+        "enabled": true,
+        "id": "file.import_sysml",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Import SysML",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+I"
+      },
+      {
+        "default_shortcut": "Ctrl+S",
+        "enabled": true,
+        "id": "file.save",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Save",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+S"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+S",
+        "enabled": true,
+        "id": "file.recovery_copy",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Recovery copy",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+S"
+      },
+      {
+        "default_shortcut": "Ctrl+E",
+        "enabled": true,
+        "id": "file.export_sysml",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Export SysML copy",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+E"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+R",
+        "enabled": true,
+        "id": "file.review_recoveries",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Review recovery copies",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+R"
+      },
+      {
+        "default_shortcut": "Ctrl+Q",
+        "enabled": true,
+        "id": "file.quit",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Quit",
+        "menu": "File",
+        "reason": null,
+        "shortcut": "Ctrl+Q"
+      },
+      {
+        "default_shortcut": "Ctrl+Z",
+        "enabled": false,
+        "id": "edit.undo",
+        "keyboard_scope": "model; fixed native-field Ctrl/Cmd+Z and Ctrl/Cmd+Shift+Z",
+        "label": "Undo",
+        "menu": "Edit",
+        "reason": "No model history available.",
+        "shortcut": "Ctrl+Z"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+Z",
+        "enabled": false,
+        "id": "edit.redo",
+        "keyboard_scope": "model; fixed native-field Ctrl/Cmd+Z and Ctrl/Cmd+Shift+Z",
+        "label": "Redo",
+        "menu": "Edit",
+        "reason": "No model history available.",
+        "shortcut": "Ctrl+Shift+Z"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+Z",
+        "enabled": false,
+        "id": "view.layout_undo",
+        "keyboard_scope": "canvas; inactive while editing text or an auxiliary window",
+        "label": "Layout Undo",
+        "menu": "View",
+        "reason": "No layout history available in this direction.",
+        "shortcut": "Ctrl+Alt+Z"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+Shift+Z",
+        "enabled": false,
+        "id": "view.layout_redo",
+        "keyboard_scope": "canvas; inactive while editing text or an auxiliary window",
+        "label": "Layout Redo",
+        "menu": "View",
+        "reason": "No layout history available in this direction.",
+        "shortcut": "Ctrl+Alt+Shift+Z"
+      },
+      {
+        "default_shortcut": "Ctrl+F",
+        "enabled": true,
+        "id": "edit.search",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Search native records",
+        "menu": "Edit",
+        "reason": null,
+        "shortcut": "Ctrl+F"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+U",
+        "enabled": true,
+        "id": "edit.usages",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Find usages",
+        "menu": "Edit",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+U"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+I",
+        "enabled": true,
+        "id": "edit.impact",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Inspect record impact",
+        "menu": "Edit",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+I"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+P",
+        "enabled": true,
+        "id": "view.presentation_source",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Inspect presentation source\u2026",
+        "menu": "View",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+P"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+E",
+        "enabled": true,
+        "id": "tools.external_projection",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Open external projection",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+E"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+A",
+        "enabled": true,
+        "id": "tools.assurance",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Requirements and evidence",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+A"
+      },
+      {
+        "default_shortcut": "Ctrl+Shift+L",
+        "enabled": true,
+        "id": "tools.library",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Browse library folder",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Shift+L"
+      },
+      {
+        "default_shortcut": "Ctrl+Comma",
+        "enabled": true,
+        "id": "tools.recovery_settings",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Recovery settings",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Comma"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+Comma",
+        "enabled": true,
+        "id": "tools.shortcuts",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Keyboard shortcuts",
+        "menu": "Tools",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+Comma"
+      },
+      {
+        "default_shortcut": "Ctrl+Alt+P",
+        "enabled": true,
+        "id": "view.panels",
+        "keyboard_scope": "workspace; existing command prerequisites apply",
+        "label": "Panel layout",
+        "menu": "View",
+        "reason": null,
+        "shortcut": "Ctrl+Alt+P"
+      }
+    ],
+    "last": {
+      "id": "tools.activities",
+      "reason": null,
+      "refused": false,
+      "scope": "model",
+      "surface": "keyboard"
+    },
+    "schema": "mbse-craft.command-catalog/1"
+  },
+  "connector_routes": {
+    "edges": {
+      "13": {
+        "connector": "1018",
+        "id": "13",
+        "presence": {
+          "state": "Active"
+        },
+        "source": "11",
+        "target": "12",
+        "view": "1",
+        "visible": true
+      },
+      "16": {
+        "connector": "1018",
+        "id": "16",
+        "presence": {
+          "state": "Active"
+        },
+        "source": "14",
+        "target": "15",
+        "view": "2",
+        "visible": true
+      },
+      "17": {
+        "connector": "1019",
+        "id": "17",
+        "presence": {
+          "state": "Active"
+        },
+        "source": "14",
+        "target": "15",
+        "view": "2",
+        "visible": true
+      }
+    },
+    "labels": {
+      "13": {
+        "avoids_cards": true,
+        "inside_visible_viewport": true,
+        "rect": [
+          546.9068603515625,
+          1155.8548583984375,
+          718.9381103515625,
+          1173.8548583984375
+        ],
+        "separate_from_prior_labels": true,
+        "text": "Measurement transfer \u00b7 Value#1005",
+        "viewport": [
+          352.0,
+          1027.0,
+          2192.0,
+          1354.0
+        ]
+      }
+    },
+    "profile": "mbse-craft.native-views/6",
+    "schema": "mbse-craft.connector-routes-ui/1"
+  },
+  "connectors": {
+    "forms": {
+      "1018": {
+        "conveyed": "1005?",
+        "name": "Measurement transfer",
+        "owner": 1004,
+        "source_port": "1017",
+        "source_usage": "1009",
+        "target_port": "1015",
+        "target_usage": "1010"
+      },
+      "1019": {
+        "conveyed": "1005?",
+        "name": "Second transfer",
+        "owner": 1004,
+        "source_port": "1017",
+        "source_usage": "1009",
+        "target_port": "1015",
+        "target_usage": "1010"
+      }
+    },
+    "note": "",
+    "open": false,
+    "owner": null,
+    "schema": "mbse-craft.connectors-ui/1",
+    "selected": null,
+    "store": {
+      "activities": {
+        "1033": {
+          "flows": {
+            "1042": {
+              "guard": null,
+              "id": 1042,
+              "kind": "Control",
+              "name": "Begin acquisition",
+              "source": 1035,
+              "target": 1036
+            },
+            "1043": {
+              "guard": null,
+              "id": 1043,
+              "kind": "Control",
+              "name": "Review acquired value",
+              "source": 1036,
+              "target": 1037
+            },
+            "1044": {
+              "guard": {
+                "Boolean": true
+              },
+              "id": 1044,
+              "kind": "Control",
+              "name": "Record reviewed distance",
+              "source": 1037,
+              "target": 1038
+            },
+            "1045": {
+              "guard": "Else",
+              "id": 1045,
+              "kind": "Control",
+              "name": "Finish without record",
+              "source": 1037,
+              "target": 1039
+            },
+            "1046": {
+              "guard": null,
+              "id": 1046,
+              "kind": "Control",
+              "name": "Finish recording",
+              "source": 1038,
+              "target": 1039
+            },
+            "1047": {
+              "guard": null,
+              "id": 1047,
+              "kind": "Object",
+              "name": "Convey distance",
+              "source": 1040,
+              "target": 1041
+            }
+          },
+          "id": 1033,
+          "name": "Synthetic inspection sequence",
+          "nodes": {
+            "1035": {
+              "id": 1035,
+              "kind": "Initial",
+              "name": "Start inspection",
+              "partition": null
+            },
+            "1036": {
+              "id": 1036,
+              "kind": "Action",
+              "name": "Acquire distance",
+              "partition": 1034
+            },
+            "1037": {
+              "id": 1037,
+              "kind": "Decision",
+              "name": "Review check",
+              "partition": 1034
+            },
+            "1038": {
+              "id": 1038,
+              "kind": "Action",
+              "name": "Record disposition",
+              "partition": 1034
+            },
+            "1039": {
+              "id": 1039,
+              "kind": "Final",
+              "name": "Finish inspection",
+              "partition": null
+            }
+          },
+          "partitions": {
+            "1034": {
+              "id": 1034,
+              "name": "Reviewer"
+            }
+          },
+          "pins": {
+            "1040": {
+              "direction": "Out",
+              "id": 1040,
+              "name": "Distance result",
+              "owner": 1036,
+              "value_type": 1005
+            },
+            "1041": {
+              "direction": "In",
+              "id": 1041,
+              "name": "Distance input",
+              "owner": 1038,
+              "value_type": 1005
+            }
+          },
+          "system": 1
+        }
+      },
+      "connectors": {
+        "1018": {
+          "conveyed": 1005,
+          "id": 1018,
+          "name": "Measurement transfer",
+          "owner": 1008,
+          "source": {
+            "port": 1017,
+            "usage": 1009
+          },
+          "target": {
+            "port": 1015,
+            "usage": 1010
+          }
+        },
+        "1019": {
+          "conveyed": 1005,
+          "id": 1019,
+          "name": "Second transfer",
+          "owner": 1008,
+          "source": {
+            "port": 1017,
+            "usage": 1009
+          },
+          "target": {
+            "port": 1015,
+            "usage": 1010
+          }
+        },
+        "1025": {
+          "conveyed": 1005,
+          "id": 1025,
+          "name": "Measurement transfer",
+          "owner": 1021,
+          "source": {
+            "port": 1017,
+            "usage": 1023
+          },
+          "target": {
+            "port": 1015,
+            "usage": 1024
+          }
+        },
+        "1026": {
+          "conveyed": 1005,
+          "id": 1026,
+          "name": "Second transfer",
+          "owner": 1021,
+          "source": {
+            "port": 1017,
+            "usage": 1023
+          },
+          "target": {
+            "port": 1015,
+            "usage": 1024
+          }
+        }
+      },
+      "defaults": {
+        "1020": {
+          "kind": "Real",
+          "text": "17"
+        }
+      },
+      "definitions": {
+        "1004": {
+          "id": 1004,
+          "kind": "Component",
+          "name": "Subsystem",
+          "system": 1
+        },
+        "1005": {
+          "id": 1005,
+          "kind": {
+            "Value": "Real"
+          },
+          "name": "Distance",
+          "system": 1
+        },
+        "1007": {
+          "id": 1007,
+          "kind": "Component",
+          "name": "Device",
+          "system": 1
+        },
+        "1008": {
+          "id": 1008,
+          "kind": "Component",
+          "name": "Alternate assembly",
+          "system": 1
+        },
+        "1021": {
+          "id": 1021,
+          "kind": "Component",
+          "name": "Subsystem copy revised",
+          "system": 1
+        }
+      },
+      "interfaces": {
+        "1012": {
+          "direction": "In",
+          "id": 1012,
+          "name": "Distance input contract",
+          "payload": 1005,
+          "system": 1
+        },
+        "1013": {
+          "direction": "In",
+          "id": 1013,
+          "name": "Compatible distance input",
+          "payload": 1005,
+          "system": 1
+        },
+        "1014": {
+          "direction": "Out",
+          "id": 1014,
+          "name": "Distance output",
+          "payload": 1005,
+          "system": 1
+        }
+      },
+      "overrides": {
+        "1009": {
+          "1020": {
+            "kind": "Real",
+            "text": "23"
+          }
+        },
+        "1023": {
+          "1020": {
+            "kind": "Real",
+            "text": "23"
+          }
+        }
+      },
+      "ports": {
+        "1015": {
+          "assignment": 1013,
+          "contract": 1012,
+          "id": 1015,
+          "name": "measurement input revised",
+          "owner": 1007
+        },
+        "1016": {
+          "assignment": 1013,
+          "contract": 1012,
+          "id": 1016,
+          "name": "cross-view input",
+          "owner": 1007
+        },
+        "1017": {
+          "assignment": null,
+          "contract": 1014,
+          "id": 1017,
+          "name": "measurement output",
+          "owner": 1007
+        }
+      },
+      "profile": "mbse-craft.types/1",
+      "profile_applications": {
+        "1003|urn:mbse-craft:qa|1.0|Valve": {
+          "expected": "Measure",
+          "profile": {
+            "namespace": "urn:mbse-craft:qa",
+            "version": "1.0"
+          },
+          "stereotype": "Valve",
+          "target": 1003,
+          "values": {
+            "label": {
+              "kind": "Text",
+              "text": "prototype"
+            }
+          }
+        },
+        "1021|urn:mbse-craft:qa|1.0|Valve": {
+          "expected": "ComponentDefinition",
+          "profile": {
+            "namespace": "urn:mbse-craft:qa",
+            "version": "1.0"
+          },
+          "stereotype": "Valve",
+          "target": 1021,
+          "values": {
+            "label": {
+              "kind": "Text",
+              "text": "prototype"
+            }
+          }
+        },
+        "1023|urn:mbse-craft:qa|1.0|Valve": {
+          "expected": "Part",
+          "profile": {
+            "namespace": "urn:mbse-craft:qa",
+            "version": "1.0"
+          },
+          "stereotype": "Valve",
+          "target": 1023,
+          "values": {
+            "label": {
+              "kind": "Text",
+              "text": "prototype"
+            }
+          }
+        }
+      },
+      "profiles": {
+        "urn:mbse-craft:qa|1.0": {
+          "identity": {
+            "namespace": "urn:mbse-craft:qa",
+            "version": "1.0"
+          },
+          "stereotypes": {
+            "Valve": {
+              "applies_to": [
+                "Measure",
+                "ComponentDefinition",
+                "Part"
+              ],
+              "tags": {
+                "label": "Text"
+              }
+            }
+          }
+        }
+      },
+      "properties": {
+        "1006": {
+          "id": 1006,
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          },
+          "name": "length",
+          "owner": 1004,
+          "value_type": 1005
+        },
+        "1020": {
+          "id": 1020,
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          },
+          "name": "instance gain",
+          "owner": 1007,
+          "value_type": 1005
+        },
+        "1022": {
+          "id": 1022,
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          },
+          "name": "length",
+          "owner": 1021,
+          "value_type": 1005
+        }
+      },
+      "schema_version": 1,
+      "usages": {
+        "1009": {
+          "id": 1009,
+          "kind": "Part",
+          "name": "primary device",
+          "owner": 1008,
+          "target": 1007
+        },
+        "1010": {
+          "id": 1010,
+          "kind": "Part",
+          "name": "secondary device",
+          "owner": 1008,
+          "target": 1007
+        },
+        "1011": {
+          "id": 1011,
+          "kind": "Reference",
+          "name": "reference to assembly",
+          "owner": 1007,
+          "target": 1004
+        },
+        "1023": {
+          "id": 1023,
+          "kind": "Part",
+          "name": "primary device",
+          "owner": 1021,
+          "target": 1007
+        },
+        "1024": {
+          "id": 1024,
+          "kind": "Part",
+          "name": "secondary device",
+          "owner": 1021,
+          "target": 1007
+        }
+      }
+    }
+  },
+  "deletion": {
+    "applicable": false,
+    "form": {
+      "cascade": true,
+      "ids": "1027?"
+    },
+    "note": "",
+    "open": false,
+    "schema": "mbse-craft.deletion-ui/1",
+    "summary": null
+  },
+  "error": false,
+  "external_copy_pending": false,
+  "feedback": "Select a model card to edit its fields. Model values and unfinished text remain separate.",
+  "file_operations": {
+    "backend": "application-owned chooser; no OS-picker claim",
+    "listing_pending": false,
+    "note": "",
+    "open": false,
+    "outcome": "idle",
+    "pending": false,
+    "schema": "mbse-craft.file-operations/1"
+  },
+  "frame_override": null,
+  "frame_policy": "Desktop",
+  "layout_recovery_status": "awaiting timer check",
+  "model_revision": 103,
+  "native_extensions": {
+    "namespaces": {
+      "mbse-craft.type-drafts/1": {
+        "activity_forms": {
+          "activity:1033": {
+            "id": 1033,
+            "kind": "Activity",
+            "name": "Synthetic inspection sequence",
+            "system": "1"
+          },
+          "flow:1033:1042": {
+            "form": {
+              "activity": 1033,
+              "guard": "",
+              "id": 1042,
+              "kind": "Control",
+              "name": "Begin acquisition",
+              "source": "1035",
+              "target": "1036"
+            },
+            "kind": "Flow"
+          },
+          "flow:1033:1043": {
+            "form": {
+              "activity": 1033,
+              "guard": "",
+              "id": 1043,
+              "kind": "Control",
+              "name": "Review acquired value",
+              "source": "1036",
+              "target": "1037"
+            },
+            "kind": "Flow"
+          },
+          "flow:1033:1044": {
+            "form": {
+              "activity": 1033,
+              "guard": "x >",
+              "id": 1044,
+              "kind": "Control",
+              "name": "Record reviewed distance",
+              "source": "1037",
+              "target": "1038"
+            },
+            "kind": "Flow"
+          },
+          "flow:1033:1045": {
+            "form": {
+              "activity": 1033,
+              "guard": "else ?",
+              "id": 1045,
+              "kind": "Control",
+              "name": "Finish without record",
+              "source": "1037",
+              "target": "1039"
+            },
+            "kind": "Flow"
+          },
+          "flow:1033:1046": {
+            "form": {
+              "activity": 1033,
+              "guard": "",
+              "id": 1046,
+              "kind": "Control",
+              "name": "Finish recording",
+              "source": "1038",
+              "target": "1039"
+            },
+            "kind": "Flow"
+          },
+          "flow:1033:1047": {
+            "form": {
+              "activity": 1033,
+              "guard": "",
+              "id": 1047,
+              "kind": "Object",
+              "name": "Convey distance",
+              "source": "1040",
+              "target": "1040"
+            },
+            "kind": "Flow"
+          },
+          "node:1033:1035": {
+            "activity": 1033,
+            "id": 1035,
+            "kind": "Node",
+            "name": "Start inspection",
+            "node_kind": "Initial",
+            "partition": ""
+          },
+          "node:1033:1036": {
+            "activity": 1033,
+            "id": 1036,
+            "kind": "Node",
+            "name": "Acquire distance",
+            "node_kind": "Action",
+            "partition": "1034"
+          },
+          "node:1033:1037": {
+            "activity": 1033,
+            "id": 1037,
+            "kind": "Node",
+            "name": "Review check",
+            "node_kind": "Decision",
+            "partition": "1034"
+          },
+          "node:1033:1038": {
+            "activity": 1033,
+            "id": 1038,
+            "kind": "Node",
+            "name": "Record disposition",
+            "node_kind": "Action",
+            "partition": "1034"
+          },
+          "node:1033:1039": {
+            "activity": 1033,
+            "id": 1039,
+            "kind": "Node",
+            "name": "Finish inspection",
+            "node_kind": "Final",
+            "partition": ""
+          },
+          "partition:1033:1034": {
+            "activity": 1033,
+            "id": 1034,
+            "kind": "Partition",
+            "name": "Reviewer"
+          },
+          "pin:1033:1040": {
+            "activity": 1033,
+            "direction": "Out",
+            "id": 1040,
+            "kind": "Pin",
+            "name": "Distance result",
+            "owner": "1036",
+            "value_type": "1005"
+          },
+          "pin:1033:1041": {
+            "activity": 1033,
+            "direction": "In",
+            "id": 1041,
+            "kind": "Pin",
+            "name": "Distance input",
+            "owner": "1038",
+            "value_type": "1005"
+          }
+        },
+        "connectors": {
+          "1018": {
+            "conveyed": "1005?",
+            "name": "Measurement transfer",
+            "owner": 1004,
+            "source_port": "1017",
+            "source_usage": "1009",
+            "target_port": "1015",
+            "target_usage": "1010"
+          },
+          "1019": {
+            "conveyed": "1005?",
+            "name": "Second transfer",
+            "owner": 1004,
+            "source_port": "1017",
+            "source_usage": "1009",
+            "target_port": "1015",
+            "target_usage": "1010"
+          }
+        },
+        "definition": {
+          "name": "",
+          "scalar": "Integer",
+          "system": 1,
+          "value": false
+        },
+        "deletion": {
+          "cascade": true,
+          "ids": "1027?"
+        },
+        "forms": {
+          "1006": {
+            "lower": "1",
+            "name": "pending length text",
+            "owner": 1004,
+            "upper": "1..",
+            "value_type": "1005"
+          },
+          "1020": {
+            "lower": "1",
+            "name": "instance gain",
+            "owner": 1007,
+            "upper": "1",
+            "value_type": "1005"
+          }
+        },
+        "interface": {
+          "direction": "InOut",
+          "name": "Pending interface",
+          "payload": "1005?",
+          "system": 1
+        },
+        "ports": {
+          "1015": {
+            "assignment": "1013?",
+            "contract": "1012",
+            "name": "measurement input revised",
+            "owner": 1007
+          },
+          "1016": {
+            "assignment": "unapplied",
+            "contract": "1012",
+            "name": "cross-view input",
+            "owner": 1007
+          },
+          "1017": {
+            "assignment": "",
+            "contract": "1014",
+            "name": "measurement output",
+            "owner": 1007
+          }
+        },
+        "profile": "mbse-craft.type-drafts/1",
+        "profile_tags": {
+          "namespace": "urn:unknown",
+          "profile_json": "{\"identity\":{\"namespace\":\"urn:mbse-craft:qa\",\"version\":\"1.0\"},\"stereotypes\":{\"Valve\":{\"applies_to\":[\"Measure\",\"ComponentDefinition\",\"Part\"],\"tags\":{\"label\":\"Text\"}}}}",
+          "stereotype": "Valve",
+          "target": "1023?",
+          "values_json": "{\"label\":",
+          "version": "1.0"
+        },
+        "refactor": {
+          "definition": "1021",
+          "keep_external": true,
+          "mode": "CloneDefinition",
+          "name": "Tagged subsystem copy",
+          "owner": "1004",
+          "usages": "1009,1010"
+        },
+        "schema_version": 1,
+        "usage": {
+          "id": 1009,
+          "kind": "Part",
+          "name": "primary device",
+          "owner": "1004",
+          "target": "incomplete"
+        },
+        "values": {
+          "default:1020": {
+            "expression": "x",
+            "target": {
+              "kind": "Default",
+              "property": 1020
+            },
+            "text": "17"
+          },
+          "override:1009:1020": {
+            "expression": "x*2+1",
+            "target": {
+              "kind": "Override",
+              "property": 1020,
+              "usage": 1009
+            },
+            "text": "2e+"
+          }
+        }
+      },
+      "mbse-craft.types/1": {
+        "activities": {
+          "1033": {
+            "flows": {
+              "1042": {
+                "guard": null,
+                "id": 1042,
+                "kind": "Control",
+                "name": "Begin acquisition",
+                "source": 1035,
+                "target": 1036
+              },
+              "1043": {
+                "guard": null,
+                "id": 1043,
+                "kind": "Control",
+                "name": "Review acquired value",
+                "source": 1036,
+                "target": 1037
+              },
+              "1044": {
+                "guard": {
+                  "Boolean": true
+                },
+                "id": 1044,
+                "kind": "Control",
+                "name": "Record reviewed distance",
+                "source": 1037,
+                "target": 1038
+              },
+              "1045": {
+                "guard": "Else",
+                "id": 1045,
+                "kind": "Control",
+                "name": "Finish without record",
+                "source": 1037,
+                "target": 1039
+              },
+              "1046": {
+                "guard": null,
+                "id": 1046,
+                "kind": "Control",
+                "name": "Finish recording",
+                "source": 1038,
+                "target": 1039
+              },
+              "1047": {
+                "guard": null,
+                "id": 1047,
+                "kind": "Object",
+                "name": "Convey distance",
+                "source": 1040,
+                "target": 1041
+              }
+            },
+            "id": 1033,
+            "name": "Synthetic inspection sequence",
+            "nodes": {
+              "1035": {
+                "id": 1035,
+                "kind": "Initial",
+                "name": "Start inspection",
+                "partition": null
+              },
+              "1036": {
+                "id": 1036,
+                "kind": "Action",
+                "name": "Acquire distance",
+                "partition": 1034
+              },
+              "1037": {
+                "id": 1037,
+                "kind": "Decision",
+                "name": "Review check",
+                "partition": 1034
+              },
+              "1038": {
+                "id": 1038,
+                "kind": "Action",
+                "name": "Record disposition",
+                "partition": 1034
+              },
+              "1039": {
+                "id": 1039,
+                "kind": "Final",
+                "name": "Finish inspection",
+                "partition": null
+              }
+            },
+            "partitions": {
+              "1034": {
+                "id": 1034,
+                "name": "Reviewer"
+              }
+            },
+            "pins": {
+              "1040": {
+                "direction": "Out",
+                "id": 1040,
+                "name": "Distance result",
+                "owner": 1036,
+                "value_type": 1005
+              },
+              "1041": {
+                "direction": "In",
+                "id": 1041,
+                "name": "Distance input",
+                "owner": 1038,
+                "value_type": 1005
+              }
+            },
+            "system": 1
+          }
+        },
+        "connectors": {
+          "1018": {
+            "conveyed": 1005,
+            "id": 1018,
+            "name": "Measurement transfer",
+            "owner": 1008,
+            "source": {
+              "port": 1017,
+              "usage": 1009
+            },
+            "target": {
+              "port": 1015,
+              "usage": 1010
+            }
+          },
+          "1019": {
+            "conveyed": 1005,
+            "id": 1019,
+            "name": "Second transfer",
+            "owner": 1008,
+            "source": {
+              "port": 1017,
+              "usage": 1009
+            },
+            "target": {
+              "port": 1015,
+              "usage": 1010
+            }
+          },
+          "1025": {
+            "conveyed": 1005,
+            "id": 1025,
+            "name": "Measurement transfer",
+            "owner": 1021,
+            "source": {
+              "port": 1017,
+              "usage": 1023
+            },
+            "target": {
+              "port": 1015,
+              "usage": 1024
+            }
+          },
+          "1026": {
+            "conveyed": 1005,
+            "id": 1026,
+            "name": "Second transfer",
+            "owner": 1021,
+            "source": {
+              "port": 1017,
+              "usage": 1023
+            },
+            "target": {
+              "port": 1015,
+              "usage": 1024
+            }
+          }
+        },
+        "defaults": {
+          "1020": {
+            "kind": "Real",
+            "text": "17"
+          }
+        },
+        "definitions": {
+          "1004": {
+            "id": 1004,
+            "kind": "Component",
+            "name": "Subsystem",
+            "system": 1
+          },
+          "1005": {
+            "id": 1005,
+            "kind": {
+              "Value": "Real"
+            },
+            "name": "Distance",
+            "system": 1
+          },
+          "1007": {
+            "id": 1007,
+            "kind": "Component",
+            "name": "Device",
+            "system": 1
+          },
+          "1008": {
+            "id": 1008,
+            "kind": "Component",
+            "name": "Alternate assembly",
+            "system": 1
+          },
+          "1021": {
+            "id": 1021,
+            "kind": "Component",
+            "name": "Subsystem copy revised",
+            "system": 1
+          }
+        },
+        "interfaces": {
+          "1012": {
+            "direction": "In",
+            "id": 1012,
+            "name": "Distance input contract",
+            "payload": 1005,
+            "system": 1
+          },
+          "1013": {
+            "direction": "In",
+            "id": 1013,
+            "name": "Compatible distance input",
+            "payload": 1005,
+            "system": 1
+          },
+          "1014": {
+            "direction": "Out",
+            "id": 1014,
+            "name": "Distance output",
+            "payload": 1005,
+            "system": 1
+          }
+        },
+        "overrides": {
+          "1009": {
+            "1020": {
+              "kind": "Real",
+              "text": "23"
+            }
+          },
+          "1023": {
+            "1020": {
+              "kind": "Real",
+              "text": "23"
+            }
+          }
+        },
+        "ports": {
+          "1015": {
+            "assignment": 1013,
+            "contract": 1012,
+            "id": 1015,
+            "name": "measurement input revised",
+            "owner": 1007
+          },
+          "1016": {
+            "assignment": 1013,
+            "contract": 1012,
+            "id": 1016,
+            "name": "cross-view input",
+            "owner": 1007
+          },
+          "1017": {
+            "assignment": null,
+            "contract": 1014,
+            "id": 1017,
+            "name": "measurement output",
+            "owner": 1007
+          }
+        },
+        "profile": "mbse-craft.types/1",
+        "profile_applications": {
+          "1003|urn:mbse-craft:qa|1.0|Valve": {
+            "expected": "Measure",
+            "profile": {
+              "namespace": "urn:mbse-craft:qa",
+              "version": "1.0"
+            },
+            "stereotype": "Valve",
+            "target": 1003,
+            "values": {
+              "label": {
+                "kind": "Text",
+                "text": "prototype"
+              }
+            }
+          },
+          "1021|urn:mbse-craft:qa|1.0|Valve": {
+            "expected": "ComponentDefinition",
+            "profile": {
+              "namespace": "urn:mbse-craft:qa",
+              "version": "1.0"
+            },
+            "stereotype": "Valve",
+            "target": 1021,
+            "values": {
+              "label": {
+                "kind": "Text",
+                "text": "prototype"
+              }
+            }
+          },
+          "1023|urn:mbse-craft:qa|1.0|Valve": {
+            "expected": "Part",
+            "profile": {
+              "namespace": "urn:mbse-craft:qa",
+              "version": "1.0"
+            },
+            "stereotype": "Valve",
+            "target": 1023,
+            "values": {
+              "label": {
+                "kind": "Text",
+                "text": "prototype"
+              }
+            }
+          }
+        },
+        "profiles": {
+          "urn:mbse-craft:qa|1.0": {
+            "identity": {
+              "namespace": "urn:mbse-craft:qa",
+              "version": "1.0"
+            },
+            "stereotypes": {
+              "Valve": {
+                "applies_to": [
+                  "Measure",
+                  "ComponentDefinition",
+                  "Part"
+                ],
+                "tags": {
+                  "label": "Text"
+                }
+              }
+            }
+          }
+        },
+        "properties": {
+          "1006": {
+            "id": 1006,
+            "multiplicity": {
+              "lower": 1,
+              "upper": 1
+            },
+            "name": "length",
+            "owner": 1004,
+            "value_type": 1005
+          },
+          "1020": {
+            "id": 1020,
+            "multiplicity": {
+              "lower": 1,
+              "upper": 1
+            },
+            "name": "instance gain",
+            "owner": 1007,
+            "value_type": 1005
+          },
+          "1022": {
+            "id": 1022,
+            "multiplicity": {
+              "lower": 1,
+              "upper": 1
+            },
+            "name": "length",
+            "owner": 1021,
+            "value_type": 1005
+          }
+        },
+        "schema_version": 1,
+        "usages": {
+          "1009": {
+            "id": 1009,
+            "kind": "Part",
+            "name": "primary device",
+            "owner": 1008,
+            "target": 1007
+          },
+          "1010": {
+            "id": 1010,
+            "kind": "Part",
+            "name": "secondary device",
+            "owner": 1008,
+            "target": 1007
+          },
+          "1011": {
+            "id": 1011,
+            "kind": "Reference",
+            "name": "reference to assembly",
+            "owner": 1007,
+            "target": 1004
+          },
+          "1023": {
+            "id": 1023,
+            "kind": "Part",
+            "name": "primary device",
+            "owner": 1021,
+            "target": 1007
+          },
+          "1024": {
+            "id": 1024,
+            "kind": "Part",
+            "name": "secondary device",
+            "owner": 1021,
+            "target": 1007
+          }
+        }
+      }
+    },
+    "profile": "mbse-craft.extensions/1",
+    "required_namespaces": [
+      "mbse-craft.type-drafts/1",
+      "mbse-craft.types/1"
+    ],
+    "schema_version": 1
+  },
+  "native_record_impact": {
+    "note": "",
+    "open": false,
+    "report": null,
+    "target": null
+  },
+  "native_recovery_status": "awaiting timer check",
+  "native_search": {
+    "note": "",
+    "open": false,
+    "query_mode": "NameContains",
+    "report": null
+  },
+  "native_system_browser": {
+    "open_groups": {
+      "1": true
+    }
+  },
+  "native_usages": null,
+  "periodic_recovery": false,
+  "pixels_per_point": 1.0,
+  "port_presentation": {
+    "active_view": "22",
+    "interactions": {
+      "11": {
+        "button_down_on": false,
+        "contains_pointer": false,
+        "dock_blocked": false,
+        "drag_started": false,
+        "drag_stopped": false,
+        "dragged": false,
+        "enabled": true,
+        "hovered": false,
+        "layer": "LayerId { Background Id::new(\"background\") }",
+        "pointer": [
+          794.0,
+          316.0
+        ],
+        "pointer_down": false,
+        "response_id": "Id::new(\"mbse-owned-workspace-docking\").with((\"body\", Canvas)).with(IdSalt::new(\"child\")).with(IdSalt::new(\"child\")).with((\"port-occurrence\", 11))",
+        "ui_id": "Id::new(\"mbse-owned-workspace-docking\").with((\"body\", Canvas)).with(IdSalt::new(\"child\")).with(IdSalt::new(\"child\"))"
+      },
+      "12": {
+        "button_down_on": false,
+        "contains_pointer": false,
+        "dock_blocked": false,
+        "drag_started": false,
+        "drag_stopped": false,
+        "dragged": false,
+        "enabled": true,
+        "hovered": false,
+        "layer": "LayerId { Background Id::new(\"background\") }",
+        "pointer": [
+          794.0,
+          316.0
+        ],
+        "pointer_down": false,
+        "response_id": "Id::new(\"mbse-owned-workspace-docking\").with((\"body\", Canvas)).with(IdSalt::new(\"child\")).with(IdSalt::new(\"child\")).with((\"port-occurrence\", 12))",
+        "ui_id": "Id::new(\"mbse-owned-workspace-docking\").with((\"body\", Canvas)).with(IdSalt::new(\"child\")).with(IdSalt::new(\"child\"))"
+      },
+      "9": {
+        "button_down_on": false,
+        "contains_pointer": false,
+        "dock_blocked": false,
+        "drag_started": false,
+        "drag_stopped": false,
+        "dragged": false,
+        "enabled": true,
+        "hovered": false,
+        "layer": "LayerId { Background Id::new(\"background\") }",
+        "pointer": [
+          794.0,
+          316.0
+        ],
+        "pointer_down": false,
+        "response_id": "Id::new(\"mbse-owned-workspace-docking\").with((\"body\", Canvas)).with(IdSalt::new(\"child\")).with(IdSalt::new(\"child\")).with((\"port-occurrence\", 9))",
+        "ui_id": "Id::new(\"mbse-owned-workspace-docking\").with((\"body\", Canvas)).with(IdSalt::new(\"child\")).with(IdSalt::new(\"child\"))"
+      }
+    },
+    "occurrences": {
+      "10": {
+        "geometry": {
+          "height": 112.0,
+          "width": 270.0,
+          "x": 105.0,
+          "y": 180.0
+        },
+        "id": "10",
+        "pinned": false,
+        "port": "1016",
+        "presence": {
+          "state": "Active"
+        },
+        "view": "2",
+        "visible": true
+      },
+      "11": {
+        "geometry": {
+          "height": 112.0,
+          "width": 270.0,
+          "x": 25.0,
+          "y": 315.0
+        },
+        "id": "11",
+        "pinned": false,
+        "port": "1017",
+        "presence": {
+          "state": "Active"
+        },
+        "usage": "1009",
+        "view": "1",
+        "visible": true
+      },
+      "12": {
+        "geometry": {
+          "height": 112.0,
+          "width": 270.0,
+          "x": 375.0,
+          "y": 315.0
+        },
+        "id": "12",
+        "pinned": false,
+        "port": "1015",
+        "presence": {
+          "state": "Active"
+        },
+        "usage": "1010",
+        "view": "1",
+        "visible": true
+      },
+      "14": {
+        "geometry": {
+          "height": 112.0,
+          "width": 270.0,
+          "x": 25.0,
+          "y": 315.0
+        },
+        "id": "14",
+        "pinned": false,
+        "port": "1017",
+        "presence": {
+          "state": "Active"
+        },
+        "usage": "1009",
+        "view": "2",
+        "visible": true
+      },
+      "15": {
+        "geometry": {
+          "height": 112.0,
+          "width": 270.0,
+          "x": 495.0,
+          "y": 375.0
+        },
+        "id": "15",
+        "pinned": false,
+        "port": "1015",
+        "presence": {
+          "state": "Active"
+        },
+        "usage": "1010",
+        "view": "2",
+        "visible": true
+      },
+      "9": {
+        "geometry": {
+          "height": 112.0,
+          "width": 270.0,
+          "x": 25.0,
+          "y": 315.0
+        },
+        "id": "9",
+        "pinned": false,
+        "port": "1016",
+        "presence": {
+          "state": "Active"
+        },
+        "view": "1",
+        "visible": true
+      }
+    },
+    "profile": "mbse-craft.native-views/6",
+    "schema": "mbse-craft.port-presentation-ui/1"
+  },
+  "ports": {
+    "forms": {
+      "1015": {
+        "assignment": "1013?",
+        "contract": "1012",
+        "name": "measurement input revised",
+        "owner": 1007
+      },
+      "1016": {
+        "assignment": "unapplied",
+        "contract": "1012",
+        "name": "cross-view input",
+        "owner": 1007
+      },
+      "1017": {
+        "assignment": "",
+        "contract": "1014",
+        "name": "measurement output",
+        "owner": 1007
+      }
+    },
+    "interface_form": {
+      "direction": "InOut",
+      "name": "Pending interface",
+      "payload": "1005?",
+      "system": 1
+    },
+    "note": "",
+    "open": false,
+    "owner": null,
+    "port": null,
+    "schema": "mbse-craft.ports-ui/1",
+    "store": {
+      "activities": {
+        "1033": {
+          "flows": {
+            "1042": {
+              "guard": null,
+              "id": 1042,
+              "kind": "Control",
+              "name": "Begin acquisition",
+              "source": 1035,
+              "target": 1036
+            },
+            "1043": {
+              "guard": null,
+              "id": 1043,
+              "kind": "Control",
+              "name": "Review acquired value",
+              "source": 1036,
+              "target": 1037
+            },
+            "1044": {
+              "guard": {
+                "Boolean": true
+              },
+              "id": 1044,
+              "kind": "Control",
+              "name": "Record reviewed distance",
+              "source": 1037,
+              "target": 1038
+            },
+            "1045": {
+              "guard": "Else",
+              "id": 1045,
+              "kind": "Control",
+              "name": "Finish without record",
+              "source": 1037,
+              "target": 1039
+            },
+            "1046": {
+              "guard": null,
+              "id": 1046,
+              "kind": "Control",
+              "name": "Finish recording",
+              "source": 1038,
+              "target": 1039
+            },
+            "1047": {
+              "guard": null,
+              "id": 1047,
+              "kind": "Object",
+              "name": "Convey distance",
+              "source": 1040,
+              "target": 1041
+            }
+          },
+          "id": 1033,
+          "name": "Synthetic inspection sequence",
+          "nodes": {
+            "1035": {
+              "id": 1035,
+              "kind": "Initial",
+              "name": "Start inspection",
+              "partition": null
+            },
+            "1036": {
+              "id": 1036,
+              "kind": "Action",
+              "name": "Acquire distance",
+              "partition": 1034
+            },
+            "1037": {
+              "id": 1037,
+              "kind": "Decision",
+              "name": "Review check",
+              "partition": 1034
+            },
+            "1038": {
+              "id": 1038,
+              "kind": "Action",
+              "name": "Record disposition",
+              "partition": 1034
+            },
+            "1039": {
+              "id": 1039,
+              "kind": "Final",
+              "name": "Finish inspection",
+              "partition": null
+            }
+          },
+          "partitions": {
+            "1034": {
+              "id": 1034,
+              "name": "Reviewer"
+            }
+          },
+          "pins": {
+            "1040": {
+              "direction": "Out",
+              "id": 1040,
+              "name": "Distance result",
+              "owner": 1036,
+              "value_type": 1005
+            },
+            "1041": {
+              "direction": "In",
+              "id": 1041,
+              "name": "Distance input",
+              "owner": 1038,
+              "value_type": 1005
+            }
+          },
+          "system": 1
+        }
+      },
+      "connectors": {
+        "1018": {
+          "conveyed": 1005,
+          "id": 1018,
+          "name": "Measurement transfer",
+          "owner": 1008,
+          "source": {
+            "port": 1017,
+            "usage": 1009
+          },
+          "target": {
+            "port": 1015,
+            "usage": 1010
+          }
+        },
+        "1019": {
+          "conveyed": 1005,
+          "id": 1019,
+          "name": "Second transfer",
+          "owner": 1008,
+          "source": {
+            "port": 1017,
+            "usage": 1009
+          },
+          "target": {
+            "port": 1015,
+            "usage": 1010
+          }
+        },
+        "1025": {
+          "conveyed": 1005,
+          "id": 1025,
+          "name": "Measurement transfer",
+          "owner": 1021,
+          "source": {
+            "port": 1017,
+            "usage": 1023
+          },
+          "target": {
+            "port": 1015,
+            "usage": 1024
+          }
+        },
+        "1026": {
+          "conveyed": 1005,
+          "id": 1026,
+          "name": "Second transfer",
+          "owner": 1021,
+          "source": {
+            "port": 1017,
+            "usage": 1023
+          },
+          "target": {
+            "port": 1015,
+            "usage": 1024
+          }
+        }
+      },
+      "defaults": {
+        "1020": {
+          "kind": "Real",
+          "text": "17"
+        }
+      },
+      "definitions": {
+        "1004": {
+          "id": 1004,
+          "kind": "Component",
+          "name": "Subsystem",
+          "system": 1
+        },
+        "1005": {
+          "id": 1005,
+          "kind": {
+            "Value": "Real"
+          },
+          "name": "Distance",
+          "system": 1
+        },
+        "1007": {
+          "id": 1007,
+          "kind": "Component",
+          "name": "Device",
+          "system": 1
+        },
+        "1008": {
+          "id": 1008,
+          "kind": "Component",
+          "name": "Alternate assembly",
+          "system": 1
+        },
+        "1021": {
+          "id": 1021,
+          "kind": "Component",
+          "name": "Subsystem copy revised",
+          "system": 1
+        }
+      },
+      "interfaces": {
+        "1012": {
+          "direction": "In",
+          "id": 1012,
+          "name": "Distance input contract",
+          "payload": 1005,
+          "system": 1
+        },
+        "1013": {
+          "direction": "In",
+          "id": 1013,
+          "name": "Compatible distance input",
+          "payload": 1005,
+          "system": 1
+        },
+        "1014": {
+          "direction": "Out",
+          "id": 1014,
+          "name": "Distance output",
+          "payload": 1005,
+          "system": 1
+        }
+      },
+      "overrides": {
+        "1009": {
+          "1020": {
+            "kind": "Real",
+            "text": "23"
+          }
+        },
+        "1023": {
+          "1020": {
+            "kind": "Real",
+            "text": "23"
+          }
+        }
+      },
+      "ports": {
+        "1015": {
+          "assignment": 1013,
+          "contract": 1012,
+          "id": 1015,
+          "name": "measurement input revised",
+          "owner": 1007
+        },
+        "1016": {
+          "assignment": 1013,
+          "contract": 1012,
+          "id": 1016,
+          "name": "cross-view input",
+          "owner": 1007
+        },
+        "1017": {
+          "assignment": null,
+          "contract": 1014,
+          "id": 1017,
+          "name": "measurement output",
+          "owner": 1007
+        }
+      },
+      "profile": "mbse-craft.types/1",
+      "profile_applications": {
+        "1003|urn:mbse-craft:qa|1.0|Valve": {
+          "expected": "Measure",
+          "profile": {
+            "namespace": "urn:mbse-craft:qa",
+            "version": "1.0"
+          },
+          "stereotype": "Valve",
+          "target": 1003,
+          "values": {
+            "label": {
+              "kind": "Text",
+              "text": "prototype"
+            }
+          }
+        },
+        "1021|urn:mbse-craft:qa|1.0|Valve": {
+          "expected": "ComponentDefinition",
+          "profile": {
+            "namespace": "urn:mbse-craft:qa",
+            "version": "1.0"
+          },
+          "stereotype": "Valve",
+          "target": 1021,
+          "values": {
+            "label": {
+              "kind": "Text",
+              "text": "prototype"
+            }
+          }
+        },
+        "1023|urn:mbse-craft:qa|1.0|Valve": {
+          "expected": "Part",
+          "profile": {
+            "namespace": "urn:mbse-craft:qa",
+            "version": "1.0"
+          },
+          "stereotype": "Valve",
+          "target": 1023,
+          "values": {
+            "label": {
+              "kind": "Text",
+              "text": "prototype"
+            }
+          }
+        }
+      },
+      "profiles": {
+        "urn:mbse-craft:qa|1.0": {
+          "identity": {
+            "namespace": "urn:mbse-craft:qa",
+            "version": "1.0"
+          },
+          "stereotypes": {
+            "Valve": {
+              "applies_to": [
+                "Measure",
+                "ComponentDefinition",
+                "Part"
+              ],
+              "tags": {
+                "label": "Text"
+              }
+            }
+          }
+        }
+      },
+      "properties": {
+        "1006": {
+          "id": 1006,
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          },
+          "name": "length",
+          "owner": 1004,
+          "value_type": 1005
+        },
+        "1020": {
+          "id": 1020,
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          },
+          "name": "instance gain",
+          "owner": 1007,
+          "value_type": 1005
+        },
+        "1022": {
+          "id": 1022,
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          },
+          "name": "length",
+          "owner": 1021,
+          "value_type": 1005
+        }
+      },
+      "schema_version": 1,
+      "usages": {
+        "1009": {
+          "id": 1009,
+          "kind": "Part",
+          "name": "primary device",
+          "owner": 1008,
+          "target": 1007
+        },
+        "1010": {
+          "id": 1010,
+          "kind": "Part",
+          "name": "secondary device",
+          "owner": 1008,
+          "target": 1007
+        },
+        "1011": {
+          "id": 1011,
+          "kind": "Reference",
+          "name": "reference to assembly",
+          "owner": 1007,
+          "target": 1004
+        },
+        "1023": {
+          "id": 1023,
+          "kind": "Part",
+          "name": "primary device",
+          "owner": 1021,
+          "target": 1007
+        },
+        "1024": {
+          "id": 1024,
+          "kind": "Part",
+          "name": "secondary device",
+          "owner": 1021,
+          "target": 1007
+        }
+      }
+    }
+  },
+  "preferences_status": "Session preferences.",
+  "profile": "mbse-craft.ui-geometry/1",
+  "profile_tags": {
+    "applications": {
+      "1003|urn:mbse-craft:qa|1.0|Valve": {
+        "expected": "Measure",
+        "profile": {
+          "namespace": "urn:mbse-craft:qa",
+          "version": "1.0"
+        },
+        "stereotype": "Valve",
+        "target": 1003,
+        "values": {
+          "label": {
+            "kind": "Text",
+            "text": "prototype"
+          }
+        }
+      },
+      "1021|urn:mbse-craft:qa|1.0|Valve": {
+        "expected": "ComponentDefinition",
+        "profile": {
+          "namespace": "urn:mbse-craft:qa",
+          "version": "1.0"
+        },
+        "stereotype": "Valve",
+        "target": 1021,
+        "values": {
+          "label": {
+            "kind": "Text",
+            "text": "prototype"
+          }
+        }
+      },
+      "1023|urn:mbse-craft:qa|1.0|Valve": {
+        "expected": "Part",
+        "profile": {
+          "namespace": "urn:mbse-craft:qa",
+          "version": "1.0"
+        },
+        "stereotype": "Valve",
+        "target": 1023,
+        "values": {
+          "label": {
+            "kind": "Text",
+            "text": "prototype"
+          }
+        }
+      }
+    },
+    "apply_enabled": false,
+    "form": {
+      "namespace": "urn:unknown",
+      "profile_json": "{\"identity\":{\"namespace\":\"urn:mbse-craft:qa\",\"version\":\"1.0\"},\"stereotypes\":{\"Valve\":{\"applies_to\":[\"Measure\",\"ComponentDefinition\",\"Part\"],\"tags\":{\"label\":\"Text\"}}}}",
+      "stereotype": "Valve",
+      "target": "1023?",
+      "values_json": "{\"label\":",
+      "version": "1.0"
+    },
+    "note": "",
+    "open": false,
+    "profiles": {
+      "urn:mbse-craft:qa|1.0": {
+        "identity": {
+          "namespace": "urn:mbse-craft:qa",
+          "version": "1.0"
+        },
+        "stereotypes": {
+          "Valve": {
+            "applies_to": [
+              "Measure",
+              "ComponentDefinition",
+              "Part"
+            ],
+            "tags": {
+              "label": "Text"
+            }
+          }
+        }
+      }
+    },
+    "register_enabled": true,
+    "remove_enabled": false,
+    "schema": "mbse-craft.profile-tags-ui/1"
+  },
+  "raw_version": 213,
+  "recovery_interval_seconds": 60,
+  "recovery_path": null,
+  "refactor": {
+    "applicable": false,
+    "form": {
+      "definition": "1021",
+      "keep_external": true,
+      "mode": "CloneDefinition",
+      "name": "Tagged subsystem copy",
+      "owner": "1004",
+      "usages": "1009,1010"
+    },
+    "note": "",
+    "open": false,
+    "schema": "mbse-craft.refactor-ui/1",
+    "summary": null
+  },
+  "relation_matrix": {
+    "current": false,
+    "graph_edges": [
+      {
+        "role": "Scope",
+        "source": 1,
+        "target": 1000
+      },
+      {
+        "role": "Scope",
+        "source": 1,
+        "target": 1001
+      },
+      {
+        "role": "Scope",
+        "source": 1,
+        "target": 1002
+      },
+      {
+        "role": "Scope",
+        "source": 1,
+        "target": 1003
+      },
+      {
+        "role": "ContributesTo",
+        "source": 1001,
+        "target": 1000
+      },
+      {
+        "role": "Subject",
+        "source": 1002,
+        "target": 1001
+      },
+      {
+        "role": "ForObjective",
+        "source": 1003,
+        "target": 1002
+      }
+    ],
+    "note": "",
+    "open": false,
+    "query": {
+      "column_offset": 0,
+      "kind": "ContributesTo",
+      "row_offset": 0
+    },
+    "report": null
+  },
+  "requirements_authoring": {
+    "coverage": {
+      "current": false,
+      "error": null,
+      "pending": false,
+      "report": null
+    },
+    "dirty": false,
+    "drafts": {},
+    "feedback": "",
+    "hierarchy": [],
+    "next_id": 1,
+    "pending": false,
+    "requirements": {},
+    "revision": 0,
+    "schema": "mbse-craft.requirement-authoring-ui/1",
+    "selected": null,
+    "test_cases": {},
+    "traces": {},
+    "validation": {
+      "current": false,
+      "error": null,
+      "last_focus": null,
+      "note": "",
+      "pending": false,
+      "report": null,
+      "reviewed": {
+        "blocked": false,
+        "fix_preview": null,
+        "note": "",
+        "suite_review": null
+      },
+      "selected_suite": "Local working drafts"
+    },
+    "visible": false
+  },
+  "save_status": "Saved",
+  "selected": 1003,
+  "shortcut_configuration": {
+    "draft": {},
+    "draft_errors": [],
+    "load_errors": [],
+    "note": "",
+    "open": false,
+    "pending": false,
+    "persistent": false,
+    "read_only": false,
+    "schema": "mbse-craft.shortcut-configuration/1",
+    "status": "Session preferences.",
+    "stored_overrides": {}
+  },
+  "snapshot_hash": "6c018bd28b94efc5a18efc9f7896e05772eabcc732a761e579e5c1efdf6c50c5",
+  "source_edit_dirty": false,
+  "source_edit_pending": false,
+  "typed_properties": {
+    "definition_form": {
+      "name": "",
+      "scalar": "Integer",
+      "system": 1,
+      "value": false
+    },
+    "form": null,
+    "forms": {
+      "1006": {
+        "lower": "1",
+        "name": "pending length text",
+        "owner": 1004,
+        "upper": "1..",
+        "value_type": "1005"
+      },
+      "1020": {
+        "lower": "1",
+        "name": "instance gain",
+        "owner": 1007,
+        "upper": "1",
+        "value_type": "1005"
+      }
+    },
+    "note": "",
+    "open": false,
+    "schema": "mbse-craft.types-ui/1",
+    "selected": null,
+    "store": {
+      "activities": {
+        "1033": {
+          "flows": {
+            "1042": {
+              "guard": null,
+              "id": 1042,
+              "kind": "Control",
+              "name": "Begin acquisition",
+              "source": 1035,
+              "target": 1036
+            },
+            "1043": {
+              "guard": null,
+              "id": 1043,
+              "kind": "Control",
+              "name": "Review acquired value",
+              "source": 1036,
+              "target": 1037
+            },
+            "1044": {
+              "guard": {
+                "Boolean": true
+              },
+              "id": 1044,
+              "kind": "Control",
+              "name": "Record reviewed distance",
+              "source": 1037,
+              "target": 1038
+            },
+            "1045": {
+              "guard": "Else",
+              "id": 1045,
+              "kind": "Control",
+              "name": "Finish without record",
+              "source": 1037,
+              "target": 1039
+            },
+            "1046": {
+              "guard": null,
+              "id": 1046,
+              "kind": "Control",
+              "name": "Finish recording",
+              "source": 1038,
+              "target": 1039
+            },
+            "1047": {
+              "guard": null,
+              "id": 1047,
+              "kind": "Object",
+              "name": "Convey distance",
+              "source": 1040,
+              "target": 1041
+            }
+          },
+          "id": 1033,
+          "name": "Synthetic inspection sequence",
+          "nodes": {
+            "1035": {
+              "id": 1035,
+              "kind": "Initial",
+              "name": "Start inspection",
+              "partition": null
+            },
+            "1036": {
+              "id": 1036,
+              "kind": "Action",
+              "name": "Acquire distance",
+              "partition": 1034
+            },
+            "1037": {
+              "id": 1037,
+              "kind": "Decision",
+              "name": "Review check",
+              "partition": 1034
+            },
+            "1038": {
+              "id": 1038,
+              "kind": "Action",
+              "name": "Record disposition",
+              "partition": 1034
+            },
+            "1039": {
+              "id": 1039,
+              "kind": "Final",
+              "name": "Finish inspection",
+              "partition": null
+            }
+          },
+          "partitions": {
+            "1034": {
+              "id": 1034,
+              "name": "Reviewer"
+            }
+          },
+          "pins": {
+            "1040": {
+              "direction": "Out",
+              "id": 1040,
+              "name": "Distance result",
+              "owner": 1036,
+              "value_type": 1005
+            },
+            "1041": {
+              "direction": "In",
+              "id": 1041,
+              "name": "Distance input",
+              "owner": 1038,
+              "value_type": 1005
+            }
+          },
+          "system": 1
+        }
+      },
+      "connectors": {
+        "1018": {
+          "conveyed": 1005,
+          "id": 1018,
+          "name": "Measurement transfer",
+          "owner": 1008,
+          "source": {
+            "port": 1017,
+            "usage": 1009
+          },
+          "target": {
+            "port": 1015,
+            "usage": 1010
+          }
+        },
+        "1019": {
+          "conveyed": 1005,
+          "id": 1019,
+          "name": "Second transfer",
+          "owner": 1008,
+          "source": {
+            "port": 1017,
+            "usage": 1009
+          },
+          "target": {
+            "port": 1015,
+            "usage": 1010
+          }
+        },
+        "1025": {
+          "conveyed": 1005,
+          "id": 1025,
+          "name": "Measurement transfer",
+          "owner": 1021,
+          "source": {
+            "port": 1017,
+            "usage": 1023
+          },
+          "target": {
+            "port": 1015,
+            "usage": 1024
+          }
+        },
+        "1026": {
+          "conveyed": 1005,
+          "id": 1026,
+          "name": "Second transfer",
+          "owner": 1021,
+          "source": {
+            "port": 1017,
+            "usage": 1023
+          },
+          "target": {
+            "port": 1015,
+            "usage": 1024
+          }
+        }
+      },
+      "defaults": {
+        "1020": {
+          "kind": "Real",
+          "text": "17"
+        }
+      },
+      "definitions": {
+        "1004": {
+          "id": 1004,
+          "kind": "Component",
+          "name": "Subsystem",
+          "system": 1
+        },
+        "1005": {
+          "id": 1005,
+          "kind": {
+            "Value": "Real"
+          },
+          "name": "Distance",
+          "system": 1
+        },
+        "1007": {
+          "id": 1007,
+          "kind": "Component",
+          "name": "Device",
+          "system": 1
+        },
+        "1008": {
+          "id": 1008,
+          "kind": "Component",
+          "name": "Alternate assembly",
+          "system": 1
+        },
+        "1021": {
+          "id": 1021,
+          "kind": "Component",
+          "name": "Subsystem copy revised",
+          "system": 1
+        }
+      },
+      "interfaces": {
+        "1012": {
+          "direction": "In",
+          "id": 1012,
+          "name": "Distance input contract",
+          "payload": 1005,
+          "system": 1
+        },
+        "1013": {
+          "direction": "In",
+          "id": 1013,
+          "name": "Compatible distance input",
+          "payload": 1005,
+          "system": 1
+        },
+        "1014": {
+          "direction": "Out",
+          "id": 1014,
+          "name": "Distance output",
+          "payload": 1005,
+          "system": 1
+        }
+      },
+      "overrides": {
+        "1009": {
+          "1020": {
+            "kind": "Real",
+            "text": "23"
+          }
+        },
+        "1023": {
+          "1020": {
+            "kind": "Real",
+            "text": "23"
+          }
+        }
+      },
+      "ports": {
+        "1015": {
+          "assignment": 1013,
+          "contract": 1012,
+          "id": 1015,
+          "name": "measurement input revised",
+          "owner": 1007
+        },
+        "1016": {
+          "assignment": 1013,
+          "contract": 1012,
+          "id": 1016,
+          "name": "cross-view input",
+          "owner": 1007
+        },
+        "1017": {
+          "assignment": null,
+          "contract": 1014,
+          "id": 1017,
+          "name": "measurement output",
+          "owner": 1007
+        }
+      },
+      "profile": "mbse-craft.types/1",
+      "profile_applications": {
+        "1003|urn:mbse-craft:qa|1.0|Valve": {
+          "expected": "Measure",
+          "profile": {
+            "namespace": "urn:mbse-craft:qa",
+            "version": "1.0"
+          },
+          "stereotype": "Valve",
+          "target": 1003,
+          "values": {
+            "label": {
+              "kind": "Text",
+              "text": "prototype"
+            }
+          }
+        },
+        "1021|urn:mbse-craft:qa|1.0|Valve": {
+          "expected": "ComponentDefinition",
+          "profile": {
+            "namespace": "urn:mbse-craft:qa",
+            "version": "1.0"
+          },
+          "stereotype": "Valve",
+          "target": 1021,
+          "values": {
+            "label": {
+              "kind": "Text",
+              "text": "prototype"
+            }
+          }
+        },
+        "1023|urn:mbse-craft:qa|1.0|Valve": {
+          "expected": "Part",
+          "profile": {
+            "namespace": "urn:mbse-craft:qa",
+            "version": "1.0"
+          },
+          "stereotype": "Valve",
+          "target": 1023,
+          "values": {
+            "label": {
+              "kind": "Text",
+              "text": "prototype"
+            }
+          }
+        }
+      },
+      "profiles": {
+        "urn:mbse-craft:qa|1.0": {
+          "identity": {
+            "namespace": "urn:mbse-craft:qa",
+            "version": "1.0"
+          },
+          "stereotypes": {
+            "Valve": {
+              "applies_to": [
+                "Measure",
+                "ComponentDefinition",
+                "Part"
+              ],
+              "tags": {
+                "label": "Text"
+              }
+            }
+          }
+        }
+      },
+      "properties": {
+        "1006": {
+          "id": 1006,
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          },
+          "name": "length",
+          "owner": 1004,
+          "value_type": 1005
+        },
+        "1020": {
+          "id": 1020,
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          },
+          "name": "instance gain",
+          "owner": 1007,
+          "value_type": 1005
+        },
+        "1022": {
+          "id": 1022,
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          },
+          "name": "length",
+          "owner": 1021,
+          "value_type": 1005
+        }
+      },
+      "schema_version": 1,
+      "usages": {
+        "1009": {
+          "id": 1009,
+          "kind": "Part",
+          "name": "primary device",
+          "owner": 1008,
+          "target": 1007
+        },
+        "1010": {
+          "id": 1010,
+          "kind": "Part",
+          "name": "secondary device",
+          "owner": 1008,
+          "target": 1007
+        },
+        "1011": {
+          "id": 1011,
+          "kind": "Reference",
+          "name": "reference to assembly",
+          "owner": 1007,
+          "target": 1004
+        },
+        "1023": {
+          "id": 1023,
+          "kind": "Part",
+          "name": "primary device",
+          "owner": 1021,
+          "target": 1007
+        },
+        "1024": {
+          "id": 1024,
+          "kind": "Part",
+          "name": "secondary device",
+          "owner": 1021,
+          "target": 1007
+        }
+      }
+    },
+    "usage_form": {
+      "id": 1009,
+      "kind": "Part",
+      "name": "primary device",
+      "owner": "1004",
+      "target": "incomplete"
+    }
+  },
+  "typed_values": {
+    "derived": null,
+    "derived_current": null,
+    "effective": {
+      "default:1006": {
+        "origin": "Unset",
+        "value": null
+      },
+      "default:1020": {
+        "origin": "Default",
+        "value": {
+          "kind": "Real",
+          "text": "17"
+        }
+      },
+      "default:1022": {
+        "origin": "Unset",
+        "value": null
+      },
+      "override:1009:1020": {
+        "origin": "Override",
+        "value": {
+          "kind": "Real",
+          "text": "23"
+        }
+      },
+      "override:1010:1020": {
+        "origin": "Default",
+        "value": {
+          "kind": "Real",
+          "text": "17"
+        }
+      },
+      "override:1023:1020": {
+        "origin": "Override",
+        "value": {
+          "kind": "Real",
+          "text": "23"
+        }
+      },
+      "override:1024:1020": {
+        "origin": "Default",
+        "value": {
+          "kind": "Real",
+          "text": "17"
+        }
+      }
+    },
+    "forms": {
+      "default:1020": {
+        "expression": "x",
+        "target": {
+          "kind": "Default",
+          "property": 1020
+        },
+        "text": "17"
+      },
+      "override:1009:1020": {
+        "expression": "x*2+1",
+        "target": {
+          "kind": "Override",
+          "property": 1020,
+          "usage": 1009
+        },
+        "text": "2e+"
+      }
+    },
+    "note": "",
+    "open": false,
+    "schema": "mbse-craft.values-ui/1",
+    "selected": null,
+    "store": {
+      "activities": {
+        "1033": {
+          "flows": {
+            "1042": {
+              "guard": null,
+              "id": 1042,
+              "kind": "Control",
+              "name": "Begin acquisition",
+              "source": 1035,
+              "target": 1036
+            },
+            "1043": {
+              "guard": null,
+              "id": 1043,
+              "kind": "Control",
+              "name": "Review acquired value",
+              "source": 1036,
+              "target": 1037
+            },
+            "1044": {
+              "guard": {
+                "Boolean": true
+              },
+              "id": 1044,
+              "kind": "Control",
+              "name": "Record reviewed distance",
+              "source": 1037,
+              "target": 1038
+            },
+            "1045": {
+              "guard": "Else",
+              "id": 1045,
+              "kind": "Control",
+              "name": "Finish without record",
+              "source": 1037,
+              "target": 1039
+            },
+            "1046": {
+              "guard": null,
+              "id": 1046,
+              "kind": "Control",
+              "name": "Finish recording",
+              "source": 1038,
+              "target": 1039
+            },
+            "1047": {
+              "guard": null,
+              "id": 1047,
+              "kind": "Object",
+              "name": "Convey distance",
+              "source": 1040,
+              "target": 1041
+            }
+          },
+          "id": 1033,
+          "name": "Synthetic inspection sequence",
+          "nodes": {
+            "1035": {
+              "id": 1035,
+              "kind": "Initial",
+              "name": "Start inspection",
+              "partition": null
+            },
+            "1036": {
+              "id": 1036,
+              "kind": "Action",
+              "name": "Acquire distance",
+              "partition": 1034
+            },
+            "1037": {
+              "id": 1037,
+              "kind": "Decision",
+              "name": "Review check",
+              "partition": 1034
+            },
+            "1038": {
+              "id": 1038,
+              "kind": "Action",
+              "name": "Record disposition",
+              "partition": 1034
+            },
+            "1039": {
+              "id": 1039,
+              "kind": "Final",
+              "name": "Finish inspection",
+              "partition": null
+            }
+          },
+          "partitions": {
+            "1034": {
+              "id": 1034,
+              "name": "Reviewer"
+            }
+          },
+          "pins": {
+            "1040": {
+              "direction": "Out",
+              "id": 1040,
+              "name": "Distance result",
+              "owner": 1036,
+              "value_type": 1005
+            },
+            "1041": {
+              "direction": "In",
+              "id": 1041,
+              "name": "Distance input",
+              "owner": 1038,
+              "value_type": 1005
+            }
+          },
+          "system": 1
+        }
+      },
+      "connectors": {
+        "1018": {
+          "conveyed": 1005,
+          "id": 1018,
+          "name": "Measurement transfer",
+          "owner": 1008,
+          "source": {
+            "port": 1017,
+            "usage": 1009
+          },
+          "target": {
+            "port": 1015,
+            "usage": 1010
+          }
+        },
+        "1019": {
+          "conveyed": 1005,
+          "id": 1019,
+          "name": "Second transfer",
+          "owner": 1008,
+          "source": {
+            "port": 1017,
+            "usage": 1009
+          },
+          "target": {
+            "port": 1015,
+            "usage": 1010
+          }
+        },
+        "1025": {
+          "conveyed": 1005,
+          "id": 1025,
+          "name": "Measurement transfer",
+          "owner": 1021,
+          "source": {
+            "port": 1017,
+            "usage": 1023
+          },
+          "target": {
+            "port": 1015,
+            "usage": 1024
+          }
+        },
+        "1026": {
+          "conveyed": 1005,
+          "id": 1026,
+          "name": "Second transfer",
+          "owner": 1021,
+          "source": {
+            "port": 1017,
+            "usage": 1023
+          },
+          "target": {
+            "port": 1015,
+            "usage": 1024
+          }
+        }
+      },
+      "defaults": {
+        "1020": {
+          "kind": "Real",
+          "text": "17"
+        }
+      },
+      "definitions": {
+        "1004": {
+          "id": 1004,
+          "kind": "Component",
+          "name": "Subsystem",
+          "system": 1
+        },
+        "1005": {
+          "id": 1005,
+          "kind": {
+            "Value": "Real"
+          },
+          "name": "Distance",
+          "system": 1
+        },
+        "1007": {
+          "id": 1007,
+          "kind": "Component",
+          "name": "Device",
+          "system": 1
+        },
+        "1008": {
+          "id": 1008,
+          "kind": "Component",
+          "name": "Alternate assembly",
+          "system": 1
+        },
+        "1021": {
+          "id": 1021,
+          "kind": "Component",
+          "name": "Subsystem copy revised",
+          "system": 1
+        }
+      },
+      "interfaces": {
+        "1012": {
+          "direction": "In",
+          "id": 1012,
+          "name": "Distance input contract",
+          "payload": 1005,
+          "system": 1
+        },
+        "1013": {
+          "direction": "In",
+          "id": 1013,
+          "name": "Compatible distance input",
+          "payload": 1005,
+          "system": 1
+        },
+        "1014": {
+          "direction": "Out",
+          "id": 1014,
+          "name": "Distance output",
+          "payload": 1005,
+          "system": 1
+        }
+      },
+      "overrides": {
+        "1009": {
+          "1020": {
+            "kind": "Real",
+            "text": "23"
+          }
+        },
+        "1023": {
+          "1020": {
+            "kind": "Real",
+            "text": "23"
+          }
+        }
+      },
+      "ports": {
+        "1015": {
+          "assignment": 1013,
+          "contract": 1012,
+          "id": 1015,
+          "name": "measurement input revised",
+          "owner": 1007
+        },
+        "1016": {
+          "assignment": 1013,
+          "contract": 1012,
+          "id": 1016,
+          "name": "cross-view input",
+          "owner": 1007
+        },
+        "1017": {
+          "assignment": null,
+          "contract": 1014,
+          "id": 1017,
+          "name": "measurement output",
+          "owner": 1007
+        }
+      },
+      "profile": "mbse-craft.types/1",
+      "profile_applications": {
+        "1003|urn:mbse-craft:qa|1.0|Valve": {
+          "expected": "Measure",
+          "profile": {
+            "namespace": "urn:mbse-craft:qa",
+            "version": "1.0"
+          },
+          "stereotype": "Valve",
+          "target": 1003,
+          "values": {
+            "label": {
+              "kind": "Text",
+              "text": "prototype"
+            }
+          }
+        },
+        "1021|urn:mbse-craft:qa|1.0|Valve": {
+          "expected": "ComponentDefinition",
+          "profile": {
+            "namespace": "urn:mbse-craft:qa",
+            "version": "1.0"
+          },
+          "stereotype": "Valve",
+          "target": 1021,
+          "values": {
+            "label": {
+              "kind": "Text",
+              "text": "prototype"
+            }
+          }
+        },
+        "1023|urn:mbse-craft:qa|1.0|Valve": {
+          "expected": "Part",
+          "profile": {
+            "namespace": "urn:mbse-craft:qa",
+            "version": "1.0"
+          },
+          "stereotype": "Valve",
+          "target": 1023,
+          "values": {
+            "label": {
+              "kind": "Text",
+              "text": "prototype"
+            }
+          }
+        }
+      },
+      "profiles": {
+        "urn:mbse-craft:qa|1.0": {
+          "identity": {
+            "namespace": "urn:mbse-craft:qa",
+            "version": "1.0"
+          },
+          "stereotypes": {
+            "Valve": {
+              "applies_to": [
+                "Measure",
+                "ComponentDefinition",
+                "Part"
+              ],
+              "tags": {
+                "label": "Text"
+              }
+            }
+          }
+        }
+      },
+      "properties": {
+        "1006": {
+          "id": 1006,
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          },
+          "name": "length",
+          "owner": 1004,
+          "value_type": 1005
+        },
+        "1020": {
+          "id": 1020,
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          },
+          "name": "instance gain",
+          "owner": 1007,
+          "value_type": 1005
+        },
+        "1022": {
+          "id": 1022,
+          "multiplicity": {
+            "lower": 1,
+            "upper": 1
+          },
+          "name": "length",
+          "owner": 1021,
+          "value_type": 1005
+        }
+      },
+      "schema_version": 1,
+      "usages": {
+        "1009": {
+          "id": 1009,
+          "kind": "Part",
+          "name": "primary device",
+          "owner": 1008,
+          "target": 1007
+        },
+        "1010": {
+          "id": 1010,
+          "kind": "Part",
+          "name": "secondary device",
+          "owner": 1008,
+          "target": 1007
+        },
+        "1011": {
+          "id": 1011,
+          "kind": "Reference",
+          "name": "reference to assembly",
+          "owner": 1007,
+          "target": 1004
+        },
+        "1023": {
+          "id": 1023,
+          "kind": "Part",
+          "name": "primary device",
+          "owner": 1021,
+          "target": 1007
+        },
+        "1024": {
+          "id": 1024,
+          "kind": "Part",
+          "name": "secondary device",
+          "owner": 1021,
+          "target": 1007
+        }
+      }
+    }
+  },
+  "validation_navigation": {
+    "last_focus": null,
+    "note": "",
+    "pending": null
+  },
+  "viewpoint": {
+    "active_view": "22",
+    "form": null,
+    "form_admitted": true,
+    "note": "",
+    "open": false,
+    "projection": {
+      "active": false,
+      "context_resolved": true,
+      "limitations": [
+        "Filters affect native record cards only; typed port/connector rendering, manual visibility and the complete model/ledger retain their existing scope. No normative SysML Viewpoint/Concern or engineering approval is inferred."
+      ],
+      "matched": []
+    },
+    "rendered": null,
+    "saved": null
+  },
+  "views_active": "22",
+  "views_camera": {
+    "view": "22",
+    "x": 64.0,
+    "y": 0.0,
+    "zoom": 1.25
+  },
+  "views_gesture_active": false,
+  "views_inspection_copy_origin": null,
+  "views_inspection_note": "Choose an explicit local presentation source to inspect read only.",
+  "views_inspection_profile": null,
+  "views_inspection_sha256": null,
+  "views_inspection_visible": false,
+  "views_mapping_rehearsal": {
+    "checked_preview_retained": false,
+    "choices": null,
+    "copy_note": "",
+    "copy_title": "Recovered presentation",
+    "last_applied_view": null,
+    "note": "",
+    "target_current": false
+  },
+  "views_note": "Views opened with checked identity. Detached runtime history authority was not restored.",
+  "views_occurrence_navigation": {
+    "active_view": "22",
+    "document_sha256": "6cbde4162947be75097fa0b0688504170409cbff15f61d00f461f03060df33d3",
+    "history_usage": [
+      0,
+      0
+    ],
+    "next_id": "40",
+    "occurrence": null,
+    "selected_occurrence": null
+  },
+  "views_pair_pending": false,
+  "views_pending": false,
+  "views_recovery_current_hint": false,
+  "views_revision": "62",
+  "views_saved_hint": true,
+  "widgets": {
+    "action:Add Actor": [
+      101.375,
+      1471.0,
+      167.59375,
+      1489.0
+    ],
+    "action:Add Capability": [
+      94.9375,
+      1445.0,
+      186.375,
+      1463.0
+    ],
+    "action:Add Environment": [
+      8.0,
+      1497.0,
+      116.96875,
+      1515.0
+    ],
+    "action:Add Expectation": [
+      8.0,
+      1523.0,
+      111.6875,
+      1541.0
+    ],
+    "action:Add Measure": [
+      8.0,
+      1471.0,
+      92.375,
+      1489.0
+    ],
+    "action:Add Mission": [
+      8.0,
+      1445.0,
+      85.9375,
+      1463.0
+    ],
+    "action:Add Objective": [
+      195.375,
+      1445.0,
+      285.125,
+      1463.0
+    ],
+    "action:Add Organization": [
+      125.96875,
+      1497.0,
+      235.5,
+      1515.0
+    ],
+    "action:Add Stakeholder": [
+      176.59375,
+      1471.0,
+      280.625,
+      1489.0
+    ],
+    "action:Browse library folder": [
+      1256.71875,
+      29.5,
+      1386.125,
+      47.5
+    ],
+    "action:Choose model file\u2026": [
+      234.46875,
+      29.5,
+      359.6875,
+      47.5
+    ],
+    "action:Export SysML copy": [
+      1514.6875,
+      29.5,
+      1630.8125,
+      47.5
+    ],
+    "action:Find usages": [
+      8.0,
+      614.0,
+      83.5,
+      632.0
+    ],
+    "action:Import SysML": [
+      525.1875,
+      29.5,
+      611.6875,
+      47.5
+    ],
+    "action:Inspect presentation source\u2026": [
+      532.21875,
+      202.0,
+      713.875,
+      220.0
+    ],
+    "action:Inspect record impact": [
+      8.0,
+      640.0,
+      141.3125,
+      658.0
+    ],
+    "action:New": [
+      368.6875,
+      29.5,
+      403.09375,
+      47.5
+    ],
+    "action:Open": [
+      412.09375,
+      29.5,
+      452.25,
+      47.5
+    ],
+    "action:Open external projection": [
+      916.6875,
+      29.5,
+      1070.0,
+      47.5
+    ],
+    "action:Recover": [
+      461.25,
+      29.5,
+      516.1875,
+      47.5
+    ],
+    "action:Recovery copy": [
+      664.375,
+      29.5,
+      756.0,
+      47.5
+    ],
+    "action:Redo": [
+      1692.8125,
+      28.0,
+      1736.8125,
+      56.0
+    ],
+    "action:Requirements and evidence": [
+      1079.0,
+      29.5,
+      1247.71875,
+      47.5
+    ],
+    "action:Save": [
+      620.6875,
+      29.5,
+      655.375,
+      47.5
+    ],
+    "action:Search native records": [
+      8.0,
+      202.0,
+      139.65625,
+      220.0
+    ],
+    "action:Undo": [
+      1639.8125,
+      28.0,
+      1683.8125,
+      56.0
+    ],
+    "activity-canvas:Cancel gesture": [
+      683.125,
+      478.0,
+      777.0,
+      496.0
+    ],
+    "activity-canvas:Diagram Redo": [
+      583.875,
+      478.0,
+      674.125,
+      496.0
+    ],
+    "activity-canvas:Diagram Undo": [
+      483.5625,
+      478.0,
+      574.875,
+      496.0
+    ],
+    "activity-canvas:Move down": [
+      571.59375,
+      548.0,
+      647.34375,
+      566.0
+    ],
+    "activity-canvas:Move left": [
+      352.0,
+      548.0,
+      415.5,
+      566.0
+    ],
+    "activity-canvas:Move right": [
+      424.5,
+      548.0,
+      495.46875,
+      566.0
+    ],
+    "activity-canvas:Move up": [
+      504.46875,
+      548.0,
+      562.59375,
+      566.0
+    ],
+    "activity-canvas:Open editor": [
+      352.0,
+      478.0,
+      474.5625,
+      496.0
+    ],
+    "activity-canvas:Remove occurrence": [
+      869.78125,
+      548.0,
+      1019.71875,
+      566.0
+    ],
+    "activity-canvas:Toggle pin": [
+      767.375,
+      548.0,
+      860.78125,
+      566.0
+    ],
+    "activity-canvas:Toggle visibility": [
+      656.34375,
+      548.0,
+      758.375,
+      566.0
+    ],
+    "activity-flow:1042": [
+      352.0,
+      1285.5,
+      685.21875,
+      1303.5
+    ],
+    "activity-flow:1043": [
+      352.0,
+      1311.5,
+      715.15625,
+      1329.5
+    ],
+    "activity-flow:1044": [
+      352.0,
+      1337.5,
+      759.6875,
+      1355.5
+    ],
+    "activity-flow:1045": [
+      352.0,
+      1363.5,
+      732.53125,
+      1381.5
+    ],
+    "activity-flow:1046": [
+      352.0,
+      1389.5,
+      678.78125,
+      1407.5
+    ],
+    "activity-flow:1047": [
+      352.0,
+      1415.5,
+      675.59375,
+      1433.5
+    ],
+    "activity-occurrence:23": [
+      352.0,
+      627.0,
+      640.75,
+      767.0
+    ],
+    "activity-occurrence:24": [
+      670.75,
+      627.0,
+      1008.25,
+      767.0
+    ],
+    "activity-occurrence:25": [
+      1038.25,
+      627.0,
+      1375.75,
+      767.0
+    ],
+    "activity-occurrence:26": [
+      1405.75,
+      627.0,
+      1743.25,
+      767.0
+    ],
+    "activity-occurrence:27": [
+      352.0,
+      820.75,
+      640.75,
+      960.75
+    ],
+    "activity-occurrence:28": [
+      670.75,
+      820.75,
+      1008.25,
+      960.75
+    ],
+    "activity-occurrence:29": [
+      1038.25,
+      820.75,
+      1375.75,
+      960.75
+    ],
+    "activity-occurrence:30": [
+      1405.75,
+      820.75,
+      1743.25,
+      960.75
+    ],
+    "calc:Add count input": [
+      134.4375,
+      1312.0,
+      235.71875,
+      1330.0
+    ],
+    "calc:Add duration input": [
+      8.0,
+      1312.0,
+      125.4375,
+      1330.0
+    ],
+    "calc:Add length input": [
+      117.84375,
+      1286.0,
+      223.46875,
+      1304.0
+    ],
+    "calc:Add scalar input": [
+      8.0,
+      1286.0,
+      108.84375,
+      1304.0
+    ],
+    "camera:100%": [
+      478.8125,
+      281.0,
+      519.625,
+      299.0
+    ],
+    "camera:Fit": [
+      949.8125,
+      254.5,
+      972.6875,
+      272.5
+    ],
+    "camera:Pan down": [
+      780.4375,
+      281.0,
+      845.625,
+      299.0
+    ],
+    "camera:Pan left": [
+      592.59375,
+      281.0,
+      645.53125,
+      299.0
+    ],
+    "camera:Pan right": [
+      654.53125,
+      281.0,
+      714.90625,
+      299.0
+    ],
+    "camera:Pan up": [
+      723.90625,
+      281.0,
+      771.4375,
+      299.0
+    ],
+    "camera:Reset camera": [
+      854.625,
+      281.0,
+      940.875,
+      299.0
+    ],
+    "camera:Zoom in": [
+      528.625,
+      281.0,
+      583.59375,
+      299.0
+    ],
+    "camera:Zoom out": [
+      405.34375,
+      281.0,
+      469.8125,
+      299.0
+    ],
+    "command:toolbar:edit.impact": [
+      8.0,
+      640.0,
+      141.3125,
+      658.0
+    ],
+    "command:toolbar:edit.redo": [
+      1692.8125,
+      28.0,
+      1736.8125,
+      56.0
+    ],
+    "command:toolbar:edit.search": [
+      8.0,
+      202.0,
+      139.65625,
+      220.0
+    ],
+    "command:toolbar:edit.undo": [
+      1639.8125,
+      28.0,
+      1683.8125,
+      56.0
+    ],
+    "command:toolbar:edit.usages": [
+      8.0,
+      614.0,
+      83.5,
+      632.0
+    ],
+    "command:toolbar:file.choose": [
+      234.46875,
+      29.5,
+      359.6875,
+      47.5
+    ],
+    "command:toolbar:file.export_sysml": [
+      1514.6875,
+      29.5,
+      1630.8125,
+      47.5
+    ],
+    "command:toolbar:file.import_sysml": [
+      525.1875,
+      29.5,
+      611.6875,
+      47.5
+    ],
+    "command:toolbar:file.new": [
+      368.6875,
+      29.5,
+      403.09375,
+      47.5
+    ],
+    "command:toolbar:file.open": [
+      412.09375,
+      29.5,
+      452.25,
+      47.5
+    ],
+    "command:toolbar:file.recover": [
+      461.25,
+      29.5,
+      516.1875,
+      47.5
+    ],
+    "command:toolbar:file.recovery_copy": [
+      664.375,
+      29.5,
+      756.0,
+      47.5
+    ],
+    "command:toolbar:file.review_recoveries": [
+      765.0,
+      29.5,
+      907.6875,
+      47.5
+    ],
+    "command:toolbar:file.save": [
+      620.6875,
+      29.5,
+      655.375,
+      47.5
+    ],
+    "command:toolbar:tools.assurance": [
+      1079.0,
+      29.5,
+      1247.71875,
+      47.5
+    ],
+    "command:toolbar:tools.external_projection": [
+      916.6875,
+      29.5,
+      1070.0,
+      47.5
+    ],
+    "command:toolbar:tools.library": [
+      1256.71875,
+      29.5,
+      1386.125,
+      47.5
+    ],
+    "command:toolbar:tools.recovery_settings": [
+      1395.125,
+      29.5,
+      1505.6875,
+      47.5
+    ],
+    "command:toolbar:view.layout_redo": [
+      442.65625,
+      202.0,
+      523.21875,
+      220.0
+    ],
+    "command:toolbar:view.layout_undo": [
+      352.0,
+      202.0,
+      433.65625,
+      220.0
+    ],
+    "command:toolbar:view.presentation_source": [
+      532.21875,
+      202.0,
+      713.875,
+      220.0
+    ],
+    "dock:body:browser": [
+      8.0,
+      173.0,
+      348.0,
+      547.0
+    ],
+    "dock:body:canvas": [
+      352.0,
+      173.0,
+      2192.0,
+      1572.0
+    ],
+    "dock:body:inspector": [
+      8.0,
+      577.0,
+      348.0,
+      1572.0
+    ],
+    "dock:tab:browser": [
+      8.0,
+      147.0,
+      112.6875,
+      173.0
+    ],
+    "dock:tab:canvas": [
+      352.0,
+      147.0,
+      442.78125,
+      173.0
+    ],
+    "dock:tab:inspector": [
+      8.0,
+      551.0,
+      87.84375,
+      577.0
+    ],
+    "field:1003:calc.expression": [
+      8.0,
+      1058.0,
+      348.0,
+      1077.0
+    ],
+    "field:1003:calc.input.x": [
+      8.0,
+      1131.0,
+      348.0,
+      1150.0
+    ],
+    "field:1003:calc.input.x1": [
+      8.0,
+      1207.0,
+      348.0,
+      1226.0
+    ],
+    "field:1003:criterion": [
+      8.0,
+      814.0,
+      348.0,
+      833.0
+    ],
+    "field:1003:name": [
+      8.0,
+      689.0,
+      348.0,
+      708.0
+    ],
+    "input-unit:1003:x": [
+      8.0,
+      1158.0,
+      108.0,
+      1176.0
+    ],
+    "input-unit:1003:x1": [
+      8.0,
+      1234.0,
+      108.0,
+      1252.0
+    ],
+    "measure-unit:1003": [
+      8.0,
+      765.0,
+      116.1875,
+      783.0
+    ],
+    "menu:Edit": [
+      41.28125,
+      2.0,
+      68.0625,
+      20.0
+    ],
+    "menu:File": [
+      8.0,
+      2.0,
+      32.28125,
+      20.0
+    ],
+    "menu:Tools": [
+      118.46875,
+      2.0,
+      153.03125,
+      20.0
+    ],
+    "menu:View": [
+      77.0625,
+      2.0,
+      109.46875,
+      20.0
+    ],
+    "output-unit:1003": [
+      8.0,
+      1260.0,
+      108.0,
+      1278.0
+    ],
+    "path": [
+      202.6875,
+      64.0,
+      2192.0,
+      83.0
+    ],
+    "recovery:Review copies": [
+      765.0,
+      29.5,
+      907.6875,
+      47.5
+    ],
+    "save-path": [
+      137.46875,
+      91.0,
+      2192.0,
+      110.0
+    ],
+    "scope:1003": [
+      8.0,
+      716.0,
+      113.21875,
+      734.0
+    ],
+    "settings:Open": [
+      1395.125,
+      29.5,
+      1505.6875,
+      47.5
+    ],
+    "tree:1": [
+      26.0,
+      295.0,
+      132.6875,
+      313.0
+    ],
+    "tree:1000": [
+      26.0,
+      321.0,
+      272.125,
+      339.0
+    ],
+    "tree:1001": [
+      26.0,
+      347.0,
+      318.53125,
+      365.0
+    ],
+    "tree:1002": [
+      26.0,
+      373.0,
+      297.96875,
+      405.0
+    ],
+    "tree:1003": [
+      26.0,
+      413.0,
+      296.375,
+      431.0
+    ],
+    "tree:definition:1004": [
+      8.0,
+      476.0,
+      334.125,
+      494.0
+    ],
+    "tree:definition:1005": [
+      8.0,
+      510.0,
+      318.4375,
+      528.0
+    ],
+    "tree:definition:1007": [
+      8.0,
+      544.0,
+      310.4375,
+      547.0
+    ],
+    "tree:definition:1008": [
+      8.0,
+      608.0,
+      321.96875,
+      547.0
+    ],
+    "tree:definition:1021": [
+      8.0,
+      724.0,
+      347.96875,
+      547.0
+    ],
+    "tree:system:1:header": [
+      8.0,
+      269.0,
+      322.5625,
+      287.0
+    ],
+    "tree:usage:1009": [
+      26.0,
+      648.0,
+      321.96875,
+      547.0
+    ],
+    "tree:usage:1010": [
+      26.0,
+      686.0,
+      335.96875,
+      547.0
+    ],
+    "tree:usage:1011": [
+      26.0,
+      570.0,
+      317.96875,
+      547.0
+    ],
+    "tree:usage:1023": [
+      26.0,
+      764.0,
+      321.96875,
+      547.0
+    ],
+    "tree:usage:1024": [
+      26.0,
+      802.0,
+      335.96875,
+      547.0
+    ],
+    "view:Layout Redo": [
+      442.65625,
+      202.0,
+      523.21875,
+      220.0
+    ],
+    "view:Layout Undo": [
+      352.0,
+      202.0,
+      433.65625,
+      220.0
+    ],
+    "view:tab:1": [
+      352.0,
+      228.0,
+      446.15625,
+      246.0
+    ],
+    "view:tab:2": [
+      455.15625,
+      228.0,
+      534.3125,
+      246.0
+    ],
+    "view:tab:22": [
+      543.3125,
+      228.0,
+      775.1875,
+      246.0
+    ],
+    "view:tab:31": [
+      784.1875,
+      228.0,
+      1016.0625,
+      246.0
+    ],
+    "views:Open views": [
+      756.53125,
+      307.5,
+      831.75,
+      325.5
+    ]
+  },
+  "workspace_docking": {
+    "body_ids": {
+      "browser": "Id::new(\"mbse-owned-workspace-docking\").with((\"body\", Browser))",
+      "canvas": "Id::new(\"mbse-owned-workspace-docking\").with((\"body\", Canvas))",
+      "inspector": "Id::new(\"mbse-owned-workspace-docking\").with((\"body\", Inspector))"
+    },
+    "controls_open": false,
+    "floating": [],
+    "last_actions": [],
+    "layout": "Layout { root: Some(Split { axis: Horizontal, size: FixedFirst(340.0), first: Split { axis: Vertical, size: FixedFirst(400.0), first: Tabs { panels: [Browser], active: 0 }, second: Tabs { panels: [Inspector], active: 0 } }, second: Tabs { panels: [Canvas], active: 0 } }), floating: [] }",
+    "note": "",
+    "panels": [
+      "browser",
+      "inspector",
+      "canvas"
+    ],
+    "revision": 0,
+    "schema": "mbse-craft.workspace-docking/1"
+  },
+  "write_pending": false
+}

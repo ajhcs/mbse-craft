@@ -1,0 +1,138 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-27T06:14:25.111847+00:00",
+  "job_sha256": "53de34667db9b1fff7691628aae796eeeb037bfc1ac5a7b1763d7f643bbcf865",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p30c-01/run",
+      "started_utc": "2026-10-27T06:14:25.132212+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 703977,
+          "start_ticks": 45601607
+        },
+        "server_pid": {
+          "pid": 703974,
+          "start_ticks": 45601605
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/repos/builderbob/mbse-craft/work/m6-p30c-native-activities/docs/parity/p30c/fixtures/native.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 703977,
+        "server_pid": 703974,
+        "window": 4194307,
+        "binary_sha256": "635e5f7b4c1b100c771673c73d8931f26bc616a01eb6cda1f06b796b22daf4ee"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-27T06:36:42.629682+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-27T06:14:25.131886+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1381615452160,
+    "available_memory_bytes": 24613875712,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 299500,
+        "start_ticks": 43416915,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      },
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 391
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "shared_native_shortcut_and_activity_partition_authoring": true,
+  "native_widget_nodes_owned_pins_and_exact_value_type": true,
+  "native_widget_control_object_flows_and_literal_decisions": true,
+  "native_distinct_guard_refusal_selection_and_model_undo_redo": true,
+  "native_wrong_object_endpoint_refuses_without_source_overwrite": true,
+  "native_actual_shapes_flow_arrows_and_two_independent_diagrams": true,
+  "native_drag_single_layout_undo_redo_nudge_pin_hide_and_independent_cameras": true,
+  "visual_arrow_anchor_gap_observed": "08 screenshot: bounding-card anchors miss circular symbols and hide arrowheads behind filled shapes; fresh build will correct before cold acceptance.",
+  "native_activity_remove_detach_and_observed_inverse_restore": true,
+  "checkpoint_preserves_entire_original_native_type_raw_opaque_and_presentation_data": true,
+  "remaining_cold_and_corrected_anchor_acceptance": "Deferred to fresh build/admission from this owned checkpoint; successful authoring/history/layout checks will not be repeated.",
+  "checkpoint_paths": [
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p30c-01/run/activity-checkpoint.kernspan",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p30c-01/run/activity-checkpoint.mbse-views.json"
+  ],
+  "all_frozen_inputs_unchanged": true,
+  "action_errors": [
+    {
+      "action": "n.click('activity-canvas:Open editor'); assert n.audit()['activities']['current']['kind']=='Activity' and n.audit()['activities']['current']['id']==activity; accepted_before_history=json.loads(json.dumps(n.audit()['activities']['accepted'])); proposals_before_history=json.loads(json.dumps(n.audit()['activities']['proposals'])); n.click('activity:Remove accepted'); n.send(op='wait',pause=.4); assert not n.audit()['activities']['accepted'] and n.audit()['activities']['rendered']['occurrences']==[]; n.capture('12-accepted-activity-removal-detaches-diagram'); n.click('activity:Model Undo'); n.send(op='wait',pause=.4); assert n.audit()['activities']['accepted']==accepted_before_history and n.audit()['activities']['proposals']==proposals_before_history and len(n.audit()['activities']['rendered']['occurrences'])==8; n.click('activity:Model Redo'); n.send(op='wait',pause=.3); assert not n.audit()['activities']['accepted']; n.click('activity:Model Undo'); n.send(op='wait',pause=.4); assert n.audit()['activities']['accepted']==accepted_before_history and n.audit()['activities']['proposals']==proposals_before_history and len(n.audit()['activities']['rendered']['occurrences'])==8; n.capture('13-observed-inverse-model-history-restores-exact-activity'); receipt['native_activity_remove_detach_and_observed_inverse_restore']=True; n.click('activity:Close'); n.clear_adjacent_views_path(); checkpoint=n.save('activity-checkpoint.kernspan'); checkpoint_views=json.loads((n.run/'activity-checkpoint.mbse-views.json').read_text()); assert checkpoint['records']==original['records'] and checkpoint['drafts']==original['drafts'] and checkpoint['creation_drafts']==original['creation_drafts']; orig_ext=original['extensions']; check_ext=checkpoint['extensions']; assert check_ext['profile']==orig_ext['profile'] and check_ext['schema_version']==orig_ext['schema_version'] and check_ext['required_namespaces']==orig_ext['required_namespaces']; assert set(check_ext['namespaces'])==set(orig_ext['namespaces']); strip_types=lambda x:{k:v for k,v in x.items() if k!='activities'}; strip_forms=lambda x:{k:v for k,v in x.items() if k not in ['activity_forms','activity_flow']}; assert strip_types(check_ext['namespaces']['mbse-craft.types/1'])==orig_ext['namespaces']['mbse-craft.types/1']; assert strip_forms(check_ext['namespaces']['mbse-craft.type-drafts/1'])==orig_ext['namespaces']['mbse-craft.type-drafts/1']; assert all(check_ext['namespaces'][k]==v for k,v in orig_ext['namespaces'].items() if k not in ['mbse-craft.types/1','mbse-craft.type-drafts/1']); assert all(checkpoint_views.get(k,{})==original_views.get(k,{}) for k in ['occurrences','edges','typed_ports','connector_edges']); assert all(checkpoint_views['views'][k]==v for k,v in original_views['views'].items()); assert set(checkpoint_views['activity_diagrams'])==set([view_a,view_b]); n.capture('14-owned-native-views-checkpoint-existing-data-preserved'); receipt['checkpoint_preserves_entire_original_native_type_raw_opaque_and_presentation_data']=True; receipt['remaining_cold_and_corrected_anchor_acceptance']='Deferred to fresh build/admission from this owned checkpoint; successful authoring/history/layout checks will not be repeated.'; receipt['checkpoint_paths']=[str(n.run/'activity-checkpoint.kernspan'),str(n.run/'activity-checkpoint.mbse-views.json')]; assert all(base.digest(Path(p))==h for p,h in j['inputs'].items()); receipt['all_frozen_inputs_unchanged']=True; n.close(); assert not list(output.rglob('*auth*')); receipt['authentication_files_absent']=True",
+      "error": "AssertionError()"
+    }
+  ],
+  "authentication_check_correction": {
+    "overbroad_pattern_matches": [
+      "run/02-widget-authored-activity-and-partition.png",
+      "run/03-widget-authored-nodes-partition-membership-and-value-pins.png",
+      "run/04-widget-authored-control-object-flow-and-guards.png",
+      "run/02-widget-authored-activity-and-partition.ui.json",
+      "run/04-widget-authored-control-object-flow-and-guards.ui.json",
+      "run/03-widget-authored-nodes-partition-membership-and-value-pins.ui.json"
+    ],
+    "reason": "Matched authored screenshot names, not authentication files. Exact frozen harness Xauthority path checked instead."
+  },
+  "authentication_files_absent": true,
+  "ended_utc": "2026-10-27T06:39:14.537018+00:00"
+}

@@ -1,0 +1,13 @@
+# P30c review
+
+Reviewed PR #41 candidate48b620ea8be9f1a15323b510389543ef7ad31732 from isolated `codex/review-p30c`. Reviewer is Codex, the same implementing agent; this is not independent engineering acceptance. No provider comments or inline threads were present at inspection.
+
+Reviewed the shared command/shortcut and docking/source/history guards, keyed proposal ownership/admission, exact selection/Apply/Discard/removal, model history and presentation-only history. Pending unadmitted fields remain recoverable in the editor and block close/source navigation; other live editors and writes block activity mutation. Exact native/layout/source stamps bind selection and drag; one release publishes one layout transaction. Geometry, visibility, pinning and cameras do not write semantic activity data. Missing activity/kind detaches; observed inverse source history alone restores exact identity.
+
+Resolved both visual findings: F01 replaced bounding-card flow anchors with actual circle/diamond/rounded-box contours and disclosed skipped overlapping endpoints. F02 replaced proportionally oversized egui arrowheads with bounded heads and corrected self-loop anchors. Native final screenshot01 verifies corrected arrows; long straight lines may cross other symbols/labels. The complete ledger retains exact source/target/guard data; routing/automatic-layout/full visual grammar acceptance remains open.
+
+Verified738 source hashes and88 original/stored/lossless artifacts. Source444d60d701f0f332d74e88313fc968ff19b59be746bae56e04090a3c715c37dd has targeted3 geometry cases/build; prior617 workspace/build and intermediate2contour/1drag/build qualify their frozen sources.620 distinct names reconcile609 prior+11new. Successful unrelated tests were not replayed; no summed final-source full-suite claim. Native widget authoring, refusal/raw retention, two diagram histories/cameras, complete Snapshot preservation, and final cold save-copy equality across all6 maps are documented. Initial compile0tests, pipe-only interrupted launch and both controller assertion errors remain retained and explained.
+
+72 prior available checkouts, including original candidate, retain heads/status;18 user-removed directories retain registered heads, contents unverifiable. No reset/clean/recreation/prune, upstream/dependency/license/build-script changes or external-project writes. Package consistency and diff checks pass. No further actionable findings in this bounded review; ready to merge under existing authorization.
+
+P30's finite authoring/diagram contract is ready to close on merge. P31 finite execution remains unimplemented. All56 broad specs, integrated exits and independent engineering/full NoMagic/SysML/Craft/platform/scale/production acceptance remain unaccepted.

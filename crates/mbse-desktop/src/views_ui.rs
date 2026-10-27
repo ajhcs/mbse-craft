@@ -557,7 +557,15 @@ impl ViewWorkspace {
         Ok(true)
     }
     fn fit_camera(&self,editor:&Editor,width:f64)->Result<v::Camera,String>{
-        let doc=self.views.document();let projection=v::viewpoints::project(doc.views.get(&self.active).ok_or("VIEWS_NO_VIEW")?,&editor.snapshot);let items:Vec<_>=doc.occurrences.values().filter(|o|o.view==self.active&&o.visible&&o.presence.active()&&projection.allows(o.record)).map(|o|&o.geometry).chain(doc.typed_ports.values().filter(|o|o.view==self.active&&o.visible&&o.presence.active()).map(|o|&o.geometry)).collect();
+        let doc=self.views.document();
+        let items:Vec<&Geometry>=if let Some(diagram)=doc.activity_diagrams.get(&self.active){
+            let store=mbse_model::types::load(&editor.snapshot)?;
+            let activity=(diagram.source_document==editor.snapshot.document_id).then(||store.activities.get(&diagram.activity)).flatten();
+            diagram.occurrences.values().filter(|o|o.visible&&o.presence.active()&&activity.and_then(|a|v::activities::kind(a,o.element))==Some(o.expected)).map(|o|&o.geometry).collect()
+        }else{
+            let projection=v::viewpoints::project(doc.views.get(&self.active).ok_or("VIEWS_NO_VIEW")?,&editor.snapshot);
+            doc.occurrences.values().filter(|o|o.view==self.active&&o.visible&&o.presence.active()&&projection.allows(o.record)).map(|o|&o.geometry).chain(doc.typed_ports.values().filter(|o|o.view==self.active&&o.visible&&o.presence.active()).map(|o|&o.geometry)).collect()
+        };
         let x=items.iter().map(|o|o.x).fold(0.,f64::min);let y=items.iter().map(|o|o.y).fold(0.,f64::min);let right=items.iter().map(|o|o.x+o.width).fold(800.,f64::max);let bottom=items.iter().map(|o|o.y+o.height).fold(400.,f64::max);let zoom=(width.max(300.)/(right-x+50.)).min(400./(bottom-y+50.)).clamp(v::Camera::MIN_ZOOM,v::Camera::MAX_ZOOM);v::Camera::checked(x,y,zoom)
     }
     fn camera_target(old: &v::Camera, command: CameraCommand) -> Result<v::Camera, String> {
@@ -717,6 +725,7 @@ impl ViewWorkspace {
             }
         });
         ui.label(&self.note);
+        if self.views.document().activity_diagrams.contains_key(&self.active){ui.label("Activity diagram: native records and typed ports remain in their own views. Activity layout controls are below.");return select;}
         ui.horizontal_wrapped(|ui| {
             ui.label("Find / reuse");
             ui.text_edit_singleline(&mut self.search);

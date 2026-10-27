@@ -1,0 +1,117 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-27T06:52:38.662382+00:00",
+  "job_sha256": "4a6301fc2edd4d22fc73ddca68f55b1e72bf676cd8e5b7d8c75af50f64f63420",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p30c-04/run",
+      "started_utc": "2026-10-27T06:52:38.684061+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 717336,
+          "start_ticks": 45830962
+        },
+        "server_pid": {
+          "pid": 717333,
+          "start_ticks": 45830960
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/build/builderbob/mbse-craft/milestone1/native-p30c-03/run/activity-final.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 717336,
+        "server_pid": 717333,
+        "window": 4194307,
+        "binary_sha256": "7795da9a03124da9b1e6894d45292bc12c7fe0cd8ef7247f80db75f43183c593"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-27T06:54:13.660790+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-27T06:52:38.683834+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1380869050368,
+    "available_memory_bytes": 24623620096,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 299500,
+        "start_ticks": 43416915,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      },
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 359
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "action_errors": [
+    {
+      "action": "cold_hash=n.audit()['snapshot_hash']; cold_revision=n.audit()['views_revision']; n.click('action:Undo'); n.click('activity-canvas:Diagram Undo'); assert n.audit()['snapshot_hash']==cold_hash and n.audit()['views_revision']==cold_revision; n.send(op='key',key='h',mods=['Control_L','Alt_L']); n.click('activity:Browse elements'); n.click('activity:edit:flow:1044'); assert n.audit()['activities']['current']['form']['guard']=='x >'; n.click('activity:edit:flow:1045'); assert n.audit()['activities']['current']['form']['guard']=='else ?'; n.click('activity:edit:flow:1047'); assert n.audit()['activities']['current']['form']['target']=='1040' and n.audit()['activities']['accepted']['1033']['flows']['1047']['target']==1041; n.capture('02-cold-distinct-invalid-raw-accepted-model-preserved'); n.click('activity:Close'); n.click('view:tab:22'); assert n.audit()['views_camera']=={'view':'22','x':64.0,'y':0.0,'zoom':1.25}; assert next(o for o in n.audit()['activities']['rendered']['occurrences'] if o['element']==1036)['geometry']['x']==613; n.capture('03-cold-first-view-original-layout-and-camera'); n.click('view:tab:31'); assert next(o for o in n.audit()['activities']['rendered']['occurrences'] if o['element']==1036)['geometry']['x']==601; print([k for k in n.audit()['widgets'] if 'flow:' in k]); receipt['cold_raw_invalid_guards_wrong_pin_and_no_prior_model_layout_inverse']=True; receipt['cold_two_independent_diagrams_and_cameras']=True",
+      "error": "AssertionError('Missing live widget: activity:edit:flow:1044')"
+    }
+  ],
+  "cold_raw_invalid_guards_wrong_pin_and_no_prior_model_layout_inverse": true,
+  "cold_two_independent_diagrams_and_cameras": true,
+  "cold_actual_flow_ledger_selection": true,
+  "cold_copy_whole_snapshot_and_six_presentation_maps_exact": true,
+  "all_frozen_inputs_unchanged": true,
+  "visual_review": "Bounded arrowheads and actual symbol contours visible in screenshot01. Straight lines can cross unrelated shapes and labels; no obstacle routing or automated layout acceptance. Ledger preserves exact full guards.",
+  "authentication_files_absent": true,
+  "ended_utc": "2026-10-27T06:54:13.661070+00:00"
+}

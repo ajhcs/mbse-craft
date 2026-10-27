@@ -25,6 +25,7 @@ impl Workspace {
     pub(super) fn reset_type_context(&mut self) {
         self.matrix=Default::default();
         self.viewpoints=Default::default();
+        self.activities=Default::default();
         self.validation_focus=Default::default();
         self.type_panel.selected = None;
         self.type_panel.form = None;

@@ -1,0 +1,49 @@
+{
+  "result": "bounded_native_activity_authoring_diagrams_and_cold_passed",
+  "reviewer": "Codex same implementing agent",
+  "independent_review": false,
+  "source_files": 738,
+  "source_sha256": "444d60d701f0f332d74e88313fc968ff19b59be746bae56e04090a3c715c37dd",
+  "binary_sha256": "7795da9a03124da9b1e6894d45292bc12c7fe0cd8ef7247f80db75f43183c593",
+  "compiler_slice_counts": [
+    [
+      0
+    ],
+    [
+      617,
+      0
+    ],
+    [
+      2,
+      1,
+      0
+    ],
+    [
+      3,
+      0
+    ]
+  ],
+  "distinct_case_inventory": 620,
+  "new_distinct_cases": 11,
+  "native_launches": 4,
+  "native_completed_action_runs": 3,
+  "native_pipe_only_interrupted_launches": 1,
+  "controller_assertion_errors_retained": 2,
+  "observations": [
+    "Initial original native fixture with Measure95/raw9e and Value1005 preserved. Actual CtrlAltH widgets author Activity1033/Partition1034/nodes1035..1039/pins1040..1041/flows1042..1047. Literal true/else accepted; distinct x > / else ? guard proposals and wrong Object target1040 retained, refused without accepted data overwrite.",
+    "Two diagrams22/31 retain independent occurrence IDs/geometry/cameras. Actual drag commits one layout transaction; Diagram Undo/Redo/nudge/pin refusal/hide/show preserve entire native Snapshot. Model root removal detaches; observed inverse restores exact IDs/data/presence; newer raw proposals survive.",
+    "Checkpoint original records/drafts/creation/type/opaque/native presentation fields exact; only authored activity/journal/diagrams/counters added. Corrected contours and bounded arrowheads verified in native04 screenshot01. Native03 explicitly moves occurrence34 left160world, presentation-only with whole Snapshot exact.",
+    "Final binary cold Open restores all invalid keyed forms, accepted literal guards/typed endpoint, both independent diagrams/cameras; Model/Diagram Undo lacks earlier-session authority. Actual flow-ledger selection loads exact proposal. Saved cold copy whole Snapshot and all6 maps equal final frozen pair.",
+    "Three action runs exit normally; pipe-only launch reaches ready then EOF cleanup driver0 without action/normal app exit claim. Exact Xauthority files absent; owned PID/starttick identity cleanup recorded. All frozen inputs unchanged."
+  ],
+  "retained_errors": [
+    "Initial syntax compile0tests. Native01 cleanup assertion accidentally matched screenshot authored names; exact Xauthority file/PIDs absent, corrected assertion retained.",
+    "Native02 pipe EOF launch interruption retained without acceptance. Native04 missing flow widget because activity root not yet selected; actual root selection then exact fields checked."
+  ],
+  "limits": [
+    "Same-agent bounded Linux synthetic fixture; no independent engineering/platform/scale/performance/usability/production acceptance.",
+    "Documentary finite activity authoring only; no execution, arbitrary guards, fork/join semantics, full NoMagic/SysML/Craft compatibility. P31 owns finite execution.",
+    "Straight flow segments can cross unrelated shapes/labels; no obstacle routing/automatic layout/complete visual grammar acceptance. Exact flow ledger retains full guards/endpoints. Native viewpoint filters scope native cards only.",
+    "All56 broad specs and integrated milestone exits remain unaccepted."
+  ]
+}

@@ -801,7 +801,7 @@
         {
           "id": "P30b",
           "title": "Durable activity form journals and independent diagram core",
-          "state": "reviewed_ready_to_merge",
+          "state": "merged",
           "depends_on": [
             "P30a"
           ],
@@ -811,15 +811,19 @@
           "pr_number": 40,
           "pr_url": "https://github.com/ajhcs/mbse-craft/pull/40",
           "review": "docs/parity/p30b/REVIEW.md",
-          "review_preservation": "docs/parity/p30b/REVIEW_PRESERVATION.json"
+          "review_preservation": "docs/parity/p30b/REVIEW_PRESERVATION.json",
+          "merge_commit": "f8a615b86175b7226d6cacf152b09564bc85f07e",
+          "reviewed_head": "2723cdebb036cc3e2f34684792479b6722685072"
         },
         {
           "id": "P30c",
           "title": "Native activity authoring and diagram workflow",
-          "state": "planned",
+          "state": "in_progress",
           "depends_on": [
             "P30b"
-          ]
+          ],
+          "branch": "codex/m6-p30c-native-activities",
+          "contract": "docs/parity/p30c/CONTRACT.md"
         }
       ]
     },
