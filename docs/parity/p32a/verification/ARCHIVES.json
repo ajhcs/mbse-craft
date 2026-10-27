@@ -1,0 +1,23 @@
+[
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p32a-state-machine-core/work/p32a-01.json",
+    "path": "compiler-01/RECEIPT.json",
+    "bytes": 71705,
+    "sha256": "8b27950cb0b6af4b50f6cc4d24af44b8b9d001074327bbc57152f6d8c682bd4d",
+    "stored_sha256": "8b27950cb0b6af4b50f6cc4d24af44b8b9d001074327bbc57152f6d8c682bd4d"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p32a-flat-state-machine-authoring-01-20261027T073300Z/00.log",
+    "path": "compiler-01/00.log.gz",
+    "bytes": 79124,
+    "sha256": "a6eb77ae3ca2d6460875cbd5fe0ac62653a9821d3a73dfe989cc5e1e60667b25",
+    "stored_sha256": "f497a29ac9966ce223c33d3cf202133c889fadab02b69d07c2a8bfcac11e1d62"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p32a-flat-state-machine-authoring-01-20261027T073300Z/01.log",
+    "path": "compiler-01/01.log.gz",
+    "bytes": 4086,
+    "sha256": "98b0448e2c9f1dabb5bd16d840a08b6f75d780dc2db8acceaa4df4b48871ef03",
+    "stored_sha256": "ec9b20a10a900d43a3dadb85ff7825379bfdba6019ade360801c55d1d58c6667"
+  }
+]

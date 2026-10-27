@@ -1,0 +1,11 @@
+# P32a review
+
+PR #44 candidatea99a03c3f67cbfcc98dc15decfc56910358dfeb5 reviewed in isolated `codex/review-p32a`. Same implementing agent, not independent engineering acceptance. No provider comments/inline threads were present.
+
+Reviewed Store/Journal strict optional fields, canonical keys/global IDs/System membership, existing joint budgets and atomic Apply/history authority. Invalid source/target/event/guard/direction and in-use removals retain raw/accepted meaning; detached proposals cannot appropriate accepted/native/activity/other-draft identities. Authored ambiguity diagnostics expose exact competing transition/Event IDs without execution policy. New raw proposals survive native model removal/Undo/Redo/save/cold/recovery. Legacy deletion holds unknown machine/proposal impact and cannot claim a complete reference inventory.
+
+Review strengthened two evidence gaps: save/cold/recovery now includes an explicitly populated optional opaque namespace and checks exact JSON value retention; a new shared-limit case populates460 machine elements,51 type definitions and1 activity (512total), then refuses the513th creation atomically with its raw proposal/allocator retained. Production source is byte-identical; only the test source changes. Both focused cases/build pass on743-file source9f1beddd3c0d7fc2bf904c344e11e7b680d638132bef7612b050c7aeb8fedbd4. Original642 workspace/build successes remain qualified to source30e0c9f0;643 distinct names=632prior+11new, no summed final-source full-suite claim. No production correctness finding required a code change.
+
+Verified743 final source hashes, three original/four review lossless artifacts, qualified build bytes and fixture evidence.78 prior available checkouts including original candidate retain heads/status;18 user-removed directories retain registered heads, contents unverifiable. No reset/recreation/prune/upstream/dependency/license/build-script changes/external writes. Package/diff checks pass; no further actionable bounded findings. Core child ready to merge under existing authorization.
+
+P32b presentation data and P32c native authoring/diagnostics/layout/history/save/cold acceptance remain required for P32 parent closure. P33 owns finite execution. All56 broad specs/integrated exits/full parity/platform/scale/production/independent engineering acceptance remain open.
