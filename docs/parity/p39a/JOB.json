@@ -1,0 +1,52 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m7-p39a-sealed-native-component-admission-01",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m7-p39a-editable-subset",
+  "source_manifest": "docs/parity/p39a/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "b436e7ce0f4db9caa9cee8e290646fc980aba46de03dc7d32893d85f559d79ec",
+  "source_sha256": "044056d21236d9b274ed70d1acca37104622c449b2a9a261a6967a55e3a2c847",
+  "cargo_lock_sha256": "26687453bfdee99d59a404b010c9fcdda95c1d77462c08e387ccebae3b14347b",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "--workspace"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "P39a sealed append-only native component/Part/Reference transaction plus documentary source/Block correspondence through existing type/profile/model authority. No parser/fileIO/source verification here; strict source/loss adapter P39b and native Apply/Undo P39c remain required. Root model maps explicitly to existing System without rename; rootID/name carried as metadata on all new elements, allowing another source member without overwriting System tags. Atomic one-history Apply with full native runtime/hash freshness, preserved journals/opaque, Undo/Redo and highwater allocator. Ten new core integration cases including fixed P38 whole native/eight-map bound cold/recovery; expected809=799prior+10new. Fullworkspace once anddesktopbuild, no new dependencies/upstream/license/buildscript changes.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p39a-editable-subset/docs/parity/p38b/verification/native-01/cold-run/project-set-target-cold-copy.kernspan": "76308c47303441f4dc6575399a85a9d842143c9784d442709a0402226cb670dc",
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p39a-editable-subset/docs/parity/p38b/verification/native-01/cold-run/project-set-target-cold-copy.mbse-views.json": "bc5e0519f10a956e8110c496c783c51f5521bae0279a86dc60c1a956b6dbeb2b",
+    "/workspace/repos/builderbob/mbse-craft/work/m7-p39a-editable-subset/docs/parity/p38b/verification/TEST_RESULTS.json": "c757099f43ce1abf2980ad1cfde1bdf5069cc38ef213dcfa16b3d994462f3642"
+  }
+}
