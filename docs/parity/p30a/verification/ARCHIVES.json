@@ -1,0 +1,51 @@
+[
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p30a-activity-core/work/p30a-01.json",
+    "path": "compiler-01/RECEIPT.json",
+    "bytes": 27379,
+    "sha256": "b196a7c4adc9388a4b8ad712dee4994a30c949560e794908f7d15adfa2902ab4",
+    "stored_sha256": "b196a7c4adc9388a4b8ad712dee4994a30c949560e794908f7d15adfa2902ab4"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p30a-activity-core-01-20261027T045202Z/00.log",
+    "path": "compiler-01/00.log.gz",
+    "bytes": 32265,
+    "sha256": "ea3bb9f88069b3177cce66abef9375886ed540f419bd6112b47c42450b38cfaf",
+    "stored_sha256": "3e6674b5c36041229f38388413bfbec9df0481de255c116b4cbc094d442ba997"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p30a-activity-core/work/p30a-02.json",
+    "path": "compiler-02/RECEIPT.json",
+    "bytes": 57174,
+    "sha256": "37672f73335703c0e5bf7238904caf50e28e42d6bf89ae9c02cfd13e9303a0f6",
+    "stored_sha256": "37672f73335703c0e5bf7238904caf50e28e42d6bf89ae9c02cfd13e9303a0f6"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p30a-shortcut-fixture-remainder-02-20261027T045413Z/00.log",
+    "path": "compiler-02/00.log.gz",
+    "bytes": 37934,
+    "sha256": "1b678a28b3b77c93e78b0f6482abcf951edba65b0709d6f83c128a34b736e59b",
+    "stored_sha256": "2c11e44bda036b9636e1c852f61a3d0629fab033aa628ee46d3994348fc55777"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/m6-p30a-activity-core/work/p30a-03.json",
+    "path": "compiler-03/RECEIPT.json",
+    "bytes": 75034,
+    "sha256": "dc25e208fcc658b3c893b0d85b2b9f78a85a4a5a70f7ba19140591341693313a",
+    "stored_sha256": "dc25e208fcc658b3c893b0d85b2b9f78a85a4a5a70f7ba19140591341693313a"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p30a-recovery-identity-remainder-03-20261027T045515Z/00.log",
+    "path": "compiler-03/00.log.gz",
+    "bytes": 21664,
+    "sha256": "d14541a88b205a6d5d3f4021723c743a1cc1711b1daca2ed0c292b59fd582205",
+    "stored_sha256": "9648e7be4bdf250f78a104daca6f4cc022d916ccf8513499e3fa7e759b28a84e"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p30a-recovery-identity-remainder-03-20261027T045515Z/01.log",
+    "path": "compiler-03/01.log.gz",
+    "bytes": 3819,
+    "sha256": "fe6c1b4a4e976b5d9a0dbe39b17bdb99095c1a25e9c6ff20c9ec75385038fcac",
+    "stored_sha256": "bf62425c6dca337460bd314adb3f28dbe4b88afa91a29a811a7548e4b60eddc1"
+  }
+]

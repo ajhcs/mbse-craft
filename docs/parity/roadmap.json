@@ -731,7 +731,7 @@
       "acceptance": [
         "Filters change presentation only; stakeholder concern and viewpoint scope remain inspectable; switching preserves identity and independent layouts."
       ],
-      "state": "reviewed_ready_to_merge",
+      "state": "merged",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "children": [
@@ -752,7 +752,7 @@
         {
           "id": "P29b",
           "title": "Native viewpoint authoring, filtering and scoped switching",
-          "state": "reviewed_ready_to_merge",
+          "state": "merged",
           "depends_on": [
             "P29a"
           ],
@@ -762,9 +762,13 @@
           "pr_number": 38,
           "pr_url": "https://github.com/ajhcs/mbse-craft/pull/38",
           "review": "docs/parity/p29b/REVIEW.md",
-          "review_preservation": "docs/parity/p29b/REVIEW_PRESERVATION.json"
+          "review_preservation": "docs/parity/p29b/REVIEW_PRESERVATION.json",
+          "merge_commit": "7d7247b64585cdd4d1ae8dfdfeaa2c244277f867",
+          "reviewed_head": "e8be2ad63ff1eb593c5edfdc2b7ca67ab40827c3"
         }
-      ]
+      ],
+      "merge_commit": "7d7247b64585cdd4d1ae8dfdfeaa2c244277f867",
+      "reviewed_head": "e8be2ad63ff1eb593c5edfdc2b7ca67ab40827c3"
     },
     {
       "id": "P30",
@@ -776,9 +780,31 @@
       "acceptance": [
         "Actions, partitions, pins, flows, decisions and guards obey endpoint/ownership rules; invalid guards remain drafts; diagrams round-trip without implied execution."
       ],
-      "state": "planned",
+      "state": "in_progress",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "children": [
+        {
+          "id": "P30a",
+          "title": "Bounded activity semantic core and retained guard proposals",
+          "state": "reviewed_ready_to_merge",
+          "branch": "codex/m6-p30a-activity-core",
+          "contract": "docs/parity/p30a/CONTRACT.md",
+          "execution_results": "docs/parity/p30a/README.md",
+          "pr_number": 39,
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/39",
+          "review": "docs/parity/p30a/REVIEW.md",
+          "review_preservation": "docs/parity/p30a/REVIEW_PRESERVATION.json"
+        },
+        {
+          "id": "P30b",
+          "title": "Native activity authoring and independent activity diagrams",
+          "state": "planned",
+          "depends_on": [
+            "P30a"
+          ]
+        }
+      ]
     },
     {
       "id": "P31",

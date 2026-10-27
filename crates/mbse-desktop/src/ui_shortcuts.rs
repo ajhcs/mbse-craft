@@ -187,7 +187,7 @@ mod tests {
             &mut app,
             &[
                 ("edit.undo", "Primary+Alt+U"),
-                ("view.layout_undo", "Primary+Alt+L"),
+                ("view.layout_undo", "Primary+Alt+W"),
             ],
         );
         app.command(Command::Add {
@@ -201,7 +201,7 @@ mod tests {
             mbse_model::native_views::Layout::AddView("Canvas".into()),
         );
         let old_count = app.views.views.document().views.len();
-        press(&mut app, &ctx, "Primary+Alt+L");
+        press(&mut app, &ctx, "Primary+Alt+W");
         assert_eq!(app.views.views.document().views.len(), old_count - 1);
         assert_eq!(app.session.editor.snapshot.digest(), native);
         assert_eq!(

@@ -1,0 +1,11 @@
+{
+  "result": "F01_fixed_affected_deletion19_and_build_passed",
+  "same_agent": true,
+  "independent_review": false,
+  "source_sha256": "7c25c23af756c13acca5ccdf9099a0709f506eb635c642bf608b96c34c5146f4",
+  "binary_sha256": "732d6bf4915739e96f4826a9ec9ffbd840ac5298524cec3b5945922d1843d920",
+  "distinct_case_inventory": 596,
+  "new_review_cases": 1,
+  "native_activity_runs": 0,
+  "scope": "Unknown activity/raw-flow impact disclosed; legacy deletion fails closed. Explicit ClearFlowForm preserves accepted data and releases raw-only unsupported impact. No native UI claim."
+}

@@ -271,6 +271,8 @@ pub fn unknown_impact(e: &Editor) -> UnknownImpact {
             }
         }
     }
+    if let Ok(s)=load(&e.snapshot){for activity in s.activities.values(){unknown.add(format!("Activity#{} references are outside this deletion inventory; use activity authoring and preserve the original.",activity.id.0));}}
+    if journal(&e.snapshot).is_ok_and(|j|j.activity_flow.is_some()){unknown.add("Retained activity flow proposal has uninterpreted deletion impact; preserve or explicitly discard it.".into());}
     unknown
 }
 fn members(s: &Store) -> BTreeMap<Id, Removed> {
@@ -457,6 +459,7 @@ pub fn prepare(e: &Editor, v: &Views) -> Result<Prepared, String> {
         + usize::from(j.interface.is_some())
         + usize::from(j.refactor.is_some())
         + usize::from(j.profile_tags.is_some())
+        + usize::from(j.activity_flow.is_some())
         + 1;
     let affected_ports: BTreeSet<_> = v
         .document()
