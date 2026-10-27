@@ -79,13 +79,18 @@
       "P27b"
     ],
     "p27a": {
-      "state": "review_ready",
+      "state": "merged",
       "execution_results": "p27a/README.md",
       "workspace_tests": 559,
       "new_distinct_cases": 8,
       "native_ui": false,
       "pr_number": 34,
-      "review": "p27a/REVIEW.md"
+      "review": "p27a/REVIEW.md",
+      "merge_commit": "422d1b8972f2e2e07730a538d642a76b37e71524"
+    },
+    "p27b": {
+      "state": "in_progress",
+      "base_commit": "422d1b8972f2e2e07730a538d642a76b37e71524"
     }
   }
 }
