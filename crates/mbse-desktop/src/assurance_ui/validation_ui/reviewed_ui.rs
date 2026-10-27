@@ -118,7 +118,7 @@ pub(super) fn show(
         ui.horizontal(|ui|{
    if mark(audit,"validation:Admit reviewed suite",ui.add_enabled(current&&!blocked(w),egui::Button::new("Admit reviewed suite"))).clicked(){
     match w.board.admit_validation_review(&review.proof){
-     Ok(())=>{w.epoch=w.epoch.saturating_add(1);w.validation.selected=review.proof.name().into();w.validation.reviewed.review=None;w.validation.reviewed.note="Reviewed suite admitted to the independent register. Run explicitly against current source.".into();},
+     Ok(())=>{w.epoch=w.epoch.saturating_add(1);w.validation.selected=review.proof.name().into();w.validation.note.clear();w.validation.reviewed.review=None;w.validation.reviewed.note="Reviewed suite admitted to the independent register. Run explicitly against current source.".into();},
      Err(error)=>w.validation.reviewed.note=error,
     }
    }

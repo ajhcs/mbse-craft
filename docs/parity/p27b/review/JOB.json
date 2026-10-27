@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m5-p27b-review-feedback-fixed-03",
+  "id": "m5-p27b-review-feedback-fixed-04",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/review-p27b",
   "source_manifest": "docs/parity/p27b/review/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "13a5cf2747516b9f4a188ae473bb065afc60816333f11ae3130bb7c421e73856",
-  "source_sha256": "35ac294387d0af6440c37b368051d305543128c81dde734031a0a68e735fe5c9",
+  "source_manifest_sha256": "25e223fe6d41917e8b460d160c6cdf25cea1736f62e9c5536d671f4bc719aebe",
+  "source_sha256": "be2cf9cc29f150a697bc40b3a5be5ca73c944fb5b81b65619e2ec58b06d613d1",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -30,9 +30,18 @@
       "--",
       "--exact",
       "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
     ]
   ],
-  "rationale": "P26b connects sealed core reports to native suite authoring/exact field focus and register/model/source/IO guards. Full offline workspace regression/build on changed UI navigation paths; one Cargo job/test thread, no dependency/license/notice/build-script changes. CoreP26a parent remains open until actual native checks/review pass.",
+  "rationale": "P27b isolated review: reproduce and fix superseded suite-admission refusal feedback; only the exact failed renderer case and final desktop build, no successful unrelated tests replayed.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",
