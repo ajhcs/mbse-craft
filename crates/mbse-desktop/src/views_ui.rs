@@ -558,6 +558,7 @@ impl ViewWorkspace {
     }
     fn fit_camera(&self,editor:&Editor,width:f64)->Result<v::Camera,String>{
         let doc=self.views.document();
+        if let Some(diagram)=doc.scenario_diagrams.get(&self.active){if let Some([x,y,right,bottom])=v::scenarios::bounds(diagram,&editor.snapshot)?{let zoom=(width.max(300.)/(right-x+50.)).min(400./(bottom-y+50.)).clamp(v::Camera::MIN_ZOOM,v::Camera::MAX_ZOOM);return v::Camera::checked(x,y,zoom);}}
         let items:Vec<&Geometry>=if let Some(diagram)=doc.state_machine_diagrams.get(&self.active){
             let store=mbse_model::types::load(&editor.snapshot)?;
             let machine=(diagram.source_document==editor.snapshot.document_id).then(||store.state_machines.get(&diagram.machine)).flatten();
@@ -730,6 +731,7 @@ impl ViewWorkspace {
             }
         });
         ui.label(&self.note);
+        if self.views.document().scenario_diagrams.contains_key(&self.active){ui.label("Sequence diagram: documentary authored message rows. Lifeline layout controls are below.");return select;}
         if self.views.document().state_machine_diagrams.contains_key(&self.active){ui.label("State-machine diagram: native records and typed ports stay in their own views. State layout controls are below.");return select;}
         if self.views.document().activity_diagrams.contains_key(&self.active){ui.label("Activity diagram: native records and typed ports remain in their own views. Activity layout controls are below.");return select;}
         ui.horizontal_wrapped(|ui| {
