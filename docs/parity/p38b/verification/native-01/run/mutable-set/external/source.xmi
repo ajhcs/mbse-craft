@@ -1,0 +1,1 @@
+<xmi:XMI xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.omg.org/spec/UML/20131001"><uml:Model xmi:id="model" name="Synthetic offline model"><packagedElement xmi:type="uml:Class" xmi:id="dup" name="Shared local ID"/><packagedElement xmi:type="uml:Class" href="https://invalid.example/library.uml#remote"/></uml:Model></xmi:XMI>
