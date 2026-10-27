@@ -685,3 +685,152 @@ fn state_machine_joint_presentation_and_per_view_limits_bound_duplicate_occurren
         .insert(transfer.0, transfer.1);
     assert!(Views::restore(&per_view.encoded().unwrap(), &e).is_err());
 }
+
+fn retained_detached_behavior_diagram_deletion_fixture(state_machine: bool) -> (Editor, Views) {
+    let mut snapshot = Snapshot::new(DocumentId("behavior:deletion-reference-boundary".into()));
+    snapshot.extensions = Some(mbse_model::extensions::Extensions::default());
+    let mut second = snapshot.records[&RecordId(1)].clone();
+    second.id = RecordId(2);
+    second.scope = RecordId(2);
+    second.name = "Retained other System".into();
+    snapshot.records.insert(second.id, second);
+    let mut e = Editor::new(snapshot, "behavior:deletion-runtime".into()).unwrap();
+    if state_machine {
+        let m = author(
+            &mut e,
+            Form::Machine {
+                id: None,
+                system: "1".into(),
+                name: "Removed machine".into(),
+            },
+        );
+        author(
+            &mut e,
+            Form::State {
+                machine: m,
+                id: None,
+                name: "Removed state".into(),
+                state_kind: StateKind::State,
+            },
+        );
+        let mut v = Views::new(&e).unwrap();
+        diagram(&e, &mut v, m);
+        let stamp = v.stamp(&e);
+        v.dispatch(
+            &mut e,
+            &stamp,
+            NativeAction::Command(Command::Typed(t::Action::StateMachine(Action::Remove {
+                machine: m,
+                element: m,
+            }))),
+        )
+        .unwrap();
+        for key in sm::forms(&e.snapshot).unwrap().keys() {
+            let stamp = v.stamp(&e);
+            v.dispatch(
+                &mut e,
+                &stamp,
+                NativeAction::Command(Command::Typed(t::Action::StateMachine(Action::Discard(
+                    key.clone(),
+                )))),
+            )
+            .unwrap();
+        }
+        (e, v)
+    } else {
+        let m = Id(e.snapshot.next_id);
+        e.command(
+            &e.freshness(),
+            Command::Typed(t::Action::Activity(t::activities::Action::Activity {
+                id: None,
+                system: RecordId(1),
+                name: "Removed activity".into(),
+            })),
+        )
+        .unwrap();
+        e.command(
+            &e.freshness(),
+            Command::Typed(t::Action::Activity(t::activities::Action::Node {
+                activity: m,
+                id: None,
+                name: "Removed action".into(),
+                kind: t::activities::NodeKind::Action,
+                partition: None,
+            })),
+        )
+        .unwrap();
+        let mut v = Views::new(&e).unwrap();
+        v.apply(
+            &e,
+            &v.stamp(&e),
+            Layout::Activity(v::activities::Layout::Create {
+                activity: m,
+                title: "Retained activity layout".into(),
+            }),
+        )
+        .unwrap();
+        let stamp = v.stamp(&e);
+        v.dispatch(
+            &mut e,
+            &stamp,
+            NativeAction::Command(Command::Typed(t::Action::Activity(
+                t::activities::Action::Remove {
+                    activity: m,
+                    element: m,
+                },
+            ))),
+        )
+        .unwrap();
+        (e, v)
+    }
+}
+#[test]
+fn retained_state_machine_diagram_prevents_legacy_deletion_complete_inventory_after_semantics_and_raw_removed(
+) {
+    let (mut e, v) = retained_detached_behavior_diagram_deletion_fixture(true);
+    assert_eq!(t::deletion::unknown_impact(&e).count, 0);
+    e.command(
+        &e.freshness(),
+        Command::Typed(t::Action::Deletion(t::deletion::Action::SetForm(
+            t::deletion::Form {
+                ids: "1".into(),
+                cascade: true,
+            },
+        ))),
+    )
+    .unwrap();
+    let prepared = t::deletion::prepare(&e, &v).unwrap();
+    assert!(!prepared.summary().complete_supported_reference_inventory);
+    assert!(prepared.plan().is_none());
+    assert!(prepared
+        .summary()
+        .unknown
+        .locations
+        .iter()
+        .any(|s| s.contains("diagram") && s.contains("uninterpreted")));
+}
+#[test]
+fn retained_activity_diagram_prevents_legacy_deletion_complete_inventory_after_semantics_and_raw_removed(
+) {
+    let (mut e, v) = retained_detached_behavior_diagram_deletion_fixture(false);
+    assert_eq!(t::deletion::unknown_impact(&e).count, 0);
+    e.command(
+        &e.freshness(),
+        Command::Typed(t::Action::Deletion(t::deletion::Action::SetForm(
+            t::deletion::Form {
+                ids: "1".into(),
+                cascade: true,
+            },
+        ))),
+    )
+    .unwrap();
+    let prepared = t::deletion::prepare(&e, &v).unwrap();
+    assert!(!prepared.summary().complete_supported_reference_inventory);
+    assert!(prepared.plan().is_none());
+    assert!(prepared
+        .summary()
+        .unknown
+        .locations
+        .iter()
+        .any(|s| s.contains("diagram") && s.contains("uninterpreted")));
+}
