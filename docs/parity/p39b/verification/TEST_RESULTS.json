@@ -1,6 +1,20 @@
 {
-  "qualification": "Full 823 workspace cases and desktop build passed on the same frozen 787-file source. No failed attempts or native UI runs in P39b; source-only fixture preparation is not native acceptance.",
-  "source_sha256": "0897f8a3c4e307642e01a589bbe91b8494e36d070eac00ddebc821732b5c2e81",
+  "compiler_slice_counts": [
+    [
+      823,
+      0,
+      0
+    ],
+    [
+      0
+    ],
+    [
+      1,
+      1,
+      0
+    ]
+  ],
+  "distinct_case_inventory": 824,
   "prior_case_names_reconciled": 809,
   "new_distinct_cases": [
     "source_admission_abstract_default_class_other_classifier_kinds_and_unknown_versions_refuse_instead_of_reclassification",
@@ -13,12 +27,13 @@
     "source_admission_plain_uml_and_standalone_model_are_explicit_without_inferring_unused_block_namespace_claims",
     "source_admission_source_primary_or_descriptor_change_refuses_apply_without_partial_target_raw_allocator_or_history_changes",
     "source_admission_strict_sysml_component_subset_reuses_existing_projection_keys_and_never_changes_prepared_source_or_target",
+    "source_admission_truncated_inspection_exposes_omitted_loss_counts_and_cannot_review_a_partial_candidate",
     "source_admission_unsupported_attributes_and_namespace_rebindings_refuse_entire_member_with_located_losses",
     "source_admission_untyped_unidentified_children_operations_generalizations_extensions_and_nested_packages_cannot_disappear",
     "source_admission_uri_unknown_native_id_and_name_type_references_refuse_without_ambient_or_cross_member_resolution",
     "source_admission_xml_byte_element_depth_notice_and_processing_instruction_limits_refuse_without_truncating_success"
   ],
-  "distinct_case_inventory": 823,
+  "qualification": "Original787-file0897f8a3 passes full823workspace/preparer/build. Isolatedreview test-only846ad3f6 new boundary hypothesis fails0passes: existing1MiBauxiliary loss budget refuses before adapter2MiBsummary could trigger. Final787-file5371749e adds only2documentary existing-projection omission-count fields, corrects new case and strengthens happy-path count assertions; new+affected cases pass1+1, desktopbuild passes.824distinct source-qualified names/825passing executions; prior823 not replayed, no final-source full-suite claim.",
   "tests": [
     {
       "slice": 1,
@@ -3311,6 +3326,14 @@
     {
       "slice": 1,
       "test": "crates/mbse-model/vendor/sysmlv2-syntax/src/visit.rs - visit (line 14)"
+    },
+    {
+      "slice": 3,
+      "test": "source_admission_truncated_inspection_exposes_omitted_loss_counts_and_cannot_review_a_partial_candidate"
+    },
+    {
+      "slice": 3,
+      "test": "source_admission_strict_sysml_component_subset_reuses_existing_projection_keys_and_never_changes_prepared_source_or_target"
     }
   ]
 }
