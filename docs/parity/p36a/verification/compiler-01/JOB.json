@@ -1,0 +1,68 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m6-p36a-frozen-native-analysis-and-boolean-assessment-01",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m6-p36a-parametric-analysis",
+  "source_manifest": "docs/parity/p36a/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "8936f424e63d6f52a3cb7bbdcdb11746e2a253c305342f6b20ba4b5b676ccffe",
+  "source_sha256": "48c8da0106a21fbabf46ea4b0c785e89568fd393225071c21ae32dcca4e216f1",
+  "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "--workspace"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "run",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-model",
+      "--example",
+      "prepare_parametric_analysis",
+      "--",
+      "/workspace/repos/builderbob/mbse-craft/work/m6-p36a-parametric-analysis/docs/parity/p35b/verification/native-02/run/parametric-final-cold-copy.kernspan",
+      "/workspace/repos/builderbob/mbse-craft/work/m6-p36a-parametric-analysis/docs/parity/p35b/verification/native-02/run/parametric-final-cold-copy.mbse-views.json",
+      "/workspace/repos/builderbob/mbse-craft/work/m6-p36a-parametric-analysis/docs/parity/p36a/fixtures/quantities-and-thresholds.json",
+      "/workspace/repos/builderbob/mbse-craft/work/m6-p36a-parametric-analysis/docs/parity/p36a/fixtures/native-prepared-01"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "P36a frozen selected-scope binding adapter over existing Stage1 engine, native criteria/comparators, no source/verificationwrites.14handfixedquantity/thresholdcases plus8source/raw/cycle/dependency/stale/typecontexts,1wholeoriginalnative/eightmapboundcold/recovery case and1compile-failnondeserializableProgram fence:24new anticipated,731prior+24=755distinct. Canonical accepted-form mapping moved to model/reusedbyUI. Sharedsource-only nativefixturepreparer copieshandoracle, appendsnewnativecalculations/specs, preservespriororiginalvalues/eightmaps; neverevaluatesfixtures. Fullworkspace once, admittedexamplepreparation, desktopbuild. P36b nativecontrols separate; no general solver/engineering/fullparity claims. No dependencies/buildscriptchanges.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p36a-parametric-analysis/docs/parity/p35b/verification/native-02/run/parametric-final-cold-copy.kernspan": "98724680b2505c998557ec2e7a8c5f3f13e26b5b68ff12d9962eaa76d3e6188b",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p36a-parametric-analysis/docs/parity/p35b/verification/native-02/run/parametric-final-cold-copy.mbse-views.json": "bea0d4a82804afa3b9e88b989cf9a20e366848d655ac425fc5b6092a8cde6eca",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p36a-parametric-analysis/docs/parity/p36a/fixtures/quantities-and-thresholds.json": "8da6927f78caafd3891a76ea22abe1e0c417127f5141a70f6357facfc9f291f7"
+  }
+}

@@ -761,3 +761,47 @@ pub fn report(snapshot: &Snapshot, id: Id) -> Result<Report, String> {
     }
     Ok(Report{rules_revision:RULES_REVISION.into(),native_algorithm_revision:calc::ALGORITHM_REVISION.into(),unit_table_revision:calc::UNIT_TABLE_REVISION.into(),document_id:snapshot.document_id.clone(),model_revision:snapshot.model_revision,raw_version:snapshot.raw_version,snapshot_hash:snapshot.digest(),specification:id,unbound,accepted_bindings_complete:diagnostics.is_empty(),diagnostics,execution_performed:false,limits:vec!["Accepted source types only; no evaluation, current raw validity, cycles, equation solving or engineering acceptance.".into(),"Typed-value units are authored on the binding, not inherited from scalar definitions. Same quantity kind permits native unit conversion; no conversion is executed here.".into()]})
 }
+
+/// Canonical authored form for one exact accepted object; reused by UI and execution freshness.
+pub fn accepted_form(a: &Specification, id: Id) -> Option<Form> {
+    if id == a.id {
+        return Some(Form::Specification {
+            id: Some(id),
+            system: a.system.0.to_string(),
+            name: a.name.clone(),
+            calculation: a.calculation.map_or(String::new(), |id| id.0.to_string()),
+        });
+    }
+    if let Some(p) = a.parameters.get(&id) {
+        return Some(Form::Parameter {
+            specification: a.id,
+            id: Some(id),
+            name: p.name.clone(),
+            quantity: p.quantity,
+        });
+    }
+    a.bindings.get(&id).map(|b| Form::Binding {
+        specification: a.id,
+        id: Some(id),
+        parameter: b.parameter.0.to_string(),
+        source: match &b.source {
+            Source::NativeInput { calculation, name } => SourceForm::NativeInput {
+                calculation: calculation.0.to_string(),
+                name: name.clone(),
+            },
+            Source::NativeOutput { calculation } => SourceForm::NativeOutput {
+                calculation: calculation.0.to_string(),
+            },
+            Source::TypedValue { target, unit } => SourceForm::TypedValue {
+                property: target.property().0.to_string(),
+                usage: match target {
+                    values::Target::Override { usage, .. } => usage.0.to_string(),
+                    _ => String::new(),
+                },
+                unit: *unit,
+            },
+        },
+    })
+}
+
+pub mod analysis;
