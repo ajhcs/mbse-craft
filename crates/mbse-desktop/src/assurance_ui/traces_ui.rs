@@ -32,6 +32,15 @@ fn draft(
         }
     });
 }
+fn source_label(source: &mbse_assurance::TraceEndpoint) -> String {
+    match source {
+        mbse_assurance::TraceEndpoint::Requirement(id) => format!("Requirement local #{}", id.0),
+        mbse_assurance::TraceEndpoint::TestCase(id) => format!("Documentary test case #{}", id),
+        mbse_assurance::TraceEndpoint::Native(n) => {
+            format!("{:?} #{} in document {}", n.expected, n.id, n.document)
+        }
+    }
+}
 fn value(w: &AssuranceWorkspace, field: &str) -> String {
     w.board
         .register
@@ -49,8 +58,8 @@ pub(super) fn show(
     audit: &mut BTreeMap<String, [f32; 4]>,
 ) {
     let section=egui::CollapsingHeader::new("Typed requirement dependencies").id_salt("requirement-traces").show(ui,|ui|{
-        ui.label(format!("Target is selected requirement local #{}. Direction: client/source → supplier/target.",target.0));
-        ui.label("Derive: requirement → requirement. Refine: requirement/native → requirement. Satisfy: System/component definition/part → requirement. Verify: documentary test case → requirement. Copy: slave requirement → master requirement, identical read-only statement.");
+        ui.label(format!("Target is selected requirement local #{}. Direction: client/source -> supplier/target.",target.0));
+        ui.label("Derive: requirement -> requirement. Refine: requirement/native -> requirement. Satisfy: System/component definition/part -> requirement. Verify: documentary test case -> requirement. Copy: slave requirement -> master requirement, identical read-only statement.");
         ui.label("A dependency declares intent. It never approves a requirement, proves satisfaction, runs a test, or records verification Passed.");
         draft(w,ui,audit,"source","Source (req:ID / native:ID / test:ID)");
         draft(w,ui,audit,"label","Display label (does not select meaning)");
@@ -62,7 +71,7 @@ pub(super) fn show(
         let links:Vec<_>=w.board.register.traces.values().filter(|t|t.target==target||t.source==mbse_assurance::TraceEndpoint::Requirement(target)).take(128).cloned().collect();
         for trace in links{
             let status=&projection.iter().find(|p|p.trace==trace.id).unwrap();
-            ui.label(format!("Trace #{} · {:?} · {:?} → requirement #{} · {}",trace.id,trace.kind,trace.source,trace.target.0,if status.active{"endpoint active"}else{"endpoint detached"}));
+            ui.label(format!("Trace #{} · {:?} · {:?} -> requirement #{} · {}",trace.id,trace.kind,source_label(&trace.source),trace.target.0,if status.active{"endpoint active"}else{"endpoint detached"}));
             if !status.active{ui.colored_label(egui::Color32::DARK_RED,&status.reason);}
             let mut label=trace.label.clone();
             ui.horizontal(|ui|{ui.label("Display label");if mark(audit,format!("traces:label:{}",trace.id),ui.add(egui::TextEdit::singleline(&mut label).char_limit(128).id(egui::Id::new(("trace-label",trace.id))))).changed(){let result=w.board.rename_trace(trace.id,label);w.result(result,"Display label changed; dependency type and endpoints unchanged.");}if mark(audit,format!("traces:Remove:{}",trace.id),ui.button("Remove dependency")).clicked(){let result=w.board.remove_trace(trace.id);w.result(result,"Dependency removed; Undo remains available. Removing Copy releases its slave statement.");}});
