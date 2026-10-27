@@ -284,6 +284,7 @@ impl Workspace {
         let scale = camera.zoom as f32;
         let mut rendered_transitions = Vec::new();
         let mut endpoints = Vec::new();
+        let mut labels = Vec::new();
         let mut overlapping = 0usize;
         let height = (ui.available_height() * 0.66).max(320.);
         egui::ScrollArea::both()
@@ -375,15 +376,42 @@ impl Workspace {
                                     format!("{} #{}", e.name, id.0)
                                 })
                         });
-                        if !guard.is_empty() || flow.event.is_some() {
-                            ui.painter().text(
-                                start.lerp(end, 0.5) + egui::vec2(8., 0.),
-                                egui::Align2::LEFT_CENTER,
-                                format!("{event} [{guard}]"),
-                                FontId::proportional(12.),
-                                color,
-                            );
+                        let text = format!(
+                            "Transition #{} · {event} [{}]",
+                            flow.transition.0,
+                            if guard.is_empty() {
+                                "unconditional"
+                            } else {
+                                &guard
+                            }
+                        );
+                        let galley = ui.painter().layout(
+                            text.clone(),
+                            FontId::proportional(12.),
+                            color,
+                            300.,
+                        );
+                        let mut label = Rect::from_center_size(start.lerp(end, 0.5), galley.size());
+                        // Allocate actual text bounds, including wrapped lines, independently of
+                        // semantic routes. Parallel transitions must not hide each other's guards.
+                        while labels
+                            .iter()
+                            .any(|(_, bounds, _): &(Id, [f32; 4], String)| {
+                                Rect::from_min_max(
+                                    egui::pos2(bounds[0], bounds[1]),
+                                    egui::pos2(bounds[2], bounds[3]),
+                                )
+                                .expand(3.)
+                                .intersects(label)
+                            })
+                        {
+                            label = label.translate(egui::vec2(0., galley.size().y + 8.));
                         }
+                        labels.push((
+                            flow.transition,
+                            [label.left(), label.top(), label.right(), label.bottom()],
+                            text,
+                        ));
                         rendered_transitions.push(flow.transition);
                     }
                 }
@@ -496,6 +524,19 @@ impl Workspace {
                         select = Some(o.element);
                     }
                 }
+                // Paint after glyphs so short gaps cannot silently erase route identities.
+                // This is label placement only; arrows remain direct, without obstacle routing.
+                for (_, bounds, text) in &labels {
+                    let rect = Rect::from_min_max(
+                        egui::pos2(bounds[0], bounds[1]),
+                        egui::pos2(bounds[2], bounds[3]),
+                    );
+                    ui.painter().rect_filled(rect.expand(2.), 2., PAPER);
+                    let galley =
+                        ui.painter()
+                            .layout(text.clone(), FontId::proportional(12.), ACCENT, 300.);
+                    ui.painter().galley(rect.min, galley, ACCENT);
+                }
             });
         self.state_machines.rendered = Some(Rendered {
             view,
@@ -506,6 +547,7 @@ impl Workspace {
                 .collect(),
             transitions: rendered_transitions.clone(),
             endpoints,
+            labels,
             overlapping,
             preview,
         });

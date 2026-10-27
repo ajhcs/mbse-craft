@@ -436,6 +436,7 @@ fn rendered_state_machine_two_diagrams_shapes_transition_ledger_layout_history_p
     let second_camera = a.views.views.document().views[&second].camera.clone();
     click(&mut a, &ctx, "camera:Fit");
     assert_ne!(a.views.views.document().views[&first].camera.zoom, 1.);
+    assert_eq!(a.views.note, "Camera fitted to visible occurrences.");
     click(&mut a, &ctx, "camera:Pan right");
     assert!(a.views.views.document().views[&first].camera.x > 0.);
     assert_eq!(
@@ -645,4 +646,59 @@ fn state_machine_shared_shortcut_file_history_and_other_actor_docking_guards_use
         )
         .is_some()
     );
+}
+
+#[test]
+fn rendered_parallel_state_transition_labels_keep_exact_id_event_guards_and_disjoint_text_bounds() {
+    let (_area, mut a, ctx) = app();
+    let (m, _, node, last, go, edge) = seeded(&mut a);
+    for guard in ["else", ""] {
+        let f = Form::Transition {
+            machine: m,
+            id: None,
+            name: "Parallel route".into(),
+            source: node.0.to_string(),
+            target: last.0.to_string(),
+            event: go.0.to_string(),
+            guard: guard.into(),
+        };
+        let key = f.key();
+        let stamp = a.views.views.stamp(&a.session.editor);
+        a.sm_model(&stamp, sm::Action::Set(f)).unwrap();
+        let stamp = a.views.views.stamp(&a.session.editor);
+        a.sm_model(&stamp, sm::Action::Apply(key)).unwrap();
+    }
+    let native = a.session.editor.snapshot.clone();
+    click(&mut a, &ctx, "state-machine:Create diagram");
+    click(&mut a, &ctx, "state-machine:Close");
+    settle(&mut a, &ctx);
+    let r = a.state_machines.rendered.as_ref().unwrap();
+    assert_eq!(r.labels.len(), 4);
+    for (i, (id, bounds, text)) in r.labels.iter().enumerate() {
+        assert!(text.contains(&format!("Transition #{}", id.0)));
+        let rect = Rect::from_min_max(
+            egui::pos2(bounds[0], bounds[1]),
+            egui::pos2(bounds[2], bounds[3]),
+        );
+        assert!(rect.width() > 0. && rect.height() > 0.);
+        for (_, other, _) in r.labels.iter().skip(i + 1) {
+            assert!(!rect.intersects(Rect::from_min_max(
+                egui::pos2(other[0], other[1]),
+                egui::pos2(other[2], other[3])
+            )));
+        }
+    }
+    assert!(
+        r.labels
+            .iter()
+            .any(|(id, _, s)| *id == edge && s.contains(&format!("Go #{} [true]", go.0)))
+    );
+    for guard in ["else", "unconditional"] {
+        assert!(
+            r.labels
+                .iter()
+                .any(|(_, _, s)| s.contains(&format!("Go #{} [{guard}]", go.0)))
+        );
+    }
+    assert_eq!(a.session.editor.snapshot, native);
 }

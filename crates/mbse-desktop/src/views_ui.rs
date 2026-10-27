@@ -660,10 +660,11 @@ impl ViewWorkspace {
             self.toolbar_bound("camera:Fit", &response);
             if response.clicked() {
                 let camera=self.fit_camera(&session.editor,ui.available_width().max(300.)as f64);
-                self.note = format!(
-                    "{:?}",
-                    camera.and_then(|camera|self.set_camera(&session.editor,camera))
-                );
+                self.note = match camera.and_then(|camera|self.set_camera(&session.editor,camera)) {
+                    Ok(true) => "Camera fitted to visible occurrences.".into(),
+                    Ok(false) => "Camera already fits visible occurrences.".into(),
+                    Err(error) => error,
+                };
             }
         });
         if let Some(camera) = self

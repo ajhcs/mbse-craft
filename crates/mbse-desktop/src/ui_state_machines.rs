@@ -23,6 +23,7 @@ pub(super) struct Rendered {
     pub occurrences: Vec<(OccurrenceId, Id, nv::Geometry)>,
     pub transitions: Vec<Id>,
     pub endpoints: Vec<(Id, [f32; 2], [f32; 2])>,
+    pub labels: Vec<(Id, [f32; 4], String)>,
     pub overlapping: usize,
     pub preview: bool,
 }
@@ -459,7 +460,7 @@ impl Workspace {
                 })
             });
         let store = ty::load(&self.session.editor.snapshot).ok();
-        serde_json::json!({"open":self.state_machines.open,"owner_current":owner_current,"machine":self.state_machines.machine,"current":current,"form_admitted":!self.sm_pending(),"note":self.state_machines.note,"accepted":store.as_ref().map(|s|&s.state_machines),"proposals":forms,"diagnostics":store.as_ref().and_then(|s|self.state_machines.machine.and_then(|m|sm::diagnostics(s,m).ok())),"gesture_active":self.sm_gesture_active(),"selected":self.state_machines.selected,"rendered":self.state_machines.rendered.as_ref().map(|r|serde_json::json!({"view":r.view,"current":r.view==self.views.active&&r.stamp==self.views.views.stamp(&self.session.editor),"preview_only":r.preview,"occurrences":r.occurrences.iter().map(|(id,element,g)|serde_json::json!({"occurrence":id,"element":element,"geometry":g})).collect::<Vec<_>>(),"transitions":r.transitions,"endpoints":r.endpoints,"overlapping_transitions":r.overlapping}))})
+        serde_json::json!({"open":self.state_machines.open,"owner_current":owner_current,"machine":self.state_machines.machine,"current":current,"form_admitted":!self.sm_pending(),"note":self.state_machines.note,"accepted":store.as_ref().map(|s|&s.state_machines),"proposals":forms,"diagnostics":store.as_ref().and_then(|s|self.state_machines.machine.and_then(|m|sm::diagnostics(s,m).ok())),"gesture_active":self.sm_gesture_active(),"selected":self.state_machines.selected,"rendered":self.state_machines.rendered.as_ref().map(|r|serde_json::json!({"view":r.view,"current":r.view==self.views.active&&r.stamp==self.views.views.stamp(&self.session.editor),"preview_only":r.preview,"occurrences":r.occurrences.iter().map(|(id,element,g)|serde_json::json!({"occurrence":id,"element":element,"geometry":g})).collect::<Vec<_>>(),"transitions":r.transitions,"endpoints":r.endpoints,"labels":r.labels,"overlapping_transitions":r.overlapping}))})
     }
 }
 fn accepted_present(s: &ty::Store, f: &Form) -> bool {
