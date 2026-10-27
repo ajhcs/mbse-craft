@@ -511,7 +511,7 @@ fn rendered_state_machine_drag_publishes_one_layout_entry_and_single_undo_preser
     settle(&mut a, &ctx);
     assert!(!a.sm_gesture_active());
     let moved = &a.views.views.document().state_machine_diagrams[&view].occurrences[&id].geometry;
-    assert!((moved.x-geometry.x-60.).abs()<.01&&(moved.y-geometry.y-30.).abs()<.01);
+    assert!((moved.x - geometry.x - 60.).abs() < 0.01 && (moved.y - geometry.y - 30.).abs() < 0.01);
     assert_eq!(a.views.views.history_usage().0, entries + 1);
     click(&mut a, &ctx, "state-machine-canvas:Diagram Undo");
     assert_eq!(

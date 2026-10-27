@@ -4,7 +4,7 @@ use super::activity_editor::{Drag, guard_text};
 use super::state_machine_editor::Rendered;
 use super::*;
 use mbse_model::{
-    native_views::{self as nv, OccurrenceId, Stamp, ViewId, state_machines as va},
+    native_views::{self as nv, Stamp, ViewId, state_machines as va},
     types::{self as ty, Id, state_machines as sm, state_machines::Form},
 };
 impl Workspace {

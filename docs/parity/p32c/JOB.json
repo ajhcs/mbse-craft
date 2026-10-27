@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m6-p32c-native-state-machine-authoring-01",
+  "id": "m6-p32c-native-test-literal-fix-02",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m6-p32c-native-state-machines",
   "source_manifest": "docs/parity/p32c/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "ec807f4d0b34c1b77f057131673a0dbe195ae5f208cb1beacb6f810e88de2f22",
-  "source_sha256": "19f1d384cb1d4171cc70c46812493c854ee3fa7109e77f28ca3daabdb06f40a3",
+  "source_manifest_sha256": "1590b2f667b16be0fcb20045b56c2478070d545c688e12152045373d7fd368ba",
+  "source_sha256": "44cb78ea39e41202acafcdbb85c4304c2097571cf0e76ba6dfe2e0d4a9c33a6b",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -38,7 +38,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "P32c native state-machine editor/canvas and shared drawing helpers use merged authorities. Eight new actual egui authoring/raw/ambiguity/history/diagram/drag/UTF8/unsupported-source/freshness/shortcut cases; full655prior regression and desktop build before native acceptance.",
+  "rationale": "Initial compile0tests: drag assertions used malformed .01 literals. Correct test syntax and remove unused new canvas import; full655prior+8new egui regression and desktop build before native acceptance. Initial receipt retained.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",
