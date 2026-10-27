@@ -586,10 +586,11 @@
       "acceptance": [
         "Known orphan requirements and missing verification links are found; changed requirements stale affected evidence; unsupported relations are disclosed."
       ],
-      "state": "in_progress",
+      "state": "implemented_bounded_review_pending",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
-      "branch": "codex/m5-p25-coverage-impact"
+      "branch": "codex/m5-p25-coverage-impact",
+      "execution_results": "docs/parity/p25/README.md"
     },
     {
       "id": "P26",
