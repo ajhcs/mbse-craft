@@ -1,0 +1,39 @@
+{
+  "schema": "mbse-craft.m1-native-job/1",
+  "script_hashes": {
+    "scripts/m1_native_session.py": "796c1ba9dfd08b9ce913113bfc5f434fcb11dc7f592ad6114674b46c429db59d",
+    "scripts/verify-m1-native.py": "ef4e7c2308323b9023f83a15ddb3b9214d27368fd9a34a42b4245ad44f574a39",
+    "scripts/run-p02-native.py": "7c4cd7d30d60f7f379246470304bfbefb580b0a4a6122afa205297535e1c686d",
+    "scripts/run-p02-local.py": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834"
+  },
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "id": "p32c-final-native-label-caption-acceptance-03",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p32c-labels-preserve-state-captions-05-20261027T090912Z/mbse-desktop",
+  "binary_sha256": "57d45e89f26ba559cc32c9f6a006750145adafda1e15500637465b61e73f8a68",
+  "source_sha256": "fed2f1d8c791949670538d249123e0db7c764e07061f6f5f6e67b4d8e0583257",
+  "inputs": {
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p32c-native-state-machines/docs/parity/p32c/fixtures/native.kernspan": "378c62008e2cc1f7b4c6b760413374082fbfb9878756b2ffef5e1451371ecd97",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p32c-native-state-machines/docs/parity/p32c/fixtures/native.mbse-views.json": "29d482f7e8935b90397fe4705fbcbe7ddf47849ffaa426275b24b90316057de2",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p32c-native-state-machines/docs/parity/p32c/fixtures/PREPARATION.json": "352ede1d7661d5e04ee6f5de67324e33fcc04907e2777906fe45c20c0d624d1f",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p32c-01/run/state-machine-checkpoint.kernspan": "90394299a6d57369b9772c3bbd72bd884e0367221325efcb699be43299a4f4f8",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p32c-01/run/state-machine-checkpoint.mbse-views.json": "758f4e5cafb120c1f0cdb681e00575c83ca8c7fd6b022840aa7f0297c57b75c8",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p32c-02/cold/state-machine-cold-copy.kernspan": "b1914935cc684e67ff8281b0e1de8b644e85f889e27b85e142a768c43807361e",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p32c-02/cold/state-machine-cold-copy.mbse-views.json": "4b8e8761af850418f11dab95ec0f880b686c0d974715219f418892ed265305d1"
+  },
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p32c-03",
+  "argv_extra": [
+    "--open",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p32c-02/cold/state-machine-cold-copy.kernspan",
+    "--select",
+    "1003"
+  ],
+  "scenarios": [
+    "Only final affected rendered labels/captions from preserved native02 cold-copy checkpoint. Actual native Open/sidecar Open shows state captions and all Transition/Event/guard identities with text bounds disjoint from other labels/state occurrence rectangles. Exact bound input Snapshot and seven maps retained on final save-copy.",
+    "Retain completed native01 authoring/invalid guards/modelhistory/actualdrag and native02 remaining layout/cameras/root inverse/cold checks on tested binaries. No unrelated replay. Normal owned app/display/PID-starttick/authentication cleanup and all protected input hashes exact."
+  ],
+  "claim_policy": "Same-agent bounded Linux synthetic flat state-machine authoring. Original native01 completed subset plus corrected remainder.664 distinct cases across recorded source slices; latest2focused/build. No summed final-source full suite. No execution/hierarchy/orthogonal/actioncode/generalguards/fullparity/independentengineering/platform/scale/production acceptance. Broad specs/exits open."
+}

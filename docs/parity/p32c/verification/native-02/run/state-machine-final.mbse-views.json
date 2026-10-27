@@ -1,0 +1,816 @@
+{
+  "profile": "mbse-craft.native-views/7",
+  "sidecar_id": "views:instance:stage1-session-JLHgtP",
+  "document_id": "document:session:stage1-session-sL9Mtp",
+  "binding": {
+    "document_id": "document:session:stage1-session-sL9Mtp",
+    "artifact_sha256": "b1914935cc684e67ff8281b0e1de8b644e85f889e27b85e142a768c43807361e",
+    "snapshot_sha256": "0f49b0491a4c16fce4db082424fb581eefece209b7f2fd93e25b150288a7caa5"
+  },
+  "revision": "81",
+  "next_id": "50",
+  "primary": "1",
+  "views": {
+    "1": {
+      "id": "1",
+      "title": "Primary canvas",
+      "camera": {
+        "x": 0.0,
+        "y": 0.0,
+        "zoom": 0.8385744234800838
+      }
+    },
+    "2": {
+      "id": "2",
+      "title": "Review view",
+      "camera": {
+        "x": 0.0,
+        "y": 0.0,
+        "zoom": 1.0
+      }
+    },
+    "22": {
+      "id": "22",
+      "title": "Activity: Synthetic inspection sequence",
+      "camera": {
+        "x": 64.0,
+        "y": 0.0,
+        "zoom": 1.25
+      }
+    },
+    "31": {
+      "id": "31",
+      "title": "Activity: Synthetic inspection sequence",
+      "camera": {
+        "x": 0.0,
+        "y": 0.0,
+        "zoom": 0.8888888888888888
+      }
+    },
+    "40": {
+      "id": "40",
+      "title": "State machine: Synthetic review controller",
+      "camera": {
+        "x": 64.0,
+        "y": 0.0,
+        "zoom": 1.25
+      }
+    },
+    "45": {
+      "id": "45",
+      "title": "State machine: Synthetic review controller",
+      "camera": {
+        "x": 0.0,
+        "y": 0.0,
+        "zoom": 0.8888888888888888
+      }
+    }
+  },
+  "occurrences": {
+    "3": {
+      "id": "3",
+      "view": "1",
+      "record": "1",
+      "expected_kind": "System",
+      "geometry": {
+        "x": 25.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "4": {
+      "id": "4",
+      "view": "1",
+      "record": "1000",
+      "expected_kind": "Mission",
+      "geometry": {
+        "x": 319.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "5": {
+      "id": "5",
+      "view": "1",
+      "record": "1001",
+      "expected_kind": "Capability",
+      "geometry": {
+        "x": 613.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "6": {
+      "id": "6",
+      "view": "1",
+      "record": "1002",
+      "expected_kind": "Objective",
+      "geometry": {
+        "x": 25.0,
+        "y": 179.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "7": {
+      "id": "7",
+      "view": "1",
+      "record": "1003",
+      "expected_kind": "Measure",
+      "geometry": {
+        "x": 319.0,
+        "y": 179.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "8": {
+      "id": "8",
+      "view": "2",
+      "record": "1",
+      "expected_kind": "System",
+      "geometry": {
+        "x": 25.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "19": {
+      "id": "19",
+      "view": "2",
+      "record": "1003",
+      "expected_kind": "Measure",
+      "geometry": {
+        "x": 319.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "20": {
+      "id": "20",
+      "view": "2",
+      "record": "1002",
+      "expected_kind": "Objective",
+      "geometry": {
+        "x": 613.0,
+        "y": 24.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    }
+  },
+  "edges": {
+    "18": {
+      "id": "18",
+      "view": "1",
+      "key": {
+        "owner": "1003",
+        "role": "MeasureForObjective",
+        "target": "1002",
+        "target_kind": "Objective"
+      },
+      "source": "7",
+      "target": "6",
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "21": {
+      "id": "21",
+      "view": "2",
+      "key": {
+        "owner": "1003",
+        "role": "MeasureForObjective",
+        "target": "1002",
+        "target_kind": "Objective"
+      },
+      "source": "19",
+      "target": "20",
+      "presence": {
+        "state": "Active"
+      }
+    }
+  },
+  "typed_ports": {
+    "9": {
+      "id": "9",
+      "view": "1",
+      "port": "1016",
+      "geometry": {
+        "x": 25.0,
+        "y": 315.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "10": {
+      "id": "10",
+      "view": "2",
+      "port": "1016",
+      "geometry": {
+        "x": 105.0,
+        "y": 180.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "11": {
+      "id": "11",
+      "view": "1",
+      "port": "1017",
+      "usage": "1009",
+      "geometry": {
+        "x": 25.0,
+        "y": 315.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "12": {
+      "id": "12",
+      "view": "1",
+      "port": "1015",
+      "usage": "1010",
+      "geometry": {
+        "x": 375.0,
+        "y": 315.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "14": {
+      "id": "14",
+      "view": "2",
+      "port": "1017",
+      "usage": "1009",
+      "geometry": {
+        "x": 25.0,
+        "y": 315.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "15": {
+      "id": "15",
+      "view": "2",
+      "port": "1015",
+      "usage": "1010",
+      "geometry": {
+        "x": 495.0,
+        "y": 375.0,
+        "width": 270.0,
+        "height": 112.0
+      },
+      "visible": true,
+      "pinned": false,
+      "presence": {
+        "state": "Active"
+      }
+    }
+  },
+  "connector_edges": {
+    "13": {
+      "id": "13",
+      "view": "1",
+      "connector": "1018",
+      "source": "11",
+      "target": "12",
+      "visible": true,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "16": {
+      "id": "16",
+      "view": "2",
+      "connector": "1018",
+      "source": "14",
+      "target": "15",
+      "visible": true,
+      "presence": {
+        "state": "Active"
+      }
+    },
+    "17": {
+      "id": "17",
+      "view": "2",
+      "connector": "1019",
+      "source": "14",
+      "target": "15",
+      "visible": true,
+      "presence": {
+        "state": "Active"
+      }
+    }
+  },
+  "activity_diagrams": {
+    "22": {
+      "source_document": "document:session:stage1-session-sL9Mtp",
+      "activity": "1033",
+      "occurrences": {
+        "23": {
+          "id": "23",
+          "element": "1034",
+          "expected": "Partition",
+          "geometry": {
+            "x": 25.0,
+            "y": 24.0,
+            "width": 270.0,
+            "height": 112.0
+          },
+          "visible": true,
+          "pinned": false,
+          "presence": {
+            "state": "Active"
+          }
+        },
+        "24": {
+          "id": "24",
+          "element": "1035",
+          "expected": {
+            "Node": "Initial"
+          },
+          "geometry": {
+            "x": 319.0,
+            "y": 24.0,
+            "width": 270.0,
+            "height": 112.0
+          },
+          "visible": true,
+          "pinned": false,
+          "presence": {
+            "state": "Active"
+          }
+        },
+        "25": {
+          "id": "25",
+          "element": "1036",
+          "expected": {
+            "Node": "Action"
+          },
+          "geometry": {
+            "x": 613.0,
+            "y": 24.0,
+            "width": 270.0,
+            "height": 112.0
+          },
+          "visible": true,
+          "pinned": false,
+          "presence": {
+            "state": "Active"
+          }
+        },
+        "26": {
+          "id": "26",
+          "element": "1037",
+          "expected": {
+            "Node": "Decision"
+          },
+          "geometry": {
+            "x": 907.0,
+            "y": 24.0,
+            "width": 270.0,
+            "height": 112.0
+          },
+          "visible": true,
+          "pinned": false,
+          "presence": {
+            "state": "Active"
+          }
+        },
+        "27": {
+          "id": "27",
+          "element": "1038",
+          "expected": {
+            "Node": "Action"
+          },
+          "geometry": {
+            "x": 25.0,
+            "y": 179.0,
+            "width": 270.0,
+            "height": 112.0
+          },
+          "visible": true,
+          "pinned": false,
+          "presence": {
+            "state": "Active"
+          }
+        },
+        "28": {
+          "id": "28",
+          "element": "1039",
+          "expected": {
+            "Node": "Final"
+          },
+          "geometry": {
+            "x": 319.0,
+            "y": 179.0,
+            "width": 270.0,
+            "height": 112.0
+          },
+          "visible": true,
+          "pinned": false,
+          "presence": {
+            "state": "Active"
+          }
+        },
+        "29": {
+          "id": "29",
+          "element": "1040",
+          "expected": {
+            "Pin": "Out"
+          },
+          "geometry": {
+            "x": 613.0,
+            "y": 179.0,
+            "width": 270.0,
+            "height": 112.0
+          },
+          "visible": true,
+          "pinned": false,
+          "presence": {
+            "state": "Active"
+          }
+        },
+        "30": {
+          "id": "30",
+          "element": "1041",
+          "expected": {
+            "Pin": "In"
+          },
+          "geometry": {
+            "x": 907.0,
+            "y": 179.0,
+            "width": 270.0,
+            "height": 112.0
+          },
+          "visible": true,
+          "pinned": false,
+          "presence": {
+            "state": "Active"
+          }
+        }
+      }
+    },
+    "31": {
+      "source_document": "document:session:stage1-session-sL9Mtp",
+      "activity": "1033",
+      "occurrences": {
+        "32": {
+          "id": "32",
+          "element": "1034",
+          "expected": "Partition",
+          "geometry": {
+            "x": 25.0,
+            "y": 24.0,
+            "width": 270.0,
+            "height": 112.0
+          },
+          "visible": true,
+          "pinned": false,
+          "presence": {
+            "state": "Active"
+          }
+        },
+        "33": {
+          "id": "33",
+          "element": "1035",
+          "expected": {
+            "Node": "Initial"
+          },
+          "geometry": {
+            "x": 319.0,
+            "y": 24.0,
+            "width": 270.0,
+            "height": 112.0
+          },
+          "visible": true,
+          "pinned": false,
+          "presence": {
+            "state": "Active"
+          }
+        },
+        "34": {
+          "id": "34",
+          "element": "1036",
+          "expected": {
+            "Node": "Action"
+          },
+          "geometry": {
+            "x": 601.0,
+            "y": 78.0,
+            "width": 270.0,
+            "height": 112.0
+          },
+          "visible": true,
+          "pinned": false,
+          "presence": {
+            "state": "Active"
+          }
+        },
+        "35": {
+          "id": "35",
+          "element": "1037",
+          "expected": {
+            "Node": "Decision"
+          },
+          "geometry": {
+            "x": 907.0,
+            "y": 24.0,
+            "width": 270.0,
+            "height": 112.0
+          },
+          "visible": true,
+          "pinned": false,
+          "presence": {
+            "state": "Active"
+          }
+        },
+        "36": {
+          "id": "36",
+          "element": "1038",
+          "expected": {
+            "Node": "Action"
+          },
+          "geometry": {
+            "x": 25.0,
+            "y": 179.0,
+            "width": 270.0,
+            "height": 112.0
+          },
+          "visible": true,
+          "pinned": false,
+          "presence": {
+            "state": "Active"
+          }
+        },
+        "37": {
+          "id": "37",
+          "element": "1039",
+          "expected": {
+            "Node": "Final"
+          },
+          "geometry": {
+            "x": 319.0,
+            "y": 179.0,
+            "width": 270.0,
+            "height": 112.0
+          },
+          "visible": true,
+          "pinned": false,
+          "presence": {
+            "state": "Active"
+          }
+        },
+        "38": {
+          "id": "38",
+          "element": "1040",
+          "expected": {
+            "Pin": "Out"
+          },
+          "geometry": {
+            "x": 613.0,
+            "y": 179.0,
+            "width": 270.0,
+            "height": 112.0
+          },
+          "visible": true,
+          "pinned": false,
+          "presence": {
+            "state": "Active"
+          }
+        },
+        "39": {
+          "id": "39",
+          "element": "1041",
+          "expected": {
+            "Pin": "In"
+          },
+          "geometry": {
+            "x": 907.0,
+            "y": 179.0,
+            "width": 270.0,
+            "height": 112.0
+          },
+          "visible": true,
+          "pinned": false,
+          "presence": {
+            "state": "Active"
+          }
+        }
+      }
+    }
+  },
+  "state_machine_diagrams": {
+    "40": {
+      "source_document": "document:session:stage1-session-sL9Mtp",
+      "machine": "7000",
+      "occurrences": {
+        "41": {
+          "id": "41",
+          "element": "7001",
+          "expected": "Initial",
+          "geometry": {
+            "x": 25.0,
+            "y": 24.0,
+            "width": 270.0,
+            "height": 112.0
+          },
+          "visible": true,
+          "pinned": false,
+          "presence": {
+            "state": "Active"
+          }
+        },
+        "42": {
+          "id": "42",
+          "element": "7002",
+          "expected": "State",
+          "geometry": {
+            "x": 319.0,
+            "y": 24.0,
+            "width": 270.0,
+            "height": 112.0
+          },
+          "visible": true,
+          "pinned": false,
+          "presence": {
+            "state": "Active"
+          }
+        },
+        "43": {
+          "id": "43",
+          "element": "7003",
+          "expected": "State",
+          "geometry": {
+            "x": 613.0,
+            "y": 24.0,
+            "width": 270.0,
+            "height": 112.0
+          },
+          "visible": true,
+          "pinned": false,
+          "presence": {
+            "state": "Active"
+          }
+        },
+        "44": {
+          "id": "44",
+          "element": "7004",
+          "expected": "Final",
+          "geometry": {
+            "x": 907.0,
+            "y": 24.0,
+            "width": 270.0,
+            "height": 112.0
+          },
+          "visible": true,
+          "pinned": false,
+          "presence": {
+            "state": "Active"
+          }
+        }
+      }
+    },
+    "45": {
+      "source_document": "document:session:stage1-session-sL9Mtp",
+      "machine": "7000",
+      "occurrences": {
+        "46": {
+          "id": "46",
+          "element": "7001",
+          "expected": "Initial",
+          "geometry": {
+            "x": 25.0,
+            "y": 24.0,
+            "width": 270.0,
+            "height": 112.0
+          },
+          "visible": true,
+          "pinned": false,
+          "presence": {
+            "state": "Active"
+          }
+        },
+        "47": {
+          "id": "47",
+          "element": "7002",
+          "expected": "State",
+          "geometry": {
+            "x": 319.0,
+            "y": 24.0,
+            "width": 270.0,
+            "height": 112.0
+          },
+          "visible": true,
+          "pinned": false,
+          "presence": {
+            "state": "Active"
+          }
+        },
+        "48": {
+          "id": "48",
+          "element": "7003",
+          "expected": "State",
+          "geometry": {
+            "x": 1013.5,
+            "y": 24.0,
+            "width": 270.0,
+            "height": 112.0
+          },
+          "visible": true,
+          "pinned": false,
+          "presence": {
+            "state": "Active"
+          }
+        },
+        "49": {
+          "id": "49",
+          "element": "7004",
+          "expected": "Final",
+          "geometry": {
+            "x": 358.625,
+            "y": 224.25,
+            "width": 270.0,
+            "height": 112.0
+          },
+          "visible": true,
+          "pinned": true,
+          "presence": {
+            "state": "Active"
+          }
+        }
+      }
+    }
+  }
+}

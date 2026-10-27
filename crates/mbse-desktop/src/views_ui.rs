@@ -558,7 +558,11 @@ impl ViewWorkspace {
     }
     fn fit_camera(&self,editor:&Editor,width:f64)->Result<v::Camera,String>{
         let doc=self.views.document();
-        let items:Vec<&Geometry>=if let Some(diagram)=doc.activity_diagrams.get(&self.active){
+        let items:Vec<&Geometry>=if let Some(diagram)=doc.state_machine_diagrams.get(&self.active){
+            let store=mbse_model::types::load(&editor.snapshot)?;
+            let machine=(diagram.source_document==editor.snapshot.document_id).then(||store.state_machines.get(&diagram.machine)).flatten();
+            diagram.occurrences.values().filter(|o|o.visible&&o.presence.active()&&machine.and_then(|a|v::state_machines::kind(a,o.element))==Some(o.expected)).map(|o|&o.geometry).collect()
+        }else if let Some(diagram)=doc.activity_diagrams.get(&self.active){
             let store=mbse_model::types::load(&editor.snapshot)?;
             let activity=(diagram.source_document==editor.snapshot.document_id).then(||store.activities.get(&diagram.activity)).flatten();
             diagram.occurrences.values().filter(|o|o.visible&&o.presence.active()&&activity.and_then(|a|v::activities::kind(a,o.element))==Some(o.expected)).map(|o|&o.geometry).collect()
@@ -656,10 +660,11 @@ impl ViewWorkspace {
             self.toolbar_bound("camera:Fit", &response);
             if response.clicked() {
                 let camera=self.fit_camera(&session.editor,ui.available_width().max(300.)as f64);
-                self.note = format!(
-                    "{:?}",
-                    camera.and_then(|camera|self.set_camera(&session.editor,camera))
-                );
+                self.note = match camera.and_then(|camera|self.set_camera(&session.editor,camera)) {
+                    Ok(true) => "Camera fitted to visible occurrences.".into(),
+                    Ok(false) => "Camera already fits visible occurrences.".into(),
+                    Err(error) => error,
+                };
             }
         });
         if let Some(camera) = self
@@ -725,6 +730,7 @@ impl ViewWorkspace {
             }
         });
         ui.label(&self.note);
+        if self.views.document().state_machine_diagrams.contains_key(&self.active){ui.label("State-machine diagram: native records and typed ports stay in their own views. State layout controls are below.");return select;}
         if self.views.document().activity_diagrams.contains_key(&self.active){ui.label("Activity diagram: native records and typed ports remain in their own views. Activity layout controls are below.");return select;}
         ui.horizontal_wrapped(|ui| {
             ui.label("Find / reuse");

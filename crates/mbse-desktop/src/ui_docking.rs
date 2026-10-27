@@ -14,8 +14,10 @@ impl Workspace {
     pub(super) fn dock_blocked_without_viewpoint(&self) -> bool {self.matrix.open||self.dock_blocked_base()}
     pub(super) fn dock_blocked_without_activity(&self)->bool{self.matrix.open||self.viewpoints.open||self.dock_blocked_legacy_base()}
     fn dock_blocked_base(&self)->bool{self.activities.open||self.dock_blocked_legacy_base()}
-    fn dock_blocked_legacy_base(&self) -> bool {
-        if self.activity_gesture_active() || self.activity_execution_automatic(){return true;}
+    fn dock_blocked_legacy_base(&self) -> bool {self.state_machines.open||self.dock_blocked_without_behavior()}
+    pub(super) fn dock_blocked_without_state_machine(&self)->bool{self.matrix.open||self.viewpoints.open||self.activities.open||self.dock_blocked_without_behavior()}
+    fn dock_blocked_without_behavior(&self) -> bool {
+        if self.sm_gesture_active() || self.activity_gesture_active() || self.activity_execution_automatic(){return true;}
         self.tag_panel.open || self.deletion_panel.open || self.refactor_panel.open || self.value_panel.open || self.connector_panel.open || self.port_panel.open || self.type_panel.open || self.files.open || self.files.pending() || self.views.occurrence_navigation_blocked(&self.session)
             || self.pending.is_some()
             || self.creation.is_some()

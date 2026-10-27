@@ -1,0 +1,37 @@
+{
+  "result": "bounded_flat_native_authoring_diagrams_history_cold_passed",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 748,
+  "source_sha256": "fed2f1d8c791949670538d249123e0db7c764e07061f6f5f6e67b4d8e0583257",
+  "binary_sha256": "57d45e89f26ba559cc32c9f6a006750145adafda1e15500637465b61e73f8a68",
+  "distinct_case_inventory": 664,
+  "new_cases": 9,
+  "normal_native_runs": 4,
+  "native_controller_errors": 4,
+  "visual_findings_fixed": [
+    "Parallel transition labels overlap: disjoint actual text bounds and transition/Event/guard identities, explicit unconditional.",
+    "Fit leaks debug Ok(true): plain language success/no-op and original errors.",
+    "Short completion label hides state caption: labels also avoid all state bounds."
+  ],
+  "controller_errors": [
+    "Final native03 first controller line exceeded PTY canonical-line capacity and was truncated before Python execution. SyntaxError retained; subsequent smaller lines run once.",
+    "Wrong assumed machine widget suffix; actual root key select:<ID>.",
+    "Root selection attempted while Browse elements collapsed; actual Browse opens it.",
+    "After accepted root removal canvas editor explicitly refuses missing source, so Model Undo unavailable in closed panel. Actual shared CtrlAltS opens retained Machine form and Model Undo restores it. No source mutation by failed actions."
+  ],
+  "observations": [
+    "Actual CtrlAltS/widget-only authoring IDs7000..7011:4states,2events,5transitions; ambiguity diagnostics exact7008/7011.",
+    "Four distinct invalid raw proposals (temperature >, else ?, target99999, event7001 wrong kind) retain accepted values and newer raw through global model history.",
+    "Views40/45, IDs41..49. Actual drag one transaction/Undo/Redo; nudge/pin refusal/hide/layout history; distinct cameras64,0,1.25 and0,0,8/9. Root removal detaches; fresh observed inverse alone restores exact IDs.",
+    "Original native records/creation/raw/type/activity/opaque retained; checkpoint118/261/7012; final122/261/7012 only model_revision advances through remove/inverses. Five original maps plus all original view entries exact; new state diagrams intentional.",
+    "Fresh cold Open no old model/layout inverse authority. Cold save-copy whole Snapshot and all7maps exact. Final binary opens prior cold copy and final save-copy again whole Snapshot/all7maps exact.",
+    "All4owned app/display runs normal exit0, exact PID/starttick absence, authentication cleanup and protected-input hashes."
+  ],
+  "limits": [
+    "Same implementing agent, bounded Linux synthetic fixture; no independent engineering/platform/scale/production/full parity acceptance.",
+    "Flat documentary authoring only; P33 execution separate. No hierarchy/orthogonal/actioncode/arbitraryguards/reachability/liveness.",
+    "Direct lines may cross unrelated glyphs/labels. Labels avoid glyphs/other labels in tested layout; no obstacle routing/automatic layout/full visual grammar acceptance.",
+    "All56 broad specs and integrated exits remain open."
+  ]
+}
