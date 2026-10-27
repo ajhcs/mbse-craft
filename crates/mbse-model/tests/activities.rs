@@ -494,3 +494,48 @@ fn activity_shared_extension_byte_budget_and_foreign_partition_edits_refuse_atom
     assert!(run(&mut e, Action::SetFlowForm(form(a, Id(1), Id(2), "true"))).is_err());
     assert_eq!(e.snapshot, before);
 }
+#[test]
+fn legacy_deletion_discloses_uninventoried_activity_references_and_retained_flow_proposal() {
+    let mut e = editor();
+    let a = activity(&mut e, "A");
+    let ty = define(&mut e, t::Kind::Value(t::Scalar::Real));
+    let owner = node(&mut e, a, NodeKind::Action);
+    pin(&mut e, a, owner, Direction::In, ty);
+    let views = mbse_model::native_views::Views::new(&e).unwrap();
+    e.command(
+        &e.freshness(),
+        Command::Typed(t::Action::Deletion(t::deletion::Action::SetForm(
+            t::deletion::Form {
+                ids: ty.0.to_string(),
+                cascade: true,
+            },
+        ))),
+    )
+    .unwrap();
+    let before = e.snapshot.clone();
+    let p = t::deletion::prepare(&e, &views).unwrap();
+    assert!(!p.summary.complete_supported_reference_inventory);
+    assert!(p.summary.unknown.count > 0 && p.summary.refusal.is_some() && p.plan().is_none());
+    assert_eq!(e.snapshot, before);
+    run(
+        &mut e,
+        Action::SetFlowForm(form(a, owner, owner, "unparsed ?")),
+    )
+    .unwrap();
+    run(
+        &mut e,
+        Action::Remove {
+            activity: a,
+            element: a,
+        },
+    )
+    .unwrap();
+    let before = e.snapshot.clone();
+    let p = t::deletion::prepare(&e, &views).unwrap();
+    assert!(
+        !p.summary.complete_supported_reference_inventory
+            && p.summary.unknown.count > 0
+            && p.plan().is_none()
+    );
+    assert_eq!(e.snapshot, before);
+}
