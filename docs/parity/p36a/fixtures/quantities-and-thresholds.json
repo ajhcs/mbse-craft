@@ -1,0 +1,246 @@
+{
+  "schema": "mbse-craft.parametric-independent-fixtures/1",
+  "authorship": "Hand-fixed decimal arithmetic and native comparator expectations, frozen before adapter implementation; not generated from its result.",
+  "tolerance": {
+    "absolute": 1e-12,
+    "relative": 1e-12
+  },
+  "cases": [
+    {
+      "name": "length_conversion",
+      "expression": "d",
+      "inputs": {
+        "d": {
+          "decimal": "2500",
+          "unit": "Metre"
+        }
+      },
+      "output": "Kilometre",
+      "expected_value": 2.5,
+      "criterion": {
+        "decimal": "3000",
+        "unit": "metre",
+        "comparator": "GreaterOrEqual"
+      },
+      "expected_assessment": false
+    },
+    {
+      "name": "duration_conversion",
+      "expression": "t",
+      "inputs": {
+        "t": {
+          "decimal": "120",
+          "unit": "Second"
+        }
+      },
+      "output": "Minute",
+      "expected_value": 2.0,
+      "criterion": null
+    },
+    {
+      "name": "speed",
+      "expression": "d / t",
+      "inputs": {
+        "d": {
+          "decimal": "2500",
+          "unit": "Metre"
+        },
+        "t": {
+          "decimal": "8",
+          "unit": "Second"
+        }
+      },
+      "output": "KilometrePerHour",
+      "expected_value": 1125.0,
+      "criterion": null
+    },
+    {
+      "name": "ratio_percent",
+      "expression": "r",
+      "inputs": {
+        "r": {
+          "decimal": "50",
+          "unit": "Percent"
+        }
+      },
+      "output": "RatioOne",
+      "expected_value": 0.5,
+      "criterion": {
+        "decimal": "25",
+        "unit": "percent",
+        "comparator": "GreaterOrEqual"
+      },
+      "expected_assessment": true
+    },
+    {
+      "name": "scalar_equal",
+      "expression": "a * b",
+      "inputs": {
+        "a": {
+          "decimal": "2",
+          "unit": "ScalarOne"
+        },
+        "b": {
+          "decimal": "3",
+          "unit": "ScalarOne"
+        }
+      },
+      "output": "ScalarOne",
+      "expected_value": 6.0,
+      "criterion": {
+        "decimal": "6",
+        "unit": "one",
+        "comparator": "Equal"
+      },
+      "expected_assessment": true
+    },
+    {
+      "name": "count_literal",
+      "expression": "n",
+      "inputs": {
+        "n": {
+          "decimal": "4",
+          "unit": "Count"
+        }
+      },
+      "output": "Count",
+      "expected_value": 4.0,
+      "criterion": null
+    },
+    {
+      "name": "length_equal",
+      "expression": "d",
+      "inputs": {
+        "d": {
+          "decimal": "2500",
+          "unit": "Metre"
+        }
+      },
+      "output": "Kilometre",
+      "expected_value": 2.5,
+      "criterion": {
+        "decimal": "2500",
+        "unit": "metre",
+        "comparator": "Equal"
+      },
+      "expected_assessment": true
+    },
+    {
+      "name": "length_upper",
+      "expression": "d",
+      "inputs": {
+        "d": {
+          "decimal": "2500",
+          "unit": "Metre"
+        }
+      },
+      "output": "Kilometre",
+      "expected_value": 2.5,
+      "criterion": {
+        "decimal": "3000",
+        "unit": "metre",
+        "comparator": "LessOrEqual"
+      },
+      "expected_assessment": true
+    },
+    {
+      "name": "zero_denominator",
+      "expression": "d / t",
+      "inputs": {
+        "d": {
+          "decimal": "2500",
+          "unit": "Metre"
+        },
+        "t": {
+          "decimal": "0",
+          "unit": "Second"
+        }
+      },
+      "output": "MetrePerSecond",
+      "expected_failure": "DivisionByZero",
+      "criterion": null
+    },
+    {
+      "name": "quantity_mismatch",
+      "expression": "d + t",
+      "inputs": {
+        "d": {
+          "decimal": "2",
+          "unit": "Metre"
+        },
+        "t": {
+          "decimal": "3",
+          "unit": "Second"
+        }
+      },
+      "output": "Metre",
+      "expected_failure": "QuantityKindMismatch",
+      "criterion": null
+    },
+    {
+      "name": "sqrt_domain",
+      "expression": "sqrt(x)",
+      "inputs": {
+        "x": {
+          "decimal": "-1",
+          "unit": "ScalarOne"
+        }
+      },
+      "output": "ScalarOne",
+      "expected_failure": "DomainError",
+      "criterion": null
+    },
+    {
+      "name": "overflow",
+      "expression": "x * y",
+      "inputs": {
+        "x": {
+          "decimal": "1e308",
+          "unit": "ScalarOne"
+        },
+        "y": {
+          "decimal": "1e308",
+          "unit": "ScalarOne"
+        }
+      },
+      "output": "ScalarOne",
+      "expected_failure": "Overflow",
+      "criterion": null
+    },
+    {
+      "name": "underflow",
+      "expression": "x * y",
+      "inputs": {
+        "x": {
+          "decimal": "1e-308",
+          "unit": "ScalarOne"
+        },
+        "y": {
+          "decimal": "1e-308",
+          "unit": "ScalarOne"
+        }
+      },
+      "output": "ScalarOne",
+      "expected_failure": "Underflow",
+      "criterion": null
+    },
+    {
+      "name": "criterion_quantity_mismatch",
+      "expression": "d",
+      "inputs": {
+        "d": {
+          "decimal": "2500",
+          "unit": "Metre"
+        }
+      },
+      "output": "Kilometre",
+      "expected_value": 2.5,
+      "criterion": {
+        "decimal": "50",
+        "unit": "percent",
+        "comparator": "GreaterOrEqual"
+      },
+      "expected_assessment_failure": "QuantityKindMismatch"
+    }
+  ]
+}

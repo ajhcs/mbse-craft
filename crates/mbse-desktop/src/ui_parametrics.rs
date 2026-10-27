@@ -406,44 +406,7 @@ impl Workspace {
     }
 }
 pub(super) fn accepted_form(a: &pm::Specification, id: Id) -> Option<Form> {
-    if id == a.id {
-        return Some(Form::Specification {
-            id: Some(id),
-            system: a.system.0.to_string(),
-            name: a.name.clone(),
-            calculation: a.calculation.map_or(String::new(), |id| id.0.to_string()),
-        });
-    }
-    if let Some(p) = a.parameters.get(&id) {
-        return Some(Form::Parameter {
-            specification: a.id,
-            id: Some(id),
-            name: p.name.clone(),
-            quantity: p.quantity,
-        });
-    }
-    a.bindings.get(&id).map(|b| Form::Binding {
-        specification: a.id,
-        id: Some(id),
-        parameter: b.parameter.0.to_string(),
-        source: match &b.source {
-            pm::Source::NativeInput { calculation, name } => SourceForm::NativeInput {
-                calculation: calculation.0.to_string(),
-                name: name.clone(),
-            },
-            pm::Source::NativeOutput { calculation } => SourceForm::NativeOutput {
-                calculation: calculation.0.to_string(),
-            },
-            pm::Source::TypedValue { target, unit } => SourceForm::TypedValue {
-                property: target.property().0.to_string(),
-                usage: match target {
-                    ty::values::Target::Override { usage, .. } => usage.0.to_string(),
-                    _ => String::new(),
-                },
-                unit: *unit,
-            },
-        },
-    })
+    pm::accepted_form(a, id)
 }
 fn accepted_label(a: &pm::Specification, id: Id) -> String {
     if id == a.id {
