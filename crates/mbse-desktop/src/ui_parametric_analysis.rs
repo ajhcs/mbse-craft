@@ -49,7 +49,7 @@ impl Workspace {
             if let Some(report)=self.parametrics.analysis.report.clone(){
                 let current=report.is_current(&self.session.editor);let same=Some(report.specification)==selected;
                 ui.colored_label(if current&&same{ACCENT}else{ERROR},if !current{"STALE / historical result. This does not describe the current source."}else if !same{"Result belongs to a different selected specification."}else{"Result matches this exact source and selected specification."});
-                ui.label(format!("Specification #{} · calculation #{} · document {} · model r{} · raw r{}",report.specification.0,report.calculation.0,report.stamp.document_id.0,report.stamp.model_revision,report.stamp.raw_version));
+                ui.label(format!("Specification #{} · calculation #{} · document {} · model r{} · raw r{}",report.specification.0,report.calculation.0,report.stamp.document_id,report.stamp.model_revision,report.stamp.raw_version));
                 match &report.outcome {mbse_model::stage1_calc::Outcome::Value(v)=>{let r=ui.heading(format!("Computed quantity: {} · {}",v.value,quantity_text(v.quantity)));self.bound("parametric:analysis:Quantity",&r);},mbse_model::stage1_calc::Outcome::Failure(d)=>{let r=ui.colored_label(ERROR,format!("Numeric failure · {:?}: {}",d.code,d.message));self.bound("parametric:analysis:Numeric failure",&r);}}
                 let text=match &report.assessment {Assessment::Met=>"Computed Met · verification unchanged".into(),Assessment::NotMet=>"Computed NotMet · verification unchanged".into(),Assessment::Unavailable(d)=>format!("Assessment unavailable · {:?}: {}",d.code,d.message)};
                 let r=ui.label(text);self.bound("parametric:analysis:Assessment",&r);
