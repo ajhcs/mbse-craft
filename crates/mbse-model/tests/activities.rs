@@ -514,8 +514,8 @@ fn legacy_deletion_discloses_uninventoried_activity_references_and_retained_flow
     .unwrap();
     let before = e.snapshot.clone();
     let p = t::deletion::prepare(&e, &views).unwrap();
-    assert!(!p.summary.complete_supported_reference_inventory);
-    assert!(p.summary.unknown.count > 0 && p.summary.refusal.is_some() && p.plan().is_none());
+    assert!(!p.summary().complete_supported_reference_inventory);
+    assert!(p.summary().unknown.count > 0 && p.summary().refusal.is_some() && p.plan().is_none());
     assert_eq!(e.snapshot, before);
     run(
         &mut e,
@@ -533,8 +533,8 @@ fn legacy_deletion_discloses_uninventoried_activity_references_and_retained_flow
     let before = e.snapshot.clone();
     let p = t::deletion::prepare(&e, &views).unwrap();
     assert!(
-        !p.summary.complete_supported_reference_inventory
-            && p.summary.unknown.count > 0
+        !p.summary().complete_supported_reference_inventory
+            && p.summary().unknown.count > 0
             && p.plan().is_none()
     );
     assert_eq!(e.snapshot, before);

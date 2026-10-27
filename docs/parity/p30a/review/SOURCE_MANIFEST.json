@@ -583,8 +583,8 @@
     },
     {
       "path": "crates/mbse-model/tests/activities.rs",
-      "bytes": 17305,
-      "sha256": "85ebd78bd1f3a483ded3e48383e712587f6c7728d5b5aad5a1fd6a3be1918817"
+      "bytes": 17315,
+      "sha256": "85aa92b1e5470690d19ca808fb186644482178b3985b747b67e70ef48bff641e"
     },
     {
       "path": "crates/mbse-model/tests/context_recovery.rs",
@@ -3662,5 +3662,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "1589058833f3bac9e9a681a4e03f1e2b08f23e3a3265d948f8b227bf025209fe"
+  "source_sha256": "3b65a930280c914020ad442588f6171a8e1cbdfed785fc7ec9203f7b9c5c7b86"
 }
