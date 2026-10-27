@@ -131,8 +131,14 @@
       "merge_commit": "8a893d13614429e6d0c904bf5c58c6c210ef5bf8"
     },
     "p29b": {
-      "state": "in_progress",
-      "base_commit": "8a893d13614429e6d0c904bf5c58c6c210ef5bf8"
+      "state": "draft_review_pending",
+      "base_commit": "8a893d13614429e6d0c904bf5c58c6c210ef5bf8",
+      "execution_results": "p29b/README.md",
+      "new_distinct_cases": 6,
+      "distinct_case_inventory": 586,
+      "native_runs": 3,
+      "source_sha256": "c3f76bf03f58d1eba40111b4727d01a71c959f2ac1ba3edbce1bcf5b32658261",
+      "final_source_full_workspace_claim": false
     }
   }
 }

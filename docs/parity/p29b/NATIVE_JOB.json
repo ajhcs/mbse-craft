@@ -11,25 +11,26 @@
     "/workspace/worktrees/builderbob/mbse-craft",
     "/workspace/build/builderbob/mbse-craft/milestone1"
   ],
-  "id": "p29b-native-viewpoint-filter-and-cold",
-  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m5-p29b-imports-02-20261027T043601Z/mbse-desktop",
-  "binary_sha256": "bfa1bfa9d6d8fefeffb7467a182f864790d9e7f661b0066b721119e32453f5c8",
-  "source_sha256": "8d2085348af6780a6bd4ad1859d2ce9073e88e864602301777ad80d68117ebc8",
+  "id": "p29b-native-delivered-shortcut-and-remaining-workflow",
+  "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m5-p29b-native-shortcut-03-20261027T043943Z/mbse-desktop",
+  "binary_sha256": "3678c1d5f623485c93bebfeb728b5c4cd315d4ac20d14cf3da7d0f8c85c90e2c",
+  "source_sha256": "c3f76bf03f58d1eba40111b4727d01a71c959f2ac1ba3edbce1bcf5b32658261",
   "inputs": {
-    "/workspace/repos/builderbob/mbse-craft/work/m5-p29b-native-viewpoints/docs/parity/p29b/fixtures/inspection.json": "feddb1b85b3a120937dff452501053408d39a8e139355e70a505d39013a337ca"
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p29b-01/run/baseline.kernspan": "ea1dadf02b5d293834c66e00f58654849b3644ce0788d57143e73993661a2b30",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p29b-01/run/baseline.mbse-views.json": "1219a8bcc6c3a37c7017f630a689f6404e2ffd3382c2d5f77af8117ed76c13c2"
   },
-  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p29b-01",
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p29b-02",
   "argv_extra": [
-    "--fixture",
-    "/workspace/repos/builderbob/mbse-craft/work/m5-p29b-native-viewpoints/docs/parity/p29b/fixtures/inspection.json",
+    "--open",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p29b-01/run/baseline.kernspan",
     "--select",
     "301"
   ],
   "scenarios": [
-    "Actual native Ctrl+Alt+V, stakeholder401/concern500/System1 Measure filter Apply/Undo/Redo; native invalid criterion9e unchanged.",
+    "Open owned baseline with invalid9e and distinct cameras preserved from first native attempt. Actual Ctrl+Alt+L, scoped Apply/Undo/Redo and invalid raw refusal; entire native remains baseline.",
     "Inspect source and stakeholder concern, invalid raw401? refuses without replacing accepted filter; independent view switching preserves camera geometry manual visibility and IDs.",
     "Actual native/views Save and cold explicit Open restore accepted scope/raw proposal and exact entire native Snapshot; fresh rendered cards agree, all5 layout maps exact.",
     "Normal owned app/display/process/auth cleanup; frozen fixture preserved."
   ],
-  "claim_policy": "Bounded same-agent Linux native workflow, synthetic inspection data.585 final-source regression cases; no broad parity, integrated exit, scale/platform/independent engineering acceptance."
+  "claim_policy": "Initial native shortcut V was consumed by pinned adapter Paste; menu worked, original error and baseline preserved. New L default targeted2 tests/build after585 prior cases,586 distinct names. Remaining native workflow only; no replay of baseline preparation or broad final-source full-suite claim."
 }

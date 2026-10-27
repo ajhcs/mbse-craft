@@ -1,0 +1,112 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-27T04:37:24.975408+00:00",
+  "job_sha256": "4a3fc0355c6449d6a724b4d342428a1481e0350e8a6aa4c089f8e13f82a6b42c",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p29b-01/run",
+      "started_utc": "2026-10-27T04:37:24.998630+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 627790,
+          "start_ticks": 45019594
+        },
+        "server_pid": {
+          "pid": 627787,
+          "start_ticks": 45019592
+        }
+      },
+      "argv_extra": [
+        "--fixture",
+        "/workspace/repos/builderbob/mbse-craft/work/m5-p29b-native-viewpoints/docs/parity/p29b/fixtures/inspection.json",
+        "--select",
+        "301"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 627790,
+        "server_pid": 627787,
+        "window": 4194307,
+        "binary_sha256": "bfa1bfa9d6d8fefeffb7467a182f864790d9e7f661b0066b721119e32453f5c8"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-27T04:39:05.432248+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-27T04:37:24.998216+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1386671665152,
+    "available_memory_bytes": 24427315200,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 299500,
+        "start_ticks": 43416915,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      },
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 385
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "action_errors": [
+    {
+      "action": "exec(\"def reveal(driver, widget):\\n for _ in range(40):\\n  w=driver.audit()['widgets'];r=w.get(widget);assert r is not None,'Missing live widget: '+widget\\n  if r[2]-r[0]>5 and r[3]-r[1]>=12 and 0<=r[1]<r[3]<=1600:return\\n  owner=widget.split(':')[0];owner='assurance' if owner in ['validation','coverage','traces'] else owner\\n  visible=[v for k,v in w.items() if k.startswith(owner+':') and v[3]-v[1]>=12 and 0<=v[1]<v[3]<=1600]\\n  top=min((v[1] for v in visible),default=100);bottom=max((v[3] for v in visible),default=1500)\\n  driver.send(op='scroll',x=int(max(40,min(2150,(r[0]+r[2])/2))),y=int(max(60,min(1530,bottom-24))),steps=4 if (r[1]+r[3])/2>(top+bottom)/2 else -4,pause=.2)\\n raise AssertionError('Cannot fully reveal '+widget)\\n\"); n.seek=lambda w:reveal(n,w); n.fill('field:301:criterion','9e'); n.click('view:tab:2'); n.click('camera:Pan right'); n.click('camera:Zoom in'); n.click('view:tab:1'); baseline=n.save('baseline.kernspan'); baseline_views=json.loads((n.run/'baseline.mbse-views.json').read_text()); assert baseline['drafts']; n.send(op='key',key='v',mods=['Control_L','Alt_L']); n.send(op='wait',pause=.5); assert n.audit()['viewpoint']['open']; print(n.audit()['viewpoint']); print({k:v for k,v in n.audit()['widgets'].items() if k.startswith('viewpoint:')})",
+      "error": "AssertionError()"
+    }
+  ],
+  "native_shortcut_route_failure_preserved": true,
+  "baseline_saved_whole_snapshot_with_invalid9e_and_distinct_cameras": true,
+  "ended_utc": "2026-10-27T04:39:18.542058+00:00"
+}

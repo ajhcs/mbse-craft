@@ -752,12 +752,13 @@
         {
           "id": "P29b",
           "title": "Native viewpoint authoring, filtering and scoped switching",
-          "state": "in_progress",
+          "state": "draft_review_pending",
           "depends_on": [
             "P29a"
           ],
           "branch": "codex/m5-p29b-native-viewpoints",
-          "contract": "docs/parity/p29b/CONTRACT.md"
+          "contract": "docs/parity/p29b/CONTRACT.md",
+          "execution_results": "docs/parity/p29b/README.md"
         }
       ]
     },
