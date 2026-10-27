@@ -13,6 +13,7 @@ use std::{
 mod hierarchy;
 pub mod traces;
 pub mod coverage;
+pub mod metrics;
 pub mod validation;
 pub use traces::{TraceKind, TraceEndpoint, RequirementTrace, TestCase};
 pub use hierarchy::HierarchyRow;

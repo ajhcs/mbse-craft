@@ -1,0 +1,37 @@
+[
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/review-p37a/docs/parity/p37a/review/JOB.json",
+    "path": "verification/JOB.json",
+    "bytes": 3632,
+    "sha256": "a5df71d7700343f7510810d54c47d3a7cf41382adf3b4d0e7e2aa19b5ca4b123",
+    "stored_sha256": "a5df71d7700343f7510810d54c47d3a7cf41382adf3b4d0e7e2aa19b5ca4b123"
+  },
+  {
+    "original": "/workspace/repos/builderbob/mbse-craft/work/review-p37a/work/p37a-review-01.json",
+    "path": "verification/RECEIPT.json",
+    "bytes": 11929,
+    "sha256": "cdc623a00eb5eeed8debb29208f3199e61597646caee60e6ccb83c84a55add7b",
+    "stored_sha256": "cdc623a00eb5eeed8debb29208f3199e61597646caee60e6ccb83c84a55add7b"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p37a-review-bidirectional-parent-boundary-01-20261027T141640Z/00.log",
+    "path": "verification/00.log.gz",
+    "bytes": 2405,
+    "sha256": "93f9edb135e3770d61bb93c092dcc3841a9c13a29e3879bd2fd6180efb387178",
+    "stored_sha256": "5d2f4df4194637fe958c58b56b292e0e289c1aa409803ba0fc0f790d1c44f5a6"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p37a-review-bidirectional-parent-boundary-01-20261027T141640Z/01.log",
+    "path": "verification/01.log.gz",
+    "bytes": 1927,
+    "sha256": "bec17041c86db3ad6661c61ad4e5ceab4caed44f30715b3f7de80bfda8bb6c9b",
+    "stored_sha256": "6a8f4d6d9832d908fb8c7db5a71322f9ea7c88f0336e8db83e43c94c1472b863"
+  },
+  {
+    "original": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p37a-review-bidirectional-parent-boundary-01-20261027T141640Z/02.log",
+    "path": "verification/02.log.gz",
+    "bytes": 7305,
+    "sha256": "b886e63094f86410d87d74fe5825c883c21b79ef4ae2bb186c63f810f95a9de9",
+    "stored_sha256": "82f7be02d0181f638f1dffd0fd4fc00c562dd2fb569a99ece0fe998b66f5338a"
+  }
+]
