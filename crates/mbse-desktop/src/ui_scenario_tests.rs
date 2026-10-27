@@ -591,3 +591,57 @@ fn rendered_sequence_drag_publishes_one_layout_entry_and_single_undo_preserves_e
     );
     assert_eq!(a.session.editor.snapshot, native);
 }
+
+#[test]
+fn rendered_sequence_message_kinds_paint_one_filled_synchronous_head_and_open_async_reply_heads() {
+    let (_d, mut a, ctx) = app();
+    let (root, l, r, _, _) = seed(&mut a);
+    let form = Form::Message {
+        scenario: root,
+        id: None,
+        name: "Notify".into(),
+        source: l.0.to_string(),
+        target: r.0.to_string(),
+        order: "3".into(),
+        operand: "".into(),
+        message_kind: MessageKind::Asynchronous,
+        reply_to: "".into(),
+    };
+    let stamp = a.views.views.stamp(&a.session.editor);
+    a.sc_model(&stamp, sc::Action::Set(form.clone())).unwrap();
+    let stamp = a.views.views.stamp(&a.session.editor);
+    a.sc_model(&stamp, sc::Action::Apply(form.key())).unwrap();
+    let stamp = a.views.views.stamp(&a.session.editor);
+    a.sc_create_diagram(&stamp, root).unwrap();
+    a.scenarios.open = false;
+    settle(&mut a, &ctx);
+    let out = ctx.run_ui(
+        egui::RawInput {
+            screen_rect: Some(Rect::from_min_size(
+                egui::Pos2::ZERO,
+                egui::vec2(2200., 1600.),
+            )),
+            focused: true,
+            ..Default::default()
+        },
+        |ui| a.canvas_body(ui),
+    );
+    fn heads(shape: &egui::Shape) -> usize {
+        match shape {
+            egui::Shape::Vec(items) => items.iter().map(heads).sum(),
+            egui::Shape::Path(path)
+                if path.closed && path.points.len() == 3 && path.fill == ACCENT =>
+            {
+                1
+            }
+            _ => 0,
+        }
+    }
+    assert_eq!(a.scenarios.rendered.as_ref().unwrap().messages.len(), 3);
+    assert_eq!(
+        out.shapes.iter().map(|s| heads(&s.shape)).sum::<usize>(),
+        1,
+        "Only the synchronous call gets a filled triangular head; async and reply remain open."
+    );
+    out.drop_without_applying_deltas();
+}

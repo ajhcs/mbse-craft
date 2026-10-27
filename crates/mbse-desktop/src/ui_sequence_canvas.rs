@@ -1,5 +1,4 @@
 //! Render the active scenario diagram using current semantic endpoints and guarded layout.
-use super::activity_canvas::paint_flow_arrow;
 use super::activity_editor::Drag;
 use super::scenario_editor::Rendered;
 use super::*;
@@ -34,7 +33,7 @@ impl Workspace {
         let a = store
             .scenarios
             .get(&d.scenario)
-            .ok_or("State scenario missing; original diagram retained")?;
+            .ok_or("Scenario missing; original diagram retained")?;
         let form = super::scenario_editor::accepted_form(a, id)
             .ok_or("Exact scenario element missing; no identity is rebound.")?;
         self.sc_pick(form, Some(stamp))
@@ -456,7 +455,7 @@ impl Workspace {
                                                 Stroke::new(1.5, ACCENT),
                                             );
                                         } else {
-                                            paint_flow_arrow(
+                                            sync_arrow(
                                                 ui.painter(),
                                                 final_start,
                                                 end,
@@ -748,5 +747,22 @@ fn paint_label(
         id,
         [bounds.left(), bounds.top(), bounds.right(), bounds.bottom()],
         text,
+    ));
+}
+
+fn sync_arrow(p: &egui::Painter, start: egui::Pos2, end: egui::Pos2, stroke: Stroke) {
+    let delta = end - start;
+    let len = delta.length();
+    if len < 0.1 {
+        return;
+    }
+    let unit = delta / len;
+    let back = end - unit * len.min(10.);
+    let side = egui::vec2(-unit.y, unit.x) * len.min(5.);
+    p.line_segment([start, end], stroke);
+    p.add(egui::Shape::convex_polygon(
+        vec![back + side, end, back - side],
+        stroke.color,
+        Stroke::NONE,
     ));
 }
