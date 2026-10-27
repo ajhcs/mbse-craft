@@ -38,6 +38,14 @@ impl Workspace {
         self.matrix_refresh();
         Ok(())
     }
+    fn matrix_select(&mut self, report: &Report, id: RecordId) -> Result<(), String> {
+        if self.dock_blocked_without_matrix() {
+            return Err("MATRIX_BUSY: axis selection refused; source retained.".into());
+        }
+        let target = report.axis(&self.session.editor, id)?;
+        self.select(target);
+        Ok(())
+    }
     pub(super) fn matrix_dialog(&mut self, ctx: &egui::Context) {
         if !self.matrix.open {
             return;
@@ -64,8 +72,8 @@ impl Workspace {
    ui.label(format!("{} native records · rows {}..{} · columns {}..{} · at most32 by32 cells. Other typed/profile/requirements relations are outside this native graph matrix.",report.total(),self.matrix.query.row_offset,self.matrix.query.row_offset+report.rows().len(),self.matrix.query.column_offset,self.matrix.query.column_offset+report.columns().len()));
    if let Err(error)=report.check(&self.session.editor){ui.colored_label(ERROR,format!("{error}: refresh before editing or navigating."));return;}
    egui::ScrollArea::both().id_salt("matrix-grid-scroll").max_height(420.).show(ui,|ui|{egui::Grid::new("native-relation-grid").striped(true).show(ui,|ui|{
-    ui.label("Source -> Target");for a in report.columns(){let r=ui.button(format!("#{}",a.id.0)).on_hover_text(format!("{} #{} · {}",a.kind.label(),a.id.0,a.label));self.bound(format!("matrix:column:{}",a.id.0),&r);if r.clicked(){select=Some(a.id);}}ui.end_row();
-    for a in report.rows(){let r=ui.button(format!("{} #{} · {}",a.kind.label(),a.id.0,a.label));self.bound(format!("matrix:row:{}",a.id.0),&r);if r.clicked(){select=Some(a.id);}for b in report.columns(){let c=report.cells().iter().find(|c|c.source==a.id&&c.target==b.id).expect("complete matrix page");let r=ui.add_enabled(ready&&c.editable,egui::Button::new(if c.present{"[x]"}else{"[ ]"})).on_hover_text(c.reason.as_deref().unwrap_or("Edit this exact native relation cell"));self.bound(format!("matrix:cell:{}:{}",a.id.0,b.id.0),&r);if r.clicked(){match report.edit(&self.session.editor,a.id,b.id){Ok(proof)=>edit=Some(proof),Err(error)=>self.matrix.note=error}}}ui.end_row();}
+    ui.label("Source -> Target");for a in report.columns(){let r=ui.button(format!("#{}",a.id.0)).on_hover_text(format!("{} #{} · {}",a.kind.label(),a.id.0,a.label));self.bound(format!("matrix:column:{}",a.id.0),&r);if r.clicked(){select=Some((report.clone(),a.id));}}ui.end_row();
+    for a in report.rows(){let r=ui.button(format!("{} #{} · {}",a.kind.label(),a.id.0,a.label));self.bound(format!("matrix:row:{}",a.id.0),&r);if r.clicked(){select=Some((report.clone(),a.id));}for b in report.columns(){let c=report.cells().iter().find(|c|c.source==a.id&&c.target==b.id).expect("complete matrix page");let r=ui.add_enabled(ready&&c.editable,egui::Button::new(if c.present{"[x]"}else{"[ ]"})).on_hover_text(c.reason.as_deref().unwrap_or("Edit this exact native relation cell"));self.bound(format!("matrix:cell:{}:{}",a.id.0,b.id.0),&r);if r.clicked(){match report.edit(&self.session.editor,a.id,b.id){Ok(proof)=>edit=Some(proof),Err(error)=>self.matrix.note=error}}}ui.end_row();}
    });});ui.label(&self.matrix.note);
   });
         if let Some(redo) = history {
@@ -88,20 +96,9 @@ impl Workspace {
                 self.matrix.note = error;
             }
         }
-        if let Some(id) = select {
-            if !self.dock_blocked_without_matrix() {
-                match self
-                    .matrix
-                    .report
-                    .as_ref()
-                    .ok_or("MATRIX_REPORT_MISSING")
-                    .and_then(|r| {
-                        r.axis(&self.session.editor, id)
-                            .map_err(|_| "MATRIX_AXIS_STALE")
-                    }) {
-                    Ok(id) => self.select(id),
-                    Err(error) => self.matrix.note = error.into(),
-                }
+        if let Some((report, id)) = select {
+            if let Err(error) = self.matrix_select(&report, id) {
+                self.matrix.note = error;
             }
         }
         if refresh {
@@ -289,6 +286,40 @@ mod tests {
             ShortcutTarget::Widget,
         );
         assert!(!a.matrix.open);
+        assert_eq!(a.session.editor.snapshot, before);
+    }
+    #[test]
+    fn queued_axis_selection_keeps_original_report_after_same_counter_source_refresh() {
+        let (_area, mut a, _ctx) = app();
+        let old = a.matrix.report.clone().unwrap();
+        let selected = a.session.editor.selected;
+        a.session
+            .editor
+            .snapshot
+            .records
+            .get_mut(&RecordId(1002))
+            .unwrap()
+            .name = "New native bytes same IDs and counters".into();
+        let before = a.session.editor.snapshot.clone();
+        a.matrix_refresh();
+        assert!(a.matrix_audit()["current"].as_bool().unwrap());
+        assert_eq!(
+            a.matrix_select(&old, RecordId(1002)).unwrap_err(),
+            "MATRIX_SOURCE_STALE"
+        );
+        assert_eq!(a.session.editor.selected, selected);
+        assert_eq!(a.session.editor.snapshot, before);
+        let current = a.matrix.report.clone().unwrap();
+        a.settings_window = true;
+        assert!(
+            a.matrix_select(&current, RecordId(1002))
+                .unwrap_err()
+                .contains("MATRIX_BUSY")
+        );
+        assert_eq!(a.session.editor.selected, selected);
+        a.settings_window = false;
+        a.matrix_select(&current, RecordId(1002)).unwrap();
+        assert_eq!(a.session.editor.selected, Some(RecordId(1002)));
         assert_eq!(a.session.editor.snapshot, before);
     }
 }
