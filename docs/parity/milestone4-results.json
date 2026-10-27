@@ -1,7 +1,7 @@
 {
   "schema": "mbse-craft.milestone4-results/1",
   "recorded_utc": "2026-10-26T23:41:40.726758+00:00",
-  "state": "in_progress",
+  "state": "implementation_positions_merged_milestone_exit_open",
   "milestone_exit_accepted": false,
   "full_parity_accepted": false,
   "p14": {
@@ -28,9 +28,7 @@
     "merge_commit": "46d18c4509bd1dce8c51bd1f41ab55638c889e96",
     "review_followup": "p14/REVIEW_FOLLOWUP.md"
   },
-  "remaining_prs": [
-    "P22"
-  ],
+  "remaining_prs": [],
   "p15": {
     "state": "merged",
     "branch": "codex/m4-p15-types-properties",
@@ -293,8 +291,8 @@
     "reviewed_head": "9ec83dd483610fcdbe43c78d62cd809b50fc9c26"
   },
   "p22": {
-    "state": "reviewed_ready_to_merge",
-    "position_complete": false,
+    "state": "merged",
+    "position_complete": true,
     "base_commit": "e8475982d3586a15b47425c4ba34dffb5c4a5afd",
     "source_files": 709,
     "source_sha256": "60490bd237df79089654450f3b09fe60bc95a3207b21bceb421df8c27fc71f6f",
@@ -313,6 +311,8 @@
     "preservation": "p22/verification/PRESERVATION_AFTER.json",
     "pr_url": "https://github.com/ajhcs/mbse-craft/pull/28",
     "review_preservation": "p22/REVIEW_PRESERVATION.json",
-    "review_available_preexisting_checkouts_unchanged": 46
+    "review_available_preexisting_checkouts_unchanged": 46,
+    "merge_commit": "24cb464749e82f28f6199a4a2341ced21bfae421",
+    "reviewed_head": "23bb4a288c599b79cf018416b6f200f7c7655a54"
   }
 }

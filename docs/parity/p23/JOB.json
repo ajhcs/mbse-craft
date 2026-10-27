@@ -1,0 +1,75 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m5-p23-identified-authoring-03",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/m5-p23-requirement-hierarchy",
+  "source_manifest": "docs/parity/p23/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "ffe3946ad4b255b8786c184fd4c7a9aa6551289a6d8425da2c473645197181f7",
+  "source_sha256": "9e205f42d5a39f016f0414c7dce1df15ccea919cef41e15424ffcbd8341a65e4",
+  "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-assurance",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop",
+      "assurance_ui::",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "Initial504 tests/build passed hierarchy source; reviewed draft-validity fix then passed assurance23/UI7/build. Saved AC-CAT-017 explicitly requires R-1/R-2 and duplicate R-2 refusal. Add exact unique editable user identifiers beside stable local IDs, preserving legacy unset IDs, drafts/statuses/links and form IO guards; three new identifier regressions. Run all affected assurance package/UI/build only, no full-suite replay or summed claim.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/m5-p23-requirement-hierarchy/docs/parity/p23/fixtures/profile-tags.kernspan": "778e35d48ddf38c9c5e539aea0a65fb0cade73f850209f377840e01a913317a1",
+    "/workspace/repos/builderbob/mbse-craft/work/m5-p23-requirement-hierarchy/docs/parity/p23/fixtures/profile-tags.mbse-views.json": "e793dbe99a639f45d6a35d380bb34e1a6b32fd93b08c3f2d3d394b43e4aebe88",
+    "/workspace/repos/builderbob/mbse-craft/work/m5-p23-requirement-hierarchy/docs/parity/p22/fixtures/native-typed.kernspan": "31f79134057415fc3847e2cab2795c94cff90aa3dbb62d9a84471fbf214a7bca",
+    "/workspace/repos/builderbob/mbse-craft/work/m5-p23-requirement-hierarchy/docs/parity/p22/fixtures/native-typed.mbse-views.json": "5594282b0f9928ccb1eae92f92e2c22cf2ebe62cf0be3bed239cb6bd9ac8385c",
+    "/workspace/repos/builderbob/mbse-craft/work/m5-p23-requirement-hierarchy/docs/parity/p22/fixtures/qa-profile.json": "3a384b32e071262a4bf97269ccc731182228c28bbd1fd4b0484ec76cdf9d0735",
+    "/workspace/repos/builderbob/mbse-craft/work/m5-p23-requirement-hierarchy/docs/parity/p22/fixtures/qa-values.json": "8d127d335060b2a802c7877da363d8c0270dcf4133df47ae48a180bf9791db4c",
+    "/workspace/repos/builderbob/mbse-craft/work/m5-p23-requirement-hierarchy/docs/parity/p21a/fixtures/refactored.kernspan": "e834399ddebc22c392af17f01e761bb8d591f69f5cbe0852608877e10635bd7b",
+    "/workspace/repos/builderbob/mbse-craft/work/m5-p23-requirement-hierarchy/docs/parity/p21a/fixtures/refactored.mbse-views.json": "799d826e4ae8179762298673dcea9fffd96b843f124827b316432517c2811b03",
+    "/workspace/repos/builderbob/mbse-craft/work/m5-p23-requirement-hierarchy/docs/parity/p21b/fixtures/PROVENANCE.json": "60f5745717621ea75b856ac80790f5035c76b138057442baaf0194fcfd8e0bcf",
+    "/workspace/repos/builderbob/mbse-craft/work/m5-p23-requirement-hierarchy/docs/parity/p21b/fixtures/controlled.kernspan": "31f79134057415fc3847e2cab2795c94cff90aa3dbb62d9a84471fbf214a7bca",
+    "/workspace/repos/builderbob/mbse-craft/work/m5-p23-requirement-hierarchy/docs/parity/p21b/fixtures/controlled.mbse-views.json": "a3316c41da763c5f9b18fadd8e150fc2c167781051f1b91e5af20bf4afe77e3e"
+  }
+}
