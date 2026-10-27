@@ -9,7 +9,8 @@ impl Workspace {
     pub(super) fn docking_chrome_focused(&self) -> bool {
         DockArea::new(Self::dock_id()).chrome_has_focus(&self.context, &self.docking.layout)
     }
-    pub(super) fn dock_blocked(&self) -> bool {
+    pub(super) fn dock_blocked(&self) -> bool {self.matrix.open||self.dock_blocked_without_matrix()}
+    pub(super) fn dock_blocked_without_matrix(&self) -> bool {
         self.tag_panel.open || self.deletion_panel.open || self.refactor_panel.open || self.value_panel.open || self.connector_panel.open || self.port_panel.open || self.type_panel.open || self.files.open || self.files.pending() || self.views.occurrence_navigation_blocked(&self.session)
             || self.pending.is_some()
             || self.creation.is_some()

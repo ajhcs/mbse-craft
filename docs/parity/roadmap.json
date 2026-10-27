@@ -658,7 +658,7 @@
       "acceptance": [
         "Unsupported declarative rules refuse; fixes preview changes, reject stale state and Undo atomically; opening projects executes no embedded code."
       ],
-      "state": "review_ready",
+      "state": "merged",
       "owner_role": "existing integrator assigns exclusive paths",
       "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
       "children": [
@@ -679,7 +679,7 @@
         {
           "id": "P27b",
           "title": "Native rule review and explicit quick-fix preview Apply Undo",
-          "state": "review_ready",
+          "state": "merged",
           "depends_on": [
             "P27a"
           ],
@@ -689,9 +689,14 @@
           "pr_url": "https://github.com/ajhcs/mbse-craft/pull/35",
           "execution_results": "docs/parity/p27b/README.md",
           "review": "docs/parity/p27b/REVIEW.md",
-          "review_preservation": "docs/parity/p27b/REVIEW_PRESERVATION.json"
+          "review_preservation": "docs/parity/p27b/REVIEW_PRESERVATION.json",
+          "merge_commit": "894e00b8359422e250f670a2b971d11a666b93b3",
+          "reviewed_head": "49d1230cb2d2423190950818b2dbf3f59b54390e"
         }
-      ]
+      ],
+      "pr_number": 35,
+      "pr_url": "https://github.com/ajhcs/mbse-craft/pull/35",
+      "merge_commit": "894e00b8359422e250f670a2b971d11a666b93b3"
     },
     {
       "id": "P28",
@@ -703,9 +708,11 @@
       "acceptance": [
         "A cell edit uses the authoritative typed relation command; wrong-kind cells are disabled; matrix and diagram agree after reopen."
       ],
-      "state": "planned",
+      "state": "in_progress",
       "owner_role": "existing integrator assigns exclusive paths",
-      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it"
+      "sizing": "one contract or user workflow; split core, migration, adapter and UI if independent review requires it",
+      "branch": "codex/m5-p28-relation-matrix",
+      "contract": "docs/parity/p28/CONTRACT.md"
     },
     {
       "id": "P29",
