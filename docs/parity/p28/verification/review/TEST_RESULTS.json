@@ -1,0 +1,17 @@
+{
+  "affected_case_count": 2,
+  "prior_case_count": 571,
+  "new_distinct_p28_cases": [
+    "ui::relation_matrix::tests::queued_axis_selection_keeps_original_report_after_same_counter_source_refresh"
+  ],
+  "distinct_case_inventory": 572,
+  "qualification": "One new delayed-axis case and existing affected rendered-axis route pass after source-binding fix. No unrelated successful replay or final-source full-workspace claim.",
+  "tests": [
+    {
+      "test": "ui::relation_matrix::tests::matrix_command_uses_shared_catalog_scope_and_axis_navigation_preserves_source"
+    },
+    {
+      "test": "ui::relation_matrix::tests::queued_axis_selection_keeps_original_report_after_same_counter_source_refresh"
+    }
+  ]
+}

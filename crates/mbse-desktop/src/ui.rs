@@ -9,6 +9,8 @@ mod panel_docking;
 mod file_operations;
 #[path="ui_types.rs"]
 mod typed_properties;
+#[path="ui_matrix.rs"]
+mod relation_matrix;
 #[path="ui_validation.rs"]
 mod validation_navigation;
 #[path="ui_ports.rs"]
@@ -85,6 +87,7 @@ pub struct Workspace {
     docking: crate::docking::WorkspaceDock,
     perspective_name: String,
     files:file_operations::FileOps,
+    matrix:relation_matrix::MatrixPanel,
     type_panel:typed_properties::TypePanel,
     port_panel:port_editor::PortPanel,
     connector_panel:connector_editor::ConnectorPanel,
@@ -168,7 +171,7 @@ impl Workspace {
         let periodic_recovery = crate::periodic_recovery::PeriodicRecovery::new(Instant::now(), &session, &views);
         let mut docking=crate::docking::WorkspaceDock::default();
         match crate::perspectives::decode(&preferences.value.workspace_layout){Ok(layout)=>docking.layout=layout,Err(e)=>{preferences.load_warning=true;preferences.report.push_str(&format!("; {e}"));docking.note=e}}
-        let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,shortcuts,docking,perspective_name:String::new(),files:Default::default(),type_panel:Default::default(),port_panel:Default::default(),connector_panel:Default::default(),value_panel:Default::default(),refactor_panel:Default::default(),deletion_panel:Default::default(),tag_panel:Default::default(),validation_focus:Default::default(),docking_focus:None,periodic_recovery, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
+        let mut app=Self { views, session, save_path: path.clone(), path, model_fields:HashMap::new(), context:ctx.clone(),catalog:crate::catalog_ui::CatalogBrowser::default(),exchange:crate::semantic_ui::SemanticBrowser::default(),assurance:crate::assurance_ui::AssuranceWorkspace::default(),frame_choice,close_intent:false,writes,completed_writes,pending_continue:None,preferences,settings_window:false,shortcuts,docking,perspective_name:String::new(),files:Default::default(),matrix:Default::default(),type_panel:Default::default(),port_panel:Default::default(),connector_panel:Default::default(),value_panel:Default::default(),refactor_panel:Default::default(),deletion_panel:Default::default(),tag_panel:Default::default(),validation_focus:Default::default(),docking_focus:None,periodic_recovery, feedback: "Select a model card to edit its fields. Model values and unfinished text remain separate.".into(), error: false,
             creation: None, relation: None, popout: None, usages: None, impact_open:false,impact_target:None,impact_report:None,impact_note:String::new(), search_open:false, search_query:Default::default(), search_report:None, search_note:String::new(), browser_revealed:None,browser_open_groups:BTreeMap::new(), pending: None, context_creation: None, recovery_window: false, recovery_inventory: None, recovery_selected: None, capture, frames: 0, screenshot_requested: false, zoom: 1., show_ownership: false, allow_close: None, audit: BTreeMap::new(), audit_previous: Vec::new(), menu_scope:None, last_workspace_command:None };
         app.refresh_recoveries();
         app
@@ -1998,6 +2001,7 @@ impl eframe::App for Workspace {
         self.shortcut_dialog(&ctx);
         self.docking_dialog(&ctx);
         self.file_operations_ui(&ctx);
+        self.matrix_dialog(&ctx);
         self.type_dialog(&ctx);
         self.port_dialog(&ctx);
         self.connector_dialog(&ctx);
@@ -2023,6 +2027,7 @@ impl eframe::App for Workspace {
             fields.insert("workspace_docking".into(),self.docking.audit());
             fields.insert("file_operations".into(),self.file_audit());
             fields.insert("native_extensions".into(),serde_json::json!(self.session.editor.snapshot.extensions));
+            fields.insert("relation_matrix".into(),self.matrix_audit());
             fields.insert("typed_properties".into(),self.typed_audit());
             fields.insert("ports".into(),self.ports_audit());
             fields.insert("port_presentation".into(),self.port_presentation_audit());

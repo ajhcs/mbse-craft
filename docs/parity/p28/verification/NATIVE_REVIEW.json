@@ -1,0 +1,33 @@
+{
+  "result": "bounded_native_relation_matrix_graph_and_cold_passed",
+  "reviewer": "Codex same implementing agent",
+  "independent_review": false,
+  "source_files": 727,
+  "source_sha256": "0742802bdcfb7aea885b357a157cc658e89c80ec22bb4e9137369f8a0e76ac28",
+  "binary_sha256": "42610a7ab9b86c4274e70f07d23d732b5897e3972553ff4f71b55f10b93bf84e",
+  "compiler_slice_counts": [
+    [
+      211
+    ],
+    [
+      360,
+      0
+    ]
+  ],
+  "distinct_case_inventory": 571,
+  "new_distinct_cases": 8,
+  "native_runs": 2,
+  "action_errors": 0,
+  "observations": [
+    "Actual shared Ctrl+Alt+M catalog route opens5-by5 native graph matrix; wrong-kind cell refuses and removing Capability1001 toMission1000 removes actual matrix, canvas arrow and ledger entry.",
+    "Actual model Undo/Redo then restored link; Objective1002 Subject replaces Capability1001 with System1, clears then sets System1. Axis selection chooses exact1002 without source edit.",
+    "Mandatory Measure1003 Objective1002 cell and scope/calculation read-only modes refuse without source changes.",
+    "Final accepted records equal original except explicit Objective subject System1. Original raw154/type extensions/5 presentation maps stay exact; global model revision82 to89 records7 explicit model/history actions.",
+    "Cold Open restores no matrix report/proof. Fresh matrix and actual diagram/ledger agree; fresh whole Snapshot equals final and all5 maps equal original. Original input hashes retained, two normal owned app/display exits/process/auth cleanup."
+  ],
+  "limits": [
+    "Three editable native command families; scope/calculation dependencies read-only. Other typed/profile/requirement relations outside this matrix.",
+    "32-by32 pages and64-scalar shortened labels; no large-model/native paging performance qualification.",
+    "Same-agent bounded Linux, all56 broad specs/integrated exits/full NoMagic/SysML/Craft/platform/independent engineering acceptance remain open."
+  ]
+}

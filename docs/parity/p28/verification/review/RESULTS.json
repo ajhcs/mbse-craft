@@ -1,0 +1,25 @@
+{
+  "finding": "F01 queued row/column selection must retain original report across source/history refresh",
+  "status": "fixed",
+  "source_files": 727,
+  "source_sha256": "c657bbfd0d4c0356e75f9091624781b76dfa2aa37ecd2393913651c50465eabc",
+  "binary_sha256": "794e8af3f86094f87d9bbe5e6f1a8f3f805d847074ee175610b45a1803007e80",
+  "affected_tests": 2,
+  "distinct_case_inventory": 572,
+  "new_case_count_review": 1,
+  "new_case_count_total": 9,
+  "final_source_full_workspace_claim": false,
+  "native_runs_final_source": 1,
+  "native_runs_original_candidate": 2,
+  "original_artifacts_unchanged": 39,
+  "review_artifacts": 16,
+  "observations": [
+    "Captured axis requests now retain the original report; dispatch checks that report against current native source and busy state, never substituting a refreshed report.",
+    "New case refreshes a different native payload with same IDs/counters; old queued axis refuses with selection/source unchanged, busy current axis refuses, fresh current axis succeeds. Existing actual rendered-axis route passes.",
+    "Final native actual row1002 and column1000 select exact records; whole Snapshot and all5 presentation maps remain exact through actual owned Save. Frozen inputs, normal owned app/display exit/process/auth cleanup verified."
+  ],
+  "limits": [
+    "Initial211 plus360 distinct remainder/build qualify source0742802b; only one command-audit test assertion differed from first source. Original native2 qualify that candidate. Final axis correction sourcec657bbfd qualifies affected2/build/native1, no summed final-source full-workspace claim.",
+    "Three native editable families; other typed/profile/requirements matrices, scale/platform/independent engineering/all56 broad specs/integrated exits/full NoMagic/SysML/Craft acceptance remain open."
+  ]
+}

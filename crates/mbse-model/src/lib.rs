@@ -29,3 +29,5 @@ pub mod native_record_impact;
 pub mod extensions;
 
 pub mod types;
+
+pub mod relation_matrix;
