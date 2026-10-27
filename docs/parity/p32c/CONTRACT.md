@@ -1,6 +1,6 @@
 # P32c native state-machine authoring and diagrams
 
-Build on P32b PR45. Shared Tools command tools.state_machines / CtrlAltU opens
+Build on P32b PR45. Shared Tools command tools.state_machines / CtrlAltS opens
 Machine/State/Event/Transition proposals under the existing type authority. Stable
 owned selection restores distinct raw forms. Invalid targets/events/literal guards
 refuse without accepted overwrite; ambiguous definitions expose exact diagnostic

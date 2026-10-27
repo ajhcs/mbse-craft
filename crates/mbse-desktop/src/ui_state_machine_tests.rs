@@ -602,7 +602,7 @@ fn state_machine_shared_shortcut_file_history_and_other_actor_docking_guards_use
     a.state_machines.open = false;
     let spec = crate::command_catalog::Id::StateMachines.spec();
     assert_eq!(spec.key, "tools.state_machines");
-    assert_eq!(spec.shortcut.logical_key, egui::Key::U);
+    assert_eq!(spec.shortcut.logical_key, egui::Key::S);
     ctx.run_ui(
         egui::RawInput {
             focused: true,

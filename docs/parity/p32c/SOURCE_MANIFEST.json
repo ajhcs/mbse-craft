@@ -129,7 +129,7 @@
     {
       "path": "crates/mbse-desktop/src/command_catalog.rs",
       "bytes": 5612,
-      "sha256": "dfc28338e9ef54a1fb5b1ec12ee34ad8c396f0a2bc74e018c9c8dc8562d585de"
+      "sha256": "70ca90d54b573dd5e3aa23263bea3da82d127ff9795b2b8dd7315cb1cbda71f2"
     },
     {
       "path": "crates/mbse-desktop/src/docking.rs",
@@ -269,7 +269,7 @@
     {
       "path": "crates/mbse-desktop/src/ui_state_machine_tests.rs",
       "bytes": 22256,
-      "sha256": "872d8b5bb031c13442a2ce6b09459adea02ecf8d1fb7c8250cbbf8928cae33ce"
+      "sha256": "5e2744fb04cd09215890d9c8b1f1dce897bc106a64b2322c2614e21eed6ca85d"
     },
     {
       "path": "crates/mbse-desktop/src/ui_state_machines.rs",
@@ -3742,5 +3742,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "44cb78ea39e41202acafcdbb85c4304c2097571cf0e76ba6dfe2e0d4a9c33a6b"
+  "source_sha256": "a9680edd85d0136e87794c35e37b7757a93c8c78d7223877607fea03729f7dac"
 }
