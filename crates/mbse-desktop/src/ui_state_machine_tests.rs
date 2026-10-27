@@ -956,3 +956,62 @@ fn rendered_state_execution_conflict_exact_ids_quiescence_bad_budget_and_foreign
     );
     assert_eq!(a.session.editor.snapshot, before);
 }
+
+#[test]
+fn rendered_state_execution_pins_other_machine_selection_until_cancel_without_rebinding_trace_or_raw()
+ {
+    let (_area, mut a, ctx) = app();
+    let (m, _, _, _, go, _) = seeded(&mut a);
+    let other = Id(a.session.editor.snapshot.next_id);
+    let f = Form::Machine {
+        id: None,
+        system: "1".into(),
+        name: "Other controller".into(),
+    };
+    let key = f.key();
+    let stamp = a.views.views.stamp(&a.session.editor);
+    a.sm_model(&stamp, sm::Action::Set(f)).unwrap();
+    let stamp = a.views.views.stamp(&a.session.editor);
+    a.sm_model(&stamp, sm::Action::Apply(key)).unwrap();
+    click(&mut a, &ctx, "state-machine:Browse elements");
+    click(&mut a, &ctx, &format!("state-machine:select:{}", m.0));
+    click(&mut a, &ctx, "state-machine:Execution controls");
+    fill(&mut a, &ctx, "execution-events", &go.0.to_string());
+    click(&mut a, &ctx, "state-machine:execution:Prepare");
+    let report = a
+        .state_machines
+        .execution
+        .live
+        .as_ref()
+        .unwrap()
+        .report()
+        .clone();
+    let native = a.session.editor.snapshot.clone();
+    click(&mut a, &ctx, &format!("state-machine:select:{}", other.0));
+    assert_eq!(a.state_machines.machine, Some(m));
+    assert_eq!(a.sm_audit()["current"]["id"], m.0);
+    assert!(
+        a.state_machines
+            .note
+            .contains("before selecting another machine")
+    );
+    assert_eq!(
+        a.state_machines.execution.live.as_ref().unwrap().report(),
+        &report
+    );
+    assert_eq!(a.session.editor.snapshot, native);
+    click(&mut a, &ctx, "state-machine:execution:Cancel");
+    click(&mut a, &ctx, &format!("state-machine:select:{}", other.0));
+    assert_eq!(a.state_machines.machine, Some(other));
+    assert_eq!(
+        a.state_machines
+            .execution
+            .live
+            .as_ref()
+            .unwrap()
+            .report()
+            .machine,
+        m
+    );
+    assert_eq!(a.session.editor.snapshot, native);
+}

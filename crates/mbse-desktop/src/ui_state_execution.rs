@@ -106,7 +106,7 @@ impl Workspace {
                 ui.label(format!("Machine #{} · document {} · model revision {} · raw version {}",report.machine.0,report.source.document_id.0,report.source.model_revision,report.source.raw_version));
                 let r=ui.button("Copy historical report JSON");self.bound("state-machine:execution:Copy",&r);if r.clicked(){ui.ctx().copy_text(serde_json::to_string_pretty(&report).expect("finite report serializes"));}
                 ui.label("Session result only. Save/reopen preserves model data, not a live execution; copied reports cannot resume or establish verification.");
-                egui::ScrollArea::vertical().id_salt("finite-state-trace").max_height(180.).show(ui,|ui|{for(i,step)in report.steps.iter().enumerate(){ui.label(format!("{}: State #{} → #{} · {} · {}",i+1,step.source.0,step.target.0,step.event.map_or("completion".into(),|id|format!("Event #{}",id.0)),step.transition.map_or("unhandled event consumed".into(),|id|format!("Transition #{}",id.0))));}});
+                egui::ScrollArea::vertical().id_salt("finite-state-trace").max_height(180.).show(ui,|ui|{for(i,step)in report.steps.iter().enumerate(){ui.label(format!("{}: State #{} to State #{} · {} · {}",i+1,step.source.0,step.target.0,step.event.map_or("completion".into(),|id|format!("Event #{}",id.0)),step.transition.map_or("unhandled event consumed".into(),|id|format!("Transition #{}",id.0))));}});
             }
         });
         self.bound("state-machine:Execution controls", &header.header_response);

@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m6-p33b-native-state-execution-01",
+  "id": "m6-p33b-native-trace-text-and-machine-scope-02",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m6-p33b-native-state-execution",
   "source_manifest": "docs/parity/p33b/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "03dc07296697883767bda8c3595f260501e0db19671ff276a91134f7aa47f107",
-  "source_sha256": "14bcb0e6e5bde0b5d0e16e0e55ee98c94f1adec3b6640e5928ecea1356190163",
+  "source_manifest_sha256": "1bec99aa5c075c55e288eda2206037fe0a9175deb18b4047f85042fbc64de1fa",
+  "source_sha256": "2661d8cf91de11407310610fadce058a19320fbc612259a9bcc0fa2aefaebb9f",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -24,7 +24,11 @@
       "test",
       "--locked",
       "--offline",
-      "--workspace"
+      "-p",
+      "mbse-desktop",
+      "--bin",
+      "mbse-desktop",
+      "rendered_state_execution_"
     ],
     [
       "bash",
@@ -36,7 +40,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "P33b native finite state execution controls and acceptance.5new meaningful rendered/parser cases plus prior672; explicit ordered exact events/owned names, prepare/step/run/cancel/conflict/quiescence, budget/foreign-input refusal preserving prior result, close/dock/source guards and full native/layout preservation. Full workspace once/build. Actual native events/traces/stale/cancel/cold checks follow qualified binary.",
+  "rationale": "Original751-file source full677/build, native01 all10fixedtraces/cancel/invalidinput/rawstale/completeSnapshot+7maps. Fix observed missing Unicode trace arrow with explicit State-to-State text; pin live editor selection to prepared machine until Cancel/termination, preserving same-machine raw edit/staleness. New actual-widget scope regression plus4affected execution UI cases/build. Retain original677 evidence; no summed final-source fullsuite claim.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",

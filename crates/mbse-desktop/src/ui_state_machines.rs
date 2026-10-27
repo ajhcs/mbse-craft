@@ -156,6 +156,17 @@ impl Workspace {
                 "State-machine selection source changed; original selection retained.".into(),
             );
         }
+        if self
+            .state_machines
+            .execution
+            .live
+            .as_ref()
+            .is_some_and(|live| {
+                !live.report().status.terminal() && scope(&f) != Some(live.report().machine)
+            })
+        {
+            return Err("Cancel the prepared or running execution before selecting another machine. Original selection and trace retained.".into());
+        }
         let f = sm::forms(&self.session.editor.snapshot)?
             .get(&f.key())
             .cloned()
