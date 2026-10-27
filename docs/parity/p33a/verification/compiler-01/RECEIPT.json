@@ -1,0 +1,10 @@
+{
+  "schema": "mbse-craft.m1-local-job-receipt/1",
+  "job_sha256": "954b42e534a548a3c87effcf10d65e697b27f862c118876c785df99f07af0e9e",
+  "started_utc": "2026-10-27T09:18:19.556591+00:00",
+  "status": "held_or_failed",
+  "commands": [],
+  "owned_jobs": [],
+  "reason": "AssertionError('Wrong isolated worktree')",
+  "ended_utc": "2026-10-27T09:18:19.556643+00:00"
+}

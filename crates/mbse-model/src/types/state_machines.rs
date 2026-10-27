@@ -1,6 +1,7 @@
 //! Flat app-owned state-machine authoring in the existing native type authority.
-//! No execution, hierarchy, orthogonal regions, action code or normative UML claim.
+//! Optional finite execution is explicit; no hierarchy, orthogonal regions, action code or normative UML claim.
 pub use super::activities::Guard;
+pub mod execution;
 use super::*;
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum StateKind {

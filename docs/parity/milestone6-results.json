@@ -86,7 +86,7 @@
     }
   },
   "p32": {
-    "state": "in_progress",
+    "state": "merged_bounded_contract",
     "base_commit": "c551195451550c1738ecdc2c02de423c8dbac7e3",
     "children": [
       "P32a",
@@ -125,7 +125,7 @@
       "merge_commit": "37420112f144d26b9d0f80a65b5c6e25123f2ba5"
     },
     "p32c": {
-      "state": "reviewed_ready_to_merge",
+      "state": "merged",
       "scope": "native authoring/diagnostics/layout/history/save/cold acceptance",
       "base_commit": "37420112f144d26b9d0f80a65b5c6e25123f2ba5",
       "execution_results": "p32c/README.md",
@@ -135,7 +135,32 @@
       "native_state_machine_runs": 4,
       "final_source_full_workspace_claim": false,
       "pr_number": 46,
-      "review": "p32c/REVIEW.md"
+      "review": "p32c/REVIEW.md",
+      "merge_commit": "f2153a20cafe6856cd1e0e8ff6bda53688601d20"
+    }
+  },
+  "p33": {
+    "state": "in_progress",
+    "base_commit": "f2153a20cafe6856cd1e0e8ff6bda53688601d20",
+    "children": [
+      "P33a",
+      "P33b"
+    ],
+    "p33a": {
+      "state": "reviewed_ready_to_merge",
+      "scope": "finite flat execution core and fixed event/trace fixtures",
+      "execution_results": "p33a/README.md",
+      "source_sha256": "f33637b79c00760157b2d8d46d135a084a99f462520f1fd293a4d912b60f6fae",
+      "distinct_case_inventory": 672,
+      "new_distinct_cases": 8,
+      "native_state_execution_checks": 0,
+      "final_source_full_workspace_claim": false,
+      "pr_number": 47,
+      "review": "p33a/REVIEW.md"
+    },
+    "p33b": {
+      "state": "planned",
+      "scope": "native state execution controls and acceptance"
     }
   }
 }

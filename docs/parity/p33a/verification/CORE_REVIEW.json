@@ -1,0 +1,15 @@
+{
+  "result": "bounded_finite_state_core_regression_and_build_passed",
+  "same_agent": true,
+  "independent_review": false,
+  "source_files": 750,
+  "source_sha256": "f33637b79c00760157b2d8d46d135a084a99f462520f1fd293a4d912b60f6fae",
+  "binary_sha256": "c7d46b55fdb2d5d39345276b4dda63aba0b7fd224c2daca5a407390aa612d6dd",
+  "distinct_case_inventory": 672,
+  "new_cases": 8,
+  "native_execution_checks": 0,
+  "limits": [
+    "P33b native controls/trace/event/conflict/budget/cancel/staleness/cold acceptance required for parent closure.",
+    "Flat exact owned event sequence with explicit completion-first/conflict-refuses policy. No hierarchy/orthogonal/payload/action code/concurrency/arbitrary expressions/verification/full parity/independent engineering/platform/scale/production acceptance. All56 broad specs/integrated exits remain open."
+  ]
+}
