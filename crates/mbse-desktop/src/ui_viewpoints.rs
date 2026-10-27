@@ -520,3 +520,40 @@ mod tests {
         assert_eq!(a.session.editor.snapshot, native);
     }
 }
+
+#[cfg(test)]
+mod shortcut_route_test {
+    use super::*;
+    #[test]
+    fn shared_viewpoint_shortcut_dispatches_without_using_adapter_clipboard_keys() {
+        let area = tempfile::tempdir_in(std::env::var_os("TMPDIR").unwrap()).unwrap();
+        let session = Session::new(area.path()).unwrap();
+        let ctx = egui::Context::default();
+        let mut a = Workspace::new(
+            session,
+            None,
+            None,
+            craft_window::Choice::probe(craft_window::Prefix::new("MBSE_CRAFT")),
+            &ctx,
+        );
+        let chord = crate::command_catalog::Id::Viewpoints.spec().shortcut;
+        assert_eq!(chord.logical_key, egui::Key::L);
+        ctx.run_ui(
+            egui::RawInput {
+                focused: true,
+                events: vec![egui::Event::Key {
+                    key: chord.logical_key,
+                    physical_key: None,
+                    pressed: true,
+                    repeat: false,
+                    modifiers: chord.modifiers,
+                }],
+                ..Default::default()
+            },
+            |ui| a.handle_shortcuts(ui.ctx()),
+        )
+        .drop_without_applying_deltas();
+        assert!(a.viewpoints.open);
+        assert_eq!(a.history_scope(), ShortcutTarget::Widget);
+    }
+}

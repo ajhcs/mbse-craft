@@ -522,6 +522,7 @@ mod tests {
             33
         );
         for (i, s) in catalog::ALL.iter().enumerate() {
+            assert!(!matches!(s.shortcut.logical_key,egui::Key::C|egui::Key::X|egui::Key::V),"egui-winit consumes Command+C/X/V, including extra modifiers, before workspace dispatch");
             assert!(catalog::MENUS.contains(&s.menu));
             assert!(s.key.contains('.'));
             assert_eq!(s.id.spec().key, s.key);

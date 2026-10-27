@@ -1,6 +1,6 @@
 # P29b native viewpoint controls and projection
 
-Build on P29a PR37 merge8a893d1. Shared View command Ctrl+Alt+V opens the active
+Build on P29a PR37 merge8a893d1. Shared View command Ctrl+Alt+L opens the active
 view's saved documentary scope and separate raw proposal. Explicit Apply validates
 source/stakeholder/concern/System; invalid proposals persist without replacing
 accepted scope. Clear retains proposal; explicit source rebind precedes Apply.

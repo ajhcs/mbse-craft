@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m5-p29b-imports-02",
+  "id": "m5-p29b-native-shortcut-03",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/m5-p29b-native-viewpoints",
   "source_manifest": "docs/parity/p29b/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "ad5de8b0ca1a95bdcb6b9a4906e18bd68578aa72b02d4ed51a903156efff05d4",
-  "source_sha256": "8d2085348af6780a6bd4ad1859d2ce9073e88e864602301777ad80d68117ebc8",
+  "source_manifest_sha256": "e3ab655a12cc82e69ed50f5c9bc6a46da87bffc25e6d19ca30b96a80ea833286",
+  "source_sha256": "c3f76bf03f58d1eba40111b4727d01a71c959f2ac1ba3edbce1bcf5b32658261",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -24,7 +24,21 @@
       "test",
       "--locked",
       "--offline",
-      "--workspace",
+      "-p",
+      "mbse-desktop",
+      "command_ids_defaults_and_menu_groups_are_unique_and_complete",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop",
+      "shared_viewpoint_shortcut_dispatches_without_using_adapter_clipboard_keys",
       "--",
       "--test-threads=1"
     ],
@@ -38,7 +52,7 @@
       "mbse-desktop"
     ]
   ],
-  "rationale": "P29b native viewpoint controls, actual native-card projection, preserved proposal/history and independent view layout regression; one job and native follow-up.",
+  "rationale": "Native adapter consumes Command+V regardless of Alt; change default V to L. Only affected catalog invariants/new shared shortcut route and build; prior585 successful cases not replayed.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",

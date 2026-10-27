@@ -77,7 +77,7 @@ macro_rules! spec {
 }
 pub const MENUS: &[&str] = &["File", "Edit", "View", "Tools"];
 pub const ALL: &[Spec] = &[
-    spec!(Viewpoints,"view.viewpoints","Viewpoints and native card filters","View",ALT,V),
+    spec!(Viewpoints,"view.viewpoints","Viewpoints and native card filters","View",ALT,L),
     spec!(Matrix,"tools.relation_matrix","Native relation matrix","Tools",ALT,M),
     spec!(ProfileTags,"tools.profile_tags","Exact profiles and literal tags","Tools",ALT,J),
     spec!(DeleteModel,"tools.semantic_delete","Delete model records with impact preview","Tools",ALT,G),
