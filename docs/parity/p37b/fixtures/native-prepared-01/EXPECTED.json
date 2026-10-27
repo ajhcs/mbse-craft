@@ -1,0 +1,35 @@
+{
+  "all_active": 4,
+  "all_detached": 1,
+  "all_original_native_meaning_and_eight_maps_preserved": true,
+  "all_requirements": 3,
+  "all_traces": 5,
+  "invalid_requirement_statement": "2:statement",
+  "native_all_records": 21,
+  "native_all_systems": 2,
+  "native_counters": {
+    "model_revision": 253,
+    "next_id": 60083,
+    "raw_version": 516
+  },
+  "native_system_1_records": 20,
+  "native_system_60082_records": 1,
+  "preparation": "Source-only construction; never queries metrics. Counts are fixed independently from the added empty System and three-requirement/five-trace topology.",
+  "register_revision": 9,
+  "schema": "mbse-craft.metrics-native-fixtures/1",
+  "selected_requirement_1": {
+    "boundary_traces": 1,
+    "included_traces": 0,
+    "parent_boundaries": 1,
+    "requirements": 1
+  },
+  "selected_requirement_2": {
+    "active": 2,
+    "boundary_traces": 2,
+    "detached": 0,
+    "included_traces": 2,
+    "parent_boundaries": 1,
+    "requirements": 1
+  },
+  "system_60082_typed_counts": 0
+}
