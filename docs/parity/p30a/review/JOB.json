@@ -1,10 +1,10 @@
 {
   "schema": "mbse-craft.m1-local-job/1",
-  "id": "m6-p30a-review-deletion-repro-05",
+  "id": "m6-p30a-review-deletion-disclosure-06",
   "cwd": "/workspace/repos/builderbob/mbse-craft/work/review-p30a",
   "source_manifest": "docs/parity/p30a/review/SOURCE_MANIFEST.json",
-  "source_manifest_sha256": "856b4626ec0abb152d62257ef523e0a12735780a78e3d16813fa843e8e33b39f",
-  "source_sha256": "3b65a930280c914020ad442588f6171a8e1cbdfed785fc7ec9203f7b9c5c7b86",
+  "source_manifest_sha256": "5cbac610d62c21be9392235c92c118a550a282bd6e795da333a117d07e06891a",
+  "source_sha256": "7c25c23af756c13acca5ccdf9099a0709f506eb635c642bf608b96c34c5146f4",
   "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
   "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
   "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
@@ -24,17 +24,22 @@
       "test",
       "--locked",
       "--offline",
-      "-p",
-      "mbse-model",
-      "--test",
-      "activities",
-      "legacy_deletion_discloses_uninventoried_activity_references_and_retained_flow_proposal",
+      "--workspace",
+      "deletion",
       "--",
-      "--exact",
       "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
     ]
   ],
-  "rationale": "PR39 isolated review F01: old deletion preview falsely marks supported references complete despite unhandled activities. Reproduce with no production edits.",
+  "rationale": "PR39 review F01 reproduced false complete deletion inventory. Activities and retained flow proposals now disclose unknown impact and legacy deletion fails closed. Explicit ClearFlowForm permits intentional draft discard without changing accepted data. Affected deletion family/new case and desktop build only; previous unrelated595 not replayed.",
   "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
   "compiler_roots": [
     "/workspace/repos/builderbob/mbse-craft",

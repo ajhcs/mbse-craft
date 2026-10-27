@@ -106,6 +106,7 @@ pub enum Action {
         value_type: Id,
     },
     SetFlowForm(FlowForm),
+    ClearFlowForm,
     ApplyFlow,
     Remove {
         activity: Id,
@@ -361,6 +362,12 @@ pub(super) fn apply_inner(snapshot: &mut Snapshot, action: Action) -> Result<Cha
                     return Err("ACTIVITY_ELEMENT_MISSING_OR_FOREIGN".into());
                 }
             }
+        }
+        Action::ClearFlowForm => {
+            let mut j = journal(snapshot)?;
+            j.activity_flow = None;
+            put(snapshot, DRAFTS, &j)?;
+            return Ok(Change::Raw);
         }
         Action::SetFlowForm(f) => {
             let mut j = journal(snapshot)?;

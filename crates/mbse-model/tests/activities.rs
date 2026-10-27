@@ -538,4 +538,12 @@ fn legacy_deletion_discloses_uninventoried_activity_references_and_retained_flow
             && p.plan().is_none()
     );
     assert_eq!(e.snapshot, before);
+    run(&mut e, Action::ClearFlowForm).unwrap();
+    assert!(flow_form(&e.snapshot).unwrap().is_none());
+    let p = t::deletion::prepare(&e, &views).unwrap();
+    assert!(
+        p.summary().complete_supported_reference_inventory
+            && p.summary().unknown.count == 0
+            && p.plan().is_some()
+    );
 }
