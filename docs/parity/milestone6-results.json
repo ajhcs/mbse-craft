@@ -25,13 +25,15 @@
       "merge_commit": "af4b55c0d4469e297f4003692eb178bf1edab668"
     },
     "p30b": {
-      "state": "draft_review_pending",
+      "state": "reviewed_ready_to_merge",
       "base_commit": "af4b55c0d4469e297f4003692eb178bf1edab668",
       "execution_results": "p30b/README.md",
       "new_distinct_cases": 13,
       "distinct_case_inventory": 609,
       "native_activity_runs": 0,
-      "final_source_full_workspace_claim": false
+      "final_source_full_workspace_claim": false,
+      "pr_number": 40,
+      "review": "p30b/REVIEW.md"
     }
   }
 }

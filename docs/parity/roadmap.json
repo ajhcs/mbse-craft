@@ -801,13 +801,17 @@
         {
           "id": "P30b",
           "title": "Durable activity form journals and independent diagram core",
-          "state": "draft_review_pending",
+          "state": "reviewed_ready_to_merge",
           "depends_on": [
             "P30a"
           ],
           "branch": "codex/m6-p30b-activity-forms-views",
           "contract": "docs/parity/p30b/CONTRACT.md",
-          "execution_results": "docs/parity/p30b/README.md"
+          "execution_results": "docs/parity/p30b/README.md",
+          "pr_number": 40,
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/40",
+          "review": "docs/parity/p30b/REVIEW.md",
+          "review_preservation": "docs/parity/p30b/REVIEW_PRESERVATION.json"
         },
         {
           "id": "P30c",
