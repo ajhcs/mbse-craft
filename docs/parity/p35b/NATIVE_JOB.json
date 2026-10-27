@@ -11,27 +11,28 @@
     "/workspace/worktrees/builderbob/mbse-craft",
     "/workspace/build/builderbob/mbse-craft/milestone1"
   ],
-  "id": "p35b-native-parametric-authoring-bindings-report-save-01",
+  "id": "p35b-native-parametric-cold-scope-and-exact-save-copy-02",
   "binary": "/workspace/build/builderbob/mbse-craft/milestone1/m6-p35b-explicit-quantity-edit-preserves-invalid-raw-03-20261027T121429Z/mbse-desktop",
   "binary_sha256": "44009cc0c0e77c0dd223cfdc15ba5fed4fc22c09b3ced7b03b6026e9de813680",
   "source_sha256": "9532f8f76ea2d023ee70f151c22b31f8de19ec62519bbf79c26a6dcd2b2bfb0d",
   "inputs": {
     "/workspace/repos/builderbob/mbse-craft/work/m6-p35b-native-parametrics/docs/parity/p35b/fixtures/PREPARATION.json": "42d7bb439f06eb38243c5d5cbd2fc20bfa1994477b3a50a73bdbb1d82645c1ee",
     "/workspace/repos/builderbob/mbse-craft/work/m6-p35b-native-parametrics/docs/parity/p35b/fixtures/native.kernspan": "18958954dc7043d644598c55a28f2e30c496c03b69372e75cce42b7bd51844d0",
-    "/workspace/repos/builderbob/mbse-craft/work/m6-p35b-native-parametrics/docs/parity/p35b/fixtures/native.mbse-views.json": "5561661c8f77c59a81ffb7987b417dab57520efe955185f560bebcfc441ced9e"
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p35b-native-parametrics/docs/parity/p35b/fixtures/native.mbse-views.json": "5561661c8f77c59a81ffb7987b417dab57520efe955185f560bebcfc441ced9e",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p35b-01/run/parametric-checkpoint.kernspan": "98724680b2505c998557ec2e7a8c5f3f13e26b5b68ff12d9962eaa76d3e6188b",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p35b-01/run/parametric-checkpoint.mbse-views.json": "bea0d4a82804afa3b9e88b989cf9a20e366848d655ac425fc5b6092a8cde6eca"
   },
-  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p35b-01",
+  "output": "/workspace/build/builderbob/mbse-craft/milestone1/native-p35b-02",
   "argv_extra": [
     "--open",
-    "/workspace/repos/builderbob/mbse-craft/work/m6-p35b-native-parametrics/docs/parity/p35b/fixtures/native.kernspan",
+    "/workspace/build/builderbob/mbse-craft/milestone1/native-p35b-01/run/parametric-checkpoint.kernspan",
     "--select",
     "1003"
   ],
   "scenarios": [
-    "Actual CtrlAltE sharedcommand opens nativeeditor; actualsourcepickers authorSpec/declaredxLengthMetre/x1DurationSecond/bothnativeinputbindings. Showunbound then acceptedtypecomplete/executionfalse, withalllegacyaccepted/raw/opaque/eightmaps preserved.",
-    "Rebindprimaryx throughunsettypeddefault1006/Metre then exactPart1009property1020/Metre accepteddefault17, returnnativeinput1003x; source values/expressions untouched. Createindependentunassignedspec+unboundparameter.",
-    "Retain distinct wrongrootcalc1001/parameteridentifierx+/xBindingwrongDimension/DurationbindingwrongProperty1004/newduplicateBinding proposals; accepted unchanged. ActualModelUndoRedo/rootremoveinverse keepnewerraw/highwater; copyreviewgesture isreadonly (payloadcheckedinGUItest, nativeOSclipboardnotread).",
-    "Wholeauthored native139prior+paramspecchanges andadjacentboundprofile8save; allpriornative/type/activity/state/scenario/raw/opaque andall8mapsexact. Normalcleanup. Coldremainder executedunderfreshjob fromsavedcheckpoint."
+    "Unexecuted coldremainder: explicitnative/boundprofile8Open restores153/361/14019 andall8maps; model/layout history empty and neweditorclosed atstartup. ActualCtrlAltE/browse restores2exactSpecs/3parameters/2bindings/8proposals.",
+    "Selectprimaryspecinvalidcalc1001 vsaccepted1003, parameterx+ vsacceptedx, bindingwrongdimension andwrongproperty vsacceptedexactnativeinputs, andnewduplicateNoneIDslot. No implicitnormalization/writes. Acceptedtypecomplete/executionfalse refersparametricreview; baselineStage1deriveddisplayremainsseparate.",
+    "Selectindependentunassignedspec14017/unboundv14018: missingcalculation andunbound remainvisibleoffline. CloseandsavecopywholeSnapshot/all8maps exactly; protected inputsunchanged andnormalownedcleanup. Do notreplaypassed native01authoring/invalidApply/history/removal/sourcepicker checks."
   ],
-  "claim_policy": "Original762-file0c04b4ac full730workspace/build; source reviewfixstops observation/disabledforeignownernormalization of invalidquantityraw. Final762-file9532f8f76ea2d023ee70f151c22b31f8de19ec62519bbf79c26a6dcd2b2bfb0d passes7affected+1newGUI/build;731distinct=723prior+8new, no summedfinalsourcefullsuite. This nativejob coversboundedauthoring/report/history/save, withcoldnewjobnext. Acceptedtypelinksonly, no execution/currentraw/cycles/solver/verification/fullparity/independentengineering/platform/scale/production."
+  "claim_policy": "Final762-file9532f8f76ea2d023ee70f151c22b31f8de19ec62519bbf79c26a6dcd2b2bfb0d: original730fullworkspace/build plus8affected/newGUI/build =>731distinctsourcequalifiedcases. Native01 actualauthoring/sourcebinding/type-errors/history/whole-save completed with0controllererrors; thisfreshjob coldremainder only. No summedfinalsourcefullsuite, parametricexecution/currentraw/cycle/solver/verification/fullparity/independentengineering/platform/scale/production acceptance."
 }
