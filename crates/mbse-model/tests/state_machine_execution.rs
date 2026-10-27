@@ -88,7 +88,10 @@ fn finish(r: &mut Execution, e: &Editor) {
         }
         r.step(e);
     }
-    panic!("finite execution did not terminate");
+    assert!(
+        r.report().status.terminal(),
+        "finite execution did not terminate"
+    );
 }
 #[test]
 fn finite_state_traces_match_predeclared_event_conflict_completion_cycle_cancel_and_last_budget_tables()
@@ -302,7 +305,12 @@ fn finite_state_execution_preserves_entire_native_authored_snapshot_opaque_four_
         }
     );
     assert_eq!(e.snapshot, before);
-    assert_eq!(sm::forms(&e.snapshot).unwrap().len(), 4);
+    let forms = serde_json::to_value(sm::forms(&e.snapshot).unwrap()).unwrap();
+    assert_eq!(forms.as_object().unwrap().len(), 12);
+    assert_eq!(forms["transition:7000:7008"]["guard"], "temperature >");
+    assert_eq!(forms["transition:7000:7009"]["guard"], "else ?");
+    assert_eq!(forms["transition:7000:7010"]["target"], "99999");
+    assert_eq!(forms["transition:7000:7011"]["event"], "7001");
     assert!(!e.can_undo() && !e.can_redo());
     assert!(
         e.snapshot
