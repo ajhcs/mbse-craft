@@ -445,11 +445,12 @@ fn state_machine_native_save_cold_recovery_preserve_prior_activity_raw_opaque_an
         "../../../docs/parity/p31b/verification/native-01/cold/execution-cold-copy.kernspan"
     ))
     .unwrap();
-    session.editor = Editor::new(
-        serde_json::from_value(root["snapshot"].clone()).unwrap(),
-        session.editor.freshness().instance_id,
-    )
-    .unwrap();
+    let mut input: Snapshot = serde_json::from_value(root["snapshot"].clone()).unwrap();
+    input.extensions.as_mut().unwrap().namespaces.insert(
+        "fixture.uninterpreted/1".into(),
+        json!({"unknownMeaning":[null,true,{"foreignId":"uninterpreted:17","text":"retain exactly"}]}),
+    );
+    session.editor = Editor::new(input, session.editor.freshness().instance_id).unwrap();
     let before = session.editor.snapshot.clone();
     let prior = t::load(&before).unwrap();
     let m = machine(&mut session.editor);
@@ -470,6 +471,10 @@ fn state_machine_native_save_cold_recovery_preserve_prior_activity_raw_opaque_an
     assert_eq!(expected.records, before.records);
     assert_eq!(expected.drafts, before.drafts);
     assert_eq!(expected.creation_drafts, before.creation_drafts);
+    assert_eq!(
+        expected.extensions.as_ref().unwrap().namespaces["fixture.uninterpreted/1"],
+        before.extensions.as_ref().unwrap().namespaces["fixture.uninterpreted/1"]
+    );
     let mut accepted = t::load(&expected).unwrap();
     accepted.state_machines.clear();
     assert_eq!(accepted, prior);
@@ -524,4 +529,80 @@ fn state_machine_legacy_deletion_does_not_claim_complete_reference_inventory() {
     assert!(serde_json::to_string(&summary)
         .unwrap()
         .contains("state-machine proposals"));
+}
+
+#[test]
+fn state_machine_joint_type_activity_machine_element_cap_rejects_next_creation_atomically() {
+    let mut snapshot = editor().snapshot;
+    snapshot.next_id = 10000;
+    let mut store = t::Store::default();
+    let states = (1001..1460)
+        .map(|n| {
+            (
+                Id(n),
+                s::State {
+                    id: Id(n),
+                    name: format!("State {n}"),
+                    kind: StateKind::State,
+                },
+            )
+        })
+        .collect();
+    store.state_machines.insert(
+        Id(1000),
+        s::Machine {
+            id: Id(1000),
+            system: RecordId(1),
+            name: "Boundary machine".into(),
+            states,
+            events: Default::default(),
+            transitions: Default::default(),
+        },
+    );
+    for n in 2000..2051 {
+        store.definitions.insert(
+            Id(n),
+            t::Definition {
+                id: Id(n),
+                system: RecordId(1),
+                name: format!("Value {n}"),
+                kind: t::Kind::Value(t::Scalar::Real),
+            },
+        );
+    }
+    store.activities.insert(
+        Id(3000),
+        t::activities::Activity {
+            id: Id(3000),
+            system: RecordId(1),
+            name: "Retained activity".into(),
+            partitions: Default::default(),
+            nodes: Default::default(),
+            pins: Default::default(),
+            flows: Default::default(),
+        },
+    );
+    assert_eq!(
+        s::ids(&store).count() + store.definitions.len() + t::activities::ids(&store).count(),
+        512
+    );
+    let ext = snapshot.extensions.as_mut().unwrap();
+    ext.required_namespaces.push(t::NAMESPACE.into());
+    ext.namespaces
+        .insert(t::NAMESPACE.into(), serde_json::to_value(store).unwrap());
+    let mut e = Editor::new(snapshot, "state-machine:joint-boundary".into()).unwrap();
+    let key = set(
+        &mut e,
+        Form::State {
+            machine: Id(1000),
+            id: None,
+            name: "513th shared element".into(),
+            state_kind: StateKind::State,
+        },
+    );
+    let before = e.snapshot.clone();
+    assert!(run(&mut e, Action::Apply(key))
+        .unwrap_err()
+        .contains("TYPE_VERSION_OR_LIMIT"));
+    assert_eq!(e.snapshot, before);
 }

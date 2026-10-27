@@ -1,0 +1,73 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m6-p32a-review-opaque-joint-boundary-02",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/review-p32a",
+  "source_manifest": "docs/parity/p32a/review/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "f1ab9b5f1cfb2ea0972417b5028cc6c39ef700ec228024e5d6779b8236b2face",
+  "source_sha256": "9f1beddd3c0d7fc2bf904c344e11e7b680d638132bef7612b050c7aeb8fedbd4",
+  "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-model",
+      "--test",
+      "state_machine_authoring",
+      "state_machine_native_save_cold_recovery_preserve_prior_activity_raw_opaque_and_views_source",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-model",
+      "--test",
+      "state_machine_authoring",
+      "state_machine_joint_type_activity_machine_element_cap_rejects_next_creation_atomically",
+      "--",
+      "--test-threads=1"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "Review evidence strengthening only: explicit optional opaque namespace through actual native save/cold/recovery; new shared512boundary across state-machine/type/activity and atomic513th rejection. Production byte-identical; prior642 successes not replayed except changed cold fixture. Two affected/new cases and desktop build.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p32a-state-machine-core/docs/parity/p31b/verification/native-01/cold/execution-cold-copy.kernspan": "009606603ffdc271c4cbaf5e8bf423ae0edce0914dbc1e60772eaac1ec2537ac",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p32a-state-machine-core/docs/parity/p31a/fixtures/control-traces.json": "b49f1ef522981c50ae42d4654fdf1ea8a7f18cffe4bced714d5e2f5222e2d54f",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p32a-state-machine-core/docs/parity/p30c/fixtures/native.kernspan": "778e35d48ddf38c9c5e539aea0a65fb0cade73f850209f377840e01a913317a1",
+    "/workspace/repos/builderbob/mbse-craft/work/m6-p32a-state-machine-core/docs/parity/p30c/verification/native-04/run/activity-cold-copy.kernspan": "d8373934338cb5e7369bcb8264958927fda3890a3283cef7cd8616ebcb389c69"
+  }
+}
