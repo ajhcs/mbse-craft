@@ -1,0 +1,15 @@
+{
+  "kind": "same-agent isolated documentary review",
+  "candidate": "2214a7fc488e8b629063b13bcd4162ce89644dbb",
+  "base": "de65951c24f3a8d7db779d75fa5c0ee3d076d5e0",
+  "scope": "documentation only",
+  "frozen_refs_verified": 234,
+  "original_proposal_files_byte_exact": 4,
+  "all_changed_markdown_local_links": "PASS",
+  "changed_json_parse": "PASS",
+  "application_source_scripts_dependencies_unchanged": true,
+  "prior_available_worktrees_unchanged_excluding_owned_candidate": 117,
+  "user_removed_worktree_directories_still_absent": 18,
+  "findings": [],
+  "cargo_or_native_executed": false
+}
