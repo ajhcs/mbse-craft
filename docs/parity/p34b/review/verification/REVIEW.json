@@ -1,0 +1,14 @@
+{
+  "result": "bounded_sequence_data_review_evidence_gaps_closed",
+  "same_agent": true,
+  "independent_review": false,
+  "candidate": "16e9e7ef3ec0103a07a4eb4c797e4e3c378dda99",
+  "source_files": 755,
+  "source_sha256": "431d927352a10c6414ee7bb75cb88a72ec45cf5bfa6b6c302317f708a8ce67e1",
+  "binary_sha256": "1b456e2e7ec459b4c236dfa78f383c6c4cec0c2a76cba4207c4adaf12934549a",
+  "new_production_changes": 0,
+  "new_cases": 1,
+  "affected_cases": 1,
+  "distinct_case_inventory": 703,
+  "native_sequence_runs": 0
+}

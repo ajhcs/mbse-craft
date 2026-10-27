@@ -196,15 +196,19 @@
       "merge_commit": "d44f2e9f869176ef4ca94d76c783a6dd2eb0bab2"
     },
     "p34b": {
-      "state": "draft_review",
+      "state": "reviewed_ready_to_merge",
       "scope": "independent ordered lifeline/message presentation data",
       "base_commit": "d44f2e9f869176ef4ca94d76c783a6dd2eb0bab2",
       "execution_results": "p34b/README.md",
       "source_sha256": "59e166c475462518c59f2a0a0a9f00582ce843df2debb75dc1271a84d34288da",
-      "distinct_case_inventory": 702,
-      "new_distinct_cases": 12,
+      "distinct_case_inventory": 703,
+      "new_distinct_cases": 13,
       "native_sequence_runs": 0,
-      "final_source_full_workspace_claim": false
+      "final_source_full_workspace_claim": false,
+      "pr_number": 50,
+      "review": "p34b/REVIEW.md",
+      "review_source_sha256": "431d927352a10c6414ee7bb75cb88a72ec45cf5bfa6b6c302317f708a8ce67e1",
+      "review_cases": 2
     },
     "p34c": {
       "state": "planned",
