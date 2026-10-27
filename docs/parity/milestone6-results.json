@@ -11,12 +11,16 @@
       "P30b"
     ],
     "p30a": {
-      "state": "draft_review_pending",
+      "state": "reviewed_ready_to_merge",
       "execution_results": "p30a/README.md",
-      "new_distinct_cases": 9,
-      "distinct_case_inventory": 595,
+      "new_distinct_cases": 10,
+      "distinct_case_inventory": 596,
       "native_activity_runs": 0,
-      "final_source_full_workspace_claim": false
+      "final_source_full_workspace_claim": false,
+      "pr_number": 39,
+      "review": "p30a/REVIEW.md",
+      "review_affected_deletion_cases": 19,
+      "review_source_sha256": "7c25c23af756c13acca5ccdf9099a0709f506eb635c642bf608b96c34c5146f4"
     }
   }
 }

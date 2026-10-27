@@ -787,10 +787,14 @@
         {
           "id": "P30a",
           "title": "Bounded activity semantic core and retained guard proposals",
-          "state": "draft_review_pending",
+          "state": "reviewed_ready_to_merge",
           "branch": "codex/m6-p30a-activity-core",
           "contract": "docs/parity/p30a/CONTRACT.md",
-          "execution_results": "docs/parity/p30a/README.md"
+          "execution_results": "docs/parity/p30a/README.md",
+          "pr_number": 39,
+          "pr_url": "https://github.com/ajhcs/mbse-craft/pull/39",
+          "review": "docs/parity/p30a/REVIEW.md",
+          "review_preservation": "docs/parity/p30a/REVIEW_PRESERVATION.json"
         },
         {
           "id": "P30b",

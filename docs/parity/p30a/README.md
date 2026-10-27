@@ -39,3 +39,11 @@ clone activities. No execution/general guard expressions/fork/join/nested partit
 normative SysML or full NoMagic/Craft equivalence. P31 owns finite execution.
 All56 broad specs/integrated exits/scale/platform/independent engineering acceptance
 remain unaccepted. Same implementing agent evidence, not independent review.
+
+Isolated review found and fixed F01: the legacy deletion preview must disclose
+unsupported activity/raw-flow references and refuse a complete inventory/plan.
+Explicit ClearFlowForm discards only the raw proposal. See REVIEW.md and review/:
+732 final files/source7c25c23a,19 affected checks/build, one new case/596 distinct
+inventory; seven additional artifacts preserve zero-test private-field compile
+failure and failing reproduction.68 prior checkouts/18 removed heads preserved.
+The earlier core-source/build facts above remain source-qualified original evidence.

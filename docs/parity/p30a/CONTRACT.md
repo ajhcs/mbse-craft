@@ -31,3 +31,8 @@ P30b native creation/editor/diagrams remains required before parent completion.
 All56 broad specs/integrated exits/scale/platform/independent engineering acceptance
 remain unaccepted. Regression counts and core source/build evidence are distinct
 from actual native activity acceptance.
+
+Review F01: any current activity or retained flow proposal is outside the legacy
+deletion inventory. Disclose unknown impact, mark completeness false and refuse
+legacy deletion plans. Explicit ClearFlowForm discards only the raw proposal;
+accepted activities remain unchanged and continue to block that unsupported route.

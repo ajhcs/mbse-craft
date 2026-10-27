@@ -1,0 +1,98 @@
+{
+  "slice_counts": [
+    [
+      0
+    ],
+    [
+      0
+    ],
+    [
+      19,
+      0
+    ]
+  ],
+  "affected_deletion_cases": 19,
+  "new_distinct_cases": [
+    "legacy_deletion_discloses_uninventoried_activity_references_and_retained_flow_proposal"
+  ],
+  "distinct_case_inventory": 596,
+  "qualification": "Review04 test used private field and failed compilation0; corrected public accessor05 reproduces false complete inventory0. Review06 production disclosure/refusal plus explicit raw-discard passes19 affected cases/build. Original595 unrelated successes not replayed; no summed final-source full-workspace or native activity acceptance claim.",
+  "tests": [
+    {
+      "slice": 6,
+      "test": "ui::deletion_editor::tests::rendered_unknown_hold_cancel_stale_guard_and_delete_undo_preserve_newer_form"
+    },
+    {
+      "slice": 6,
+      "test": "types::deletion_tests::clone_delete_cascades_only_owned_records_and_values_preserves_raw_forms_and_allocator"
+    },
+    {
+      "slice": 6,
+      "test": "types::deletion_tests::cold_recovery_has_no_inverse_history_authority_even_when_editor_history_is_available"
+    },
+    {
+      "slice": 6,
+      "test": "types::deletion_tests::controlled_derivative_has_fresh_native_binding_and_actual_deleted_checkpoint_survives_cold_reopen"
+    },
+    {
+      "slice": 6,
+      "test": "types::deletion_tests::delete_undo_redo_restores_exact_port_and_route_identities_and_keeps_newer_invalid_form"
+    },
+    {
+      "slice": 6,
+      "test": "types::deletion_tests::deleting_authored_property_removes_defaults_overrides_and_retains_every_part"
+    },
+    {
+      "slice": 6,
+      "test": "types::deletion_tests::deleting_calculation_producer_cascades_transitive_consumers_and_undo_keeps_exact_definition_meaning"
+    },
+    {
+      "slice": 6,
+      "test": "types::deletion_tests::last_system_refuses_and_other_system_allows_scope_and_typed_membership_cascade_without_id_reuse"
+    },
+    {
+      "slice": 6,
+      "test": "types::deletion_tests::native_deleted_calculation_and_detached_views_captured_cold_save_keep_original_typed_meaning_and_drafts"
+    },
+    {
+      "slice": 6,
+      "test": "types::deletion_tests::native_deletion_inverse_proof_restores_two_view_occurrences_edges_and_newer_invalid_raw"
+    },
+    {
+      "slice": 6,
+      "test": "types::deletion_tests::native_mission_contribution_subject_and_measure_ownership_cascade_keeps_typed_store_and_all_journals"
+    },
+    {
+      "slice": 6,
+      "test": "types::deletion_tests::old_journal_keeps_absent_deletion_field_and_round_trips_raw_detached_forms"
+    },
+    {
+      "slice": 6,
+      "test": "types::deletion_tests::organization_actor_membership_and_expectation_dependencies_are_explicit_not_unlinked"
+    },
+    {
+      "slice": 6,
+      "test": "types::deletion_tests::original_unknown_metadata_and_unknown_raw_or_namespace_block_without_mutation"
+    },
+    {
+      "slice": 6,
+      "test": "types::deletion_tests::owned_contexts_are_listed_deleted_with_environment_and_restored_with_raw_forms"
+    },
+    {
+      "slice": 6,
+      "test": "types::deletion_tests::payload_delete_closes_all_accepted_incoming_dependencies_without_deleting_part_targets"
+    },
+    {
+      "slice": 6,
+      "test": "types::deletion_tests::policy_noncanonical_duplicate_missing_native_and_review_budget_refuse_atomically"
+    },
+    {
+      "slice": 6,
+      "test": "types::deletion_tests::sealed_preview_requires_coupled_origin_and_rejects_model_raw_or_presentation_changes"
+    },
+    {
+      "slice": 6,
+      "test": "legacy_deletion_discloses_uninventoried_activity_references_and_retained_flow_proposal"
+    }
+  ]
+}
