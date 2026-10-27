@@ -1,0 +1,67 @@
+{
+  "schema": "mbse-craft.m1-local-job/1",
+  "id": "m6-p34b-review-individual-lifeline-eight-map-recovery-03",
+  "cwd": "/workspace/repos/builderbob/mbse-craft/work/review-p34b",
+  "source_manifest": "docs/parity/p34b/review/SOURCE_MANIFEST.json",
+  "source_manifest_sha256": "29474ff806d7cc9dd7803ebd23ea4693ac0785089d1faabc99f27a9641c3a808",
+  "source_sha256": "431d927352a10c6414ee7bb75cb88a72ec45cf5bfa6b6c302317f708a8ce67e1",
+  "cargo_lock_sha256": "d9c0795ba218cc54761c9187796269a390cf4ca10be289955819fbd648da10c0",
+  "runner_sha256": "b499b8a886637bf112d2766f4e35f57f90ce1d4eb2d472a61b26b08f3333763d",
+  "preflight_module_sha256": "e738c0891a4c6130bc873c5968c407408b8e5d6d26fbde836a9674e2ed5d0834",
+  "env": {
+    "CARGO_HOME": "/workspace/cache/builderbob/mbse-craft-m1",
+    "CARGO_TARGET_DIR": "/workspace/build/builderbob/mbse-craft/milestone1/target",
+    "TMPDIR": "/workspace/build/builderbob/mbse-craft/milestone1/tmp",
+    "MBSE_RUST_BIN": "/workspace/cache/builderbob/global-tools/rustup/toolchains/1.99.1-x86_64-unknown-linux-gnu/bin",
+    "CARGO_BUILD_JOBS": "1",
+    "RUST_TEST_THREADS": "1",
+    "CARGO_TERM_COLOR": "never"
+  },
+  "commands": [
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-model",
+      "--test",
+      "scenario_views",
+      "sequence_individual_lifeline_removal_and_observed_inverse_preserve_remaining_order_and_all_other_geometry"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-model",
+      "--test",
+      "scenario_views",
+      "sequence_actual_bound_native_cold_and_captured_recovery_preserve_all_eight_maps_and_entire_snapshot"
+    ],
+    [
+      "bash",
+      "scripts/dev.sh",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "mbse-desktop"
+    ]
+  ],
+  "rationale": "PR50 isolated review evidence gaps: original captured recovery asserts only scenario map; individual lifeline removal/inverse not directly exercised. Strengthen existing recovery assertion to all8maps and add meaningful individual lifeline removal/remaining row order/geometry/observed inverse/unchanged raw highwater test. Production code unchanged. Run new1+affected1/build only; retain original702qualified evidence, no summed final-source fullsuite claim.",
+  "execution_basis": "Current authorized BuilderBob Milestone1 work; bounded local preflight, exclusive new M1 target, one Cargo job/test thread; no observer or service.",
+  "compiler_roots": [
+    "/workspace/repos/builderbob/mbse-craft",
+    "/workspace/worktrees/builderbob/mbse-craft",
+    "/workspace/build/builderbob/mbse-craft/milestone1"
+  ],
+  "resource_scope_reason": "Current bounded authorization; block MBSE or shared target writers. Record independent other-project compilers without touching them. One Cargo job/test thread and fresh workspace/RAM/disk/FD checks, existing target flock. No observer/service or new package.",
+  "input_hashes": {
+    "/workspace/repos/builderbob/mbse-craft/work/review-p34b/docs/parity/p33b/verification/native-02/run/state-execution-cold-copy.kernspan": "332c3afea8989106c197759079f4da36e73a16bf92acb1ad365b08109d4f8d13",
+    "/workspace/repos/builderbob/mbse-craft/work/review-p34b/docs/parity/p33b/verification/native-02/run/state-execution-cold-copy.mbse-views.json": "a76821e4653339591e0dec0db97a251d52d3c94cb230fa41a7aa063ebb7a7138"
+  }
+}

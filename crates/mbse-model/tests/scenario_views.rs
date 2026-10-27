@@ -824,10 +824,19 @@ fn sequence_actual_bound_native_cold_and_captured_recovery_preserve_all_eight_ma
     assert!(writes.complete(&session, &v, io::execute(job)));
     let restored = Views::restore(&std::fs::read(recovery).unwrap(), &session.editor).unwrap();
     assert_eq!(restored.document().profile, p::RECOVERY_PROFILE);
-    assert_eq!(
-        restored.document().scenario_diagrams,
-        v.document().scenario_diagrams
-    );
+    let recovered = serde_json::to_value(restored.document()).unwrap();
+    for key in [
+        "views",
+        "occurrences",
+        "edges",
+        "typed_ports",
+        "connector_edges",
+        "activity_diagrams",
+        "state_machine_diagrams",
+        "scenario_diagrams",
+    ] {
+        assert_eq!(recovered.get(key), old.get(key), "captured recovery {key}");
+    }
     assert_eq!(session.editor.snapshot, before);
 }
 #[test]
@@ -1102,4 +1111,75 @@ fn sequence_same_counter_source_digest_foreign_document_and_invalid_native_sourc
     assert!(p::project(&v.document().scenario_diagrams[&view], &g.e.snapshot).is_err());
     assert_eq!(v.document(), &original);
     assert_eq!(g.e.snapshot, native_before);
+}
+
+#[test]
+fn sequence_individual_lifeline_removal_and_observed_inverse_preserve_remaining_order_and_all_other_geometry()
+ {
+    let mut g = graph();
+    let mut v = views(&g.e);
+    let view = diagram(&g.e, &mut v, g.a);
+    let id = occurrence(&v, view, g.z);
+    let original = v.document().scenario_diagrams.clone();
+    for message in [g.yes_msg, g.no_msg] {
+        native(
+            &mut g.e,
+            &mut v,
+            NativeAction::Command(Command::Typed(t::Action::Scenario(Action::Remove {
+                scenario: g.a,
+                element: message,
+            }))),
+        );
+    }
+    let accepted = t::load(&g.e.snapshot).unwrap();
+    let raw = s::forms(&g.e.snapshot).unwrap();
+    let next = g.e.snapshot.next_id;
+    native(
+        &mut g.e,
+        &mut v,
+        NativeAction::Command(Command::Typed(t::Action::Scenario(Action::Remove {
+            scenario: g.a,
+            element: g.z,
+        }))),
+    );
+    assert!(
+        !v.document().scenario_diagrams[&view].occurrences[&id]
+            .presence
+            .active()
+    );
+    for (other, o) in &original[&view].occurrences {
+        let current = &v.document().scenario_diagrams[&view].occurrences[other];
+        assert_eq!(current.geometry, o.geometry);
+        if *other != id {
+            assert!(current.presence.active());
+        }
+    }
+    let projection = p::project(&v.document().scenario_diagrams[&view], &g.e.snapshot).unwrap();
+    assert_eq!(
+        projection
+            .routes
+            .iter()
+            .map(|r| r.message)
+            .collect::<Vec<_>>(),
+        vec![g.call, g.reply]
+    );
+    assert_eq!(projection.rows.len(), 6);
+    native(&mut g.e, &mut v, NativeAction::ModelUndo);
+    assert_eq!(v.document().scenario_diagrams, original);
+    assert_eq!(t::load(&g.e.snapshot).unwrap(), accepted);
+    assert_eq!(s::forms(&g.e.snapshot).unwrap(), raw);
+    assert_eq!(g.e.snapshot.next_id, next);
+    assert!(
+        !t::load(&g.e.snapshot).unwrap().scenarios[&g.a]
+            .messages
+            .contains_key(&g.yes_msg)
+    );
+    native(&mut g.e, &mut v, NativeAction::ModelRedo);
+    assert!(
+        !v.document().scenario_diagrams[&view].occurrences[&id]
+            .presence
+            .active()
+    );
+    native(&mut g.e, &mut v, NativeAction::ModelUndo);
+    assert_eq!(v.document().scenario_diagrams, original);
 }
