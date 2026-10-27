@@ -1,0 +1,114 @@
+{
+  "schema": "mbse-craft.m1-native-session/1",
+  "started_utc": "2026-10-27T09:09:35.381422+00:00",
+  "job_sha256": "37333e9ca572dfda28754d7ed0147b5cd66c4da426d35f270ff0e6e9bbf4ec1d",
+  "status": "actions_completed_review_pending",
+  "runs": [
+    {
+      "run": "/workspace/build/builderbob/mbse-craft/milestone1/native-p32c-03/run",
+      "started_utc": "2026-10-27T09:09:35.400937+00:00",
+      "identities": {
+        "app_pid": {
+          "pid": 827002,
+          "start_ticks": 46652634
+        },
+        "server_pid": {
+          "pid": 826999,
+          "start_ticks": 46652632
+        }
+      },
+      "argv_extra": [
+        "--open",
+        "/workspace/build/builderbob/mbse-craft/milestone1/native-p32c-02/cold/state-machine-cold-copy.kernspan",
+        "--select",
+        "1003"
+      ],
+      "ready": {
+        "ready": true,
+        "app_pid": 827002,
+        "server_pid": 826999,
+        "window": 4194307,
+        "binary_sha256": "57d45e89f26ba559cc32c9f6a006750145adafda1e15500637465b61e73f8a68"
+      },
+      "normal_app_exit": 0,
+      "driver_exit": 0,
+      "ended_utc": "2026-10-27T09:11:16.765756+00:00",
+      "owned_processes_absent": true
+    }
+  ],
+  "preflight": {
+    "schema": "mbse-craft.builderbob-local-preflight/1",
+    "checked_utc": "2026-10-27T09:09:35.400726+00:00",
+    "uid": 1000,
+    "boot_id": "b0688b87-f383-4de6-8124-071099ae1547",
+    "pid_namespace": "pid:[4026531836]",
+    "workspace": {
+      "detail": "",
+      "device": {
+        "device": "/dev/nvme0n1p1",
+        "major_minor": "259:1",
+        "model": "Samsung SSD 990 PRO 2TB",
+        "parent": "nvme0n1",
+        "partition": "nvme0n1p1",
+        "partuuid": "0b7f0877-8d9e-44e4-9089-3cf97b1944c9",
+        "serial": "S7L9NS0L303989X",
+        "uuid": "dcb87552-b22f-411c-bd86-4e2da80f1c6f",
+        "wwn": "eui.00253843614122d4"
+      },
+      "mount": {
+        "fstype": "ext4",
+        "major_minor": "259:1",
+        "mount_id": "50",
+        "options": [
+          "nodev",
+          "nosuid",
+          "relatime",
+          "rw"
+        ],
+        "root": "/",
+        "source": "/dev/nvme0n1p1",
+        "target": "/workspace"
+      },
+      "operation": "workspace-status",
+      "outcome": "ok",
+      "policy_ref": "builderbob-operator-amendment-1",
+      "reason": "OK",
+      "schema": "bob-admin-result-v1",
+      "target": "/workspace",
+      "version": "builderbob-autonomy-v1.1-candidate"
+    },
+    "free_workspace_bytes": 1371760001024,
+    "available_memory_bytes": 27079487488,
+    "conflicting_processes": [],
+    "other_project_compilers": [],
+    "appservers": [
+      {
+        "pid": 299500,
+        "start_ticks": 43416915,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 11
+      },
+      {
+        "pid": 2062133,
+        "start_ticks": 33243439,
+        "exe": "/home/builderbob/.codex/packages/standalone/releases/0.164.0-x86_64-unknown-linux-musl/bin/codex",
+        "soft_nofile": 1024,
+        "fd_count": 326
+      }
+    ],
+    "observer_started": false,
+    "original_observer_admission_claimed": false
+  },
+  "action_errors": [
+    {
+      "action": "exec(\"def reveal(driver,widget):\\n for _ in range(48):\\n  w=driver.audit()['widgets'];r=w.get(widget);assert r is not None,'Missing live widget: '+widget\\n  if r[2]-r[0]>5 and r[3]-r[1]>=12 and 0<=r[1]<r[3]<=1600:return\\n  owner=widget.split(':')[0];live=[v for k,v in w.items() if k.startswith(owner+':') and v[2]>v[0] and v[3]-v[1]>=12 and 0<=v[1]<v[3]<=1600]\\n  top=min((v[1] for v in live),default=100);bottom=max((v[3] for v in live),default=1480)\\n  driver.send(op='scroll',x=int(max(40,min(2150,(r[0]+r[2])/2))),y=int(max(60,min(1530,bottom-24))),steps=4 if (r[1]+r[3])/2>(top+bottom)/2 else -4,pause=.2)\\n raise AssertionError('Cannot fully reveal '+widget)\\ndef fill(driver,key,text):\\n driver.click(key);driver.send(op='key',key='a',mods=['Control_L']);driver.send(op='key',key='BackSpace') if text=='' else driver.send(op='text',text=text)\\ndef sm_state(driver,name,kind):\\n driver.click('state-machine:new:State');fill(driver,'state-machine:field:name',name);driver.click('state-machine:state-kind:'+kind);driver.click('state-machine:Apply');driver.send(op='wait',pause=.2);return driver.audit()['state_machines']['current']['id']\\ndef sm_event(driver,name):\\n driver.click('state-machine:new:Event');fill(driver,'state-machine:field:name',name);driver.click('state-machine:Apply');driver.send(op='wait',pause=.2);return driver.audit()['state_machines']['current']['id']\\ndef sm_transition(driver,name,source,target,event='',guard=''):\\n driver.click('state-machine:new:Transition');fill(driver,'state-machine:field:name',name);fill(driver,'state-machine:field:source',str(source));fill(driver,'state-machine:field:target',str(target));fill(driver,'state-machine:field:event',str(event));fill(driver,'state-machine:field:guard',guard);driver.click('state-machine:Apply');driver.send(op='wait',pause=.2);return driver.audit()['state_machines']['current']['id']\\n\"); j=json.loads(Path('docs/parity/p32c/NATIVE_JOB.json').read_text()); n.seek=lambda w:reveal(n,w); source=Path('/workspace/build/builderbob/mbse-craft/milestone1/native-p32c-02/cold/state-machine-cold-copy.kernspan'); side=source.with_name('state-machine-cold-copy.mbse-views.json'); r=n.audit()['widgets']['views:Open views']; n.send(op='click',x=int(r[0]-100),y=int((r[1]+r[3])/2)); n.send(op='key',key='a',mods=['Control_L']); n.send(op='text',text=str(side)); n.click('views:Open views'); n.click('view:tab:45'); n.send(op='wait',pause=.4); a=n.audit(); labels=a['state_machines']['rendered']['labels']; disjoint=lambda x,y:not(x[0]<y[2]and y[0]<x[2]and x[1]<y[3]and y[1]<x[3]); assert len(labels)==5 and set(x[0]for x in labels)==set(range(7007,7012)); assert all(disjoint(a[1],b[1])for i,a in enumerate(labels)for b in labels[i+1:]); assert all(disjoint(label[1],r)for label in labels for k,r in a['widgets'].items()if k.startswith('state-machine-occurrence:')); assert next(x[2]for x in labels if x[0]==7008).endswith('Approve #7005 [true]') and next(x[2]for x in labels if x[0]==7009).endswith('Approve #7005 [else]') and next(x[2]for x in labels if x[0]==7011).endswith('Approve #7005 [unconditional]'); n.capture('01-final-disjoint-transition-labels-and-readable-state-captions'); print(labels); receipt['final_exact_transition_event_guard_labels_disjoint_from_labels_and_state_bounds']=True; n.clear_adjacent_views_path(); finalcopy=n.save('state-machine-final-qualified-copy.kernspan'); assert finalcopy==json.loads(source.read_text())['snapshot']; finalviews=json.loads((n.run/'state-machine-final-qualified-copy.mbse-views.json').read_text()); originalviews=json.loads(side.read_text()); assert all(finalviews.get(k,{})==originalviews.get(k,{})for k in ['views','occurrences','edges','typed_ports','connector_edges','activity_diagrams','state_machine_diagrams']); receipt['final_binary_entire_snapshot_and_seven_maps_preserved']=True; n.capture('02-final-qualified-save-copy-exact-native-and-seven-maps'); n.close(); assert all(base.digest(Path(p))==h for p,h in j['inputs'].items()); receipt['all_frozen_inputs_unchanged']=True; assert not list(output.rglob('Xauthority')); receipt['authentication_files_a",
+      "error": "SyntaxError('unterminated string literal (detected at line 1)', ('<recorded-acceptance-action>', 1, 4073, 'exec(\"def reveal(driver,widget):\\\\n for _ in range(48):\\\\n  w=driver.audit()[\\'widgets\\'];r=w.get(widget);assert r is not None,\\'Missing live widget: \\'+widget\\\\n  if r[2]-r[0]>5 and r[3]-r[1]>=12 and 0<=r[1]<r[3]<=1600:return\\\\n  owner=widget.split(\\':\\')[0];live=[v for k,v in w.items() if k.startswith(owner+\\':\\') and v[2]>v[0] and v[3]-v[1]>=12 and 0<=v[1]<v[3]<=1600]\\\\n  top=min((v[1] for v in live),default=100);bottom=max((v[3] for v in live),default=1480)\\\\n  driver.send(op=\\'scroll\\',x=int(max(40,min(2150,(r[0]+r[2])/2))),y=int(max(60,min(1530,bottom-24))),steps=4 if (r[1]+r[3])/2>(top+bottom)/2 else -4,pause=.2)\\\\n raise AssertionError(\\'Cannot fully reveal \\'+widget)\\\\ndef fill(driver,key,text):\\\\n driver.click(key);driver.send(op=\\'key\\',key=\\'a\\',mods=[\\'Control_L\\']);driver.send(op=\\'key\\',key=\\'BackSpace\\') if text==\\'\\' else driver.send(op=\\'text\\',text=text)\\\\ndef sm_state(driver,name,kind):\\\\n driver.click(\\'state-machine:new:State\\');fill(driver,\\'state-machine:field:name\\',name);driver.click(\\'state-machine:state-kind:\\'+kind);driver.click(\\'state-machine:Apply\\');driver.send(op=\\'wait\\',pause=.2);return driver.audit()[\\'state_machines\\'][\\'current\\'][\\'id\\']\\\\ndef sm_event(driver,name):\\\\n driver.click(\\'state-machine:new:Event\\');fill(driver,\\'state-machine:field:name\\',name);driver.click(\\'state-machine:Apply\\');driver.send(op=\\'wait\\',pause=.2);return driver.audit()[\\'state_machines\\'][\\'current\\'][\\'id\\']\\\\ndef sm_transition(driver,name,source,target,event=\\'\\',guard=\\'\\'):\\\\n driver.click(\\'state-machine:new:Transition\\');fill(driver,\\'state-machine:field:name\\',name);fill(driver,\\'state-machine:field:source\\',str(source));fill(driver,\\'state-machine:field:target\\',str(target));fill(driver,\\'state-machine:field:event\\',str(event));fill(driver,\\'state-machine:field:guard\\',guard);driver.click(\\'state-machine:Apply\\');driver.send(op=\\'wait\\',pause=.2);return driver.audit()[\\'state_machines\\'][\\'current\\'][\\'id\\']\\\\n\"); j=json.loads(Path(\\'docs/parity/p32c/NATIVE_JOB.json\\').read_text()); n.seek=lambda w:reveal(n,w); source=Path(\\'/workspace/build/builderbob/mbse-craft/milestone1/native-p32c-02/cold/state-machine-cold-copy.kernspan\\'); side=source.with_name(\\'state-machine-cold-copy.mbse-views.json\\'); r=n.audit()[\\'widgets\\'][\\'views:Open views\\']; n.send(op=\\'click\\',x=int(r[0]-100),y=int((r[1]+r[3])/2)); n.send(op=\\'key\\',key=\\'a\\',mods=[\\'Control_L\\']); n.send(op=\\'text\\',text=str(side)); n.click(\\'views:Open views\\'); n.click(\\'view:tab:45\\'); n.send(op=\\'wait\\',pause=.4); a=n.audit(); labels=a[\\'state_machines\\'][\\'rendered\\'][\\'labels\\']; disjoint=lambda x,y:not(x[0]<y[2]and y[0]<x[2]and x[1]<y[3]and y[1]<x[3]); assert len(labels)==5 and set(x[0]for x in labels)==set(range(7007,7012)); assert all(disjoint(a[1],b[1])for i,a in enumerate(labels)for b in labels[i+1:]); assert all(disjoint(label[1],r)for label in labels for k,r in a[\\'widgets\\'].items()if k.startswith(\\'state-machine-occurrence:\\')); assert next(x[2]for x in labels if x[0]==7008).endswith(\\'Approve #7005 [true]\\') and next(x[2]for x in labels if x[0]==7009).endswith(\\'Approve #7005 [else]\\') and next(x[2]for x in labels if x[0]==7011).endswith(\\'Approve #7005 [unconditional]\\'); n.capture(\\'01-final-disjoint-transition-labels-and-readable-state-captions\\'); print(labels); receipt[\\'final_exact_transition_event_guard_labels_disjoint_from_labels_and_state_bounds\\']=True; n.clear_adjacent_views_path(); finalcopy=n.save(\\'state-machine-final-qualified-copy.kernspan\\'); assert finalcopy==json.loads(source.read_text())[\\'snapshot\\']; finalviews=json.loads((n.run/\\'state-machine-final-qualified-copy.mbse-views.json\\').read_text()); originalviews=json.loads(side.read_text()); assert all(finalviews.get(k,{})==originalviews.get(k,{})for k in [\\'views\\',\\'occurrences\\',\\'edges\\',\\'typed_ports\\',\\'connector_edges\\',\\'activity_diagrams\\',\\'state_machine_diagrams\\']); receipt[\\'final_binary_entire_snapshot_and_seven_maps_preserved\\']=True; n.capture(\\'02-final-qualified-save-copy-exact-native-and-seven-maps\\'); n.close(); assert all(base.digest(Path(p))==h for p,h in j[\\'inputs\\'].items()); receipt[\\'all_frozen_inputs_unchanged\\']=True; assert not list(output.rglob(\\'Xauthority\\')); receipt[\\'authentication_files_a', 1, 4073))"
+    }
+  ],
+  "final_exact_transition_event_guard_labels_disjoint_from_labels_and_state_bounds": true,
+  "final_binary_entire_snapshot_and_seven_maps_preserved": true,
+  "all_frozen_inputs_unchanged": true,
+  "authentication_files_absent": true,
+  "ended_utc": "2026-10-27T09:11:30.498026+00:00"
+}

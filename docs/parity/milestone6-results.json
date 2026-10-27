@@ -125,9 +125,15 @@
       "merge_commit": "37420112f144d26b9d0f80a65b5c6e25123f2ba5"
     },
     "p32c": {
-      "state": "in_progress",
+      "state": "draft_review",
       "scope": "native authoring/diagnostics/layout/history/save/cold acceptance",
-      "base_commit": "37420112f144d26b9d0f80a65b5c6e25123f2ba5"
+      "base_commit": "37420112f144d26b9d0f80a65b5c6e25123f2ba5",
+      "execution_results": "p32c/README.md",
+      "source_sha256": "fed2f1d8c791949670538d249123e0db7c764e07061f6f5f6e67b4d8e0583257",
+      "distinct_case_inventory": 664,
+      "new_distinct_cases": 9,
+      "native_state_machine_runs": 4,
+      "final_source_full_workspace_claim": false
     }
   }
 }
