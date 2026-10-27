@@ -831,6 +831,7 @@ fn walk_members(
 
 /// Additive source-specific v2 projection; V1 APIs and native formats stay separate.
 pub mod v2;
+pub mod project_sets;
 
 pub mod source_edit;
 

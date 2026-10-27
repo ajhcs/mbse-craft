@@ -874,6 +874,15 @@ pub fn read_snapshot(path: &Path) -> Result<Snapshot, String> {
     let path = native_path(path)?;
     Ok(decode(&read_bounded(&path)?)?.snapshot)
 }
+/// Inspect explicitly retained saved-native bytes through the existing decoder.
+/// Returns data only: no Session, native checkpoint, write or recovery authority.
+pub fn inspect_saved_bytes(bytes: &[u8]) -> Result<Snapshot, String> {
+    let envelope = decode(bytes)?;
+    if envelope.kind != WriteKind::Save {
+        return Err("STAGE1_RECOVERY_REQUIRES_RESTORE: saved project inspection only".into());
+    }
+    Ok(envelope.snapshot)
+}
 /// Private shared admission path; recovery inventory never trusts plain JSON metadata.
 pub(crate) fn decode_recovery(bytes: &[u8]) -> Result<Snapshot, String> {
     let envelope = decode(bytes)?;

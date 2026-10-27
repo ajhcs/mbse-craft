@@ -1,4 +1,5 @@
 //! Bounded acquisition of explicit regular local files, before any parser sees bytes.
+pub mod rooted;
 use std::{fs::OpenOptions, io::Read, path::Path};
 
 pub fn validate_path(path: &Path, context: &str) -> Result<(), String> {
