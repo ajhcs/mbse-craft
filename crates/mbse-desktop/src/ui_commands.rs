@@ -516,14 +516,14 @@ mod tests {
     #[test]
     fn command_ids_defaults_and_menu_groups_are_unique_and_complete() {
         use std::collections::BTreeSet;
-        assert_eq!(catalog::ALL.len(), 35);
+        assert_eq!(catalog::ALL.len(), 36);
         assert_eq!(
             catalog::ALL
                 .iter()
                 .map(|s| s.key)
                 .collect::<BTreeSet<_>>()
                 .len(),
-            35
+            36
         );
         assert_eq!(
             catalog::ALL
@@ -531,7 +531,7 @@ mod tests {
                 .map(|s| s.id)
                 .collect::<BTreeSet<_>>()
                 .len(),
-            35
+            36
         );
         for (i, s) in catalog::ALL.iter().enumerate() {
             assert!(!matches!(s.shortcut.logical_key,egui::Key::C|egui::Key::X|egui::Key::V),"egui-winit consumes Command+C/X/V, including extra modifiers, before workspace dispatch");

@@ -204,7 +204,7 @@
     {
       "path": "crates/mbse-desktop/src/ui_commands.rs",
       "bytes": 39331,
-      "sha256": "2fc1bb0160adf16636a50bda0f0a30538df3f2f39464dd766239d16c172e9d55"
+      "sha256": "2b663c00c3e264f4faf392f94f647c89d40610d4ee1f5448952979f009df2757"
     },
     {
       "path": "crates/mbse-desktop/src/ui_connector_routes.rs",
@@ -258,8 +258,8 @@
     },
     {
       "path": "crates/mbse-desktop/src/ui_scenario_tests.rs",
-      "bytes": 18683,
-      "sha256": "46d529ac002123ed0dee7a499dfe0c5c9d1942d95ef12171f3892ed8ae63a42a"
+      "bytes": 20103,
+      "sha256": "05bfac374fcdbcbc9f5a31ffb0d6f4b57074b790f934013caddec156ec4b4266"
     },
     {
       "path": "crates/mbse-desktop/src/ui_scenarios.rs",
@@ -268,8 +268,8 @@
     },
     {
       "path": "crates/mbse-desktop/src/ui_sequence_canvas.rs",
-      "bytes": 32268,
-      "sha256": "6bbed8f34bff141723ad5298db429094b9ab4c79e75a2c3bfa1347d027737a2e"
+      "bytes": 33210,
+      "sha256": "34df518fff0c3dc1c674b05806a3a25c51bba044539ae42aa9f1bbaf9e820e53"
     },
     {
       "path": "crates/mbse-desktop/src/ui_shortcuts.rs",
@@ -3792,5 +3792,5 @@
       "sha256": "be6f81b8e53b705b6733135d7f3bb3a33294c3c3e28078ffbf3b448d19a98235"
     }
   ],
-  "source_sha256": "6853f286425e5f5f30fbbcd239db3c2624941b40ea42a136fd263c609a86e11f"
+  "source_sha256": "f8b939a87212f26441023aade43eb5bf67e004fc286db6965667368bb1413f68"
 }

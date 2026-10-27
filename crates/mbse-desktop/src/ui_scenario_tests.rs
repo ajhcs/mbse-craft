@@ -396,6 +396,15 @@ fn rendered_sequence_rows_arrows_two_views_layout_history_pin_hide_fit_preserve_
     assert!(a.scenarios.rendered.as_ref().unwrap().messages.is_empty());
     click(&mut a, &ctx, "scenario-canvas:Toggle visibility");
     assert_eq!(a.scenarios.rendered.as_ref().unwrap().messages.len(), 2);
+    click(&mut a, &ctx, "scenario-canvas:Toggle visibility");
+    a.scenarios.selected = None;
+    click(&mut a, &ctx, "scenario-canvas:Browse occurrences");
+    click(&mut a, &ctx, &format!("scenario-canvas:pick:{}", occ.get()));
+    click(&mut a, &ctx, "scenario-canvas:Toggle visibility");
+    assert!(a.views.views.document().scenario_diagrams[&two].occurrences[&occ].visible);
+    click(&mut a, &ctx, "camera:Fit");
+    assert!(a.views.camera_audit()["zoom"].as_f64().unwrap() < 1.);
+    assert_eq!(a.views.views.document().views[&one].camera.zoom, 1.);
     assert_eq!(a.session.editor.snapshot, snapshot);
 }
 #[test]
@@ -453,6 +462,31 @@ fn rendered_sequence_missing_participant_keeps_headers_rows_geometry_and_suppres
  {
     let (_d, mut a, ctx) = app();
     let (root, _, _, _, _) = seed(&mut a);
+    let unused = Id(a.session.editor.snapshot.next_id);
+    let mut store = ty::load(&a.session.editor.snapshot).unwrap();
+    let mut definition = store.definitions[&Id(1004)].clone();
+    definition.id = unused;
+    definition.name = "Independent scenario participant".into();
+    store.definitions.insert(unused, definition);
+    let first = *store.scenarios[&root].lifelines.keys().next().unwrap();
+    store
+        .scenarios
+        .get_mut(&root)
+        .unwrap()
+        .lifelines
+        .get_mut(&first)
+        .unwrap()
+        .participant = unused;
+    a.session.editor.snapshot.next_id += 1;
+    a.session
+        .editor
+        .snapshot
+        .extensions
+        .as_mut()
+        .unwrap()
+        .namespaces
+        .insert(ty::NAMESPACE.into(), serde_json::to_value(store).unwrap());
+    a.session.editor.snapshot.validate().unwrap();
     let stamp = a.views.views.stamp(&a.session.editor);
     a.sc_create_diagram(&stamp, root).unwrap();
     a.scenarios.open = false;
@@ -461,7 +495,7 @@ fn rendered_sequence_missing_participant_keeps_headers_rows_geometry_and_suppres
     let rows = a.scenarios.rendered.as_ref().unwrap().rows.clone();
     let key = ty::NAMESPACE;
     let mut s = ty::load(&a.session.editor.snapshot).unwrap();
-    s.definitions.get_mut(&Id(1004)).unwrap().kind = ty::Kind::Value(ty::Scalar::Boolean);
+    s.definitions.get_mut(&unused).unwrap().kind = ty::Kind::Value(ty::Scalar::Boolean);
     a.session
         .editor
         .snapshot

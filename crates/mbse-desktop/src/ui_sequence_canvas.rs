@@ -128,6 +128,29 @@ impl Workspace {
                 self.scenarios.drag = None;
             }
         });
+        let picker = ui.collapsing("All diagram occurrences", |ui| {
+            for o in diagram.occurrences.values() {
+                let r = ui.add_enabled(
+                    ready,
+                    egui::Button::new(format!(
+                        "Occurrence #{} · lifeline #{} · {} · {} · {:?}",
+                        o.id.get(),
+                        o.element.0,
+                        if o.visible { "shown" } else { "hidden" },
+                        if o.pinned { "pinned" } else { "movable" },
+                        o.presence
+                    )),
+                );
+                self.bound(format!("scenario-canvas:pick:{}", o.id.get()), &r);
+                if r.clicked() {
+                    self.scenarios.selected = Some((view, o.id));
+                }
+            }
+        });
+        self.bound(
+            "scenario-canvas:Browse occurrences",
+            &picker.header_response,
+        );
         let selected = self
             .scenarios
             .selected
